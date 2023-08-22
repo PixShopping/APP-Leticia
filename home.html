@@ -1,0 +1,79 @@
+<!DOCTYPE html
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./imagem/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Letícia </title>
+		      
+		<style scoped>
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+				--gradient: linear-gradient(135deg, var(--one),var(--two),var(--tree),var(--four),var(--five),var(--six));
+			}
+			
+			*  {
+				padding: 0;
+				margin: 0;
+				border: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background: var(--gradient);
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial';
+            }
+            
+            .container {
+            	width: 100vw;
+            	height: auto;
+            	padding: 0px 0px 20px 0px;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            }
+            
+            
+            </style>
+           </head>
+           
+           <body>
+           	
+           	<main class="container">
+           		
+           		<h1>Bem Vindo!! <p id="logado"></p></h1>
+           		
+           	</main>
+           	
+           </body>
+           
+       <!-- JavaScript -->
+       <script>
+       
+      const h1logado = document.getElementById('logado');
+      const logado = localStorage.getItem('logado');
+       
+       if (logado === "ADMIN") {
+       	h1logado.innerHTML = "Admin"
+       } else if (logado === "RESPONSAVEL") {
+       	h1logado.innerHTML = "Responsavel"
+       } else if (!logado) {
+       	window.location.href = "./login.html";
+       }
+       
+       </script>
+       
+       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>

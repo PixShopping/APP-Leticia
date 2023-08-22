@@ -1,0 +1,125 @@
+<!DOCTYPE html
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./imagem/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Letícia </title>
+		      
+		<style scoped>
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+				--gradient: linear-gradient(135deg, var(--one),var(--two),var(--tree),var(--four),var(--five),var(--six));
+			}
+			
+			*  {
+				padding: 0;
+				margin: 0;
+				border: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background: var(--gradient);
+				color: white;
+				user-select: none;
+				font-family: 'Arial';
+            }
+            
+            .container {
+	            width: 100vw;
+	            height: 85vh;
+            	display: flex;
+            	flex-direction: column;
+            	justify-content: center;
+            	align-items: center;
+            	padding: 30px;
+            	margin: auto;
+            }
+            
+            .container img {
+            	width: 58vw;
+            	height: auto;
+            	border: 2px solid black;
+            }
+            
+            .container h1 {
+            	width: 80%;
+            	text-align: center;
+	            font-size: 26px;
+	            font-weight: 900;
+            	margin: 12px 0px 10px 0px;
+            	letter-spacing: 0.5px;
+            	color: white;
+            }
+                        
+            #barLoader {
+            	width: 80%;
+            	height: 30px;
+            	border: 2px solid var(--one);
+            	border-radius: 5px;
+            	display: flex;
+            }
+            
+            #loader {
+            	width: 0%;
+            	height: 100%;
+            	background: linear-gradient(135deg, var(--one), var(--two), var(--tree));
+            	color: white;
+            	border-radius: 2.5px;
+            	transition: all .5s ease-in-out;
+            }
+            
+            
+            </style>
+           </head>
+           
+           <body>
+           	
+           	<main class="container">
+           	
+           		<img src="./src/img/logo.png">
+           		<h1>Aplicativo do Leticia</h1>
+           		<div id="barLoader">
+           			<div id="loader"></div>
+           		</div>
+           		
+           	</main>
+           	
+           </body>
+           
+       <!-- JavaScript -->
+       <script>
+       
+       const loader = document.getElementById('loader');
+       
+       setTimeout( () => {
+       	loader.style.width = "20%";
+       }, 1650);
+       setTimeout( () => {
+       	loader.style.width = "40%";
+       }, 1850);
+       setTimeout( () => {
+       	loader.style.width = "60%";
+       }, 2050);
+       setTimeout( () => {
+       	loader.style.width = "80%";
+       }, 2250);
+       setTimeout( () => {
+       	loader.style.width = "100%";
+       }, 2450);
+       setTimeout( () => {
+       	//window.location.href = "./home.html";
+       }, 3200);
+
+       
+       </script>
+</html>
