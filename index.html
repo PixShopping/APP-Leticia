@@ -17,7 +17,6 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-				--gradient: linear-gradient(135deg, var(--one),var(--two),var(--tree),var(--four),var(--five),var(--six));
 			}
 			
 			*  {
@@ -55,7 +54,7 @@
             #barLoader {
             	width: 80%;
             	height: 30px;
-            	border: 2px solid var(--one);
+            	border: 2px solid var(--six);
             	border-radius: 5px;
             	display: flex;
             	margin: -10px 0px 0px 0px;
@@ -64,7 +63,7 @@
             #loader {
             	width: 0%;
             	height: 100%;
-            	background: linear-gradient(135deg, var(--one), var(--two), var(--tree));
+            	background: var(--six);
             	color: white;
             	border-radius: 2.5px;
             	transition: all .5s ease-in-out;
@@ -84,6 +83,10 @@
            		</div>
            		
            	</main>
+           	
+           	<div style="color: white;" id="usuarios">
+           	
+           	</div>
            	
            </body>
            
@@ -108,9 +111,21 @@
        	loader.style.width = "100%";
        }, 2450);
        setTimeout( () => {
-       	window.location.href = "./home.html";
+       	//window.location.href = "./home.html";
        }, 3200);
-
+		
+		
+		// JSON
+		
+		let divUsuarios = document.getElementById('usuarios');
+		
+		fetch("dados.json").then((response) => {
+			response.json().then((dados) => {
+				dados.usuarios.map((usuario) => {
+					divUsuarios.innerHTML += `<li> ${usuario.nome} </li>`
+				});
+			});
+		});
        
        </script>
 </html>
