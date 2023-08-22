@@ -17,7 +17,6 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-				--gradient: linear-gradient(135deg, var(--one),var(--two),var(--tree),var(--four),var(--five),var(--six));
 			}
 			
 			*  {
@@ -35,18 +34,6 @@
 				overflow-x: hidden;
             }
             
-            .container {
-            	position: relative;
-            	top: 85px;
-            	left: 0px;
-            	width: 100vw;
-            	height: auto;
-            	padding: 0px 0px 20px 0px;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
             /* ----- Navgation ----- */
             
             .navgation {
@@ -62,7 +49,7 @@
             	color: white;
             	background: var(--one);
             	padding: 0px 20px;
-            	z-index: 10;
+            	z-index: 100;
             	box-shadow: 0px 5px 15px var(--two);
             	border-radius: 0px 0px 10px 10px;
             }
@@ -88,7 +75,7 @@
             	background: var(--one);
             	color: white;
             	transition: all .5s ease-in-out;
-            	z-index: 9;
+            	z-index: 99;
             	display: flex;
             	flex-direction: column;
             	padding: 10px 0px 0px 0px;
@@ -101,23 +88,205 @@
              	height: auto;
              }
              
-             .menu li {
+             .menu ul li {
              	width: 100%;
              	display: flex;
              	align-items: center;
-             	margin: 20px 0px 5px 0px;
+             	margin: 25px 0px 0px 0px;
              	cursor: pointer;
-             	padding: 0px 0px 0px 20px;
+             	padding: 0px 0px 0px 25px;
+             	color: white;
+             }
+             
+             .menu li:hover {
+             	color: var(--six);
+             	transition: all .3s ease-in-out;
              }
              
              .menu li h1 {
-             	font-size: 22px;
+             	font-size: 23px;
              }
              
              .menu li ion-icon {
-             	font-size: 22px;
+             	font-size: 25px;
              	margin: 0px 0px 0px 5px;
              }
+             
+            .menu ul .li-linha {
+             	width: 100%;
+             	padding: 0px 0px 0px 0px;
+             	display: flex;
+             	align-items: center;
+             	justify-content: space-around;
+             	margin: 15px 0px -10px 0px;
+             	color: var(--tree);
+             }
+             
+             .li-linha h2 {
+             	font-size: 20px;
+             	margin: 0px;
+             }
+             
+             .linha {
+             	width: 31%;
+             	height: 3px;
+             	background: var(--tree);
+             }
+             
+            
+            /* Container */
+            
+            .container {
+            	position: relative;
+            	top: 85px;
+            	left: 0px;
+            	width: 100vw;
+            	height: auto;
+            	padding: 0px 0px 20px 0px;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            }
+            
+            .content-logado {
+            	width: 100vw;
+            	height: 77px;
+            	background: var(--two);
+            	margin: -12px 0px 0px 0px;
+            	padding: 15px;
+            	display: flex;
+            	align-items: center;
+            }
+            
+            .content-logado h1 {
+            	display: flex;
+            	font-size: 22.5px;
+            	font-weight: 900;
+            	margin: 5px 0px 0px 0px;
+            	text-transform: uppercase;
+            	letter-spacing: 0.5px;
+            }
+            
+            .content-logado h1 p {
+            	margin: 0px 0px 0px 10px;
+            }
+            
+            /* AVISOS */
+            
+            .avisos {
+            	width: 100vw;
+            	height: auto;
+            	display: flex;
+            	flex-direction: column;
+            }
+            
+            .avisos h1 {
+            	font-size: 26px;
+            	font-weight: 800;
+            	color: var(--two);
+            	display: flex;
+            	align-items: center;
+            	align-self: center;
+            	margin: 15px 0px 0px 0px;
+            }
+            
+            .avisos h1 ion-icon {
+            	font-size: 27px;
+            	margin: 0px 4px 0px 4px;
+            }
+            
+            .container-avisos {
+            	z-index: 50;
+            	width: 100vw;
+            	height: auto;
+            	margin: 100vh 0px 0px 0px;
+            	background: white;
+            	display: none;
+            	flex-direction: column;
+            	transition: all .55s ease-in-out;
+            	padding: 0px 0px 20px 0px;
+            }
+            
+            .designer-avisos {
+            	z-index: 50;
+            	width: 100%;
+            	height: 100px;
+            	background: var(--one);
+            	color: white;
+            	display: flex;
+            	justify-content: center;
+            	align-items: center;
+            	border-radius: 10px 10px 0px 0px;
+            }
+            
+            .designer-avisos ion-icon {
+            	margin: auto;
+            	font-size: 50px;
+            }
+            
+            .content-avisos {
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            	color: var(--one);
+            	padding: 10px;
+            }
+            
+            .content-avisos h1 {
+            	font-size: 24px;
+            	font-weight: 800;
+            	margin: 15px 0px;
+            }
+            
+            .content-avisos form {
+            	width: auto;
+            	height: auto;
+            	display: flex;
+            	flex-direction: column;
+            }
+            
+            .content-avisos label {
+            	font-size: 19.5px;
+            	font-weight: 800;
+            	margin: 0px 0px 2px 0px;
+            	color: var(--two);
+            }
+            
+            .content-avisos input {
+            	background: var(--two);
+            	width: 85vw;
+            	height: 35px;
+            	border-radius: 5px;
+            	margin: 0px 0px 12.5px 0px;
+            	box-shadow: 3.5px 3.5px 2px var(--four);
+            	padding: 10px;
+            	color: white;
+            	font-size: 16px;
+            }
+            
+            .content-avisos textarea {
+            	background: var(--two);
+            	width: 85vw;
+            	height: 55px;
+            	border-radius: 5px;
+            	margin: 0px 0px 12.5px 0px;
+            	box-shadow: 3.5px 3.5px 2px var(--four);
+            	padding: 10px;
+            	color: white;
+            	font-size: 16px;
+            }
+            
+            .content-avisos button {
+            	align-self: center;
+            	background: var(--two);
+            	width: 82.5vw;
+            	height: 35px;
+            	border-radius: 5px;
+            	margin: 10px 0px 5px 0px;
+            	box-shadow: 3.5px 3.5px 2px var(--tree);
+            	color: white;
+            	font-size: 16px;
+            }
             
             </style>
            </head>
@@ -134,27 +303,88 @@
            		
            	</header>
            	
-           	<!-- Menu -->
+           	<!-- ========= Menu ========= -->
            	<section class="menu">
            		
            		<ul>
-           			<li><!-- COMUNICADOS-->
-           				<h1>Comunicados</h1>
+           			<li> <!-- NOTIFICACAO -->
+           				<h1>Notificaçao</h1>
            				<ion-icon name="notifications"></ion-icon>
            			</li>
-           			<li><!-- SECRETARIA -->
+           			
+           			<li> <!-- SECRETARIA -->
            				<h1>Secretaria</h1>
            				<ion-icon name="people-circle-outline"></ion-icon>
+           			</li>
+           			
+           			<li onclick="website()"> <!-- WEBSITE -->
+           				<h1>Website</h1>
+           				<ion-icon name="globe"></ion-icon>
+           			</li>
+           			
+           			<!-- === ENVIAR === -->
+           			
+           			<li class="li-linha">
+           				<div class="linha"></div>
+           				<h2>Enviar</h2>
+           				<div class="linha"></div>
+           			</li>
+           			
+           			<li onclick="avisos()"> <!-- AVISOS -->
+           				<h1>Avisos</h1>
+           				<ion-icon name="add-circle"></ion-icon>
            			</li>
            		</ul>
            		
            	</section>
            	
+           	<!-- ===== FIM DO MENU ===== -->
+           	
            	<main class="container">
            		
-           		<h1>Bem Vindo!! <p id="logado"></p></h1>
+           		<div class="content-logado">
+           			<h1>Bem Vindo!! <p id="logado"></p></h1>
+           		</div>
+           		
+           		<section class="avisos">
+           			
+           			<h1>
+	           			<ion-icon name="alert-circle"></ion-icon>
+	           			Avisos
+	           			<ion-icon name="alert-circle"></ion-icon>
+           			</h1>
+           			
+           		</section>
            		
            	</main>
+           	
+           	<!-- Container Avisos -->
+           	<section class="container-avisos">
+           		
+           		<div class="designer-avisos">
+           			<ion-icon name="chatbubbles-outline"></ion-icon>
+           		</div>
+           		
+           		<div class="content-avisos">
+           			<h1>Enviar Aviso</h1>
+           			
+           			<form>
+	           			<label>Destinatario</label>
+	           			<input id="destinatario" type="text">
+	           			
+	           			<label>Titulo</label>
+	           			<input id="titulo" type="text">
+	           			
+	           			<label>Texto</label>
+	           			<textarea id="texto" type="text"></textarea>
+	           			
+	           			<button value="submit">Enviar</button>
+	           			
+           			</form>
+           			
+           		</div>
+           		
+           	</section>
            	
            </body>
            
@@ -167,16 +397,23 @@
        const menu = document.querySelector('.menu');
        // Abrir Menu
        openMenu.addEventListener('click', () => {
+       	OPENMENU();
+       });
+       closeMenu.addEventListener('click', () => {
+       	CLOSEMENU();
+       });
+       
+       function OPENMENU() {
        	openMenu.style.display = "none";
        	closeMenu.style.display = "block";
        	menu.style.left = "0px";
-       });
-       // Fechar Menu
-       closeMenu.addEventListener('click', () => {
+       }
+       
+       function CLOSEMENU() {
        	openMenu.style.display = "block";
        	closeMenu.style.display = "none";
        	menu.style.left = "-51vw";
-       });
+       }
        
       const h1logado = document.getElementById('logado');
       const logado = localStorage.getItem('logado');
@@ -187,6 +424,28 @@
        	h1logado.innerHTML = "Responsavel"
        } else if (!logado) {
        	window.location.href = "./login.html";
+       }
+       
+       //HREFS
+       
+       function website() {
+       	window.location.href = "https://escola-leticia.netlify.app";
+       }
+      
+       var c = 0; 
+       function avisos() {
+       	CLOSEMENU();
+       	const containerAvisos = document.querySelector('.container-avisos');
+       	if (c === 1) {
+       		containerAvisos.style.margin = "100vh 0px 0px 0px";
+       		c = 0;
+       	} else {
+	       	containerAvisos.style.display = "flex";
+	       	setTimeout( () => {
+	       		containerAvisos.style.margin = "10px 0px 0px 0px";
+	       	}, 350);
+	       	c++;
+       	}
        }
        
        </script>
