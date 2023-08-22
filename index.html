@@ -84,10 +84,6 @@
            		
            	</main>
            	
-           	<div style="color: white;" id="usuarios">
-           	
-           	</div>
-           	
            </body>
            
        <!-- JavaScript -->
@@ -111,21 +107,9 @@
        	loader.style.width = "100%";
        }, 2450);
        setTimeout( () => {
-       	//window.location.href = "./home.html";
+       	window.location.href = "./home.html";
        }, 3200);
-		
-		
-		// JSON
-		
-		let divUsuarios = document.getElementById('usuarios');
-		
-		fetch("dados.json").then((response) => {
-			response.json().then((dados) => {
-				dados.usuarios.map((usuario) => {
-					divUsuarios.innerHTML += `<li> ${usuario.nome} </li>`
-				});
-			});
-		});
+
        
        </script>
 </html>
