@@ -28,13 +28,17 @@
 			}
 			
 			body {
-				background: var(--gradient);
-				color: var(--one);
+				background: var(--six);
+				color: white;
 				user-select: none;
 				font-family: 'Arial';
+				overflow-x: hidden;
             }
             
             .container {
+            	position: relative;
+            	top: 85px;
+            	left: 0px;
             	width: 100vw;
             	height: auto;
             	padding: 0px 0px 20px 0px;
@@ -43,11 +47,108 @@
             	align-items: center;
             }
             
+            /* ----- Navgation ----- */
+            
+            .navgation {
+            	position: fixed;
+            	top: 0px;
+            	left: 0px;
+            	display: flex;
+            	flex-direction: row;
+            	justify-content: space-between;
+            	align-items: center;
+            	width: 100vw;
+            	height: 85px;
+            	color: white;
+            	background: var(--one);
+            	padding: 0px 20px;
+            	z-index: 10;
+            	box-shadow: 0px 5px 15px var(--two);
+            	border-radius: 0px 0px 10px 10px;
+            }
+            
+            .navgation ion-icon {
+            	font-size: 45px;
+            	cursor: pointer;
+            }
+            
+            .navgation h1 {
+            	font-size: 24px;
+            	font-weight: ;
+            	font-family: ;
+            	letter-spacing: 0.5px;
+            }
+            
+            .menu {
+            	position: fixed;
+            	left: -51vw;
+            	top: 75px;
+            	width: 50vw;
+            	height: 100%;
+            	background: var(--one);
+            	color: white;
+            	transition: all .5s ease-in-out;
+            	z-index: 9;
+            	display: flex;
+            	flex-direction: column;
+            	padding: 10px 0px 0px 0px;
+             }
+             
+             .menu ul {
+             	display: flex;
+             	flex-direction: column;
+             	width: 100%;
+             	height: auto;
+             }
+             
+             .menu li {
+             	width: 100%;
+             	display: flex;
+             	align-items: center;
+             	margin: 20px 0px 5px 0px;
+             	cursor: pointer;
+             	padding: 0px 0px 0px 20px;
+             }
+             
+             .menu li h1 {
+             	font-size: 22px;
+             }
+             
+             .menu li ion-icon {
+             	font-size: 22px;
+             	margin: 0px 0px 0px 5px;
+             }
             
             </style>
            </head>
            
            <body>
+           	
+           	<!-- Navgation -->
+           	<header class="navgation">
+           		
+           		<ion-icon id="openMenu" style="display: block;" name="menu"></ion-icon>
+           		<ion-icon id="closeMenu" style="display: none;" name="close"></ion-icon>
+           		<h1>INICIO</h1>
+           		<ion-icon name="person-circle"></ion-icon>
+           		
+           	</header>
+           	
+           	<!-- Menu -->
+           	<section class="menu">
+           		
+           		<ul>
+           			<li><!-- COMUNICADOS-->
+           				<h1>Comunicados</h1>
+           				<ion-icon name="notifications"></ion-icon>
+           			</li>
+           			<li><!-- SECRETARIA -->
+           				<h1>Secretaria</h1>
+           				<ion-icon name="people-circle-outline"></ion-icon>
+           			</li>
+           		</ul>
+           		
+           	</section>
            	
            	<main class="container">
            		
@@ -59,6 +160,23 @@
            
        <!-- JavaScript -->
        <script>
+       
+       // Navgation
+       const openMenu = document.getElementById('openMenu');
+       const closeMenu = document.getElementById('closeMenu');
+       const menu = document.querySelector('.menu');
+       // Abrir Menu
+       openMenu.addEventListener('click', () => {
+       	openMenu.style.display = "none";
+       	closeMenu.style.display = "block";
+       	menu.style.left = "0px";
+       });
+       // Fechar Menu
+       closeMenu.addEventListener('click', () => {
+       	openMenu.style.display = "block";
+       	closeMenu.style.display = "none";
+       	menu.style.left = "-51vw";
+       });
        
       const h1logado = document.getElementById('logado');
       const logado = localStorage.getItem('logado');
