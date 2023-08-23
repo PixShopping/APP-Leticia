@@ -195,9 +195,13 @@
        //Funcao dos Responsaveis
        function loginResponsavel() {
        	const MAE = document.getElementById('mae').value;
+       	document.getElementById('mae').value = MAE.toUpperCase();
        	const NOME = document.getElementById('nome').value;
+       	document.getElementById('nome').value = NOME.toUpperCase();
        	const SERIE = document.getElementById('serie').value;
+       	document.getElementById('serie').value = SERIE.toUpperCase();
        	const NASCIMENTO = document.getElementById('nascimento').value;
+       	document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
        	
        	// Alerta
        	const alertaMae = document.getElementById('alertaMae');
@@ -259,7 +263,9 @@
        // Funcao da SECRETARIA
        function loginSecretaria() {
        	const USUARIO = document.getElementById('usuario').value;
+       	document.getElementById('usuario').value = USUARIO.toUpperCase();
        	const SENHA = document.getElementById('senha').value;
+       	document.getElementById('senha').value = SENHA.toUpperCase();
        	
        	const alertaUsuario = document.getElementById('alertaUsuario');
        	const alertaSenha = document.getElementById('alertaSenha');
