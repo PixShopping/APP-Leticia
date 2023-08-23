@@ -214,9 +214,8 @@
 	       			alertaMae.innerHTML = "Nome valido";
        				alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
-       				dados.usuarios.aluno.map((usuario) => {
 		       			// Verificar o Nome do aluno
-		       			if (NOME === usuario.nome) {
+		       			if (NOME === res.aluno.nome) {
 		       				alertaAluno.innerHTML = "Nome valido"
 		       				alertaAluno.style.color = "var(--green)";
 		       			} else {
@@ -225,7 +224,7 @@
 		       			}
 		       			
 		       			// Verificar a Serie do aluno
-		       			if (SERIE === usuario.serie) {
+		       			if (SERIE === res.aluno.serie) {
 		       				alertaSerie.style.innerHTML = "Serie valida";
 		       				alertaSerie.style.color = "var(--green)";
 		       			} else {
@@ -234,7 +233,7 @@
 		       			}
 		       			
 		       			// Verificar o Nascimento do aluno
-		       			if (NASCIMENTO === usuario.nascimento) {
+		       			if (NASCIMENTO === res.aluno.nascimento) {
 		       				alertaNascimento.innerHTML = "Nascimento valido"
 		       				alertaNascimento.style.color = "var(--green)";
 		       			} else {
@@ -242,11 +241,10 @@
 		       				alertaNascimento.style.color = "var(--red)";
 		       			}
 		       			
-		       			if (NOME === usuario.nome && SERIE === usuario.serie && NASCIMENTO === usuario.nascimento) {
+		       			if (NOME === res.aluno.nome && SERIE === res.aluno.serie && NASCIMENTO === res.aluno.nascimento) {
 		       				window.location.href = "./home.html";
 		       				localStorage.setItem('logado', 'Responsavel');
 		       			}
-	       			})
        			} else {
 	       			alertaMae.innerHTML = "Nome invalido"
        				alertaMae.style.color = "var(--red)";
