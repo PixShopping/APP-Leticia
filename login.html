@@ -162,7 +162,7 @@
            				Nome da Mae: 
            				<p id="alertaMae"></p>
            			</label>
-	           		<input id="mae" type="text">
+	           		<input id="inputmae" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Nome do Aluno:
@@ -194,7 +194,9 @@
 
        //Funcao dos Responsaveis
        function loginResponsavel() {
-        const MAE = document.getElementById('mae').value.toUpperCase();
+	const inputmae = document.getElementById('inputmae').value;
+        const MAE = inputmae.toUpperCase();
+	//const MAE = document.getElementById('mae').value.toUpperCase();
        	const NOME = document.getElementById('nome').value;
        	document.getElementById('nome').value = NOME.toUpperCase();
        	const SERIE = document.getElementById('serie').value;
