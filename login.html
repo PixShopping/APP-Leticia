@@ -166,15 +166,21 @@
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Nome do Aluno:
-	           			<p id="alertaAluno"></p> 
+	           			<p id="alertaNome"></p> 
 	           		</label>
-	           		<input id="aluno" type="password">
+	           		<input id="nome" type="text">
+	           		<label>
+	           			<ion-icon name="key"></ion-icon>
+	           			Serie:
+	           			<p id="alertaSerie"></p> 
+	           		</label>
+	           		<input id="serie" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Data do Nascimento:
 	           			<p id="alertaNascimento"></p> 
 	           		</label>
-	           		<input id="nascimento" type="password">
+	           		<input id="nascimento" type="text">
 	           		<button onclick="loginResponsavel()">Login</button>
            		</section>
            		
@@ -188,86 +194,105 @@
        
        //Funcao dos Responsaveis
        function loginResponsavel() {
-       	const mae = document.getElementById('mae').value;
-       	const aluno = document.getElementById('aluno').value;
-       	const nascimento = document.getElementById('nascimento').value;
+       	const MAE = document.getElementById('mae').value;
+       	const NOME = document.getElementById('nome').value;
+       	const SERIE = document.getElementById('serie').value;
+       	const NASCIMENTO = document.getElementById('nascimento').value;
        	
        	// Alerta
        	const alertaMae = document.getElementById('alertaMae');
-       	const alertaAluno = document.getElementById('alertaAluno');
+       	const alertaNome = document.getElementById('alertaNome');
+       	const alertaSerie = document.getElementById('alertaSerie');
        	const alertaNascimento = document.getElementById('alertaNascimento');
        	
-       	// Dados / Usuarios / 0 / Mae, Aluno, Nascimento
-       	var count = 0;
+       	
+       	// Dados / Usuarios / Mae / Nome, Serie, Nascimento
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       	response.json().then((dados) => {
-	       		dados.usuarios.count.map((usuario) => {
-	       			// Verificar Mae Existente
-	       			if (mae === usuario.count.mae) {
-	       				alertaMae.innerHTML = "Nome valido"
-	       				alertaMae.style.color = "var(--green)";
-	       			} else {
-	       				alertaMae.innerHTML = "Nome invalido"
-	       				alertaMae.style.color = "var(--red)";
-	       			}
-	       			// Verificar Aluno Existente
-	       			if (aluno === usuario.aluno) {
-	       				alertaAluno.innerHTML = "Nome valido"
-	       				alertaAluno.style.color = "var(--green)";
-	       			} else {
-	       				alertaAluno.innerHTML = "Nome invalido"
-	       				alertaAluno.style.color = "var(--red)";
-	       			}
-	       			// Verificar Nascimento Existente
-	       			if (nascimento === usuario.nascimento) {
-	       				alertaNascimento.innerHTML = "Nascimento valido"
-	       				alertaNascimento.style.color = "var(--green)";
-	       			} else {
-	       				alertaNascimento.innerHTML = "Nascimento invalido"
-	       				alertaNascimento.style.color = "var(--red)";
-	       			}
-	       			
-	       			if (nascimento === usuario.nascimento && aluno === usuario.aluno && mae === usuario.mae) {
-	       				window.location.href = "./home.html";
-	       			}
-	       		})
-	       		count++;
+	       		if (MAE === dados.usuarios.mae) {
+	       			alertaMae.innerHTML = "Nome valido"
+       				alertaMae.style.color = "var(--green)";
+       				// Percorrer dados do aluno
+       				dados.usuarios.mae.map((aluno) => {
+		       			// Verificar o Nome do aluno
+		       			if (NOME === aluno.nome) {
+		       				alertaAluno.innerHTML = "Nome valido"
+		       				alertaAluno.style.color = "var(--green)";
+		       			} else {
+		       				alertaAluno.innerHTML = "Nome invalido"
+		       				alertaAluno.style.color = "var(--red)";
+		       			}
+		       			
+		       			// Verificar a Serie do aluno
+		       			if (SERIE === aluno.serie) {
+		       				alertaSerie.style.innerHTML = "Serie valida";
+		       				alertaSerie.style.color = "var(--green)";
+		       			} else {
+		       				alertaSerie.style.innerHTML = "Serie invalida";
+		       				alertaSerie.style.color = "var(--red)";
+		       			}
+		       			
+		       			// Verificar o Nascimento do aluno
+		       			if (NASCIMENTO === aluno.nascimento) {
+		       				alertaNascimento.innerHTML = "Nascimento valido"
+		       				alertaNascimento.style.color = "var(--green)";
+		       			} else {
+		       				alertaNascimento.innerHTML = "Nascimento invalido"
+		       				alertaNascimento.style.color = "var(--red)";
+		       			}
+		       			
+		       			if (NOME === aluno.nome && SERIE === aluno.serie && NASCIMENTO === aluno.nascimento) {
+		       				window.location.href = "./home.html";
+		       				localStorage.setItem('logado', 'Responsavel');
+		       			}
+	       			})
+       			} else {
+	       			alertaMae.innerHTML = "Nome invalido"
+       				alertaMae.style.color = "var(--red)";
+	       		}
 	       	})
 	       })
        }
        
        // Funcao da SECRETARIA
        function loginSecretaria() {
-       	const usuario = document.getElementById('usuario').value;
-       	const senha = document.getElementById('senha').value;
+       	const USUARIO = document.getElementById('usuario').value;
+       	const SENHA = document.getElementById('senha').value;
        	
        	const alertaUsuario = document.getElementById('alertaUsuario');
        	const alertaSenha = document.getElementById('alertaSenha');
        	
-       	// VALIDAR SENHA
-       	if (senha !== "123") {
-       		alertaSenha.innerHTML = "Senha incorreta";
-       		alertaSenha.style.color = "var(--red)";
-       	} else {
-       		alertaSenha.innerHTML = "Senha correta";
-       		alertaSenha.style.color = "var(--green)";
-       	}
-       	
-       	// VALIDAR USUARIO
-       	if (usuario !== "admin") {
-       		alertaUsuario.innerHTML = "Usuario incorreto";
-       		alertaUsuario.style.color = "var(--red)";
-       	} else {
-       		alertaUsuario.innerHTML = "Usuario correto";
-       		alertaUsuario.style.color = "var(--green)";
-       	}
-       	
-       	if (usuario === "admin" && senha === "123") {
-       		setTimeout( () => {
-       			window.location.href = "./home.html";
-	       		localStorage.setItem('logado', 'ADMIN');
-       		}, 1500);
-       	}
+       	fetch("").then((response) => {
+       		response.json().then((dados) => {
+       			dados.secretaria.map((login) => {
+       				// VALIDAR SENHA
+			       	if (SENHA !== login.senha) {
+			       		alertaSenha.innerHTML = "Senha incorreta";
+			       		alertaSenha.style.color = "var(--red)";
+			       	} else {
+			       		alertaSenha.innerHTML = "Senha correta";
+			       		alertaSenha.style.color = "var(--green)";
+			       	}
+			       	
+			       	// VALIDAR USUARIO
+				    	if (USUARIO !== login.usuario) {
+				    		alertaUsuario.innerHTML = "Usuario incorreto";
+				    		alertaUsuario.style.color = "var(--red)";
+				    	} else {
+				    		alertaUsuario.innerHTML = "Usuario correto";
+				    		alertaUsuario.style.color = "var(--green)";
+				    	}
+				    	
+			       	// Login
+			       	if (USUARIO === login.usuario && SENHA === login.senha) {
+			       		setTimeout( () => {
+			       			window.location.href = "./home.html";
+				       		localStorage.setItem('logado', 'Administrador');
+			       		}, 1500);
+			       	}
+       			})
+       		})
+       	})
        	
        }
        
