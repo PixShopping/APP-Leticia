@@ -162,7 +162,7 @@
            				Nome da Mae: 
            				<p id="alertaMae"></p>
            			</label>
-	           		<input id="inputmae" type="text">
+	           		<input oninput="inputmae()" id="mae" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Nome do Aluno:
@@ -192,10 +192,13 @@
        <!-- JavaScript -->
        <script>
 
+       function inputmae() {
+	  const MAE = document.getElementById('mae').value;
+ 	  document.getElementById('mae').value = MAE.toUpperCase();
+       }
+	       
        //Funcao dos Responsaveis
        function loginResponsavel() {
-	const inputmae = document.getElementById('inputmae').value;
-        const MAE = inputmae.toUpperCase();
 	//const MAE = document.getElementById('mae').value.toUpperCase();
        	const NOME = document.getElementById('nome').value;
        	document.getElementById('nome').value = NOME.toUpperCase();
@@ -216,9 +219,9 @@
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
-	       		if (MAE == res.mae) {
-	       		    alertaMae.innerHTML = "Valido";
-       			    alertaMae.style.color = "var(--green)";
+	       		if (MAE === res.mae) {
+	       		        alertaMae.innerHTML = "Valido";
+       			        alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
 		       		res.aluno.map((usuario) => {
 				        // Verificar o Nome do aluno
@@ -254,7 +257,7 @@
 					}
 				})
        			} else {
-	       			alertaMae.innerHTML = "Invalido"
+	       			alertaMae.innerHTML = "Invalido";
        				alertaMae.style.color = "var(--red)";
 	       		}
 		    })
