@@ -145,13 +145,13 @@
            				Usuario: 
            				<p id="alertaUsuario"></p>
            			</label>
-	           		<input id="usuario" type="text">
+	           		<input oninput="inputusuario()" id="usuario" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Senha:
 	           			<p id="alertaSenha"></p> 
 	           		</label>
-	           		<input id="senha" type="password">
+	           		<input oninput="inputsenha() id="senha" type="password">
 	           		<button onclick="loginSecretaria()">Login</button>
            		</section>
            		
@@ -275,13 +275,21 @@
 		  })
 	       })
        }
+
+       function inputusuario() {
+	 const USUARIO = document.getElementById('usuario').value;
+       	 document.getElementById('usuario').value = USUARIO.toUpperCase();
+       }
+
+       function inputsenha() {
+	 const SENHA = document.getElementById('senha').value;
+       	 document.getElementById('senha').value = SENHA.toUpperCase();
+       }
        
        // Funcao da SECRETARIA
        function loginSecretaria() {
        	const USUARIO = document.getElementById('usuario').value;
-       	document.getElementById('usuario').value = USUARIO.toUpperCase();
        	const SENHA = document.getElementById('senha').value;
-       	document.getElementById('senha').value = SENHA.toUpperCase();
        	
        	const alertaUsuario = document.getElementById('alertaUsuario');
        	const alertaSenha = document.getElementById('alertaSenha');
