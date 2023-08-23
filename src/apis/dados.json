@@ -1,6 +1,5 @@
 {
 	"usuarios": [ 
-		// Usuario 1
 		{
 			"mae": "Vanessa",
 			"aluno": [
@@ -11,7 +10,6 @@
 				}
 			]
 		},
-		// Usuario 2
 		{
 			"mae": "Patricia",
 			"aluno": [
