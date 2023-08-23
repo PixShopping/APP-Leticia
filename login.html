@@ -192,7 +192,9 @@
        <!-- JavaScript -->
        <script>
 
-       const MAE = document.getElementById('mae').value;
+       //Funcao dos Responsaveis
+       function loginResponsavel() {
+        const MAE = document.getElementById('mae').value.toUpperCase();
        	document.getElementById('mae').value = MAE.toUpperCase();
        	const NOME = document.getElementById('nome').value;
        	document.getElementById('nome').value = NOME.toUpperCase();
@@ -202,9 +204,6 @@
        	document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
        	
 	       
-       //Funcao dos Responsaveis
-       function loginResponsavel() {
-       	
        	// Alerta
        	const alertaMae = document.getElementById('alertaMae');
        	const alertaNome = document.getElementById('alertaNome');
