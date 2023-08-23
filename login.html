@@ -243,8 +243,8 @@
 		       			}
 		       			
 		       			if (NOME === usuario.nome && SERIE === usuario.serie && NASCIMENTO === usuario.nascimento) {
-		       				window.location.href = "./home.html";
 		       				localStorage.setItem('logado', 'Responsavel');
+						window.location.href = "./home.html";
 					}
 				})
        			} else {
@@ -288,8 +288,8 @@
 			       	// Login
 			       	if (USUARIO === login.usuario && SENHA === login.senha) {
 			       		setTimeout( () => {
-			       			window.location.href = "./home.html";
-				       		localStorage.setItem('logado', 'Administrador');
+			       			localStorage.setItem('logado', 'Administrador');
+						window.location.href = "./home.html";
 			       		}, 1500);
 			       	}
        			})
