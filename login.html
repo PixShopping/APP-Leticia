@@ -215,8 +215,8 @@
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
 	       		if (MAE === res.mae) {
-	       			alertaMae.innerHTML = "Valido";
-       				alertaMae.style.color = "var(--green)";
+	       		    alertaMae.innerHTML = "Valido";
+       			    alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
 		       		res.aluno.map((usuario) => {
 				        // Verificar o Nome do aluno
