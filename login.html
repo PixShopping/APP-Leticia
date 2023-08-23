@@ -216,28 +216,28 @@
        				// Percorrer dados do aluno
 		       			// Verificar o Nome do aluno
 		       			if (NOME === res.aluno.nome) {
-		       				alertaNome.innerHTML = "Nome valido"
+		       				alertaNome.innerHTML = "valido"
 		       				alertaNome.style.color = "var(--green)";
 		       			} else {
-		       				alertaNome.innerHTML = "Nome invalido"
+		       				alertaNome.innerHTML = "invalido"
 		       				alertaNome.style.color = "var(--red)";
 		       			}
 		       			
 		       			// Verificar a Serie do aluno
 		       			if (SERIE === res.aluno.serie) {
-		       				alertaSerie.style.innerHTML = "Serie valida";
+		       				alertaSerie.style.innerHTML = "valido";
 		       				alertaSerie.style.color = "var(--green)";
 		       			} else {
-		       				alertaSerie.style.innerHTML = "Serie invalida";
+		       				alertaSerie.style.innerHTML = "invalido";
 		       				alertaSerie.style.color = "var(--red)";
 		       			}
 		       			
 		       			// Verificar o Nascimento do aluno
 		       			if (NASCIMENTO === res.aluno.nascimento) {
-		       				alertaNascimento.innerHTML = "Nascimento valido"
+		       				alertaNascimento.innerHTML = "valido"
 		       				alertaNascimento.style.color = "var(--green)";
 		       			} else {
-		       				alertaNascimento.innerHTML = "Nascimento invalido"
+		       				alertaNascimento.innerHTML = "invalido"
 		       				alertaNascimento.style.color = "var(--red)";
 		       			}
 		       			
@@ -246,7 +246,7 @@
 		       				localStorage.setItem('logado', 'Responsavel');
 		       			}
        			} else {
-	       			alertaMae.innerHTML = "Nome invalido"
+	       			alertaMae.innerHTML = "invalido"
        				alertaMae.style.color = "var(--red)";
 	       		}
 		    })
