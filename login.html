@@ -197,29 +197,41 @@
        	const alertaAluno = document.getElementById('alertaAluno');
        	const alertaNascimento = document.getElementById('alertaNascimento');
        	
+       	// Dados / Usuarios / 0 / Mae, Aluno, Nascimento
+       	var count = 0;
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       	response.json().then((dados) => {
-	       		dados.usuarios.map((usuario) => {
+	       		dados.usuarios.count.map((usuario) => {
 	       			// Verificar Mae Existente
-	       			if (mae === usuario.mae) {
+	       			if (mae === usuario.count.mae) {
 	       				alertaMae.innerHTML = "Nome valido"
 	       				alertaMae.style.color = "var(--green)";
+	       			} else {
+	       				alertaMae.innerHTML = "Nome invalido"
+	       				alertaMae.style.color = "var(--red)";
 	       			}
 	       			// Verificar Aluno Existente
 	       			if (aluno === usuario.aluno) {
 	       				alertaAluno.innerHTML = "Nome valido"
 	       				alertaAluno.style.color = "var(--green)";
+	       			} else {
+	       				alertaAluno.innerHTML = "Nome invalido"
+	       				alertaAluno.style.color = "var(--red)";
 	       			}
 	       			// Verificar Nascimento Existente
 	       			if (nascimento === usuario.nascimento) {
 	       				alertaNascimento.innerHTML = "Nascimento valido"
 	       				alertaNascimento.style.color = "var(--green)";
+	       			} else {
+	       				alertaNascimento.innerHTML = "Nascimento invalido"
+	       				alertaNascimento.style.color = "var(--red)";
 	       			}
 	       			
 	       			if (nascimento === usuario.nascimento && aluno === usuario.aluno && mae === usuario.mae) {
 	       				window.location.href = "./home.html";
 	       			}
 	       		})
+	       		count++;
 	       	})
 	       })
        }
