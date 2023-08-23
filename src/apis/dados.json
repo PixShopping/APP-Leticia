@@ -1,5 +1,6 @@
 {
 	"usuarios": [ 
+		// Usuario 1
 		{
 			"mae": "Vanessa",
 			"aluno": [
@@ -9,13 +10,24 @@
 					"nascimento": "08/03/2009"
 				}
 			]
+		},
+		// Usuario 2
+		{
+			"mae": "Patricia",
+			"aluno": [
+				{
+					"nome": "Joao",
+					"serie": "9A",
+					"nascimento": "03/09/2008"
+				}
+			]
 		}
 	],
 	
 	"secretaria": [
 		{
 			"usuario" : "admin",
-			"senha" : "123"
+			"senha" : 123
 		}
 	]
 }
