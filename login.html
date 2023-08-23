@@ -111,7 +111,7 @@
             	margin: 15px auto 10px auto;
             }
             
-            #alertaUsuario, #alertaSenha {
+            #alertaUsuario, #alertaSenha, #alertaNome, #alertaMae, #alertaSerie, #alertaNascimento {
             	margin: 1px 0px 0px 5px;
             	font-size: 16px;
             }
@@ -211,33 +211,33 @@
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
 	       		if (MAE === res.mae) {
-	       			alertaMae.innerHTML = "Nome valido";
+	       			alertaMae.innerHTML = "Valido";
        				alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
 		       			// Verificar o Nome do aluno
 		       			if (NOME === res.aluno.nome) {
-		       				alertaNome.innerHTML = "valido"
+		       				alertaNome.innerHTML = "Valido"
 		       				alertaNome.style.color = "var(--green)";
 		       			} else {
-		       				alertaNome.innerHTML = "invalido"
+		       				alertaNome.innerHTML = "Invalido"
 		       				alertaNome.style.color = "var(--red)";
 		       			}
 		       			
 		       			// Verificar a Serie do aluno
 		       			if (SERIE === res.aluno.serie) {
-		       				alertaSerie.style.innerHTML = "valido";
+		       				alertaSerie.style.innerHTML = "Valido";
 		       				alertaSerie.style.color = "var(--green)";
 		       			} else {
-		       				alertaSerie.style.innerHTML = "invalido";
+		       				alertaSerie.style.innerHTML = "Invalido";
 		       				alertaSerie.style.color = "var(--red)";
 		       			}
 		       			
 		       			// Verificar o Nascimento do aluno
 		       			if (NASCIMENTO === res.aluno.nascimento) {
-		       				alertaNascimento.innerHTML = "valido"
+		       				alertaNascimento.innerHTML = "Valido"
 		       				alertaNascimento.style.color = "var(--green)";
 		       			} else {
-		       				alertaNascimento.innerHTML = "invalido"
+		       				alertaNascimento.innerHTML = "Invalido"
 		       				alertaNascimento.style.color = "var(--red)";
 		       			}
 		       			
@@ -246,7 +246,7 @@
 		       				localStorage.setItem('logado', 'Responsavel');
 		       			}
        			} else {
-	       			alertaMae.innerHTML = "invalido"
+	       			alertaMae.innerHTML = "Invalido"
        				alertaMae.style.color = "var(--red)";
 	       		}
 		    })
