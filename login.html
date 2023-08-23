@@ -174,13 +174,13 @@
 	           			Serie:
 	           			<p id="alertaSerie"></p> 
 	           		</label>
-	           		<input id="serie" type="text">
+	           		<input oninput="inputserie()" id="serie" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
 	           			Data do Nascimento:
 	           			<p id="alertaNascimento"></p> 
 	           		</label>
-	           		<input id="nascimento" type="text">
+	           		<input oninput="inputnascimento()" id="nascimento" type="text">
 	           		<button onclick="loginResponsavel()">Login</button>
            		</section>
            		
@@ -201,17 +201,23 @@
 	 const NOME = document.getElementById('nome').value;
 	 document.getElementById('nome').value = NOME.toUpperCase();
 	}
+
+	function inputserie() {
+	 const SERIE = document.getElementById('serie').value;
+	 document.getElementById('serie').value = SERIE.toUpperCase();
+	}
+
+	function inputnascimento() {
+	 const NASCIMENTO = document.getElementById('nascimento').value;
+	 document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
+	}
 	       
        //Funcao dos Responsaveis
        function loginResponsavel() {
 	const MAE = document.getElementById('mae').value;
        	const NOME = document.getElementById('nome').value;
-       	document.getElementById('nome').value = NOME.toUpperCase();
        	const SERIE = document.getElementById('serie').value;
-       	document.getElementById('serie').value = SERIE.toUpperCase();
        	const NASCIMENTO = document.getElementById('nascimento').value;
-       	document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
-       	
 	       
        	// Alerta
        	const alertaMae = document.getElementById('alertaMae');
@@ -225,8 +231,8 @@
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
 	       		if (MAE === res.mae) {
-	       		        alertaMae.innerHTML = "Valido";
-       			        alertaMae.style.color = "var(--green)";
+	       		 alertaMae.innerHTML = "Valido";
+       			 alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
 		       		res.aluno.map((usuario) => {
 				        // Verificar o Nome do aluno
