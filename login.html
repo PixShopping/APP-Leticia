@@ -216,7 +216,7 @@
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
-	       		if (MAE === res.mae) {
+	       		if (MAE == res.mae) {
 	       		    alertaMae.innerHTML = "Valido";
        			    alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
