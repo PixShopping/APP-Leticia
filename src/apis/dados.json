@@ -1,22 +1,21 @@
 {
 	"usuarios": [ 
 		{
-			"0": [
+			"mae": "Vanessa",
+			"aluno": [
 				{
-					"mae":"Vanessa",
-					"aluno":"Vitor",
-					"nascimento":"08/03/2009"
+					"nome": "Vitor",
+					"serie": "9A",
+					"nascimento": "08/03/2009"
 				}
 			]
-		},
+		}
+	],
+	
+	"secretaria": [
 		{
-			"1": [
-				{
-					"mae":"Patricia",
-					"aluno":"Joao",
-					"nascimento":"03/09/2008"
-				}
-			]
+			"usuario" : "admin",
+			"senha" : 123
 		}
 	]
 }
