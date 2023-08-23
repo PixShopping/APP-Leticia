@@ -15,7 +15,7 @@
 	"secretaria": [
 		{
 			"usuario" : "admin",
-			"senha" : 123
+			"senha" : "123"
 		}
 	]
 }
