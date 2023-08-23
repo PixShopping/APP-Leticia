@@ -46,8 +46,8 @@
             }
             
             .container img {
-            	width: 376px;
-            	height: 375px;
+            	width: 400px;
+            	height: 400px;
             	margin: 25px 0px 0px 0px;
             }
             
@@ -115,7 +115,20 @@
             	margin: 1px 0px 0px 5px;
             	font-size: 16px;
             }
-            
+			
+            .divResponsaveis {
+		margin: 20px 0px 60px 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	    }
+
+	    .divSecretaria {
+		margin: 0px 0px 0px 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	    }
             
             </style>
            </head>
@@ -127,12 +140,12 @@
            		<img src="./src/img/logo.png">
            		
            		<section class="content">
-	           		<div onclick="responsaveis()" style="margin: 20px 0px 60px 0px;display: flex;flex-direction: column;align-items: center;">
+	           		<div class="divResponsaveis" onclick="responsaveis()">
 	           			<ion-icon name="people"></ion-icon>
 	           			<h1>Responsaveis</h1>
 	           		</div>
 	           		
-	           		<div onclick="secretaria()" style="margin: 0px 0px 0px 0px;display: flex;flex-direction: column;align-items: center;">
+	           		<div class="divSecretaria" onclick="secretaria()">
 		           		<ion-icon name="bus"></ion-icon>
 		           		<h1>Secretaria</h1>
 	           		</div>
