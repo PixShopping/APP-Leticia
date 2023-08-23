@@ -209,11 +209,12 @@
        	// Dados / Usuarios / Mae / Nome, Serie, Nascimento
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       	response.json().then((dados) => {
-	       		if (MAE === dados.usuarios.mae) {
+		    dados.usuarios.map((res) => {
+	       		if (MAE === res.mae) {
 	       			alertaMae.innerHTML = "Nome valido";
        				alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
-       				dados.usuarios.aluno.map((usuario) => {
+       				res.aluno.map((usuario) => {
 		       			// Verificar o Nome do aluno
 		       			if (NOME === usuario.nome) {
 		       				alertaAluno.innerHTML = "Nome valido"
@@ -250,7 +251,8 @@
 	       			alertaMae.innerHTML = "Nome invalido"
        				alertaMae.style.color = "var(--red)";
 	       		}
-	       	})
+		    })
+		  })
 	       })
        }
        
