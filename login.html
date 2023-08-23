@@ -213,9 +213,9 @@
 	       			alertaMae.innerHTML = "Nome valido"
        				alertaMae.style.color = "var(--green)";
        				// Percorrer dados do aluno
-       				dados.usuarios.mae.map((aluno) => {
+       				dados.usuarios.aluno.map((usuario) => {
 		       			// Verificar o Nome do aluno
-		       			if (NOME === aluno.nome) {
+		       			if (NOME === usuario.nome) {
 		       				alertaAluno.innerHTML = "Nome valido"
 		       				alertaAluno.style.color = "var(--green)";
 		       			} else {
@@ -224,7 +224,7 @@
 		       			}
 		       			
 		       			// Verificar a Serie do aluno
-		       			if (SERIE === aluno.serie) {
+		       			if (SERIE === usuario.serie) {
 		       				alertaSerie.style.innerHTML = "Serie valida";
 		       				alertaSerie.style.color = "var(--green)";
 		       			} else {
@@ -233,7 +233,7 @@
 		       			}
 		       			
 		       			// Verificar o Nascimento do aluno
-		       			if (NASCIMENTO === aluno.nascimento) {
+		       			if (NASCIMENTO === usuario.nascimento) {
 		       				alertaNascimento.innerHTML = "Nascimento valido"
 		       				alertaNascimento.style.color = "var(--green)";
 		       			} else {
@@ -241,7 +241,7 @@
 		       				alertaNascimento.style.color = "var(--red)";
 		       			}
 		       			
-		       			if (NOME === aluno.nome && SERIE === aluno.serie && NASCIMENTO === aluno.nascimento) {
+		       			if (NOME === usuario.nome && SERIE === usuario.serie && NASCIMENTO === usuario.nascimento) {
 		       				window.location.href = "./home.html";
 		       				localStorage.setItem('logado', 'Responsavel');
 		       			}
@@ -262,7 +262,7 @@
        	const alertaUsuario = document.getElementById('alertaUsuario');
        	const alertaSenha = document.getElementById('alertaSenha');
        	
-       	fetch("").then((response) => {
+       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
        		response.json().then((dados) => {
        			dados.secretaria.map((login) => {
        				// VALIDAR SENHA
