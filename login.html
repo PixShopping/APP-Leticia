@@ -237,7 +237,6 @@
 	 document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
 	}
 
-	var c = 0;
        //Funcao dos Responsaveis
        function loginResponsavel() {
 	const MAE = document.getElementById('mae').value;
@@ -257,13 +256,7 @@
 	       	response.json().then((dados) => {
 		    dados.usuarios.map((res) => {
 	       		if (MAE === res.mae) {
-	       		 c++;
-			 if (c===1){
-			   alertaMae.innerHTML = "Valido";
-			   alertaMae.style.color = "var(--green)";
-			   c = 0;
-			 }
-       				// Percorrer dados do aluno
+	       		 	// Percorrer dados do aluno
 		       		res.aluno.map((usuario) => {
 				        // Verificar o Nome do aluno
 		       			if (NOME === usuario.nome) {
