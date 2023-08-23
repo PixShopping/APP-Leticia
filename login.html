@@ -48,17 +48,30 @@
             .container img {
             	width: 65vw;
             	height: auto;
-            	margin: 30px 0px 0px 0px;
+            	margin: 20px 0px 0px 0px;
             }
             
-            .logar {
-            	display: flex;
+            .container ion-icon {
+            	font-size: 70px;
+            	margin: 0px;
+            }
+            
+            .container h1 {
+            	font-size: 25px;
+            	margin: 0px;
+            	letter-spacing: 0.8px;
+            }
+            
+            /* ADMIN */
+            
+            .admin, .responsavel {
+            	display: none;
             	flex-direction: column;
             	width: auto;
             	height: auto;
             }
             
-            .logar label {
+            .admin label, .responsavel label {
             	color: white;
             	font-size: 16.9px;
             	font-weight: 600;
@@ -68,12 +81,12 @@
             	padding: 0px 0px 4px 0px;
             }
             
-            .logar label ion-icon {
+            .admin label ion-icon, .responsavel label ion-icon {
             	margin: 0px 3px 2.5px 0px;
             	font-size: 17px;
             }
             
-            .logar input {
+            .admin input, .responsavel input {
             	width: 70vw;
             	height: 40px;
             	border-radius: 4px;
@@ -86,7 +99,7 @@
             	margin: 0px 0px 30px 0px;
             }
             
-            .logar button {
+            .admin button, .responsavel button {
             	width: 65vw;
             	height: 38px;
             	border-radius: 3.5px;
@@ -113,7 +126,20 @@
            		
            		<img src="./src/img/logo.png">
            		
-           		<div class="logar">
+           		<section class="content">
+	           		<div onclick="responsaveis()" style="margin: 20px 0px 60px 0px;display: flex;flex-direction: column;align-items: center;">
+	           			<ion-icon name="people"></ion-icon>
+	           			<h1>Responsaveis</h1>
+	           		</div>
+	           		
+	           		<div onclick="secretaria()" style="margin: 0px 0px 0px 0px;display: flex;flex-direction: column;align-items: center;">
+		           		<ion-icon name="bus"></ion-icon>
+		           		<h1>Secretaria</h1>
+	           		</div>
+           		</section>
+           		
+           		<!-- ADMIN -->
+           		<section class="admin">
            			<label>
            				<ion-icon name="person"></ion-icon>
            				Usuario: 
@@ -126,17 +152,80 @@
 	           			<p id="alertaSenha"></p> 
 	           		</label>
 	           		<input id="senha" type="password">
-	           		<button onclick="login()">Login</button>
-           		</div>
+	           		<button onclick="loginSecretaria()">Login</button>
+           		</section>
+           		
+           		<!-- RESPONSAVEL -->
+           		<section class="responsavel">
+           			<label>
+           				<ion-icon name="person"></ion-icon>
+           				Nome da Mae: 
+           				<p id="alertaMae"></p>
+           			</label>
+	           		<input id="mae" type="text">
+	           		<label>
+	           			<ion-icon name="key"></ion-icon>
+	           			Nome do Aluno:
+	           			<p id="alertaAluno"></p> 
+	           		</label>
+	           		<input id="aluno" type="password">
+	           		<label>
+	           			<ion-icon name="key"></ion-icon>
+	           			Data do Nascimento:
+	           			<p id="alertaNascimento"></p> 
+	           		</label>
+	           		<input id="nascimento" type="password">
+	           		<button onclick="loginResponsavel()">Login</button>
+           		</section>
            		
            	</main>
+           	
            	
            </body>
            
        <!-- JavaScript -->
        <script>
        
-       function login() {
+       //Funcao dos Responsaveis
+       function loginResponsavel() {
+       	const mae = document.getElementById('mae').value;
+       	const aluno = document.getElementById('aluno').value;
+       	const nascimento = document.getElementById('nascimento').value;
+       	
+       	// Alerta
+       	const alertaMae = document.getElementById('alertaMae');
+       	const alertaAluno = document.getElementById('alertaAluno');
+       	const alertaNascimento = document.getElementById('alertaNascimento');
+       	
+	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
+	       	response.json().then((dados) => {
+	       		dados.usuarios.map((usuario) => {
+	       			// Verificar Mae Existente
+	       			if (mae === usuario.mae) {
+	       				alertaMae.innerHTML = "Nome valido"
+	       				alertaMae.style.color = "var(--green)";
+	       			}
+	       			// Verificar Aluno Existente
+	       			if (aluno === usuario.aluno) {
+	       				alertaAluno.innerHTML = "Nome valido"
+	       				alertaAluno.style.color = "var(--green)";
+	       			}
+	       			// Verificar Nascimento Existente
+	       			if (nascimento === usuario.nascimento) {
+	       				alertaNascimento.innerHTML = "Nascimento valido"
+	       				alertaNascimento.style.color = "var(--green)";
+	       			}
+	       			
+	       			if (nascimento === usuario.nascimento && aluno === usuario.aluno && mae === usuario.mae) {
+	       				window.location.href = "./home.html";
+	       			}
+	       		})
+	       	})
+	       })
+       }
+       
+       // Funcao da SECRETARIA
+       function loginSecretaria() {
        	const usuario = document.getElementById('usuario').value;
        	const senha = document.getElementById('senha').value;
        	
@@ -171,6 +260,22 @@
        }
        
        //localStorage.clear()
+       
+       // Responsaveis e Secretaria
+       const content = document.querySelector('.content');
+       const admin = document.querySelector('.admin');
+       const responsavel = document.querySelector('.responsavel');
+       
+       
+       function responsaveis() {
+       	content.style.display = "none";
+       	responsavel.style.display = "flex";
+       }
+       
+       function secretaria() {
+       	content.style.display = "none";
+       	admin.style.display = "flex";
+       }
        
        </script>
        

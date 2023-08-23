@@ -84,10 +84,6 @@
            		
            	</main>
            	
-           	<div id="resultado">
-           	
-           	</div>
-           	
            </body>
            
        <!-- JavaScript -->
@@ -111,19 +107,8 @@
        	loader.style.width = "100%";
        }, 2450);
        setTimeout( () => {
-       	//window.location.href = "./home.html";
+       	window.location.href = "./home.html";
        }, 3200);
 
-       // BANCO DE DADOS
-       let resultado = document.getElementById("resultado");
-       
-       fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-       	response.json().then((dados) => {
-       		dados.usuarios.map((usuario) => {
-       			resultado.innerHTML += `<li> ${usuario.aluno} </li>`
-       		})
-       	})
-       })
-       
        </script>
 </html>
