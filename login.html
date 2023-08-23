@@ -191,10 +191,8 @@
            
        <!-- JavaScript -->
        <script>
-       
-       //Funcao dos Responsaveis
-       function loginResponsavel() {
-       	const MAE = document.getElementById('mae').value;
+
+       const MAE = document.getElementById('mae').value;
        	document.getElementById('mae').value = MAE.toUpperCase();
        	const NOME = document.getElementById('nome').value;
        	document.getElementById('nome').value = NOME.toUpperCase();
@@ -202,6 +200,10 @@
        	document.getElementById('serie').value = SERIE.toUpperCase();
        	const NASCIMENTO = document.getElementById('nascimento').value;
        	document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
+       	
+	       
+       //Funcao dos Responsaveis
+       function loginResponsavel() {
        	
        	// Alerta
        	const alertaMae = document.getElementById('alertaMae');
