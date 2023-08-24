@@ -237,16 +237,14 @@
        	const alertaRA = document.getElementById('alertaRA');
        	const alertaNascimento = document.getElementById('alertaNascimento');
        	
-       	// Banco de dados no JSON
-       	// Usuarios / Nome e Aluno / RA e Data de nascimento
-	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
+	    fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       		response.json().then((dados) => {
 	       			dados.usuarios.map((usuario) => {
 	       				if (NOME === usuario.nome) {
 	       					alertaNome.innerHTML = "Valido";
 	       					alertaNome.style.color = "var(--green)";
 	       					
-	       					usuario.map((dado) => {
+	       					usuario.aluno.map((dado) => {
 	       						// Verificar o RA
 	       						if (RA === dado.ra) {
 	       							alertaRA.innerHTML = "Valido";
