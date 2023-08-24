@@ -364,6 +364,8 @@
 	           			<ion-icon name="alert-circle"></ion-icon>
            			</h1>
            			
+           			<div id="containerMensagens"></div>
+           			
            		</section>
            		
            	</main>
@@ -388,7 +390,7 @@
 	           			<label>Texto</label>
 	           			<textarea id="texto" type="text"></textarea>
 	           			
-	           			<button value="submit">Enviar</button>
+	           			<button onclick="enviar()">Enviar</button>
 	           			
            			</form>
            			
@@ -400,6 +402,21 @@
            
        <!-- JavaScript -->
        <script>
+       
+       // Banco de dados JSON
+       const containerMensagens  = document.getElementById('containerMensagens');
+       const count = 0;
+       
+       fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
+       	response.json().then((dados) => {
+       		dados.mensagens.map((mensagem) => {
+       			containerMensagens.innerHTML += `<h1>${mensagem.count}</h1>`
+       			if (count === 0) {
+	       			count++;
+       			}
+       		});
+       	});
+       });
        
       // Navgation
        const openMenu = document.getElementById('openMenu');

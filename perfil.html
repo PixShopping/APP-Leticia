@@ -334,21 +334,21 @@
        
        // Mostrar o Nome
        if (localStorage.getItem('nome')) {
-       	mostrarNome.innerHTML = "Nome: " + localStorage.getItem('nome');
+       	mostrarNome.innerHTML = `<h1>Nome: ${localStorage.getItem('nome')}</h1>`;
        } else {
        	mostrarNome.innerHTML = "Nome";
        }
        
        // Mostrar o Ra
        if (localStorage.getItem('ra')) {
-       	mostrarRa.innerHTML = "RA: " + localStorage.getItem('ra');
+       	mostrarRa.innerHTML = `<h2>RA: ${localStorage.getItem('ra')}</h2>`;
        } else {
        	mostrarRa.innerHTML = "RA";
        }
        
        // Mostrar a Data de Nascimento
        if (localStorage.getItem('nascimento')) {
-       	mostrarNascimento.innerHTML = "Nascimento" + localStorage.getItem('nascimento');
+       	mostrarNascimento.innerHTML = `<h3>Nascimento: ${localStorage.getItem('nascimento')}</h3>`;
        } else {
        	mostrarNascimento.innerHTML = "Data de Nascimento";
        }
