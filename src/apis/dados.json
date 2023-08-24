@@ -1,11 +1,10 @@
 {
 	"usuarios": [ 
-		
 		{
 			"nome": "VITOR CUSTODIO DA SILVA",
 			"aluno": [
 				{
-					"ra" : "0001110057556",
+					"ra": "0001110057556",
 					"nascimento": "08/03/2009"
 				}
 			]
@@ -14,7 +13,7 @@
 			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
 			"aluno": [
 				{
-					"ra" : "0001112223334",
+					"ra": "0001112223334",
 					"nascimento": "03/09/2008"
 				}
 			]
