@@ -30,8 +30,10 @@
 	
 	"mensagens": [
 		{
-			"0":  "Esse e o aplicativo oficial da escola Leticia de Godoy Bueno Carvalho Lopes",
-			"1" : "Nada a dizer"
+			"msg":  "Esse e o aplicativo oficial da escola Leticia de Godoy Bueno Carvalho Lopes"
+		}, 
+		{
+			"msg" : "Nada a dizer"
 		}
 	]
 }
