@@ -178,7 +178,7 @@
             
             .designer-perfil h1 {
             	font-weight: 750;
-            	font-size: 24px;
+            	font-size: 19px;
             	letter-spacing: 0.7px;
             	margin: 7px 0px 0px 8%;
             	align-self: start;
@@ -186,7 +186,7 @@
             
             .designer-perfil h2 {
             	font-weight: 700;
-            	font-size: 23px;
+            	font-size: 19px;
             	letter-spacing: 0.7px;
             	margin: 7px 0px 0px 8%;
             	align-self: start;
@@ -194,7 +194,7 @@
             
             .designer-perfil h3 {
             	font-weight: 700;
-            	font-size: 22px;
+            	font-size: 19px;
             	letter-spacing: 0.7px;
             	margin: 7px 0px 0px 8%;
             	align-self: start;
@@ -231,12 +231,6 @@
             .perfil ul li ion-icon:last-child {
             	font-size: 26px;
             	margin: 0px 20px 0px auto;
-            }
-            
-            #dados {
-            	font-size: 21px;
-            	font-weight: 600;
-            	letter-spacing: 0.5px;
             }
             
             </style>
@@ -340,21 +334,21 @@
        
        // Mostrar o Nome
        if (localStorage.getItem('nome')) {
-       	mostrarNome.innerHTML = `<h1 id="dados">Nome: ${localStorage.getItem('nome')}</h1>`;
+       	mostrarNome.textContent = `Nome: ${localStorage.getItem('nome')}`;
        } else {
        	mostrarNome.innerHTML = "Nome";
        }
        
        // Mostrar o Ra
        if (localStorage.getItem('ra')) {
-       	mostrarRa.innerHTML = `<h2 id="dados">RA: ${localStorage.getItem('ra')}</h2>`;
+       	mostrarRa.textContent = `RA: ${localStorage.getItem('ra')}`;
        } else {
        	mostrarRa.innerHTML = "RA";
        }
        
        // Mostrar a Data de Nascimento
        if (localStorage.getItem('nascimento')) {
-       	mostrarNascimento.innerHTML = `<h3 id="dados">Nascimento: ${localStorage.getItem('nascimento')}</h3>`;
+       	mostrarNascimento.textContent = `Nascimento: ${localStorage.getItem('nascimento')}`;
        } else {
        	mostrarNascimento.innerHTML = "Data de Nascimento";
        }
