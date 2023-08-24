@@ -1,21 +1,20 @@
 {
 	"usuarios": [ 
+		
 		{
-			"mae":"VANESSA CRISTINA POLINARIO",
+			"nome": "VITOR CUSTODIO DA SILVA",
 			"aluno": [
 				{
-					"nome": "VITOR CUSTODIO DA SILVA",
-					"serie": "9A",
+					"ra" : "0001110057556",
 					"nascimento": "08/03/2009"
 				}
 			]
 		},
 		{
-			"mae":"PATRICIA CRISTINA RAYMUNDO DE LIMA",
+			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
 			"aluno": [
 				{
-					"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
-					"serie": "9A",
+					"ra" : "0001112223334",
 					"nascimento": "03/09/2008"
 				}
 			]
