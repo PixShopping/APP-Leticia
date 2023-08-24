@@ -1,28 +1,20 @@
 {
 	"usuarios": [ 
+		
 		{
-			"nome": "ABCD EFGH IJKL MNOP",
+			"nome": "VITOR CUSTODIO DA SILVA",
 			"aluno": [
 				{
-					"ra": "sjjsvejsjssbb",
-					"nascimento": "sjsjsbebejdjvdb"
-				}
-			]
-		},
-		{
-			"nome": "VITOR CUSTÓDIO DA SILVA",
-			"aluno": [
-				{
-					"ra": "0001110057556",
+					"ra" : "0001110057556",
 					"nascimento": "08/03/2009"
 				}
 			]
 		},
 		{
-			"nome": "JOÃO VICTOR RAYMUNDO DE LIMA",
+			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
 			"aluno": [
 				{
-					"ra": "0001112223334",
+					"ra" : "0001112223334",
 					"nascimento": "03/09/2008"
 				}
 			]
@@ -33,6 +25,13 @@
 		{
 			"usuario" : "ADMIN",
 			"senha" : "123"
+		}
+	],
+	
+	"mensagens": [
+		{
+			"0":  "Esse e o aplicativo oficial da escola Leticia de Godoy Bueno Carvalho Lopes",
+			"1" : "Nada a dizer"
 		}
 	]
 }
