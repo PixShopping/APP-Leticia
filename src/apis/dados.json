@@ -1,6 +1,14 @@
 {
 	"usuarios": [ 
-		
+		{
+			"nome": "VITOR AAA JSJJ IEBSN",
+			"aluno": [
+				{
+					"ra" : "017392637264672726",
+					"nascimento": "9383733883"
+				}
+			]
+		},
 		{
 			"nome": "VITOR CUSTODIO DA SILVA",
 			"aluno": [
