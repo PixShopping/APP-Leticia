@@ -405,15 +405,11 @@
        
        // Banco de dados JSON
        const containerMensagens  = document.getElementById('containerMensagens');
-       const count = 0;
        
        fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
        	response.json().then((dados) => {
        		dados.mensagens.map((mensagem) => {
-       			containerMensagens.innerHTML += `<h1>${mensagem.count}</h1>`
-       			if (count === 0) {
-	       			count++;
-       			}
+       			containerMensagens.innerHTML += `<h1>${mensagem.msg}</h1><br>`
        		});
        	});
        });
