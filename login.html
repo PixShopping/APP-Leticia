@@ -183,25 +183,19 @@
            		<!-- RESPONSAVEL -->
            		<section class="responsavel">
            			<label>
-           				<ion-icon name="person"></ion-icon>
-           				Nome da Mae: 
-           				<p id="alertaMae"></p>
-           			</label>
-	           		<input oninput="inputmae()" id="mae" type="text">
-	           		<label>
-	           			<ion-icon name="key"></ion-icon>
+	           			<ion-icon name="person"></ion-icon>
 	           			Nome do Aluno:
 	           			<p id="alertaNome"></p> 
 	           		</label>
 	           		<input oninput="inputnome()" id="nome" type="text">
 	           		<label>
 	           			<ion-icon name="key"></ion-icon>
-	           			Serie:
-	           			<p id="alertaSerie"></p> 
+	           			RA:
+	           			<p id="alertaRA"></p> 
 	           		</label>
-	           		<input oninput="inputserie()" id="serie" type="text">
+	           		<input oninput="inputra()" id="ra" type="text">
 	           		<label>
-	           			<ion-icon name="key"></ion-icon>
+	           			<ion-icon name="calendar"></ion-icon>
 	           			Data do Nascimento:
 	           			<p id="alertaNascimento"></p> 
 	           		</label>
@@ -216,20 +210,15 @@
            
        <!-- JavaScript -->
        <script>
-	       
-       function inputmae() {
-	const MAE = document.getElementById('mae').value;
-	document.getElementById('mae').value = MAE.toUpperCase();
-       }
 
 	function inputnome() {
 	 const NOME = document.getElementById('nome').value;
 	 document.getElementById('nome').value = NOME.toUpperCase();
 	}
 
-	function inputserie() {
-	 const SERIE = document.getElementById('serie').value;
-	 document.getElementById('serie').value = SERIE.toUpperCase();
+	function inputra() {
+	 const RA = document.getElementById('ra').value;
+	 document.getElementById('ra').value = RA.toUpperCase();
 	}
 
 	function inputnascimento() {
@@ -239,75 +228,72 @@
 
        //Funcao dos Responsaveis
        function loginResponsavel() {
-	const MAE = document.getElementById('mae').value;
        	const NOME = document.getElementById('nome').value;
-       	const SERIE = document.getElementById('serie').value;
+       	const RA = document.getElementById('ra').value;
        	const NASCIMENTO = document.getElementById('nascimento').value;
 	       
        	// Alerta
-       	const alertaMae = document.getElementById('alertaMae');
        	const alertaNome = document.getElementById('alertaNome');
-       	const alertaSerie = document.getElementById('alertaSerie');
+       	const alertaRA = document.getElementById('alertaRA');
        	const alertaNascimento = document.getElementById('alertaNascimento');
        	
+       	// ----- Login -----
+       	// RA do aluno
+       	// Data de nascimento
        	
-       	// Dados / Usuarios / Mae / Nome, Serie, Nascimento
+       	// Banco de dados no JSON
+       	// Usuarios / Nome e Aluno / RA e Data de nascimento
 	       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-	       	response.json().then((dados) => {
-		    dados.usuarios.map((res) => {
-	       		if (MAE === res.mae) {
-	       		 	alertaMae.innerHTML = "Valido";
-					alertaMae.style.color = "var(--green)";
-					// Percorrer dados do aluno
-		       		res.aluno.map((usuario) => {
-				        // Verificar o Nome do aluno
-		       			if (NOME === usuario.nome) {
-		       				alertaNome.innerHTML = "Valido"
-		       				alertaNome.style.color = "var(--green)";
-		       			} else {
-		       				alertaNome.innerHTML = "Invalido"
-		       				alertaNome.style.color = "var(--red)";
-		       			}
-		       			
-		       			// Verificar a Serie do aluno
-		       			if (SERIE === usuario.serie) {
-		       				alertaSerie.innerHTML = "Valido";
-		       				alertaSerie.style.color = "var(--green)";
-		       			} else {
-		       				alertaSerie.innerHTML = "Invalido";
-		       				alertaSerie.style.color = "var(--red)";
-		       			}
-		       			
-		       			// Verificar o Nascimento do aluno
-		       			if (NASCIMENTO === usuario.nascimento) {
-		       				alertaNascimento.innerHTML = "Valido"
-		       				alertaNascimento.style.color = "var(--green)";
-		       			} else {
-		       				alertaNascimento.innerHTML = "Invalido"
-		       				alertaNascimento.style.color = "var(--red)";
-		       			}
-		       			
-		       			if (NOME === usuario.nome && SERIE === usuario.serie && NASCIMENTO === usuario.nascimento) {
-		       				localStorage.setItem('logado', 'RESPONSAVEL');
-						window.location.href = "./home.html";
-					}
-				})
-       			} else {
-	       			alertaMae.innerHTML = "Invalido";
-       				alertaMae.style.color = "var(--red)";
-	       		}
-		    })
-		  })
-	       })
-       }
+	       		response.json().then((dados) => {
+	       			dados.usuarios.map((usuario) => {
+	       				if (NOME === usuario.nome) {
+	       					alertaNome.innerHTML = "Valido";
+	       					alertaNome.style.color = "var(--green)";
+	       					
+	       					usuario.aluno.map((dado) => {
+	       						// Verificar o RA
+	       						if (RA === dado.ra) {
+	       							alertaRa.innerHTML = "Valido";
+			       					alertaRa.style.color = "var(--green)";
+	       						} else {
+	       							alertaRa.innerHTML = "Invalido";
+			       					alertaRa.style.color = "var(--red)";
+	       						}
+	       						// Verificar a Data de nascimento
+	       						if (NASCIMENTO === dado.nascimento) {
+	       							alertaNascimento.innerHTML = "Valido";
+			       					alertaNascimento.style.color = "var(--green)";
+	       						} else {
+		       						alertaNascimento.innerHTML = "Invalido";
+			       					alertaNascimento.style.color = "var(--red)";
+	       						}
+	       						
+	       						if (RA === dado.ra && NASCIMENTO === dado.nascimento) {
+	       							// Coletar Dados
+	       							localStorage.setItem('nome', usuario.nome);
+	       							localStorage.setItem('ra', dado.ra);
+	       							localStorage.setItem('nacimento', dado.nascimento); 
+	       							
+	       							// Mudar de Pagina
+	       							localStorage.setItem('logado', 'RESPONSAVEL');
+	       							window.location.href = "./home.html";
+	       						}
+	       					})
+	       				} else {
+	       					alertaNome.innerHTML = "Invalido";
+	       					alertaNome.style.color = "var(--red)";
+	       				}
+	       			})
+	       		})
+	       	}
 
        function inputusuario() {
-	 const USUARIO = document.getElementById('usuario').value;
+	 	  const USUARIO = document.getElementById('usuario').value;
        	 document.getElementById('usuario').value = USUARIO.toUpperCase();
        }
 
        function inputsenha() {
-	 const SENHA = document.getElementById('senha').value;
+	 	  const SENHA = document.getElementById('senha').value;
        	 document.getElementById('senha').value = SENHA.toUpperCase();
        }
        
@@ -342,9 +328,12 @@
 				    	
 			       	// Login
 			       	if (USUARIO === login.usuario && SENHA === login.senha) {
-			       		setTimeout( () => {
+			          	localStorage.setItem('usuario', login.usuario);
+						  localStorage.setItem('senha', login.senha);
+						       	
+			          	setTimeout( () => {
 			       			localStorage.setItem('logado', 'ADMIN');
-						window.location.href = "./home.html";
+						  	window.location.href = "./home.html";
 			       		}, 1500);
 			       	}
        			})
