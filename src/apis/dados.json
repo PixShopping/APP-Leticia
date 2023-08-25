@@ -1,11 +1,20 @@
 {
 	"usuarios": [ 
 		{
-			"nome": "TESTE",
+			"nome": "ANA BEATRIZ SOARES ALVES",
 			"aluno": [
 				{
-					"ra" : "123",
-					"serie": "9A"
+					"ra" : "1204605622",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "ANA CLARA ANZOLIN",
+			"aluno": [
+				{
+					"ra" : "120001778X",
+					"serie": "6B"
 				}
 			]
 		}
