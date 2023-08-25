@@ -331,7 +331,20 @@
        const mostrarNome = document.getElementById('mostrarNome');
        const mostrarRa = document.getElementById('mostrarRa');
        const mostrarNascimento = document.getElementById('mostrarNascimento');
-       
+
+	// Validar Login
+	
+	const logado = localStorage.getItem('logado');
+	
+	if (!logado) {
+	window.location.href = "./login.html";
+	} else if (logado === "admin") {
+	mostrarNome.innerHTML = "Administrador";
+	mostrarRa.style.display = "none";
+	mostrarNascimento.style.display = "none";
+	}
+	
+		
        // Mostrar o Nome
        if (localStorage.getItem('nome')) {
        	mostrarNome.textContent = `Nome: ${localStorage.getItem('nome')}`;
@@ -397,15 +410,7 @@
        	closeMenu.style.display = "none";
        	menu.style.left = "-51vw";
        }
-	
-	      // Validar Login
-		
-	     const logado = localStorage.getItem('logado');
-	      
-	      if (!logado) {
-	      	window.location.href = "./login.html";
-	      }
-       
+	       
        </script>
        
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
