@@ -302,14 +302,14 @@
             #containerMensagens h1 {
             	width: 95%;
             	font-size: 22px;
-            	font-weight: 700;
+            	font-weight: 750;
             	color: var(--two);
-            	letter-spacing: 0.6px;
+            	letter-spacing: 0.5px;
             	text-align: center;
             	background: var(--four);
             	padding: 10px 5px;
             	border-radius: 5px;
-            	margin: 10px 0px 15px 0px;
+            	margin: 15px 0px 0px 0px;
             }
             
             </style>
@@ -433,7 +433,7 @@
        fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
        	response.json().then((dados) => {
        		dados.mensagens.map((mensagem) => {
-       			containerMensagens.innerHTML += `<h1>${mensagem.msg}</h1><br>`
+       			containerMensagens.innerHTML += `<h1>${mensagem.msg}</h1>`
        		});
        	});
        });
