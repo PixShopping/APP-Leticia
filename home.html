@@ -470,26 +470,6 @@
        	window.location.href = "./perfil.html";
        }
       
-       var c = 0; 
-       function avisos() {
-       	CLOSEMENU();
-       	const containerAvisos = document.querySelector('.container-avisos');
-       	if (c === 1) {
-       		containerAvisos.style.margin = "100vh 0px 0px 0px";
-       		setTimeout( () => {
-       			containerAvisos.style.display = "none";
-       		}, 350);
-       		c = 0;
-       	} else {
-	       	containerAvisos.style.display = "flex";
-	       	setTimeout( () => {
-	       		containerAvisos.style.margin = "10px 0px 0px 0px";
-	       	}, 350);
-	       	
-	       	c++;
-       	}
-       }
-       
        </script>
        
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
