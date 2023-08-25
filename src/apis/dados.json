@@ -86,7 +86,7 @@
 			"aluno": [
 				{
 					"ra" : "0001120603778",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -95,7 +95,7 @@
 			"aluno": [
 				{
 					"ra" : "000114786925X",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -104,7 +104,7 @@
 			"aluno": [
 				{
 					"ra" : "0001148991906",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -113,7 +113,7 @@
 			"aluno": [
 				{
 					"ra" : "0001123555151",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -122,7 +122,7 @@
 			"aluno": [
 				{
 					"ra" : "0001147869789",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -131,7 +131,7 @@
 			"aluno": [
 				{
 					"ra" : "0001132800675",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -140,6 +140,123 @@
 			"aluno": [
 				{
 					"ra" : "0001121097406",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "ISMAEL MEDEIROS MERGULHAO",
+			"aluno": [
+				{
+					"ra" : "0001125056988",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "JESSICA BUENO RIBEIRO CORDEIRO",
+			"aluno": [
+				{
+					"ra" : "0001148538641",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "JOAO GABRIEL NASCIMENTO HADDAD",
+			"aluno": [
+				{
+					"ra" : "0001127754075",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "GABRIEL ISIDORO MARIANO DA SILVA",
+			"aluno": [
+				{
+					"ra" : "0001121434654",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
 					"serie": "6B"
 				}
 			]
