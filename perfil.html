@@ -338,7 +338,8 @@
 	
 	if (!logado) {
 	window.location.href = "./login.html";
-	} else if (logado === "admin") {
+	}
+	if (logado === "admin") {
 	mostrarNome.innerHTML = "Administrador";
 	mostrarRa.style.display = "none";
 	mostrarNascimento.style.display = "none";
