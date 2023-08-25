@@ -198,7 +198,12 @@
 	           			Serie:
 	           			<p id="alertaSerie"></p> 
 	           		</label>
-	           		<input oninput="inputserie()" id="serie" type="text">
+	           		<select id="serie">
+					<option value="6A">6anoA></option>
+					<option value="6B">6anoB></option>
+					<option value="7A">7anoA></option>
+					<option value="7B">7anoB></option>
+				</select>
 	           		<button onclick="loginResponsavel()">Login</button>
            		</section>
            		
@@ -220,11 +225,7 @@
 	 document.getElementById('ra').value = RA.toUpperCase();
 	}
 
-	function inputserie() {
-	 const SERIE = document.getElementById('serie').value;
-	 document.getElementById('serie').value = SERIE.toUpperCase();
-	}
-
+	
        //Funcao dos Responsaveis
     function loginResponsavel() {
        	const NOME = document.getElementById('nome').value;
