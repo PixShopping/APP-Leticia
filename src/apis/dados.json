@@ -749,14 +749,32 @@
 			]
 		},
 		{
-			"nome": "",
+			"nome": "ISADORA PROVASI RAMOS DE JESUS",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6A"
+					"ra" : "0001091039999",
+					"serie": "9A"
 				}
 			]
-		}
+		},
+		{
+			"nome": "VITOR CUSTODIO DA SILVA",
+			"aluno": [
+				{
+					"ra" : "0001110057556",
+					"serie": "9A"
+				}
+			]
+		},
+		{
+			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
+			"aluno": [
+				{
+					"ra" : "0001101708864",
+					"serie": "9A"
+				}
+			]
+		},
 	],
 	
 	"secretaria": [
