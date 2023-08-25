@@ -158,7 +158,7 @@
 			"aluno": [
 				{
 					"ra" : "0001148538641",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -167,7 +167,7 @@
 			"aluno": [
 				{
 					"ra" : "0001127754075",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
@@ -176,88 +176,259 @@
 			"aluno": [
 				{
 					"ra" : "0001121434654",
-					"serie": "6B"
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "JULIA SIMONATO VIANA",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001141560458",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "KETLYN CRISTINA TIBURCIO",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001128155825",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "MIGUEL PIRES MANOEL",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001140213234",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "KETLYN EMANUELY DA SILVA CARDOSO",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001128635987",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "LAIS RIBEIRO PEREZ",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001139007233",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "LARA GONÇALVES DA ROCHA",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001119156981",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "LAURA FESTA MANI",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001140602305",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "LAURA MARIA SILVA NEGRO",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001139299542",
+					"serie": "6A"
 				}
 			]
 		},
 		{
-			"nome": "",
+			"nome": "LIVIA ALVES DE OLIVEIRA",
 			"aluno": [
 				{
-					"ra" : "",
-					"serie": "6B"
+					"ra" : "0001128635252",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "LORENA COSTA DA SILVA",
+			"aluno": [
+				{
+					"ra" : "0001128542882",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "LUBNAH MARIA BACCI ROQUE",
+			"aluno": [
+				{
+					"ra" : "0001133549895",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "LUCAS AUGUSTO DE OLIVEIRA BRAZ",
+			"aluno": [
+				{
+					"ra" : "0001128718352",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "LUIS ISAQUE DE ARAUJO SOUZA",
+			"aluno": [
+				{
+					"ra" : "0001131270083",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "BEATRIZ FERNANDES LIMA",
+			"aluno": [
+				{
+					"ra" : "0001139255344",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "MARIA CLARA MATTOS VICENTINI",
+			"aluno": [
+				{
+					"ra" : "0001148272719",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "MARIA EDUARDA DOURADO DE BARROS",
+			"aluno": [
+				{
+					"ra" : "0001138150885",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "MATEUS ANDRE DA SILVA PEREIRA",
+			"aluno": [
+				{
+					"ra" : "0001127378557",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "MOISES MATHEUS TROVATTI",
+			"aluno": [
+				{
+					"ra" : "0001148918899",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "MURILO AUGUSTO LEONEL DE SOUZA",
+			"aluno": [
+				{
+					"ra" : "0001123575460",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "NATHAN ALEXANDRE MACIEIRA VASCONCELOS",
+			"aluno": [
+				{
+					"ra" : "0001127707425",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "NICOLAS ROLLO CAMARGO BIANCARDI",
+			"aluno": [
+				{
+					"ra" : "0001129813733",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "OTAVIO CERNY GIBELLI",
+			"aluno": [
+				{
+					"ra" : "0001139025478",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "PAOLA SANTANA DE CAMARGO CAMPOS",
+			"aluno": [
+				{
+					"ra" : "0001127720727",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "POLLIANA RIBEIRO DA SILVA",
+			"aluno": [
+				{
+					"ra" : "0001148091762",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "SOPHIA DOS SANTOS PADILHA",
+			"aluno": [
+				{
+					"ra" : "0001133414345",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "VINICIUS AUGUSTO RIBEIRO",
+			"aluno": [
+				{
+					"ra" : "0001130757298",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "VINICIUS GABRIEL ALVES DE CARVALHO",
+			"aluno": [
+				{
+					"ra" : "0001132800493",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "YURI AMURIM VICENTIM",
+			"aluno": [
+				{
+					"ra" : "0001148550495",
+					"serie": "6A"
 				}
 			]
 		},
@@ -574,6 +745,15 @@
 				{
 					"ra" : "0001139047735",
 					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6A"
 				}
 			]
 		}
