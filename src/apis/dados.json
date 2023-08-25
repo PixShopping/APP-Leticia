@@ -1,7 +1,6 @@
 {
 	"usuarios": [
 		{
-			{
 			"nome": "ADRIAN RODRIGUES DA CUNHA",
 			"aluno": [
 				{
@@ -11,7 +10,6 @@
 			]
 		},
 		{
-			{
 			"nome": "ALICE VIEIRA DIAS LIBORIO LUSTRI",
 			"aluno": [
 				{
@@ -21,7 +19,6 @@
 			]
 		},
 		{
-			{
 			"nome": "ANA CLARA DE OLIVEIRA LOURENCO",
 			"aluno": [
 				{
@@ -94,37 +91,55 @@
 			]
 		},
 		{
-			"nome": "6anoA",
+			"nome": "EMANUELLE DOS SANTOS RODRIGUES",
 			"aluno": [
 				{
-					"ra" : "",
+					"ra" : "000114786925X",
 					"serie": "6B"
 				}
 			]
 		},
 		{
-			"nome": "6anoA",
+			"nome": "EMMANUELE JOAQUIM DE ALMEIDA",
 			"aluno": [
 				{
-					"ra" : "",
+					"ra" : "0001148991906",
 					"serie": "6B"
 				}
 			]
 		},
 		{
-			"nome": "6anoA",
+			"nome": "GABRIELA GRIFONI DA SILVA",
 			"aluno": [
 				{
-					"ra" : "",
+					"ra" : "0001123555151",
 					"serie": "6B"
 				}
 			]
 		},
 		{
-			"nome": "6anoA",
+			"nome": "GIOVANA MIRANDA FUGIMOTO",
 			"aluno": [
 				{
-					"ra" : "",
+					"ra" : "0001147869789",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "HARUMY RAISSA RODRIGUEZ CARVALHO",
+			"aluno": [
+				{
+					"ra" : "0001132800675",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "HELLEN FERREIRA DE ANDRADE",
+			"aluno": [
+				{
+					"ra" : "0001121097406",
 					"serie": "6B"
 				}
 			]
