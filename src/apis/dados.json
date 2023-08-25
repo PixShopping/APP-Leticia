@@ -5,25 +5,7 @@
 			"aluno": [
 				{
 					"ra" : "0001091039999",
-					"nascimento": "17/10/2008"
-				}
-			]
-		},
-		{
-			"nome": "VITOR CUSTODIO DA SILVA",
-			"aluno": [
-				{
-					"ra" : "0001110057556",
-					"nascimento": "08/03/2009"
-				}
-			]
-		},
-		{
-			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
-			"aluno": [
-				{
-					"ra" : "0001112223334",
-					"nascimento": "03/09/2008"
+					"serie": "6B"
 				}
 			]
 		}
