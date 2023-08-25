@@ -35,6 +35,115 @@
 					"serie": "6B"
 				}
 			]
+		},
+		{
+			"nome": "ARTHUR DEMICO PALHARES",
+			"aluno": [
+				{
+					"ra" : "1131065293",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "CLARA EDUARDA DOS SANTOS THEODORO",
+			"aluno": [
+				{
+					"ra" : "1128224410",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "FELIPE AUGUSTO CHAVES OLIVEIRA",
+			"aluno": [
+				{
+					"ra" : "1128346758",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "GABRIEL NASCIMENTO FALCHI",
+			"aluno": [
+				{
+					"ra" : "1128372162",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "GABRIEL SOARES DE FREITAS GOUVEIA",
+			"aluno": [
+				{
+					"ra" : "1133477811",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "GIOVANA TEODORO MORATO",
+			"aluno": [
+				{
+					"ra" : "115572804X",
+					"serie": "6B"
+				}
+			]
+		
+		},
+		{
+			"nome": "GUSTAVO LUCCA RIBEIRO",
+			"aluno": [
+				{
+					"ra" : "1132832676",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "INGRID GABRIELY DE OLIVEIRA ANDRE",
+			"aluno": [
+				{
+					"ra" : "1133783016",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "ISABELA FERNANDA DA COSTA",
+			"aluno": [
+				{
+					"ra" : "1130479043",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "ISADORA BOAROLLO ROQUE",
+			"aluno": [
+				{
+					"ra" : "1123901879",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "ISADORA NALIN DOS SANTOS",
+			"aluno": [
+				{
+					"ra" : "1139007592",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "JOSE EDUARDO NEVES DE MORAES",
+			"aluno": [
+				{
+					"ra" : "1139050576",
+					"serie": "6B"
+				}
+			]
 		}
 	],
 	
