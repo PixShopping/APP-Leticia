@@ -1,10 +1,20 @@
 {
 	"usuarios": [
 		{
+			{
+			"nome": "ADRIAN RODRIGUES DA CUNHA",
+			"aluno": [
+				{
+					"ra" : "0001129274780",
+					"serie": "6A"
+				}
+			]
+		},
+		{
 			"nome": "ANA BEATRIZ SOARES ALVES",
 			"aluno": [
 				{
-					"ra" : "1204605622",
+					"ra" : "0001204605622",
 					"serie": "6B"
 				}
 			]
@@ -13,7 +23,7 @@
 			"nome": "ANA CLARA ANZOLIN",
 			"aluno": [
 				{
-					"ra" : "120001778X",
+					"ra" : "000120001778X",
 					"serie": "6B"
 				}
 			]
@@ -22,7 +32,7 @@
 			"nome": "ANA JULIA CONSTANT DE PAULI",
 			"aluno": [
 				{
-					"ra" : "1127732304",
+					"ra" : "0001127732304",
 					"serie": "6B"
 				}
 			]
@@ -31,7 +41,7 @@
 			"nome": "ANA JULIA GONZAGA DE SOUZA",
 			"aluno": [
 				{
-					"ra" : "1113030501",
+					"ra" : "0001113030501",
 					"serie": "6B"
 				}
 			]
@@ -40,7 +50,7 @@
 			"nome": "ARTHUR DEMICO PALHARES",
 			"aluno": [
 				{
-					"ra" : "1131065293",
+					"ra" : "0001131065293",
 					"serie": "6B"
 				}
 			]
@@ -49,7 +59,7 @@
 			"nome": "CLARA EDUARDA DOS SANTOS THEODORO",
 			"aluno": [
 				{
-					"ra" : "1128224410",
+					"ra" : "0001128224410",
 					"serie": "6B"
 				}
 			]
@@ -58,7 +68,7 @@
 			"nome": "FELIPE AUGUSTO CHAVES OLIVEIRA",
 			"aluno": [
 				{
-					"ra" : "1128346758",
+					"ra" : "0001128346758",
 					"serie": "6B"
 				}
 			]
@@ -67,7 +77,7 @@
 			"nome": "GABRIEL NASCIMENTO FALCHI",
 			"aluno": [
 				{
-					"ra" : "1128372162",
+					"ra" : "0001128372162",
 					"serie": "6B"
 				}
 			]
@@ -76,7 +86,7 @@
 			"nome": "GABRIEL SOARES DE FREITAS GOUVEIA",
 			"aluno": [
 				{
-					"ra" : "1133477811",
+					"ra" : "0001133477811",
 					"serie": "6B"
 				}
 			]
@@ -85,7 +95,7 @@
 			"nome": "GIOVANA TEODORO MORATO",
 			"aluno": [
 				{
-					"ra" : "115572804X",
+					"ra" : "000115572804X",
 					"serie": "6B"
 				}
 			]
@@ -95,7 +105,7 @@
 			"nome": "GUSTAVO LUCCA RIBEIRO",
 			"aluno": [
 				{
-					"ra" : "1132832676",
+					"ra" : "0001132832676",
 					"serie": "6B"
 				}
 			]
@@ -104,7 +114,7 @@
 			"nome": "INGRID GABRIELY DE OLIVEIRA ANDRE",
 			"aluno": [
 				{
-					"ra" : "1133783016",
+					"ra" : "0001133783016",
 					"serie": "6B"
 				}
 			]
@@ -113,7 +123,7 @@
 			"nome": "ISABELA FERNANDA DA COSTA",
 			"aluno": [
 				{
-					"ra" : "1130479043",
+					"ra" : "0001130479043",
 					"serie": "6B"
 				}
 			]
@@ -122,7 +132,7 @@
 			"nome": "ISADORA BOAROLLO ROQUE",
 			"aluno": [
 				{
-					"ra" : "1123901879",
+					"ra" : "0001123901879",
 					"serie": "6B"
 				}
 			]
@@ -131,7 +141,7 @@
 			"nome": "ISADORA NALIN DOS SANTOS",
 			"aluno": [
 				{
-					"ra" : "1139007592",
+					"ra" : "0001139007592",
 					"serie": "6B"
 				}
 			]
@@ -140,7 +150,7 @@
 			"nome": "JOSE EDUARDO NEVES DE MORAES",
 			"aluno": [
 				{
-					"ra" : "1139050576",
+					"ra" : "0001139050576",
 					"serie": "6B"
 				}
 			]
@@ -149,7 +159,7 @@
 			"nome": "JULIA MAIA",
 			"aluno": [
 				{
-					"ra" : "1128154067",
+					"ra" : "0001128154067",
 					"serie": "6B"
 				}
 			]
@@ -158,7 +168,7 @@
 			"nome": "KAWANY ZANUCOLI PEDROSO",
 			"aluno": [
 				{
-					"ra" : "1139300878",
+					"ra" : "0001139300878",
 					"serie": "6B"
 				}
 			]
@@ -167,7 +177,7 @@
 			"nome": "LARISSA FORMIGONI NEVES",
 			"aluno": [
 				{
-					"ra" : "1128155436",
+					"ra" : "0001128155436",
 					"serie": "6B"
 				}
 			]
@@ -176,7 +186,7 @@
 			"nome": "LAURA CUSTODIO MOREIRA",
 			"aluno": [
 				{
-					"ra" : "1121355602",
+					"ra" : "0001121355602",
 					"serie": "6B"
 				}
 			]
@@ -185,7 +195,7 @@
 			"nome": "LAURA MARQUES DA SILVA",
 			"aluno": [
 				{
-					"ra" : "11391777151",
+					"ra" : "00011391777151",
 					"serie": "6B"
 				}
 			]
@@ -194,7 +204,7 @@
 			"nome": "LAYANE GABRIELI SILVA MARTINS",
 			"aluno": [
 				{
-					"ra" : "1123566203",
+					"ra" : "0001123566203",
 					"serie": "6B"
 				}
 			]
@@ -203,7 +213,7 @@
 			"nome": "LORENA MARIN CARRIOLHO DA SILVA",
 			"aluno": [
 				{
-					"ra" : "1139035290",
+					"ra" : "0001139035290",
 					"serie": "6B"
 				}
 			]
@@ -212,7 +222,7 @@
 			"nome": "MARCOS FELIPE OLIVERIA PEREIRA",
 			"aluno": [
 				{
-					"ra" : "1128614832",
+					"ra" : "0001128614832",
 					"serie": "6B"
 				}
 			]
@@ -221,7 +231,7 @@
 			"nome": "MARIA EDUARDA DOS SANTOS MARQUES",
 			"aluno": [
 				{
-					"ra" : "1147870160",
+					"ra" : "0001147870160",
 					"serie": "6B"
 				}
 			]
@@ -230,7 +240,7 @@
 			"nome": "MARIA PAULA FAUTINO PONQUIO",
 			"aluno": [
 				{
-					"ra" : "1147871498",
+					"ra" : "0001147871498",
 					"serie": "6B"
 				}
 			]
@@ -239,7 +249,7 @@
 			"nome": "MATHEUS ALVES",
 			"aluno": [
 				{
-					"ra" : "1139036014",
+					"ra" : "0001139036014",
 					"serie": "6B"
 				}
 			]
@@ -248,7 +258,7 @@
 			"nome": "MIGUEL PRADELA DE OLIVERIA",
 			"aluno": [
 				{
-					"ra" : "112815366X",
+					"ra" : "000112815366X",
 					"serie": "6B"
 				}
 			]
@@ -257,7 +267,7 @@
 			"nome": "MURILO ALMEIDA DE GODOI",
 			"aluno": [
 				{
-					"ra" : "1132807311",
+					"ra" : "0001132807311",
 					"serie": "6B"
 				}
 			]
@@ -266,7 +276,7 @@
 			"nome": "MURILO HENRIQUE INOCENTE",
 			"aluno": [
 				{
-					"ra" : "1147689866",
+					"ra" : "0001147689866",
 					"serie": "6B"
 				}
 			]
@@ -275,7 +285,7 @@
 			"nome": "MURILO MENDES DOS SANTOS",
 			"aluno": [
 				{
-					"ra" : "1139035630",
+					"ra" : "0001139035630",
 					"serie": "6B"
 				}
 			]
@@ -284,7 +294,7 @@
 			"nome": "PEDRO HENRIQUE DEVITO",
 			"aluno": [
 				{
-					"ra" : "1128276483",
+					"ra" : "0001128276483",
 					"serie": "6B"
 				}
 			]
@@ -293,7 +303,7 @@
 			"nome": "VICTOR HUGO CORREA SILVA",
 			"aluno": [
 				{
-					"ra" : "1138873160",
+					"ra" : "0001138873160",
 					"serie": "6B"
 				}
 			]
@@ -302,7 +312,7 @@
 			"nome": "VITORIA CRISTINA DO NASCIMENTO",
 			"aluno": [
 				{
-					"ra" : "111980677X",
+					"ra" : "000111980677X",
 					"serie": "6B"
 				}
 			]
@@ -311,7 +321,7 @@
 			"nome": "VITORIA SOUZA DA SILVA",
 			"aluno": [
 				{
-					"ra" : "1139047735",
+					"ra" : "0001139047735",
 					"serie": "6B"
 				}
 			]
