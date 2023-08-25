@@ -1,11 +1,11 @@
 {
 	"usuarios": [ 
 		{
-			"nome": "ISADORA PROVASI RAMOS DE JESUS",
+			"nome": "TESTE",
 			"aluno": [
 				{
-					"ra" : "0001091039999",
-					"serie": "6B"
+					"ra" : "123",
+					"serie": "9A"
 				}
 			]
 		}
