@@ -11,6 +11,125 @@
 			]
 		},
 		{
+			{
+			"nome": "ALICE VIEIRA DIAS LIBORIO LUSTRI",
+			"aluno": [
+				{
+					"ra" : "0001147868876",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			{
+			"nome": "ANA CLARA DE OLIVEIRA LOURENCO",
+			"aluno": [
+				{
+					"ra" : "0001148447507",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "ANAHI MEIRELES MARQUES",
+			"aluno": [
+				{
+					"ra" : "0001122938354",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "ANGELO ANTONIO PETITO DOS SANTOS",
+			"aluno": [
+				{
+					"ra" : "0001119253378",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "NATHALIA BATISTA CORREA",
+			"aluno": [
+				{
+					"ra" : "0001119582088",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "ANTONIO CARLOS PANTALEAO DUARTE",
+			"aluno": [
+				{
+					"ra" : "0001127701368",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "BIANCA CORREIA DE ALMEIDA E SILVA",
+			"aluno": [
+				{
+					"ra" : "0001123536430",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "CAROLINE GUIRAO DE ALMEIDA LEITE",
+			"aluno": [
+				{
+					"ra" : "0001147864688",
+					"serie": "6A"
+				}
+			]
+		},
+		{
+			"nome": "6anoA",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "6anoA",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "6anoA",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "6anoA",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "6anoA",
+			"aluno": [
+				{
+					"ra" : "",
+					"serie": "6B"
+				}
+			]
+		},
+		{
 			"nome": "ANA BEATRIZ SOARES ALVES",
 			"aluno": [
 				{
