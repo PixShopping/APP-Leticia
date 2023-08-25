@@ -330,7 +330,7 @@
        // ----- PERFIL -----
        const mostrarNome = document.getElementById('mostrarNome');
        const mostrarRa = document.getElementById('mostrarRa');
-       const mostrarNascimento = document.getElementById('mostrarNascimento');
+       const mostrarSerie = document.getElementById('mostrarSerie');
 
 	// Validar Login
 	
@@ -354,11 +354,11 @@
        	mostrarRa.innerHTML = "RA";
        }
        
-       // Mostrar a Data de Nascimento
-       if (localStorage.getItem('nascimento')) {
-       	mostrarNascimento.textContent = `Nascimento: ${localStorage.getItem('nascimento')}`;
+       // Mostrar a Serie
+       if (localStorage.getItem('serie')) {
+       	mostrarSerie.textContent = `Serie: ${localStorage.getItem('serie')}`;
        } else {
-       	mostrarNascimento.innerHTML = "Data de Nascimento";
+       	mostrarSerie.innerHTML = "Serie";
        }
        
        
