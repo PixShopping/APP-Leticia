@@ -195,10 +195,10 @@
 	           		<input oninput="inputra()" id="ra" type="text">
 	           		<label>
 	           			<ion-icon name="calendar"></ion-icon>
-	           			Data do Nascimento:
-	           			<p id="alertaNascimento"></p> 
+	           			Serie:
+	           			<p id="alertaSerie"></p> 
 	           		</label>
-	           		<input oninput="inputnascimento()" id="nascimento" type="text">
+	           		<input oninput="inputserie()" id="serie" type="text">
 	           		<button onclick="loginResponsavel()">Login</button>
            		</section>
            		
@@ -220,7 +220,7 @@
 	 document.getElementById('ra').value = RA.toUpperCase();
 	}
 
-	function inputnascimento() {
+	function inputserie() {
 	 const NASCIMENTO = document.getElementById('nascimento').value;
 	 document.getElementById('nascimento').value = NASCIMENTO.toUpperCase();
 	}
@@ -229,12 +229,12 @@
     function loginResponsavel() {
        	const NOME = document.getElementById('nome').value;
        	const RA = document.getElementById('ra').value;
-       	const NASCIMENTO = document.getElementById('nascimento').value;
+       	const SERIE = document.getElementById('serie').value;
 	       
        	// Alerta
        	const alertaNome = document.getElementById('alertaNome');
        	const alertaRA = document.getElementById('alertaRA');
-       	const alertaNascimento = document.getElementById('alertaNascimento');
+       	const alertaSerie = document.getElementById('alertaSerie');
        	
 	    fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       		response.json().then((dados) => {
@@ -253,15 +253,15 @@
 			       					alertaRA.style.color = "var(--red)";
 	       						}
 	       						// Verificar a Data de nascimento
-	       						if (NASCIMENTO === dado.nascimento) {
-	       							alertaNascimento.innerHTML = "Valido";
-			       					alertaNascimento.style.color = "var(--green)";
+	       						if (SERIE === dado.serie) {
+	       							alertaSerie.innerHTML = "Valido";
+			       					alertaSerie.style.color = "var(--green)";
 	       						} else {
-		       						alertaNascimento.innerHTML = "Invalido";
-			       					alertaNascimento.style.color = "var(--red)";
+		       						alertaSerie.innerHTML = "Invalido";
+			       					alertaSerie.style.color = "var(--red)";
 	       						}
 	       						
-	       						if (RA === dado.ra && NASCIMENTO === dado.nascimento) {
+	       						if (RA === dado.ra && SERIE === dado.serie) {
 	       							// Coletar Dados
 	       							localStorage.setItem('nome', usuario.nome);
 	       							localStorage.setItem('ra', dado.ra);
