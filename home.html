@@ -291,6 +291,28 @@
             	font-size: 16px;
             }
             
+            /* Container Mensagens */
+            #containerMensagens {
+            	width: 100vw;
+            	height: auto;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            }
+            
+            #containerMensagens h1 {
+            	width: 95%;
+            	font-size: 22px;
+            	font-weight: 700;
+            	color: var(--two);
+            	letter-spacing: 0.6px;
+            	text-align: center;
+            	background: var(--four);
+            	padding: 10px 5px;
+            	border-radius: 5px;
+            	margin: 10px 0px 15px 0px;
+            }
+            
             </style>
            </head>
            
@@ -305,7 +327,7 @@
            		<ion-icon onclick="perfil()" name="person-circle"></ion-icon>
            		
            	</header>
-           	
+           	a
            	<!-- ========= Menu ========= -->
            	<section class="menu">
            		
@@ -364,7 +386,10 @@
 	           			<ion-icon name="alert-circle"></ion-icon>
            			</h1>
            			
-           			<div id="containerMensagens"></div>
+           			<!-- ===== CONTAINER MENSAGENS ===== -->
+           			<div id="containerMensagens">
+           				<h1>Esse e o aplicativo oficial da escola Leticia de Godoy Bueno Carvalho Lopes</h1>
+           			</div>
            			
            		</section>
            		
@@ -474,6 +499,7 @@
 	       	setTimeout( () => {
 	       		containerAvisos.style.margin = "10px 0px 0px 0px";
 	       	}, 350);
+	       	
 	       	c++;
        	}
        }
