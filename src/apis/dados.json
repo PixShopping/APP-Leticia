@@ -144,6 +144,177 @@
 					"serie": "6B"
 				}
 			]
+		},
+		{
+			"nome": "JULIA MAIA",
+			"aluno": [
+				{
+					"ra" : "1128154067",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "KAWANY ZANUCOLI PEDROSO",
+			"aluno": [
+				{
+					"ra" : "1139300878",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "LARISSA FORMIGONI NEVES",
+			"aluno": [
+				{
+					"ra" : "1128155436",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "LAURA CUSTODIO MOREIRA",
+			"aluno": [
+				{
+					"ra" : "1121355602",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "LAURA MARQUES DA SILVA",
+			"aluno": [
+				{
+					"ra" : "11391777151",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "LAYANE GABRIELI SILVA MARTINS",
+			"aluno": [
+				{
+					"ra" : "1123566203",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "LORENA MARIN CARRIOLHO DA SILVA",
+			"aluno": [
+				{
+					"ra" : "1139035290",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MARCOS FELIPE OLIVERIA PEREIRA",
+			"aluno": [
+				{
+					"ra" : "1128614832",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MARIA EDUARDA DOS SANTOS MARQUES",
+			"aluno": [
+				{
+					"ra" : "1147870160",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MARIA PAULA FAUTINO PONQUIO",
+			"aluno": [
+				{
+					"ra" : "1147871498",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MATHEUS ALVES",
+			"aluno": [
+				{
+					"ra" : "1139036014",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MIGUEL PRADELA DE OLIVERIA",
+			"aluno": [
+				{
+					"ra" : "112815366X",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MURILO ALMEIDA DE GODOI",
+			"aluno": [
+				{
+					"ra" : "1132807311",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MURILO HENRIQUE INOCENTE",
+			"aluno": [
+				{
+					"ra" : "1147689866",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "MURILO MENDES DOS SANTOS",
+			"aluno": [
+				{
+					"ra" : "1139035630",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "PEDRO HENRIQUE DEVITO",
+			"aluno": [
+				{
+					"ra" : "1128276483",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "VICTOR HUGO CORREA SILVA",
+			"aluno": [
+				{
+					"ra" : "1138873160",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "VITORIA CRISTINA DO NASCIMENTO",
+			"aluno": [
+				{
+					"ra" : "111980677X",
+					"serie": "6B"
+				}
+			]
+		},
+		{
+			"nome": "VITORIA SOUZA DA SILVA",
+			"aluno": [
+				{
+					"ra" : "1139047735",
+					"serie": "6B"
+				}
+			]
 		}
 	],
 	
