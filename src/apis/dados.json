@@ -1,11 +1,11 @@
 {
 	"usuarios": [ 
 		{
-			"nome": "VITOR AAA JSJJ IEBSN",
+			"nome": "ISADORA PROVASI RAMOS DE JESUS",
 			"aluno": [
 				{
-					"ra" : "017392637264672726",
-					"nascimento": "9383733883"
+					"ra" : "0001091039999",
+					"nascimento": "17/10/2008"
 				}
 			]
 		},
@@ -22,7 +22,7 @@
 			"nome": "JOAO VICTOR RAYMUNDO DE LIMA",
 			"aluno": [
 				{
-					"ra" : "0001101708864",
+					"ra" : "0001112223334",
 					"nascimento": "03/09/2008"
 				}
 			]
