@@ -398,16 +398,11 @@
        	menu.style.left = "-51vw";
        }
 	
-		// Validar Login
+	      // Validar Login
 		
-	     const h1logado = document.getElementById('logado');
 	     const logado = localStorage.getItem('logado');
 	      
-	      if (logado === "ADMIN") {
-	      	h1logado.innerHTML = "Admin";
-	      } else if (logado === "RESPONSAVEL") {
-	      	h1logado.innerHTML = "Responsavel";
-	      } else if (!logado) {
+	      if (!logado) {
 	      	window.location.href = "./login.html";
 	      }
        
