@@ -408,7 +408,10 @@
 
 	// Verificar se e administrador no perfil
 
+	const containerPerfil = document.querySelector('.designer-perfil');
+	
 	if (logado === "ADMIN") {
+	containerPerfil.style.height = "100px";
 	mostrarNome.innerHTML = "Administrador";
 	mostrarRa.style.display = "none";
 	mostrarNascimento.style.display = "none";
