@@ -1,6 +1,15 @@
 {
 	"usuarios": [ 
 		{
+			"nome": "TESTE",
+			"aluno": [
+				{
+					"ra" : "123",
+					"serie": "123"
+				}
+			]
+		},
+		{
 			"nome": "ANA BEATRIZ SOARES ALVES",
 			"aluno": [
 				{
