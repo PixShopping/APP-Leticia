@@ -339,12 +339,6 @@
 	if (!logado) {
 	window.location.href = "./login.html";
 	}
-	if (logado === "admin") {
-	mostrarNome.innerHTML = "Administrador";
-	mostrarRa.style.display = "none";
-	mostrarNascimento.style.display = "none";
-	}
-	
 		
        // Mostrar o Nome
        if (localStorage.getItem('nome')) {
@@ -411,6 +405,14 @@
        	closeMenu.style.display = "none";
        	menu.style.left = "-51vw";
        }
+
+	// Verificar se e administrador no perfil
+
+	if (logado === "admin") {
+	mostrarNome.innerHTML = "Administrador";
+	mostrarRa.style.display = "none";
+	mostrarNascimento.style.display = "none";
+	}
 	       
        </script>
        
