@@ -244,7 +244,8 @@
 	       					alertaNome.style.color = "var(--green)";
 	       					
 	       					usuario.aluno.map((dado) => {
-	       						// Verificar o RA
+	       						
+							// Verificar o RA
 	       						if (RA === dado.ra) {
 	       							alertaRA.innerHTML = "Valido";
 			       					alertaRA.style.color = "var(--green)";
@@ -252,6 +253,7 @@
 	       							alertaRA.innerHTML = "Invalido";
 			       					alertaRA.style.color = "var(--red)";
 	       						}
+							
 	       						// Verificar a Data de nascimento
 	       						if (SERIE === dado.serie) {
 	       							alertaSerie.innerHTML = "Valido";
@@ -261,7 +263,7 @@
 			       					alertaSerie.style.color = "var(--red)";
 	       						}
 
-								// Login
+							// Login
 	       						if (RA === dado.ra && SERIE === dado.serie) {
 	       							// Coletar Dados
 	       							localStorage.setItem('nome', usuario.nome);
@@ -284,12 +286,12 @@
 		}							  
 
        function inputusuario() {
-	     const USUARIO = document.getElementById('usuario').value;
+	 const USUARIO = document.getElementById('usuario').value;
        	 document.getElementById('usuario').value = USUARIO.toUpperCase();
        }
 
        function inputsenha() {
-	 	  const SENHA = document.getElementById('senha').value;
+	 const SENHA = document.getElementById('senha').value;
        	 document.getElementById('senha').value = SENHA.toUpperCase();
        }
        
