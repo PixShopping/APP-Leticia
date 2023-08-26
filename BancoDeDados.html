@@ -34,42 +34,40 @@
 	
 		<body>
 		
+			<input id="mensagem" type="text" />
+			<button onclick="enviar()">Enviar Mensagens</button>
 			
-		<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>	
-		<!-----------------------------
-					JAVASCRIPT
-		------------------------------>
-		
-		<script type="module">
-
-  
-  import firebase from "firebase/compat/app";
-// Required for side-effects
-import "firebase/firestore";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
-    authDomain: "escola-leticia.firebaseapp.com",
-    projectId: "escola-leticia",
-    storageBucket: "escola-leticia.appspot.com",
-    messagingSenderId: "782148597563",
-    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  db.collection("dados").add({
-  	dado: "Olaaa"
-  })
-  alert('Enviado com Sucesso!!')
-  
-</script>
-	
 		</body>
-				
+		
+		<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+		
+		<script>
+			
+		  // Configuraçao do FIREBASE
+		 const firebaseConfig = {
+		   apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+		   authDomain: "escola-leticia.firebaseapp.com",
+		   projectId: "escola-leticia",
+		   storageBucket: "escola-leticia.appspot.com",
+		   messagingSenderId: "782148597563",
+		   appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+		 };
+		
+		 // Iniciar o FIREBASE
+		 firebase.initializeApp(firebaseConfig);
+		 
+		 // Banco de Dados
+		 const db = firebase.firestore();
+		 
+		 function enviar() {
+		 	const mensagem = document.getElementById('mensagem');
+		 	db.collection("dados").add({
+		 		dado: mensagem
+		 	})
+		 	alert('Cadastrado com Sucesso')
+		 }
+		
+		</script>
+		
 </html>
