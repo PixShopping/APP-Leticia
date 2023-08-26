@@ -1,0 +1,87 @@
+<DOCTYPE html>
+<html lang="PT-BR">
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie-edge">
+		<link rel="icon" href="./imagem/icon.png" type="x-icon">
+		<title>Banco de Dados (FIREBASE)</title>
+		
+		<style scoped>
+		
+		:root{
+			--one: ;
+			--two: ;
+			--tree: ;
+		}
+		
+		* {
+			paddng: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
+		
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		</style>
+	
+	</head>
+	
+		<body>
+		
+			<form>
+				<input type="text" name="mensagem" />
+				<input type="submit" />
+			</form>
+			
+			<div class="mensagens">
+				
+			</div>
+			
+		<!-----------------------------
+					JAVASCRIPT
+		------------------------------>
+		<script type="module">
+		
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+  import { initializeApp } from "firebase/app";
+  import { getFirestore } from "firebase/firestore";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+    authDomain: "escola-leticia.firebaseapp.com",
+    projectId: "escola-leticia",
+    storageBucket: "escola-leticia.appspot.com",
+    messagingSenderId: "782148597563",
+    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const db = firebase.firestore();
+
+ const form = document.querySelector('form');
+  
+  form.addEventListener('submit', (e) => {
+  	e.preventDefault();
+  	let mensagem = document.querySelector('[name=mensagem]').value;
+  	db.collection('dados').add({
+  		dados: mensagem
+  	});
+  }); 
+	
+</script>
+
+		</body>
+				
+	</html>
