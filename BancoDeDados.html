@@ -34,10 +34,10 @@
 	
 		<body>
 		
-			<form>
-				<input type="text" name="mensagem" />
-				<input type="submit" />
-			</form>
+			<div>
+				<input type="text" id="mensagem" />
+				<button onclick="enviar()"></button>
+			</div>
 			
 			<div class="mensagens">
 				
@@ -51,10 +51,7 @@
 		
 		<script type="module">
 		
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
   import firebase from "firebase/compat/app";
-  // Required for side-effects
   import "firebase/firestore";
   
   // TODO: Add SDKs for Firebase products that you want to use
@@ -74,21 +71,16 @@
   const app = initializeApp(firebaseConfig);
 
   const db = firebase.firestore();
-
- const form = document.querySelector('form');
-  
-  form.addEventListener('submit', (e) => {
-  	e.preventDefault();
-  	let mensagem = document.querySelector('[name=mensagem]').value;
-  	db.collection('dados').add({
-  		dados: mensagem
-  	});
-	alert('Enviado com sucesso!!!')
-	form.reset();
-  }); 
+ 
+   function enviar() {
+  	const mensagem = document.getElementById('mensagem').value;
+  	db.collection("dados").add({
+  		dado: mensagem
+  	})
+   }
 	
 </script>
 
 		</body>
 				
-	</html>
+</html>
