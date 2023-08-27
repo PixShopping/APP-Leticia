@@ -153,7 +153,7 @@
             .content-logado {
             	width: 100vw;
             	height: 77px;
-            	background: var(--two);
+            	background: var(--tree);
             	margin: 0px;
             	padding: 15px;
             	display: flex;
@@ -197,7 +197,7 @@
             	margin: 0px 4px 0px 4px;
             }
             
-            .containerAviso {
+            .containerAviso, .containerMensagem {
             	z-index: 50;
             	width: 100vw;
             	height: auto;
@@ -213,7 +213,7 @@
             	border-radius: 10px;
             }
             
-            .designer-avisos {
+            .designer-avisos, .designer-mensagem {
             	z-index: 50;
             	width: 100%;
             	height: 100px;
@@ -225,12 +225,12 @@
             	border-radius: 10px 10px 0px 0px;
             }
             
-            .designer-avisos ion-icon {
+            .designer-avisos ion-icon, .designer-mensagem ion-icon {
             	margin: auto;
             	font-size: 50px;
             }
             
-            .contentAviso {
+            .contentAviso, .contentMensagem {
             	display: flex;
             	flex-direction: column;
             	align-items: center;
@@ -238,27 +238,27 @@
             	padding: 10px;
             }
             
-            .contentAviso h1 {
+            .contentAviso h1, .contentMensagem h1 {
             	font-size: 24px;
             	font-weight: 800;
             	margin: 15px 0px;
             }
             
-            .contentAviso .form {
+            .contentAviso .form, .contentMensagem .form {
             	width: auto;
             	height: auto;
             	display: flex;
             	flex-direction: column;
             }
             
-            .contentAviso label {
+            .contentAviso label, .contentMensagem label {
             	font-size: 19.5px;
             	font-weight: 800;
             	margin: 0px 0px 2px 0px;
             	color: var(--two);
             }
             
-            .contentAviso input {
+            .contentAviso input, .contentMensagem input {
             	background: var(--two);
             	width: 85vw;
             	height: 35px;
@@ -272,7 +272,7 @@
             	border: none;
             }
             
-            .contentAviso textarea {
+            .contentAviso textarea, .contentMensagem textarea {
             	background: var(--two);
             	width: 85vw;
             	height: 55px;
@@ -286,7 +286,7 @@
             	border: none;
             }
             
-            .contentAviso button {
+            .contentAviso button, .contentMensagem button {
             	align-self: center;
             	background: var(--two);
             	width: 82.5vw;
@@ -299,7 +299,7 @@
             	border: none;
             }
             
-            .contentAviso button:hover {
+            .contentAviso button:hover, .contentMensagem button:hover {
             	background: var(--one);
             	box-shadow: 3.5px 3.5px 2px var(--tree);
             	color: white;
@@ -345,9 +345,10 @@
             
             /* ITEMS DE AVISOS */
             
-            #btn-aviso {
+            #btn-aviso, #btn-mensagem {
             	display: none;
             	width: 90%;
+            	justify-content: center;
             	align-self: center;
             	padding: 10px;
             	background: var(--two);
@@ -356,6 +357,10 @@
             
             #btn-aviso ion-icon {
             	font-size: 30px;
+            	margin: 0px 5px 0px 0px;
+            } #btn-mensagem ion-icon {
+            	font-size: 25px;
+            	margin: 0px 10px 0px 0px;
             }
             
             </style>
@@ -408,6 +413,12 @@
            				<h1>Criar Aviso</h1>
            			</li>
            			
+           			<!-- ENVIAR MENSAGEM -->
+           			<li id="btn-mensagem" onclick="openMensagem()">
+           				<ion-icon name="mail"></ion-icon>
+           				<h1>Enviar MSG</h1>
+           			</li>
+           			
            		</ul>
            		
            	</section>
@@ -452,7 +463,35 @@
 	           			<label>Texto</label>
 	           			<textarea id="texto" type="text"></textarea>
 	           			
-	           			<button onclick="enviar()">Enviar</button>
+	           			<button onclick="enviarAviso()">Enviar Aviso</button>
+	           			
+           			</div>
+           			
+           		</div>
+           		
+           	</section>
+           	
+           	<!-- Container Avisos -->
+           	<section class="containerMensagem">
+           		
+           		<div class="designer-mensagem">
+           			<ion-icon name="mail-outline"></ion-icon>
+           		</div>
+           		
+           		<div class="contentMensagem">
+           			<h1>Enviar Mensagem</h1>
+           			
+           			<div class="form">
+	           			<label>Nome do Aluno</label>
+	           			<input id="aluno" type="text">
+	           			
+	           			<label>Motivo da Mensagem</label>
+	           			<input id="motivo" type="text">
+	           			
+	           			<label>Mensagem</label>
+	           			<textarea id="mensagem" type="text"></textarea>
+	           			
+	           			<button onclick="enviarMensagem()">Enviar Mensagem</button>
 	           			
            			</div>
            			
@@ -467,6 +506,7 @@
        
        // Funcao de Abrir o Container AVISO
        const containerAviso = document.querySelector('.containerAviso');
+       const containerMensagem = document.querySelector('.containerMensagem');
        
        var c=0;
        function openAviso() {
@@ -486,6 +526,27 @@
 	       	c++;
        	}
        }
+       
+       var c=0;
+       function openMensagem() {
+       	if (c === 1) {
+       		CLOSEMENU();
+	       	containerMensagem.style.top = "100vh";
+	       	setTimeout(() => {
+	       		containerMensagem.style.display = "none";
+	       	}, 350);
+	       	c=0;
+       	} else {
+	       	CLOSEMENU();
+	       	containerMensagem.style.display = "flex";
+	       	setTimeout(() => {
+	       		containerMensagem.style.top = "150px";
+	       	}, 350);
+	       	c++;
+       	}
+       }
+       
+       
        
        
       // Navgation
@@ -512,13 +573,18 @@
        	menu.style.left = "-51vw";
        }
        
+       
+       // VERIFICAR SE E ADMINISTRADOR
       const h1logado = document.getElementById('logado');
       const logado = localStorage.getItem('logado');
       const btnAviso = document.getElementById('btn-aviso');
-       
+      const btnMensagem = document.getElementById('btn-mensagem');
+      
+        
        if (logado === "ADMIN") {
        	h1logado.innerHTML = "Administrador";
        	btnAviso.style.display = "flex";
+       	btnMensagem.style.display = "flex";
        } else if (logado === "RESPONSAVEL") {
        	h1logado.innerHTML = "Responsavel";
        } else if (!logado) {
@@ -539,12 +605,15 @@
        
        
        
+       
+       
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
 	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
        
-       
+       <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
        
        <script>
        
@@ -560,17 +629,35 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 	  
-	  function enviar() {
+	  // Enviar AVISO
+	  function enviarAviso() {
 	  	const titulo = document.getElementById('titulo').value;
 	  	const texto = document.getElementById('texto').value;
 	  	db.collection("avisos").add({
 	  		titulo: titulo,
 	  		texto: texto
 	  	})
-	  	alert("Aviso enviado com Sucesso!!")
+	  	openAviso();
+	  	setTimeout( () => {
+	  		location.reload();
+	  	}, 350);
+	  }
+	  
+	  // Enviar MENSAGEM
+	  function enviarMensagem() {
+	  	const aluno = document.getElementById('aluno').value;
+	  	const motivo = document.getElementById('motivo').value;
+	  	const mensagem = document.getElementById('mensagem').value;
+	  	db.collection("mensagens").add({
+	  		aluno: aluno,
+	  		motivo: motivo,
+	  		mensagem: mensagem
+	  	})
 	  }
 	  
 	  const containerMensagens = document.getElementById('containerMensagens');
+	  
+	  // LER AVISOS E MENSAGENS DA SECRETARIA
 	  db.collection("avisos").onSnapshot((data) => {
 	  	data.docs.map((val) => {
 	  		containerMensagens.innerHTML += `
@@ -579,6 +666,21 @@
 	  			<h2>${val.data().texto}</h2>
 	  		</div>
 	  		`;
+	  	})
+	  })
+	  
+	  const alunoLocal = localStorage.getItem('nome');
+	  
+	  db.collection("mensagens").onSnapshot((data) => {
+	  	data.docs.map((val) => {
+	  		if(val.data().aluno === alunoLocal) {
+	  			containerMensagens.innerHTML += `
+	  			<div id="divMensagens">
+		  			<h1>${val.data().motivo}</h1>
+		  			<h2>${val.data().mensagem}</h2>
+		  		</div>
+	  			`;
+	  		}
 	  	})
 	  })
 	  
