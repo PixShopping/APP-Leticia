@@ -64,9 +64,9 @@
   function enviar() {
   	const mensagem = document.getElementById('mensagem').value;
   	db.collection("dados").add({
-  		dado: mensagem
-  	})
-  	alert("Enviado com sucesso!!!")
+  		dados: mensagem
+  	});
+  	alert("Enviado com sucesso!!!");
   }
   
 		
