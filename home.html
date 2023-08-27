@@ -668,12 +668,14 @@
             dados.usuarios.forEach((usuario) => {
                 if (usuario.nome === aluno) {
                     nomeEncontrado = true;
-		    const SERIE = usuario.serie
+		    usuario.map((dado) => {
+			const serie = dado.serie;
+		    });
                 }
             });
 
             if (nomeEncontrado) {
-                alertaNome.innerHTML = `Valido ${SERIE}`;
+                alertaNome.innerHTML = `Valido ${serie}`;
                 alertaNome.style.color = "green";
             } else {
                 alertaNome.innerHTML = "Invalido";
