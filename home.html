@@ -698,7 +698,7 @@
 	  		texto: texto
 	  	})
 	  	openAviso();
-	  	setTimeout( () => {
+	  	setTimeout(() => {
 	  		location.reload();
 	  	}, 350);
 	  }
@@ -714,13 +714,13 @@
 	  		mensagem: mensagem
 	  	})
 		openMensagem();
-	  	setTimeout( () => {
+	  	setTimeout(() => {
 	  		location.reload();
 	  	}, 350);
 	  }
 	  
 	  const containerMensagens = document.getElementById('containerMensagens');
-	  const containerMensagens2 = document.getElementById('containerMensagens2');
+	  const containerMensagensTwo = document.getElementById('containerMensagens2');
 	  
 	  
 	  // LER AVISOS E MENSAGENS DA SECRETARIA
@@ -740,7 +740,7 @@
 	  db.collection("mensagens").onSnapshot((data) => {
 	  	data.docs.map((val) => {
 	  		if(val.data().aluno === alunoLocal) {
-	  			containerMensagens2.innerHTML += `
+	  			containerMensagensTwo.innerHTML += `
 	  			<div id="divMensagens2">
 	  				<h1><ion-icon name="person-circle-outline"></ion-icon>Mensagem da Secretaria</h1>
 		  			<h2>${val.data().motivo}</h2>
