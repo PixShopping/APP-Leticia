@@ -664,7 +664,7 @@
 		 fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 		 	response.json().then((dados) => {
 		 		dados.usuarios.map((usuario) => {
-		 			if (aluno === usuario.nome) {
+		 			if (aluno == usuario.nome) {
 		 				alertaNome.innerHTML = "Valido";
 		 				alertaNome.style.color = "green";
 		 			} else {
