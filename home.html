@@ -659,22 +659,28 @@
        
        const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
-		 const aluno = document.getElementById('aluno').value;
-		 document.getElementById('aluno').value = aluno.toUpperCase();
-		 fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-		 	response.json().then((dados) => {
-		 		dados.usuarios.map((usuario) => {
-		 			if (usuario.nome === aluno) {
-		 				alertaNome.innerHTML = "Valido";
-		 				alertaNome.style.color = "green";
-		 			} else {
-		 				alertaNome.innerHTML = "Invalido";
-		 				alertaNome.style.color = "red";
-		 			}
-		 		});
-		 	});
-		 });
-	   }
+     const aluno = document.getElementById('aluno').value;
+     document.getElementById('aluno').value = aluno.toUpperCase();
+     fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
+        response.json().then((dados) => {
+            let nomeEncontrado = false;
+
+            dados.usuarios.forEach((usuario) => {
+                if (usuario.nome === aluno) {
+                    nomeEncontrado = true;
+                }
+            });
+
+            if (nomeEncontrado) {
+                alertaNome.innerHTML = "Valido";
+                alertaNome.style.color = "green";
+            } else {
+                alertaNome.innerHTML = "Invalido";
+                alertaNome.style.color = "red";
+            }
+        });
+     });
+}
       
        </script>
        
