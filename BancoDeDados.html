@@ -45,10 +45,6 @@
   <script>
   // https://firebase.google.com/docs/web/setup#available-libraries
 	
-  // Import FIREBASE
-  import firebase from "firebase/app";
-  import "firebase/firestore";
-	
   const firebaseConfig = {
     apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
     authDomain: "escola-leticia.firebaseapp.com",
@@ -62,8 +58,8 @@
   const db = firebase.firestore();
   
   function enviar() {
-  	const mensagem = document.getElementById('mensagem').value;
-  	db.collection("dados").add({
+  	var mensagem = document.getElementById('mensagem').value;
+	db.collection("dados").add({
   		dados: mensagem
   	});
   	alert("Enviado com sucesso!!!");
