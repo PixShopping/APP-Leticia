@@ -72,7 +72,7 @@
   db.collection("teste").onSnapshot((data) => {
   	const div = document.getElementById('list');
   	data.docs.map((val) => {
-  		div.innerHTML = `<li>${val.data().mensagem}</li>`;
+  		div.innerHTML += `<li>${val.data().mensagem}</li>`;
   	})
   })
   
