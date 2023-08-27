@@ -35,14 +35,14 @@
 		<body>
 		
 			<input id="mensagem" type="text" />
-			<button onclick="enviar()">Enviar Mensagens</button>
+			<button onclick="enviar()">Enviar Mensagem</button>
 			
 		</body>
 		
   <script>
 		
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   const firebaseConfig = {
@@ -61,7 +61,8 @@
   	const mensagem = document.getElementById('mensagem').value;
   	db.collection("dados").add({
   		dado: mensagem
-  	})
+  	});
+	alert("Enviado com sucesso");
   }
   
 		
