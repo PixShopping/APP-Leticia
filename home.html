@@ -201,12 +201,16 @@
             	z-index: 50;
             	width: 100vw;
             	height: auto;
-            	margin: 100vh 0px 0px 0px;
+            	position: absolute;
+            	left: 50%;
+            	transform: translateX(-50%);
+            	top: 100vh;
             	background: white;
             	display: none;
             	flex-direction: column;
             	transition: all .55s ease-in-out;
-            	padding: 0px 0px 20px 0px;
+            	padding: 0px 0px 25px 0px;
+            	border-radius: 10px;
             }
             
             .designer-avisos {
@@ -240,7 +244,7 @@
             	margin: 15px 0px;
             }
             
-            .contentAviso form {
+            .contentAviso .form {
             	width: auto;
             	height: auto;
             	display: flex;
@@ -264,6 +268,8 @@
             	padding: 10px;
             	color: white;
             	font-size: 16px;
+            	outline: none;
+            	border: none;
             }
             
             .contentAviso textarea {
@@ -276,6 +282,8 @@
             	padding: 10px;
             	color: white;
             	font-size: 16px;
+            	outline: none;
+            	border: none;
             }
             
             .contentAviso button {
@@ -288,6 +296,14 @@
             	box-shadow: 3.5px 3.5px 2px var(--tree);
             	color: white;
             	font-size: 16px;
+            	border: none;
+            }
+            
+            .contentAviso button:hover {
+            	background: var(--one);
+            	box-shadow: 3.5px 3.5px 2px var(--tree);
+            	color: white;
+            	transition: all .4s ease-in-out;
             }
             
             /* Container Mensagens */
@@ -299,17 +315,32 @@
             	align-items: center;
             }
             
-            #containerMensagens h1 {
-            	width: 95%;
-            	font-size: 21px;
-            	font-weight: 750;
-            	color: var(--two);
+            #divMensagens {
+            	width: 85%;
+            	height: auto;
+            	padding: 20px 25px;
+            	background: var(--two);
+            	color: white;
+            	border-radius: 10px;
+            	display: flex;
+            	flex-direction: column;
+            	margin: 15px 0px 0px 0px;
+            	align-items: center;
+            }
+            
+            #divMensagens h1 {
+            	font-size: 22.5px;
+            	font-weight: 700;
+            	margin: 0px;
+            	color: white;
+            	letter-spacing: 0.8px;
+            }
+            
+            #divMensagens h2 {
+            	font-size: 19.5px;
+            	font-weight: 600;
+            	margin: 10px 0px 0px 0px;
             	letter-spacing: 0.5px;
-            	text-align: center;
-            	background: var(--four);
-            	padding: 12.5px 7px;
-            	border-radius: 5px;
-            	margin: 15px 0px 10px 0px;
             }
             
             /* ITEMS DE AVISOS */
@@ -441,18 +472,19 @@
        function openAviso() {
        	if (c === 1) {
        		CLOSEMENU();
-	       	containerAviso.style.margin = "100vh 0px 0px 0px";
+	       	containerAviso.style.top = "100vh";
 	       	setTimeout(() => {
 	       		containerAviso.style.display = "none";
 	       	}, 350);
 	       	c=0;
+       	} else {
+	       	CLOSEMENU();
+	       	containerAviso.style.display = "flex";
+	       	setTimeout(() => {
+	       		containerAviso.style.top = "150px";
+	       	}, 350);
+	       	c++;
        	}
-       	CLOSEMENU();
-       	containerAviso.style.display = "flex";
-       	setTimeout(() => {
-       		containerAviso.style.margin = "0px 0px 0px 0px";
-       	}, 350);
-       	c++;
        }
        
        
@@ -542,8 +574,10 @@
 	  db.collection("avisos").onSnapshot((data) => {
 	  	data.docs.map((val) => {
 	  		containerMensagens.innerHTML += `
-	  		<h1>${val.data().titulo}</h1><br>
-	  		<h2>${val.data().texto}
+	  		<div id="divMensagens">
+	  			<h1>${val.data().titulo}</h1>
+	  			<h2>${val.data().texto}</h2>
+	  		</div>
 	  		`;
 	  	})
 	  })
