@@ -537,7 +537,7 @@
            			<h1>Enviar Mensagem</h1>
            			
            			<div class="form">
-	           			<label>Nome do Aluno</label>
+	           			<label>Nome do Aluno <p id="alertaNome"></p></label>
 	           			<input oninput="inputaluno()" id="aluno" type="text">
 	           			
 	           			<label>Motivo da Mensagem</label>
@@ -558,6 +558,7 @@
            
        <!-- JavaScript -->
        <script>
+       
        
        // Funcao de Abrir o Container AVISO
        const containerAviso = document.querySelector('.containerAviso');
@@ -656,9 +657,23 @@
        	window.location.href = "./perfil.html";
        }
        
+       const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
 		 const aluno = document.getElementById('aluno').value;
 		 document.getElementById('aluno').value = aluno.toUpperCase();
+		 fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
+		 	response.json().then((dados) => {
+		 		dados.usuarios.map((usuario) => {
+		 			if (aluno === usuario.nome) {
+		 				alertaNome.innerHTML = "Valido";
+		 				alertaNome.style.color = "green";
+		 			} else {
+		 				alertaNome.innerHTML = "Invalido";
+		 				alertaNome.style.color = "red";
+		 			}
+		 		});
+		 	});
+		 });
 	   }
       
        </script>
