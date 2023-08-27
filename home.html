@@ -343,6 +343,59 @@
             	letter-spacing: 0.5px;
             }
             
+            /* Container Mensagens 2 */
+            #containerMensagens2 {
+            	width: 100vw;
+            	height: auto;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            }
+            
+            #divMensagens2 {
+            	width: 90%;
+            	height: auto;
+            	padding: 20px 20px;
+            	background: #F1F1F1;
+            	box-shadow: 0px 0px 10px gray;
+            	color: #232323;
+            	border-radius: 10px;
+            	display: flex;
+            	flex-direction: column;
+            	margin: 20px 0px 0px 0px;
+            	align-items: start;
+            }
+            
+            #divMensagens2 h1 {
+            	color: #232323;
+            	font-size: 23px;
+            	font-weight: 900;
+            	margin: 0px 0px 0px 5px;
+            	letter-spacing: 0.8px;
+            	align-self: start;
+            }
+            
+            #divMensagens2 h1 ion-icon {
+            	margin: 0px 5px 0px 0px;
+            	font-size: 40px;
+            }
+            
+            #divMensagens2 h2 {
+	            color: #232323;
+            	font-size: 20px;
+            	font-weight: 600;
+            	margin: 15px 0px 0px 10px;
+            	letter-spacing: 0.4px;
+            }
+            
+            #divMensagens2 h3 {
+	            color: #232323;
+            	font-size: 19px;
+            	font-weight: 500;
+            	margin: 10px 0px 0px 10px;
+            	letter-spacing: 0.2px;
+            }
+            
             /* ITEMS DE AVISOS */
             
             #btn-aviso, #btn-mensagem {
@@ -439,8 +492,10 @@
 	           			<ion-icon name="alert-circle"></ion-icon>
            			</h1>
            			
-           			<!-- ===== CONTAINER MENSAGENS ===== -->
+           			<!-- ===== CONTAINER AVISO ===== -->
            			<div id="containerMensagens"></div>
+           			<!-- ===== CONTAINER MENSAGENS ===== -->
+           			<div id="containerMensagens2"></div>
            			
            		</section>
            		
@@ -665,6 +720,8 @@
 	  }
 	  
 	  const containerMensagens = document.getElementById('containerMensagens');
+	  const containerMensagens2 = document.getElementById('containerMensagens2');
+	  
 	  
 	  // LER AVISOS E MENSAGENS DA SECRETARIA
 	  db.collection("avisos").onSnapshot((data) => {
@@ -683,10 +740,11 @@
 	  db.collection("mensagens").onSnapshot((data) => {
 	  	data.docs.map((val) => {
 	  		if(val.data().aluno === alunoLocal) {
-	  			containerMensagens.innerHTML += `
-	  			<div id="divMensagens">
-		  			<h1>${val.data().motivo}</h1>
-		  			<h2>${val.data().mensagem}</h2>
+	  			containerMensagens2.innerHTML += `
+	  			<div id="divMensagens2">
+	  				<h1><ion-icon name="person-circle-outline"></ion-icon>Mensagem da Secretaria</h1>
+		  			<h2>${val.data().motivo}</h2>
+		  			<h3>${val.data().mensagem}</h3>
 		  		</div>
 	  			`;
 	  		}
