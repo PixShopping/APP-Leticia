@@ -37,6 +37,10 @@
 			<input id="mensagem" type="text">
 			<button onclick="enviar()">Enviar</button>
 			
+			<div id="list">
+				
+			</div>
+			
 		</body>
 		
 		<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
@@ -59,11 +63,20 @@
   
   function enviar() {
   	var mensagem = document.getElementById('mensagem').value;
-	db.collection("dados").add({
-  		dados: mensagem
+	  db.collection("teste").add({
+  		mensagem: mensagem
   	});
   	alert("Enviado com sucesso!!!");
   }
+  
+  db.collection("teste").onSnapshot((data) => {
+  	const div = document.getElementById('list');
+  	data.docs.map((val)=>{
+  		div.innerHTML = `<li>${val.data().teste}</li>`;
+  	})
+  })
+  
+  
   
 		
   </script>
