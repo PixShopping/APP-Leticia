@@ -653,6 +653,10 @@
 	  		motivo: motivo,
 	  		mensagem: mensagem
 	  	})
+		openMensagem();
+	  	setTimeout( () => {
+	  		location.reload();
+	  	}, 350);
 	  }
 	  
 	  const containerMensagens = document.getElementById('containerMensagens');
