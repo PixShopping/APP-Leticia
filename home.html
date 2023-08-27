@@ -197,7 +197,7 @@
             	margin: 0px 4px 0px 4px;
             }
             
-            .container-avisos {
+            .containerAviso {
             	z-index: 50;
             	width: 100vw;
             	height: auto;
@@ -226,7 +226,7 @@
             	font-size: 50px;
             }
             
-            .content-avisos {
+            .contentAviso {
             	display: flex;
             	flex-direction: column;
             	align-items: center;
@@ -234,27 +234,27 @@
             	padding: 10px;
             }
             
-            .content-avisos h1 {
+            .contentAviso h1 {
             	font-size: 24px;
             	font-weight: 800;
             	margin: 15px 0px;
             }
             
-            .content-avisos form {
+            .contentAviso form {
             	width: auto;
             	height: auto;
             	display: flex;
             	flex-direction: column;
             }
             
-            .content-avisos label {
+            .contentAviso label {
             	font-size: 19.5px;
             	font-weight: 800;
             	margin: 0px 0px 2px 0px;
             	color: var(--two);
             }
             
-            .content-avisos input {
+            .contentAviso input {
             	background: var(--two);
             	width: 85vw;
             	height: 35px;
@@ -266,7 +266,7 @@
             	font-size: 16px;
             }
             
-            .content-avisos textarea {
+            .contentAviso textarea {
             	background: var(--two);
             	width: 85vw;
             	height: 55px;
@@ -278,7 +278,7 @@
             	font-size: 16px;
             }
             
-            .content-avisos button {
+            .contentAviso button {
             	align-self: center;
             	background: var(--two);
             	width: 82.5vw;
@@ -312,6 +312,21 @@
             	margin: 15px 0px 10px 0px;
             }
             
+            /* ITEMS DE AVISOS */
+            
+            #btn-aviso {
+            	display: none;
+            	width: 90%;
+            	align-self: center;
+            	padding: 10px;
+            	background: var(--two);
+            	border-radius: 10px;
+            }
+            
+            #btn-aviso ion-icon {
+            	font-size: 30px;
+            }
+            
             </style>
            </head>
            
@@ -332,24 +347,34 @@
            		
            		<ul>
            		
-           			<li  onclick="perfil()"> <!-- PERFIL -->
+           			<!-- PERFIL -->
+           			<li onclick="perfil()">
            				<ion-icon name="person"></ion-icon>
            				<h1>Perfil</h1>
            			</li>
            		
-           			<li> <!-- NOTIFICACAO -->
+           			<!-- NOTIFICACAO -->
+           			<li>
            				<ion-icon name="notifications"></ion-icon>
            				<h1>Notificaçao</h1>
            			</li>
            			
-           			<li> <!-- SECRETARIA -->
+           			<!-- SECRETARIA -->
+           			<li>
            				<ion-icon name="people-circle-outline"></ion-icon>
            				<h1>Secretaria</h1>
            			</li>
            			
-           			<li onclick="website()"> <!-- WEBSITE -->
+           			<!-- WEBSITE -->
+           			<li onclick="website()">
            				<ion-icon name="globe"></ion-icon>
            				<h1>Website</h1>
+           			</li>
+           			
+           			<!-- CRIAR AVISO -->
+           			<li id="btn-aviso" onclick="openAviso()">
+           				<ion-icon name="add-sharp"></ion-icon>
+           				<h1>Criar Aviso</h1>
            			</li>
            			
            		</ul>
@@ -373,28 +398,23 @@
            			</h1>
            			
            			<!-- ===== CONTAINER MENSAGENS ===== -->
-           			<div id="containerMensagens">
-           			
-				</div>
+           			<div id="containerMensagens"></div>
            			
            		</section>
            		
            	</main>
            	
            	<!-- Container Avisos -->
-           	<section class="container-avisos">
+           	<section class="containerAviso">
            		
            		<div class="designer-avisos">
            			<ion-icon name="chatbubbles-outline"></ion-icon>
            		</div>
            		
-           		<div class="content-avisos">
+           		<div class="contentAviso">
            			<h1>Enviar Aviso</h1>
            			
            			<form>
-	           			<label>Destinatario</label>
-	           			<input id="destinatario" type="text">
-	           			
 	           			<label>Titulo</label>
 	           			<input id="titulo" type="text">
 	           			
@@ -414,16 +434,27 @@
        <!-- JavaScript -->
        <script>
        
-       // Banco de dados JSON
-       const containerMensagens  = document.getElementById('containerMensagens');
+       // Funcao de Abrir o Container AVISO
+       const containerAviso = document.querySelector('.containerAviso');
        
-       fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-       	response.json().then((dados) => {
-       		dados.mensagens.map((mensagem) => {
-       			containerMensagens.innerHTML += `<h1>${mensagem.msg}</h1>`
-       		});
-       	});
-       });
+       var c=0;
+       function openAviso() {
+       	if (c === 1) {
+       		CLOSEMENU();
+	       	containerAviso.style.margin = "100vh 0px 0px 0px";
+	       	setTimeout(() => {
+	       		containerAviso.style.display = "none";
+	       	}, 350);
+	       	c=0;
+       	}
+       	CLOSEMENU();
+       	containerAviso.style.display = "flex";
+       	setTimeout(() => {
+       		containerAviso.style.margin = "0px 0px 0px 0px";
+       	}, 350);
+       	c++;
+       }
+       
        
       // Navgation
        const openMenu = document.getElementById('openMenu');
@@ -451,9 +482,11 @@
        
       const h1logado = document.getElementById('logado');
       const logado = localStorage.getItem('logado');
+      const btnAviso = document.getElementById('btn-aviso');
        
        if (logado === "ADMIN") {
        	h1logado.innerHTML = "Administrador";
+       	btnAviso.style.display = "flex";
        } else if (logado === "RESPONSAVEL") {
        	h1logado.innerHTML = "Responsavel";
        } else if (!logado) {
@@ -471,6 +504,54 @@
        }
       
        </script>
+       
+       
+       
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       
+       
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       
+       <script>
+       
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+	
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+	  
+	  function enviar() {
+	  	const titulo = document.getElementById('titulo').value;
+	  	const texto = document.getElementById('texto').value;
+	  	db.collection("avisos").add({
+	  		titulo: titulo,
+	  		texto: texto
+	  	})
+	  	alert("Aviso enviado com Sucesso!!")
+	  }
+	  
+	  const containerMensagens = document.getElementById('containerMensagens');
+	  db.collection("avisos").onSnapshot((data) => {
+	  	data.docs.map((val) => {
+	  		containerMensagens.innerHTML += `
+	  		<h1>${val.data().titulo}</h1><br>
+	  		<h2>${val.data().texto}
+	  		`;
+	  	})
+	  })
+	  
+       
+       </script>
+       
+       
        
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
