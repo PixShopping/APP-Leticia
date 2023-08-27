@@ -663,8 +663,8 @@
 		 document.getElementById('aluno').value = aluno.toUpperCase();
 		 fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 		 	response.json().then((dados) => {
-		 		dados.usuarios.nome.map((usuario) => {
-		 			if (aluno === usuario) {
+		 		dados.usuarios.map((usuario) => {
+		 			if (usuario.nome === aluno) {
 		 				alertaNome.innerHTML = "Valido";
 		 				alertaNome.style.color = "green";
 		 			} else {
