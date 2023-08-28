@@ -243,14 +243,26 @@
        	
 	    fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       		response.json().then((dados) => {
+	       			let nomeEncontrado = false;
+	       			
+	       			dados.usuarios.forEach((usuario) => {
+	       				if(usuario.nome === NOME) {
+	       					nomeEncontrado = true;
+	       				}
+	       			});
+	       			
+	       			if(nomeEncontrado) {
+	       				alertaNome.innerHTML = "Valido";
+	       				alertaNome.style.color = "var(--green)";
+	       			} else {
+	       				alertaNome.innerHTML = "Invalido";
+	       				alertaNome.style.color = "var(--red)";
+	       			}
+	       			
 	       			dados.usuarios.map((usuario) => {
-	       				if (NOME === usuario.nome) {
-	       					alertaNome.innerHTML = "Valido";
-	       					alertaNome.style.color = "var(--green)";
-	       					
 	       					usuario.aluno.map((dado) => {
 	       						
-							// Verificar o RA
+									// Verificar o RA
 	       						if (RA === dado.ra) {
 	       							alertaRA.innerHTML = "Valido";
 			       					alertaRA.style.color = "var(--green)";
