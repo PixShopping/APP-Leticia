@@ -758,7 +758,7 @@
        	window.location.href = "./perfil.html";
        }
 
-       const verificarAluno = false;
+       
        const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
      const aluno = document.getElementById('aluno').value;
@@ -766,6 +766,7 @@
      fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
         response.json().then((dados) => {
             let nomeEncontrado = false;
+	    const verificarAluno = false;
 	    let serie = "";
 
             dados.usuarios.forEach((usuario) => {
