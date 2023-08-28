@@ -757,7 +757,8 @@
        function perfil() {
        	window.location.href = "./perfil.html";
        }
-       
+
+       const verificarAluno = false;
        const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
      const aluno = document.getElementById('aluno').value;
@@ -779,6 +780,7 @@
             if (nomeEncontrado) {
                 alertaNome.innerHTML = `Valido ${serie}`;
                 alertaNome.style.color = "green";
+		verificarAluno = true;
             } else {
                 alertaNome.innerHTML = "Invalido";
                 alertaNome.style.color = "red";
@@ -862,7 +864,11 @@
 	  	})
 		openMensagem();
 	  	setTimeout(() => {
-	  		openCerto();
+	  	    if (verificarAluno) {
+			openCerto();
+		    } else {
+			openErrado();
+		    }
 	  	}, 350);
 	  }
 	  
