@@ -773,6 +773,7 @@
             dados.usuarios.forEach((usuario) => {
                 if (usuario.nome === aluno) {
                     nomeEncontrado = true;
+		    verificarAluno = true;
 		    usuario.aluno.map((dado) => {
 			serie = dado.serie;
 		    });
@@ -782,7 +783,6 @@
             if (nomeEncontrado) {
                 alertaNome.innerHTML = `Valido ${serie}`;
                 alertaNome.style.color = "green";
-		verificarAluno = true;
             } else {
                 alertaNome.innerHTML = "Invalido";
                 alertaNome.style.color = "red";
