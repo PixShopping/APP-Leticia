@@ -263,7 +263,8 @@
 	    fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
 	       		response.json().then((dados) => {
 	       			dados.usuarios.map((usuario) => {
-	       				usuario.aluno.map((dado) => {
+	       			      if (usuario.nome === NOME) {
+				        usuario.aluno.map((dado) => {
 	       						
 						// Verificar o RA
 	       						if (RA === dado.ra) {
@@ -295,6 +296,7 @@
 	       							window.location.href = "./home.html";
 	       						}
 	       					});
+				      }
 	       			});
 	       		});
 	        });
