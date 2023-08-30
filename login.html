@@ -89,7 +89,7 @@
             	height: 50px;
             	background: var(--one);
             	color: white;
-            	margin: 0px 0px 30px 0px;
+            	margin: 0px 0px 25px 0px;
             	border-radius: 10px;
             	font-size: 17px;
             	font-weight: 750;
@@ -106,7 +106,7 @@
             }
             
             .botoes a {
-            	font-size: 19px;
+            	font-size: 20px;
             	font-weight: 800;
             	letter-spacing: 0.5px;
             	color: var(--one);
@@ -124,10 +124,11 @@
             	flex-direction: column;
             	align-items: center;
             	width: 100%;
-            	height: 62vh;
+            	height: auto;
             	border-radius: 25px 25px 0px 0px;
             	background: white;
             	margin: -20px 0px 0px 0px;
+            	padding: 10px 0px 25px 0px;
             }
             
             .form {
@@ -155,7 +156,7 @@
             	border-radius: 10px;
             	outline: none;
             	background: transparent;
-            	padding: 15px;
+            	padding: 0px 0px 0px 15px;
             	color: var(--one);
             	font-size: 18px;
             	font-weight: 800;
@@ -164,7 +165,7 @@
             
             .content-logar button, .content-cadastrar button {
             	align-self: center;
-            	margin: auto 0px 5px 0px;
+            	margin: 50px 0px 0px 0px;
             	width: 85%;
             	height: 50px;
             }
@@ -180,6 +181,37 @@
             	border-radius: 10px;
             	padding: 7px;
             	cursor: pointer;
+            } #voltar:hover {
+            	background: white;
+            	color: var(--two);
+            	box-shadow: 0px 0px 10px white;
+            	transition: all .3s ease-in-out;
+            }
+            
+            /* Verificacao h1 e h2 */
+            
+            .verificacao {
+            	width: 90%;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: flex-start;
+            	padding: 0px 0px 0px 3px;
+            }
+            
+            .verificacao h1 {
+            	font-size: 23px;
+            	font-weight: 900;
+            	letter-spacing: 0.5px;
+            	color: var(--two);
+            	margin: 20px 0px 0px 0px;
+            }
+            
+            .verificacao h2 {
+            	font-size: 23px;
+            	font-weight: 900;
+            	letter-spacing: 0.5px;
+            	color: var(--two);
+            	margin: 5px 0px 0px 0px;
             }
             
             </style>
@@ -206,16 +238,15 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input id="responsavel" type="text">
+	       				<input oninput="inputResponsavel()" id="responsavel" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input id="senha" type="password">	
+	       				<input onclick="inputSenha()" id="senha" type="password">	
        				</div>
        				
        				<div class="verificacao">
 	       				<h1></h1>
 	       				<h2></h2>
-	       				<h3></h3>
        				</div>
        				
        				<button onclick="enviarLogin()">Logar</button>
@@ -226,11 +257,12 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input id="cadastroResponsavel" type="text">
+	       				<input oninput="inputCadastroResponsavel()" id="cadastroResponsavel" type="text">
 	       				
 	       				<label>Nome do Aluno</label>
-	       				<input id="cadastroAluno" type="text">
+	       				<input oninput="inputAluno()" id="cadastroAluno" type="text">
 	       				
+	       				<label>Serie:</label>
 	       				<select id="cadastroSerie">
 	       					<option value="6A">6anoA</option>
 	       					<option value="6B">6anoB</option>
@@ -243,10 +275,10 @@
 	       				</select>
 	       				
 	       				<label>Telefone / Gmail</label>
-	       				<input placeholder="opcional" id="cadastroGmail" type="text">
+	       				<input oninput="inputTelefone()" placeholder="opcional" id="cadastroGmail" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input id="cadastroSenha" type="password">	
+	       				<input oninput="inputCadastroSenha()" id="cadastroSenha" type="password">	
        				</div>
        				
        				<button onclick="enviarCadastro()">Cadastrar</button>
@@ -310,6 +342,52 @@
      }
      
      
+     // TRANSFORMAR OS INPUTS EM LETRA MAIUSCULA
+     
+     function inputResponsavel() {
+  	   const verificacaoh1 = document.querySelector('.verificacao h1');
+	 	const verificacaoh2 = document.querySelector('.verificacao h2');
+     	const RESPONSAVEL = document.getElementById('responsavel').value;
+     	document.getElementById('responsavel').value = RESPONSAVEL.toUpperCase();
+     	
+     	db.collection("cadastro").onSnapshot((data) => {
+     		data.docs.map((val) => {
+     			if(val.data().responsavel === RESPONSAVEL) {
+     				verificacaoh1.innerHTML = "Nome do Aluno: ${val.data().aluno}";
+     				verificacaoh2.innerHTML = "Serie: ${val.data().serie}";
+     			}
+     		});
+     	});
+     }
+     
+     function inputSenha() {
+     	const SENHA = document.getElementById('senha').value;
+     	document.getElementById('senha').value = SENHA.toUpperCase();
+     }
+     
+     function inputCadastroResponsavel() {
+     	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
+     	document.getElementById('cadastroResponsavel').value = RESPONSAVEL.toUpperCase();
+     }
+     
+     function inputCadastroSenha() {
+     	const SENHA = document.getElementById('cadastroSenha').value;
+     	document.getElementById('cadastroSenha').value = SENHA.toUpperCase();
+     }
+     
+     function inputAluno() {
+     	const ALUNO = document.getElementById('cadastroAluno').value;
+     	document.getElementById('cadastroAluno').value = ALUNO.toUpperCase();
+     }
+     
+     function inputTelefone() {
+     	const TELEFONE = document.getElementById('cadastroTelefone').value;
+     	document.getElementById('cadastroTelefone').value = TELEFONE.toUpperCase();
+     }
+     
+     
+     
+     
      </script>
      
      
@@ -351,16 +429,24 @@
 	  		gmail: GMAIL,
 	  		senha: SENHA
 	  	});
-	  	alert("Cadastrado com Sucesso!");
+	  	
+	  	// Verificar se foi realmente Cadastrado
+	  	db.collection("cadastro").onSnapshot((data) => {
+	  		data.docs.map((val) => {
+	  			if (val.data().responsavel && val.data().senha){
+				  	alert("Cadastrado com Sucesso!");
+				  	location.reload();
+			  	}
+	  		});
+	  	});
+	  	
+	  	
 	  }
 	  
 	  // Login
 	  function enviarLogin() {
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
 	  	const SENHA = document.getElementById('senha').value;
-	  	const verificacaoh1 = document.querySelector('.verificacao h1');
-	  	const verificacaoh2 = document.querySelector('.verificacao h2');
-	  	const verificacaoh3 = document.querySelector('.verificacao h3');
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
