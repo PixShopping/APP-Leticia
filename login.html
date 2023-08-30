@@ -327,10 +327,10 @@
 	  
 	  // Cadastro
 	  function enviarCadastro() {
-	  	const RESPONSAVEL = document.getElementById('responsavelc');
-	  	const ALUNO = document.getElementById('aluno');
-	  	const GMAIL = document.getElementById('gmail');
-	  	const SENHA = document.getElementById('senhac');
+	  	const RESPONSAVEL = document.getElementById('responsavelc').value;
+	  	const ALUNO = document.getElementById('aluno').value;
+	  	const GMAIL = document.getElementById('gmail').value;
+	  	const SENHA = document.getElementById('senhac').value;
 	  	
 	  	db.collection("cadastro").add({
 	  		responsavel: RESPONSAVEL,
@@ -343,8 +343,8 @@
 	  
 	  // Login
 	  function enviarLogin() {
-	  	const RESPONSAVEL = document.getElementById('responsavel');
-	  	const SENHA = document.getElementById('senha');
+	  	const RESPONSAVEL = document.getElementById('responsavel').value;
+	  	const SENHA = document.getElementById('senha').value;
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
