@@ -226,7 +226,7 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input id="responsavel" type="text">
+	       				<input id="responsavelc" type="text">
 	       				
 	       				<label>Nome do Aluno</label>
 	       				<input id="aluno" type="text">
@@ -235,7 +235,7 @@
 	       				<input placeholder="opcional" id="gmail" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input id="senha" type="password">	
+	       				<input id="senhac" type="password">	
        				</div>
        				
        				<button onclick="enviarCadastro()">Cadastrar</button>
@@ -327,10 +327,10 @@
 	  
 	  // Cadastro
 	  function enviarCadastro() {
-	  	const RESPONSAVEL = document.getElementById('responsavel');
+	  	const RESPONSAVEL = document.getElementById('responsavelc');
 	  	const ALUNO = document.getElementById('aluno');
 	  	const GMAIL = document.getElementById('gmail');
-	  	const SENHA = document.getElementById('senha');
+	  	const SENHA = document.getElementById('senhac');
 	  	
 	  	db.collection("cadastro").add({
 	  		responsavel: RESPONSAVEL,
