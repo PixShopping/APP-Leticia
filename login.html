@@ -238,10 +238,10 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input oninput="inputResponsavel()" id="responsavel" type="text">
+	       				<input id="responsavel" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input onclick="inputSenha()" id="senha" type="password">	
+	       				<input id="senha" type="password">	
        				</div>
        				
        				<div class="verificacao">
@@ -257,10 +257,10 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input oninput="inputCadastroResponsavel()" id="cadastroResponsavel" type="text">
+	       				<input id="cadastroResponsavel" type="text">
 	       				
 	       				<label>Nome do Aluno</label>
-	       				<input oninput="inputAluno()" id="cadastroAluno" type="text">
+	       				<input id="cadastroAluno" type="text">
 	       				
 	       				<label>Serie:</label>
 	       				<select id="cadastroSerie">
@@ -275,10 +275,10 @@
 	       				</select>
 	       				
 	       				<label>Telefone / Gmail</label>
-	       				<input oninput="inputTelefone()" placeholder="opcional" id="cadastroGmail" type="text">
+	       				<input placeholder="opcional" id="cadastroGmail" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input oninput="inputCadastroSenha()" id="cadastroSenha" type="password">	
+	       				<input id="cadastroSenha" type="password">	
        				</div>
        				
        				<button onclick="enviarCadastro()">Cadastrar</button>
@@ -345,10 +345,9 @@
      // TRANSFORMAR OS INPUTS EM LETRA MAIUSCULA
      
      function inputResponsavel() {
-  	   const verificacaoh1 = document.querySelector('.verificacao h1');
-	 	const verificacaoh2 = document.querySelector('.verificacao h2');
+  	const verificacaoh1 = document.querySelector('.verificacao h1');
+	const verificacaoh2 = document.querySelector('.verificacao h2');
      	const RESPONSAVEL = document.getElementById('responsavel').value;
-     	document.getElementById('responsavel').value = RESPONSAVEL.toUpperCase();
      	
      	db.collection("cadastro").onSnapshot((data) => {
      		data.docs.map((val) => {
@@ -359,34 +358,6 @@
      		});
      	});
      }
-     
-     function inputSenha() {
-     	const SENHA = document.getElementById('senha').value;
-     	document.getElementById('senha').value = SENHA.toUpperCase();
-     }
-     
-     function inputCadastroResponsavel() {
-     	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
-     	document.getElementById('cadastroResponsavel').value = RESPONSAVEL.toUpperCase();
-     }
-     
-     function inputCadastroSenha() {
-     	const SENHA = document.getElementById('cadastroSenha').value;
-     	document.getElementById('cadastroSenha').value = SENHA.toUpperCase();
-     }
-     
-     function inputAluno() {
-     	const ALUNO = document.getElementById('cadastroAluno').value;
-     	document.getElementById('cadastroAluno').value = ALUNO.toUpperCase();
-     }
-     
-     function inputTelefone() {
-     	const TELEFONE = document.getElementById('cadastroTelefone').value;
-     	document.getElementById('cadastroTelefone').value = TELEFONE.toUpperCase();
-     }
-     
-     
-     
      
      </script>
      
