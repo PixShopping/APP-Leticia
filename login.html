@@ -421,8 +421,6 @@
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
-	  				verificacaoh1.innerHTML = `Nome do aluno: ${val.data().aluno}`;
-	  				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
 	  				setTimeout(() => {
 	  					localStorage.setItem('logado', 'RESPONSAVEL');
 	  					window.location.href = "./home.html";
