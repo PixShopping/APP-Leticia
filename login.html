@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./imagem/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Letícia / Login </title>
+		<title> Letícia | Login </title>
 		      
 		<style scoped>
 
@@ -28,352 +28,241 @@
 			}
 			
 			body {
-				background: var(--one);
-				color: white;
+				background: white;
+				color: var(--one);
 				user-select: none;
 				font-family: 'Arial';
 				overflow-x: hidden;
+				transition: all .4s ease-in-out;
             }
             
             .container {
             	width: 100vw;
             	height: auto;
-            	padding: 0px 0px 20px 0px;
+            }
+            
+            /* LOGO */
+            .logo {
+            	width: 100%;
+            	height: 65vh;
+            	background: var(--one);
+            	color: white;
+            	border-radius: 0px 0px 25px 25px;
             	display: flex;
             	flex-direction: column;
             	align-items: center;
+            	justify-content: center;
             }
             
-            .container img {
-            	width: 400px;
-            	height: 400px;
-            	margin: -50px 0px 0px 0px;
-            }
-            
-            .container ion-icon {
-            	font-size: 70px;
-            	margin: 0px;
-            }
-            
-            .container h1 {
-            	font-size: 25px;
-            	margin: 0px;
+            .logo h1 {
+            	font-size: 28px;
+            	font-weight: 900;
             	letter-spacing: 0.8px;
+            	
             }
-
-	    .content {
-		padding: 0px 0px 20px 0px;
-	    }
             
-            /* ADMIN */
+            .content-logo {
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            	justify-content: center;
+            }
             
-            .admin, .responsavel {
+            .content-logo img {
+            	width: 350px;
+            	height: 350px;
+            }
+            
+            
+            .content-logo p {
+            	margin: -40px 0px 50px 0px;
+            	font-size: 20px;
+            	font-weight: 700;
+            }
+            
+            /* BOTOES */
+            .botoes {
+            	width: 100vw;
+            	height: 20vh;
+            	background: white;
+            	display: flex;
+            	flex-direction: column;
+            	align-items: center;
+            	justify-content: center;
+            }
+            
+            .botoes button, .content-logar button {
+            	width: 90%;
+            	height: 50px;
+            	background: var(--one);
+            	color: white;
+            	margin: 0px 0px 20px 0px;
+            	border-radius: 10px;
+            	font-size: 17px;
+            	font-weight: 750;
+            	letter-spacing: 0.5px;
+            	cursor: pointer;
+            }
+            
+            .botoes button:hover, .content-logar button:hover {
+            	background: white;
+            	border: 3px solid var(--one);
+            	color: var(--one);
+            	transition: all .4s ease-in-out;
+            	box-shadow: 0px 0px 15px var(--one);
+            }
+            
+            .botoes a {
+            	font-size: 19px;
+            	font-weight: 800;
+            	letter-spacing: 0.5px;
+            	color: var(--one);
+            	cursor: pointer;
+            }
+            
+            .botoes a:hover {
+            	text-shadow: 0px 0px 15px var(--one);
+            	transition: all .4s ease-in-out;
+            }
+            
+            /* CONTENT-LOGAR */
+            .content-logar {
             	display: none;
             	flex-direction: column;
+            	align-items: center;
+            	width: 100%;
+            	height: 55vh;
+            	border-radius: 25px 25px 0px 0px;
+            	background: white;
+            	margin: -20px 0px 0px 0px;
+            }
+            
+            .form {
             	width: auto;
             	height: auto;
-            }
-            
-            .admin label, .responsavel label {
-            	color: white;
-            	font-size: 16.9px;
-            	font-weight: 600;
-            	letter-spacing: 0.5px;
             	display: flex;
+            	flex-direction: column;
             	align-items: center;
-            	padding: 0px 0px 4px 0px;
+            	margin: 30px 0px 0px 0px;
             }
             
-            .admin label ion-icon, .responsavel label ion-icon {
-            	margin: 0px 3px 2.5px 0px;
-            	font-size: 17px;
+            .content-logar label {
+            	font-size: 19px;
+            	font-weight: 500;
+            	letter-spacing: 0.4px;
+            	color: var(--one);
+            	align-self: start;
+            	margin: 15px 0px 4px 4px;
             }
             
-            .admin input, .responsavel input, .responsavel select {
-            	width: 70vw;
-            	height: 40px;
-            	border-radius: 4px;
-            	border: none; 
-            	background: var(--two);
-            	color: white;
-            	padding: 10px;
-            	font-size: 16px;
-            	box-shadow: 5px 4px 1px var(--five);
-            	margin: 0px 0px 30px 0px;
+            .content-logar input {
+            	width: 90vw;
+            	height: 45px;
+            	border: 2px solid var(--one);
+            	border-radius: 10px;
+            	outline: none;
+            	background: transparent;
+            	padding: 15px;
+            	color: var(--one);
+            	font-size: 18px;
+            	font-weight: 800;
+            	letter-spacing: 0.2px;
             }
             
-            .admin button, .responsavel button {
-            	width: 65vw;
-            	height: 38px;
-            	border-radius: 3.5px;
-            	border: none; 
-            	background: var(--two);
-            	color: white;
-            	font-size: 16px;
-            	box-shadow: 5px 4px 1px var(--five);
-            	margin: 15px auto 10px auto;
+            .content-logar button {
+            	align-self: center;
+            	margin: auto 0px 0px 0px;
+            	width: 85%;
+            	height: 50px;
             }
             
-            #alertaUsuario, #alertaSenha, #alertaNome, #alertaRA, #alertaNascimento {
-            	margin: 1px 0px 0px 5px;
-            	font-size: 16px;
+            #voltar {
+            	display: none;
+            	position: absolute;
+            	top: 20px;
+            	left: 20px;
+            	font-size: 33px;
+            	background: white;
+            	color: var(--one);
+            	border-radius: 10px;
+            	padding: 7px;
+            	cursor: pointer;
             }
-
-	    /* Botoes de SECRETARIA E RESPONSAVEIS */
-			
-            .divResponsaveis {
-		margin: 20px 0px 60px 0px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 30px;
-		border-radius: 10px;
-		background: var(--two);
-	    }
-
-	    .divSecretaria {
-		margin: 0px 0px 0px 0px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	    	padding: 30px;
-		border-radius: 10px;
-		background: var(--two);
-	    }
             
             </style>
            </head>
            
            <body>
-           	
-           	<main class="container">
-           		
-           		<img src="./src/img/logo.png">
-           		
-           		<section class="content">
-	           		<div class="divResponsaveis" onclick="responsaveis()">
-	           			<ion-icon name="people"></ion-icon>
-	           			<h1>Responsaveis</h1>
-	           		</div>
-	           		
-	           		<div class="divSecretaria" onclick="secretaria()">
-		           		<ion-icon name="bus"></ion-icon>
-		           		<h1>Secretaria</h1>
-	           		</div>
-           		</section>
-           		
-           		<!-- ADMIN -->
-           		<section class="admin">
-           			<label>
-           				<ion-icon name="person"></ion-icon>
-           				Usuario: 
-           				<p id="alertaUsuario"></p>
-           			</label>
-	           		<input oninput="inputusuario()" id="usuario" type="text">
-	           		<label>
-	           			<ion-icon name="key"></ion-icon>
-	           			Senha:
-	           			<p id="alertaSenha"></p> 
-	           		</label>
-	           		<input oninput="inputsenha()" id="senha" type="password">
-	           		<button onclick="loginSecretaria()">Login</button>
-           		</section>
-           		
-           		<!-- RESPONSAVEL -->
-           		<section class="responsavel">
-           			<label>
-	           			<ion-icon name="person"></ion-icon>
-	           			Nome do Aluno:
-	           			<p id="alertaNome"></p> 
-	           		</label>
-	           		<input oninput="inputnome()" id="nome" type="text">
-	           		<label>
-	           			<ion-icon name="key"></ion-icon>
-	           			RA:
-	           			<p id="alertaRA"></p> 
-	           		</label>
-	           		<input oninput="inputra()" id="ra" type="text">
-	           		<label>
-	           			<ion-icon name="calendar"></ion-icon>
-	           			Serie:
-	           			<p id="alertaSerie"></p> 
-	           		</label>
-	           		<select id="serie">
-					<option value="6A">6anoA</option>
-					<option value="6B">6anoB</option>
-					<option value="7A">7anoA</option>
-					<option value="7B">7anoB</option>
-					<option value="8A">8anoA</option>
-					<option value="8B">8anoB</option>
-					<option value="9A">9anoA</option>
-					<option value="9B">9anoB</option>
-				</select>
-	           		<button onclick="loginResponsavel()">Login</button>
-           		</section>
-           		
-           	</main>
-           	
+       	
+       		<main class="container">
+       			
+       			<section class="logo">
+       				<h1></h1>
+       				<ion-icon onclick="voltar()" id="voltar" name="arrow-back"></ion-icon>
+       				<div class="content-logo">
+	       				<img alt="Logo da escola" src="./src/img/logo.png" />
+	       				<p>Esse e o aplicativo da escola Leticia</p>
+       				</div>
+       			</section>
+       		
+       			<section class="botoes">
+       				<button onclick="cadastrar()">Cadastrar</button>
+       				<a onclick="logar()">Logar</a>
+       			</section>
+       			
+       			<section class="content-logar">
+       				
+       				<div class="form">
+	       				<label>Nome do Responsavel</label>
+	       				<input id="responsavel" type="text">
+	       				
+	       				<label>Senha</label>
+	       				<input id="senha" type="password">	
+       				</div>
+       				
+       				<button>Logar</button>
+       				
+       			</section>
+       			
+       			<section class="content-cadastrar">
+       				
+       				
+       				
+       			</section>
+       			
+       		</main>
            	
            </body>
            
        <!-- JavaScript -->
      <script>
-
-	function inputnome() {
-	 const alertaNome = document.getElementById('alertaNome');
-	 const NOME = document.getElementById('nome').value;
-	 document.getElementById('nome').value = NOME.toUpperCase();
-	 fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-	     response.json().then((dados) => {
-		   let nomeEncontrado = false;
-		     
-		   dados.usuarios.forEach((usuario) => {
-			if (usuario.nome === NOME) {
-			   nomeEncontrado = true;
-			}
-		   });
-
-		   if (nomeEncontrado) {
-			alertaNome.innerHTML = "Valido";
-			alertaNome.style.color = "var(--green)";
-		   } else {
-			alertaNome.innerHTML = "Invalido";
-			alertaNome.style.color = "var(--red)";
-		   }
-	     });
-	 });
-	}
-
-	function inputra() {
-	 const RA = document.getElementById('ra').value;
-	 document.getElementById('ra').value = RA.toUpperCase();
-	}
-
-	
-       //Funcao dos Responsaveis
-    function loginResponsavel() {
-       	const NOME = document.getElementById('nome').value;
-       	const RA = document.getElementById('ra').value;
-       	const SERIE = document.getElementById('serie').value;
-	       
-       	// Alerta
-       	const alertaRA = document.getElementById('alertaRA');
-       	const alertaSerie = document.getElementById('alertaSerie');
-       	
-	    fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-	       		response.json().then((dados) => {
-	       			dados.usuarios.map((usuario) => {
-	       			      if (usuario.nome === NOME) {
-				        usuario.aluno.map((dado) => {
-	       						
-						// Verificar o RA
-	       						if (RA === dado.ra) {
-	       							alertaRA.innerHTML = "Valido";
-			       					alertaRA.style.color = "var(--green)";
-	       						} else {
-	       							alertaRA.innerHTML = "Invalido";
-			       					alertaRA.style.color = "var(--red)";
-	       						}
-							
-	       						// Verificar a Data de nascimento
-	       						if (SERIE === dado.serie) {
-	       							alertaSerie.innerHTML = "Valido";
-			       					alertaSerie.style.color = "var(--green)";
-	       						} else {
-		       						alertaSerie.innerHTML = "Invalido";
-			       					alertaSerie.style.color = "var(--red)";
-	       						}
-
-							// Login
-	       						if (RA === dado.ra && SERIE === dado.serie) {
-	       							// Coletar Dados
-	       							localStorage.setItem('nome', usuario.nome);
-	       							localStorage.setItem('ra', dado.ra);
-	       							localStorage.setItem('serie', dado.serie); 
-	       							
-	       							// Mudar de Pagina
-	       							localStorage.setItem('logado', 'RESPONSAVEL');
-	       							window.location.href = "./home.html";
-	       						}
-	       					});
-				      }
-	       			});
-	       		});
-	        });
-	    }				  
-
-       function inputusuario() {
-	 const USUARIO = document.getElementById('usuario').value;
-       	 document.getElementById('usuario').value = USUARIO.toUpperCase();
-       }
-
-       function inputsenha() {
-	 const SENHA = document.getElementById('senha').value;
-       	 document.getElementById('senha').value = SENHA.toUpperCase();
-       }
-       
-       // Funcao da SECRETARIA
-       function loginSecretaria() {
-       	const USUARIO = document.getElementById('usuario').value;
-       	const SENHA = document.getElementById('senha').value;
-       	
-       	const alertaUsuario = document.getElementById('alertaUsuario');
-       	const alertaSenha = document.getElementById('alertaSenha');
-       	
-       	fetch("https://app-leticia.netlify.app/src/apis/dados.json").then((response) => {
-       		response.json().then((dados) => {
-       			dados.secretaria.map((login) => {
-       				// VALIDAR SENHA
-			       	if (SENHA !== login.senha) {
-			       		alertaSenha.innerHTML = "Senha incorreta";
-			       		alertaSenha.style.color = "var(--red)";
-			       	} else {
-			       		alertaSenha.innerHTML = "Senha correta";
-			       		alertaSenha.style.color = "var(--green)";
-			       	}
-			       	
-			       	// VALIDAR USUARIO
-				    	if (USUARIO !== login.usuario) {
-				    		alertaUsuario.innerHTML = "Usuario incorreto";
-				    		alertaUsuario.style.color = "var(--red)";
-				    	} else {
-				    		alertaUsuario.innerHTML = "Usuario correto";
-				    		alertaUsuario.style.color = "var(--green)";
-				    	}
-				    	
-			       	// Login
-			       	if (USUARIO === login.usuario && SENHA === login.senha) {
-			          	localStorage.setItem('usuario', login.usuario);
-					localStorage.setItem('senha', login.senha);
-						       	
-			          	setTimeout( () => {
-			       			localStorage.setItem('logado', 'ADMIN');
-						window.location.href = "./home.html";
-			       		}, 1500);
-			       	}
-       			});
-       		});
-       	});
-       	
-       }
-       
-       //localStorage.clear()
-       
-       // Responsaveis e Secretaria
-       const content = document.querySelector('.content');
-       const admin = document.querySelector('.admin');
-       const responsavel = document.querySelector('.responsavel');
-       
-       function responsaveis() {
-       	content.style.display = "none";
-       	responsavel.style.display = "flex";
-       }
-       
-       function secretaria() {
-       	content.style.display = "none";
-       	admin.style.display = "flex";
-       }
-       
+     
+     function logar() {
+     	// Transicao da LOGO
+     	const logo = document.querySelector('.logo');
+     	const voltar = document.getElementById('voltar');
+     	const h1logo = document.querySelector('.logo h1');
+     	const contentLogo = document.querySelector('.content-logo');
+     	voltar.style.display = "flex";
+     	logo.style.height = "30vh";
+     	logo.style.borderRadius = "0px";
+     	contentLogo.style.display = "none";
+     	h1logo.innerHTML = "Logar";
+     	
+     	// Transicao dos BOTOES
+     	const botoes = document.querySelector('.botoes');
+     	botoes.style.display = "none";
+     	
+     	// Transicao do LOGAR
+     	const contentLogar = document.querySelector('.content-logar');
+     	contentLogar.style.display = "flex";
+     }
+     
+     function voltar() {
+     	location.reload();
+     }
+     
+     
      </script>
        
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
