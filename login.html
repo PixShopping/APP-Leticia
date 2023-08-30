@@ -352,8 +352,8 @@
      	db.collection("cadastro").onSnapshot((data) => {
      		data.docs.map((val) => {
      			if(val.data().responsavel === RESPONSAVEL) {
-     				verificacaoh1.innerHTML = "Nome do Aluno: ${val.data().aluno}";
-     				verificacaoh2.innerHTML = "Serie: ${val.data().serie}";
+     				verificacaoh1.innerHTML = `Nome do Aluno: ${val.data().aluno}`;
+     				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
      			}
      		});
      	});
