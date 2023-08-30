@@ -38,7 +38,7 @@
             
             .container {
             	width: 100vw;
-            	height: auto;
+            	height: 90vw;
             }
             
             /* LOGO */
@@ -84,7 +84,7 @@
             	justify-content: center;
             }
             
-            .botoes button, .content-logar button {
+            .botoes button, .content-logar button, .content-cadastrar button {
             	width: 90%;
             	height: 50px;
             	background: var(--one);
@@ -97,7 +97,7 @@
             	cursor: pointer;
             }
             
-            .botoes button:hover, .content-logar button:hover {
+            .botoes button:hover, .content-logar button:hover, .content-cadastrar button:hover {
             	background: white;
             	border: 3px solid var(--one);
             	color: var(--one);
@@ -118,13 +118,13 @@
             	transition: all .4s ease-in-out;
             }
             
-            /* CONTENT-LOGAR */
-            .content-logar {
+            /* CONTENT-LOGAR E CONTENT-CADASTRAR*/
+            .content-logar, .content-cadastrar {
             	display: none;
             	flex-direction: column;
             	align-items: center;
             	width: 100%;
-            	height: 60vh;
+            	height: 62vh;
             	border-radius: 25px 25px 0px 0px;
             	background: white;
             	margin: -20px 0px 0px 0px;
@@ -139,7 +139,7 @@
             	margin: 30px 0px 0px 0px;
             }
             
-            .content-logar label {
+            .content-logar label, .content-cadastrar label {
             	font-size: 19px;
             	font-weight: 500;
             	letter-spacing: 0.4px;
@@ -148,7 +148,7 @@
             	margin: 15px 0px 4px 4px;
             }
             
-            .content-logar input {
+            .content-logar input, .content-cadastrar input {
             	width: 90vw;
             	height: 45px;
             	border: 2px solid var(--one);
@@ -162,9 +162,9 @@
             	letter-spacing: 0.2px;
             }
             
-            .content-logar button {
+            .content-logar button, .content-cadastrar button {
             	align-self: center;
-            	margin: auto 0px 0px 0px;
+            	margin: auto 0px 20px 0px;
             	width: 85%;
             	height: 50px;
             }
@@ -212,12 +212,33 @@
 	       				<input id="senha" type="password">	
        				</div>
        				
-       				<button>Logar</button>
+       				<div class="verificacao">
+	       				<h1></h1>
+	       				<h2></h2>
+	       				<h3></h3>
+       				</div>
+       				
+       				<button onclick="enviarLogin()">Logar</button>
        				
        			</section>
        			
        			<section class="content-cadastrar">
        				
+       				<div class="form">
+	       				<label>Nome do Responsavel</label>
+	       				<input id="responsavel" type="text">
+	       				
+	       				<label>Nome do Aluno</label>
+	       				<input id="aluno" type="text">
+	       				
+	       				<label>Telefone / Gmail</label>
+	       				<input placeholder="opcional" id="gmail" type="text">
+	       				
+	       				<label>Senha</label>
+	       				<input id="senha" type="password">	
+       				</div>
+       				
+       				<button onclick="enviarCadastro()">Cadastrar</button>
        				
        				
        			</section>
@@ -229,6 +250,7 @@
        <!-- JavaScript -->
      <script>
      
+     // ===== LOGAR =====
      function logar() {
      	// Transicao da LOGO
      	const logo = document.querySelector('.logo');
@@ -250,12 +272,89 @@
      	contentLogar.style.display = "flex";
      }
      
+     // ===== CADASTRAR =====
+     function cadastrar() {
+     	// Transicao da LOGO
+     	const logo = document.querySelector('.logo');
+     	const voltar = document.getElementById('voltar');
+     	const h1logo = document.querySelector('.logo h1');
+     	const contentLogo = document.querySelector('.content-logo');
+     	voltar.style.display = "flex";
+     	logo.style.height = "30vh";
+     	logo.style.borderRadius = "0px";
+     	contentLogo.style.display = "none";
+     	h1logo.innerHTML = "Cadastrar";
+     	
+     	// Transicao dos BOTOES
+     	const botoes = document.querySelector('.botoes');
+     	botoes.style.display = "none";
+     	
+     	// Transicao do LOGAR
+     	const contentCadastrar = document.querySelector('.content-cadastrar');
+     	contentCadastrar.style.display = "flex";
+     }
+     
      function voltar() {
      	location.reload();
      }
      
      
      </script>
+     
+     
+     
+     <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+       
+       <script>
+       
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+	
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+	  
+	  // Cadastro
+	  function enviarCadastro() {
+	  	const RESPONSAVEL = document.getElementById('responsavel');
+	  	const ALUNO = document.getElementById('aluno');
+	  	const GMAIL = document.getElementById('gmail');
+	  	const SENHA = document.getElementById('senha');
+	  	
+	  	db.collection("cadastro").add({
+	  		responsavel: RESPONSAVEL,
+	  		aluno: ALUNO,
+	  		gmail: GMAIL,
+	  		senha: SENHA
+	  	});
+	  }
+	  
+	  // Login
+	  function enviarLogin() {
+	  	const RESPONSAVEL = document.getElementById('responsavel');
+	  	const SENHA = document.getElementById('senha');
+	  	db.collection("cadastro").onSnapshot((data) => {
+	  		data.docs.map((val) => {
+	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
+	  				window.location.href = "./home.html";
+	  			}
+	  		});
+	  	});
+	  }
+	  
+	  </script>
+     
        
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
