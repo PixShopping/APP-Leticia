@@ -148,7 +148,7 @@
             	margin: 15px 0px 4px 4px;
             }
             
-            .content-logar input, .content-cadastrar input {
+            .content-logar input, .content-cadastrar input, .content-cadastrar select {
             	width: 90vw;
             	height: 45px;
             	border: 2px solid var(--one);
@@ -226,16 +226,27 @@
        				
        				<div class="form">
 	       				<label>Nome do Responsavel</label>
-	       				<input id="responsavelc" type="text">
+	       				<input id="cadastroResponsavel" type="text">
 	       				
 	       				<label>Nome do Aluno</label>
-	       				<input id="aluno" type="text">
+	       				<input id="cadastroAluno" type="text">
+	       				
+	       				<select id="cadastroSerie">
+	       					<option value="6A">6anoA</option>
+	       					<option value="6B">6anoB</option>
+	       					<option value="7A">7anoA</option>
+	       					<option value="7B">7anoB</option>
+	       					<option value="8A">8anoA</option>
+	       					<option value="8B">8anoB</option>
+	       					<option value="9A">9anoA</option>
+	       					<option value="9B">9anoB</option>
+	       				</select>
 	       				
 	       				<label>Telefone / Gmail</label>
-	       				<input placeholder="opcional" id="gmail" type="text">
+	       				<input placeholder="opcional" id="cadastroGmail" type="text">
 	       				
 	       				<label>Senha</label>
-	       				<input id="senhac" type="password">	
+	       				<input id="cadastroSenha" type="password">	
        				</div>
        				
        				<button onclick="enviarCadastro()">Cadastrar</button>
@@ -305,7 +316,7 @@
      
      <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
        
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -313,7 +324,7 @@
        
        <script>
        
-         const firebaseConfig = {
+       const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
 	    projectId: "escola-leticia",
@@ -327,31 +338,45 @@
 	  
 	  // Cadastro
 	  function enviarCadastro() {
-	  	const RESPONSAVEL = document.getElementById('responsavelc').value;
-	  	const ALUNO = document.getElementById('aluno').value;
-	  	const GMAIL = document.getElementById('gmail').value;
-	  	const SENHA = document.getElementById('senhac').value;
+	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
+	  	const ALUNO = document.getElementById('cadastroAluno').value;
+	  	const GMAIL = document.getElementById('cadastroGmail').value;
+	  	const SERIE = document.getElementById('cadastroSerie').value;
+	  	const SENHA = document.getElementById('cadastroSenha').value;
 	  	
 	  	db.collection("cadastro").add({
 	  		responsavel: RESPONSAVEL,
 	  		aluno: ALUNO,
+	  		serie: SERIE,
 	  		gmail: GMAIL,
 	  		senha: SENHA
 	  	});
-		alert("Sucesso");
+	  	alert("Cadastrado com Sucesso!");
 	  }
 	  
 	  // Login
 	  function enviarLogin() {
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
 	  	const SENHA = document.getElementById('senha').value;
+	  	const verificacaoh1 = document.querySelector('.verificacao h1');
+	  	const verificacaoh2 = document.querySelector('.verificacao h2');
+	  	const verificacaoh3 = document.querySelector('.verificacao h3');
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
-	  				window.location.href = "./home.html";
+	  				verificacaoh1.innerHTML = `Nome do aluno: ${val.data().aluno}`;
+	  				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
+	  				setTimeout(() => {
+	  					localStorage.setItem('logado', 'RESPONSAVEL');
+	  					window.location.href = "./home.html";
+	  				}, 400);
+	  			} else if (val.data().responsavel === "Leticia" && val.data().senha === "123") {
+	  				localStorage.setItem('logado', 'ADMIN');
+  					window.location.href = "./home.html";
 	  			}
 	  		});
 	  	});
+	  	
 	  }
 	  
 	  </script>
