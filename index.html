@@ -27,8 +27,8 @@
 			}
 			
 			body {
-				background: var(--one);
-				color: white;
+				background: white;
+				color: #232323;
 				user-select: none;
 				font-family: 'Arial';
 				overflow-x: hidden;
@@ -36,37 +36,30 @@
             
             .container {
 	            width: 100vw;
-	            height: 85vh;
+	            height: auto;
             	display: flex;
-            	flex-direction: column;
+            	align-items: center;
+            }
+            
+            .logo {
+            	width: 100vw;
+            	height: 10vh;
+            	display: flex;
             	justify-content: center;
             	align-items: center;
-            	padding: 30px;
-            	margin: auto;
-            }
-            
-            .container img {
-            	width: 400px;
-            	height: 400px;
-            	margin: -10px 0px 0px 0px;
-            }
-                        
-            #barLoader {
-            	width: 85%;
-            	height: 30px;
-            	border: 2px solid var(--six);
-            	border-radius: 5px;
-            	display: flex;
-            	margin: -10px 0px 0px 0px;
-            }
-            
-            #loader {
-            	width: 0%;
-            	height: 100%;
-            	background: var(--six);
-            	color: white;
-            	border-radius: 2.5px;
+            	background: var(--one);
+            	border: none;
+            	border-radius: 0px 0px 35px 35px;
             	transition: all .5s ease-in-out;
+            }
+            
+            .logo img {
+            	display: block;
+            	opacity: 0;
+            	transition: all .4s ease-in-out;
+            	width: 375px;
+            	height: 375px;
+            	border: 2px solid black;
             }
             
             
@@ -77,10 +70,9 @@
            	
            	<main class="container">
            	
-           		<img src="./src/img/logo.png">
-           		<div id="barLoader">
-           			<div id="loader"></div>
-           		</div>
+           		<section class="logo">
+           			<img src="./src/img/logo.png">
+           		</section>
            		
            	</main>
            	
@@ -89,23 +81,30 @@
        <!-- JavaScript -->
        <script>
        
-       const loader = document.getElementById('loader');
+       const logo = document.querySelector('.logo');
+       const img = document.querySelector('.logo img');
        
        setTimeout( () => {
-       	loader.style.width = "20%";
+       	logo.style.height = "20vh";
        }, 1650);
        setTimeout( () => {
-       	loader.style.width = "40%";
+       	logo.style.height = "30vh";
        }, 1850);
        setTimeout( () => {
-       	loader.style.width = "60%";
+       	logo.style.height = "40vh";
        }, 2050);
        setTimeout( () => {
-       	loader.style.width = "80%";
+       	logo.style.height = "50vh";
        }, 2250);
        setTimeout( () => {
-       	loader.style.width = "100%";
+       	logo.style.height = "60vh";
        }, 2450);
+       setTimeout( () => {
+       	img.style.display = "flex";
+       }, 2550);
+       setTimeout( () => {
+       	img.style.opacity = 1;
+       }, 2700);
        setTimeout( () => {
        	window.location.href = "./home.html";
        }, 3200);

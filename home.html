@@ -362,7 +362,7 @@
             	border-radius: 10px;
             	display: flex;
             	flex-direction: column;
-            	margin: 25px 0px 0px 0px;
+            	margin: 20px 0px 0px 0px;
             	align-items: start;
             }
             
@@ -420,7 +420,7 @@
             
             .certo, .errado {
             	width: 100vw;
-            	height: 92vh;
+            	height: 78vh;
             	background: white;
             	color: #232323;
             	position: absolute;
@@ -454,10 +454,8 @@
             	font-size: 20px;
             	font-weight: 800;
             	letter-spacing: 0.6px;
-            	margin: 0px 0px 100px 0px;
+            	margin: 0px 0px 75px 0px;
             	color: #AAA;
-		width: 90%;
-		text-align: center;
             }
             
             .errado button {
@@ -473,7 +471,7 @@
             	letter-spacing: 0.5px;
             	box-shadow: 0px 0px 10px #F26666;
             	position: absolute;
-            	bottom: 100px;
+            	bottom: 50px;
             }
             
             .errado button:hover {
@@ -495,7 +493,7 @@
             	letter-spacing: 0.5px;
             	box-shadow: 0px 0px 10px #2EC75C;
             	position: absolute;
-            	bottom: 100px;
+            	bottom: 50px;
             }
             
              .certo button:hover {
@@ -653,7 +651,7 @@
            	<div class="errado">
            		<ion-icon name="close"></ion-icon>
            		<h1>Oops!</h1>
-           		<p>Algo deu errado.. O nome do aluno digitado nao é valido</p>
+           		<p>Algo deu errado com o envio da mensagem</p>
            		<button onclick="closeErrado()">Tentar Novamente</button>
            	</div>
            	
@@ -759,8 +757,7 @@
        function perfil() {
        	window.location.href = "./perfil.html";
        }
-
-       let verificarAluno = false;
+       
        const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
      const aluno = document.getElementById('aluno').value;
@@ -773,11 +770,10 @@
             dados.usuarios.forEach((usuario) => {
                 if (usuario.nome === aluno) {
                     nomeEncontrado = true;
-		    verificarAluno = true;
 		    usuario.aluno.map((dado) => {
 			serie = dado.serie;
 		    });
-		}
+                }
             });
 
             if (nomeEncontrado) {
@@ -866,11 +862,7 @@
 	  	})
 		openMensagem();
 	  	setTimeout(() => {
-	  	    if (verificarAluno) {
-			openCerto();
-		    } else {
-			openErrado();
-		    }
+	  		openCerto();
 	  	}, 350);
 	  }
 	  
