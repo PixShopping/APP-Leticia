@@ -404,7 +404,7 @@
 	  	// Verificar se foi realmente Cadastrado
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
-	  			if (val.data().responsavel && val.data().senha){
+	  			if (val.data().responsavel === RESPONSAVEL){
 				  	alert("Cadastrado com Sucesso!");
 				  	location.reload();
 			  	}
