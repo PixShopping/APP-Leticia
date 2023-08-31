@@ -433,7 +433,9 @@
 	  					alertaRESPONSAVEL.innerHTML = "Ja existe!";
 	  					alertaRESPONSAVEL.style.color = "red";
 	  					continuar = false;
-	  				}
+	  				} else {
+						continuar = true;
+					}
 	  			});
 	  		});
 	  	} else {
@@ -474,9 +476,8 @@
 		  		gmail: GMAIL,
 		  		senha: SENHA
 		  	});
-	  		location.reload();
 	  	}
-	  	
+	  	location.reload();
 	  	
 	  }
 	  
