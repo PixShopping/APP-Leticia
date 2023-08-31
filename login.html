@@ -205,17 +205,17 @@
             }
             
             .verificacao h1 {
-            	font-size: 23px;
-            	font-weight: 900;
-            	letter-spacing: 0.5px;
+            	font-size: 21px;
+            	font-weight: 800;
+            	letter-spacing: 0.2px;
             	color: var(--two);
             	margin: 20px 0px 0px 0px;
             }
             
             .verificacao h2 {
-            	font-size: 23px;
-            	font-weight: 900;
-            	letter-spacing: 0.5px;
+            	font-size: 21px;
+            	font-weight: 800;
+            	letter-spacing: 0.2px;
             	color: var(--two);
             	margin: 5px 0px 0px 0px;
             }
@@ -243,10 +243,14 @@
        			<section class="content-logar">
        				
        				<div class="form">
-	       				<label>Nome do Responsavel</label>
+	       				<label>Nome do Responsavel
+	       				<p id="alertaLoginRESPONSAVEL"></p>
+	       				</label>
 	       				<input oninput="inputResponsavel()" id="responsavel" type="text">
 	       				
-	       				<label>Senha</label>
+	       				<label>Senha
+	       				<p id="alertaLoginSENHA"></p>
+	       				</label>
 	       				<input id="senha" type="password">	
        				</div>
        				
@@ -358,18 +362,21 @@
      }
      
      
-     // TRANSFORMAR OS INPUTS EM LETRA MAIUSCULA
+     // Verificar Responsavel Existente
      
      function inputResponsavel() {
-  	const verificacaoh1 = document.querySelector('.verificacao h1');
-	const verificacaoh2 = document.querySelector('.verificacao h2');
-     	const RESPONSAVEL = document.getElementById('responsavel').value;
+  	  const verificacaoh1 = document.querySelector('.verificacao h1');
+		const verificacaoh2 = document.querySelector('.verificacao h2');
+        const RESPONSAVEL = document.getElementById('responsavel').value;
      	
      	db.collection("cadastro").onSnapshot((data) => {
      		data.docs.map((val) => {
      			if(val.data().responsavel === RESPONSAVEL) {
      				verificacaoh1.innerHTML = `Nome do Aluno: ${val.data().aluno}`;
      				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
+     			} else {
+     				verificacaoh1.innerHTML = "";
+     				verificacaoh2.innerHTML = "";
      			}
      		});
      	});
@@ -416,16 +423,14 @@
 	  	
 	  	// Verificacao de RESPONSAVEL
 	  	if (RESPONSAVEL) {
+	  		alertaRESPONSAVEL.innerHTML = "Valido";
+	  		alertaRESPONSAVEL.style.color = "green"
 	  		db.collection("cadastro").onSnapshot((data) => {
 	  			data.docs.map((val) => {
 	  				if(RESPONSAVEL === val.data().responsavel){
 	  					alertaRESPONSAVEL.innerHTML = "Ja existe!";
 	  					alertaRESPONSAVEL.style.color = "red";
 	  					continuar = false;
-	  				} else {
-	  					alertaRESPONSAVEL.innerHTML = "Valido";
-				  		alertaRESPONSAVEL.style.color = "green"
-	  					continuar = true;
 	  				}
 	  			});
 	  		});
@@ -467,7 +472,7 @@
 		  		gmail: GMAIL,
 		  		senha: SENHA
 		  	});
-	  		
+	  		location.reload();
 	  	}
 	  	
 	  	
@@ -477,14 +482,33 @@
 	  function enviarLogin() {
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
 	  	const SENHA = document.getElementById('senha').value;
+	  	const alertaRESPONSAVEL = document.getElementById('alertaLoginRESPONSAVEL');
+	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
 	  	db.collection("cadastro").onSnapshot((data) => {
 	  		data.docs.map((val) => {
+	  			// Verificar RESPONSAVEL
+	  			if(RESPONSAVEL === val.data().responsavel) {
+	  				alertaRESPONSAVEL.innerHTML = "Valido";
+	  				alertaRESPONSAVEL.style.color = "green";
+	  			} else {
+	  				alertaRESPONSAVEL.innerHTML = "Invalido";
+	  				alertaRESPONSAVEL.style.color = "red";
+	  			}
+	  			// Verificar SENHA
+	  			if(SENHA === val.data().senha) {
+	  				alertaSENHA.innerHTML = "Valido";
+	  				alertaSENHA.style.color = "green";
+	  			} else {
+	  				alertaSENHA.innerHTML = "Invalido";
+	  				alertaSENHA.style.color = "red";
+	  			}
+	  			
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
 	  				setTimeout(() => {
 	  					localStorage.setItem('logado', 'RESPONSAVEL');
 	  					window.location.href = "./home.html";
 	  				}, 400);
-	  			} else if (val.data().responsavel === "Leticia" && val.data().senha === "123") {
+	  			} else if (RESPONSAVEL === "Leticia" && SENHA === "123") {
 	  				localStorage.setItem('logado', 'ADMIN');
   					window.location.href = "./home.html";
 	  			}
