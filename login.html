@@ -365,8 +365,8 @@
      // Verificar Responsavel Existente
      
      function inputResponsavel() {
-  	  const verificacaoh1 = document.querySelector('.verificacao h1');
-		const verificacaoh2 = document.querySelector('.verificacao h2');
+  	const verificacaoh1 = document.querySelector('.verificacao h1');
+	const verificacaoh2 = document.querySelector('.verificacao h2');
         const RESPONSAVEL = document.getElementById('responsavel').value;
      	
      	db.collection("cadastro").onSnapshot((data) => {
@@ -388,7 +388,7 @@
      
      <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
        
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
