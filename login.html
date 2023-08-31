@@ -371,7 +371,7 @@
      	
      	db.collection("cadastro").onSnapshot((data) => {
      		data.docs.map((val) => {
-     			if(val.data().responsavel === RESPONSAVEL) {
+     			if(RESPONSAVEL === val.data().responsavel) {
      				verificacaoh1.innerHTML = `Nome do Aluno: ${val.data().aluno}`;
      				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
      			} else {
