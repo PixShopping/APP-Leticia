@@ -365,15 +365,17 @@
      // Verificar Responsavel Existente
      
      function inputResponsavel() {
-  	const verificacaoh1 = document.querySelector('.verificacao h1');
-	const verificacaoh2 = document.querySelector('.verificacao h2');
+  	  const verificacaoh1 = document.querySelector('.verificacao h1');
+		const verificacaoh2 = document.querySelector('.verificacao h2');
         const RESPONSAVEL = document.getElementById('responsavel').value;
      	
      	db.collection("cadastro").onSnapshot((data) => {
-     		data.docs.map((val) => {
-     			if(RESPONSAVEL === val.data().responsavel) {
-     				verificacaoh1.innerHTML = `Nome do Aluno: ${val.data().aluno}`;
-     				verificacaoh2.innerHTML = `Serie: ${val.data().serie}`;
+     		data.docs.map((usuario) => {
+     			if(RESPONSAVEL === usuario.data().responsavel) {
+     				usuario.map((dado) => {
+     					verificacaoh1.innerHTML = `Nome do Aluno: ${dado.aluno}`;
+	     				verificacaoh2.innerHTML = `Serie: ${dado.serie}`;	
+     				});
      			} else {
      				verificacaoh1.innerHTML = "";
      				verificacaoh2.innerHTML = "";
@@ -388,7 +390,7 @@
      
      <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
        
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -426,8 +428,8 @@
 	  		alertaRESPONSAVEL.innerHTML = "Valido";
 	  		alertaRESPONSAVEL.style.color = "green"
 	  		db.collection("cadastro").onSnapshot((data) => {
-	  			data.docs.map((val) => {
-	  				if(RESPONSAVEL === val.data().responsavel){
+	  			data.docs.map((usuario) => {
+	  				if(RESPONSAVEL === usuario.data().responsavel){
 	  					alertaRESPONSAVEL.innerHTML = "Ja existe!";
 	  					alertaRESPONSAVEL.style.color = "red";
 	  					continuar = false;
