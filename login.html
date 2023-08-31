@@ -147,6 +147,12 @@
             	color: var(--one);
             	align-self: start;
             	margin: 15px 0px 4px 4px;
+            	display: flex;
+            }
+            
+            .content-logar label p, .content-cadastrar label p {
+            	margin: 0px 0px 0px 8px;
+            	font-weight: 700;
             }
             
             .content-logar input, .content-cadastrar input, .content-cadastrar select {
@@ -256,13 +262,19 @@
        			<section class="content-cadastrar">
        				
        				<div class="form">
-	       				<label>Nome do Responsavel</label>
+	       				<label>Nome do Responsavel
+	       				<p id="alertaRESPONSAVEL"></p>
+	       				</label>
 	       				<input id="cadastroResponsavel" type="text">
 	       				
-	       				<label>Nome do Aluno</label>
+	       				<label>Nome do Aluno
+	       				<p id="alertaALUNO"></p>
+	       				</label>
 	       				<input id="cadastroAluno" type="text">
 	       				
-	       				<label>Serie:</label>
+	       				<label>Serie:
+	       				<p id="alertaSERIE"></p>
+	       				</label>
 	       				<select id="cadastroSerie">
 	       					<option value="6A">6anoA</option>
 	       					<option value="6B">6anoB</option>
@@ -274,10 +286,14 @@
 	       					<option value="9B">9anoB</option>
 	       				</select>
 	       				
-	       				<label>Telefone / Gmail</label>
+	       				<label>Telefone / Gmail
+	       				<p id="alertaGMAIL"></p>
+	       				</label>
 	       				<input placeholder="opcional" id="cadastroGmail" type="text">
 	       				
-	       				<label>Senha</label>
+	       				<label>Senha
+	       				<p id="alertaSENHA"></p>
+	       				</label>
 	       				<input id="cadastroSenha" type="password">	
        				</div>
        				
@@ -387,29 +403,72 @@
 	  
 	  // Cadastro
 	  function enviarCadastro() {
+	  	var continuar = true;
 	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
 	  	const ALUNO = document.getElementById('cadastroAluno').value;
 	  	const GMAIL = document.getElementById('cadastroGmail').value;
 	  	const SERIE = document.getElementById('cadastroSerie').value;
 	  	const SENHA = document.getElementById('cadastroSenha').value;
+	  	const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
+	  	const alertaALUNO = document.getElementById('alertaALUNO');
+	  	const alertaSERIE = document.getElementById('alertaSERIE');
+	  	const alertaSENHA = document.getElementById('alertaSENHA');
 	  	
-	  	db.collection("cadastro").add({
-	  		responsavel: RESPONSAVEL,
-	  		aluno: ALUNO,
-	  		serie: SERIE,
-	  		gmail: GMAIL,
-	  		senha: SENHA
-	  	});
-	  	
-	  	// Verificar se foi realmente Cadastrado
-	  	db.collection("cadastro").onSnapshot((data) => {
-	  		data.docs.map((val) => {
-	  			if (val.data().responsavel === RESPONSAVEL){
-				  	alert("Cadastrado com Sucesso!");
-				  	location.reload();
-			  	}
+	  	// Verificacao de RESPONSAVEL
+	  	if (RESPONSAVEL) {
+	  		db.collection("cadastro").onSnapshot((data) => {
+	  			data.docs.map((val) => {
+	  				if(RESPONSAVEL === val.data().responsavel){
+	  					alertaRESPONSAVEL.innerHTML = "Ja existe!";
+	  					alertaRESPONSAVEL.style.color = "red";
+	  					continuar = false;
+	  				} else {
+	  					alertaRESPONSAVEL.innerHTML = "Valido";
+				  		alertaRESPONSAVEL.style.color = "green"
+	  					continuar = true;
+	  				}
+	  			});
 	  		});
-	  	});
+	  	} else {
+	  		alertaRESPONSAVEL.innerHTML = "Invalido";
+	  		alertaRESPONSAVEL.style.color = "red";
+	  	}
+	  	// Verificacao de ALUNO
+	  	if (ALUNO) {
+	  		alertaALUNO.innerHTML = "Valido";
+	  		alertaALUNO.style.color = "green";
+	  	} else {
+	  		alertaALUNO.innerHTML = "Invalido";
+	  		alertaALUNO.style.color = "red";
+	  	}
+	  	
+	  	// Verificacao de SERIE
+	  	if (SERIE) {
+	  		alertaSERIE.innerHTML = "Valido";
+	  		alertaSERIE.style.color = "green";
+	  	} else {
+	  		alertaSERIE.innerHTML = "Invalido";
+	  		alertaSERIE.style.color = "red";
+	  	}
+	  	// Verificacao de SENHA
+	  	if (SENHA) {
+	  		alertaSENHA.innerHTML = "Valido";
+	  		alertaSENHA.style.color = "green";
+	  	} else {
+	  		alertaSENHA.innerHTML = "Invalido";
+	  		alertaSENHA.style.color = "red";
+	  	}
+	  	
+	  	if (RESPONSAVEL && ALUNO && SERIE && SENHA && continuar) {
+		  	db.collection("cadastro").add({
+		  		responsavel: RESPONSAVEL,
+		  		aluno: ALUNO,
+		  		serie: SERIE,
+		  		gmail: GMAIL,
+		  		senha: SENHA
+		  	});
+	  		
+	  	}
 	  	
 	  	
 	  }
