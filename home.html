@@ -17,6 +17,7 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
+                --gray: #b3abab;
 			}
 			
 			*  {
@@ -26,641 +27,149 @@
 			}
 			
 			body {
-				background: var(--six);
-				color: white;
+				background: white;
+				color: var(--one);
 				user-select: none;
-				font-family: 'Arial';
+				font-family: 'Arial', sans-serif;
 				overflow-x: hidden;
             }
-            
-            /* ----- Navgation ----- */
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .bem-vindo {
+                width: 100%;
+                height: 250px;
+                padding: 20px;
+                border-radius: 25px;
+                background: #144774;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0px 5px 20px var(--one);
+            }
+
+            .bem-vindo ion-icon {
+                font-size: 55px;
+                margin: 0px;
+            }
+
+            .bem-vindo h1 {
+                margin: 10px 0px 0px 0px;
+                font-size: 22px;
+                font-weight: 700;
+                display: flex;
+            }
+
+            .bem-vindo h1 p {
+                font-weight: 700;
+                margin: 0px 0px 0px 10px;
+            }
+
+            .bem-vindo h2 {
+                margin: 10px 0px 0px 0px;
+                font-size: 17px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            .bem-vindo h2 span {
+                font-size: 16px;
+                font-weight: 850;
+                letter-spacing: 0.5px;
+            }
+
+            /* - NAVGATION - */
             
             .navgation {
-            	position: fixed;
-            	top: 0px;
-            	left: 0px;
-            	display: flex;
-            	flex-direction: row;
-            	justify-content: space-between;
-            	align-items: center;
-            	width: 100vw;
-            	height: 85px;
-            	color: white;
-            	background: var(--one);
-            	padding: 0px 20px;
-            	z-index: 100;
-            	box-shadow: 0px 5px 15px var(--two);
-            	border-radius: 0px 0px 10px 10px;
+                width: 100vw;
+                height: 70px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
             }
-            
+
             .navgation ion-icon {
-            	font-size: 45px;
-            	cursor: pointer;
+                font-size: 30px;
+                color: var(--one);
+                cursor: pointer;
+            }
+
+            #criar {
+                font-size: 32px;
+                background: var(--one);
+                border-radius: 50%;
+                color: white;
+                padding: 5px;
+                box-shadow: 0px 0px 10px var(--one);
             }
             
-            .navgation h1 {
-            	font-size: 24px;
-            	font-weight: ;
-            	font-family: ;
-            	letter-spacing: 0.5px;
+            /* SELECIONADO */
+
+            .selecionado {
+                color: var(--two);
             }
-            
-            .menu {
-            	position: fixed;
-            	left: -51vw;
-            	top: 75px;
-            	width: auto;
-            	height: 100%;
-            	background: var(--one);
-            	color: white;
-            	z-index: 99;
-            	display: flex;
-            	flex-direction: column;
-            	padding: 10px 0px 0px 0px;
-             	transition: all .5s ease-in-out;
-            	
-             }
-             
-             .menu ul {
-             	display: flex;
-             	flex-direction: column;
-             	width: 100%;
-             	height: auto;
-             }
-             
-             .menu ul li {
-             	width: 100%;
-             	display: flex;
-             	align-items: center;
-             	margin: 25px 0px 0px 0px;
-             	cursor: pointer;
-             	padding: 0px 60px 0px 20px;
-             	color: white;
-             }
-             
-             .menu li:hover {
-             	color: var(--six);
-             	transition: all .25s ease-in-out;
-             }
-             
-             .menu li h1 {
-             	font-size: 22px;
-             	font-weight: 800;
-             }
-             
-             .menu li ion-icon {
-             	font-size: 25px;
-             	margin: 0px 5px 0px 0px;
-             }
-             
-            .menu ul .li-linha {
-             	width: 95%;
-             	padding: 0px 0px 0px 0px;
-             	display: flex;
-             	align-items: center;
-             	justify-content: space-around;
-             	margin: 15px 0px -10px 0px;
-             	color: var(--tree);
-             	align-self: center;
-             }
-             
-             .li-linha h2 {
-             	font-size: 19px;
-             	font-weight: 800;
-             	margin: 0px;
-             }
-             
-             .linha {
-             	width: 28%;
-             	height: 3px;
-             	background: var(--tree);
-             }
-             
-            /* Container */
-            
-            .container {
-            	position: relative;
-            	top: 60px;
-            	left: 0px;
-            	width: 100vw;
-            	height: auto;
-            	padding: 0px 0px 20px 0px;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            .content-logado {
-            	width: 100vw;
-            	height: 77px;
-            	background: var(--tree);
-            	margin: 0px;
-            	padding: 15px;
-            	display: flex;
-            	align-items: center;
-            }
-            
-            .content-logado h1 {
-            	display: flex;
-            	font-size: 21.5px;
-            	font-weight: 900;
-            	margin: 0px;
-            	text-transform: uppercase;
-            	letter-spacing: 0.5px;
-            }
-            
-            .content-logado h1 p {
-            	margin: 0px 0px 0px 10px;
-            }
-            
-            /* AVISOS */
-            
-            .avisos {
-            	width: 100vw;
-            	height: auto;
-            	display: flex;
-            	flex-direction: column;
-            }
-            
-            .avisos h1 {
-            	font-size: 26px;
-            	font-weight: 800;
-            	color: var(--two);
-            	display: flex;
-            	align-items: center;
-            	align-self: center;
-            	margin: 15px 0px 0px 0px;
-            }
-            
-            .avisos h1 ion-icon {
-            	font-size: 27px;
-            	margin: 0px 4px 0px 4px;
-            }
-            
-            .containerAviso, .containerMensagem {
-            	z-index: 50;
-            	width: 100vw;
-            	height: auto;
-            	position: absolute;
-            	left: 50%;
-            	transform: translateX(-50%);
-            	top: 100vh;
-            	background: white;
-            	display: none;
-            	flex-direction: column;
-            	transition: all .55s ease-in-out;
-            	padding: 0px 0px 25px 0px;
-            	border-radius: 10px;
-            }
-            
-            .designer-avisos, .designer-mensagem {
-            	z-index: 50;
-            	width: 100%;
-            	height: 100px;
-            	background: var(--one);
-            	color: white;
-            	display: flex;
-            	justify-content: center;
-            	align-items: center;
-            	border-radius: 10px 10px 0px 0px;
-            }
-            
-            .designer-avisos ion-icon, .designer-mensagem ion-icon {
-            	margin: auto;
-            	font-size: 50px;
-            }
-            
-            .contentAviso, .contentMensagem {
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            	color: var(--one);
-            	padding: 10px;
-            }
-            
-            .contentAviso h1, .contentMensagem h1 {
-            	font-size: 24px;
-            	font-weight: 800;
-            	margin: 15px 0px;
-            }
-            
-            .contentAviso .form, .contentMensagem .form {
-            	width: auto;
-            	height: auto;
-            	display: flex;
-            	flex-direction: column;
-            }
-            
-            .contentAviso label, .contentMensagem label {
-            	font-size: 19.5px;
-            	font-weight: 800;
-            	margin: 0px 0px 2px 0px;
-            	color: var(--two);
-            }
-            
-            .contentAviso input, .contentMensagem input {
-            	background: var(--two);
-            	width: 85vw;
-            	height: 35px;
-            	border-radius: 5px;
-            	margin: 0px 0px 12.5px 0px;
-            	box-shadow: 3.5px 3.5px 2px var(--four);
-            	padding: 10px;
-            	color: white;
-            	font-size: 16px;
-            	outline: none;
-            	border: none;
-            }
-            
-            .contentAviso textarea, .contentMensagem textarea {
-            	background: var(--two);
-            	width: 85vw;
-            	height: 55px;
-            	border-radius: 5px;
-            	margin: 0px 0px 12.5px 0px;
-            	box-shadow: 3.5px 3.5px 2px var(--four);
-            	padding: 10px;
-            	color: white;
-            	font-size: 16px;
-            	outline: none;
-            	border: none;
-            }
-            
-            .contentAviso button, .contentMensagem button {
-            	align-self: center;
-            	background: var(--two);
-            	width: 82.5vw;
-            	height: 35px;
-            	border-radius: 5px;
-            	margin: 10px 0px 5px 0px;
-            	box-shadow: 3.5px 3.5px 2px var(--tree);
-            	color: white;
-            	font-size: 16px;
-            	border: none;
-            }
-            
-            .contentAviso button:hover, .contentMensagem button:hover {
-            	background: var(--one);
-            	box-shadow: 3.5px 3.5px 2px var(--tree);
-            	color: white;
-            	transition: all .4s ease-in-out;
-            }
-            
-            /* Container Mensagens */
-            #containerMensagens {
-            	width: 100vw;
-            	height: auto;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            #divMensagens {
-            	width: 85%;
-            	height: auto;
-            	padding: 20px 25px;
-            	background: var(--two);
-            	color: white;
-            	border-radius: 10px;
-            	display: flex;
-            	flex-direction: column;
-            	margin: 15px 0px 0px 0px;
-            	align-items: center;
-            }
-            
-            #divMensagens h1 {
-            	font-size: 22.5px;
-            	font-weight: 700;
-            	margin: 0px;
-            	color: white;
-            	letter-spacing: 0.8px;
-            }
-            
-            #divMensagens h2 {
-            	font-size: 19.5px;
-            	font-weight: 600;
-            	margin: 10px 0px 0px 0px;
-            	letter-spacing: 0.5px;
-            }
-            
-            /* Container Mensagens 2 */
-            #containerMensagens2 {
-            	width: 100vw;
-            	height: auto;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            #divMensagens2 {
-            	width: 90%;
-            	height: auto;
-            	padding: 20px 20px;
-            	background: #F1F1F1;
-            	box-shadow: 0px 0px 10px gray;
-            	color: #232323;
-            	border-radius: 10px;
-            	display: flex;
-            	flex-direction: column;
-            	margin: 20px 0px 0px 0px;
-            	align-items: start;
-            }
-            
-            #divMensagens2 h1 {
-            	color: #232323;
-            	font-size: 23px;
-            	font-weight: 900;
-            	margin: 0px 0px 0px 5px;
-            	letter-spacing: 0.8px;
-            	align-self: start;
-            }
-            
-            #divMensagens2 h1 ion-icon {
-            	margin: 0px 5px 0px 0px;
-            	font-size: 40px;
-            }
-            
-            #divMensagens2 h2 {
-	            color: #232323;
-            	font-size: 20px;
-            	font-weight: 600;
-            	margin: 15px 0px 0px 10px;
-            	letter-spacing: 0.4px;
-            }
-            
-            #divMensagens2 h3 {
-	            color: #232323;
-            	font-size: 19px;
-            	font-weight: 500;
-            	margin: 10px 0px 0px 10px;
-            	letter-spacing: 0.2px;
-            }
-            
-            /* ITEMS DE AVISOS */
-            
-            #btn-aviso, #btn-mensagem {
-            	display: none;
-            	width: 90%;
-            	justify-content: center;
-            	align-self: center;
-            	padding: 10px;
-            	background: var(--two);
-            	border-radius: 10px;
-            }
-            
-            #btn-aviso ion-icon {
-            	font-size: 30px;
-            	margin: 0px 5px 0px 0px;
-            } #btn-mensagem ion-icon {
-            	font-size: 25px;
-            	margin: 0px 10px 0px 0px;
-            }
-            
-            /* CERTO E ERRADO */
-            
-            .certo, .errado {
-            	width: 100vw;
-            	height: 78vh;
-            	background: white;
-            	color: #232323;
-            	position: absolute;
-            	top: 85px;
-            	left: 0px;
-            	display: none;
-            	flex-direction: column;
-            	align-items: center;
-            	justify-content: center;
-            	transition: all .4s ease-in-out;
-            }
-            
-            .errado ion-icon {
-            	font-size: 200px;
-            	color: #F26666;
-            }
-            
-            .certo ion-icon {
-            	font-size: 200px;
-            	color: #2EC75C;
-            }
-            
-            .certo h1, .errado h1 {
-            	font-size: 28px;
-            	font-weight: 900;
-            	letter-spacing: 0.9px;
-            	margin: 0px 0px 5px 0px;
-            }
-            
-            .certo p, .errado p {
-            	font-size: 20px;
-            	font-weight: 800;
-            	letter-spacing: 0.6px;
-            	margin: 0px 0px 75px 0px;
-            	color: #AAA;
-            }
-            
-            .errado button {
-            	margin: 30px 0px 0px 0px;
-            	width: 250px;
-            	height: 50px;
-            	border-radius: 20px;
-            	border: none;
-            	background: #F26666;
-            	color: white;
-            	font-size: 18px;
-            	font-weight: 800;
-            	letter-spacing: 0.5px;
-            	box-shadow: 0px 0px 10px #F26666;
-            	position: absolute;
-            	bottom: 50px;
-            }
-            
-            .errado button:hover {
-            	background: red;
-            	box-shadow: 0px 5px 15px #F26666;
-            	transition: all .3s ease-in-out;
-            }
-            
-            .certo button {
-            	margin: 30px 0px 0px 0px;
-            	width: 250px;
-            	height: 50px;
-            	border-radius: 20px;
-            	border: none;
-            	background: #2EC75C;
-            	color: white;
-            	font-size: 18px;
-            	font-weight: 800;	
-            	letter-spacing: 0.5px;
-            	box-shadow: 0px 0px 10px #2EC75C;
-            	position: absolute;
-            	bottom: 50px;
-            }
-            
-             .certo button:hover {
-            	background: green;
-            	box-shadow: 0px 5px 15px #2EC75C;
-            	transition: all .3s ease-in-out;
-            } 
             
             </style>
            </head>
            
            <body>
+            
+                <main class="container">
+
+                    <header class="bem-vindo">
+                        
+                        <ion-icon name="school-outline"></ion-icon>
+                        <h1>Ola, <p id="mostrarResponsavel"></p></h1>
+                        <h2>Bem Vindo(a) ao aplicativo da escola
+                        <br><span>Leticia de Godoy Bueno de Carvalho Lopes</span></h2>
+                    
+                    </header>
+
+
+                </main>
            	
-           	<!-- Navgation -->
-           	<header class="navgation">
-           		
-           		<ion-icon id="openMenu" style="display: block;" name="menu"></ion-icon>
-           		<ion-icon id="closeMenu" style="display: none;" name="close"></ion-icon>
-           		<h1>INICIO</h1>
-           		<ion-icon onclick="perfil()" name="person-circle"></ion-icon>
-           		
-           	</header>
-           	a
-           	<!-- ========= Menu ========= -->
-           	<section class="menu">
-           		
-           		<ul>
-           		
-           			<!-- PERFIL -->
-           			<li onclick="perfil()">
-           				<ion-icon name="person"></ion-icon>
-           				<h1>Perfil</h1>
-           			</li>
-           		
-           			<!-- NOTIFICACAO -->
-           			<li>
-           				<ion-icon name="notifications"></ion-icon>
-           				<h1>Notificaçao</h1>
-           			</li>
-           			
-           			<!-- SECRETARIA -->
-           			<li>
-           				<ion-icon name="people-circle-outline"></ion-icon>
-           				<h1>Secretaria</h1>
-           			</li>
-           			
-           			<!-- WEBSITE -->
-           			<li onclick="website()">
-           				<ion-icon name="globe"></ion-icon>
-           				<h1>Website</h1>
-           			</li>
-           			
-           			<!-- CRIAR AVISO -->
-           			<li id="btn-aviso" onclick="openAviso()">
-           				<ion-icon name="add-sharp"></ion-icon>
-           				<h1>Criar Aviso</h1>
-           			</li>
-           			
-           			<!-- ENVIAR MENSAGEM -->
-           			<li id="btn-mensagem" onclick="openMensagem()">
-           				<ion-icon name="mail"></ion-icon>
-           				<h1>Enviar MSG</h1>
-           			</li>
-           			
-           		</ul>
-           		
-           	</section>
-           	
-           	<!-- ===== FIM DO MENU ===== -->
-           	
-           	<main class="container">
-           		
-           		<div class="content-logado">
-           			<h1>Bem Vindo!! <p id="logado"></p></h1>
-           		</div>
-           		
-           		<section class="avisos">
-           			
-           			<h1>
-	           			<ion-icon name="alert-circle"></ion-icon>
-	           			Avisos
-	           			<ion-icon name="alert-circle"></ion-icon>
-           			</h1>
-           			
-           			<!-- ===== CONTAINER AVISO ===== -->
-           			<div id="containerMensagens"></div>
-           			<!-- ===== CONTAINER MENSAGENS ===== -->
-           			<div id="containerMensagens2"></div>
-           			
-           		</section>
-           		
-           	</main>
-           	
-           	<!-- Container Avisos -->
-           	<section class="containerAviso">
-           		
-           		<div class="designer-avisos">
-           			<ion-icon name="chatbubbles-outline"></ion-icon>
-           		</div>
-           		
-           		<div class="contentAviso">
-           			<h1>Enviar Aviso</h1>
-           			
-           			<div class="form">
-	           			<label>Titulo</label>
-	           			<input id="titulo" type="text">
-	           			
-	           			<label>Texto</label>
-	           			<textarea id="texto" type="text"></textarea>
-	           			
-	           			<button onclick="enviarAviso()">Enviar Aviso</button>
-	           			
-           			</div>
-           			
-           		</div>
-           		
-           	</section>
-           	
-           	<!-- Container Avisos -->
-           	<section class="containerMensagem">
-           		
-           		<div class="designer-mensagem">
-           			<ion-icon name="mail-outline"></ion-icon>
-           		</div>
-           		
-           		<div class="contentMensagem">
-           			<h1>Enviar Mensagem</h1>
-           			
-           			<div class="form">
-	           			<label>Nome do Aluno <p id="alertaNome"></p></label>
-	           			<input oninput="inputaluno()" id="aluno" type="text">
-	           			
-	           			<label>Motivo da Mensagem</label>
-	           			<input id="motivo" type="text">
-	           			
-	           			<label>Mensagem</label>
-	           			<textarea id="mensagem" type="text"></textarea>
-	           			
-	           			<button onclick="enviarMensagem()">Enviar Mensagem</button>
-	           			
-           			</div>
-           			
-           		</div>
-           		
-           	</section>
-           	
-           	<!-- CERTO E ERRADO -->
-           	<div class="certo">
-           		<ion-icon name="checkmark"></ion-icon>
-           		<h1>Sucesso</h1>
-           		<p>Sua mensagem foi enviada com sucesso!</p>
-           		<button onclick="closeCerto()">Continuar</button>
-           	</div>
-           	
-           	<div class="errado">
-           		<ion-icon name="close"></ion-icon>
-           		<h1>Oops!</h1>
-           		<p>Algo deu errado com o envio da mensagem</p>
-           		<button onclick="closeErrado()">Tentar Novamente</button>
-           	</div>
-           	
-           </body>
+                <nav class="navgation">
+
+                    <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
+                    <ion-icon name="notifications"></ion-icon>
+                    <ion-icon id="criar" name="add"></ion-icon>
+                    <ion-icon name="call"></ion-icon>
+                    <ion-icon onclick="perfil()" name="person"></ion-icon>
+
+                </nav>
+
+
+            </body>
            
        <!-- JavaScript -->
        <script>
        
-       
+       // Header Nome
+       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+       const responsavel = localStorage.getItem('responsavel');
+       mostrarResponsavel.textContent = responsavel;
+
+
+       // HREF
+       function perfil() {
+        window.location.href = "./perfil.html";
+       }
+
+       function home() {
+        window.location.href = "./home.html";
+       }
+
        // Funcao de Abrir o Container AVISO
        const containerAviso = document.querySelector('.containerAviso');
        const containerMensagem = document.querySelector('.containerMensagem');
@@ -748,15 +257,7 @@
        	window.location.href = "./login.html";
        }
        
-       //HREFSs
        
-       function website() {
-       	window.location.href = "https://escola-leticia.netlify.app";
-       }
-       
-       function perfil() {
-       	window.location.href = "./perfil.html";
-       }
        
        const alertaNome = document.getElementById('alertaNome');
        function inputaluno() {
