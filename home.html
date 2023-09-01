@@ -198,69 +198,8 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 	  
-	  // Enviar AVISO
-	  function enviarAviso() {
-	  	const titulo = document.getElementById('titulo').value;
-	  	const texto = document.getElementById('texto').value;
-	  	db.collection("avisos").add({
-	  		titulo: titulo,
-	  		texto: texto
-	  	})
-	  	openAviso();
-	  	setTimeout(() => {
-	  		openCerto();
-	  	}, 350);
-	  }
 	  
-	  // Enviar MENSAGEM
-	  function enviarMensagem() {
-	  	const aluno = document.getElementById('aluno').value;
-	  	const motivo = document.getElementById('motivo').value;
-	  	const mensagem = document.getElementById('mensagem').value;
-	  	db.collection("mensagens").add({
-	  		aluno: aluno,
-	  		motivo: motivo,
-	  		mensagem: mensagem
-	  	})
-		openMensagem();
-	  	setTimeout(() => {
-	  		openCerto();
-	  	}, 350);
-	  }
-	  
-	  const containerMensagens = document.getElementById('containerMensagens');
-	  const containerMensagensTwo = document.getElementById('containerMensagens2');
-	  
-	  
-	  // LER AVISOS E MENSAGENS DA SECRETARIA
-	  db.collection("avisos").onSnapshot((data) => {
-	  	data.docs.map((val) => {
-	  		containerMensagens.innerHTML += `
-	  		<div id="divMensagens">
-	  			<h1>${val.data().titulo}</h1>
-	  			<h2>${val.data().texto}</h2>
-	  		</div>
-	  		`;
-	  	})
-	  })
-	  
-	  const alunoLocal = localStorage.getItem('nome');
-	  
-	  db.collection("mensagens").onSnapshot((data) => {
-	  	data.docs.map((val) => {
-	  		if(val.data().aluno === alunoLocal) {
-	  			containerMensagensTwo.innerHTML += `
-	  			<div id="divMensagens2">
-	  				<h1><ion-icon name="person-circle-outline"></ion-icon>Mensagem da Secretaria</h1>
-		  			<h2>${val.data().motivo}</h2>
-		  			<h3>${val.data().mensagem}</h3>
-		  		</div>
-	  			`;
-	  		}
-	  	})
-	  })
-	  
-       
+	       
        </script>
        
        
