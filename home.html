@@ -159,10 +159,13 @@
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
        const logado = localStorage.getItem('logado');
-       mostrarResponsavel.innerHTML = responsavel;
-       if(logado === "ADMIN") {
-         mostrarResponsavel.innerHTML = "Adminstrador";
-       }
+	if (!logado){
+	  window.location.href = "./login.html";
+	} else if (logado === "ADMIN") {
+          mostrarResponsavel.innerHTML = "Adminstrador";
+        } else if (logado === "RESPONSAVEL") {
+	  mostrarResponsavel.innerHTML = responsavel;
+	}
 
        // HREF
        function perfil() {
@@ -173,6 +176,7 @@
         window.location.href = "./home.html";
        }
 
+	
        </script>
        
        
