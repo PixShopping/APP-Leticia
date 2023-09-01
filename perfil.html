@@ -137,8 +137,11 @@
        <!-- JavaScript -->
        <script>
        
-       // algo
-      
+       // Verificar LOGIN
+       const logado = localStorage.getItem('logado');
+	if (!logado){
+	  window.location.href = "./login.html";
+	}
 
        // HREF
        function perfil() {
