@@ -158,8 +158,11 @@
        // Header Nome
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
+       const logado = localStorage.getItem('logado');
        mostrarResponsavel.innerHTML = responsavel;
-
+       if(logado === "ADMIN") {
+         mostrarResponsavel.innerHTML = "Adminstrador";
+       }
 
        // HREF
        function perfil() {
