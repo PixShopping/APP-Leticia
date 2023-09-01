@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./imagem/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Letícia | Perfil</title>
+		<title> Letícia </title>
 		      
 		<style scoped>
 
@@ -17,403 +17,191 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
+                --gray: #b3abab;
 			}
 			
 			*  {
-				padding: 0;
-				margin: 0;
-				border: 0;
+				padding: 0px;
+				margin: 0px;
 				box-sizing: border-box;
 			}
 			
 			body {
-				background: var(--six);
+				background: white;
 				color: var(--one);
 				user-select: none;
-				font-family: 'Arial';
+				font-family: 'Arial', sans-serif;
 				overflow-x: hidden;
             }
-            
-            /* ----- Navgation ----- */
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .bem-vindo {
+                width: 100%;
+                height: 250px;
+                padding: 20px;
+                border-radius: 25px;
+                background: #144774;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0px 5px 20px var(--one);
+            }
+
+            .bem-vindo ion-icon {
+                font-size: 55px;
+                margin: 0px;
+            }
+
+            .bem-vindo h1 {
+                margin: 10px 0px 0px 0px;
+                font-size: 22px;
+                font-weight: 700;
+                display: flex;
+            }
+
+            .bem-vindo h1 p {
+                font-weight: 700;
+                margin: 0px 0px 0px 10px;
+            }
+
+            .bem-vindo h2 {
+                margin: 10px 0px 0px 0px;
+                font-size: 17px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            .bem-vindo h2 span {
+                font-size: 16px;
+                font-weight: 850;
+                letter-spacing: 0.5px;
+            }
+
+            /* - NAVGATION - */
             
             .navgation {
-            	position: fixed;
-            	top: 0px;
-            	left: 0px;
-            	display: flex;
-            	flex-direction: row;
-            	justify-content: space-between;
-            	align-items: center;
-            	width: 100vw;
-            	height: 85px;
-            	color: white;
-            	background: var(--one);
-            	padding: 0px 20px;
-            	z-index: 100;
-            	box-shadow: 0px 5px 15px var(--two);
-            	border-radius: 0px 0px 10px 10px;
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
             }
-            
+
             .navgation ion-icon {
-            	font-size: 45px;
-            	cursor: pointer;
+                font-size: 30px;
+                color: var(--one);
+                cursor: pointer;
+            }
+
+            #criar {
+                font-size: 32px;
+                background: var(--one);
+                border-radius: 50%;
+                color: white;
+                padding: 5px;
+                box-shadow: 0px 0px 10px var(--one);
             }
             
-            .navgation h1 {
-            	font-size: 24px;
-            	font-weight: ;
-            	font-family: ;
-            	letter-spacing: 0.5px;
-            }
-            
-            .menu {
-            	position: fixed;
-            	left: -51vw;
-            	top: 75px;
-            	width: auto;
-            	height: 100%;
-            	background: var(--one);
-            	color: white;
-            	z-index: 99;
-            	display: flex;
-            	flex-direction: column;
-            	padding: 10px 0px 0px 0px;
-             	transition: all .5s ease-in-out;
-            	
-             }
-             
-             .menu ul {
-             	display: flex;
-             	flex-direction: column;
-             	width: 100%;
-             	height: auto;
-             }
-             
-             .menu ul li {
-             	width: 100%;
-             	display: flex;
-             	align-items: center;
-             	margin: 25px 0px 0px 0px;
-             	cursor: pointer;
-             	padding: 0px 45px 0px 20px;
-             	color: white;
-             }
-             
-             .menu li:hover {
-             	color: var(--six);
-             	transition: all .25s ease-in-out;
-             }
-             
-             .menu li h1 {
-             	font-size: 22px;
-             	font-weight: 800;
-             }
-             
-             .menu li ion-icon {
-             	font-size: 25px;
-             	margin: 0px 5px 0px 0px;
-             }
-             
-            .menu ul .li-linha {
-             	width: 95%;
-             	padding: 0px 0px 0px 0px;
-             	display: flex;
-             	align-items: center;
-             	justify-content: space-around;
-             	margin: 15px 0px -10px 0px;
-             	color: var(--tree);
-             	align-self: center;
-             }
-             
-             .li-linha h2 {
-             	font-size: 19px;
-             	font-weight: 800;
-             	margin: 0px;
-             }
-             
-             .linha {
-             	width: 28%;
-             	height: 3px;
-             	background: var(--tree);
-             }
-            
-            /* Container */
-            
-            .container {
-            	position: relative;
-            	top: 85px;
-            	left: 0px;
-            	width: 100vw;
-            	height: auto;
-            	padding: 0px 0px 20px 0px;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            .perfil {
-            	width: 100vw;
-            	height: auto;
-            	padding: 0px 0px 20px 0px;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            .designer-perfil {
-            	width: 100%;
-            	height: 300px;
-            	margin: -10px 0px 0px 0px;
-            	background: var(--one);
-            	color: white;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            }
-            
-            .designer-perfil ion-icon {
-            	margin: 40px 0px 0px 0px;
-            	font-size: 80px;
-            }
-            
-            .designer-perfil h1 {
-            	font-weight: 750;
-            	font-size: 19.5px;
-            	letter-spacing: 0.6px;
-            	margin: 15px 0px 0px 5%;
-            	align-self: start;
-            }
-            
-            .designer-perfil h2 {
-            	font-weight: 750;
-            	font-size: 19.5px;
-            	letter-spacing: 0.6px;
-            	margin: 8px 0px 0px 5%;
-            	align-self: start;
-            }
-            
-            .designer-perfil h3 {
-            	font-weight: 750;
-            	font-size: 19.5px;
-            	letter-spacing: 0.6px;
-            	margin: 8px 0px 0px 5%;
-            	align-self: start;
-            }
-            
-            .perfil ul {
-            	display: flex;
-            	flex-direction: column;
-            	background: #F1F1F1;
-            	width: 90vw;
-            	height: auto;
-            	border-radius: 8px;
-            	margin: 20px 0px 0px 0px;
-            }
-            
-            .perfil ul li {
-            	list-style: none;
-            	color: #232323;
-            	display: flex;
-            	margin: 20px 0px;
-            }
-            
-            .perfil ul li h2 {
-            	font-size: 23px;
-            	font-weigth: 800;
-            	letter-spacing: 0.8px;
-            }
-            
-            .perfil ul li ion-icon {
-            	font-size: 23px;
-            	margin: 0px 12.5px 0px 12.5px;
-            }
-            
-            .perfil ul li ion-icon:last-child {
-            	font-size: 26px;
-            	margin: 0px 20px 0px auto;
+            /* SELECIONADO */
+
+            .selecionado {
+                color: var(--two);
             }
             
             </style>
            </head>
            
            <body>
+            
+                <main class="container">
+
+                    <header class="local">
+                        
+                        <ion-icon name="school-outline"></ion-icon>
+                        <h1>Ola, <p id="mostrarResponsavel"></p></h1>
+                        <h2>Bem Vindo(a) ao aplicativo da escola
+                        <br><span>Leticia de Godoy Bueno de Carvalho Lopes</span></h2>
+                    
+                    </header>
+
+
+                </main>
            	
-           	<!-- Navgation -->
-           	<header class="navgation">
-           		
-           		<ion-icon id="openMenu" style="display: none;" name="menu"></ion-icon>
-           		<ion-icon id="closeMenu" style="display: none;" name="close"></ion-icon>
-           		<ion-icon id="voltar" style="display: block;" name="chevron-back"></ion-icon>
-           		<h1>PERFIL</h1>
-           		<!--<ion-icon onclick="perfil()" name="person-circle"></ion-icon>-->
-           		<ion-icon name=""> </ion-icon>
-           		
-           	</header>
-           	
-           	<!-- ========= Menu ========= -->
-           	<section class="menu">
-           		
-           		<ul>
-           			
-           			<li  onclick="inicio()"> <!-- PERFIL -->
-           				<ion-icon name="home"></ion-icon>
-           				<h1>Inicio</h1>
-           			</li>
-           		
-           			<li> <!-- NOTIFICACAO -->
-           				<ion-icon name="notifications"></ion-icon>
-           				<h1>Notificaçao</h1>
-           			</li>
-           			
-           			<li> <!-- SECRETARIA -->
-           				<ion-icon name="people-circle-outline"></ion-icon>
-           				<h1>Secretaria</h1>
-           			</li>
-           			
-           			<li onclick="website()"> <!-- WEBSITE -->
-           				<ion-icon name="globe"></ion-icon>
-           				<h1>Website</h1>
-           			</li>
-           			
-           		</ul>
-           		
-           	</section>
-           	
-           	<!-- Container -->
-           	<main class="container">
-           	
-           		<section class="perfil">
-           			
-           			<div class="designer-perfil">
-           				<ion-icon name="person-circle"></ion-icon>
-           				<h1 id="mostrarNome">Nome</h1>
-           				<h2 id="mostrarRa">RA</h2>
-           				<h3 id="mostrarSerie">NASCIMENTO</h3>
-           			</div>
-           			
-           			<ul style="margin: -30px 0px 0px 0px;">
-           				
-           				<li onclick="editarPerfil()">
-           					<ion-icon name="construct"></ion-icon>
-           					<h2>Editar Perfil</h2>
-           					<ion-icon name="chevron-forward"></ion-icon>
-           				</li>
-           				<li onclick="sairConta()">
-           					<ion-icon name="arrow-undo"></ion-icon>
-           					<h2>Sair da Conta</h2>
-           					<ion-icon name="chevron-forward"></ion-icon>
-           				</li>
-           				
-           			</ul>
-           		
-           		</section>
-           	
-           	</main>
-           	
-           </body>
+                <nav class="navgation">
+
+                    <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
+                    <ion-icon name="notifications"></ion-icon>
+                    <ion-icon id="criar" name="add"></ion-icon>
+                    <ion-icon name="call"></ion-icon>
+                    <ion-icon onclick="perfil()" name="person"></ion-icon>
+
+                </nav>
+
+
+            </body>
            
        <!-- JavaScript -->
        <script>
        
-       // ----- PERFIL -----
-       const mostrarNome = document.getElementById('mostrarNome');
-       const mostrarRa = document.getElementById('mostrarRa');
-       const mostrarSerie = document.getElementById('mostrarSerie');
+       // algo
+      
 
-	// Validar Login
-	
-	const logado = localStorage.getItem('logado');
-	
-	if (!logado) {
-	window.location.href = "./login.html";
-	}
-		
-       // Mostrar o Nome
-       if (localStorage.getItem('nome')) {
-       	mostrarNome.textContent = `Nome: ${localStorage.getItem('nome')}`;
-       } else {
-       	mostrarNome.innerHTML = "Nome";
-       }
-       
-       // Mostrar o Ra
-       if (localStorage.getItem('ra')) {
-       	mostrarRa.textContent = `RA: ${localStorage.getItem('ra')}`;
-       } else {
-       	mostrarRa.innerHTML = "RA";
-       }
-       
-       // Mostrar a Serie
-       if (localStorage.getItem('serie')) {
-       	mostrarSerie.textContent = `Serie: ${localStorage.getItem('serie')}`;
-       } else {
-       	mostrarSerie.innerHTML = "Serie";
-       }
-       
-       
-       
-       // Editar Perfil
-       function editarPerfil() {
-       	alert('Nao esta disponivel ainda!!')
-       }
-       
-       function sairConta() {
-       	localStorage.clear();
-       	window.location.href = "./login.html";
-       }
-       
        // HREF
-       
-       function website() {
-       	window.location.href = "https://escola-leticia.netlify.app";
-       }
-       function inicio() {
-       	window.location.href = "./home.html";
-       }
-       
-       // Navgation
-       const openMenu = document.getElementById('openMenu');
-       const closeMenu = document.getElementById('closeMenu');
-       const voltar = document.getElementById('voltar');
-       voltar.addEventListener('click', () => {
-       	window.location.href = "./home.html";
-       });
-       const menu = document.querySelector('.menu');
-       // Abrir Menu
-       openMenu.addEventListener('click', () => {
-       	OPENMENU();
-       });
-       closeMenu.addEventListener('click', () => {
-       	CLOSEMENU();
-       });
-       
-       function OPENMENU() {
-       	openMenu.style.display = "none";
-       	closeMenu.style.display = "block";
-       	menu.style.left = "0px";
-       }
-       
-       function CLOSEMENU() {
-       	openMenu.style.display = "block";
-       	closeMenu.style.display = "none";
-       	menu.style.left = "-51vw";
+       function perfil() {
+        window.location.href = "./perfil.html";
        }
 
-	// Verificar se e administrador no perfil
+       function home() {
+        window.location.href = "./home.html";
+       }
 
-	const containerPerfil = document.querySelector('.designer-perfil');
+       </script>
+       
+       
+       
+       
+       
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+       
+       <script>
+       
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
 	
-	if (logado === "ADMIN") {
-		containerPerfil.style.height = "210px";
-		mostrarNome.innerHTML = "Administrador";
-		mostrarNome.style.fontSize = "23px";
-		mostrarNome.style.margin = "10px auto";
-		mostrarRa.style.display = "none";
-		mostrarSerie.style.display = "none";
-	}
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+	  
+	  
 	       
        </script>
        
+       
+       
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-	
+
 </html>
