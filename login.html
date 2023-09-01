@@ -512,6 +512,10 @@
 	  			if(val.data().responsavel === RESPONSAVEL && val.data().senha === SENHA) {
 	  				setTimeout(() => {
 	  					localStorage.setItem('logado', 'RESPONSAVEL');
+						localStorage.setItem('responsavel' , val.data().responsavel);
+						localStorage.setItem('aluno' , val.data().aluno);
+						localStorage.setItem('serie' , val.data().serie);
+						localStorage.setItem('gmail' , val.data().gmail);
 	  					window.location.href = "./home.html";
 	  				}, 400);
 	  			} else if (RESPONSAVEL === "Leticia" && SENHA === "123") {
