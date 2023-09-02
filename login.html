@@ -373,11 +373,11 @@
      var continuar = true;
      function verificarResponsavel() {
      	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
-	 	const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
+	 const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
 	 	
 	 	db.collection("cadastro")
 	 	.doc("responsaveis")
-	 	.collection(RESPONSAVEIS)
+	 	.collection(RESPONSAVEL)
 	 	.get()
 	 	.then((existe) => {
 	 		if(existe.size > 0) {
