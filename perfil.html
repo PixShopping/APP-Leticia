@@ -17,7 +17,7 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-                		--gray: #b3abab;
+                --gray: #b3abab;
 			}
 			
 			*  {
@@ -48,24 +48,25 @@
                 color: var(--one);
                 display: flex;
                 justify-content: space-between;
-		align-items: center;
+				align-items: center;
             	padding: 0px 20px 0px 20px;
-	    }
+	 	   }
 
             .local ion-icon {
                 font-size: 35px;
                 margin: 0px;
             	cursor: pointer;
-	    }
+		    }
 
-	    .local ion-icon:hover {
-		color: var(--two);
-	    }
+		    .local ion-icon:hover {
+				color: var(--two);
+				transition: all .3s ease-in-out;
+		    }
 
             .local h1 {
-		font-size: 24px;
+				font-size: 24px;
                 font-weight: 700;
-		letter-spacing: 0.5px;
+				letter-spacing: 0.5px;
                 display: flex;
             }
 
@@ -97,47 +98,92 @@
                 padding: 5px;
                 box-shadow: 0px 0px 10px var(--one);
             }
-	    // Content Perfil
-
-	   .content {
-	       display: flex;
-	       flex-direction: column;
-	   }
-
-           .content dados {
-		width: 100%;
-		height: auto;
-		padding: 15px;
-		border-bottom: 2px solid gray;
-	   }
-	    
-	   .content ul {
-	        display: flex;
-	        flex-direction: column;
-		width: 100%;
-		height: auto;
-	   }
-
-	   .content ul li {
-		width: 100%;
-		height: auto;
-		padding: 20px;
-		display: flex;
-		border-bottom: 2px solid gray;
-	   }
-
-	   .content ul li ion-icon {
-		font-size: 20px;
-	   }
-
-	   .content ul li h1 {
+		    
+		    /* Content Perfil */
+	
+		   .content {
+		       display: flex;
+		       flex-direction: column;
+		   }
 		   
-	   }
+		   /* Container DADOS */
+           .dados {
+				width: 100%;
+				height: auto;
+				padding: 25px;
+				border-bottom: 2px solid gray;
+		    	display: flex;
+		    	align-items: center;
+		   }
+		   
+		   .dados ion-icon {
+		   	font-size: 100px;
+		   	color: white;
+		   	border-radius: 50%;
+		   	background: var(--one);
+		   	box-shadow: 0px 0px 10px var(--one);
+		   }
+		   
+		   /* DADOS */
+		   
+		   .dados div {
+		   	width: auto;
+		   	heigth: auto;
+		   	padding: 10px;
+		   	display: flex;
+		   	flex-direction: column;
+		   	margin: 0px 0px 0px 15px;
+		   }
+		   
+		   .dados div h1 {
+		      font-size: 21px;
+		      letter-spacing: 0.2px;
+			  margin: 8px 0px 0px 0px;
+			  color: var(--one):
+		   }
+	    
+	    	.content ul {
+		        display: flex;
+		        flex-direction: column;
+				width: 100%;
+				height: auto;
+		   }
 
-	    .content ul li:last-child {
-		margin-left: auto;
-	    }
-            
+		   .content ul li {
+				width: 100%;
+				height: auto;
+				padding: 15px 20px 15px 10px;
+				display: flex;
+				align-items: center;
+				border-bottom: 2px solid gray;
+				color: #191919;
+				cursor: pointer;
+		   }
+		   
+		   .content ul li:hover {
+		   	background: var(--one);
+		   	color: #F1F1F1;
+		   	box-shadow: 0px 0px 10px var(--two);
+		   	transition: all .3s ease-in-out;
+		   }
+
+		   .content ul li ion-icon {
+				font-size: 40px;
+				margin: 0px 10px 0px 5px;
+		   }
+		   
+		   .content ul li ion-icon:last-child {
+		   	margin: 0px 0px 0px auto;
+		   	font-size: 35px;
+		   }
+
+		   .content ul li h1 {
+			  font-size: 23px;
+			  font-weight: 600;
+			  margin: 0px 0px 0px 0px;
+		   }
+		   
+		               
             </style>
            </head>
            
@@ -147,7 +193,7 @@
 
                     <header class="local">
 
-			<h1>Perfil</h1>
+						<h1>Perfil</h1>
                         <ion-icon name="settings"></ion-icon>
 			    
                     </header>
@@ -158,17 +204,33 @@
 			<div class="dados">
 			    <ion-icon name="person-circle"></ion-icon>
 			    <div>
-				<h1 id="dadoResponsavel"></h1>
-			        <h1 id="dadoAluno"></h1>
-				<h1 id="serieAluno"></h1>
-				<h1 id="serieGmail"></h1>
+				<h1 id="mostrarResponsavel"></h1>
+			    <h1 id="mostrarAluno"></h1>
+				<h1 id="mostrarSerie"></h1>
+				<h1 id="mostrarGmail"></h1>
 			    </div>
 			</div>
-				
-		    	<ul>
+			
+			<!-- BOTOES DO PERFIL -->
+		    <ul>
 			  
+			  <!-- MUDAR SENHA -->
+			  <li onclick="mudarSenha()">
+			      <ion-icon style="font-size: 32.5px;" name="lock-open-outline"></ion-icon>
+			      <h1>Mudar Senha</h1>
+			      <ion-icon name="arrow-forward"></ion-icon>
+			  </li>
+			  
+			  <!-- SUPORTE -->
+			  <li onclick="suporte()">
+			      <ion-icon style="font-size: 32.5px;" name="call-outline"></ion-icon>
+			      <h1>Suporte</h1>
+			      <ion-icon name="arrow-forward"></ion-icon>
+			  </li>
+			  
+			  <!-- SAIR DA CONTA -->
 			  <li onclick="sair()">
-			      <ion-icon name="arrow-back"></ion-icon>
+			      <ion-icon style="margin: 0px 10px 0px 5px;" name="exit-outline"></ion-icon>
 			      <h1>Sair da Conta</h1>
 			      <ion-icon name="arrow-forward"></ion-icon>
 			  </li>
@@ -195,13 +257,38 @@
        <!-- JavaScript -->
        <script>
        
+       // Mostrar Dados (h1)
+       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+       const mostrarAluno = document.getElementById('mostrarAluno');
+       const mostrarSerie = document.getElementById('mostrarSerie');
+       const mostrarGmail = document.getElementById('mostrarGmail');
+       
+       // Responsavel
+       if(localStorage.getItem('responsavel')){
+       	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
+       }
+       // Aluno
+       if(localStorage.getItem('aluno')){
+       	mostrarAluno.innerHTML = localStorage.getItem('aluno');
+       }
+       // Serie
+       if(localStorage.getItem('serie')){
+       	mostrarSerie.innerHTML = localStorage.getItem('serie');
+       }
+       // Gmail
+       if(localStorage.getItem('gmail')){
+       	mostrarGmail.innerHTML = localStorage.getItem('gmail');
+       }
+       
+       
+       
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
-	if (!logado){
-	  window.location.href = "./login.html";
-	}
+		if (!logado){
+		  window.location.href = "./login.html";
+		}
 
-       // HREF
+       // HREF / FUNCOES
        function perfil() {
         window.location.href = "./perfil.html";
        }
@@ -210,9 +297,18 @@
         window.location.href = "./home.html";
        }
 
-	function sair() {
-	 window.location.href = "./login.html";
-	}
+		function sair() {
+		 localStorage.clear();
+		 window.location.href = "./login.html";
+		}
+		
+		function mudarSenha() {
+		 alert('Para mudar a senha entre em contato \ncom o SUPORTE da escola!!');
+		}
+		
+		function suporte() {
+		 window.location.href = "tel:1633242256";
+		}
 
        </script>
        

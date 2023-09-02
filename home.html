@@ -159,13 +159,13 @@
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
        const logado = localStorage.getItem('logado');
-	if (!logado){
-	  window.location.href = "./login.html";
-	} else if (logado === "ADMIN") {
+		if (!logado){
+		  window.location.href = "./login.html";
+		} else if (logado === "ADMIN") {
           mostrarResponsavel.innerHTML = "Adminstrador";
         } else if (logado === "RESPONSAVEL") {
-	  mostrarResponsavel.innerHTML = responsavel;
-	}
+		  mostrarResponsavel.innerHTML = responsavel;
+		}
 
        // HREF
        function perfil() {

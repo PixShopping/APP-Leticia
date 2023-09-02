@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 	<head>
-        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "c5844546-0fff-43a3-b0a8-2de65e7345f0",
-    });
-  });
-</script>
-		
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./imagem/icon.png" type="x-icon">
@@ -60,15 +50,16 @@
             	background: var(--one);
             	border: none;
             	border-radius: 0px 0px 35px 35px;
-            	transition: all .6s ease-in-out;
+            	transition: all .5s ease-in-out;
             }
             
             .logo img {
             	display: block;
             	opacity: 0;
-            	transition: all .6s ease-in-out;
-            	width: 385px;
-            	height: 385px;
+            	transition: all .4s ease-in-out;
+            	width: 375px;
+            	height: 375px;
+            	border: 2px solid black;
             }
             
             
@@ -95,25 +86,25 @@
        
        setTimeout( () => {
        	logo.style.height = "20vh";
-       }, 1000);
-       setTimeout( () => {
-       	logo.style.height = "30vh";
-       }, 1250);
-       setTimeout( () => {
-       	logo.style.height = "40vh";
-       }, 1450);
-       setTimeout( () => {
-       	logo.style.height = "50vh";
        }, 1650);
        setTimeout( () => {
-       	logo.style.height = "60vh";
+       	logo.style.height = "30vh";
        }, 1850);
        setTimeout( () => {
-       	img.style.display = "flex";
+       	logo.style.height = "40vh";
        }, 2050);
        setTimeout( () => {
-       	img.style.opacity = 1;
+       	logo.style.height = "50vh";
        }, 2250);
+       setTimeout( () => {
+       	logo.style.height = "60vh";
+       }, 2450);
+       setTimeout( () => {
+       	img.style.display = "flex";
+       }, 2550);
+       setTimeout( () => {
+       	img.style.opacity = 1;
+       }, 2700);
        setTimeout( () => {
        	window.location.href = "./home.html";
        }, 3200);
