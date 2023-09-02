@@ -443,8 +443,9 @@
 	  	db.collection("cadastro")
 			.doc("responsaveis")
 			.collection(RESPONSAVEL)
-			.get().then((existe) => {
-	  		 if(!existe.empty) {
+			.get()
+			.then((existe) => {
+	  		 if(existe.size > 0) {
 	  			 alertaRESPONSAVEL.innerHTML = "Valido";
 	 			 alertaRESPONSAVEL.style.color = "green";
 	 			 
