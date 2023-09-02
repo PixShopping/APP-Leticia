@@ -431,7 +431,8 @@
 	  	
 	  	
 	  	// Colecao Cadastro
-	  	db.collection("cadastro")
+	  	if (continuar) {
+		   db.collection("cadastro")
 			  .doc("responsaveis")
 			  .collection(RESPONSAVEL)
 			  .add({
@@ -442,12 +443,10 @@
 			  	senha: SENHA
 			  });
 			  
-			  
-	  	
-		setTimeout(() => {
-			location.reload();
-		}, 850);
-	  	
+		  setTimeout(() => {
+		    location.reload();
+		  }, 850);
+		}
 	  }
 	  
 	  // Login
@@ -483,7 +482,7 @@
 		  				alertaSENHA.style.color = "red";
 		  			}
 		  			
-		  			if (val.data().senha === SENHA && continuar) {
+		  			if (val.data().senha === SENHA) {
 		  				setTimeout(() => {
 		  					localStorage.setItem('logado', 'RESPONSAVEL');
 		  					// Dados do Responsavel
