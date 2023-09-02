@@ -441,11 +441,11 @@
 	  	
 	  	
 	  	db.collection(RESPONSAVEL).get().then((existe) => {
-	  		if(!existe.empty){
-	  			alertaRESPONSAVEL.innerHTML = "Valido";
+	  		if(!existe.empty) {
+	  			 alertaRESPONSAVEL.innerHTML = "Valido";
 	 			 alertaRESPONSAVEL.style.color = "green";
 	 			 
-	 			 db.collection(RESPONSAVEL).onSnapshot((dados) => {
+	 			 db.collection(RESPONSAVEL).onSnapshot((data) => {
 		  			dados.docs.map((val) => {
 	  			
 		  			// Verificar SENHA
