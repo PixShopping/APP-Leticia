@@ -69,8 +69,8 @@
             }
             
             .content-logo img {
-            	width: 350px;
-            	height: 350px;
+            	width: 385px;
+            	height: 385px;
             }
             
             /* BOTOES */
@@ -269,7 +269,7 @@
 	       				<label>Nome do Responsavel
 	       				<p id="alertaRESPONSAVEL"></p>
 	       				</label>
-	       				<input id="cadastroResponsavel" type="text">
+	       				<input oninput="verificarResponsavel()" id="cadastroResponsavel" type="text">
 	       				
 	       				<label>Nome do Aluno
 	       				<p id="alertaALUNO"></p>
@@ -365,13 +365,30 @@
      // Verificar Responsavel Existente
      
      function inputResponsavel() {
-  	  const verificacaoh1 = document.querySelector('.verificacao h1');
-	  const verificacaoh2 = document.querySelector('.verificacao h2');
+  		const verificacaoh1 = document.querySelector('.verificacao h1');
+	 	 const verificacaoh2 = document.querySelector('.verificacao h2');
           const RESPONSAVEL = document.getElementById('responsavel').value;
-
-	  
-     	
-     	
+     }
+     
+     var continuar = true;
+     function verificarResponsavel() {
+     	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
+	 	const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
+	 	
+	 	db.collection("cadastro")
+	 	.doc("responsaveis")
+	 	.collection(RESPONSAVEIS)
+	 	.get()
+	 	.then((existe) => {
+	 		if(existe.size > 0) {
+	 			alertaRESPONSAVEL.innerHTML = "Ja Existe!";
+	 			alertaRESPONSAVEL.style.color = "var(--red)";
+	 			continuar = false;
+	 		} else {
+	 			alertaRESPONSAVEL.innerHTML = "Valido";
+	 			alertaRESPONSAVEL.style.color = "var(--green)";
+	 		}
+	 	})
      }
      
      </script>
@@ -466,7 +483,7 @@
 		  				alertaSENHA.style.color = "red";
 		  			}
 		  			
-		  			if (val.data().senha === SENHA) {
+		  			if (val.data().senha === SENHA && continuar) {
 		  				setTimeout(() => {
 		  					localStorage.setItem('logado', 'RESPONSAVEL');
 		  					// Dados do Responsavel
