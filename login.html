@@ -369,19 +369,8 @@
 		const verificacaoh2 = document.querySelector('.verificacao h2');
         const RESPONSAVEL = document.getElementById('responsavel').value;
      	
-     	db.collection("cadastro").onSnapshot((data) => {
-     		data.docs.map((usuario) => {
-     			if(RESPONSAVEL === usuario.data().responsavel) {
-     				usuario.map((dado) => {
-     					verificacaoh1.innerHTML = `Nome do Aluno: ${dado.aluno}`;
-	     				verificacaoh2.innerHTML = `Serie: ${dado.serie}`;	
-     				});
-     			} else {
-     				verificacaoh1.innerHTML = "";
-     				verificacaoh2.innerHTML = "";
-     			}
-     		});
-     	});
+     	
+     	
      }
      
      </script>
@@ -412,7 +401,6 @@
 	  
 	  // Cadastro
 	  function enviarCadastro() {
-	  	var continuar = true;
 	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
 	  	const ALUNO = document.getElementById('cadastroAluno').value;
 	  	const GMAIL = document.getElementById('cadastroGmail').value;
@@ -423,83 +411,47 @@
 	  	const alertaSERIE = document.getElementById('alertaSERIE');
 	  	const alertaSENHA = document.getElementById('alertaSENHA');
 	  	
-	  	// Verificacao de RESPONSAVEL
-	  	if (RESPONSAVEL) {
-	  		alertaRESPONSAVEL.innerHTML = "Valido";
-	  		alertaRESPONSAVEL.style.color = "green"
-	  		db.collection("cadastro").onSnapshot((data) => {
-	  			data.docs.map((usuario) => {
-	  				if(RESPONSAVEL === usuario.data().responsavel){
-	  					alertaRESPONSAVEL.innerHTML = "Ja existe!";
-	  					alertaRESPONSAVEL.style.color = "red";
-	  					continuar = false;
-	  				} else {
-						continuar = true;
-					}
-	  			});
-	  		});
-	  	} else {
-	  		alertaRESPONSAVEL.innerHTML = "Invalido";
-	  		alertaRESPONSAVEL.style.color = "red";
-	  	}
-	  	// Verificacao de ALUNO
-	  	if (ALUNO) {
-	  		alertaALUNO.innerHTML = "Valido";
-	  		alertaALUNO.style.color = "green";
-	  	} else {
-	  		alertaALUNO.innerHTML = "Invalido";
-	  		alertaALUNO.style.color = "red";
-	  	}
 	  	
-	  	// Verificacao de SERIE
-	  	if (SERIE) {
-	  		alertaSERIE.innerHTML = "Valido";
-	  		alertaSERIE.style.color = "green";
-	  	} else {
-	  		alertaSERIE.innerHTML = "Invalido";
-	  		alertaSERIE.style.color = "red";
-	  	}
-	  	// Verificacao de SENHA
-	  	if (SENHA) {
-	  		alertaSENHA.innerHTML = "Valido";
-	  		alertaSENHA.style.color = "green";
-	  	} else {
-	  		alertaSENHA.innerHTML = "Invalido";
-	  		alertaSENHA.style.color = "red";
-	  	}
+	  	// Colecao Cadastro
+	  	db.collection("cadastro")
+			  .doc("responsavel")
+			  .collection(RESPONSAVEL)
+			  .add({
+			  	aluno: ALUNO,
+			  	gmail: GMAIL,
+			  	serie: SERIE,
+			  	senha: SENHA
+			  });
+			  
+			  
 	  	
-	  	if (RESPONSAVEL && ALUNO && SERIE && SENHA && continuar) {
-		  	db.collection("cadastro").add({
-		  		responsavel: RESPONSAVEL,
-		  		aluno: ALUNO,
-		  		serie: SERIE,
-		  		gmail: GMAIL,
-		  		senha: SENHA
-		  	});
-			setTimeout(() => {
-				location.reload();
-			}, 350);
-	  	}
-	  	
+		setTimeout(() => {
+			location.reload();
+		}, 250);
 	  	
 	  }
 	  
 	  // Login
 	  function enviarLogin() {
+	  
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
 	  	const SENHA = document.getElementById('senha').value;
 	  	const alertaRESPONSAVEL = document.getElementById('alertaLoginRESPONSAVEL');
 	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
-	  	db.collection("cadastro").onSnapshot((data) => {
-	  		data.docs.map((val) => {
-	  			// Verificar RESPONSAVEL
-	  			if(RESPONSAVEL === val.data().responsavel) {
-	  				alertaRESPONSAVEL.innerHTML = "Valido";
-	  				alertaRESPONSAVEL.style.color = "green";
-	  			} else {
-	  				alertaRESPONSAVEL.innerHTML = "Invalido";
-	  				alertaRESPONSAVEL.style.color = "red";
-	  			}
+	  	
+	  	const responsaveis = db.collection("cadastro")
+	  	.doc("responsavel")
+	  	.collection(RESPONSAVEL);
+	  	
+	  	if (responsaveis === RESPONSAVEL) {
+	  		
+	  		alertaRESPONSAVEL.innerHTML = "Valido";
+ 			 alertaRESPONSAVEL.style.color = "green";
+	  		
+	  		responsaveis.onSnapshot((dados) => {
+	  		
+	  		dados.docs.map((dado) => {
+	  			
 	  			// Verificar SENHA
 	  			if(SENHA === val.data().senha) {
 	  				alertaSENHA.innerHTML = "Valido";
@@ -530,9 +482,14 @@
 	  				localStorage.setItem('logado', 'ADMIN');
   					window.location.href = "./home.html";
 	  			}
+	  			
 	  		});
 	  	});
 	  	
+	  	} else {
+	  		alertaRESPONSAVEL.innerHTML = "Invalido";
+			  alertaRESPONSAVEL.style.color = "red";
+	  	}
 	  }
 	  
 	  </script>
