@@ -440,13 +440,19 @@
 	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
 	  	
 	  	
-	  	db.collection(RESPONSAVEL).get().then((existe) => {
-	  		if(!existe.empty) {
+	  	db.collection("cadastro")
+			.doc("responsaveis")
+			.collection(RESPONSAVEL)
+			.get().then((existe) => {
+	  		 if(!existe.empty) {
 	  			 alertaRESPONSAVEL.innerHTML = "Valido";
 	 			 alertaRESPONSAVEL.style.color = "green";
 	 			 
-	 			 db.collection(RESPONSAVEL).onSnapshot((data) => {
-		  			dados.docs.map((val) => {
+	 			 db.collection("cadastro")
+					 .doc("responsaveis")
+					 .collection(RESPONSAVEL)
+					 .onSnapshot((data) => {
+		  			data.docs.map((val) => {
 	  			
 		  			// Verificar SENHA
 		  			if(SENHA === val.data().senha) {
@@ -484,7 +490,7 @@
 		  	
 	 		 } else {
 		  		alertaRESPONSAVEL.innerHTML = "Invalido";
-				  alertaRESPONSAVEL.style.color = "red";
+				alertaRESPONSAVEL.style.color = "red";
 		  	}
 	  	})
 	  		
