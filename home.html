@@ -241,11 +241,7 @@
 		 	.doc("responsaveis")
 		 	.get()
 		 	.then((dado) => {
-		 		db.collection(dado).onSnapshot((data) => {
-				  data.docs.map((val) => {
-					mostrar.innerHTML += `Nome: ${val.data().aluno}`;
-				  })
-				})
+				mostrar.innerHTML += `Nome: ${val.data().aluno}`;
 		 	})
 		}
 	       
