@@ -235,11 +235,12 @@
 	  const db = firebase.firestore();
 	  
 	  // Listar Todos os Responsaveis no Banco De Dados
-		function mostrarBancoDeDados() {
-			const mostrar = document.getElementById("mostrarDados");
+	       const mostrar = document.getElementById("mostrarDados");
+	       function mostrarBancoDeDados() {
+			
 			db.collection("cadastro").onSnapshot((data) => {
 				data.docs.map((val) => {
-					mostrar.innerHTML = val.data().responsavel;
+					mostrar.innerHTML += val.data().responsavel;
 				});
 			});
 		}
