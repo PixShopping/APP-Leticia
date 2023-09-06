@@ -238,7 +238,7 @@
 	       const mostrar = document.getElementById("mostrarDados");
 	       function mostrarBancoDeDados() {
 		db.collection("cadastro")
-			.docs("responsaveis")
+			.doc("responsaveis")
 			.onSnapshot((data) => {
 			data.map((val) => {
 				mostrar.innerHTML += `<li>${val}</li>`;
