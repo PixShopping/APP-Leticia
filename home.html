@@ -239,7 +239,6 @@
 	       function mostrarBancoDeDados() {
 			db.collection("cadastro")
 		 	.doc("responsaveis")
-		 	.collection(RESPONSAVEL)
 		 	.get()
 		 	.then((existe) => {
 		 		db.collection("responsaveis").onSnapshot((data) => {
