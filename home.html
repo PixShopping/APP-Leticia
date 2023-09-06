@@ -239,7 +239,7 @@
 	       function mostrarBancoDeDados() {
 		db.collection("cadastro").onSnapshot((data) => {
 			data.docs.map((val) => {
-				mostrar.innerHTML += val.data().responsavel;
+				mostrar.innerHTML += val.data().responsaveis;
 			})
 		})
 		}
