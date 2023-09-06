@@ -240,7 +240,7 @@
 		db.collection("cadastro")
 			.doc("responsaveis")
 			.onSnapshot((data) => {
-			data.map((val) => {
+			data.docs.map((val) => {
 				mostrar.innerHTML += `<li>${val}</li>`;
 			})
 		})
