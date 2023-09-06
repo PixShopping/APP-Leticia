@@ -163,7 +163,7 @@
 					<div class="form">
 
 						<label>Destinatario</label>
-						<input oninput="mostrarBancoDeDados()" id="" type="text" />
+						<input oninput="mostrarBancoDeDados()" type="text" />
 
 						<label>Titulo</label>
 						<input id="" type="text" />
@@ -239,7 +239,7 @@
 			const mostrar = document.getElementById("mostrarDados");
 			db.collection("cadastro").onSnapshot((data) => {
 				data.docs.map((val) => {
-					mostrar.innerHTML = val;
+					mostrar.innerHTML = val.data();
 				});
 			});
 		}
