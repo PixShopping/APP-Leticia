@@ -240,8 +240,8 @@
 			db.collection("cadastro")
 		 	.doc("responsaveis")
 		 	.get()
-		 	.then((existe) => {
-		 		db.collection("responsaveis").onSnapshot((data) => {
+		 	.then((dado) => {
+		 		db.collection(dado).onSnapshot((data) => {
 				  data.docs.map((val) => {
 					mostrar.innerHTML += `Nome: ${val.data().aluno}`;
 				  })
