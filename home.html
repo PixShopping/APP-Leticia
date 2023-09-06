@@ -239,7 +239,7 @@
 			const mostrar = document.getElementById("mostrarDados");
 			db.collection("cadastro").onSnapshot((data) => {
 				data.docs.map((val) => {
-					mostrar.innerHTML = val.data();
+					mostrar.innerHTML = val.data().responsavel;
 				});
 			});
 		}
