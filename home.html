@@ -237,14 +237,12 @@
 	  // Listar Todos os Responsaveis no Banco De Dados
 	       const mostrar = document.getElementById("mostrarDados");
 	       function mostrarBancoDeDados() {
-		db.collection("cadastro")
-			.doc("responsaveis")
-			.onSnapshot((data) => {
-			data.docs.map((val) => {
-				mostrar.innerHTML += `<li>${val.data()}</li>`;
-			})
-		})
-		}
+				db.collection("responsaveis")
+					data.docs.map((val) => {
+						mostrar.innerHTML += `<li>${val.data().responsavel}</li>`;
+					})
+				})
+			}
 	       
        </script>
        
