@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Letícia </title>
+		<title> Letícia | Home </title>
 		      
 		<style scoped>
 
@@ -17,7 +17,9 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-                		--gray: #b3abab;
+                --gray: #b3abab;
+                --green: green;
+				--red: red;
 			}
 			
 			*  {
@@ -97,8 +99,8 @@
                 align-items: center;
                 position: fixed;
                 bottom: 0px;
-		z-index: 100;
-	 	background: white;
+                z-index: 100;
+                background: white;
             }
 
             .navgation ion-icon {
@@ -120,78 +122,6 @@
 
             .selecionado {
                 color: var(--two);
-            }
-
-			.criar-mensagem {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-				display: none;
-                opacity: 0;
-				width: 100%;
-				height: auto;
-				background: #F1F1F1;
-				color: #232323;
-				padding: 20px;
-                border-radius: 20px;
-                box-shadow: 0px 5px 15px gray;
-                transition: all .4s ease-in-out;
-            }
-
-		    .form {
-                width: 100%;
-                height: 100%;
-			    display: flex;
-			    flex-direction: column;
-                align-items: start;
-                padding: 0px 0px 0px 5%;
-            }
-
-            .form label {
-                font-size: 16px;
-                font-weight: 600;
-                letter-spacing: 0.2px;
-                margin: 15px 0px 2px 0px;
-            }
-
-            .form input {
-                width: 95%;
-                height: 30px;
-                background: white;
-                box-shadow: 0px 0px 10px gray;
-                outline: none;
-                border: none;
-                border-radius: 5px;
-                padding: 12px;
-                font-weight: 600;
-                letter-spacing: 0.3px;
-                z-index: 20;
-            }
-
-            .form textarea {
-                width: 95%;
-                height: 50px;
-                background: white;
-                box-shadow: 0px 0px 10px gray;
-                outline: none;
-                border: none;
-                border-radius: 5px;
-                padding: 7px 0px 0px 10px;
-            }
-
-            .form button {
-                width: 95%;
-                height: 40px;
-                background: var(--two);
-                color: white;
-                font-size: 15px;
-                font-weight: 600;
-                letter-spacing: 0.3px;
-                box-shadow: 0px 0px 10px var(--tree);
-                outline: none;
-                border: none;
-                border-radius: 5px;
-                margin: 25px 0px 10px 0px;
             }
 
             #mostrarDados {
@@ -239,39 +169,13 @@
 
                     <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
                     <ion-icon name="notifications"></ion-icon>
-                    <ion-icon onclick="enviarComunicado()" id="criar"  name="add"></ion-icon>
+                    <ion-icon onclick="enviar()" id="criar"  name="add"></ion-icon>
                     <ion-icon name="call"></ion-icon>
                     <ion-icon onclick="perfil()" name="person"></ion-icon>
 
                 </nav>
 
-		   		<!-- Criar Mensagem -->
-
-				<selection class="criar-mensagem">
-
-					<div class="form">
-
-                        <h1>Enviar Comunicado</h1>
-						
-						<label>Destinatario</label>
-						<input oninput="buscarDados()" id="destinatario" type="text">
-                        <div id="mostrarDados">
-
-                        </div>
-
-						<label>Titulo</label>
-						<input id="titulo" type="text">
-
-						<label>Mensagem</label>
-						<textarea id="mensagem"></textarea>
-							
-						<button>Enviar</button>
-
-						
-					</div>
-
-				</selection>
-			   
+		   		
             </body>
            
        <!-- JavaScript -->
@@ -300,12 +204,8 @@
        }
 
        // Enviar Comunicado
-       function enviarComunicado() {
-            const criarMensagem = document.querySelector('.criar-mensagem');
-            criarMensagem.style.display = "flex";
-            setTimeout(() => {
-                criarMensagem.style.opacity = 1;
-            }, 250);
+       function enviar() {
+         window.location.href = "./mensagens.html";
        }
 
 	
@@ -349,8 +249,6 @@
             mostrar.style.display = "none";
         }
         
-
-        // Vanessa Cristina Polinario
 
         db.collection("cadastro")
 	 	.doc("responsaveis")
