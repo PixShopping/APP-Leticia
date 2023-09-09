@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Letícia | Mensagens </title>
+		      
+		<style scoped>
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+                --gray: #b3abab;
+                --green: green;
+				--red: red;
+			}
+			
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background: white;
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+            }
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .local {
+                width: 100%;
+                height: 70px;
+                background: #F1F1F1;
+                color: var(--one);
+                display: flex;
+                justify-content: space-between;
+				align-items: center;
+            	padding: 0px 20px 0px 20px;
+                z-index: 100;
+                box-shadow: 0px 5px 15px gray;
+	 	   }
+
+            .local ion-icon {
+                font-size: 35px;
+                margin: 0px;
+            	cursor: pointer;
+		    }
+
+		    .local ion-icon:hover {
+				color: var(--two);
+				transition: all .3s ease-in-out;
+		    }
+
+            .local h1 {
+				font-size: 24px;
+                font-weight: 700;
+				letter-spacing: 0.5px;
+                display: flex;
+            }
+
+            /* - NAVGATION - */
+            
+            .navgation {
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
+                z-index: 100;
+                background: white;
+            }
+
+            .navgation ion-icon {
+                font-size: 28px;
+                color: var(--one);
+                cursor: pointer;
+            }
+
+            #criar {
+                font-size: 32px;
+                background: var(--one);
+                border-radius: 50%;
+                color: white;
+                padding: 5px;
+                box-shadow: 0px 0px 10px var(--one);
+            }
+
+            .container {
+                padding: 0px 0px 90px 0px;
+            }
+
+            .content ul {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .content ul li {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+                border-bottom: 2px solid gray;
+                display: flex;
+                align-items: center;
+                background: white;
+                cursor: pointer;
+            }
+
+            .content ul li:hover {
+                background: #bcbbbb;
+                transition: all .3s ease-in-out;
+            }
+
+            .content ul li h1 {
+                font-size: 24px;
+                font-weight: 750;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 5px;
+            }
+            
+            .content ul li ion-icon {
+                margin: 0px 5px 0px auto;
+                font-size: 35px;
+            }
+
+            .none {
+                display: none;
+            }
+        
+        </style>
+    </head>
+
+    <body>
+        
+        <main class="container">
+
+            <header class="local">
+
+                <h1>Mensagens</h1>
+                <ion-icon name="settings"></ion-icon>
+        
+            </header>
+
+            <section class="content admin">
+
+                <ul>
+
+                    <li onclick="mensagem6A()">
+                        <h1>6anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem6B()">
+                        <h1>6anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem7A()">
+                        <h1>7anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem7B()">
+                        <h1>7anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem8A()">
+                        <h1>8anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem8B()">
+                        <h1>8anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem9A()">
+                        <h1>9anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem9B()">
+                        <h1>9anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem1A()">
+                        <h1>1anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem1B()">
+                        <h1>1anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem2A()">
+                        <h1>2anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem2B()">
+                        <h1>2anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem2C()">
+                        <h1>2anoC</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem3A()">
+                        <h1>3anoA</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem3B()">
+                        <h1>3anoB</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="mensagem3C()">
+                        <h1>3anoC</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                </ul>
+
+            </section>
+
+            <!-- CONTENT 9 ANO A -->
+            <section class="content9A none">
+
+                <h1>9ANOA</h1>
+                <div id="div9A">
+
+                </div>
+
+            </section>
+
+            <section class="content responsavel">
+
+
+
+            </section>
+    
+        </main>
+       
+        <nav class="navgation">
+
+            <ion-icon onclick="home()" class="oi" id="home" name="home"></ion-icon>
+            <ion-icon name="notifications"></ion-icon>
+            <ion-icon onclick="enviar()" id="criar" name="add"></ion-icon>
+            <ion-icon name="call"></ion-icon>
+            <ion-icon onclick="perfil()" class="selecionado" name="person"></ion-icon>
+
+        </nav>
+
+    </body>
+
+    <!-- LINKS DO BANCO DE DADOS -->
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    
+    <!-- BANCO DE DADOS -->
+    <script>
+
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+	
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+
+
+
+    </script>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const admin = document.querySelector('.admin');
+        const responsavel = document.querySelector('.responsavel');
+
+        // Verificar se é administrador
+        if (localStorage.getItem('logado') === "ADMIN") {
+            admin.style.display = "flex";
+            responsavel.style.display = "none";
+        } else if (localStorage.getItem('logado') === "RESPONSAVEL") {
+            responsavel.style.display = "flex";
+            admin.style.display = "none";
+        }
+
+        
+
+        // HREF / FUNCOES
+        function perfil() {
+        window.location.href = "./perfil.html";
+       }
+
+       function home() {
+        window.location.href = "./home.html";
+       }
+
+       function enviar() {
+         window.location.href = "./mensagens.html";
+       }
+
+
+       // ENTRAR NAS SERIES (BOTOES)
+
+       
+       // 6 ANO
+       function mensagem6A() {
+            const content = document.querySelector('.content6A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem6B() {
+            const content = document.querySelector('.content6B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       // 7 ANO
+       function mensagem7A() {
+            const content = document.querySelector('.content7A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem7B() {
+            const content = document.querySelector('.content7B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       // 8 ANO
+       function mensagem8A() {
+            const content = document.querySelector('.content8A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem8B() {
+            const content = document.querySelector('.content8B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+        // 9 ANO
+       function mensagem9A() {
+            const content = document.querySelector('.content9A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem9B() {
+            const content = document.querySelector('.content9B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       // 1 ANO
+       function mensagem1A() {
+            const content = document.querySelector('.content1A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem1B() {
+            const content = document.querySelector('.content1B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       // 2 ANO
+       function mensagem2A() {
+            const content = document.querySelector('.content2A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem2B() {
+            const content = document.querySelector('.content2B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem2C() {
+            const content = document.querySelector('.content2C');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       // 3 ANO
+       function mensagem3A() {
+            const content = document.querySelector('.content3A');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem3B() {
+            const content = document.querySelector('.content3B');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+       function mensagem3C() {
+            const content = document.querySelector('.content3C');
+            admin.style.display = "none";
+            content.style.display = "flex";
+       }
+
+
+
+
+    </script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
