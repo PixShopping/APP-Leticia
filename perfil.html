@@ -128,7 +128,7 @@
 		   
 		   .dados div {
 		   	width: auto;
-		   	heigth: auto;
+		   	height: auto;
 		   	padding: 10px;
 		   	display: flex;
 		   	flex-direction: column;
@@ -139,7 +139,7 @@
 		      font-size: 21px;
 		      letter-spacing: 0.2px;
 			  margin: 8px 0px 0px 0px;
-			  color: var(--one):
+			  color: var(--one);
 		   }
 	    
 	    	.content ul {
@@ -182,7 +182,88 @@
 			  font-weight: 600;
 			  margin: 0px 0px 0px 0px;
 		   }
+
+           /* Container Senha */
 		   
+           .containerSenha {
+                width: 80%;
+                height: auto;
+                padding: 30px;
+                border-radius: 15px;
+                background: white;
+                color: #232323;
+                box-shadow: 0px 0px 10px gray;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: none;
+                opacity: 0;
+                flex-direction: column;
+                transition: all .4s ease-in-out;
+            }
+
+            .containerSenha h1 {
+                align-self: center;
+                font-size: 26px;
+                font-weight: 700;
+                margin: 0px 0px 5px 0px;
+                color: var(--one);
+            }
+
+            .containerSenha label {
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                margin: 20px 0px 3px;
+            }
+
+            .containerSenha input {
+                width: 100%;
+                height: 35px;
+                border-radius: 5px;
+                border: none;
+                background: white;
+                box-shadow: 0px 0px 5px gray;
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                outline: none;
+            }
+            
+            .containerSenha input:focus {
+                box-shadow: 0px 0px 15px #4e9bdf;
+                
+            }
+
+            .containerSenha button {
+                width: 95%;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: var(--one);
+                color: white;
+                padding: 10px;
+                font-size: 15.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 30px 0px 0px 5%;
+                outline: none;
+                transition: all .4s ease-in-out;
+            }
+
+            .containerSenha button:hover {
+                background: var(--two);
+                color: white;
+                box-shadow: 0px 0px 15px var(--tree);
+            }
+
+            .containerSenha button:focus {
+                background: var(--two);
+                color: white;
+                box-shadow: 0px 0px 15px var(--tree);
+            }
 		               
             </style>
            </head>
@@ -251,6 +332,19 @@
 
                 </nav>
 
+                <section class="containerSenha">
+
+                    <h1>Mudar Senha</h1>
+
+                    <label>Senha Atual</label>
+                    <input type="text" id="senhaAtual">
+
+                    <label>Nova Senha</label>
+                    <input type="text" id="novaSenha">
+
+                    <button onclick="redefinirSenha()">Redefinir Senha</button>
+
+                </section>
 
             </body>
            
@@ -303,8 +397,12 @@
 		}
 		
 		function mudarSenha() {
-		 alert('Para mudar a senha entre em contato \ncom o SUPORTE da escola!!');
-		}
+		 const containerSenha = document.querySelector('.containerSenha');
+         containerSenha.style.display = "flex";
+         setTimeout(() => {
+            containerSenha.style.opacity = 1;
+         }, 300)
+        }
 		
 		function suporte() {
 		 window.location.href = "tel:1633242256";
@@ -338,7 +436,38 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 	  
-	  
+	  function redefinirSenha() {
+        const senhaAtual = document.getElementById('senhaAtual').value;
+        const novaSenha = document.getElementById('novaSenha').value;
+        const senhaArmazenada = localStorage.getItem('senha');
+        const responsavelArmazenado = localStorage.getItem('responsavel'); 
+        
+        if (senhaAtual === senhaArmazenada) {
+            db.collection("cadastro")
+            .doc("responsaveis")
+            .collection(responsavelArmazenado)
+            .where("responsavel", "==", responsavelArmazenado)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    doc.ref.update({
+                        senha: novaSenha
+                    }).then(() => {
+                        alert('Deu certo!')
+                    }).catch((error) => {
+                        alert('Deu ERRADO')
+                    })
+                });
+            });
+            
+            setTimeout(() => {
+                location.reload();
+            }, 400);
+
+        } else {
+            alert('ERRO');
+        }
+    }
 	       
        </script>
        
