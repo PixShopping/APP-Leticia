@@ -254,7 +254,7 @@
             <section class="content9A none">
 
                 <h1>9ANOA</h1>
-                <div id="div9A">
+                <div id="9A">
 
                 </div>
 
@@ -280,29 +280,7 @@
 
     </body>
 
-    <!-- LINKS DO BANCO DE DADOS -->
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
     
-    <!-- BANCO DE DADOS -->
-    <script>
-
-       const firebaseConfig = {
-	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
-	    authDomain: "escola-leticia.firebaseapp.com",
-	    projectId: "escola-leticia",
-	    storageBucket: "escola-leticia.appspot.com",
-	    messagingSenderId: "782148597563",
-	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
-	  };
-	
-	  firebase.initializeApp(firebaseConfig);
-	  const db = firebase.firestore();
-
-
-
-    </script>
-
     <!-- JAVASCRIPT -->
     <script>
 
@@ -441,9 +419,44 @@
        }
 
 
+    </script>
 
+
+
+    <!-- LINKS DO BANCO DE DADOS -->
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    
+    <!-- BANCO DE DADOS -->
+    <script>
+
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+	
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+
+      const div = document.getElementById('9A');
+
+      db.collection('cadastro')
+      .doc('responsaveis')
+      .listCollections()
+      .then((colecoes) => {
+        colecoes.forEach((colecao) => {
+            div.innerHTML += `<h1>${colecao.id}</h1>`
+        })
+      })
 
     </script>
+
+
+
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
