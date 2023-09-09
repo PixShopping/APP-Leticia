@@ -291,6 +291,7 @@
 			    <h1 id="mostrarAluno"></h1>
 				<h1 id="mostrarSerie"></h1>
 				<h1 id="mostrarGmail"></h1>
+			        <h1 id="mostrarTelefone"></h1>
 			    </div>
 			</div>
 			
@@ -358,6 +359,7 @@
        const mostrarAluno = document.getElementById('mostrarAluno');
        const mostrarSerie = document.getElementById('mostrarSerie');
        const mostrarGmail = document.getElementById('mostrarGmail');
+       const mostrarTelefone = document.getElementById('mostrarTelefone');
        
        // Responsavel
        if(localStorage.getItem('responsavel')){
@@ -374,6 +376,10 @@
        // Gmail
        if(localStorage.getItem('gmail')){
        	mostrarGmail.innerHTML = localStorage.getItem('gmail');
+       }
+       // Telefone
+       if(localStorage.getItem('telefone')){
+       	mostrarTelefone.innerHTML = localStorage.getItem('telenofe');
        }
        
        
