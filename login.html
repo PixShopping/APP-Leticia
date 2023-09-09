@@ -170,7 +170,7 @@
             }
             
             .content-logar button, .content-cadastrar button {
-            	margin: auto 0px 5px 0px;
+            	margin: 20px 0px 5px 0px;
 		width: 85%;
             	height: 50px;
 		
@@ -290,10 +290,15 @@
 	       					<option value="9B">9anoB</option>
 	       				</select>
 	       				
-	       				<label>Telefone / Gmail
+	       				<label>Gmail
 	       				<p id="alertaGMAIL"></p>
 	       				</label>
 	       				<input placeholder="opcional" id="cadastroGmail" type="text">
+
+					<label>Telefone
+	       				<p id="alertaTELEFONE"></p>
+	       				</label>
+	       				<input placeholder="opcional" id="cadastroTelefone" type="text">
 	       				
 	       				<label>Senha
 	       				<p id="alertaSENHA"></p>
@@ -438,6 +443,7 @@
 	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
 	  	const ALUNO = document.getElementById('cadastroAluno').value;
 	  	const GMAIL = document.getElementById('cadastroGmail').value;
+		const TELEFONE = document.getElementById('cadastroTelefone').value;
 	  	const SERIE = document.getElementById('cadastroSerie').value;
 	  	const SENHA = document.getElementById('cadastroSenha').value;
 	  	const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
@@ -456,6 +462,7 @@
 			  	aluno: ALUNO,
 			  	serie: SERIE,
 			  	gmail: GMAIL,
+				telefone: TELEFONE,
 			  	senha: SENHA
 			  });
 			  
@@ -510,6 +517,8 @@
 		  						localStorage.setItem('serie', val.data().serie);
 		  					} if(val.data().gmail !== "") {
 		  						localStorage.setItem('gmail', val.data().gmail);
+		  					} if(val.data().telefone !== "") {
+		  						localStorage.setItem('telefone', val.data().telefone);
 		  					} if(val.data().senha !== "") {
 		  						localStorage.setItem('senha', val.data().senha);
 		  					}
