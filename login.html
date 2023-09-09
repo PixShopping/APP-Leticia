@@ -171,7 +171,7 @@
             
             .content-logar button, .content-cadastrar button {
             	margin: 20px 0px 5px 0px;
-		width: 85%;
+                width: 85%;
             	height: 50px;
 		
             }
@@ -491,7 +491,7 @@
 	  	const alertaRESPONSAVEL = document.getElementById('alertaLoginRESPONSAVEL');
 	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
 	  	
-	  	
+        
 	  	db.collection("cadastro")
 			.doc("responsaveis")
 			.collection(RESPONSAVEL)
@@ -535,9 +535,6 @@
 		  					}
 		  					window.location.href = "./home.html";
 		  				}, 400);
-		  			} else if (RESPONSAVEL === "Leticia" && SENHA === "123") {
-		  				localStorage.setItem('logado', 'ADMIN');
-	  					window.location.href = "./home.html";
 		  			}
 		  			
 		  		});
@@ -549,7 +546,19 @@
 		  	}
 	  	})
 	  		
-	  		
+	  	if (RESPONSAVEL ===  "Leticia") {
+            alertaRESPONSAVEL.innerHTML = "Valido";
+            alertaRESPONSAVEL.style.color = "var(--green)";
+        } if (SENHA ===  "123") {
+            alertaSENHA.innerHTML = "Valido";
+            alertaSENHA.style.color = "var(--green)";
+        }
+
+        if (RESPONSAVEL === "Leticia" && SENHA === "123") {
+            localStorage.setItem('logado', 'ADMIN');
+            window.location.href = "./home.html";
+        }
+
 	  		
 	  	
 	  }
