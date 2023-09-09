@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Letícia </title>
+		<title> Letícia | Perfil </title>
 		      
 		<style scoped>
 
@@ -18,6 +18,8 @@
 				--five: #6FADD2;
 				--six: #9ECAE3;
                 --gray: #b3abab;
+                --green: green;
+				--red: red;
 			}
 			
 			*  {
@@ -50,6 +52,8 @@
                 justify-content: space-between;
 				align-items: center;
             	padding: 0px 20px 0px 20px;
+                z-index: 100;
+                box-shadow: 0px 5px 15px gray;
 	 	   }
 
             .local ion-icon {
@@ -102,7 +106,11 @@
             }
 		    
 		    /* Content Perfil */
-	
+            
+            .container {
+                padding: 0px 0px 90px 0px;
+            }
+
 		   .content {
 		       display: flex;
 		       flex-direction: column;
@@ -272,68 +280,68 @@
            
            <body>
             
-                <main class="container">
+            <main class="container">
 
-                    <header class="local">
+                <header class="local">
 
-						<h1>Perfil</h1>
-                        <ion-icon name="settings"></ion-icon>
-			    
-                    </header>
+                    <h1>Perfil</h1>
+                    <ion-icon name="settings"></ion-icon>
+            
+                </header>
 
-		    <section class="content">
+        <section class="content">
 
-			<!-- DADOS DOS RESPONSAVEIS -->
-			<div class="dados">
-			    <ion-icon name="person-circle"></ion-icon>
-			    <div>
-				<h1 id="mostrarResponsavel"></h1>
-			    <h1 id="mostrarAluno"></h1>
-				<h1 id="mostrarSerie"></h1>
-				<h1 id="mostrarGmail"></h1>
-			        <h1 id="mostrarTelefone"></h1>
-			    </div>
-			</div>
-			
-			<!-- BOTOES DO PERFIL -->
-		    <ul>
-			  
-			  <!-- MUDAR SENHA -->
-			  <li onclick="mudarSenha()">
-			      <ion-icon style="font-size: 32.5px;" name="lock-open-outline"></ion-icon>
-			      <h1>Mudar Senha</h1>
-			      <ion-icon name="arrow-forward"></ion-icon>
-			  </li>
-			  
-			  <!-- SUPORTE -->
-			  <li onclick="suporte()">
-			      <ion-icon style="font-size: 32.5px;" name="call-outline"></ion-icon>
-			      <h1>Suporte</h1>
-			      <ion-icon name="arrow-forward"></ion-icon>
-			  </li>
-			  
-			  <!-- SAIR DA CONTA -->
-			  <li onclick="sair()">
-			      <ion-icon style="margin: 0px 10px 0px 5px;" name="exit-outline"></ion-icon>
-			      <h1>Sair da Conta</h1>
-			      <ion-icon name="arrow-forward"></ion-icon>
-			  </li>
-				
-			</ul>
-			    
-		    </section>
-			
-                </main>
-           	
-                <nav class="navgation">
+        <!-- DADOS DOS RESPONSAVEIS -->
+        <div class="dados">
+            <ion-icon name="person-circle"></ion-icon>
+            <div>
+            <h1 id="mostrarResponsavel"></h1>
+            <h1 id="mostrarAluno"></h1>
+            <h1 id="mostrarSerie"></h1>
+            <h1 id="mostrarGmail"></h1>
+                <h1 id="mostrarTelefone"></h1>
+            </div>
+        </div>
+        
+        <!-- BOTOES DO PERFIL -->
+        <ul>
+          
+          <!-- MUDAR SENHA -->
+          <li onclick="mudarSenha()">
+              <ion-icon style="font-size: 32.5px;" name="lock-open-outline"></ion-icon>
+              <h1>Mudar Senha</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+          
+          <!-- SUPORTE -->
+          <li onclick="suporte()">
+              <ion-icon style="font-size: 32.5px;" name="call-outline"></ion-icon>
+              <h1>Suporte</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+          
+          <!-- SAIR DA CONTA -->
+          <li onclick="sair()">
+              <ion-icon style="margin: 0px 10px 0px 5px;" name="exit-outline"></ion-icon>
+              <h1>Sair da Conta</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+            
+        </ul>
+            
+        </section>
+        
+            </main>
+           
+            <nav class="navgation">
 
-                    <ion-icon onclick="home()" class="oi" id="home" name="home"></ion-icon>
-                    <ion-icon name="notifications"></ion-icon>
-                    <ion-icon id="criar" name="add"></ion-icon>
-                    <ion-icon name="call"></ion-icon>
-                    <ion-icon onclick="perfil()" class="selecionado" name="person"></ion-icon>
+                <ion-icon onclick="home()" class="oi" id="home" name="home"></ion-icon>
+                <ion-icon name="notifications"></ion-icon>
+                <ion-icon onclick="enviar()" id="criar" name="add"></ion-icon>
+                <ion-icon name="call"></ion-icon>
+                <ion-icon onclick="perfil()" class="selecionado" name="person"></ion-icon>
 
-                </nav>
+            </nav>
 
                 <section class="containerSenha">
 
@@ -397,6 +405,10 @@
 
        function home() {
         window.location.href = "./home.html";
+       }
+
+       function enviar() {
+         window.location.href = "./mensagens.html";
        }
 
 		function sair() {
@@ -481,7 +493,7 @@
        
        
        
-       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </html>
