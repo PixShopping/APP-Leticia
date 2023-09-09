@@ -422,7 +422,6 @@
     </script>
 
 
-
     <!-- LINKS DO BANCO DE DADOS -->
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
@@ -430,7 +429,7 @@
     <!-- BANCO DE DADOS -->
     <script>
 
-       const firebaseConfig = {
+    const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
 	    projectId: "escola-leticia",
@@ -440,18 +439,42 @@
 	  };
 	
 	  firebase.initializeApp(firebaseConfig);
-	  const db = firebase.firestore();
+      const db = firebase.firestore();
 
       const div = document.getElementById('9A');
 
-      db.collection('cadastro')
-      .doc('responsaveis')
-      .listCollections()
-      .then((colecoes) => {
-        colecoes.forEach((colecao) => {
-            div.innerHTML += `<h1>${colecao.id}</h1>`
+      const responsaveisRef = db.collection('cadastro').doc('responsaveis');
+
+        responsaveisRef.get()
+        .then((docSnapshot) => {
+            if (docSnapshot.exists) {
+            const subcollections = docSnapshot.data();
+
+            // Percorra as chaves do objeto, que correspondem aos nomes das subcoleções
+            for (const subcollectionName in subcollections) {
+                if (Object.hasOwnProperty.call(subcollections, subcollectionName)) {
+                div.innerHTML += `<h2>Subcoleção: ${subcollectionName}</h2>`;
+
+                // Acesse a subcoleção e recupere os documentos
+                responsaveisRef.collection(subcollectionName).get()
+                    .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        const responsavel = doc.data().responsavel;
+                        div.innerHTML += `<p>Responsável: ${responsavel}</p>`;
+                    });
+                    })
+                    .catch((error) => {
+                    console.error(`Erro ao acessar a subcoleção ${subcollectionName}: ${error}`);
+                    });
+                }
+            }
+            } else {
+            console.error('O documento "responsaveis" não existe.');
+            }
         })
-      })
+        .catch((error) => {
+            console.error('Erro ao acessar o documento "responsaveis":', error);
+        });
 
     </script>
 
