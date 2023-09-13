@@ -312,7 +312,7 @@
             <!-- CONTENT 6 ANO A -->
             <section class="content6A none contentSeries">
 
-                <h1>6ANOA</h1>
+                <h1>6ANOA <p id="totalAlunos"></p> </h1>
                 <div id="6A">
 
                 </div>
@@ -687,6 +687,8 @@
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
+		const totalAlunos = document.getElenteById('totalAlunos');
+		let = quantidadeAlunos = 0;
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
@@ -694,9 +696,15 @@
             data.docs.map((val) => {
                 div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
+		quantidadeAlunos++;
             })
         })
-       }
+		if (quantidadeAlunos > 1) {
+			totalAlunos.textContent = `${quantidadeAlunos} Alunos`;
+		{ else {
+			totalAlunos.textContent = `${quantidadeAlunos} Aluno`;
+		}
+	}
 
     </script>
 
