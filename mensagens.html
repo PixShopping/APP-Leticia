@@ -206,6 +206,31 @@
             .none {
                 display: none;
             }
+
+		/* Mensagem de Erro */
+
+		.totalErro {
+			width: 100%;
+			height: auto;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.totalErro ion-icon {
+			font-size: 50px;
+			color: #E84354;
+			border: 3px solid #E84354;
+			border-radius: 50%;
+		}
+
+		.totalErro h1 {
+			
+		}
+
+		.totalErro p {
+			
+		}
         
         </style>
     </head>
@@ -476,6 +501,11 @@
 		<h1 id="avisoMensagens"></h1>
 
             </section>
+
+		<div class="totalErro">
+			<ion-icon name="close"></ion-icon>
+			<p>0 Alunos Encontrados</p>
+		</div>
     
         </main>
        
