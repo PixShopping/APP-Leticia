@@ -166,7 +166,7 @@
             }
 
 	    .contentSeries p {
-		    margin: 0px 0px 0px 5px;
+		    margin: 0px 0px 0px 6px;
 	    }
 
             .contentSeries div {
@@ -769,14 +769,14 @@
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
 		if (tamanho > 1){
-		    totalAlunos.textContent = ` - ${tamanho} Alunos`;
+		    totalAlunos.textContent = `| ${tamanho} Alunos`;
 		} else if (tamanho === 0){
 		    totalErro.style.display = "flex"
 		    setTimeout(() => {
 			totalErro.style.opacity = 1;
 		    }, 200)
 		} else {
-			totalAlunos.textContent = `- ${tamanho} Aluno`;
+			totalAlunos.textContent = `| ${tamanho} Aluno`;
 		}
 	     });
 	    
