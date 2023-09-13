@@ -693,11 +693,11 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
+		div.innerHTML += `<li class"li"><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
-	const liElements = document.querySelectorAll('li:not([id])');
+	const liElements = document.querySelectorAll('.li');
 	let countH1 = 0;
 	liElements.forEach((liElement) => {
 		const h1ElementsInside = liElement.querySelectorAll('h1')
