@@ -372,7 +372,7 @@
             <!-- CONTENT 9 ANO A -->
             <section class="content9A none contentSeries">
 
-                <h1>9ANOA - <p id="totalAlunos"></p></h1>
+                <h1>9ANOA - <p class="totalAlunos"></p></h1>
                 <div id="9A">
 
                 </div>
@@ -382,7 +382,7 @@
             <!-- CONTENT 9 ANO B -->
             <section class="content9B none contentSeries">
 
-                <h1>9ANOB - <p id="totalAlunos"></p></h1>
+                <h1>9ANOB - <p class="totalAlunos"></p></h1>
                 <div id="9B">
 
                 </div>
@@ -392,7 +392,7 @@
             <!-- CONTENT 1 ANO A -->
             <section class="content1B none contentSeries">
 
-                <h1>1ANOB - <p id="totalAlunos"></p></h1>
+                <h1>1ANOB - <p class="totalAlunos"></p></h1>
                 <div id="1B">
 
                 </div>
@@ -402,7 +402,7 @@
             <!-- CONTENT 1 ANO B -->
             <section class="content1B none contentSeries">
 
-                <h1>1ANOB - <p id="totalAlunos"></p></h1>
+                <h1>1ANOB - <p class="totalAlunos"></p></h1>
                 <div id="1B">
 
                 </div>
@@ -412,7 +412,7 @@
             <!-- CONTENT 2 ANO A -->
             <section class="content2A none contentSeries">
 
-                <h1>2ANOA - <p id="totalAlunos"></p></h1>
+                <h1>2ANOA - <p class="totalAlunos"></p></h1>
                 <div id="2A">
 
                 </div>
@@ -687,8 +687,8 @@
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
-		const totalAlunos = document.getElementById('totalAlunos');
-		let = quantidadeAlunos = 0;
+	const totalAlunos = document.querySelector('.totalAlunos');
+	let = quantidadeAlunos = 0;
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
@@ -700,9 +700,9 @@
             })
         })
 		if (quantidadeAlunos > 1) {
-			totalAlunos.textContent = `${quantidadeAlunos} Alunos`;
+			totalAlunos.innerHTML = `${quantidadeAlunos} Alunos`;
 		{ else {
-			totalAlunos.textContent = `${quantidadeAlunos} Aluno`;
+			totalAlunos.innerHTML = `${quantidadeAlunos} Aluno`;
 		}
 	}
 
