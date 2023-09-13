@@ -313,7 +313,7 @@
             <!-- CONTENT 6 ANO A -->
             <section class="content6A none contentSeries">
 
-                <h1>6ANOA -  </h1>
+                <h1>6ANOA - <p id="total6A"></p></h1>
                 <div id="6A">
 
                 </div>
@@ -323,7 +323,7 @@
             <!-- CONTENT 6 ANO B -->
             <section class="content6B none contentSeries">
 
-                <h1>6ANOB - </h1>
+                <h1>6ANOB - <p id="total6B"></p></h1>
                 <div id="6B">
 
                 </div>
@@ -333,7 +333,7 @@
             <!-- CONTENT 7 ANO A -->
             <section class="content7A none contentSeries">
 
-                <h1>7ANOA - </h1>
+                <h1>7ANOA - <p id="total7A"></p></h1>
                 <div id="7A">
 
                 </div>
@@ -343,7 +343,7 @@
             <!-- CONTENT 7 ANO B -->
             <section class="content7B none contentSeries">
 
-                <h1>7ANOB - </h1>
+                <h1>7ANOB - <p id="total7B"></p></h1>
                 <div id="7B">
 
                 </div>
@@ -353,7 +353,7 @@
             <!-- CONTENT 8 ANO A -->
             <section class="content8A none contentSeries">
 
-                <h1>8ANOA - </h1>
+                <h1>8ANOA - <p id="total8A"></p></h1>
                 <div id="8A">
 
                 </div>
@@ -363,7 +363,7 @@
             <!-- CONTENT 8 ANO B -->
             <section class="content8B none contentSeries">
 
-                <h1>8ANOB - </h1>
+                <h1>8ANOB - <p id="total8B"></p> </h1>
                 <div id="8B">
 
                 </div>
@@ -383,7 +383,7 @@
             <!-- CONTENT 9 ANO B -->
             <section class="content9B none contentSeries">
 
-                <h1>9ANOB - </h1>
+                <h1>9ANOB - <p id="total9B"></p></h1>
                 <div id="9B">
 
                 </div>
@@ -393,7 +393,7 @@
             <!-- CONTENT 1 ANO A -->
             <section class="content1B none contentSeries">
 
-                <h1>1ANOB - </h1>
+                <h1>1ANOB - <p id="total1A"></p></h1>
                 <div id="1B">
 
                 </div>
@@ -403,7 +403,7 @@
             <!-- CONTENT 1 ANO B -->
             <section class="content1B none contentSeries">
 
-                <h1>1ANOB - </h1>
+                <h1>1ANOB - <p id="total1B"></p></h1>
                 <div id="1B">
 
                 </div>
@@ -413,7 +413,7 @@
             <!-- CONTENT 2 ANO A -->
             <section class="content2A none contentSeries">
 
-                <h1>2ANOA - </h1>
+                <h1>2ANOA - <p id="total2A"></p></h1>
                 <div id="2A">
 
                 </div>
@@ -423,7 +423,7 @@
             <!-- CONTENT 2 ANO B -->
             <section class="content2B none contentSeries">
 
-                <h1>2ANOB</h1>
+                <h1>2ANOB - <p id="total2B"></p></h1>
                 <div id="2B">
 
                 </div>
@@ -433,7 +433,7 @@
             <!-- CONTENT 2 ANO C -->
             <section class="content2C none contentSeries">
 
-                <h1>2ANOC</h1>
+                <h1>2ANOC - <p id="total2C"></p></h1>
                 <div id="2C">
 
                 </div>
@@ -443,7 +443,7 @@
             <!-- CONTENT 3 ANO A -->
             <section class="content3A none contentSeries">
 
-                <h1>3ANOA</h1>
+                <h1>3ANOA - <p id="total3A"></p></h1>
                 <div id="3A">
 
                 </div>
@@ -453,7 +453,7 @@
             <!-- CONTENT 3 ANO B -->
             <section class="content3B none contentSeries">
 
-                <h1>3ANOB</h1>
+                <h1>3ANOB< - <p id="total3B"></p>/h1>
                 <div id="3B">
 
                 </div>
@@ -463,7 +463,7 @@
             <!-- CONTENT 3 ANO C -->
             <section class="content3C none contentSeries">
 
-                <h1>3ANOC</h1>
+                <h1>3ANOC - <p id="total3C"></p></h1>
                 <div id="3C">
 
                 </div>
@@ -531,7 +531,8 @@
             const content = document.querySelector('.content6A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '6A')
+            localStorage.setItem('SERIE', '6A');
+            localStorage.setItem('ID_TOTAL', 'total6A');
             atualizarBanco();
        }
 
@@ -539,7 +540,8 @@
             const content = document.querySelector('.content6B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '6B')
+            localStorage.setItem('SERIE', '6B');
+            localStorage.setItem('ID_TOTAL', 'total6B');
             atualizarBanco();
        }
 
@@ -548,7 +550,8 @@
             const content = document.querySelector('.content7A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '7A')
+            localStorage.setItem('SERIE', '7A');
+	    localStorage.setItem('ID_TOTAL', 'total7A');
             atualizarBanco();
         }
 
@@ -556,7 +559,8 @@
             const content = document.querySelector('.content7B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '7B')
+            localStorage.setItem('SERIE', '7B');
+	    localStorage.setItem('ID_TOTAL', 'total7B');
             atualizarBanco();
        }
 
@@ -565,7 +569,8 @@
             const content = document.querySelector('.content8A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '8A')
+            localStorage.setItem('SERIE', '8A');
+	    localStorage.setItem('ID_TOTAL', 'total8A');
             atualizarBanco();
        }
 
@@ -573,7 +578,8 @@
             const content = document.querySelector('.content8B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '8B')
+            localStorage.setItem('SERIE', '8B');
+	    localStorage.setItem('ID_TOTAL', 'total8B');
             atualizarBanco();
        }
 
@@ -591,7 +597,8 @@
             const content = document.querySelector('.content9B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '9B')
+            localStorage.setItem('SERIE', '9B');
+	    localStorage.setItem('ID_TOTAL', 'total9B');
             atualizarBanco();
        }
 
@@ -600,7 +607,8 @@
             const content = document.querySelector('.content1A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '1A')
+            localStorage.setItem('SERIE', '1A');
+	    localStorage.setItem('ID_TOTAL', 'total1A');
             atualizarBanco();
        }
 
@@ -608,7 +616,8 @@
             const content = document.querySelector('.content1B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '1B')
+            localStorage.setItem('SERIE', '1B');
+	    localStorage.setItem('ID_TOTAL', 'total1B');
             atualizarBanco();
        }
 
@@ -617,7 +626,8 @@
             const content = document.querySelector('.content2A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A')
+            localStorage.setItem('SERIE', '2A');
+	    localStorage.setItem('ID_TOTAL', 'total2A');
             atualizarBanco();
        }
 
@@ -625,7 +635,8 @@
             const content = document.querySelector('.content2B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '2B')
+            localStorage.setItem('SERIE', '2B');
+	    localStorage.setItem('ID_TOTAL', 'total2B');
             atualizarBanco();
        }
 
@@ -633,7 +644,8 @@
             const content = document.querySelector('.content2C');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '2C')
+            localStorage.setItem('SERIE', '2C');
+	    localStorage.setItem('ID_TOTAL', 'total2C');
             atualizarBanco();
        }
 
@@ -642,7 +654,8 @@
             const content = document.querySelector('.content3A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A')
+            localStorage.setItem('SERIE', '2A');
+	    localStorage.setItem('ID_TOTAL', 'total3A');
             atualizarBanco();
        }
 
@@ -650,7 +663,8 @@
             const content = document.querySelector('.content3B');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '3B')
+            localStorage.setItem('SERIE', '3B');
+	    localStorage.setItem('ID_TOTAL', 'total3B');
             atualizarBanco();
        }
 
@@ -658,7 +672,8 @@
             const content = document.querySelector('.content3C');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '3C')
+            localStorage.setItem('SERIE', '3C');
+	    localStorage.setItem('ID_TOTAL', 'total3C');
             atualizarBanco();
        }
 
