@@ -694,13 +694,10 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-		div.innerHTML += `<li id="minhaLI"><h1>Responsavel: ${val.data().responsavel}</h1>
+		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-		var c = 0
-		if (c === 0) {
-		  tamanho++;
-		}
             })
+		tamanho++;
         })
 	totalAlunos.innerHTML = `${tamanho} Alunos`;
 		
