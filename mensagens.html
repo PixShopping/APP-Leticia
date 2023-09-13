@@ -683,7 +683,6 @@
 	
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
-	var tamanho = 0;
 	    
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
@@ -696,7 +695,6 @@
             data.docs.forEach((val) => {
 		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-		tamanho++;
             })
         })
 	totalAlunos.innerHTML = `${tamanho} Alunos`;
