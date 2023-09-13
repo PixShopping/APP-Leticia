@@ -696,7 +696,10 @@
             data.docs.map((val) => {
 		div.innerHTML += `<li id="minhaLI"><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-		tamanho++;
+		var c = 0
+		if (c === 0) {
+		  tamanho++;
+		}
             })
         })
 	totalAlunos.innerHTML = `${tamanho} Alunos`;
