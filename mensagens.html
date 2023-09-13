@@ -213,10 +213,11 @@
 			width: 100vw;
 			height: auto;
 			padding: 20px;
-			display: flex;
+			display: none;
+			opacity: 0;
 			justify-content: center;
 			flex-direction: column;
-			
+			transition: all .3s ease-in-out:
 		}
 
 		.totalErro ion-icon {
@@ -752,6 +753,8 @@
             });
         });
 
+	const totalErro = document.querySelector('.totalErro');
+	      
 	setTimeout(() => {
 	    db.collection("cadastro")
 	    .doc("series")
@@ -759,8 +762,11 @@
 		const tamanho = dados.size;
 		if (tamanho > 1){
 		    totalAlunos.textContent = `${tamanho} Alunos`;
-		} else {
-		    totalAlunos.textContent = `${tamanho} Aluno`;
+		} else if (tamanho === 0){
+		    totalErro.style.display = "flex"
+		    setTimeout(() => {
+			totalErro.style.opacity = 1;
+		    }, 350)
 		}
 	     });
 	    
