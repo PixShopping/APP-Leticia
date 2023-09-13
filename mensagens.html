@@ -688,15 +688,16 @@
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
-	const elementosh1 = div.getElementsByTagName('h1');
-	const tamanho = elementosh1.length;
+	const minhaLI = document.getElementById('minhaLI');
+	const h1 = minhaLI.getElementsByTagName('h1');
+	const tamanho = h1.length;
 	const totalAlunos = document.getElementById('total9A');
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
+		div.innerHTML += `<li id="minhaLI"><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
