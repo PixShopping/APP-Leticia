@@ -688,7 +688,7 @@
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
 	const totalAlunos = document.getElementById('total9A');
-        const tamanho = 0;
+        var tamanho = 0;
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
