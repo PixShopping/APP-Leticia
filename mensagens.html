@@ -698,8 +698,11 @@
             })
         })
 
-	
-	totalAlunos.innerHTML = `${countH1} Alunos`;
+
+	db.collection(SERIE).get().then((dados) => {
+		const tamanho = dados.size;
+	})
+	totalAlunos.innerHTML = `${tamanho} Alunos`;
 	
 	}
 
