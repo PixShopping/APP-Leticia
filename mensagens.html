@@ -699,9 +699,14 @@
         })
 
 
-	db.collection(SERIE).get().then((dados) => {
+	db.collection("cadastro")
+	.doc("series")
+	.collection(SERIE)
+	.get()
+	.then((dados) => {
 		const tamanho = dados.size;
 	})
+	
 	totalAlunos.innerHTML = `${tamanho} Alunos`;
 	
 	}
