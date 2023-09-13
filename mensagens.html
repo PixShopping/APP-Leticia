@@ -688,11 +688,12 @@
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
 	const totalAlunos = document.getElementById('total9A');
-        db.collection("cadastro")
+        const tamanho = 0;
+	db.collection("cadastro")
         .doc("series")
         .collection(SERIE).get()
 	.then(total => {
-	     const tamanho = total.size;
+	     tamanho = total.size;
 	});
 	      
         db.collection("cadastro")
@@ -704,11 +705,13 @@
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
-		if (tamanho > 1) {
-			totalAlunos.innerHTML = `${tamanho} Alunos`;
-		} else {
-			totalAlunos.innerHTML = `${tamanho} Aluno`;
-		}
+
+	if (tamanho > 1) {
+		totalAlunos.innerHTML = `${tamanho} Alunos`;
+	} else {
+		totalAlunos.innerHTML = `${tamanho} Aluno`;
+	}
+		
 	}
 
     </script>
