@@ -683,7 +683,8 @@
 	
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
-
+	var tamanho = 0;
+	    
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
@@ -697,16 +698,8 @@
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
-
-        const minhaLI = document.getElementById('minhaLI');
-	const h1 = minhaLI.getElementsByTagName('h1');
-	const tamanho = h1.length;
-	      
-	if (tamanho > 1) {
-		totalAlunos.innerHTML = `${tamanho} Alunos`;
-	} else {
-		totalAlunos.innerHTML = `${tamanho} Aluno`;
-	}
+	tamanho++;
+	totalAlunos.innerHTML = `${tamanho} Alunos`;
 		
 	}
 
