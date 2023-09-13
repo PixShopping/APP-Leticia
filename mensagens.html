@@ -210,11 +210,13 @@
 		/* Mensagem de Erro */
 
 		.totalErro {
-			width: 100%;
+			width: 100vw;
 			height: auto;
 			padding: 20px;
 			display: flex;
+			justify-content: center;
 			flex-direction: column;
+			
 		}
 
 		.totalErro ion-icon {
@@ -225,11 +227,15 @@
 		}
 
 		.totalErro h1 {
-			
+			font-size: 22px;
+			font-weight: 600;
+			margin: 5px 0px 0px 0px;
 		}
 
 		.totalErro p {
-			
+			font-size: 18px;
+			font-weight: 550;
+			margin: 2.5px 0px 0px 0px;
 		}
         
         </style>
@@ -504,7 +510,8 @@
 
 		<div class="totalErro">
 			<ion-icon name="close"></ion-icon>
-			<p>0 Alunos Encontrados</p>
+			<h1>Oops!</h1>
+			<p>Nenhum Aluno Encontrado</p>
 		</div>
     
         </main>
