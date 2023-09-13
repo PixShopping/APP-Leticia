@@ -705,7 +705,11 @@
 	    .doc("series")
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
-	        totalAlunos.textContent = `${tamanho} Alunos`;
+		if (tamanho > 1){
+		    totalAlunos.textContent = `${tamanho} Aluno`;
+		} else {
+		    totalAlunos.textContent = `${tamanho} Alunos`;
+		}
 	     });
 	    
 	}, 500);
