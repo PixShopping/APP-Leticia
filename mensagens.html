@@ -684,18 +684,17 @@
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-      
+      var tamanho = 0;
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
 	const totalAlunos = document.getElementById('total9A');
-        var tamanho = 0;
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-                tamanho++;
+                tamanho = tamanho+1;
 		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
