@@ -683,12 +683,13 @@
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
+      var quantidadeAlunos = 0;
 
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
 	const totalAlunos = document.getElementById('total9A');
-	var quantidadeAlunos = 0;
+	
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
