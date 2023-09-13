@@ -701,9 +701,7 @@
 
 	db.collection("cadastro")
 	.doc("series")
-	.collection(SERIE)
-	.get()
-	.then((dados) => {
+	.collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
 	})
 	
