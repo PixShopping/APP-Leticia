@@ -688,9 +688,6 @@
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
-	const minhaLI = document.getElementById('minhaLI');
-	const h1 = minhaLI.getElementsByTagName('h1');
-	const tamanho = h1.length;
 	const totalAlunos = document.getElementById('total9A');
         db.collection("cadastro")
         .doc("series")
@@ -702,6 +699,10 @@
             })
         })
 
+        const minhaLI = document.getElementById('minhaLI');
+	const h1 = minhaLI.getElementsByTagName('h1');
+	const tamanho = h1.length;
+	      
 	if (tamanho > 1) {
 		totalAlunos.innerHTML = `${tamanho} Alunos`;
 	} else {
