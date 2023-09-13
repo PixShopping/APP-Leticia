@@ -699,13 +699,16 @@
         })
 
 
-	db.collection("cadastro")
-	.doc("series")
-	.collection(SERIE).get().then((dados) => {
+	setTimeout(() => {
+	    db.collection("cadastro")
+	    .doc("series")
+	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
-	})
+	     })
+		
+	     totalAlunos.innerHTML = `${tamanho} Alunos`;
+	}, 500)
 	
-	totalAlunos.innerHTML = `${tamanho} Alunos`;
 	
 	}
 
