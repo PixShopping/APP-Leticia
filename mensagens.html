@@ -691,10 +691,10 @@
         var quantidadeAlunos = 0;
 	db.collection("cadastro")
         .doc("series")
-        .collection(SERIE)
-	.get()
-	.then((total) => {
-	     quantidadeAlunos = total.size;
+        .collection(SERIE).get()
+	.then(total => {
+	     const tamanho = total.size;
+	     quantidadeAlunos = tamanho;
 	});
 	      
         db.collection("cadastro")
