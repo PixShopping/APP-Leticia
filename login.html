@@ -9,6 +9,8 @@
 		      
 		<style scoped>
 
+			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
 			:root {
 				/* Cores do aplicativo */
 				--one: #002242;
@@ -17,6 +19,7 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
+				--font: 'Ubuntu', sans-serif;
 				--green: green;
 				--red: red;
 			}
@@ -449,7 +452,9 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 	  
-	  // Cadastro
+	  // ----------
+	  //  CADASTRO
+	  // ----------
 	  function enviarCadastro() {
 	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
 	  	const ALUNO = document.getElementById('cadastroAluno').value;
@@ -477,13 +482,23 @@
 			  	senha: SENHA
 			  });
 			  
+			db.collection("cadastro")
+			.doc("series")
+			.collection(SERIE)
+			.add({
+				responsavel: RESPONSAVEL,
+				aluno: ALUNO
+			})
+
 		  setTimeout(() => {
 		    location.reload();
 		  }, 850);
 		}
 	  }
 	  
-	  // Login
+	  // ----------
+	  //   LOGIN
+	  // ----------
 	  function enviarLogin() {
 	  
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
