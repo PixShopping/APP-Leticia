@@ -721,9 +721,9 @@
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
 		if (tamanho > 1){
-		    totalAlunos.textContent = `${tamanho} Aluno`;
-		} else {
 		    totalAlunos.textContent = `${tamanho} Alunos`;
+		} else {
+		    totalAlunos.textContent = `${tamanho} Aluno`;
 		}
 	     });
 	    
