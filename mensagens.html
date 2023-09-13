@@ -697,8 +697,15 @@
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
-	totalAlunos.innerHTML = `${tamanho} Alunos`;
-		
+	const liElements = document.querySelectorAll('li:not([id])');
+	let countH1 = 0;
+	liElements.forEach((liElement) => {
+		const h1ElementsInside = liElement.querySelectorAll('h1')
+		countH1 += h1ElementsInside.length;
+	})
+	      
+	totalAlunos.innerHTML = `${countH1} Alunos`;
+	
 	}
 
     </script>
