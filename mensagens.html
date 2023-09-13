@@ -473,7 +473,7 @@
 
             <section class="content responsavel">
 
-
+		<h1 id="avisoMensagens"></h1>
 
             </section>
     
@@ -583,6 +583,7 @@
             admin.style.display = "none";
             content.style.display = "flex";
             localStorage.setItem('SERIE', '9A');
+	    localStorage.setItem('ID_TOTAL', 'total9A');
             atualizarBanco();
        }
 
@@ -686,8 +687,9 @@
 	    
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
+	const IDTOTAL = localStorage.getItem('ID_TOTAL');
         const div = document.getElementById(SERIE);
-	const totalAlunos = document.getElementById('total9A');
+	const totalAlunos = document.getElementById(IDTOTAL);
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
@@ -695,19 +697,18 @@
             data.docs.forEach((val) => {
 		div.innerHTML += `<li class"li"><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-            })
-        })
-
+            });
+        });
 
 	setTimeout(() => {
 	    db.collection("cadastro")
 	    .doc("series")
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
-	     })
+	     });
 		
 	     totalAlunos.innerHTML = `${tamanho} Alunos`;
-	}, 500)
+	}, 500);
 	
 	
 	}
