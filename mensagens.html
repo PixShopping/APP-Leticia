@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
-		<link type="stylesheet" src="./style.css">
+		<link rel="stylesheet" src="./style.css">
 		<title> Letícia | Mensagens </title>
 		      
 		<style scoped>
@@ -698,7 +698,7 @@
             data.docs.map((val) => {
                 div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-		quantidadeAlunos++;
+		quantidadeAlunos += 1;
             })
         })
 		if (quantidadeAlunos > 1) {
