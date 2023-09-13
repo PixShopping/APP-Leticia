@@ -693,11 +693,11 @@
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
-            data.docs.map((val) => {
+            data.docs.forEach((val) => {
 		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
-            })
 		tamanho++;
+            })
         })
 	totalAlunos.innerHTML = `${tamanho} Alunos`;
 		
