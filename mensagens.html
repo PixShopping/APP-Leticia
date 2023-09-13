@@ -698,11 +698,8 @@
             })
         })
 	const liElements = document.querySelector('.li');
-	let countH1 = 0;
-	liElements.forEach((liElement) => {
-		const h1ElementsInside = liElement.querySelectorAll('h1')
-		countH1 += h1ElementsInside.length;
-	})
+	const h1ElementsInside = liElements.querySelectorAll('h1')
+	countH1 += h1ElementsInside.length;
 	      
 	totalAlunos.innerHTML = `${countH1} Alunos`;
 	
