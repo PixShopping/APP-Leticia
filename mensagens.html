@@ -372,7 +372,7 @@
             <!-- CONTENT 9 ANO A -->
             <section class="content9A none contentSeries">
 
-                <h1>9ANOA - <p class="totalAlunos"></p></h1>
+                <h1>9ANOA - <p class="9A"></p></h1>
                 <div id="9A">
 
                 </div>
@@ -687,7 +687,7 @@
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
         const div = document.getElementById(SERIE);
-	const totalAlunos = document.querySelector('.totalAlunos');
+	const totalAlunos = document.querySelector('.',SERIE);
 	let = quantidadeAlunos = 0;
         db.collection("cadastro")
         .doc("series")
