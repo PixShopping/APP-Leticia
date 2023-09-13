@@ -765,7 +765,7 @@
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
 		if (tamanho > 1){
-		    totalAlunos.textContent = `- ${tamanho} Alunos`;
+		    totalAlunos.textContent = ` - ${tamanho} Alunos`;
 		} else if (tamanho === 0){
 		    totalErro.style.display = "flex"
 		    setTimeout(() => {
