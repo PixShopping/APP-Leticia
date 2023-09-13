@@ -689,19 +689,13 @@
         const div = document.getElementById(SERIE);
 	const totalAlunos = document.getElementById('total9A');
         const tamanho = 0;
-	db.collection("cadastro")
-        .doc("series")
-        .collection(SERIE).get()
-	.then(total => {
-	     tamanho = total.size;
-	});
-	      
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-                div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
+                tamanho++;
+		div.innerHTML += `<li><h1>Responsavel: ${val.data().responsavel}</h1>
                     <h1>Aluno: ${val.data().aluno}</h1></li>`;
             })
         })
