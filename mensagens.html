@@ -705,9 +705,10 @@
 	    .doc("series")
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
+	        totalAlunos.innerHTML = `${tamanho} Alunos`;
 	     });
 		
-	     totalAlunos.innerHTML = `${tamanho} Alunos`;
+	    
 	}, 500);
 	
 	
