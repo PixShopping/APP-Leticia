@@ -9,6 +9,8 @@
 		      
 		<style scoped>
 
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
 			:root {
 				/* Cores do aplicativo */
 				--one: #002242;
@@ -18,6 +20,7 @@
 				--five: #6FADD2;
 				--six: #9ECAE3;
                 --gray: #b3abab;
+                --font: 'Ubuntu', sans-serif;
                 --green: green;
 				--red: red;
 			}
@@ -26,6 +29,7 @@
 				padding: 0px;
 				margin: 0px;
 				box-sizing: border-box;
+                font-family: var(--font);
 			}
 			
 			body {
@@ -144,6 +148,60 @@
                 font-size: 35px;
             }
 
+            .contentSeries {
+                width: 100vw;
+                height: auto;
+                color: #232323;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contentSeries h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 25px 0px 20px 0px;
+            }
+
+            .contentSeries div {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .contentSeries div li {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                list-style: none;
+                border-bottom: 2px solid gray;
+                background: white;
+                cursor: pointer;
+            }
+
+            .contentSeries div li:hover {
+                background: #CCC;
+                box-shadow: 0px 0px 10px #CCC;
+                transition: all .3s ease-in-out;
+            }
+
+            .contentSeries div li:first-child{
+                border-top: 2px solid gray;
+            }
+
+
+            .contentSeries div li h1 {
+                font-size: 18.5px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                margin: 2px 0px 0px 0px;
+            }
+
             .none {
                 display: none;
             }
@@ -250,8 +308,69 @@
 
             </section>
 
+
+            <!-- CONTENT 6 ANO A -->
+            <section class="content6A none contentSeries">
+
+                <h1>6ANOA</h1>
+                <div id="6A">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 6 ANO B -->
+            <section class="content6B none contentSeries">
+
+                <h1>6ANOB</h1>
+                <div id="6B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 7 ANO A -->
+            <section class="content7A none contentSeries">
+
+                <h1>7ANOA</h1>
+                <div id="7A">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 7 ANO B -->
+            <section class="content7B none contentSeries">
+
+                <h1>7ANOB</h1>
+                <div id="7B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 8 ANO A -->
+            <section class="content8A none contentSeries">
+
+                <h1>8ANOA</h1>
+                <div id="8A">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 8 ANO B -->
+            <section class="content8B none contentSeries">
+
+                <h1>8ANOB</h1>
+                <div id="8B">
+
+                </div>
+
+            </section>
+
             <!-- CONTENT 9 ANO A -->
-            <section class="content9A none">
+            <section class="content9A none contentSeries">
 
                 <h1>9ANOA</h1>
                 <div id="9A">
@@ -259,6 +378,97 @@
                 </div>
 
             </section>
+
+            <!-- CONTENT 9 ANO B -->
+            <section class="content9B none contentSeries">
+
+                <h1>9ANOB</h1>
+                <div id="9B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 1 ANO A -->
+            <section class="content1B none contentSeries">
+
+                <h1>1ANOB</h1>
+                <div id="1B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 1 ANO B -->
+            <section class="content1B none contentSeries">
+
+                <h1>1ANOB</h1>
+                <div id="1B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 2 ANO A -->
+            <section class="content2A none contentSeries">
+
+                <h1>2ANOA</h1>
+                <div id="2A">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 2 ANO B -->
+            <section class="content2B none contentSeries">
+
+                <h1>2ANOB</h1>
+                <div id="2B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 2 ANO C -->
+            <section class="content2C none contentSeries">
+
+                <h1>2ANOC</h1>
+                <div id="2C">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 3 ANO A -->
+            <section class="content3A none contentSeries">
+
+                <h1>3ANOA</h1>
+                <div id="3A">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 3 ANO B -->
+            <section class="content3B none contentSeries">
+
+                <h1>3ANOB</h1>
+                <div id="3B">
+
+                </div>
+
+            </section>
+
+            <!-- CONTENT 3 ANO C -->
+            <section class="content3C none contentSeries">
+
+                <h1>3ANOC</h1>
+                <div id="3C">
+
+                </div>
+
+            </section>
+
 
             <section class="content responsavel">
 
@@ -320,12 +530,16 @@
             const content = document.querySelector('.content6A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '6A')
+            atualizarBanco();
        }
 
        function mensagem6B() {
             const content = document.querySelector('.content6B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '6B')
+            atualizarBanco();
        }
 
        // 7 ANO
@@ -333,12 +547,16 @@
             const content = document.querySelector('.content7A');
             admin.style.display = "none";
             content.style.display = "flex";
-       }
+            localStorage.setItem('SERIE', '7A')
+            atualizarBanco();
+        }
 
        function mensagem7B() {
             const content = document.querySelector('.content7B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '7B')
+            atualizarBanco();
        }
 
        // 8 ANO
@@ -346,12 +564,16 @@
             const content = document.querySelector('.content8A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '8A')
+            atualizarBanco();
        }
 
        function mensagem8B() {
             const content = document.querySelector('.content8B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '8B')
+            atualizarBanco();
        }
 
         // 9 ANO
@@ -359,12 +581,16 @@
             const content = document.querySelector('.content9A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '9A')
+            atualizarBanco();
        }
 
        function mensagem9B() {
             const content = document.querySelector('.content9B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '9B')
+            atualizarBanco();
        }
 
        // 1 ANO
@@ -372,12 +598,16 @@
             const content = document.querySelector('.content1A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '1A')
+            atualizarBanco();
        }
 
        function mensagem1B() {
             const content = document.querySelector('.content1B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '1B')
+            atualizarBanco();
        }
 
        // 2 ANO
@@ -385,18 +615,24 @@
             const content = document.querySelector('.content2A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '2A')
+            atualizarBanco();
        }
 
        function mensagem2B() {
             const content = document.querySelector('.content2B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '2B')
+            atualizarBanco();
        }
 
        function mensagem2C() {
             const content = document.querySelector('.content2C');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '2C')
+            atualizarBanco();
        }
 
        // 3 ANO
@@ -404,18 +640,24 @@
             const content = document.querySelector('.content3A');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '2A')
+            atualizarBanco();
        }
 
        function mensagem3B() {
             const content = document.querySelector('.content3B');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '3B')
+            atualizarBanco();
        }
 
        function mensagem3C() {
             const content = document.querySelector('.content3C');
             admin.style.display = "none";
             content.style.display = "flex";
+            localStorage.setItem('SERIE', '3C')
+            atualizarBanco();
        }
 
 
@@ -429,7 +671,7 @@
     <!-- BANCO DE DADOS -->
     <script>
 
-    const firebaseConfig = {
+      const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
 	    projectId: "escola-leticia",
@@ -441,40 +683,20 @@
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
 
-      const div = document.getElementById('9A');
 
-      const responsaveisRef = db.collection('cadastro').doc('responsaveis');
-
-        responsaveisRef.get()
-        .then((docSnapshot) => {
-            if (docSnapshot.exists) {
-            const subcollections = docSnapshot.data();
-
-            // Percorra as chaves do objeto, que correspondem aos nomes das subcoleções
-            for (const subcollectionName in subcollections) {
-                if (Object.hasOwnProperty.call(subcollections, subcollectionName)) {
-                div.innerHTML += `<h2>Subcoleção: ${subcollectionName}</h2>`;
-
-                // Acesse a subcoleção e recupere os documentos
-                responsaveisRef.collection(subcollectionName).get()
-                    .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        const responsavel = doc.data().responsavel;
-                        div.innerHTML += `<p>Responsável: ${responsavel}</p>`;
-                    });
-                    })
-                    .catch((error) => {
-                    console.error(`Erro ao acessar a subcoleção ${subcollectionName}: ${error}`);
-                    });
-                }
-            }
-            } else {
-            console.error('O documento "responsaveis" não existe.');
-            }
+      function atualizarBanco() {
+        const SERIE = localStorage.getItem('SERIE');
+        const div = document.getElementById(SERIE);
+        db.collection("cadastro")
+        .doc("series")
+        .collection(SERIE)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                div.innerHTML += `<li><h1>${val.data().responsavel}</h1>
+                    <h1>${val.data().aluno}</h1></li>`;
+            })
         })
-        .catch((error) => {
-            console.error('Erro ao acessar o documento "responsaveis":', error);
-        });
+       }
 
     </script>
 
