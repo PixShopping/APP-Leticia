@@ -92,7 +92,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-		color: #f1f1f1;
+                color: #F1F1F1;
             }
 
             .navgation ion-icon {
@@ -100,15 +100,15 @@
                 cursor: pointer;
             }
 
-            #criar {
-                font-size: 32px;
-                background: var(--one);
-                border-radius: 50%;
-                color: white;
-                padding: 5px;
-                box-shadow: 0px 0px 10px var(--one);
-            }
+            /* SELECIONADO */
 
+            .selecionado {
+                background: #F1F1F1;
+                color: var(--one);
+                border-radius: 50%;
+                padding: 15px;
+            }
+             
             .container {
                 padding: 0px 0px 90px 0px;
             }
@@ -540,11 +540,11 @@
        
         <nav class="navgation">
 
-            <ion-icon onclick="home()" class="oi" id="home" name="home"></ion-icon>
+            <ion-icon onclick="home()" id="home" name="home"></ion-icon>
             <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-            <ion-icon onclick="enviar()" id="criar" name="add"></ion-icon>
+            <ion-icon onclick="enviar()" class="selecionado" name="add"></ion-icon>
             <ion-icon name="call"></ion-icon>
-            <ion-icon onclick="perfil()" class="selecionado" name="person"></ion-icon>
+            <ion-icon onclick="perfil()" name="person"></ion-icon>
 
         </nav>
 
