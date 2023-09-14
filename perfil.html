@@ -340,7 +340,7 @@
             <nav class="navgation">
 
                 <ion-icon onclick="home()" class="oi" id="home" name="home"></ion-icon>
-                <ion-icon name="notifications"></ion-icon>
+                <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
                 <ion-icon onclick="enviar()" id="criar" name="add"></ion-icon>
                 <ion-icon name="call"></ion-icon>
                 <ion-icon onclick="perfil()" class="selecionado" name="person"></ion-icon>
@@ -409,6 +409,10 @@
 
        function home() {
         window.location.href = "./home.html";
+       }
+       
+       function notificacao() {
+        window.location.href = "./notificacao.html";
        }
 
        function enviar() {
