@@ -45,13 +45,14 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+                padding:0px 0px 100px 0px;
             }
 
             .bem-vindo {
                 width: 100%;
-                height: 250px;
+                height: 240px;
                 padding: 20px;
-                border-radius: 25px;
+                border-radius: 0px 0px 25px 25px;
                 background: #144774;
                 color: white;
                 display: flex;
@@ -62,13 +63,13 @@
             }
 
             .bem-vindo ion-icon {
-                font-size: 55px;
+                font-size: 60px;
                 margin: 0px;
             }
 
             .bem-vindo h1 {
                 margin: 10px 0px 0px 0px;
-                font-size: 22px;
+                font-size: 21px;
                 font-weight: 700;
                 display: flex;
             }
@@ -80,14 +81,14 @@
 
             .bem-vindo h2 {
                 margin: 10px 0px 0px 0px;
-                font-size: 17px;
-                font-weight: 600;
+                font-size: 16px;
+                font-weight: 400;
                 text-align: center;
             }
 
             .bem-vindo h2 span {
                 font-size: 16px;
-                font-weight: 850;
+                font-weight: 500;
                 letter-spacing: 0.5px;
             }
 
@@ -149,7 +150,95 @@
                 margin: 2.5px 0px 2.5px 0px;
             }
 
+
+            /* GUIA DE USO DO APLICATIVO */
             
+            .guia {
+                width: 95%;
+                height: auto;
+                margin: 20px auto;
+                background: var(--one);
+                color: #f1f1f1;
+                border-radius: 20px;
+                box-shadow: 0px 0px 10px var(--two);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0px 0px 22.5px 0px;
+            }
+
+            .guia h1 {
+                font-size: 22px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin: 25px 0px 20px 0px;
+                text-align: center;
+            }
+
+            .guia p {
+                font-size: 17px;
+                font-weight: 400;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 5px 0px;
+                padding: 0px 20px 0px 20px;
+            }
+
+            .guia ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0px 0px 0px;
+            }
+
+            .guia ul li {
+                width: 93%;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                padding: 5px;
+                margin: 5px 0px 10px 0px;
+            }
+
+            .guia ul li ion-icon {
+                font-size: 30px;
+                width: 10%;
+                margin: 0px 5% 0px 0px;
+            }
+
+            .guia ul li p {
+                width: 85%;
+                margin: 0px 0px 0px 0px;
+                font-size: 16px;
+                font-weight: 400;
+                letter-spacing: 0.35px;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .guia button {
+                width: 85%;
+                height: 40px;
+                border-radius: 10px;
+                background: #f1f1f1;
+                color: var(--one);
+                box-shadow: 0px 0px 10px white;
+                outline: none;
+                border: none;
+                margin: 15px 0px 5px 0px;
+                font-size: 15.5px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                cursor: pointer;
+            }
+
+            .guia button:hover {
+                background: var(--one);
+                color: #f1f1f1;
+                border: 2px solid #f1f1f1;
+                transition: all .4s ease-in-out;
+            }
+
             </style>
            </head>
            
@@ -168,14 +257,27 @@
 
 					<section class="guia">
 
-						<h1></h1>
-						<p></p>
+						<h1>Guia rápido para utilização da plataforma</h1>
+						<p>A plataforma tem tudo para auxiliar os responsáveis no monitoramento dos estudos do seus filhos. Confira abaixo um resumo das ferramentas que seu acesso oferece! Todas elas podem ser acessadas facilmente através do menu de navegação.
+
+                        </p>
 						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
+							<li>
+                                <ion-icon name="notifications-outline"></ion-icon>
+                                <p><strong>Comunicados: </strong>Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
+                            </li>
+                            <li>
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <p><strong>Mensagens: </strong>Veja as mensagens da secretaria sobre as notas, frequencias e comportamento do aluno.</p>
+                            </li>
+                            <li>
+                                <ion-icon name="calendar-outline"></ion-icon>
+                                <p><strong>Datas: </strong>Fique por dentro das datas e horários de nossas reuniões de pais.</p>
+                            </li>
+                            
 						</ul>
+
+                        <button onclick="notificacao()">Ver notificações</button>
 						
 					</section>
 
@@ -184,7 +286,7 @@
                 <nav class="navgation">
 
                     <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
-                    <ion-icon name="notifications"></ion-icon>
+                    <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
                     <ion-icon onclick="enviar()" id="criar"  name="add"></ion-icon>
                     <ion-icon name="call"></ion-icon>
                     <ion-icon onclick="perfil()" name="person"></ion-icon>
@@ -222,6 +324,10 @@
        // Enviar Comunicado
        function enviar() {
          window.location.href = "./mensagens.html";
+       }
+
+       function notificacao() {
+        window.location.href = "./notificacao.html";
        }
 
 	
