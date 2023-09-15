@@ -223,7 +223,20 @@
             	color: var(--two);
             	margin: 5px 0px 0px 0px;
             }
+
+			/* DIVSENHA */
             
+			.divsenha {
+				display: flex;
+				align-items: center;
+				position: relative;
+			} .divsenha ion-icon {
+				position: absolute;
+				right: 20px;
+				font-size: 30px;
+				cursor: pointer;
+			}
+
             </style>
            </head>
            
@@ -255,8 +268,12 @@
 	       				<label>Senha
 	       				<p id="alertaLoginSENHA"></p>
 	       				</label>
-	       				<input id="senha" type="password">	
-       				</div>
+	       				<div class="divsenha">
+						<input id="senha" type="password">	
+						<ion-icon id="mostrarS" onclick="mostrarSenha()" name="eye"></ion-icon>
+						<ion-icon id="esconderS" onclick="esconderSenha()" name="eye-off"></ion-icon>
+						</div>
+					</div>
        				
        				<div class="verificacao">
 	       				<h1></h1>
@@ -318,8 +335,12 @@
 	       				<label>Senha
 	       				<p id="alertaSENHA"></p>
 	       				</label>
-	       				<input id="cadastroSenha" type="password">	
-       				</div>
+	       				<div class="divsenha">
+						<input id="cadastroSenha" type="password">
+						<ion-icon style="display:none;" id="mostrarSC" onclick="mostrarSenhaC()" name="eye"></ion-icon>
+						<ion-icon id="esconderSC" onclick="esconderSenhaC()" name="eye-off"></ion-icon>
+						</div>
+					</div>
        				
        				<button onclick="enviarCadastro()">Cadastrar</button>
        				
@@ -333,6 +354,40 @@
        <!-- JavaScript -->
      <script>
      
+		// MOSTRAR SENHA DO CADASTRO
+		const mostrarSC = document.getElementById('mostrarSC');
+		const esconderSC = document.getElementById('esconderSC');
+		const senhaC = document.getElementById('cadastroSenha');
+		function mostrarSenhaC() {
+			senhaC.type = "password";
+			mostrarSC.style.display = "none";
+			esconderSC.style.display = "block";
+		}
+
+		function esconderSenhaC() {
+			senhaC.type = "text";
+			mostrarSC.style.display = "block";
+			esconderSC.style.display = "none";
+		}
+
+		// MOSTRAR SENHA DO LOGIN
+		const mostrarS = document.getElementById('mostrarS');
+		const esconderS = document.getElementById('esconderS');
+		const senhaL = document.getElementById('senha');
+		function mostrarSenha() {
+			senhaL.type = "password";
+			mostrarS.style.display = "none";
+			esconderS.style.display = "block";
+		}
+
+		function esconderSenha() {
+			senhaL.type = "text";
+			mostrarS.style.display = "block";
+			esconderS.style.display = "none";
+		}
+
+
+
      // ===== LOGAR =====
      function logar() {
      	// Transicao da LOGO
