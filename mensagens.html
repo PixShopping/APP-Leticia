@@ -31,6 +31,10 @@
 				box-sizing: border-box;
                 font-family: var(--font);
 			}
+
+            *::-webkit-scrollbar {
+                display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+            }
 			
 			body {
 				background: white;
@@ -50,8 +54,8 @@
             .local {
                 width: 100%;
                 height: 70px;
-                color: #F1F1F1;
-                background: var(--one);
+                background: #F1F1F1;
+                color: var(--one);
                 display: flex;
                 justify-content: space-between;
 				align-items: center;
@@ -155,6 +159,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                position: relative;
             }
 
             .contentSeries h1 {
@@ -205,7 +210,24 @@
                 font-weight: 700;
                 letter-spacing: 0.3px;
                 margin: 2px 0px 0px 0px;
-		display: flex;
+		        display: flex;
+            }
+
+            .contentSeries div li button {
+                background: red;
+                border: none;
+                border-radius: 10px;
+                width: 45px;
+                height: 45px;
+                font-size: 17px;
+                font-weight: 700;
+                color: white;
+                position: absolute;
+                right: 25px;
+                cursor: pointer;
+            } .contentSeries div li button:hover {
+                background: #E84354;
+                transition: all .4s ease-in-out;
             }
 
             .none {
@@ -246,6 +268,8 @@
 			margin: 4px 0px 0px 0px;
 			color: #97908E;
 		}
+
+
         
         </style>
     </head>
@@ -431,10 +455,10 @@
             </section>
 
             <!-- CONTENT 1 ANO A -->
-            <section class="content1B none contentSeries">
+            <section class="content1A none contentSeries">
 
-                <h1>1ANOB <p id="total1A"></p></h1>
-                <div id="1B">
+                <h1>1ANOA <p id="total1A"></p></h1>
+                <div id="1A">
 
                 </div>
 
@@ -717,7 +741,7 @@
             const content = document.querySelector('.content3A');
             admin.style.display = "none";
             content.style.display = "flex";
-            localStorage.setItem('SERIE', '3A');
+            localStorage.setItem('SERIE', '2A');
 	    localStorage.setItem('ID_TOTAL', 'total3A');
             atualizarBanco();
        }
@@ -759,22 +783,26 @@
 	    messagingSenderId: "782148597563",
 	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
 	  };
+
+      
 	
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
-	    
+      var index = 0; 
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
-	const IDTOTAL = localStorage.getItem('ID_TOTAL');
+	    const IDTOTAL = localStorage.getItem('ID_TOTAL');
         const div = document.getElementById(SERIE);
-	const totalAlunos = document.getElementById(IDTOTAL);
+	    const totalAlunos = document.getElementById(IDTOTAL);
         db.collection("cadastro")
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li class"li"><h1>Responsavel: ${val.data().responsavel}</h1>
-                    <h1>Aluno: ${val.data().aluno}</h1></li>`;
+		div.innerHTML += `<li data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"><h1>Responsavel: ${val.data().responsavel}</h1>
+                    <h1>Aluno: ${val.data().aluno}</h1>
+                    <button onclick="remover(${index})">X</button></li>`;
+                index++;
             });
         });
 
@@ -802,6 +830,60 @@
 	
 	}
 
+    // EXCLUIR RESPONSAVEL DO BANCO
+    function remover(index) {
+
+        const uindex = index;
+        const confirmar = confirm("Voce deseja excluir?");
+        if (confirmar) {
+            deletarDaSerie(uindex);
+            deletarDoCadastro(uindex);
+        } else {
+            alert("Exclusao cancelada...");
+        }
+
+    }
+
+
+    function deletarDaSerie(index) {
+    const elemento = document.querySelector(`[data-index="${index}"]`);
+    const id = elemento.getAttribute('data-id');
+    const serie = localStorage.getItem('SERIE');
+    db.collection("cadastro")
+        .doc('series')
+        .collection(serie)
+        .doc(id)
+        .delete()
+        .then(() => {
+            alert(`Responsavel excluído com sucesso!`);
+        })
+        .catch((error) => {
+            alert(`Erro ao excluir a coleção: ${error}`);
+        });
+    }
+
+    function deletarDoCadastro(index) {
+    const elemento = document.querySelector(`[data-index="${index}"]`);
+    const id = elemento.getAttribute('data-responsavel');
+    const batch = db.batch();
+    
+    db.collection("cadastro")
+    .doc("responsaveis")
+    .collection(id)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+      return batch.commit();
+    })
+    .then(() => {
+     location.reload();
+    })
+    .catch((error) => {
+      alert(`Erro ao excluir a coleção: ${error}`);
+    });
+    }      
     </script>
 
 
