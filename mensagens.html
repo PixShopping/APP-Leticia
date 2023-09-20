@@ -799,8 +799,8 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"><h1>Responsavel: ${val.data().responsavel}</h1>
-                    <h1>Aluno: ${val.data().aluno}</h1>
+		div.innerHTML += `<li data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
+                    <h1>${val.data().aluno}</h1>
                     <button onclick="remover(${index})">X</button></li>`;
                 index++;
             });
