@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Letícia | Perfil </title>
+		      
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+                --gray: #b3abab;
+                --font: 'Ubuntu', sans-serif;
+                --green: green;
+				--red: red;
+			}
+			
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+			
+			body {
+				background: white;
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+            }
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .local {
+                width: 100%;
+                height: 70px;
+                color: #F1F1F1;
+                background: var(--one);
+                display: flex;
+                justify-content: space-between;
+				align-items: center;
+            	padding: 0px 20px 0px 20px;
+                z-index: 100;
+                box-shadow: 0px 5px 15px var(--one);
+	 	   }
+
+            .local ion-icon {
+                font-size: 35px;
+                margin: 0px;
+            	cursor: pointer;
+		    }
+
+		    .local ion-icon:hover {
+				color: var(--two);
+				transition: all .3s ease-in-out;
+		    }
+
+            .local h1 {
+				font-size: 24px;
+                font-weight: 700;
+				letter-spacing: 0.5px;
+                display: flex;
+            }
+
+            /* - NAVGATION - */
+            
+            .navgation {
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
+                z-index: 100;
+                background: var(--one);
+                color: #F1F1F1;
+            }
+
+            .navgation ion-icon {
+                font-size: 28px;
+                cursor: pointer;
+            }
+
+            /* SELECIONADO */
+
+            .selecionado {
+                background: #F1F1F1;
+                color: var(--one);
+                border-radius: 50%;
+                padding: 15px;
+            }
+		    
+		    /* Content Perfil */
+            
+            .container {
+                width: 100vw;
+                height: auto;
+                padding: 0px 0px 90px 0px;
+            }
+
+            /* DIV MENSAGENS */
+		               
+            .mensagens {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .mensagens li {
+                width: 100%;
+                height: auto;
+            }
+
+            .mensagens li h1 {
+                display: flex;
+                font-size: 22px;
+            }
+
+            </style>
+           </head>
+           
+           <body>
+            
+            <main class="container">
+
+                <header class="local">
+
+                    <h1>Notificação</h1>
+                    <ion-icon name="settings"></ion-icon>
+            
+                </header>
+                
+                <div class="mensagens">
+
+
+
+                </div>
+        
+            </main>
+           
+            <nav class="navgation">
+
+                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+                <ion-icon onclick="notificacao()" class="selecionado" name="notifications"></ion-icon>
+                <ion-icon onclick="enviar()" name="add"></ion-icon>
+                <ion-icon name="call"></ion-icon>
+                <ion-icon onclick="perfil()" name="person"></ion-icon>
+
+            </nav>
+
+        </body>
+           
+       <!-- JavaScript -->
+       <script>
+       
+       // Mostrar Dados (h1)
+       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+       const mostrarAluno = document.getElementById('mostrarAluno');
+       const mostrarSerie = document.getElementById('mostrarSerie');
+       const mostrarGmail = document.getElementById('mostrarGmail');
+       const mostrarTelefone = document.getElementById('mostrarTelefone');
+       
+       // Responsavel
+       if(localStorage.getItem('responsavel')){
+       	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
+       }
+       // Aluno
+       if(localStorage.getItem('aluno')){
+       	mostrarAluno.innerHTML = localStorage.getItem('aluno');
+       }
+       // Serie
+       if(localStorage.getItem('serie')){
+       	mostrarSerie.innerHTML = localStorage.getItem('serie');
+       }
+       // Gmail
+       if(localStorage.getItem('gmail')){
+       	mostrarGmail.innerHTML = localStorage.getItem('gmail');
+       }
+       // Telefone
+       if(localStorage.getItem('telefone')){
+       	mostrarTelefone.innerHTML = localStorage.getItem('telefone');
+       }
+       
+       
+       
+       // Verificar LOGIN
+       const logado = localStorage.getItem('logado');
+		if (!logado){
+		  window.location.href = "./login.html";
+		}
+
+       // HREF / FUNCOES
+       function perfil() {
+        window.location.href = "./perfil.html";
+       }
+
+       function home() {
+        window.location.href = "./home.html";
+       }
+       
+       function notificacao() {
+        window.location.href = "./notificacao.html";
+       }
+
+       function enviar() {
+         window.location.href = "./mensagens.html";
+       }
+
+       </script>
+       
+       
+       
+       
+       
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+       
+       <script>
+       
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+	
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+	  
+      // ---------------
+	  //  LER MENSAGENS
+	  // ---------------     
+
+      const RESPONSAVEL = localStorage.getItem('responsavel');
+      const DIV = document.querySelector('.mensagens');
+      db.collection("cadastro")
+      .doc("mensagens")
+      .collection(RESPONSAVEL)
+      .onSnapshot((data) => {
+        data.docs.map((val) => {
+            div.innerHTML += `<li>
+                <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
+                <p>${val.data().mensagem}</p>
+                </li>`;
+        })
+      })
+
+       </script>
+       
+       
+       
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
