@@ -269,8 +269,76 @@
 			color: #97908E;
 		}
 
-
+        /* Formulario de Mensagem */
         
+        .form-mensagem {
+            width: 100vw;
+            height: auto;
+            padding: 20px;
+            background: #F1F1F1;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            position: absolute;
+            top: 101vh;
+            left: 0px;
+            transition: all .4s ease-in-out;
+            border-radius: 0px 0px 10px 10px;
+            box-shadow: 0 0 10px #232323;
+        }
+
+        .form-mensagem h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 10px auto 20px auto;
+        }
+
+        .form-mensagem label {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            margin: 0px 0px 2px 2px;
+        }
+
+        .form-mensagem input {
+            width: 100%;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            outline: none;
+            padding: 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .form-mensagem textarea {
+            width: 100%;
+            height: 70px;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            outline: none;
+            padding:  5px 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .form-mensagem button {
+            width: 90%;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--one);
+            color: white;
+            margin: 30px auto 10px auto;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            border: 2px solid var(--one);
+        } .form-mensagem button:hover {
+            background: white;
+            border: 2px solid var(--one);
+            color: var(--one);
+            transition: all .3s ease-in-out;
+        }
+
         </style>
     </head>
 
@@ -562,6 +630,27 @@
     
         </main>
        
+        <section class="form-mensagem">
+
+            <h1>Enviar Mensagem</h1>
+
+            <label>Responsavel</label>
+            <input type="text" id="inputResponsavel">
+
+            <label>Data</label>
+            <input type="date" id="inputData">
+
+            <label>Motivo</label>
+            <input type="text" id="inputMotivo">
+
+            <label>Mensagem</label>
+            <textarea id="inputMensagem"></textarea>
+
+            <button onclick="enviarMensagem()">Enviar Mensagem</button>
+
+        </section>
+
+
         <nav class="navgation">
 
             <ion-icon onclick="home()" id="home" name="home"></ion-icon>
@@ -573,6 +662,8 @@
         </nav>
 
     </body>
+
+
 
     
     <!-- JAVASCRIPT -->
@@ -764,6 +855,57 @@
             atualizarBanco();
        }
 
+       // ------------------------
+       //  Formulario de Mensagem
+       // ------------------------
+
+       function abrirMensagem(index) {
+            const formMensagem = document.querySelector('.form-mensagem');
+            const inputResponsavel = document.getElementById('inputResponsavel');
+            const inputData = document.getElementById('inputData');
+            formMensagem.style.display = "flex";
+            setTimeout(() => {
+                formMensagem.style.top = "0px";
+            }, 250);
+
+            // Pegando a data atual
+            const dataAtual = new Date().toISOString().split('T')[0];
+            inputData.value = dataAtual;
+
+            // Pegar o nome do responsavel
+            const elemento = document.querySelector(`[data-index="${index}"]`);
+            const responsavel = elemento.getAttribute('data-responsavel');
+            inputResponsavel.value = responsavel;
+        }
+
+
+        // ------------------
+        //  Enviar Mensagens 
+        // ------------------
+
+        function enviarMensagem() {
+            const inputResponsavel = document.getElementById('inputResponsavel');
+            const inputData = document.getElementById('inputData');
+            const inputMensagem = document.getElementById('inputMensagem');
+            const inputMotivo = document.getElementById('inputMotivo');
+            const RESPONSAVEL = inputResponsavel.value;
+            const DATA = inputData.value;
+            const MENSAGEM = inputMensagem.value;
+            const MOTIVO = inputMotivo.value;
+            db.collection("cadastro")
+            .doc("mensagens")
+            .collection(RESPONSAVEL)
+            .add({
+                data: DATA,
+                motivo: MOTIVO,
+                mensagem: MENSAGEM
+            });
+            setTimeout(() => {
+                location.reload();
+            }, 350);
+            
+        }
+
 
     </script>
 
@@ -785,10 +927,12 @@
 	  };
 
       
-	
+	  /* Atualizer Banco de Dados */
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
       var index = 0; 
+
+      // Adiciona os alunos nas series
       function atualizarBanco() {
         const SERIE = localStorage.getItem('SERIE');
 	    const IDTOTAL = localStorage.getItem('ID_TOTAL');
@@ -799,7 +943,7 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
+		div.innerHTML += `<li onclick="abrirMensagem(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
                     <h1>${val.data().aluno}</h1>
                     <button onclick="remover(${index})">X</button></li>`;
                 index++;
@@ -807,7 +951,8 @@
         });
 
 	const totalErro = document.querySelector('.totalErro');
-	      
+	
+    // Conta a quantidade de alunos da series
 	setTimeout(() => {
 	    db.collection("cadastro")
 	    .doc("series")
