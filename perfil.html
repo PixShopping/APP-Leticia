@@ -125,39 +125,38 @@
 				width: 100vw;
 				height: auto;
 				padding: 25px;
-				border-bottom: 2px solid gray;
 		    	display: flex;
 		        flex-direction: column;
 
 		   }
 		   
 		   .dados ion-icon {
-			width: 80px;
-			height: 80px;
-		   	color: white;
-		   	border-radius: 50%;
-		   	background: var(--one);
-		   	box-shadow: 0px 0px 10px var(--one);
-			margin: 20px auto 10px auto;
+                width: 80px;
+                height: 80px;
+                color: white;
+                border-radius: 50%;
+                background: var(--one);
+                box-shadow: 0px 0px 10px var(--one);
+                margin: 20px auto 10px auto;
 		   }
 		   
 		   /* DADOS */
 		   
 		   .dados div {
-		   	width: 100%;
-		   	height: auto;
-		   	padding: 10px;
-		   	display: flex;
-		   	flex-direction: column;
-			align-items: center;
-		   	margin: 0px;
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0px;
 		   }
 		   
 		   .dados div h1 {
-		      font-size: 21px;
-		      letter-spacing: 0.2px;
-			  margin: 8px 0px 0px 0px;
-			  color: var(--one);
+                font-size: 21px;
+                letter-spacing: 0.2px;
+                margin: 8px 0px 0px 0px;
+                color: var(--one);
 		   }
 	    
 	    	.content ul {
@@ -165,35 +164,49 @@
 		        flex-direction: column;
 				width: 100%;
 				height: auto;
+                border: none;
 		   }
 
-		   .content ul li {
-				width: 100%;
-				height: auto;
-				padding: 15px 20px 15px 10px;
-				display: flex;
-				align-items: center;
-				border-bottom: 2px solid gray;
-				color: #191919;
-				cursor: pointer;
-		   }
+		   /* Esse aki */ 
+           .content ul li { 
+                width: 90%;
+                height: auto; 
+                display: flex; 
+                align-items: center; 
+                border: 3px solid var(--one);
+                border-radius: 10px; 
+                color: var(--one); 
+                cursor: pointer; 
+                margin: 10px auto;
+                
+            }
 		   
 		   .content ul li:hover {
-		   	background: var(--one);
-		   	color: #F1F1F1;
-		   	box-shadow: 0px 0px 10px var(--two);
-		   	transition: all .3s ease-in-out;
+                background: var(--one);
+                color: #F1F1F1;
+                box-shadow: 0px 0px 10px var(--two);
+                transition: all .4s ease-in-out;
 		   }
 
 		   .content ul li ion-icon {
-				font-size: 40px;
-				margin: 0px 10px 0px 5px;
+				font-size: 50px;
+                background: var(--one);
+                margin: 0px 15px 0px 0px;
+                width: 40px;
+                height: 40px;
+                padding: 15px;
+                border-radius: 6px 10px 10px 6px;
 		   }
 		   
 		   .content ul li ion-icon:last-child {
-		   	margin: 0px 0px 0px auto;
-		   	font-size: 35px;
+                margin: 0px 0px 0px auto;
+                font-size: 35px;
+                background: transparent;
 		   }
+
+           .content ul li ion-icon:first-child {
+                color: white;
+           }
 
 		   .content ul li h1 {
 			  font-size: 23px;
@@ -315,11 +328,18 @@
         <ul>
           
           <!-- MUDAR SENHA -->
-          <li onclick="mudarSenha()">
-              <ion-icon style="font-size: 32.5px;" name="lock-open-outline"></ion-icon>
-              <h1>Mudar Senha</h1>
-              <ion-icon name="arrow-forward"></ion-icon>
-          </li>
+          <li onclick="mudarResponsavel()">
+            <ion-icon style="font-size: 30.5px;" name="document-text-outline"></ion-icon>
+            <h1>Nome do Responsavel</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+        <!-- MUDAR SENHA -->
+        <li onclick="mudarSenha()">
+            <ion-icon style="font-size: 30.5px;" name="lock-open-outline"></ion-icon>
+            <h1>Senha</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
           
           <!-- SUPORTE -->
           <li onclick="suporte()">
@@ -330,7 +350,7 @@
           
           <!-- SAIR DA CONTA -->
           <li onclick="sair()">
-              <ion-icon style="margin: 0px 10px 0px 5px;" name="exit-outline"></ion-icon>
+              <ion-icon name="exit-outline"></ion-icon>
               <h1>Sair da Conta</h1>
               <ion-icon name="arrow-forward"></ion-icon>
           </li>
