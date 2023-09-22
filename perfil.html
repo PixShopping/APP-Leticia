@@ -499,30 +499,10 @@
         const responsavelArmazenado = localStorage.getItem('responsavel'); 
         
         if (senhaAtual === senhaArmazenada) {
-            db.collection("cadastro")
-            .doc("responsaveis")
-            .collection(responsavelArmazenado)
-            .where("responsavel", "==", responsavelArmazenado)
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    doc.ref.update({
-                        senha: novaSenha
-                    }).then(() => {
-                        alert('Deu certo!')
-                    }).catch((error) => {
-                        alert('Deu ERRADO')
-                    })
-                });
-            });
-            
-            setTimeout(() => {
-                location.reload();
-            }, 400);
-
-        } else {
-            alert('ERRO');
-        }
+		db.collection("cadastro")
+		.doc("responsaveis")
+		.collection("")
+	}
     }
 	       
        </script>
