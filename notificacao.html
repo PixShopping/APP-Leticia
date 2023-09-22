@@ -337,15 +337,24 @@
                 <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
                 <p>${val.data().mensagem}</p>
                 </li>`;
-	    	existe++;
+	   		existe++;
         })
       })
-		const erro = document.querySelector('.erro');
-	 	if (existe === 1) {
-			erro.style.display = "none";
-		} else {
-			erro.style.display = "flex";
-		}
+
+		const diverro = document.querySelector('.erro');
+	 	db.collection("cadastro")
+		   .doc("mensagens")
+		   .collection(RESPONSAVEL)
+		   .get().then((dados) => {
+			   const tamanho = dados.size;
+			   if (tamanho === 0) {
+				   diverro.style.display = "flex";
+			   } else {
+				   diverro.style.display = "none";
+			   }
+			   
+		   })
+		
 
        </script>
        
