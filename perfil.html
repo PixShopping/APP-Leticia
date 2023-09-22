@@ -497,11 +497,14 @@
         const novaSenha = document.getElementById('novaSenha').value;
         const senhaArmazenada = localStorage.getItem('senha');
         const responsavelArmazenado = localStorage.getItem('responsavel'); 
-        
+        const id = localStorage.getItem('id');
         if (senhaAtual === senhaArmazenada) {
 		db.collection("cadastro")
 		.doc("responsaveis")
-		.collection("")
+		.collection(responsavelArmazenado)
+		.doc(id).update({
+			senha: novaSenha
+		});
 	}
     }
 	       
