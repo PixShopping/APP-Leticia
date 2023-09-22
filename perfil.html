@@ -504,8 +504,15 @@
 		.collection(responsavelArmazenado)
 		.doc(id).update({
 			senha: novaSenha
-		});
+		})
+		.then(() => {
+			alert("Senha alterada com sucesso!");
+		})
+		
 	}
+	setTimeout(() => {
+		location.reload();	
+	}, 500)
     }
 	       
        </script>
