@@ -902,8 +902,7 @@
             });
             setTimeout(() => {
                 location.reload();
-            }, 500);
-            
+            }, 1000);
         }
 
 
@@ -977,12 +976,12 @@
 
     // EXCLUIR RESPONSAVEL DO BANCO
     function remover(index) {
-
-        const uindex = index;
+	const uindex = index;
         const confirmar = confirm("Voce deseja excluir?");
         if (confirmar) {
             deletarDaSerie(uindex);
             deletarDoCadastro(uindex);
+			deletarMensagens(uindex);
         } else {
             alert("Exclusao cancelada...");
         }
@@ -1022,13 +1021,36 @@
       });
       return batch.commit();
     })
-    .then(() => {
-     location.reload();
-    })
     .catch((error) => {
       alert(`Erro ao excluir a coleção: ${error}`);
     });
-    }      
+    }   
+
+	function deletarMensagens(index) {
+    const elemento = document.querySelector(`[data-index="${index}"]`);
+    const responsavel = elemento.getAttribute('data-responsavel');
+    const batch = db.batch();
+    
+	    db.collection("cadastro")
+	    .doc("responsaveis")
+	    .collection(responsavel)
+	    .get()
+	    .then((querySnapshot) => {
+	      querySnapshot.forEach((doc) => {
+	        batch.delete(doc.ref);
+	      });
+	      return batch.commit();
+	    })
+	    .then(() => {
+		 setTimeout(() => {
+			 location.reload();
+		 }, 500);
+	    })
+	    .catch((error) => {
+	      alert(`Erro ao excluir a coleção: ${error}`);
+	    });
+    }   
+		
     </script>
 
 
