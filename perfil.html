@@ -505,14 +505,9 @@
 		.doc(id).update({
 			senha: novaSenha
 		})
-		.then(() => {
-			alert("Senha alterada com sucesso!");
-		})
-		
+		alert("Senha alterada com sucesso!");
+		location.reload();
 	}
-	setTimeout(() => {
-		location.reload();	
-	}, 500)
     }
 	       
        </script>
