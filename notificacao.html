@@ -167,7 +167,7 @@
 		    .erro {
 			width: 100vw;
 			height: auto;
-			display: flex;
+			display: none;
 			flex-direction: column;
 			align-items: center;
 		    }
@@ -325,7 +325,7 @@
       // ---------------
 	  //  LER MENSAGENS
 	  // ---------------     
-
+      var existe = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const div = document.querySelector('.mensagens');
       db.collection("cadastro")
@@ -337,8 +337,15 @@
                 <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
                 <p>${val.data().mensagem}</p>
                 </li>`;
+	    	existe++;
         })
       })
+		const erro = document.querySelector('.erro');
+	 	if (existe >== 1) {
+			erro.style.display = "flex";
+		} else {
+			erro.style.display = "none";
+		}
 
        </script>
        
