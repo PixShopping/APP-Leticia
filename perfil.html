@@ -505,9 +505,11 @@
 		.doc(id).update({
 			senha: novaSenha
 		});
-		alert("Senha alterada com sucesso!");
+		localStorage.setItem('senha', novaSenha);
 	}
-	location.reload();
+	setTimeout(() => {
+		location.reload();	
+	}, 500)
     }
 	       
        </script>
