@@ -230,10 +230,11 @@
 
             <nav class="navgation">
 
-                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
-                <ion-icon onclick="notificacao()" class="selecionado" name="notifications"></ion-icon>
+                <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
+                <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
                 <ion-icon onclick="enviar()" name="add"></ion-icon>
-                <ion-icon name="call"></ion-icon>
+                <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+                <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
                 <ion-icon onclick="perfil()" name="person"></ion-icon>
 
             </nav>
@@ -295,6 +296,22 @@
        function enviar() {
          window.location.href = "./mensagens.html";
        }
+
+       // Verifica se é um professor
+        const informacao = document.getElementById('informacao');
+        const call = document.getElementById('call');
+        if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        }
+
+        function projeto() {
+        window.location.href = "./projeto.html";
+       }
+
+       function suporte() {
+		 window.location.href = "tel:1633242256";
+		}
 
        </script>
 
