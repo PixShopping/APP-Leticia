@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Projeto | Letícia </title>
+
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+                --gray: #b3abab;
+                --font: 'Ubuntu', sans-serif;
+                --green: green;
+				--red: red;
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+			body {
+				background: white;
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+           		 }
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 0px 0px 100px 0px;
+            }
+
+            .local {
+              width: 100%;
+              height: 70px;
+              color: #F1F1F1;
+              background: var(--one);
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0px 20px 0px 20px;
+              z-index: 100;
+              box-shadow: 0px 5px 15px var(--one);
+            }
+
+            .local ion-icon {
+              font-size: 35px;
+              margin: 0px;
+              cursor: pointer;
+            }
+
+            .local ion-icon:hover {
+              color: var(--two);
+              transition: all .3s ease-in-out;
+            }
+
+            .local h1 {
+              font-size: 24px;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              display: flex;
+            }
+
+
+            /* - NAVGATION - */
+
+            .navgation {
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
+                z-index: 100;
+                background: var(--one);
+                color: #F1F1F1;
+            }
+
+            .navgation ion-icon {
+                font-size: 28px;
+                cursor: pointer;
+            }
+
+            /* SELECIONADO */
+
+            .selecionado {
+                background: #F1F1F1;
+                color: var(--one);
+                border-radius: 50%;
+                padding: 15px;
+            }
+
+
+            /* CONTENT */
+
+            .content ul {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .content ul li {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+                border-bottom: 2px solid gray;
+                display: flex;
+                align-items: center;
+                background: white;
+                cursor: pointer;
+            }
+
+            .content ul li:hover {
+                background: #bcbbbb;
+                transition: all .3s ease-in-out;
+            }
+
+            .content ul li h1 {
+                font-size: 22px;
+                font-weight: 750;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 5px;
+            }
+
+            .content ul li ion-icon {
+                margin: 0px 5px 0px auto;
+                font-size: 35px;
+            }
+
+            .form-ocorrencia-manha, .form-ocorrencia-tarde {
+              display: none;
+              width: 100vw;
+              height: 100vh;
+              margin: 10px 0px 0px 0px;
+              padding: 0px 0px 0px 0px;
+              position: relative;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            .form-ocorrencia-manha iframe, .form-ocorrencia-tarde iframe {
+              width: 100%;
+              height: 100%;
+            }
+
+
+            </style>
+           </head>
+
+           <body>
+
+                <main class="container">
+
+                  <header class="local">
+
+                    <h1 id="local">Projeto</h1>
+                    <ion-icon name="settings"></ion-icon>
+
+                  </header>
+
+                  <section class="content">
+
+                    <ul>
+
+                      <li onclick="ocorrenciaManha()">
+                        <h1>Ocorrência de aluno / Manha</h1>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                      </li>
+
+                      <li onclick="ocorrenciaTarde()">
+                          <h1>Ocorrência de aluno / Tarde</h1>
+                          <ion-icon name="arrow-forward"></ion-icon>
+                      </li>
+
+                    </ul>
+
+                  </section>
+
+                  <section class="form-ocorrencia-tarde">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-rkzN3cahehAtgZMRxO8zd-G-n-kbSLBXCarr7_DJXVFlAg/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+                  </section>
+
+                  <section class="form-ocorrencia-manha">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpXoEAdEsFfqiqCv2Up94_rnkLe3qUOlcfrTrKiIMhGbh4Sg/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+                  </section>
+
+                </main>
+
+                <nav class="navgation">
+
+                    <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+                    <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
+                    <ion-icon onclick="enviar()" name="add"></ion-icon>
+                    <ion-icon id="informacao" class="selecionado" onclick="projeto()" name="newspaper-outline"></ion-icon>
+                    <ion-icon onclick="perfil()" name="person"></ion-icon>
+
+                </nav>
+
+
+
+            </body>
+
+       <!-- JavaScript -->
+       <script>
+
+        // Abrir ocorrencias
+        const content = document.querySelector('.content');
+        function ocorrenciaManha() {
+          const divOcorrencia = document.querySelector('.form-ocorrencia-manha');
+          content.style.display = "none";
+          divOcorrencia.style.display = "flex";
+        }
+
+        function ocorrenciaTarde() {
+          const divOcorrencia = document.querySelector('.form-ocorrencia-tarde');
+          content.style.display = "none";
+          divOcorrencia.style.display = "flex";
+        }
+
+       // Header Nome
+        const logado = localStorage.getItem('logado');
+        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+        const responsavel = localStorage.getItem('responsavel');
+        if (!logado){
+		      window.location.href = "./login.html";
+		    } else if (logado === "ADMIN") {
+          mostrarResponsavel.innerHTML = "Adminstrador";
+        } else if (logado === "PROFESSOR") {
+		      mostrarResponsavel.innerHTML = "Professor";
+	      }  else if (logado === "RESPONSAVEL") {
+		      mostrarResponsavel.innerHTML = responsavel;
+	      }
+
+       // HREF
+       function perfil() {
+        window.location.href = "./perfil.html";
+       }
+
+       function home() {
+        window.location.href = "./home.html";
+       }
+
+       // Enviar Comunicado
+       function enviar() {
+         window.location.href = "./mensagens.html";
+       }
+
+       function notificacao() {
+        window.location.href = "./notificacao.html";
+       }
+
+
+        function projeto() {
+          window.location.href = "./projeto.html";
+        }
+
+
+
+       </script>
+
+
+
+
+
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+
+       <script>
+
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+
+	  // Listar Todos os Responsaveis no Banco De Dados
+
+
+       </script>
+
+
+
+       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
