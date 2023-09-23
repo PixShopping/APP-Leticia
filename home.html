@@ -6,7 +6,7 @@
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
 		<title> Inicio | Letícia </title>
-		      
+
 		<style scoped>
 
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
@@ -24,7 +24,7 @@
                 --green: green;
 				--red: red;
 			}
-			
+
 			*  {
 				padding: 0px;
 				margin: 0px;
@@ -35,7 +35,7 @@
 			*::-webkit-scrollbar {
 			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
 			}
-			
+
 			body {
 				background: white;
 				color: var(--one);
@@ -97,7 +97,7 @@
             }
 
             /* - NAVGATION - */
-            
+
             .navgation {
                 width: 100vw;
                 height: 80px;
@@ -117,7 +117,7 @@
                 font-size: 28px;
                 cursor: pointer;
             }
-            
+
             /* SELECIONADO */
 
             .selecionado {
@@ -150,7 +150,7 @@
 
 
             /* GUIA DE USO DO APLICATIVO */
-            
+
             .guia {
                 width: 95%;
                 height: auto;
@@ -238,20 +238,21 @@
                 transition: all .4s ease-in-out;
             }
 
+
             </style>
            </head>
-           
+
            <body>
-            
+
                 <main class="container">
 
                     <header class="bem-vindo">
-                        
+
                         <ion-icon name="school-outline"></ion-icon>
                         <h1>Olá, <p id="mostrarResponsavel"></p></h1>
                         <h2>Bem Vindo(a) ao aplicativo da escola
                         <br><span>Leticia Godoy Bueno de Carvalho Lopes</span></h2>
-                    
+
                     </header>
 
 					<section class="guia">
@@ -273,44 +274,49 @@
                                 <ion-icon name="calendar-outline"></ion-icon>
                                 <p><strong>Datas: </strong>Fique por dentro das datas e horários de nossas reuniões de pais.</p>
                             </li>
-                            
+
 						</ul>
 
                         <button onclick="notificacao()">Ver notificações</button>
-						
+
 					</section>
 
                 </main>
-           	
+
                 <nav class="navgation">
 
                     <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
                     <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
                     <ion-icon onclick="enviar()" name="add"></ion-icon>
-                    <ion-icon name="call"></ion-icon>
+                    <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+                    <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
                     <ion-icon onclick="perfil()" name="person"></ion-icon>
 
                 </nav>
 
-		   
-		   
+
+
             </body>
-           
+
        <!-- JavaScript -->
        <script>
 
-	
+
+
+
        // Header Nome
+       const logado = localStorage.getItem('logado');
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
-       const logado = localStorage.getItem('logado');
-		if (!logado){
+        if (!logado){
 		  window.location.href = "./login.html";
 		} else if (logado === "ADMIN") {
           mostrarResponsavel.innerHTML = "Adminstrador";
-        } else if (logado === "RESPONSAVEL") {
+        } else if (logado === "PROFESSOR") {
+		  mostrarResponsavel.innerHTML = "Professor";
+	    }  else if (logado === "RESPONSAVEL") {
 		  mostrarResponsavel.innerHTML = responsavel;
-	}
+	    }
 
        // HREF
        function perfil() {
@@ -330,23 +336,41 @@
         window.location.href = "./notificacao.html";
        }
 
-	
+       // Verifica se é um professor
+
+        const informacao = document.getElementById('informacao');
+        const call = document.getElementById('call');
+        if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        }
+
+        function projeto() {
+        window.location.href = "./projeto.html";
+       }
+
+       function suporte() {
+		 window.location.href = "tel:1633242256";
+		}
+
+
+
        </script>
-       
-       
-       
-       
-       
+
+
+
+
+
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
 	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       
+
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
        <!------------------------------->
-       
+
        <script>
-       
+
        const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
@@ -355,12 +379,12 @@
 	    messagingSenderId: "782148597563",
 	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
 	  };
-	
+
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
-	  
+
 	  // Listar Todos os Responsaveis no Banco De Dados
-	  
+
       const mostrar = document.getElementById('mostrarDados');
       var continuar = false;
       function buscarDados() {
@@ -370,7 +394,7 @@
         } else {
             mostrar.style.display = "none";
         }
-        
+
 
         db.collection("cadastro")
 	 	.doc("responsaveis")
@@ -395,12 +419,12 @@
 	 	})
 
       }
-      
-      
+
+
        </script>
-       
-       
-       
+
+
+
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
