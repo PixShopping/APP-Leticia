@@ -384,12 +384,12 @@
 
             <nav class="navgation">
 
-                <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
+                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
                 <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
                 <ion-icon onclick="enviar()" name="add"></ion-icon>
                 <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
                 <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
-                <ion-icon onclick="perfil()" name="person"></ion-icon>
+                <ion-icon class="selecionado" onclick="perfil()" name="person"></ion-icon>
 
             </nav>
 
@@ -408,8 +408,6 @@
                 </section>
 
                 <div class="website">
-                    <iframe src="https://escola-leticia.netlify.app" width="100%"
-                    height="100%" frameborder="0"></iframe>
                 </div>
 
             </body>
@@ -492,7 +490,11 @@
             divSite.style.display = "flex";
             divSite.style.padding = "0px 0px 100px 0px";
             local.textContent = "Website";
+            divSite.innerHTML = `<iframe src="https://escola-leticia.netlify.app" width="100%" height="100%" frameborder="0"></iframe>`;
         }
+
+        /*
+                    */
 
 		// Verifica se é um professor
         const informacao = document.getElementById('informacao');
