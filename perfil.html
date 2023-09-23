@@ -319,7 +319,7 @@
 
                 <header class="local">
 
-                    <h1>Perfil</h1>
+                    <h1 id="local">Perfil</h1>
                     <ion-icon name="settings"></ion-icon>
 
                 </header>
@@ -486,9 +486,11 @@
             const content = document.querySelector('.content');
             const container = document.querySelector('.container');
             const divSite = document.querySelector('.website');
+            const local = document.getElementById('local');
             content.style.display = "none";
             divSite.style.display = "flex";
             divSite.style.padding = "0px 0px 100px 0px";
+            local.textContent = "Website";
         }
 
 		function suporte() {
