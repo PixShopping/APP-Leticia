@@ -231,14 +231,14 @@
           const divOcorrencia = document.querySelector('.form-ocorrencia');
           content.style.display = "none";
           divOcorrencia.style.display = "flex";
-          divOcorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpXoEAdEsFfqiqCv2Up94_rnkLe3qUOlcfrTrKiIMhGbh4Sg/viewform?embedded=true" width="640" height="1802" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>`;
+          divOcorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpXoEAdEsFfqiqCv2Up94_rnkLe3qUOlcfrTrKiIMhGbh4Sg/viewform?embedded=true">Carregando…</iframe>`;
         }
 
         function ocorrenciaTarde() {
           const divOcorrencia = document.querySelector('.form-ocorrencia');
           content.style.display = "none";
           divOcorrencia.style.display = "flex";
-          divOcorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-rkzN3cahehAtgZMRxO8zd-G-n-kbSLBXCarr7_DJXVFlAg/viewform?embedded=true" width="640" height="1597" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>`;
+          divOcorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-rkzN3cahehAtgZMRxO8zd-G-n-kbSLBXCarr7_DJXVFlAg/viewform?embedded=true">Carregando…</iframe>`;
         }
 
        // Header Nome
@@ -273,22 +273,16 @@
         window.location.href = "./notificacao.html";
        }
 
-
         function projeto() {
           window.location.href = "./projeto.html";
         }
 
-
-
        </script>
 
 
-
-
-
        <!-- LINKS DO BANCO DE DADOS -->
-       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <!--<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>-->
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -296,7 +290,7 @@
 
        <script>
 
-       const firebaseConfig = {
+       /*const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
 	    projectId: "escola-leticia",
@@ -306,10 +300,7 @@
 	  };
 
 	  firebase.initializeApp(firebaseConfig);
-	  const db = firebase.firestore();
-
-	  // Listar Todos os Responsaveis no Banco De Dados
-
+	  const db = firebase.firestore();*/
 
        </script>
 
