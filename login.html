@@ -6,7 +6,7 @@
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
 		<title>  Logar | Letícia </title>
-		      
+
 		<style scoped>
 
 			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
@@ -23,7 +23,7 @@
 				--green: green;
 				--red: red;
 			}
-			
+
 			*  {
 				padding: 0px;
 				margin: 0px;
@@ -34,7 +34,7 @@
 			*::-webkit-scrollbar {
 			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
 			}
-			
+
 			body {
 				background: white;
 				color: var(--one);
@@ -43,12 +43,12 @@
 				overflow-x: hidden;
 				transition: all .4s ease-in-out;
             }
-            
+
             .container {
             	width: 100vw;
             	height: 90vw;
             }
-            
+
             /* LOGO */
             .logo {
             	width: 100%;
@@ -61,26 +61,26 @@
             	align-items: center;
             	justify-content: center;
             }
-            
+
             .logo h1 {
             	font-size: 28px;
             	font-weight: 900;
             	letter-spacing: 0.8px;
-            	
+
             }
-            
+
             .content-logo {
             	display: flex;
             	flex-direction: column;
             	align-items: center;
             	justify-content: center;
             }
-            
+
             .content-logo img {
             	width: 385px;
             	height: 385px;
             }
-            
+
             /* BOTOES */
             .botoes {
             	width: 100vw;
@@ -91,7 +91,7 @@
             	align-items: center;
             	justify-content: center;
             }
-            
+
             .botoes button, .content-logar button, .content-cadastrar button {
             	width: 90%;
             	height: 50px;
@@ -104,7 +104,7 @@
             	letter-spacing: 0.5px;
             	cursor: pointer;
             }
-            
+
             .botoes button:hover, .content-logar button:hover, .content-cadastrar button:hover {
             	background: white;
             	border: 3px solid var(--one);
@@ -112,20 +112,30 @@
             	transition: all .4s ease-in-out;
             	box-shadow: 0px 0px 15px var(--one);
             }
-            
+
+						.botoes p {
+							font-size: 17px;
+            	font-weight: 500;
+            	letter-spacing: 0.5px;
+            	color: #232323;
+            	cursor: pointer;
+							margin: 0px;
+						}
+
             .botoes a {
             	font-size: 20px;
             	font-weight: 800;
             	letter-spacing: 0.5px;
             	color: var(--one);
             	cursor: pointer;
+							margin: 0px 0px 0px 5px;
             }
-            
+
             .botoes a:hover {
             	text-shadow: 0px 0px 15px var(--one);
             	transition: all .4s ease-in-out;
             }
-            
+
             /* CONTENT-LOGAR E CONTENT-CADASTRAR*/
             .content-logar, .content-cadastrar {
             	display: none;
@@ -138,7 +148,7 @@
             	margin: -20px 0px 0px 0px;
             	padding: 10px 0px 50px 0px;
             }
-            
+
             .form {
             	width: auto;
             	height: auto;
@@ -147,7 +157,7 @@
             	align-items: center;
             	margin: 30px 0px 0px 0px;
             }
-            
+
             .content-logar label, .content-cadastrar label {
             	font-size: 19px;
             	font-weight: 500;
@@ -157,12 +167,12 @@
             	margin: 15px 0px 4px 4px;
             	display: flex;
             }
-            
+
             .content-logar label p, .content-cadastrar label p {
             	margin: 0px 0px 0px 8px;
             	font-weight: 700;
             }
-            
+
             .content-logar input, .content-cadastrar input, .content-cadastrar select {
             	width: 90vw;
             	height: 45px;
@@ -176,14 +186,14 @@
             	font-weight: 800;
             	letter-spacing: 0.2px;
             }
-            
+
             .content-logar button, .content-cadastrar button {
             	margin: 20px 0px 5px 0px;
                 width: 85%;
             	height: 50px;
-		
+
             }
-            
+
             #voltar {
             	display: none;
             	position: absolute;
@@ -201,9 +211,9 @@
             	box-shadow: 0px 0px 10px white;
             	transition: all .3s ease-in-out;
             }
-            
+
             /* Verificacao h1 e h2 */
-            
+
             .verificacao {
             	width: 90%;
             	display: flex;
@@ -211,7 +221,7 @@
             	align-items: flex-start;
             	padding: 0px 0px 0px 3px;
             }
-            
+
             .verificacao h1 {
             	font-size: 21px;
             	font-weight: 800;
@@ -219,7 +229,7 @@
             	color: var(--two);
             	margin: 20px 0px 0px 0px;
             }
-            
+
             .verificacao h2 {
             	font-size: 21px;
             	font-weight: 800;
@@ -229,7 +239,7 @@
             }
 
 			/* DIVSENHA */
-            
+
 			.divsenha {
 				display: flex;
 				align-items: center;
@@ -243,11 +253,11 @@
 
             </style>
            </head>
-           
+
            <body>
-       	
+
        		<main class="container">
-       			
+
        			<section class="logo">
        				<h1></h1>
        				<ion-icon onclick="voltar()" id="voltar" name="arrow-back"></ion-icon>
@@ -255,52 +265,52 @@
 	       				<img alt="Logo da escola" src="./src/img/logo.png" />
        				</div>
        			</section>
-       		
+
        			<section class="botoes">
-       				<button onclick="cadastrar()">Cadastrar</button>
-       				<a onclick="logar()">Logar</a>
+       				<button onclick="logar()">Logar</button>
+       				<p>Sem cadastro? <a onclick="cadastrar()">Cadastrar</a> </p>
        			</section>
-       			
+
        			<section class="content-logar">
-       				
+
        				<div class="form">
 	       				<label>Nome do Responsavel
 	       				<p id="alertaLoginRESPONSAVEL"></p>
 	       				</label>
 	       				<input oninput="inputResponsavel()" id="responsavel" type="text">
-	       				
+
 	       				<label>Senha
 	       				<p id="alertaLoginSENHA"></p>
 	       				</label>
 	       				<div class="divsenha">
-						<input id="senha" type="password">	
+						<input id="senha" type="password">
 						<ion-icon id="mostrarS" onclick="mostrarSenha()" name="eye"></ion-icon>
 						<ion-icon id="esconderS" onclick="esconderSenha()" name="eye-off"></ion-icon>
 						</div>
 					</div>
-       				
+
        				<div class="verificacao">
 	       				<h1></h1>
 	       				<h2></h2>
        				</div>
-       				
+
        				<button onclick="enviarLogin()">Logar</button>
-       				
+
        			</section>
-       			
+
        			<section class="content-cadastrar">
-       				
+
        				<div class="form">
 	       				<label>Nome do Responsavel
 	       				<p id="alertaRESPONSAVEL"></p>
 	       				</label>
 	       				<input oninput="verificarResponsavel()" id="cadastroResponsavel" type="text">
-	       				
+
 	       				<label>Nome do Aluno
 	       				<p id="alertaALUNO"></p>
 	       				</label>
 	       				<input id="cadastroAluno" type="text">
-	       				
+
 	       				<label>Serie:
 	       				<p id="alertaSERIE"></p>
 	       				</label>
@@ -325,7 +335,7 @@
 	       					<option value="3B">3anoB</option>
 	       					<option value="3C">3anoC</option>
 					</select>
-	       				
+
 	       				<label>Email
 	       				<p id="alertaGMAIL"></p>
 	       				</label>
@@ -335,7 +345,7 @@
 	       				<p id="alertaTELEFONE"></p>
 	       				</label>
 	       				<input placeholder="opcional" id="cadastroTelefone" type="text">
-	       				
+
 	       				<label>Senha
 	       				<p id="alertaSENHA"></p>
 	       				</label>
@@ -345,19 +355,19 @@
 						<ion-icon id="esconderSC" onclick="esconderSenhaC()" name="eye-off"></ion-icon>
 						</div>
 					</div>
-       				
+
        				<button onclick="enviarCadastro()">Cadastrar</button>
-       				
-       				
+
+
        			</section>
-       			
+
        		</main>
-           	
+
            </body>
-           
+
        <!-- JavaScript -->
      <script>
-     
+
 		// MOSTRAR SENHA DO CADASTRO
 		const mostrarSC = document.getElementById('mostrarSC');
 		const esconderSC = document.getElementById('esconderSC');
@@ -404,16 +414,16 @@
      	logo.style.borderRadius = "0px";
      	contentLogo.style.display = "none";
      	h1logo.innerHTML = "Logar";
-     	
+
      	// Transicao dos BOTOES
      	const botoes = document.querySelector('.botoes');
      	botoes.style.display = "none";
-     	
+
      	// Transicao do LOGAR
      	const contentLogar = document.querySelector('.content-logar');
      	contentLogar.style.display = "flex";
      }
-     
+
      // ===== CADASTRAR =====
      function cadastrar() {
      	// Transicao da LOGO
@@ -426,23 +436,23 @@
      	logo.style.borderRadius = "0px";
      	contentLogo.style.display = "none";
      	h1logo.innerHTML = "Cadastrar";
-     	
+
      	// Transicao dos BOTOES
      	const botoes = document.querySelector('.botoes');
      	botoes.style.display = "none";
-     	
+
      	// Transicao do LOGAR
      	const contentCadastrar = document.querySelector('.content-cadastrar');
      	contentCadastrar.style.display = "flex";
      }
-     
+
      function voltar() {
      	location.reload();
      }
-     
-     
+
+
      // Verificar Responsavel Existente
-     
+
      function inputResponsavel() {
   		const verificacaoh1 = document.querySelector('.verificacao h1');
 	 	const verificacaoh2 = document.querySelector('.verificacao h2');
@@ -463,12 +473,12 @@
 	 		}
 	 	})
      }
-     
+
      var continuar = true;
      function verificarResponsavel() {
      	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
 	 const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
-	 	
+
 	 	db.collection("cadastro")
 	 	.doc("responsaveis")
 	 	.collection(RESPONSAVEL)
@@ -485,21 +495,21 @@
 	 		}
 	 	})
      }
-     
+
      </script>
-     
-     
-     
+
+
+
      <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
 	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       
+
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
        <!------------------------------->
-       
+
        <script>
-       
+
        const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
@@ -508,10 +518,10 @@
 	    messagingSenderId: "782148597563",
 	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
 	  };
-	
+
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
-	  
+
 	  // ----------
 	  //  CADASTRO
 	  // ----------
@@ -526,8 +536,8 @@
 	  	const alertaALUNO = document.getElementById('alertaALUNO');
 	  	const alertaSERIE = document.getElementById('alertaSERIE');
 	  	const alertaSENHA = document.getElementById('alertaSENHA');
-	  	
-	  	
+
+
 	  	// Colecao Cadastro
 	  	if (continuar) {
 		   db.collection("cadastro")
@@ -541,7 +551,7 @@
 				telefone: TELEFONE,
 			  	senha: SENHA
 			  });
-			  
+
 			db.collection("cadastro")
 			.doc("series")
 			.collection(SERIE)
@@ -555,18 +565,18 @@
 		  }, 850);
 		}
 	  }
-	  
+
 	  // ----------
 	  //   LOGIN
 	  // ----------
 	  function enviarLogin() {
-	  
+
 	  	const RESPONSAVEL = document.getElementById('responsavel').value;
 	  	const SENHA = document.getElementById('senha').value;
 	  	const alertaRESPONSAVEL = document.getElementById('alertaLoginRESPONSAVEL');
 	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
-	  	
-        
+
+
 	  	db.collection("cadastro")
 			.doc("responsaveis")
 			.collection(RESPONSAVEL)
@@ -575,13 +585,13 @@
 	  		 if(existe.size > 0) {
 	  			 alertaRESPONSAVEL.innerHTML = "Valido";
 	 			 alertaRESPONSAVEL.style.color = "green";
-	 			 
+
 	 			 db.collection("cadastro")
 					 .doc("responsaveis")
 					 .collection(RESPONSAVEL)
 					 .onSnapshot((data) => {
 		  			data.docs.map((val) => {
-	  			
+
 		  			// Verificar SENHA
 		  			if(SENHA === val.data().senha) {
 		  				alertaSENHA.innerHTML = "Valido";
@@ -590,7 +600,7 @@
 		  				alertaSENHA.innerHTML = "Invalido";
 		  				alertaSENHA.style.color = "red";
 		  			}
-		  			
+
 		  			if (val.data().senha === SENHA) {
 		  				setTimeout(() => {
 		  					localStorage.setItem('logado', 'RESPONSAVEL');
@@ -612,16 +622,16 @@
 		  					window.location.href = "./home.html";
 		  				}, 400);
 		  			}
-		  			
+
 		  		});
 		  	});
-		  	
+
 	 		 } else {
 		  		alertaRESPONSAVEL.innerHTML = "Invalido";
 				alertaRESPONSAVEL.style.color = "red";
 		  	}
 	  	})
-	  		
+
 	  	if (RESPONSAVEL ===  "Leticia") {
             alertaRESPONSAVEL.innerHTML = "Valido";
             alertaRESPONSAVEL.style.color = "var(--green)";
@@ -635,13 +645,13 @@
             window.location.href = "./home.html";
         }
 
-	  		
-	  	
+
+
 	  }
-	  
+
 	  </script>
-     
-       
+
+
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
