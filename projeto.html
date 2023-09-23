@@ -219,7 +219,9 @@
 
                 </nav>
 
+                <section class="form-ocorrencia">
 
+                </section>
 
             </body>
 
@@ -227,6 +229,7 @@
        <script>
 
         // Abrir ocorrencias
+        const content = document.querySelector('.content');
 
         function ocorrenciaManha() {
           window.location.href = "https://forms.gle/6M5dFjd5N8w2jJFt9";
@@ -237,7 +240,8 @@
         }
 
         function entrada() {
-          window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSfJ3mBCThRUQ9Twizgb19PjlfpaKmNQisqtHIdmcb0_2hYS_w/viewform?embedded=true";
+          const ocorrencia = document.querySelector('.form-ocorrencia');
+          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJ3mBCThRUQ9Twizgb19PjlfpaKmNQisqtHIdmcb0_2hYS_w/viewform">Carregando...</iframe>`;
         }
 
        // Header Nome
