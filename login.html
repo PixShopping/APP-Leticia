@@ -501,11 +501,11 @@
 
 
      <!-- LINKS DO BANCO DE DADOS -->
-       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-   		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-			 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-			 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
-	
+		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
        <!------------------------------->
@@ -523,24 +523,6 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
-	  const messaging = firebase.messaging();
-
-		const askForPermission = async () => {
-		  try {
-		    await messaging.requestPermission();
-		    alert("Permissão para notificações concedida.");
-		    const token = await messaging.getToken();
-		    alert("Token de registro do dispositivo FCM:", token);
-		    // Agora você pode usar esse token para enviar notificações push ao usuário.
-		  } catch (error) {
-		    alert("Erro ao solicitar permissão para notificações:", error);
-		  }
-		};
-
-		confirm("Voce aceita notificacoes?");
-		if (confirm) {
-			askForPermission();
-		}
 
 	  // ----------
 	  //  CADASTRO
@@ -639,7 +621,7 @@
 		  						localStorage.setItem('senha', val.data().senha);
 		  					}
 							localStorage.setItem('id', val.id);
-							window.location.href = "./home.html";
+		  					window.location.href = "./home.html";
 		  				}, 400);
 		  			}
 
