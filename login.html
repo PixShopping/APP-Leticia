@@ -522,6 +522,23 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
+	  const messaging = firebase.messaging();
+
+		// Mensagens 
+		const askForPermission = async () => {
+		  try {
+		    await messaging.requestPermission();
+		    console.log("Permissão para notificações concedida.");
+		    const token = await messaging.getToken();
+		    console.log("Token de registro do dispositivo FCM:", token);
+		    // Agora você pode armazenar 'token' no localStorage ou em qualquer outro local seguro.
+		    localStorage.setItem("key", token);
+		  } catch (error) {
+		    console.error("Erro ao solicitar permissão para notificações:", error);
+		  }
+		};
+
+		askForPermission();
 
 	  // ----------
 	  //  CADASTRO
@@ -620,8 +637,6 @@
 		  						localStorage.setItem('senha', val.data().senha);
 		  					}
 							localStorage.setItem('id', val.id);
-		  					const key = FirebaseMessaging.getInstance().getToken();
-							localStorage.setItem('key', key);
 							window.location.href = "./home.html";
 		  				}, 400);
 		  			}
