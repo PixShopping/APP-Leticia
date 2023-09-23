@@ -210,6 +210,10 @@
 
                   </section>
 
+                  <section class="form-ocorrencia">
+
+                  </section>
+
                 </main>
 
                 <nav class="navgation">
@@ -222,10 +226,6 @@
 
                 </nav>
 
-                <section class="form-ocorrencia">
-
-                </section>
-
             </body>
 
        <!-- JavaScript -->
@@ -235,11 +235,17 @@
         const content = document.querySelector('.content');
 
         function ocorrenciaManha() {
-          window.location.href = "https://forms.gle/6M5dFjd5N8w2jJFt9";
+          const ocorrencia = document.querySelector('.form-ocorrencia');
+          content.style.display = "none";
+          ocorrencia.style.display = "flex";
+          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpXoEAdEsFfqiqCv2Up94_rnkLe3qUOlcfrTrKiIMhGbh4Sg/viewform">Carregando...</iframe>`;
         }
 
         function ocorrenciaTarde() {
-          window.location.href = "https://forms.gle/bsxDsxWhPCRnX8RA6";
+          const ocorrencia = document.querySelector('.form-ocorrencia');
+          content.style.display = "none";
+          ocorrencia.style.display = "flex";
+          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-rkzN3cahehAtgZMRxO8zd-G-n-kbSLBXCarr7_DJXVFlAg/viewform">Carregando...</iframe>`;
         }
 
         function entrada() {
