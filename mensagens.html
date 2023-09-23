@@ -6,7 +6,7 @@
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link rel="stylesheet" src="./style.css">
 		<title>  Mensagem | Letícia </title>
-		      
+
 		<style scoped>
 
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
@@ -24,7 +24,7 @@
                 --green: green;
 				--red: red;
 			}
-			
+
 			*  {
 				padding: 0px;
 				margin: 0px;
@@ -35,7 +35,7 @@
 			*::-webkit-scrollbar {
 				display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
 			}
-			
+
 			body {
 				background: white;
 				color: var(--one);
@@ -83,7 +83,7 @@
             }
 
             /* - NAVGATION - */
-            
+
             .navgation {
                 width: 100vw;
                 height: 80px;
@@ -112,7 +112,7 @@
                 border-radius: 50%;
                 padding: 15px;
             }
-             
+
             .container {
                 padding: 0px 0px 90px 0px;
             }
@@ -146,7 +146,7 @@
                 letter-spacing: 0.5px;
                 margin: 0px 0px 0px 5px;
             }
-            
+
             .content ul li ion-icon {
                 margin: 0px 5px 0px auto;
                 font-size: 35px;
@@ -270,7 +270,7 @@
 		}
 
         /* Formulario de Mensagem */
-        
+
         .form-mensagem {
             width: 100vw;
             height: auto;
@@ -343,14 +343,14 @@
     </head>
 
     <body>
-        
+
         <main class="container">
 
             <header class="local">
 
                 <h1>Mensagens</h1>
                 <ion-icon name="settings"></ion-icon>
-        
+
             </header>
 
             <section class="content admin">
@@ -627,9 +627,9 @@
 			<h1>Oops!</h1>
 			<p>Nenhum Aluno Encontrado</p>
 		</div>
-    
+
         </main>
-       
+
         <section class="form-mensagem">
 
             <h1>Enviar Mensagem</h1>
@@ -653,10 +653,11 @@
 
         <nav class="navgation">
 
-            <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+            <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
             <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-            <ion-icon onclick="enviar()" class="selecionado" name="add"></ion-icon>
-            <ion-icon name="call"></ion-icon>
+            <ion-icon onclick="enviar()" name="add"></ion-icon>
+            <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+            <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
             <ion-icon onclick="perfil()" name="person"></ion-icon>
 
         </nav>
@@ -665,23 +666,24 @@
 
 
 
-    
+
     <!-- JAVASCRIPT -->
     <script>
 
+        const logado = localStorage.getItem('logado');
         const admin = document.querySelector('.admin');
         const responsavel = document.querySelector('.responsavel');
 
         // Verificar se é administrador
-        if (localStorage.getItem('logado') === "ADMIN") {
+        if (logado === "ADMIN") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
-        } else if (localStorage.getItem('logado') === "RESPONSAVEL") {
+        } else if (logado === "RESPONSAVEL") {
             responsavel.style.display = "flex";
             admin.style.display = "none";
         }
 
-        
+
 
         // HREF / FUNCOES
         function perfil() {
@@ -700,10 +702,27 @@
         window.location.href = "./notificacao.html";
        }
 
+       // Verifica se é um professor
+
+       const informacao = document.getElementById('informacao');
+        const call = document.getElementById('call');
+        if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        }
+
+        function projeto() {
+        window.location.href = "./projeto.html";
+       }
+
+       function suporte() {
+		 window.location.href = "tel:1633242256";
+		}
+
 
        // ENTRAR NAS SERIES (BOTOES)
 
-       
+
        // 6 ANO
        function mensagem6A() {
             const content = document.querySelector('.content6A');
@@ -880,7 +899,7 @@
 
 
         // ------------------
-        //  Enviar Mensagens 
+        //  Enviar Mensagens
         // ------------------
 
         function enviarMensagem() {
@@ -912,7 +931,7 @@
     <!-- LINKS DO BANCO DE DADOS -->
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-    
+
     <!-- BANCO DE DADOS -->
     <script>
 
@@ -925,11 +944,11 @@
 	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
 	  };
 
-      
+
 	  /* Atualizer Banco de Dados */
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
-      var index = 0; 
+      var index = 0;
 
       // Adiciona os alunos nas series
       function atualizarBanco() {
@@ -950,7 +969,7 @@
         });
 
 	const totalErro = document.querySelector('.totalErro');
-	
+
     // Conta a quantidade de alunos da series
 	setTimeout(() => {
 	    db.collection("cadastro")
@@ -968,10 +987,10 @@
 			totalAlunos.textContent = `| ${tamanho} Aluno`;
 		}
 	     });
-	    
+
 	}, 450);
-	
-	
+
+
 	}
 
     // EXCLUIR RESPONSAVEL DO BANCO
@@ -1010,7 +1029,7 @@
     const elemento = document.querySelector(`[data-index="${index}"]`);
     const id = elemento.getAttribute('data-responsavel');
     const batch = db.batch();
-    
+
     db.collection("cadastro")
     .doc("responsaveis")
     .collection(id)
@@ -1024,13 +1043,13 @@
     .catch((error) => {
       alert(`Erro ao excluir a coleção: ${error}`);
     });
-    }   
+    }
 
 	function deletarMensagens(index) {
     const elemento = document.querySelector(`[data-index="${index}"]`);
     const responsavel = elemento.getAttribute('data-responsavel');
     const batch = db.batch();
-    
+
 	    db.collection("cadastro")
 	    .doc("mensagens")
 	    .collection(responsavel)
@@ -1049,8 +1068,8 @@
 	    .catch((error) => {
 	      alert(`Erro ao excluir a coleção: ${error}`);
 	    });
-    }   
-		
+    }
+
     </script>
 
 
