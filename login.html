@@ -643,6 +643,9 @@
         if (RESPONSAVEL === "Leticia" && SENHA === "123") {
             localStorage.setItem('logado', 'ADMIN');
             window.location.href = "./home.html";
+        } else if (RESPONSAVEL === "Professor" && SENHA === "123") {
+            localStorage.setItem('logado', 'PROFESSOR');
+            window.location.href = "./home.html";
         }
 
 
