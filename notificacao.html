@@ -344,7 +344,9 @@
       })
 
 		const diverro = document.querySelector('.erro');
-	 	if (RESPONSAVEL) {
+        if (localStorage.getItem('logado') === "ADMIN") {
+            diverro.style.display = "flex";
+        } else {
             db.collection("cadastro")
             .doc("mensagens")
             .collection(RESPONSAVEL)
@@ -357,8 +359,6 @@
                 }
 
             });
-        } else if (localStorage.getItem('logado') === "ADMIN"){
-            diverro.style.display = "flex";
         }
 
        </script>
