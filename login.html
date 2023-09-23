@@ -502,7 +502,7 @@
 
      <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+			 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
 	   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
        <!------------------------------->
@@ -524,21 +524,22 @@
 	  const db = firebase.firestore();
 	  const messaging = firebase.messaging();
 
-		// Mensagens 
 		const askForPermission = async () => {
 		  try {
 		    await messaging.requestPermission();
 		    console.log("Permissão para notificações concedida.");
 		    const token = await messaging.getToken();
-		    alert(`Token de registro do dispositivo FCM: ${token}`);
-		    // Agora você pode armazenar 'token' no localStorage ou em qualquer outro local seguro.
-		    localStorage.setItem("key", token);
+		    console.log("Token de registro do dispositivo FCM:", token);
+		    // Agora você pode usar esse token para enviar notificações push ao usuário.
 		  } catch (error) {
-		    alert(`Erro ao solicitar permissão para notificações: ${error}`);
+		    console.error("Erro ao solicitar permissão para notificações:", error);
 		  }
 		};
 
-		askForPermission();
+		confirm("Voce aceita notificacoes?");
+		if (confirm) {
+			askForPermission();
+		}
 
 	  // ----------
 	  //  CADASTRO
