@@ -570,3 +570,869 @@
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Perfil | Letícia </title>
+
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+                --gray: #b3abab;
+                --font: 'Ubuntu', sans-serif;
+                --green: green;
+				--red: red;
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+            .flex {
+                display: flex;
+                flex-direction: row;
+            } .align-items {
+                align-items: center;
+            }
+
+			body {
+				background: white;
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+            }
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .local {
+                width: 100%;
+                height: 70px;
+                color: #F1F1F1;
+                background: var(--one);
+                display: flex;
+                justify-content: space-between;
+				align-items: center;
+            	padding: 0px 20px 0px 20px;
+                z-index: 100;
+                box-shadow: 0px 5px 15px var(--one);
+	 	   }
+
+            .local ion-icon {
+                font-size: 35px;
+                margin: 0px;
+            	cursor: pointer;
+		    }
+
+		    .local ion-icon:hover {
+				color: var(--two);
+				transition: all .3s ease-in-out;
+		    }
+
+            .local h1 {
+				font-size: 24px;
+                font-weight: 700;
+				letter-spacing: 0.5px;
+                display: flex;
+            }
+
+            /* - NAVGATION - */
+
+            .navgation {
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
+                z-index: 100;
+                background: var(--one);
+                color: #F1F1F1;
+            }
+
+            .navgation ion-icon {
+                font-size: 28px;
+                cursor: pointer;
+            }
+
+            /* SELECIONADO */
+
+            .selecionado {
+                background: #F1F1F1;
+                color: var(--one);
+                border-radius: 50%;
+                padding: 15px;
+            }
+
+		    /* Content Perfil */
+
+            .container {
+                padding: 0px 0px 90px 0px;
+            }
+
+		   .content {
+		       display: flex;
+		       flex-direction: column;
+		   }
+
+		   /* Container DADOS */
+           .dados {
+				width: 100vw;
+				height: auto;
+				padding: 20px 0px;
+		    	display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 10px 0px 0px 0px;
+		   }
+
+           .dados section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+           }
+
+           .dados h2 {
+                font-size: 26px;
+                letter-spacing: 0.2px;
+                text-transform: uppercase;
+           }
+
+		   .dados ion-icon {
+                width: 75px;
+                height: 75px;
+                color: white;
+                border-radius: 50%;
+                background: var(--one);
+                box-shadow: 0px 0px 10px var(--one);
+                margin: 0px 20px 0px -10px;
+		   }
+
+		   /* DADOS */
+
+		   .dados div {
+                width: 100%;
+                height: auto;
+                padding: 15px 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px 0px 0px 10px;
+		   }
+
+		   .dados div h1 {
+                font-size: 19px;
+                letter-spacing: 0.2px;
+                margin: 6px 0px 0px 0px;
+                color: var(--one);
+		   }
+
+	    	.content ul {
+		        display: flex;
+		        flex-direction: column;
+				width: 100%;
+				height: auto;
+                border: none;
+		   }
+
+		   /* Esse aki */
+           .content ul li {
+                width: 90%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                border: 3px solid var(--one);
+                border-radius: 10px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto;
+
+            }
+
+		   .content ul li:hover {
+                background: var(--one);
+                color: #F1F1F1;
+                box-shadow: 0px 0px 10px var(--two);
+                transition: all .4s ease-in-out;
+		   }
+
+		   .content ul li ion-icon {
+				font-size: 50px;
+                background: var(--one);
+                margin: 0px 15px 0px 0px;
+                width: 40px;
+                height: 40px;
+                padding: 15px;
+                border-radius: 6px 10px 10px 6px;
+		   }
+
+		   .content ul li ion-icon:last-child {
+                margin: 0px 0px 0px auto;
+                font-size: 35px;
+                background: transparent;
+		   }
+
+           .content ul li ion-icon:first-child {
+                color: white;
+           }
+
+		   .content ul li h1 {
+			  font-size: 23px;
+			  font-weight: 600;
+			  margin: 0px 0px 0px 0px;
+		   }
+
+           /* WEBSITE */
+
+           .website {
+                width: 100vw;
+                height: 100vh;
+                display: none;
+                position: absolute;
+                top: 70px;
+            }
+
+           /* Container Senha */
+
+           .containerSenha {
+                width: 100vw;
+                height: auto;
+                padding: 30px;
+                color: #232323;
+                display: none;
+                flex-direction: column;
+                transition: all .4s ease-in-out;
+                position: relative;
+                margin: 10px 0px 0px 0px;
+            }
+
+            .containerSenha h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin: 0px 0px 15px 0px;
+                letter-spacing: 0.2px;
+            }
+
+            .containerSenha div {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: auto;
+                height: auto;
+                margin: 12.5px 0px;
+            }
+
+            .containerSenha div ion-icon {
+                position: absolute;
+                left: 15px;
+            }
+
+            .containerSenha div input {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 1px solid gray;
+                background: white;
+                padding: 20px 20px 20px 40px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                outline: none;
+            }
+
+            .containerSenha div input:focus {
+                box-shadow: 0px 0px 15px #4e9bdf;
+
+            }
+
+            .containerSenha button {
+                width: 175px;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: #191919;
+                color: white;
+                padding: 10px;
+                font-size: 15.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 25px 0px 25px auto;
+                outline: none;
+                transition: all .4s ease-in-out;
+            }
+
+            .containerSenha button:hover {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+                cursor: pointer;
+            }
+
+            .containerSenha button:focus {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+            }
+
+            .containerSenha div section {
+                position: absolute;
+                right: 15px;
+                display: flex;
+                align-items: center;
+                width: auto;
+                height: auto;
+            } .containerSenha div section ion-icon {
+                font-size: 25px;
+                position: relative;
+                left: 0px;
+                cursor: pointer;
+            } .containerSenha div section #mostrarSenhaAtual, .containerSenha div section #mostrarSenhaNova {
+                display: none;
+            }
+
+            /* Container Dados */
+
+           .containerDados {
+                width: 100vw;
+                height: auto;
+                padding: 30px;
+                color: #232323;
+                display: none;
+                flex-direction: column;
+                transition: all .4s ease-in-out;
+                position: relative;
+                margin: 10px 0px 0px 0px;
+            }
+
+            .containerDados h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin: 0px 0px 15px 0px;
+                letter-spacing: 0.2px;
+            }
+
+            .containerDados div {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: auto;
+                height: auto;
+                margin: 12.5px 0px;
+            }
+
+            .containerDados div ion-icon {
+                position: absolute;
+                left: 15px;
+            }
+
+            .containerDados div input {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 1px solid gray;
+                background: white;
+                padding: 20px 20px 20px 40px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                outline: none;
+            }
+
+            .containerDados div input:focus {
+                box-shadow: 0px 0px 15px #4e9bdf;
+            }
+
+            .containerDados button {
+                width: 175px;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: #191919;
+                color: white;
+                padding: 10px;
+                font-size: 15.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 25px 0px 25px auto;
+                outline: none;
+                transition: all .4s ease-in-out;
+            }
+
+            .containerDados button:hover {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+                cursor: pointer;
+            }
+
+            .containerDados button:focus {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+            }
+
+            </style>
+           </head>
+
+           <body>
+
+            <main class="container">
+
+                <header class="local">
+
+                    <h1 id="local">Perfil</h1>
+                    <ion-icon name="settings"></ion-icon>
+
+                </header>
+
+        <section class="content">
+
+        <!-- DADOS DOS RESPONSAVEIS -->
+        <div class="dados">
+            <section class="flex">
+                <ion-icon name="person-circle"></ion-icon>
+                <h2>Dados do Perfil</h2>
+            </section>
+            <div>
+                <h1 id="mostrarResponsavel"></h1>
+                <h1 id="mostrarAlunoeSerie"></h1>
+                <h1 id="mostrarGmail"></h1>
+                <h1 id="mostrarTelefone"></h1>
+                <h1 id="mostrarRa"></h1>
+            </div>
+        </div>
+
+        <!-- BOTOES DO PERFIL -->
+        <ul>
+
+          <!-- MUDAR DADOS DO PERFIL -->
+          <li onclick="mudarDados()">
+            <ion-icon style="font-size: 30px;" name="document-text-outline"></ion-icon>
+            <h1 style="font-size: 22px;">Editar Perfil</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+        <!-- MUDAR SENHA -->
+        <li onclick="mudarSenha()">
+            <ion-icon style="font-size: 30px;" name="lock-open-outline"></ion-icon>
+            <h1>Senha</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+        <!-- SUPORTE -->
+        <li onclick="site()">
+            <ion-icon style="font-size: 29px;" name="desktop-outline"></ion-icon>
+            <h1>Website</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+          <!-- SUPORTE -->
+          <li onclick="suporte()">
+              <ion-icon style="font-size: 30px;" name="call-outline"></ion-icon>
+              <h1>Suporte</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+
+          <!-- SAIR DA CONTA -->
+          <li onclick="sair()">
+              <ion-icon name="exit-outline"></ion-icon>
+              <h1>Sair da Conta</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+
+        </ul>
+
+        </section>
+
+        <!-- MUDAR SENHA -->
+        <section class="containerSenha">
+
+            <h1>Mudar Senha</h1>
+
+            <div class="flex">
+                <ion-icon id="iconSenhaAtual" name="lock-closed"></ion-icon>
+                <input placeholder="Senha Atual" oninput="verificarSenhaAtual()" type="password" id="inputSenhaAtual">
+                <section>
+                    <ion-icon id="mostrarSenhaAtual" name="eye-outline"></ion-icon>
+                    <ion-icon id="esconderSenhaAtual" name="eye-off-outline"></ion-icon>
+                </section>
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconSenhaNova" name="lock-closed"></ion-icon>
+                <input placeholder="Nova Senha" type="password" id="inputNovaSenha">
+                <section>
+                    <ion-icon id="mostrarSenhaNova" name="eye-outline"></ion-icon>
+                    <ion-icon id="esconderSenhaNova" name="eye-off-outline"></ion-icon>
+                </section>
+            </div>
+
+            <button onclick="redefinirSenha()">Redefinir Senha</button>
+
+        </section>
+
+        <!-- ===================== -->
+        <!-- MUDAR DADOS DO PERFIL -->
+        <!-- ===================== -->
+
+        <section class="containerDados">
+
+            <h1>Dados do Perfil</h1>
+
+            <div class="flex">
+                <ion-icon id="iconAluno" name="person"></ion-icon>
+                <input placeholder="Nome do Aluno" type="text" id="inputAluno">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconEmail" name="mail"></ion-icon>
+                <input placeholder="Email" type="text" id="inputEmail">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconTelefone" name="call"></ion-icon>
+                <input placeholder="Telefone" type="text" id="inputTelefone">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconRa" name="document-text"></ion-icon>
+                <input placeholder="Ra do Aluno" type="text" id="inputRa">
+            </div>
+
+            <button onclick="salvarDados()">Salvar</button>
+
+        </section>
+
+            </main>
+
+            <nav class="navgation">
+
+                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+                <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
+                <ion-icon onclick="enviar()" name="add"></ion-icon>
+                <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+                <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+                <ion-icon class="selecionado" onclick="perfil()" name="person"></ion-icon>
+
+            </nav>
+
+                <div class="website">
+                </div>
+
+            </body>
+
+       <!-- JavaScript -->
+       <script>
+
+
+        // Dados do Perfil
+        const inputAluno = document.getElementById('inputAluno');
+        const inputEmail = document.getElementById('inputEmail');
+        const inputTelefone = document.getElementById('inputTelefone');
+        const inputRa = document.getElementById('inputRa');
+
+
+        function mudarDados() {
+            const content = document.querySelector('.content');
+            const containerDados = document.querySelector('.containerDados');
+            content.style.display = "none";
+            containerDados.style.display = "flex";
+            inputAluno.value = localStorage.getItem('aluno');
+            inputRa.value = localStorage.getItem('ra');
+            inputEmail.value = localStorage.getItem('gmail');
+            inputTelefone.value = localStorage.getItem('telefone');
+        }
+
+
+        // Mostrar Senha Atual
+        const mostrarSenhaAtual = document.getElementById('mostrarSenhaAtual');
+        const esconderSenhaAtual = document.getElementById('esconderSenhaAtual');
+        const inputSenhaAtual = document.getElementById('inputSenhaAtual');
+        mostrarSenhaAtual.addEventListener('click', () => {
+            mostrarSenhaAtual.style.display = "none";
+            esconderSenhaAtual.style.display = "block";
+            inputSenhaAtual.setAttribute('type', 'password');
+        });
+        esconderSenhaAtual.addEventListener('click', () => {
+            esconderSenhaAtual.style.display = "none";
+            mostrarSenhaAtual.style.display = "block";
+            inputSenhaAtual.setAttribute('type', 'text');
+        });
+
+        // Mostrar Senha Nova
+        const mostrarSenhaNova = document.getElementById('mostrarSenhaNova');
+        const esconderSenhaNova = document.getElementById('esconderSenhaNova');
+        const inputSenhaNova = document.getElementById('inputNovaSenha');
+        mostrarSenhaNova.addEventListener('click', () => {
+            mostrarSenhaNova.style.display = "none";
+            esconderSenhaNova.style.display = "block";
+            inputSenhaNova.setAttribute('type', 'password');
+        });
+        esconderSenhaNova.addEventListener('click', () => {
+            esconderSenhaNova.style.display = "none";
+            mostrarSenhaNova.style.display = "block";
+            inputSenhaNova.setAttribute('type', 'text');
+        });
+
+
+        // VERIFICAR SENHA ATUAL
+
+        const iconSenhaAtual = document.getElementById('iconSenhaAtual');
+        const iconSenhaNova = document.getElementById('iconSenhaNova');
+
+        function verificarSenhaAtual() {
+            const senhaAtual = inputSenhaAtual.value;
+            if (senhaAtual === localStorage.getItem('senha')) {
+                inputSenhaAtual.style.border = "1px solid green";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px green";
+                iconSenhaAtual.setAttribute('name', 'lock-open');
+                iconSenhaAtual.style.color = "green";
+
+            } else if(senhaAtual === "") {
+                inputSenhaAtual.style.border = "1px solid gray";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px #4e9bdf";
+                iconSenhaAtual.setAttribute('name', 'lock-closed');
+                iconSenhaAtual.style.color = "#191919";
+            } else {
+                inputSenhaAtual.style.border = "1px solid red";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px red";
+                iconSenhaAtual.setAttribute('name', 'lock-closed');
+                iconSenhaAtual.style.color = "red";
+            }
+        }
+
+
+
+       // Mostrar Dados (h1)
+       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+       const mostrarAlunoeSerie = document.getElementById('mostrarAlunoeSerie');
+       const mostrarGmail = document.getElementById('mostrarGmail');
+       const mostrarTelefone = document.getElementById('mostrarTelefone');
+       const mostrarRa = document.getElementById('mostrarRa');
+
+
+       // Responsavel
+       if(localStorage.getItem('responsavel')){
+       	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
+       }
+       // Aluno
+       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
+        mostrarAlunoeSerie.innerHTML = `${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
+       }
+       // Gmail
+       if(localStorage.getItem('gmail')){
+       	mostrarGmail.innerHTML = localStorage.getItem('gmail');
+       }
+       // Telefone
+       if(localStorage.getItem('telefone')){
+       	mostrarTelefone.innerHTML = localStorage.getItem('telefone');
+       }
+       // Ra
+       if(localStorage.getItem('ra')){
+       	mostrarRa.innerHTML = localStorage.getItem('ra');
+       }
+
+
+
+       // Verificar LOGIN
+       const logado = localStorage.getItem('logado');
+		if (!logado){
+		  window.location.href = "./login.html";
+		}
+
+       // HREF / FUNCOES
+       function perfil() {
+        window.location.href = "./perfil.html";
+       }
+
+       function home() {
+        window.location.href = "./home.html";
+       }
+
+       function notificacao() {
+        window.location.href = "./notificacao.html";
+       }
+
+       function enviar() {
+         window.location.href = "./mensagens.html";
+       }
+
+		function sair() {
+		 localStorage.clear();
+		 window.location.href = "./login.html";
+		}
+
+		function mudarSenha() {
+            const content = document.querySelector('.content');
+            const containerSenha = document.querySelector('.containerSenha');
+            content.style.display = "none";
+            containerSenha.style.display = "flex";
+        }
+
+        function site() {
+            const content = document.querySelector('.content');
+            const container = document.querySelector('.container');
+            const divSite = document.querySelector('.website');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            divSite.style.display = "flex";
+            divSite.style.padding = "0px 0px 100px 0px";
+            local.textContent = "Website";
+            divSite.innerHTML = `<iframe src="https://escola-leticia.netlify.app" width="100%" height="100%" frameborder="0"></iframe>`;
+        }
+
+		// Verifica se é um professor
+        const informacao = document.getElementById('informacao');
+        const call = document.getElementById('call');
+        if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        }
+
+        function projeto() {
+        window.location.href = "./projeto.html";
+       }
+
+       function suporte() {
+		 window.location.href = "tel:1633242256";
+		}
+
+       </script>
+
+
+
+
+
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
+
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+
+       <script>
+
+       const firebaseConfig = {
+	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+	    authDomain: "escola-leticia.firebaseapp.com",
+	    projectId: "escola-leticia",
+	    storageBucket: "escola-leticia.appspot.com",
+	    messagingSenderId: "782148597563",
+	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+	  };
+
+	  firebase.initializeApp(firebaseConfig);
+	  const db = firebase.firestore();
+
+      db.collection("cadastro")
+        .doc("series")
+        .collection(localStorage.getItem('serie'))
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                localStorage.setItem('idserie', val.id);
+            });
+        });
+
+	  function redefinirSenha() {
+        const senhaAtual = document.getElementById('inputSenhaAtual').value;
+        const novaSenha = document.getElementById('inputNovaSenha').value;
+        const senhaArmazenada = localStorage.getItem('senha');
+        const responsavelArmazenado = localStorage.getItem('responsavel');
+        const ID = localStorage.getItem('id');
+        if (senhaAtual === senhaArmazenada && novaSenha !== senhaAtual) {
+            db.collection("cadastro")
+            .doc("responsaveis")
+            .collection(responsavelArmazenado)
+            .doc(ID).update({
+                senha: novaSenha
+            });
+            localStorage.setItem('senha', novaSenha);
+	    } else if (novaSenha === senhaAtual) {
+            alert("Digite uma senha diferente da atual!");
+            inputSenhaNova.value = "";
+            return;
+        }else {
+            alert("Senha Atual Errada!")
+            inputSenhaAtual.value = "";
+            inputSenhaNova.value = "";
+            return;
+        }
+        setTimeout(() => {
+            alert("Senha Redefinida com sucesso!")
+            location.reload();
+        }, 500);
+    }
+
+
+
+        // Salvar Dados do Perfil
+
+        function salvarDados() {
+            const ALUNO = inputAluno.value;
+            const EMAIL = inputEmail.value;
+            const TELEFONE = inputTelefone.value;
+            const RA = inputRa.value;
+            db.collection("cadastro")
+            .doc("responsaveis")
+            .collection(localStorage.getItem('responsavel'))
+            .doc(localStorage.getItem('id')).update({
+                aluno: ALUNO,
+                gmail: EMAIL,
+                telefone: TELEFONE,
+                ra: RA
+            });
+
+            localStorage.setItem('aluno', ALUNO);
+            localStorage.setItem('gmail', EMAIL);
+            localStorage.setItem('telefone', TELEFONE);
+            localStorage.setItem('ra', RA);
+
+            alert("Dados atualizados com sucesso!")
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+        }
+
+
+
+       </script>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
