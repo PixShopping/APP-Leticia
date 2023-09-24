@@ -244,35 +244,6 @@
        <!-- JavaScript -->
        <script>
 
-       // Mostrar Dados (h1)
-       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
-       const mostrarAluno = document.getElementById('mostrarAluno');
-       const mostrarSerie = document.getElementById('mostrarSerie');
-       const mostrarGmail = document.getElementById('mostrarGmail');
-       const mostrarTelefone = document.getElementById('mostrarTelefone');
-
-       // Responsavel
-       if(localStorage.getItem('responsavel')){
-       	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
-       }
-       // Aluno
-       if(localStorage.getItem('aluno')){
-       	mostrarAluno.innerHTML = localStorage.getItem('aluno');
-       }
-       // Serie
-       if(localStorage.getItem('serie')){
-       	mostrarSerie.innerHTML = localStorage.getItem('serie');
-       }
-       // Gmail
-       if(localStorage.getItem('gmail')){
-       	mostrarGmail.innerHTML = localStorage.getItem('gmail');
-       }
-       // Telefone
-       if(localStorage.getItem('telefone')){
-       	mostrarTelefone.innerHTML = localStorage.getItem('telefone');
-       }
-
-
 
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
@@ -322,8 +293,8 @@
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+       <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
