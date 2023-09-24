@@ -314,27 +314,27 @@
 	       				<label>Serie:
 	       				<p id="alertaSERIE"></p>
 	       				</label>
-	       				<select id="cadastroSerie">
-	       					<option value="">Selecione uma Opçao</option>
-						<option value="" disabled>Tarde</option>
-						<option value="6A">6anoA</option>
-	       					<option value="6B">6anoB</option>
-	       					<option value="7A">7anoA</option>
-	       					<option value="7B">7anoB</option>
-	       					<option value="8A">8anoA</option>
-	       					<option value="8B">8anoB</option>
-	       					<option value="9A">9anoA</option>
-	       					<option value="9B">9anoB</option>
-	       					<option value="" disabled>Manha</option>
-						<option value="1A">1anoA</option>
-	       					<option value="1B">1anoB</option>
-	       					<option value="2A">2anoA</option>
-	       					<option value="2B">2anoB</option>
-	       					<option value="2C">2anoC</option>
-	       					<option value="3A">3anoA</option>
-	       					<option value="3B">3anoB</option>
-	       					<option value="3C">3anoC</option>
-					</select>
+								<select id="cadastroSerie">
+									<option value="">Selecione uma Opçao</option>
+									<option value="" disabled>Tarde</option>
+									<option value="6A">6anoA</option>
+									<option value="6B">6anoB</option>
+									<option value="7A">7anoA</option>
+									<option value="7B">7anoB</option>
+									<option value="8A">8anoA</option>
+									<option value="8B">8anoB</option>
+									<option value="9A">9anoA</option>
+									<option value="9B">9anoB</option>
+									<option value="" disabled>Manha</option>
+									<option value="1A">1anoA</option>
+									<option value="1B">1anoB</option>
+									<option value="2A">2anoA</option>
+									<option value="2B">2anoB</option>
+									<option value="2C">2anoC</option>
+									<option value="3A">3anoA</option>
+									<option value="3B">3anoB</option>
+									<option value="3C">3anoC</option>
+								</select>
 
 	       				<label>Email
 	       				<p id="alertaGMAIL"></p>
@@ -464,7 +464,7 @@
 	 	.get()
 	 	.then((existe) => {
 	 		if(existe.size > 0) {
-				db.colletion("responsaveis").onSnapshot((data) => {
+				db.collection("responsaveis").onSnapshot((data) => {
 				  data.docs.map((val) => {
 					verificacaoh1.innerHTML = `Nome: ${val.data().aluno}`;
 					verificacaoh2.innerHTML = `Nome: ${val.data().serie}`;
@@ -503,8 +503,8 @@
      <!-- LINKS DO BANCO DE DADOS -->
 		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
 		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-		 <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-		 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+		 <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -586,7 +586,7 @@
 			.then((existe) => {
 	  		 if(existe.size > 0) {
 	  			 alertaRESPONSAVEL.innerHTML = "Valido";
-	 			 alertaRESPONSAVEL.style.color = "green";
+	 			   alertaRESPONSAVEL.style.color = "green";
 
 	 			 db.collection("cadastro")
 					 .doc("responsaveis")
@@ -620,17 +620,20 @@
 		  					} if(val.data().senha !== "") {
 		  						localStorage.setItem('senha', val.data().senha);
 		  					}
-							localStorage.setItem('id', val.id);
-		  					window.location.href = "./home.html";
-		  				}, 400);
-		  			}
+								localStorage.setItem('id', val.id);
+								localStorage.setItem('ra', val.data().ra);
+
+								window.location.href = "./home.html";
+		  				}, 500);
+
+						}
 
 		  		});
 		  	});
 
 	 		 } else {
 		  		alertaRESPONSAVEL.innerHTML = "Invalido";
-				alertaRESPONSAVEL.style.color = "red";
+				  alertaRESPONSAVEL.style.color = "red";
 		  	}
 	  	})
 
@@ -653,6 +656,9 @@
 
 
 	  }
+
+
+
 
 	  </script>
 
