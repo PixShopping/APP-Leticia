@@ -339,6 +339,137 @@
             transition: all .3s ease-in-out;
         }
 
+        /* Container Opcoes */
+
+        .containerOpcoes {
+            display: none;
+            width: 100vw;
+            height: auto;
+            padding: 20px;
+            background: white;
+            z-index: 90;
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            border: 2px solid var(--one);
+            border-radius: 10px 10px 0px 0px;
+            transform: translateX(-50%);
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .containerOpcoes h1 {
+            margin: 2.5px 0px 15px 0px;
+        }
+
+        .containerOpcoes button {
+            width: 90%;
+            height: 45px;
+            background: var(--one);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            margin: 15px 0px;
+        } .containerOpcoes button:hover {
+            border: 2px solid var(--one);
+            color: var(--one);
+            background: #F1F1F1;
+            transition: all .4s ease-in-out;
+        } .containerOpcoes button:focus {
+            border: 2px solid var(--one);
+            color: var(--one);
+            background: #F1F1F1;
+            transition: all .4s ease-in-out;
+        }
+
+        /* MENSAGENS */
+
+        /* DIV MENSAGENS */
+
+        .mensagens {
+                width: 100%;
+                height: 400px;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            	margin: 10px 0px 0px 0px;
+                z-index: 900;
+	    }
+
+        .mensagens li {
+            width: 95%;
+            height: auto;
+            list-style: none;
+            border: 2px solid var(--one);
+            border-radius: 5px;
+            margin: 20px 0px 0px 0px;
+            padding: 10px;
+            color: #191919;
+        }
+
+        .mensagens li h1 {
+            display: flex;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .mensagens li h1 a {
+            margin: 0px 0px 0px auto;
+            font-size: 18px;
+        }
+
+        .mensagens p {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0px;
+            width: 100%;
+            margin: 5px 0px 5px 0px;
+        }
+
+        .erro {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100vw;
+            height: auto;
+        }
+
+        .erro ion-icon {
+            width: 120px;
+            height: 120px;
+        }
+
+        .erro h1 {
+            font-size: 22px;
+            margin: 0px 0px 0px 0px;
+        }
+
+        .erro p {
+            font-size: 18px;
+        }
+
+        .erro button {
+            margin: 10px 0px 0px 0px;
+            width: 150px;
+            height: 35px;
+            border-radius: 10px;
+            background: var(--one);
+            color: #F1F1F1;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid var(--one);
+        } .erro button:hover {
+            color: var(--one);
+            background: white;
+            box-shadow: 0px 0px 10px var(--one);
+            transition: all .4s ease-in-out;
+        }
+
         </style>
     </head>
 
@@ -622,13 +753,28 @@
 
             </section>
 
-		<div class="totalErro">
-			<ion-icon name="close"></ion-icon>
-			<h1>Oops!</h1>
-			<p>Nenhum Aluno Encontrado</p>
-		</div>
+            <div class="totalErro">
+                <ion-icon name="close"></ion-icon>
+                <h1>Oops!</h1>
+                <p>Nenhum Aluno Encontrado</p>
+            </div>
+
+            <div class="mensagens">
+
+                <div class="erro">
+
+                    <ion-icon name="mail"></ion-icon>
+                    <h1>Nenhuma mensagem encontrada!</h1>
+                    <p>Tente novamente mais tarde..</p>
+                    <button onclick="reload()">Voltar..</button>
+
+                </div>
+
+            </div>
 
         </main>
+
+
 
         <section class="form-mensagem">
 
@@ -662,13 +808,37 @@
 
         </nav>
 
+        <section class="containerOpcoes">
+
+            <h1 id="tituloMensagem"></h1>
+
+            <button onclick="abrirMensagem()">Enviar Mensagem</button>
+            <button onclick="verMensagem()">Ver Mensagens</button>
+
+
+        </section>
+
     </body>
-
-
 
 
     <!-- JAVASCRIPT -->
     <script>
+
+         // abrirMensagem(${index})
+
+         // OPÇOES
+
+         function opcoes(index) {
+            localStorage.setItem('index', index);
+            const uindex = localStorage.getItem('index');
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            const tituloMensagem = document.getElementById('tituloMensagem');
+            const elemento = document.querySelector(`[data-index="${index}"]`);
+            const responsavel = elemento.getAttribute('data-responsavel');
+            containerOpcoes.style.display = "flex";
+            tituloMensagem.innerHTML = responsavel;
+            localStorage.setItem('verResponsavel', responsavel);
+         }
 
         const logado = localStorage.getItem('logado');
         const admin = document.querySelector('.admin');
@@ -718,6 +888,10 @@
        function suporte() {
 		 window.location.href = "tel:1633242256";
 		}
+
+        function reload() {
+            window.location.reload();
+        }
 
 
        // ENTRAR NAS SERIES (BOTOES)
@@ -870,7 +1044,7 @@
             admin.style.display = "none";
             content.style.display = "flex";
             localStorage.setItem('SERIE', '3C');
-	    localStorage.setItem('ID_TOTAL', 'total3C');
+	        localStorage.setItem('ID_TOTAL', 'total3C');
             atualizarBanco();
        }
 
@@ -879,6 +1053,12 @@
        // ------------------------
 
        function abrirMensagem(index) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            containerOpcoes.style.display = "none";
             const formMensagem = document.querySelector('.form-mensagem');
             const inputResponsavel = document.getElementById('inputResponsavel');
             const inputData = document.getElementById('inputData');
@@ -892,7 +1072,8 @@
             inputData.value = dataAtual;
 
             // Pegar o nome do responsavel
-            const elemento = document.querySelector(`[data-index="${index}"]`);
+            const uindex = localStorage.getItem('index');
+            const elemento = document.querySelector(`[data-index="${uindex}"]`);
             const responsavel = elemento.getAttribute('data-responsavel');
             inputResponsavel.value = responsavel;
         }
@@ -925,14 +1106,17 @@
         }
 
 
+
+
+
     </script>
 
 
     <!-- LINKS DO BANCO DE DADOS -->
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
     <!-- BANCO DE DADOS -->
     <script>
@@ -963,12 +1147,14 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li onclick="abrirMensagem(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
+		div.innerHTML += `<li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
                     <h1>${val.data().aluno}</h1>
                     <button onclick="remover(${index})">X</button></li>`;
                 index++;
             });
         });
+
+
 
 	const totalErro = document.querySelector('.totalErro');
 
@@ -1070,6 +1256,46 @@
 	    .catch((error) => {
 	      alert(`Erro ao excluir a coleção: ${error}`);
 	    });
+    }
+
+
+    // Ver Mensagens
+    function verMensagem() {
+        const sections = document.querySelectorAll('.contentSeries');
+        sections.forEach(section => {
+            section.style.display = "none";
+        });
+        const containerOpcoes = document.querySelector('.containerOpcoes');
+        containerOpcoes.style.display = "none";
+        const erro = document.querySelector('.erro');
+        const RESPONSAVEL = localStorage.getItem('verResponsavel');
+        const DIV = document.querySelector('.mensagens');
+        DIV.style.display = "flex";
+        db.collection("cadastro")
+        .doc("mensagens")
+        .collection(RESPONSAVEL)
+        .get().then((dados) => {
+            const tamanho = dados.size;
+            if (tamanho === 0) {
+                erro.style.display = "flex";
+            } else {
+                erro.style.display = "none";
+            }
+
+        });
+
+        // Coletando as mensagens no BANCO DE DADOS
+        db.collection("cadastro")
+        .doc("mensagens")
+        .collection(RESPONSAVEL)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                DIV.innerHTML += `<li>
+                    <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
+                    <p>${val.data().mensagem}</p>
+                    </li>`;
+            });
+        });
     }
 
     </script>
