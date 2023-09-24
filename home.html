@@ -362,8 +362,8 @@
         <!-- LINKS DO BANCO DE DADOS -->
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+        <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
 
        <!------------------------------->
@@ -383,6 +383,16 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
+
+      // Pega o idserie do banco de dados
+      db.collection("cadastro")
+        .doc("series")
+        .collection(localStorage.getItem('serie'))
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                localStorage.setItem('idserie', val.id);
+            });
+        });
 
 	  // Listar Todos os Responsaveis no Banco De Dados
 
