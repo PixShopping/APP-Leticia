@@ -317,23 +317,6 @@
       // ---------------
 	  //  LER MENSAGENS
 	  // ---------------
-      const diverro = document.querySelector('.erro');
-        if (localStorage.getItem('logado') === "ADMIN" || localStorage.getItem('logado') === "PROFESSOR") {
-            diverro.style.display = "flex";
-        } else {
-            db.collection("cadastro")
-            .doc("mensagens")
-            .collection(RESPONSAVEL)
-            .get().then((dados) => {
-                const tamanho = dados.size;
-                if (tamanho === 0) {
-                    diverro.style.display = "flex";
-                } else {
-                    diverro.style.display = "none";
-                }
-
-            });
-        }
 
       var existe = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
@@ -348,8 +331,26 @@
                 <p>${val.data().mensagem}</p>
                 </li>`;
 	   		existe++;
-        })
-      })
+        });
+      });
+
+        const diverro = document.querySelector('.erro');
+        if (localStorage.getItem('logado') === "ADMIN" || localStorage.getItem('logado') === "PROFESSOR") {
+            diverro.style.display = "flex";
+        } else {
+            db.collection("cadastro")
+            .doc("mensagens")
+            .collection(RESPONSAVEL)
+            .get().then((dados) => {
+                const tamanho = dados.size;
+                if (tamanho === 0) {
+                    diverro.style.display = "flex";
+                } else if (tamanho >= 1) {
+                    diverro.style.display = "none";
+                }
+
+            });
+        }
 
 
 
