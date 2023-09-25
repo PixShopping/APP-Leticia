@@ -637,22 +637,33 @@
 		  	}
 	  	})
 
-	  	if (RESPONSAVEL ===  "Leticia") {
-            alertaRESPONSAVEL.innerHTML = "Valido";
-            alertaRESPONSAVEL.style.color = "var(--green)";
-        } if (SENHA ===  "123") {
-            alertaSENHA.innerHTML = "Valido";
-            alertaSENHA.style.color = "var(--green)";
-        }
-
-        if (RESPONSAVEL === "Leticia" && SENHA === "123") {
-            localStorage.setItem('logado', 'ADMIN');
+			db.collection('cadastro')
+			.doc('restrito')
+			.collection('diretor')
+			.onSnapshot((data) => {
+				data.docs.forEach((val) => {
+					const usuario = val.data().usuario;
+					const senha = val.data().senha;
+					if (RESPONSAVEL === usuario && SENHA === senha) {
+						localStorage.setItem('logado', 'ADMIN');
             window.location.href = "./home.html";
-        } else if (RESPONSAVEL === "Professor" && SENHA === "123") {
-            localStorage.setItem('logado', 'PROFESSOR');
-            window.location.href = "./home.html";
-        }
+					}
+				});
+			});
 
+			db.collection('cadastro')
+			.doc('restrito')
+			.collection('professor')
+			.onSnapshot((data) => {
+				data.docs.forEach((val) => {
+					const usuario = val.data().usuario;
+					const senha = val.data().senha;
+					if (RESPONSAVEL === usuario && SENHA === senha) {
+						localStorage.setItem('logado', 'PROFESSOR');
+            window.location.href = "./home.html";
+					}
+				});
+			});
 
 
 	  }
