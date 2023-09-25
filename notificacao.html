@@ -19,6 +19,7 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
+                --white: white;
 				--gray: #b3abab;
 				--font: 'Ubuntu', sans-serif;
 				--green: green;
@@ -37,7 +38,7 @@
 			}
 
 			body {
-				background: white;
+				background: var(--white);
 				color: var(--one);
 				user-select: none;
 				font-family: 'Arial', sans-serif;
@@ -54,7 +55,7 @@
             .local {
                 width: 100%;
                 height: 70px;
-                color: #F1F1F1;
+                color: var(--white);
                 background: var(--one);
                 display: flex;
                 justify-content: space-between;
@@ -96,7 +97,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-                color: #F1F1F1;
+                color: var(--white);
             }
 
             .navgation ion-icon {
@@ -107,7 +108,7 @@
             /* SELECIONADO */
 
             .selecionado {
-                background: #F1F1F1;
+                background: var(--white);
                 color: var(--one);
                 border-radius: 50%;
                 padding: 15px;
@@ -164,6 +165,25 @@
                 margin: 5px 0px 5px 0px;
             }
 
+            .mensagens button {
+                width: 150px;
+                height: 35px;
+                background: var(--one);
+                color: var(--white);
+                border: none;
+                border-radius: 10px;
+                font-size: 15px;
+                font-weight: 500;
+                margin: 5px 0px;
+                cursor: pointer;
+                border: 2px solid var(--one);
+                box-shadow: 0px 5px 15px var(--one);
+            } .mensagens button:hover {
+                background: #F1F1f1;
+                color: var(--one);
+                transition: all .4s ease-in-out;
+            }
+
 		    .erro {
 			width: 100vw;
 			height: auto;
@@ -198,6 +218,84 @@
 			width: 80%;
 		     }
 
+             /* Formulario de Mensagem */
+
+        .form-mensagem {
+            width: 100vw;
+            height: auto;
+            padding: 20px;
+            background: var(--white);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            position: absolute;
+            top: 101vh;
+            left: 0px;
+            transition: all .4s ease-in-out;
+            border-radius: 0px 0px 10px 10px;
+            box-shadow: 0 0 10px #232323;
+        }
+
+        .form-mensagem h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 10px auto 20px auto;
+        }
+
+        .form-mensagem h2 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin: 10px 0px;
+            color: #191919;
+        }
+
+        .form-mensagem label {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            margin: 0px 0px 2px 2px;
+        }
+
+        .form-mensagem input {
+            width: 100%;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            outline: none;
+            padding: 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .form-mensagem textarea {
+            width: 100%;
+            height: 70px;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            outline: none;
+            padding:  5px 10px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .form-mensagem button {
+            width: 90%;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--one);
+            color: var(--white);
+            margin: 30px auto 10px auto;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            border: 2px solid var(--one);
+        } .form-mensagem button:hover {
+            background: var(--white);
+            border: 2px solid var(--one);
+            color: var(--one);
+            transition: all .3s ease-in-out;
+        }
+
             </style>
            </head>
 
@@ -227,6 +325,23 @@
 		</section>
 
             </main>
+
+            <section class="form-mensagem">
+
+                <h1>Enviar Mensagem</h1>
+
+                <label>Respondendo a Mensagem:</label>
+                <h2 id="respondendo"></h2>
+
+                <label>Data</label>
+                <input type="date" id="inputData">
+
+                <label>Mensagem</label>
+                <textarea id="inputMensagem"></textarea>
+
+                <button onclick="enviarResposta()">Enviar Resposta</button>
+
+            </section>
 
             <nav class="navgation">
 
@@ -319,6 +434,7 @@
 	  // ---------------
 
       var existe = 0;
+      var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const div = document.querySelector('.mensagens');
       db.collection("cadastro")
@@ -326,10 +442,12 @@
       .collection(RESPONSAVEL)
       .onSnapshot((data) => {
         data.docs.map((val) => {
-            div.innerHTML += `<li>
+            div.innerHTML += `<li data-index="${index}" data-responder="${val.data().motivo}">
                 <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
                 <p>${val.data().mensagem}</p>
+                <button onclick="responderMensagem(${index})">Responder</button>
                 </li>`;
+            index++;
 	   		existe++;
         });
       });
@@ -353,6 +471,54 @@
         }
 
 
+        // Responder Mensagem
+
+        function responderMensagem(uindex) {
+            const elemento = document.querySelector(`[data-index="${uindex}"]`)
+            const motivo = elemento.getAttribute('data-responder');
+            abrirMensagem(motivo);
+        }
+
+        function abrirMensagem(motivo) {
+            const formMensagem = document.querySelector('.form-mensagem');
+            const inputData = document.getElementById('inputData');
+            const inputMensagem = document.getElementById('inputMensagem');
+            formMensagem.style.display = "flex";
+            setTimeout(() => {
+                formMensagem.style.top = "0px";
+            }, 250);
+
+            const respondendo = document.getElementById('respondendo');
+            respondendo.innerHTML = motivo;
+            localStorage.setItem('motivo', motivo);
+
+            // Pegando a data atual
+            const dataAtual = new Date().toISOString().split('T')[0];
+            inputData.value = dataAtual;
+        }
+
+
+        function enviarResposta() {
+            const inputData = document.getElementById('inputData');
+            const inputMensagem = document.getElementById('inputMensagem');
+            const MENSAGEM = inputMensagem.value;
+            const DATA = inputData.value;
+            const MOTIVO = localStorage.getItem('motivo');
+            // Reference the Firestore collection and documents
+            db.collection('cadastro')
+            .doc('respostas')
+            .collection(RESPONSAVEL)
+            .add({
+                motivo: MOTIVO,
+                resposta: MENSAGEM,
+                data: DATA
+            });
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+
+        }
 
        </script>
 
