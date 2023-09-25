@@ -19,9 +19,9 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-				--gray: #b3abab;
-				--font: 'Ubuntu', sans-serif;
-				--green: green;
+                --gray: #b3abab;
+                --font: 'Ubuntu', sans-serif;
+                --green: green;
 				--red: red;
 			}
 
@@ -670,23 +670,23 @@
 
 
        // Responsavel
-       if(localStorage.getItem('responsavel') !== ""){
+       if(localStorage.getItem('responsavel')){
        	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
        }
        // Aluno
-       if(localStorage.getItem('aluno') !== "" && localStorage.getItem('serie') !== ""){
+       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
         mostrarAlunoeSerie.innerHTML = `${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
        }
        // Gmail
-       if(localStorage.getItem('gmail') !== ""){
+       if(localStorage.getItem('gmail')){
        	mostrarGmail.innerHTML = localStorage.getItem('gmail');
        }
        // Telefone
-       if(localStorage.getItem('telefone') !== ""){
+       if(localStorage.getItem('telefone')){
        	mostrarTelefone.innerHTML = localStorage.getItem('telefone');
        }
        // Ra
-       if(localStorage.getItem('ra') !== "undefined"){
+       if(localStorage.getItem('ra')){
        	mostrarRa.innerHTML = localStorage.getItem('ra');
        }
 
