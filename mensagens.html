@@ -19,6 +19,7 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
+                --white: white;
                 --gray: #b3abab;
                 --font: 'Ubuntu', sans-serif;
                 --green: green;
@@ -37,7 +38,7 @@
 			}
 
 			body {
-				background: white;
+				background: var(--white);
 				color: var(--one);
 				user-select: none;
 				font-family: 'Arial', sans-serif;
@@ -55,7 +56,7 @@
                 width: 100%;
                 height: 70px;
                 background: var(--one);
-                color: #F1F1F1;
+                color: var(--white);
                 display: flex;
                 justify-content: space-between;
 				align-items: center;
@@ -96,7 +97,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-                color: #F1F1F1;
+                color: var(--white);
             }
 
             .navgation ion-icon {
@@ -107,7 +108,7 @@
             /* SELECIONADO */
 
             .selecionado {
-                background: #F1F1F1;
+                background: var(--white);
                 color: var(--one);
                 border-radius: 50%;
                 padding: 15px;
@@ -131,7 +132,7 @@
                 border-bottom: 2px solid gray;
                 display: flex;
                 align-items: center;
-                background: white;
+                background: var(--white);
                 cursor: pointer;
             }
 
@@ -190,7 +191,7 @@
                 justify-content: center;
                 list-style: none;
                 border-bottom: 2px solid gray;
-                background: white;
+                background: var(--white);
                 cursor: pointer;
             }
 
@@ -221,7 +222,7 @@
                 height: 45px;
                 font-size: 17px;
                 font-weight: 700;
-                color: white;
+                color: var(--white);
                 position: absolute;
                 right: 25px;
                 cursor: pointer;
@@ -275,7 +276,7 @@
             width: 100vw;
             height: auto;
             padding: 20px;
-            background: #F1F1F1;
+            background: var(--white);
             display: none;
             flex-direction: column;
             z-index: 100;
@@ -297,7 +298,7 @@
             font-size: 20px;
             font-weight: 400;
             letter-spacing: 0.2px;
-            margin: 0px 0px 2px 2px;
+            margin: 0px 0px 2px4 2px;
         }
 
         .form-mensagem input {
@@ -325,7 +326,7 @@
             height: 40px;
             border-radius: 10px;
             background: var(--one);
-            color: white;
+            color: var(--white);
             margin: 30px auto 10px auto;
             font-size: 15px;
             font-weight: 600;
@@ -333,7 +334,7 @@
             outline: none;
             border: 2px solid var(--one);
         } .form-mensagem button:hover {
-            background: white;
+            background: var(--white);
             border: 2px solid var(--one);
             color: var(--one);
             transition: all .3s ease-in-out;
@@ -345,8 +346,8 @@
             display: none;
             width: 100vw;
             height: auto;
-            padding: 20px;
-            background: white;
+            padding: 25px 20px 20px 20px;
+            background: var(--white);
             z-index: 90;
             position: fixed;
             bottom: 70px;
@@ -358,8 +359,25 @@
             align-items: center;
         }
 
+        .containerOpcoes ion-icon {
+            position: absolute;
+            top: -15px;
+            font-size: 25px;
+            padding: 5px;
+            background: var(--one);
+            color: var(--white);
+            border-radius: 50%;
+            z-index: 50;
+            cursor: pointer;
+        } .containerOpcoes ion-icon:hover {
+            background: var(--two);
+            color: var(--white);
+            box-shadow: 0px 0px 10px var(--two);
+            transition: all .4s ease-in-out;
+        }
+
         .containerOpcoes h1 {
-            margin: 2.5px 0px 15px 0px;
+            margin: 12.5px 0px 15px 0px;
         }
 
         .containerOpcoes button {
@@ -368,17 +386,20 @@
             background: var(--one);
             border: none;
             border-radius: 10px;
-            color: white;
+            color: var(--white);
             margin: 15px 0px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
         } .containerOpcoes button:hover {
             border: 2px solid var(--one);
             color: var(--one);
-            background: #F1F1F1;
+            background: var(--white);
             transition: all .4s ease-in-out;
         } .containerOpcoes button:focus {
             border: 2px solid var(--one);
             color: var(--one);
-            background: #F1F1F1;
+            background: var(--white);
             transition: all .4s ease-in-out;
         }
 
@@ -387,14 +408,21 @@
         /* DIV MENSAGENS */
 
         .mensagens {
-                width: 100%;
-                height: 400px;
-                display: none;
-                flex-direction: column;
-                align-items: center;
-            	margin: 10px 0px 0px 0px;
-                z-index: 900;
+            width: 100%;
+            height: 400px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0px 0px 0px;
+            z-index: 900;
 	    }
+
+        .mensagens h2 {
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            margin: 15px 0px 0px 0px;
+        }
 
         .mensagens li {
             width: 95%;
@@ -457,7 +485,7 @@
             height: 35px;
             border-radius: 10px;
             background: var(--one);
-            color: #F1F1F1;
+            color: var(--white);
             border: none;
             font-size: 16px;
             font-weight: 700;
@@ -465,7 +493,7 @@
             border: 2px solid var(--one);
         } .erro button:hover {
             color: var(--one);
-            background: white;
+            background: var(--white);
             box-shadow: 0px 0px 10px var(--one);
             transition: all .4s ease-in-out;
         }
@@ -480,7 +508,7 @@
             <header class="local">
 
                 <h1>Mensagens</h1>
-                <ion-icon name="settings"></ion-icon>
+                <ion-icon onclick="theme()" name="settings"></ion-icon>
 
             </header>
 
@@ -810,6 +838,8 @@
 
         <section class="containerOpcoes">
 
+            <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
+
             <h1 id="tituloMensagem"></h1>
 
             <button onclick="abrirMensagem()">Enviar Mensagem</button>
@@ -823,6 +853,18 @@
 
     <!-- JAVASCRIPT -->
     <script>
+
+        // TEMA (DARK OU LIGTH)
+        function theme() {
+            const root = document.documentElement;
+            if (root.style.getPropertyValue('--one') === '#002242') {
+                root.style.setProperty('--one', 'white');
+                root.style.setProperty('--white', '#002242');
+            } else {
+                root.style.setProperty('--one', '#002242');
+                root.style.setProperty('--white', 'white');
+            }
+        }
 
          // abrirMensagem(${index})
 
@@ -840,6 +882,13 @@
             localStorage.setItem('verResponsavel', responsavel);
          }
 
+         // Fechar Mensagens (Opcoes)
+
+         function fecharMensagem() {
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            containerOpcoes.style.display = "none";
+         }
+
         const logado = localStorage.getItem('logado');
         const admin = document.querySelector('.admin');
         const responsavel = document.querySelector('.responsavel');
@@ -848,6 +897,9 @@
         if (logado === "ADMIN") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
+        } else if (logado === "PROFESSOR") {
+            admin.style.display = "none";
+            responsavel.style.display = "flex";
         } else if (logado === "RESPONSAVEL") {
             responsavel.style.display = "flex";
             admin.style.display = "none";
@@ -1051,6 +1103,8 @@
        // ------------------------
        //  Formulario de Mensagem
        // ------------------------
+
+       // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
        function abrirMensagem(index) {
             const sections = document.querySelectorAll('section');
@@ -1284,11 +1338,27 @@
 
         });
 
+        var existeM = false;
+
+        db.collection("cadastro")
+        .doc("mensagens")
+        .collection(RESPONSAVEL)
+        .get()
+        .then((tamanho) => {
+            const TAMANHO = tamanho.size;
+            if (TAMANHO >= 1) {
+                existeM = true;
+            }
+        });
+
         // Coletando as mensagens no BANCO DE DADOS
         db.collection("cadastro")
         .doc("mensagens")
         .collection(RESPONSAVEL)
         .onSnapshot((data) => {
+            if (existeM) {
+             DIV.innerHTML += `<h2>Mensagens</h2>`;
+            }
             data.docs.map((val) => {
                 DIV.innerHTML += `<li>
                     <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
@@ -1296,6 +1366,37 @@
                     </li>`;
             });
         });
+
+        // Coletando as respostas no BANCO DE DADOS
+        var existeR = false;
+
+        db.collection("cadastro")
+        .doc("respostas")
+        .collection(RESPONSAVEL)
+        .get()
+        .then((tamanho) => {
+            const TAMANHO = tamanho.size;
+            if (TAMANHO >= 1) {
+                existeR = true;
+            }
+        });
+
+
+        db.collection("cadastro")
+        .doc("respostas")
+        .collection(RESPONSAVEL)
+        .onSnapshot((data) => {
+            if (existeR) {
+             DIV.innerHTML += `<h2>Respostas</h2>`;
+            }
+            data.docs.map((val) => {
+                DIV.innerHTML += `<li>
+                    <h1>RESPOSTA: ${val.data().motivo}<a>${val.data().data}</a></h1>
+                    <p>${val.data().mensagem}</p>
+                    </li>`;
+            });
+        });
+
     }
 
     </script>
