@@ -685,11 +685,14 @@
        if(localStorage.getItem('responsavel')) {
        	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
        } else {
-	mostrarResponsavel.innerHTML = "Indefinido";
+	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
+       } else {";
        }
        // Aluno
-       if(localStorage.getItem('aluno') !== "" || localStorage.getItem('aluno') !== "null" && localStorage.getItem('serie') !== "" || localStorage.getItem('serie') !== "null"){
+       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
         mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
+       } else {
+	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
        }
        // Gmail
        if(localStorage.getItem('gmail') !== "" || localStorage.getItem('gmail') !== "null"){
