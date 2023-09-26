@@ -694,8 +694,10 @@
 	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
        }
        // Gmail
-       if(localStorage.getItem('gmail') !== "" || localStorage.getItem('gmail') !== "null"){
+       if(localStorage.getItem('gmail')){
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
+       } else {
+	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
        }
        // Telefone
        if(localStorage.getItem('telefone') !== "" || localStorage.getItem('telefone') !== "null"){
