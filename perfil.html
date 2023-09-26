@@ -693,23 +693,26 @@
        } else {
 	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
        }
+	       
        // Gmail
        if(localStorage.getItem('gmail')){
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        } else {
 	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
        }
+	       
        // Telefone
        if(localStorage.getItem('telefone')){
        	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
        } else {
 	mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
        }
+	       
        // Ra
        if(localStorage.getItem('ra')){
        	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
        } else {
-	mostrarRa.inmerHTML = `<span>Ra: </span>Indefinido`;
+	mostrarRa.innerHTML = `<span>Ra: </span>Indefinido`;
        }
 
 
