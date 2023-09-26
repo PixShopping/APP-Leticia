@@ -18,10 +18,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-				--six: #9ECAE3;
-                --gray: #b3abab;
-                --font: 'Ubuntu', sans-serif;
-                --green: green;
+      --six: #9ECAE3;
+        --gray: #b3abab;
+        --white: white;
+        --font: 'Ubuntu', sans-serif;
+        --green: green;
 				--red: red;
 			}
 
@@ -120,37 +121,50 @@
 
             .content ul {
                 width: 100vw;
+                max-width: 100vw;
                 height: auto;
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin: 15px 0px 0px 0px;
             }
 
             .content ul li {
-                width: 100%;
-                height: auto;
+                width: 150px;
+                height: 150px;
                 padding: 15px;
-                border-bottom: 2px solid gray;
+                border: 2px solid gray;
+                border-radius: 10px;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 background: white;
                 cursor: pointer;
+                margin: 15px;
+                box-shadow: 0px 0px 10px var(--one);
+                color: var(--one);
             }
 
             .content ul li:hover {
-                background: #bcbbbb;
-                transition: all .3s ease-in-out;
-            }
-
-            .content ul li h1 {
-                font-size: 22px;
-                font-weight: 750;
-                letter-spacing: 0.5px;
-                margin: 0px 0px 0px 5px;
+                background: var(--two);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+                box-shadow: 0px 0px 15px var(--two);
+                border: 2px solid var(--two);
             }
 
             .content ul li ion-icon {
-                margin: 0px 5px 0px auto;
-                font-size: 35px;
+                margin: 0px 0px 5px 0px;
+                font-size: 70px;
+            }
+
+            .content ul li h1 {
+                font-size: 18px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                text-align: center;
             }
 
             .form-ocorrencia {
@@ -192,18 +206,23 @@
                     <ul>
 
                       <li onclick="ocorrenciaManha()">
-                        <h1>Ocorrência de aluno / Manha</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
+                        <ion-icon name="document-text"></ion-icon>
+                        <h1>Ocorrência <br> Manhã</h1>
                       </li>
 
                       <li onclick="ocorrenciaTarde()">
-                        <h1>Ocorrência de aluno / Tarde</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
+                        <ion-icon name="document-text"></ion-icon>
+                        <h1>Ocorrência <br> Tarde</h1>
                     </li>
 
                     <li onclick="entrada()">
+                      <ion-icon name="log-out-outline"></ion-icon>
                       <h1>Entrada Atrasada</h1>
-                      <ion-icon name="arrow-forward"></ion-icon>
+                    </li>
+
+                    <li onclick="saida()">
+                      <ion-icon name="log-in-outline"></ion-icon>
+                      <h1>Saida Antecipada</h1>
                     </li>
 
                     </ul>
@@ -253,6 +272,13 @@
           content.style.display = "none";
           ocorrencia.style.display = "flex";
           ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJ3mBCThRUQ9Twizgb19PjlfpaKmNQisqtHIdmcb0_2hYS_w/viewform">Carregando...</iframe>`;
+        }
+
+        function saida() {
+          const ocorrencia = document.querySelector('.form-ocorrencia');
+          content.style.display = "none";
+          ocorrencia.style.display = "flex";
+          ocorrencia.innerHTML = `Em Breva...`;
         }
 
        // Header Nome
