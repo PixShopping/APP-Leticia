@@ -541,7 +541,7 @@
 
 
 	  	// Colecao Cadastro
-	  	if (continuar) {
+	  	if (continuar && SENHA !== "" && SERIE !== "") {
 		   db.collection("cadastro")
 			  .doc("responsaveis")
 			  .collection(RESPONSAVEL)
@@ -550,7 +550,7 @@
 			  	aluno: ALUNO,
 			  	serie: SERIE,
 			  	gmail: GMAIL,
-				telefone: TELEFONE,
+				  telefone: TELEFONE,
 			  	senha: SENHA
 			  });
 
@@ -565,6 +565,10 @@
 		  setTimeout(() => {
 		    location.reload();
 		  }, 850);
+		} else if (SENHA === "") {
+			alert("Digite uma senha valida!");
+		} else if (SERIE === "") {
+			alert("Escolha uma serie!");
 		}
 	  }
 
