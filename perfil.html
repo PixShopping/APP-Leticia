@@ -20,6 +20,7 @@
 				--five: #6FADD2;
 				--six: #9ECAE3;
                 --gray: #b3abab;
+                --white: white;
                 --font: 'Ubuntu', sans-serif;
                 --green: green;
 				--red: red;
@@ -135,12 +136,12 @@
            .dados {
 				width: 100vw;
 				height: auto;
-				padding: 20px 0px;
+				padding: 0px 0px 20px 0px;
 		    	display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin: 10px 0px 0px 0px;
+                margin: 0px 0px 0px 0px;
 		   }
 
            .dados section {
@@ -148,6 +149,10 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 0px 0px 10px 10px;
+                padding: 20px;
            }
 
            .dados h2 {
@@ -169,21 +174,28 @@
 		   /* DADOS */
 
 		   .dados div {
-                width: 100%;
+                width: auto;
                 height: auto;
                 padding: 15px 25px;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 margin: 10px 0px 0px 0px;
 		   }
 
 		   .dados div h1 {
-                font-size: 19px;
+                font-size: 17px;
                 letter-spacing: 0.2px;
                 margin: 6px 0px 0px 0px;
                 color: var(--one);
 		   }
+
+           .dados div span {
+                font-size: 19px;
+                letter-spacing: 0.2px;
+                margin: 6px 0px 0px 0px;
+                color: var(--two);
+           }
 
 	    	.content ul {
 		        display: flex;
@@ -671,23 +683,23 @@
 
        // Responsavel
        if(localStorage.getItem('responsavel')){
-       	mostrarResponsavel.innerHTML = localStorage.getItem('responsavel');
+       	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
        }
        // Aluno
        if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
-        mostrarAlunoeSerie.innerHTML = `${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
+        mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
        }
        // Gmail
        if(localStorage.getItem('gmail')){
-       	mostrarGmail.innerHTML = localStorage.getItem('gmail');
+       	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        }
        // Telefone
        if(localStorage.getItem('telefone')){
-       	mostrarTelefone.innerHTML = localStorage.getItem('telefone');
+       	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
        }
        // Ra
        if(localStorage.getItem('ra')){
-       	mostrarRa.innerHTML = localStorage.getItem('ra');
+       	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
        }
 
 
