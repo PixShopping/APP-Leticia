@@ -682,8 +682,10 @@
 
 
        // Responsavel
-       if(localStorage.getItem('responsavel') !== "" || localStorage.getItem('responsavel') !== "null"){
+       if(localStorage.getItem('responsavel') !== ""){
        	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
+       } else if (localStorage.getItem('responsavel') === "null") {
+	mostrarResponsavel.innerHTML = "Indefinido";
        }
        // Aluno
        if(localStorage.getItem('aluno') !== "" || localStorage.getItem('aluno') !== "null" && localStorage.getItem('serie') !== "" || localStorage.getItem('serie') !== "null"){
