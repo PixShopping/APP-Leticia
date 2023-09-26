@@ -74,12 +74,14 @@
 
             .bem-vindo h1 {
                 margin: 10px 0px 0px 0px;
-                font-size: 21px;
+                font-size: 19px;
                 font-weight: 700;
                 display: flex;
+                align-items: center;
             }
 
             .bem-vindo h1 p {
+                font-size: 17px;
                 font-weight: 700;
                 margin: 0px 0px 0px 10px;
             }
@@ -250,7 +252,7 @@
                     <header class="bem-vindo">
 
                         <ion-icon name="school-outline"></ion-icon>
-                        <h1>Olá, <p id="mostrarResponsavel"></p></h1>
+                        <h1 id="mostrarResponsavel"></h1>
                         <h2>Bem Vindo(a) ao aplicativo da escola
                         <br><span>Leticia Godoy Bueno de Carvalho Lopes</span></h2>
 
@@ -316,7 +318,7 @@
         } else if (logado === "PROFESSOR") {
 		  mostrarResponsavel.innerHTML = "Professor";
 	    }  else if (logado === "RESPONSAVEL") {
-		  mostrarResponsavel.innerHTML = responsavel;
+		  mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
 	    }
 
        // HREF
