@@ -313,7 +313,6 @@
 
             .containerSenha div input:focus {
                 box-shadow: 0px 0px 15px #4e9bdf;
-
             }
 
             .containerSenha button {
@@ -683,23 +682,23 @@
 
 
        // Responsavel
-       if(localStorage.getItem('responsavel') !== ""){
+       if(localStorage.getItem('responsavel') !== "" || localStorage.getItem('responsavel') !== "null"){
        	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
        }
        // Aluno
-       if(localStorage.getItem('aluno') !== "" && localStorage.getItem('serie') !== ""){
+       if(localStorage.getItem('aluno') !== "" || localStorage.getItem('aluno') !== "null" && localStorage.getItem('serie') !== "" || localStorage.getItem('serie') !== "null"){
         mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
        }
        // Gmail
-       if(localStorage.getItem('gmail') !== ""){
+       if(localStorage.getItem('gmail') !== "" || localStorage.getItem('gmail') !== "null"){
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        }
        // Telefone
-       if(localStorage.getItem('telefone') !== ""){
+       if(localStorage.getItem('telefone') !== "" || localStorage.getItem('telefone') !== "null"){
        	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
        }
        // Ra
-       if(localStorage.getItem('ra') !== "undefined"){
+       if(localStorage.getItem('ra') !== "undefined" || localStorage.getItem('ra') !== "null"){
        	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
        }
 
