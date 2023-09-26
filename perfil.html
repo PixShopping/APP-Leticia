@@ -682,9 +682,9 @@
 
 
        // Responsavel
-       if(localStorage.getItem('responsavel') !== ""){
+       if(localStorage.getItem('responsavel')) {
        	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
-       } else if (localStorage.getItem('responsavel') === "null") {
+       } else {
 	mostrarResponsavel.innerHTML = "Indefinido";
        }
        // Aluno
