@@ -683,23 +683,23 @@
 
 
        // Responsavel
-       if(localStorage.getItem('responsavel')){
+       if(localStorage.getItem('responsavel') !== ""){
        	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
        }
        // Aluno
-       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
+       if(localStorage.getItem('aluno') !== "" && localStorage.getItem('serie') !== ""){
         mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
        }
        // Gmail
-       if(localStorage.getItem('gmail')){
+       if(localStorage.getItem('gmail') !== ""){
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        }
        // Telefone
-       if(localStorage.getItem('telefone')){
+       if(localStorage.getItem('telefone') !== ""){
        	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
        }
        // Ra
-       if(localStorage.getItem('ra')){
+       if(localStorage.getItem('ra') !== "undefined"){
        	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
        }
 
