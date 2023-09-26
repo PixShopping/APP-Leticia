@@ -700,12 +700,16 @@
 	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
        }
        // Telefone
-       if(localStorage.getItem('telefone') !== "" || localStorage.getItem('telefone') !== "null"){
+       if(localStorage.getItem('telefone')){
        	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
+       } else {
+	mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
        }
        // Ra
-       if(localStorage.getItem('ra') !== "undefined" || localStorage.getItem('ra') !== "null"){
+       if(localStorage.getItem('ra')){
        	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
+       } else {
+	mostrarRa.inmerHTML = `<span>Ra: </span>Indefinido`;
        }
 
 
