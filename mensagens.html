@@ -123,17 +123,21 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
+                margin: 10px 0px 0px 0px;
             }
 
             .content ul li {
-                width: 100%;
-                height: auto;
-                padding: 15px;
-                border-bottom: 2px solid gray;
+                width: 95%;
+                height: 56px;
+                padding: 8px;
                 display: flex;
                 align-items: center;
                 background: var(--white);
                 cursor: pointer;
+                margin: 10px 0px;
+                border-radius: 5px;
+                border: 1px solid #999;
             }
 
             .content ul li:hover {
@@ -142,15 +146,14 @@
             }
 
             .content ul li h1 {
-                font-size: 24px;
-                font-weight: 750;
-                letter-spacing: 0.5px;
-                margin: 0px 0px 0px 5px;
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 1px;
+                margin: 0px 0px 0px 8px;
             }
 
             .content ul li ion-icon {
-                margin: 0px 5px 0px auto;
-                font-size: 35px;
+                font-size: 40px;
             }
 
             .contentSeries {
@@ -180,53 +183,67 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
             }
 
             .contentSeries div li {
-                width: 100%;
-                height: auto;
-                padding: 20px;
+                width: 95%;
+                height: 65px;
+                padding: 10px;
                 display: flex;
-                flex-direction: column;
-                justify-content: center;
-                list-style: none;
-                border-bottom: 2px solid gray;
+                align-items: center;
                 background: var(--white);
                 cursor: pointer;
+                margin: 10px 0px;
+                border-radius: 5px;
+                border: 1px solid #999;
+                position: relative;
+                z-index: 80;
             }
 
             .contentSeries div li:hover {
-                background: #CCC;
-                box-shadow: 0px 0px 10px #CCC;
+                background: #bcbbbb;
                 transition: all .3s ease-in-out;
             }
 
-            .contentSeries div li:first-child{
-                border-top: 2px solid gray;
+            .contentSeries div li ion-icon {
+                font-size: 45px;
             }
 
-
             .contentSeries div li h1 {
-                font-size: 18.5px;
-                font-weight: 700;
-                letter-spacing: 0.3px;
-                margin: 2px 0px 0px 0px;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                margin: 0px 0px 0px 8px;
 		        display: flex;
+                line-height: 21px;
             }
 
             .contentSeries div li button {
                 background: red;
                 border: none;
                 border-radius: 10px;
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
                 font-size: 17px;
                 font-weight: 700;
                 color: var(--white);
                 position: absolute;
-                right: 25px;
+                right: 15px;
                 cursor: pointer;
-            } .contentSeries div li button:hover {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 90;
+            }
+
+            .contentSeries div li button ion-icon {
+                font-size: 26px;
+                margin: 0px;
+            }
+
+            .contentSeries div li button:hover {
                 background: #E84354;
                 transition: all .4s ease-in-out;
             }
@@ -518,83 +535,83 @@
                 <ul>
 
                     <li onclick="mensagem6A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>6anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem6B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>6anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem7A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>7anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem7B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>7anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem8A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>8anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem8B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>8anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem9A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>9anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem9B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>9anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem1A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>1anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem1B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>1anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem2A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>2anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem2B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>2anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem2C()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>2anoC</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem3A()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>3anoA</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem3B()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>3anoB</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                     <li onclick="mensagem3C()">
+                        <ion-icon name="people-circle-outline"></ion-icon>
                         <h1>3anoC</h1>
-                        <ion-icon name="arrow-forward"></ion-icon>
                     </li>
 
                 </ul>
@@ -668,6 +685,7 @@
                 <h1>9ANOA<p id="total9A"></p></h1>
                 <div id="9A">
 
+
                 </div>
 
             </section>
@@ -677,6 +695,8 @@
 
                 <h1>9ANOB <p id="total9B"></p></h1>
                 <div id="9B">
+
+
 
                 </div>
 
@@ -1202,14 +1222,13 @@
         .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.forEach((val) => {
-		div.innerHTML += `<li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li"> <h1> ${val.data().responsavel}</h1>
-                    <h1>${val.data().aluno}</h1>
-                    <button onclick="remover(${index})">X</button></li>`;
-                index++;
+            div.innerHTML += `
+            <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
+            <ion-icon name="person-circle-outline"></ion-icon>
+             <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
+            <button onclick="remover(${index})"><ion-icon name="trash-outline"></ion-icon></button></li>`;
             });
         });
-
-
 
 	const totalErro = document.querySelector('.totalErro');
 
