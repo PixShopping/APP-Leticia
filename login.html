@@ -650,7 +650,9 @@
 					const senha = val.data().senha;
 					if (RESPONSAVEL === usuario && SENHA === senha) {
 						localStorage.setItem('logado', 'ADMIN');
-						window.location.href = "./home.html";
+						setTimeout(() => {
+							window.location.href = "./home.html";	
+						}, 500);
 					}
 				});
 			});
@@ -664,7 +666,9 @@
 					const senha = val.data().senha;
 					if (RESPONSAVEL === usuario && SENHA === senha) {
 						localStorage.setItem('logado', 'PROFESSOR');
-						window.location.href = "./home.html";
+						setTimeout(() => {
+							window.location.href = "./home.html";	
+						}, 500);
 					}
 				});
 			});
