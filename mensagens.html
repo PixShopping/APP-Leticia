@@ -1222,7 +1222,8 @@
             <ion-icon name="person-circle-outline"></ion-icon>
              <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
             <button onclick="remover(${index})"><ion-icon name="trash-outline"></ion-icon></button></li>`;
-            });
+            index++;
+	    });
         });
 
 	const totalErro = document.querySelector('.totalErro');
