@@ -21,16 +21,3 @@ messaging.setBackgroundMessageHandler(function (payload) {
   };
   return self.registration.showNotification(title, options);
 });
-
-self.addEventListener('install', function (event) {
-  // O escopo é definido durante a instalação do Service Worker
-  event.waitUntil(
-    self.skipWaiting()
-  );
-});
-
-self.addEventListener('activate', function (event) {
-  event.waitUntil(
-    self.clients.claim()
-  );
-});
