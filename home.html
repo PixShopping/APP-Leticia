@@ -393,15 +393,16 @@
 
 			// Mensagem PUSH pelo firebase
 
-				 messaging.getToken().then(function (currentToken) {
-				  if (currentToken) {
-				    // Envie o token para o seu servidor para usá-lo posteriormente
-				  } else {
-				    // O usuário não concedeu permissão ou o token não pôde ser gerado
-				  }
-				}).catch(function (err) {
-				  console.log('Erro ao obter o token de registro:', err);
-				});
+			messaging.getToken().then(function (currentToken) {
+		  if (currentToken) {
+		    console.log('Token FCM:', currentToken);
+		    // Envie o token para o seu servidor para usá-lo posteriormente
+		  } else {
+		    console.log('Token FCM não pôde ser gerado.');
+		  }
+		}).catch(function (err) {
+		  console.log('Erro ao obter o token de registro:', err);
+		});
 				 
       // Pega o idserie do banco de dados
       db.collection("cadastro")
