@@ -369,8 +369,8 @@
         <!-- LINKS DO BANCO DE DADOS -->
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-        <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
+        <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+        <!--<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
 
        <!------------------------------->
@@ -390,7 +390,20 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
+	 	const messaging = firebase.messaging();
 
+			// Mensagem PUSH pelo firebase
+
+				 messaging.getToken().then(function (currentToken) {
+			  if (currentToken) {
+			    // Envie o token para o seu servidor para usá-lo posteriormente
+			  } else {
+			    // O usuário não concedeu permissão ou o token não pôde ser gerado
+			  }
+			}).catch(function (err) {
+			  console.log('Erro ao obter o token de registro:', err);
+			});
+				 
       // Pega o idserie do banco de dados
       db.collection("cadastro")
         .doc("series")
