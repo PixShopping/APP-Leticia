@@ -370,7 +370,6 @@
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-messaging-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-messaging-compat-sw.js"></script>
 
 
        <!------------------------------->
@@ -405,26 +404,6 @@
 		  console.log('Erro ao obter o token de registro:', err);
 		});
 
-	       messaging.setBackgroundMessageHandler(function (payload) {
-		  const notification = JSON.parse(payload.data.notification);
-		  const title = notification.title;
-		  const options = {
-		    body: notification.body,
-		    icon: notification.icon,
-		  };
-		  return self.registration.showNotification(title, options);
-		});
-
-	       if ('serviceWorker' in navigator) {
-		  navigator.serviceWorker
-		    .register('/firebase-messaging-sw.js')
-		    .then(function (registration) {
-		      console.log('Service Worker registrado com sucesso:', registration);
-		    })
-		    .catch(function (error) {
-		      console.log('Erro ao registrar o Service Worker:', error);
-		    });
-		}
 				 
       // Pega o idserie do banco de dados
       db.collection("cadastro")
