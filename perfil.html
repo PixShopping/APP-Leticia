@@ -565,11 +565,20 @@
 
             <nav class="navgation">
 
-                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+                <!-- HOME -->
+                <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+
+                <!-- NOTIFICATION -->
                 <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-                <ion-icon onclick="enviar()" name="add"></ion-icon>
+
+                <!-- MENSAGEM -->
+                <ion-icon onclick="enviar()" name="mail"></ion-icon>
+
+                <!-- CALL -->
                 <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
                 <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+
+                <!-- PERFIL -->
                 <ion-icon class="selecionado" onclick="perfil()" name="person"></ion-icon>
 
             </nav>
@@ -681,21 +690,21 @@
        } else {
 	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
        }
-	       
+
        // Gmail
        if(localStorage.getItem('gmail')){
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        } else {
 	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
        }
-	       
+
        // Telefone
        if(localStorage.getItem('telefone')){
        	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
        } else {
 	mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
        }
-	       
+
        // Ra
        if(localStorage.getItem('ra')){
        	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
@@ -758,6 +767,9 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
+        } else if (logado === "ADMIN") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
         }
 
         function projeto() {
@@ -798,7 +810,13 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 
-      db.collection("cadastro")
+      // Pegar o ANO LETICO ATUAL
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear();
+      localStorage.setItem('ano', anoAtual);
+      const ANO = localStorage.getItem('ano');
+
+      db.collection(ANO)
         .doc("series")
         .collection(localStorage.getItem('serie'))
         .onSnapshot((data) => {
@@ -814,7 +832,7 @@
         const responsavelArmazenado = localStorage.getItem('responsavel');
         const ID = localStorage.getItem('id');
         if (senhaAtual === senhaArmazenada && novaSenha !== senhaAtual) {
-            db.collection("cadastro")
+            db.collection(ANO)
             .doc("responsaveis")
             .collection(responsavelArmazenado)
             .doc(ID).update({
@@ -846,7 +864,7 @@
             const EMAIL = inputEmail.value;
             const TELEFONE = inputTelefone.value;
             const RA = inputRa.value;
-            db.collection("cadastro")
+            db.collection(ANO)
             .doc("responsaveis")
             .collection(localStorage.getItem('responsavel'))
             .doc(localStorage.getItem('id')).update({
