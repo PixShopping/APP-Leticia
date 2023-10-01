@@ -429,6 +429,119 @@
                 box-shadow: 0px 0px 15px var(--one);
             }
 
+            /* Redes Sociais */
+
+            .redes-sociais {
+                width: 100vw;
+                height: auto;
+                display: none;
+                flex-direction: column;
+            }
+
+            .redes-sociais ul {
+		        display: flex;
+		        flex-direction: column;
+				width: 100%;
+				height: auto;
+                border: none;
+                margin: 15px 0px 0px 0px;
+		   }
+
+           .redes-sociais ul li {
+                width: 90%;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--one);
+                border-radius: 8px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto;
+            }
+
+		   .redes-sociais ul li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+		   }
+
+		   .redes-sociais ul li ion-icon {
+		        font-size: 30px;
+                margin: 0px 10px 0px 12px;
+		   }
+
+		   .redes-sociais ul li ion-icon:last-child {
+                margin: 0px 10px 0px auto;
+                font-size: 30px;
+                background: transparent;
+		   }
+
+		   .redes-sociais ul li h1 {
+			  font-size: 18px;
+			  font-weight: 500;
+			  margin: 0px;
+		   }
+
+           /* Telefones */
+
+           .telefones {
+            width: 100vw;
+            height: auto;
+            display: none;
+            flex-direction: column;
+            }
+
+            .telefones ul {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+                border: none;
+                margin: 15px 0px 0px 0px;
+            }
+
+            .telefones ul h2 {
+                margin: 0px 0px -8px 5.25%;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+                text-transform: uppercase;
+            }
+
+            .telefones ul li {
+                width: 90%;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--one);
+                border-radius: 8px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto 15.5px auto;
+            }
+
+            .telefones ul li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+            }
+
+            .telefones ul li ion-icon {
+                font-size: 30px;
+                margin: 0px 10px 0px 12px;
+            }
+
+            .telefones ul li ion-icon:last-child {
+                margin: 0px 10px 0px auto;
+                font-size: 30px;
+                background: transparent;
+            }
+
+            .telefones ul li h1 {
+                font-size: 18px;
+                font-weight: 500;
+                margin: 0px;
+            }
+
             </style>
            </head>
 
@@ -477,19 +590,21 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
-        <!-- SUPORTE -->
-        <li onclick="site()">
-            <ion-icon name="desktop-outline"></ion-icon>
-            <h1>Website</h1>
-            <ion-icon name="arrow-forward"></ion-icon>
-        </li>
+
 
           <!-- SUPORTE -->
-          <li onclick="suporte()">
+          <li onclick="contato()">
               <ion-icon name="call-outline"></ion-icon>
-              <h1>Suporte</h1>
+              <h1>Contato</h1>
               <ion-icon name="arrow-forward"></ion-icon>
           </li>
+
+          <!-- REDES SOCIAIS -->
+            <li onclick="redesSociais()">
+                <ion-icon name="earth-outline"></ion-icon>
+                <h1>Redes Sociais</h1>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </li>
 
           <!-- SAIR DA CONTA -->
           <li onclick="sair()">
@@ -501,6 +616,71 @@
         </ul>
 
         </section>
+
+        <!-- REDES SOCIAS -->
+        <section class="redes-sociais">
+
+            <ul>
+                <li onclick="website()">
+                    <ion-icon name="desktop-outline"></ion-icon>
+                    <h1>Website</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="whatsapp()">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                    <h1>Whatsapp</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="facebook()">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                    <h1>Facebook</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="instagram()">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    <h1>Instagram</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+
+            </ul>
+
+        </section>
+
+
+        <!-- CONTATO -->
+        <section class="telefones">
+
+            <ul>
+
+                <h2>Diretor</h2>
+                <li onclick="diretor()">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 99227-6445</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <h2>Coordenador</h2>
+                <li onclick="">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 99756-9308</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <h2>Escola</h2>
+                <li onclick="suporte()">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 3324-2256</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+            </ul>
+
+        </section>
+
 
         <!-- MUDAR SENHA -->
         <section class="containerSenha">
@@ -742,6 +922,37 @@
 		 window.location.href = "./login.html";
 		}
 
+        // CONTATO
+        function contato() {
+            const content = document.querySelector('.content');
+            const telefones = document.querySelector('.telefones');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            local.textContent = "Telefones";
+            telefones.style.display = "flex";
+        }
+
+        function diretor() {
+            window.location.href = "tel:5516992276445"
+        }
+
+        // SUPORTE
+        function website() {
+            window.location.href = "https://escola-leticia.netlify.app";
+        }
+
+        function whatsapp() {
+            window.location.href = "";
+        }
+
+        function facebook() {
+            window.location.href = "";
+        }
+
+        function instagram() {
+            window.location.href = "https://www.instagram.com/e.e.prof_leticia/";
+        }
+
 		function mudarSenha() {
             const content = document.querySelector('.content');
             const containerSenha = document.querySelector('.containerSenha');
@@ -749,16 +960,14 @@
             containerSenha.style.display = "flex";
         }
 
-        function site() {
+        function redesSociais() {
             const content = document.querySelector('.content');
-            const container = document.querySelector('.container');
-            const divSite = document.querySelector('.website');
+            const redesSociais = document.querySelector('.redes-sociais');
             const local = document.getElementById('local');
             content.style.display = "none";
-            divSite.style.display = "flex";
-            divSite.style.padding = "0px 0px 100px 0px";
-            local.textContent = "Website";
-            divSite.innerHTML = `<iframe src="https://escola-leticia.netlify.app" width="100%" height="100%" frameborder="0"></iframe>`;
+            local.textContent = "Redes Sociais";
+            redesSociais.style.display = "flex";
+
         }
 
 		// Verifica se é um professor
