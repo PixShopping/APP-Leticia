@@ -91,6 +91,7 @@
                 font-size: 16px;
                 font-weight: 400;
                 text-align: center;
+                line-height: 21px;
             }
 
             .bem-vindo h2 span {
@@ -174,7 +175,7 @@
                 letter-spacing: 0.5px;
                 margin: 25px 0px 20px 0px;
                 text-align: center;
-		padding: 0px 10px 0px 10px;
+		        padding: 0px 10px 0px 10px;
             }
 
             .guia p {
@@ -182,7 +183,7 @@
                 font-weight: 400;
                 letter-spacing: 0.3px;
                 margin: 0px 0px 5px 0px;
-                padding: 0px 20px 0px 20px;
+                padding: 0px 30px 0px 30px;
             }
 
             .guia ul {
@@ -190,7 +191,7 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                margin: 10px 0px 0px 0px;
+                margin: 12.5px 0px 0px 0px;
             }
 
             .guia ul li {
@@ -253,29 +254,28 @@
 
                         <ion-icon name="school-outline"></ion-icon>
                         <h1 id="mostrarResponsavel"></h1>
-                        <h2>Bem Vindo(a) ao aplicativo da escola
-                        <br><span>Leticia Godoy Bueno de Carvalho Lopes</span></h2>
+                        <h2>Bem-Vindo ao aplicativo da Escola Estadual <span>Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
 
                     </header>
 
 					<section class="guia">
 
-						<h1>Guia rápido para utilização da plataforma</h1>
-						<p>A plataforma tem tudo para auxiliar os responsáveis no monitoramento dos estudos do seus filhos. Confira abaixo um resumo das ferramentas que seu acesso oferece! Todas elas podem ser acessadas facilmente através do menu de navegação.
-
+						<h1>Guia rápido para utilização</h1>
+						<p>
+                            Este aplicativo visa facilitar o acompanhamento da vida escolar dos nossos estudantes. Confira abaixo as opções de ferramentas que seu acesso oferece. Todas elas podem ser facilmente selecionadas através dos atalhos presentes no menu de navegação logo abaixo.
                         </p>
 						<ul>
 							<li>
                                 <ion-icon name="notifications-outline"></ion-icon>
-                                <p><strong>Comunicados: </strong>Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
+                                <p><strong>Comunicados e datas: </strong> Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
                             </li>
                             <li>
                                 <ion-icon name="mail-outline"></ion-icon>
-                                <p><strong>Mensagens: </strong>Veja as mensagens da secretaria sobre as notas, frequencias e comportamento do aluno.</p>
+                                <p><strong>Mensagens: </strong>Envio de informações sobre o dia a dia dos estudantes e espaço para tirar dúvidas, fazer agendamentos, solicitações e iniciar uma conversa.</p>
                             </li>
                             <li>
-                                <ion-icon name="calendar-outline"></ion-icon>
-                                <p><strong>Datas: </strong>Fique por dentro das datas e horários de nossas reuniões de pais.</p>
+                                <ion-icon name="qr-code-outline"></ion-icon>
+                                <p><strong>Tutorial </strong>de como acessar o app, baixar e instalar pelo QR CODE</p>
                             </li>
 
 						</ul>
@@ -288,11 +288,20 @@
 
                 <nav class="navgation">
 
+                    <!-- HOME -->
                     <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
+
+                    <!-- NOTIFICATION -->
                     <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-                    <ion-icon onclick="enviar()" name="add"></ion-icon>
+
+                    <!-- MENSAGEM -->
+                    <ion-icon onclick="enviar()" name="mail"></ion-icon>
+
+                    <!-- CALL -->
                     <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
                     <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+
+                    <!-- PERFIL -->
                     <ion-icon onclick="perfil()" name="person"></ion-icon>
 
                 </nav>
@@ -344,6 +353,9 @@
         const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -404,7 +416,7 @@
 		  console.log('Erro ao obter o token de registro:', err);
 		});
 
-				 
+
       // Pega o idserie do banco de dados
       db.collection("cadastro")
         .doc("series")
