@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
-		<link rel="stylesheet" src="./style.css">
-		<title>  Mensagem | Letícia </title>
+		<link type="stylesheet" src="./style.css">
+		<title> Perfil | Letícia </title>
 
 		<style scoped>
 
@@ -19,8 +19,8 @@
 				--four: #4E8BB8;
 				--five: #6FADD2;
 				--six: #9ECAE3;
-                --white: white;
                 --gray: #b3abab;
+                --white: white;
                 --font: 'Ubuntu', sans-serif;
                 --green: green;
 				--red: red;
@@ -34,11 +34,18 @@
 			}
 
 			*::-webkit-scrollbar {
-				display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
 			}
 
+            .flex {
+                display: flex;
+                flex-direction: row;
+            } .align-items {
+                align-items: center;
+            }
+
 			body {
-				background: var(--white);
+				background: white;
 				color: var(--one);
 				user-select: none;
 				font-family: 'Arial', sans-serif;
@@ -55,14 +62,14 @@
             .local {
                 width: 100%;
                 height: 70px;
+                color: #F1F1F1;
                 background: var(--one);
-                color: var(--white);
                 display: flex;
                 justify-content: space-between;
 				align-items: center;
             	padding: 0px 20px 0px 20px;
                 z-index: 100;
-                box-shadow: 0px 5px 15px gray;
+                box-shadow: 0px 5px 15px var(--one);
 	 	   }
 
             .local ion-icon {
@@ -97,7 +104,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-                color: var(--white);
+                color: #F1F1F1;
             }
 
             .navgation ion-icon {
@@ -108,838 +115,793 @@
             /* SELECIONADO */
 
             .selecionado {
-                background: var(--white);
+                background: #F1F1F1;
                 color: var(--one);
                 border-radius: 50%;
                 padding: 15px;
             }
 
+		    /* Content Perfil */
+
             .container {
                 padding: 0px 0px 90px 0px;
             }
 
-            .content ul {
-                width: 100vw;
+		   .content {
+		       display: flex;
+		       flex-direction: column;
+		   }
+
+		   /* Container DADOS */
+           .dados {
+				width: 100vw;
+				height: auto;
+				padding: 0px 0px 20px 0px;
+		    	display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0px 0px 0px 0px;
+		   }
+
+           .dados section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 0px  0px 15px 15px;
+                padding: 20px 20px 25px 20px;
+           }
+
+           .dados h2 {
+                font-size: 24px;
+                letter-spacing: 0.2px;
+                text-transform: uppercase;
+           }
+
+		   .dados ion-icon {
+                width: 75px;
+                height: 75px;
+                color: white;
+                border-radius: 50%;
+                background: var(--one);
+                box-shadow: 0px 0px 10px var(--one);
+                margin: 0px 20px 0px -10px;
+		   }
+
+		   /* DADOS */
+
+		   .dados div {
+                width: auto;
                 height: auto;
+                padding: 15px 25px;
                 display: flex;
                 flex-direction: column;
+                align-items: flex-start;
+                margin: 10px 0px 0px 0px;
+		   }
+
+		   .dados div h1 {
+                font-size: 17px;
+                letter-spacing: 0.2px;
+                margin: 6px 0px 0px 0px;
+                color: var(--one);
+		   }
+
+           .dados div span {
+                font-size: 19px;
+                letter-spacing: 0.2px;
+                margin: 6px 0px 0px 0px;
+                color: var(--two);
+           }
+
+	    	.content ul {
+		        display: flex;
+		        flex-direction: column;
+				width: 100%;
+				height: auto;
+                border: none;
+		   }
+
+		   /* Esse aki */
+           .content ul li {
+                width: 90%;
+                height: 56px;
+                display: flex;
                 align-items: center;
+                border: 1px solid var(--one);
+                border-radius: 8px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto;
+            }
+
+		   .content ul li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+		   }
+
+		   .content ul li ion-icon {
+		font-size: 30px;
+                margin: 0px 10px 0px 12px;
+		   }
+
+		   .content ul li ion-icon:last-child {
+                margin: 0px 10px 0px auto;
+                font-size: 30px;
+                background: transparent;
+		   }
+
+		   .content ul li h1 {
+			  font-size: 18px;
+			  font-weight: 500;
+			  margin: 0px;
+		   }
+
+           /* WEBSITE */
+
+           .website {
+                width: 100vw;
+                height: 100vh;
+                display: none;
+                position: absolute;
+                top: 70px;
+            }
+
+           /* Container Senha */
+
+           .containerSenha {
+                width: 100vw;
+                height: auto;
+                padding: 30px;
+                color: #232323;
+                display: none;
+                flex-direction: column;
+                transition: all .4s ease-in-out;
+                position: relative;
                 margin: 10px 0px 0px 0px;
             }
 
-            .content ul li {
-                width: 92%;
-                height: 56px;
-                padding: 8px;
+            .containerSenha h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin: 0px 0px 15px 0px;
+                letter-spacing: 0.2px;
+            }
+
+            .containerSenha div {
                 display: flex;
-                align-items: center;
-                background: var(--white);
-                cursor: pointer;
-                margin: 10px 0px;
-                border-radius: 5px;
-                border: 1px solid #999;
-            }
-
-            .content ul li:hover {
-                background: var(--one);
-                color: var(--white);
-                transition: all .3s ease-in-out;
-            }
-
-            .content ul li h1 {
-                font-size: 18px;
-                font-weight: 400;
-                letter-spacing: 1px;
-                margin: 0px 0px 0px 10px;
-            }
-
-            .content ul li ion-icon {
-                font-size: 40px;
-            }
-
-            .contentSeries {
-                width: 100vw;
-                height: auto;
-                color: #232323;
-                display: flex;
-                flex-direction: column;
                 align-items: center;
                 position: relative;
-            }
-
-            .contentSeries h1 {
-                font-size: 24px;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                margin: 25px 0px 20px 0px;
-		display: flex;
-            }
-
-	    .contentSeries p {
-		    margin: 0px 0px 0px 6px;
-	    }
-
-            .contentSeries div {
-                width: 100%;
+                width: auto;
                 height: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                margin: 12.5px 0px;
             }
 
-            .contentSeries div li {
-                width: 92%;
-                height: 56px;
-                padding: 8px;
-                display: flex;
-                align-items: center;
-                background: var(--white);
-                cursor: pointer;
-                margin: 10px 0px;
-                border-radius: 5px;
-                border: 1px solid #999;
-		position: relative;
-            }
-
-            .contentSeries div li:hover {
-                background: var(--one);
-                color: var(--white);
-                transition: all .3s ease-in-out;
-            }
-
-            .contentSeries div li h1 {
-                font-size: 17px;
-                font-weight: 400;
-                letter-spacing: 1px;
-                margin: 0px 0px 0px 8px;
-            }
-
-            .contentSeries div li ion-icon {
-                font-size: 40px;
-            }
-
-            .contentSeries div li button {
-                background: red;
-                border: none;
-                border-radius: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 17px;
-                font-weight: 700;
-                color: var(--white);
+            .containerSenha div ion-icon {
                 position: absolute;
-                right: 15px;
-                cursor: pointer;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 90;
+                left: 15px;
             }
 
-            .contentSeries div li button ion-icon {
-                font-size: 26px;
-                margin: 0px;
+            .containerSenha div input {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 1px solid gray;
+                background: white;
+                padding: 20px 20px 20px 40px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                outline: none;
             }
 
-            .contentSeries div li button:hover {
-                background: #E84354;
+            .containerSenha div input:focus {
+                box-shadow: 0px 0px 15px #4e9bdf;
+            }
+
+            .containerSenha button {
+                width: 175px;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: #191919;
+                color: white;
+                padding: 10px;
+                font-size: 15.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 25px 0px 25px auto;
+                outline: none;
                 transition: all .4s ease-in-out;
             }
 
-            .none {
+            .containerSenha button:hover {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+                cursor: pointer;
+            }
+
+            .containerSenha button:focus {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+            }
+
+            .containerSenha div section {
+                position: absolute;
+                right: 15px;
+                display: flex;
+                align-items: center;
+                width: auto;
+                height: auto;
+            } .containerSenha div section ion-icon {
+                font-size: 25px;
+                position: relative;
+                left: 0px;
+                cursor: pointer;
+            } .containerSenha div section #mostrarSenhaAtual, .containerSenha div section #mostrarSenhaNova {
                 display: none;
             }
 
-		/* Mensagem de Erro */
+            /* Container Dados */
 
-		.totalErro {
-			width: 100vw;
-			height: auto;
-			padding: 20px;
-			display: none;
-			opacity: 0;
-			align-items: center;
-			flex-direction: column;
-			transition: all .3s ease-in-out;
-			margin: 10px 0px 0px 0px;
-		}
+           .containerDados {
+                width: 100vw;
+                height: auto;
+                padding: 30px;
+                color: #232323;
+                display: none;
+                flex-direction: column;
+                transition: all .4s ease-in-out;
+                position: relative;
+                margin: 10px 0px 0px 0px;
+            }
 
-		.totalErro ion-icon {
-			font-size: 60px;
-			color: #E84354;
-			border: 3px solid #E84354;
-			border-radius: 50%;
-		}
+            .containerDados h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin: 0px 0px 15px 0px;
+                letter-spacing: 0.2px;
+            }
 
-		.totalErro h1 {
-			font-size: 22px;
-			font-weight: 600;
-			margin: 10px 0px 0px 0px;
-		}
+            .containerDados div {
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: auto;
+                height: auto;
+                margin: 12.5px 0px;
+            }
 
-		.totalErro p {
-			font-size: 18px;
-			font-weight: 550;
-			letter-spacing: 0.2px;
-			margin: 4px 0px 0px 0px;
-			color: #97908E;
-		}
+            .containerDados div ion-icon {
+                position: absolute;
+                left: 15px;
+            }
 
-        /* Formulario de Mensagem */
+            .containerDados div input {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                border: 1px solid gray;
+                background: white;
+                padding: 20px 20px 20px 40px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                outline: none;
+            }
 
-        .form-mensagem {
+            .containerDados div input:focus {
+                box-shadow: 0px 0px 15px #4e9bdf;
+            }
+
+            .containerDados button {
+                width: 175px;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: #191919;
+                color: white;
+                padding: 10px;
+                font-size: 15.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 25px 0px 25px auto;
+                outline: none;
+                transition: all .4s ease-in-out;
+            }
+
+            .containerDados button:hover {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+                cursor: pointer;
+            }
+
+            .containerDados button:focus {
+                background: var(--one);
+                color: white;
+                box-shadow: 0px 0px 15px var(--one);
+            }
+
+            /* Redes Sociais */
+
+            .redes-sociais {
+                width: 100vw;
+                height: auto;
+                display: none;
+                flex-direction: column;
+            }
+
+            .redes-sociais ul {
+		        display: flex;
+		        flex-direction: column;
+				width: 100%;
+				height: auto;
+                border: none;
+                margin: 15px 0px 0px 0px;
+		   }
+
+           .redes-sociais ul li {
+                width: 90%;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--one);
+                border-radius: 8px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto;
+            }
+
+		   .redes-sociais ul li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+		   }
+
+		   .redes-sociais ul li ion-icon {
+		        font-size: 30px;
+                margin: 0px 10px 0px 12px;
+		   }
+
+		   .redes-sociais ul li ion-icon:last-child {
+                margin: 0px 10px 0px auto;
+                font-size: 30px;
+                background: transparent;
+		   }
+
+		   .redes-sociais ul li h1 {
+			  font-size: 18px;
+			  font-weight: 500;
+			  margin: 0px;
+		   }
+
+           /* Telefones */
+
+           .telefones {
             width: 100vw;
             height: auto;
-            padding: 20px;
-            background: var(--white);
             display: none;
             flex-direction: column;
-            z-index: 100;
-            position: absolute;
-            top: 101vh;
-            left: 0px;
-            transition: all .4s ease-in-out;
-            border-radius: 0px 0px 10px 10px;
-            box-shadow: 0 0 10px #232323;
-        }
+            }
 
-        .form-mensagem h1 {
-            font-size: 24px;
-            font-weight: 400;
-            margin: 10px auto 20px auto;
-        }
+            .telefones ul {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+                border: none;
+                margin: 15px 0px 0px 0px;
+            }
 
-        .form-mensagem label {
-            font-size: 20px;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-            margin: 0px 0px 2px4 2px;
-        }
+            .telefones ul h2 {
+                margin: 0px 0px -8px 5.25%;
+                font-size: 20px;
+                letter-spacing: 0.3px;
+                text-transform: uppercase;
+            }
 
-        .form-mensagem input {
-            width: 100%;
-            height: 35px;
-            border-radius: 5px;
-            border: 1px solid #CCC;
-            outline: none;
-            padding: 10px;
-            margin: 0px 0px 10px 0px;
-        }
+            .telefones ul li {
+                width: 90%;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--one);
+                border-radius: 8px;
+                color: var(--one);
+                cursor: pointer;
+                margin: 10px auto 15.5px auto;
+            }
 
-        .form-mensagem textarea {
-            width: 100%;
-            height: 70px;
-            border-radius: 5px;
-            border: 1px solid #CCC;
-            outline: none;
-            padding:  5px 10px;
-            margin: 0px 0px 10px 0px;
-        }
+            .telefones ul li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .4s ease-in-out;
+            }
 
-        .form-mensagem button {
-            width: 90%;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--one);
-            color: var(--white);
-            margin: 30px auto 10px auto;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            outline: none;
-            border: 2px solid var(--one);
-        } .form-mensagem button:hover {
-            background: var(--white);
-            border: 2px solid var(--one);
-            color: var(--one);
-            transition: all .3s ease-in-out;
-        }
+            .telefones ul li ion-icon {
+                font-size: 30px;
+                margin: 0px 10px 0px 12px;
+            }
 
-        /* Container Opcoes */
+            .telefones ul li ion-icon:last-child {
+                margin: 0px 10px 0px auto;
+                font-size: 30px;
+                background: transparent;
+            }
 
-        .containerOpcoes {
-            display: none;
-            width: 100vw;
-            height: auto;
-            padding: 25px 20px 20px 20px;
-            background: var(--white);
-            z-index: 90;
-            position: fixed;
-            bottom: 70px;
-            left: 50%;
-            border: 2px solid var(--one);
-            border-radius: 10px 10px 0px 0px;
-            transform: translateX(-50%);
-            flex-direction: column;
-            align-items: center;
-        }
+            .telefones ul li h1 {
+                font-size: 18px;
+                font-weight: 500;
+                margin: 0px;
+            }
 
-        .containerOpcoes ion-icon {
-            position: absolute;
-            top: -15px;
-            font-size: 25px;
-            padding: 5px;
-            background: var(--one);
-            color: var(--white);
-            border-radius: 50%;
-            z-index: 50;
-            cursor: pointer;
-        } .containerOpcoes ion-icon:hover {
-            background: var(--two);
-            color: var(--white);
-            box-shadow: 0px 0px 10px var(--two);
-            transition: all .4s ease-in-out;
-        }
+            </style>
+           </head>
 
-        .containerOpcoes h1 {
-            margin: 12.5px 0px 15px 0px;
-        }
+           <body>
 
-        .containerOpcoes button {
-            width: 90%;
-            height: 45px;
-            background: var(--one);
-            border: none;
-            border-radius: 10px;
-            color: var(--white);
-            margin: 15px 0px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-        } .containerOpcoes button:hover {
-            border: 2px solid var(--one);
-            color: var(--one);
-            background: var(--white);
-            transition: all .4s ease-in-out;
-        } .containerOpcoes button:focus {
-            border: 2px solid var(--one);
-            color: var(--one);
-            background: var(--white);
-            transition: all .4s ease-in-out;
-        }
+            <main class="container">
 
-        /* MENSAGENS */
+                <header class="local">
 
-        /* DIV MENSAGENS */
+                    <h1 id="local">Perfil</h1>
+                    <ion-icon name="settings"></ion-icon>
 
-        .mensagens {
-            width: 100%;
-            height: auto;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin: 10px 0px 0px 0px;
-            z-index: 80;
-            padding: 0px 0px 20px 0px;
-	    }
+                </header>
 
-        .mensagens h2 {
-            font-size: 25px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-            margin: 15px 0px 0px 0px;
-        }
+        <section class="content">
 
-        .mensagens li {
-            width: 95%;
-            height: auto;
-            list-style: none;
-            border: 2px solid var(--one);
-            border-radius: 5px;
-            margin: 20px 0px 0px 0px;
-            padding: 10px;
-            color: #191919;
-        }
-
-        .mensagens li h1 {
-            display: flex;
-            width: 100%;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 0.2px;
-        }
-
-        .mensagens li h1 a {
-            margin: 0px 0px 0px auto;
-            font-size: 18px;
-        }
-
-        .mensagens p {
-            font-size: 16px;
-            font-weight: 500;
-            letter-spacing: 0px;
-            width: 100%;
-            margin: 5px 0px 5px 0px;
-        }
-
-        .erro {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100vw;
-            height: auto;
-        }
-
-        .erro ion-icon {
-            width: 120px;
-            height: 120px;
-        }
-
-        .erro h1 {
-            font-size: 22px;
-            margin: 0px 0px 0px 0px;
-        }
-
-        .erro p {
-            font-size: 18px;
-        }
-
-        .erro button {
-            margin: 10px 0px 0px 0px;
-            width: 150px;
-            height: 35px;
-            border-radius: 10px;
-            background: var(--one);
-            color: var(--white);
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            border: 2px solid var(--one);
-        } .erro button:hover {
-            color: var(--one);
-            background: var(--white);
-            box-shadow: 0px 0px 10px var(--one);
-            transition: all .4s ease-in-out;
-        }
-
-        </style>
-    </head>
-
-    <body>
-
-        <main class="container">
-
-            <header class="local">
-
-                <h1>Mensagens</h1>
-                <ion-icon onclick="theme()" name="settings"></ion-icon>
-
-            </header>
-
-            <section class="content admin">
-
-                <ul>
-
-                    <li onclick="mensagem6A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>6anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem6B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>6anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem7A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>7anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem7B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>7anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem8A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>8anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem8B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>8anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem9A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>9anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem9B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>9anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem1A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>1anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem1B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>1anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem2A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem2B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem2C()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoC</h1>
-                    </li>
-
-                    <li onclick="mensagem3A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem3B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem3C()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoC</h1>
-                    </li>
-
-                </ul>
-
+        <!-- DADOS DOS RESPONSAVEIS -->
+        <div class="dados">
+            <section class="flex">
+                <ion-icon name="person-circle"></ion-icon>
+                <h2>Dados do Perfil</h2>
             </section>
-
-
-            <!-- CONTENT 6 ANO A -->
-            <section class="content6A none contentSeries">
-
-                <h1>6ANOA<p id="total6A"></p></h1>
-                <div id="6A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 6 ANO B -->
-            <section class="content6B none contentSeries">
-
-                <h1>6ANOB<p id="total6B"></p></h1>
-                <div id="6B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 7 ANO A -->
-            <section class="content7A none contentSeries">
-
-                <h1>7ANOA<p id="total7A"></p></h1>
-                <div id="7A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 7 ANO B -->
-            <section class="content7B none contentSeries">
-
-                <h1>7ANOB<p id="total7B"></p></h1>
-                <div id="7B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 8 ANO A -->
-            <section class="content8A none contentSeries">
-
-                <h1>8ANOA<p id="total8A"></p></h1>
-                <div id="8A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 8 ANO B -->
-            <section class="content8B none contentSeries">
-
-                <h1>8ANOB<p id="total8B"></p> </h1>
-                <div id="8B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 9 ANO A -->
-            <section class="content9A none contentSeries">
-
-                <h1>9ANOA<p id="total9A"></p></h1>
-                <div id="9A">
-
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 9 ANO B -->
-            <section class="content9B none contentSeries">
-
-                <h1>9ANOB <p id="total9B"></p></h1>
-                <div id="9B">
-
-
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 1 ANO A -->
-            <section class="content1A none contentSeries">
-
-                <h1>1ANOA <p id="total1A"></p></h1>
-                <div id="1A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 1 ANO B -->
-            <section class="content1B none contentSeries">
-
-                <h1>1ANOB <p id="total1B"></p></h1>
-                <div id="1B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO A -->
-            <section class="content2A none contentSeries">
-
-                <h1>2ANOA <p id="total2A"></p></h1>
-                <div id="2A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO B -->
-            <section class="content2B none contentSeries">
-
-                <h1>2ANOB <p id="total2B"></p></h1>
-                <div id="2B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO C -->
-            <section class="content2C none contentSeries">
-
-                <h1>2ANOC <p id="total2C"></p></h1>
-                <div id="2C">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO A -->
-            <section class="content3A none contentSeries">
-
-                <h1>3ANOA <p id="total3A"></p></h1>
-                <div id="3A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO B -->
-            <section class="content3B none contentSeries">
-
-                <h1>3ANOB <p id="total3B"></p></h1>
-                <div id="3B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO C -->
-            <section class="content3C none contentSeries">
-
-                <h1>3ANOC <p id="total3C"></p></h1>
-                <div id="3C">
-
-                </div>
-
-            </section>
-
-			<!-- CONTENT RESPONSAVEIS -->
-            <section class="content responsavel">
-
-				<ul>
-					<li onclick="secretaria()">
-						<ion-icon name="book-outline"></ion-icon>
-						<h1>Secretaria</h1>
-					</li>
-					<li onclick="diretoria()">
-						<ion-icon name="trophy-outline"></ion-icon>
-						<h1>Diretoria</h1>
-					</li>
-					<li onclick="escola()">
-						<ion-icon name="school-outline"></ion-icon>
-                        <h1>Escola (Geral)</h1>
-					</li>
-				</ul>
-
-            </section>
-
-            <div class="totalErro">
-                <ion-icon name="close"></ion-icon>
-                <h1>Oops!</h1>
-                <p>Nenhum Aluno Encontrado</p>
+            <div>
+                <h1 id="mostrarResponsavel"></h1>
+                <h1 id="mostrarAlunoeSerie"></h1>
+                <h1 id="mostrarGmail"></h1>
+                <h1 id="mostrarTelefone"></h1>
+                <h1 id="mostrarRa"></h1>
             </div>
+        </div>
 
-            <div class="mensagens">
+        <!-- BOTOES DO PERFIL -->
+        <ul>
 
-                <div class="erro">
+          <!-- MUDAR DADOS DO PERFIL -->
+          <li onclick="mudarDados()">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <h1>Editar Perfil</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
 
-                    <ion-icon name="mail"></ion-icon>
-                    <h1>Nenhuma mensagem encontrada!</h1>
-                    <p>Tente novamente mais tarde..</p>
-                    <button onclick="reload()">Voltar..</button>
-
-                </div>
-
-            </div>
-
-        </main>
+        <!-- MUDAR SENHA -->
+        <li onclick="mudarSenha()">
+            <ion-icon name="lock-open-outline"></ion-icon>
+            <h1>Senha</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
 
 
 
-        <section class="form-mensagem">
+          <!-- SUPORTE -->
+          <li onclick="contato()">
+              <ion-icon name="call-outline"></ion-icon>
+              <h1>Contato</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
 
-            <h1>Enviar Mensagem</h1>
+          <!-- REDES SOCIAIS -->
+            <li onclick="redesSociais()">
+                <ion-icon name="earth-outline"></ion-icon>
+                <h1>Redes Sociais</h1>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </li>
 
-            <label>Responsavel</label>
-            <input type="text" id="inputResponsavel">
+          <!-- SAIR DA CONTA -->
+          <li onclick="sair()">
+              <ion-icon style="margin: 0px 10px 0px 14px;" name="exit-outline"></ion-icon>
+              <h1>Sair da Conta</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
 
-            <label>Data</label>
-            <input type="date" id="inputData">
+        </ul>
 
-            <label>Motivo</label>
-            <input type="text" id="inputMotivo">
+        </section>
 
-            <label>Mensagem</label>
-            <textarea id="inputMensagem"></textarea>
+        <!-- REDES SOCIAS -->
+        <section class="redes-sociais">
 
-            <button onclick="enviarMensagem()">Enviar Mensagem</button>
+            <ul>
+                <li onclick="website()">
+                    <ion-icon name="desktop-outline"></ion-icon>
+                    <h1>Website</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="whatsapp()">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                    <h1>Whatsapp</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="facebook()">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                    <h1>Facebook</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+                <li onclick="instagram()">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    <h1>Instagram</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
+
+
+            </ul>
 
         </section>
 
 
-        <nav class="navgation">
+        <!-- CONTATO -->
+        <section class="telefones">
 
-            <!-- HOME -->
-            <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+            <ul>
 
-            <!-- NOTIFICATION -->
-            <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
+                <h2>Diretor</h2>
+                <li onclick="diretor()">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 99227-6445</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
 
-            <!-- MENSAGEM -->
-            <ion-icon onclick="enviar()" class="selecionado" name="mail"></ion-icon>
+                <h2>Coordenador</h2>
+                <li onclick="">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 99756-9308</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
 
-            <!-- CALL -->
-            <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
-            <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+                <h2>Escola</h2>
+                <li onclick="suporte()">
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <h1>+55 (16) 3324-2256</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </li>
 
-            <!-- PERFIL -->
-            <ion-icon onclick="perfil()" name="person"></ion-icon>
-
-        </nav>
-
-        <section class="containerOpcoes">
-
-            <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
-
-            <h1 id="tituloMensagem"></h1>
-
-            <button onclick="abrirMensagem()">Enviar Mensagem</button>
-            <button onclick="verMensagem()">Ver Mensagens</button>
-
+            </ul>
 
         </section>
 
-    </body>
+
+        <!-- MUDAR SENHA -->
+        <section class="containerSenha">
+
+            <h1>Mudar Senha</h1>
+
+            <div class="flex">
+                <ion-icon id="iconSenhaAtual" name="lock-closed"></ion-icon>
+                <input placeholder="Senha Atual" oninput="verificarSenhaAtual()" type="password" id="inputSenhaAtual">
+                <section>
+                    <ion-icon id="mostrarSenhaAtual" name="eye-outline"></ion-icon>
+                    <ion-icon id="esconderSenhaAtual" name="eye-off-outline"></ion-icon>
+                </section>
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconSenhaNova" name="lock-closed"></ion-icon>
+                <input placeholder="Nova Senha" type="password" id="inputNovaSenha">
+                <section>
+                    <ion-icon id="mostrarSenhaNova" name="eye-outline"></ion-icon>
+                    <ion-icon id="esconderSenhaNova" name="eye-off-outline"></ion-icon>
+                </section>
+            </div>
+
+            <button onclick="redefinirSenha()">Redefinir Senha</button>
+
+        </section>
+
+        <!-- ===================== -->
+        <!-- MUDAR DADOS DO PERFIL -->
+        <!-- ===================== -->
+
+        <section class="containerDados">
+
+            <h1>Dados do Perfil</h1>
+
+            <div class="flex">
+                <ion-icon id="iconAluno" name="person"></ion-icon>
+                <input placeholder="Nome do Aluno" type="text" id="inputAluno">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconEmail" name="mail"></ion-icon>
+                <input placeholder="Email" type="text" id="inputEmail">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconTelefone" name="call"></ion-icon>
+                <input placeholder="Telefone" type="text" id="inputTelefone">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconRa" name="document-text"></ion-icon>
+                <input placeholder="Ra do Aluno" type="text" id="inputRa">
+            </div>
+
+            <button onclick="salvarDados()">Salvar</button>
+
+        </section>
+
+            </main>
+
+            <nav class="navgation">
+
+                <!-- HOME -->
+                <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+
+                <!-- NOTIFICATION -->
+                <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
+
+                <!-- MENSAGEM -->
+                <ion-icon onclick="enviar()" name="mail"></ion-icon>
+
+                <!-- CALL -->
+                <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+                <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+
+                <!-- PERFIL -->
+                <ion-icon class="selecionado" onclick="perfil()" name="person"></ion-icon>
+
+            </nav>
+
+                <div class="website">
+                </div>
+
+            </body>
+
+       <!-- JavaScript -->
+       <script>
 
 
-    <!-- JAVASCRIPT -->
-    <script>
+        // Dados do Perfil
+        const inputAluno = document.getElementById('inputAluno');
+        const inputEmail = document.getElementById('inputEmail');
+        const inputTelefone = document.getElementById('inputTelefone');
+        const inputRa = document.getElementById('inputRa');
 
-        // TEMA (DARK OU LIGTH)
-        function theme() {
-            const root = document.documentElement;
-            if (root.style.getPropertyValue('--one') === '#002242') {
-                root.style.setProperty('--one', 'white');
-                root.style.setProperty('--white', '#002242');
+
+        function mudarDados() {
+            const content = document.querySelector('.content');
+            const containerDados = document.querySelector('.containerDados');
+            content.style.display = "none";
+            containerDados.style.display = "flex";
+            inputAluno.value = localStorage.getItem('aluno');
+            inputRa.value = localStorage.getItem('ra');
+            inputEmail.value = localStorage.getItem('gmail');
+            inputTelefone.value = localStorage.getItem('telefone');
+        }
+
+
+        // Mostrar Senha Atual
+        const mostrarSenhaAtual = document.getElementById('mostrarSenhaAtual');
+        const esconderSenhaAtual = document.getElementById('esconderSenhaAtual');
+        const inputSenhaAtual = document.getElementById('inputSenhaAtual');
+        mostrarSenhaAtual.addEventListener('click', () => {
+            mostrarSenhaAtual.style.display = "none";
+            esconderSenhaAtual.style.display = "block";
+            inputSenhaAtual.setAttribute('type', 'password');
+        });
+        esconderSenhaAtual.addEventListener('click', () => {
+            esconderSenhaAtual.style.display = "none";
+            mostrarSenhaAtual.style.display = "block";
+            inputSenhaAtual.setAttribute('type', 'text');
+        });
+
+        // Mostrar Senha Nova
+        const mostrarSenhaNova = document.getElementById('mostrarSenhaNova');
+        const esconderSenhaNova = document.getElementById('esconderSenhaNova');
+        const inputSenhaNova = document.getElementById('inputNovaSenha');
+        mostrarSenhaNova.addEventListener('click', () => {
+            mostrarSenhaNova.style.display = "none";
+            esconderSenhaNova.style.display = "block";
+            inputSenhaNova.setAttribute('type', 'password');
+        });
+        esconderSenhaNova.addEventListener('click', () => {
+            esconderSenhaNova.style.display = "none";
+            mostrarSenhaNova.style.display = "block";
+            inputSenhaNova.setAttribute('type', 'text');
+        });
+
+
+        // VERIFICAR SENHA ATUAL
+
+        const iconSenhaAtual = document.getElementById('iconSenhaAtual');
+        const iconSenhaNova = document.getElementById('iconSenhaNova');
+
+        function verificarSenhaAtual() {
+            const senhaAtual = inputSenhaAtual.value;
+            if (senhaAtual === localStorage.getItem('senha')) {
+                inputSenhaAtual.style.border = "1px solid green";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px green";
+                iconSenhaAtual.setAttribute('name', 'lock-open');
+                iconSenhaAtual.style.color = "green";
+
+            } else if(senhaAtual === "") {
+                inputSenhaAtual.style.border = "1px solid gray";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px #4e9bdf";
+                iconSenhaAtual.setAttribute('name', 'lock-closed');
+                iconSenhaAtual.style.color = "#191919";
             } else {
-                root.style.setProperty('--one', '#002242');
-                root.style.setProperty('--white', 'white');
+                inputSenhaAtual.style.border = "1px solid red";
+                inputSenhaAtual.style.boxShadow = "0px 0px 10px red";
+                iconSenhaAtual.setAttribute('name', 'lock-closed');
+                iconSenhaAtual.style.color = "red";
             }
         }
 
-         // abrirMensagem(${index})
-
-         // OPÇOES
-
-         function opcoes(index) {
-            localStorage.setItem('index', index);
-            const uindex = localStorage.getItem('index');
-            const containerOpcoes = document.querySelector('.containerOpcoes');
-            const tituloMensagem = document.getElementById('tituloMensagem');
-            const elemento = document.querySelector(`[data-index="${index}"]`);
-            const responsavel = elemento.getAttribute('data-responsavel');
-            containerOpcoes.style.display = "flex";
-            tituloMensagem.innerHTML = responsavel;
-            localStorage.setItem('verResponsavel', responsavel);
-         }
-
-         // Fechar Mensagens (Opcoes)
-
-         function fecharMensagem() {
-            const containerOpcoes = document.querySelector('.containerOpcoes');
-            containerOpcoes.style.display = "none";
-         }
-
-        const logado = localStorage.getItem('logado');
-        const admin = document.querySelector('.admin');
-        const responsavel = document.querySelector('.responsavel');
-
-        // Verificar se é administrador
-        if (!logado){
-            window.location.href = "./login.html";
-        } else if (logado === "ADMIN") {
-            admin.style.display = "flex";
-            responsavel.style.display = "none";
-        } else if (logado === "PROFESSOR") {
-            admin.style.display = "none";
-            responsavel.style.display = "flex";
-        } else if (logado === "RESPONSAVEL") {
-            responsavel.style.display = "flex";
-            admin.style.display = "none";
-        }
 
 
+       // Mostrar Dados (h1)
+       const mostrarResponsavel = document.getElementById('mostrarResponsavel');
+       const mostrarAlunoeSerie = document.getElementById('mostrarAlunoeSerie');
+       const mostrarGmail = document.getElementById('mostrarGmail');
+       const mostrarTelefone = document.getElementById('mostrarTelefone');
+       const mostrarRa = document.getElementById('mostrarRa');
 
-        // HREF / FUNCOES
-        function perfil() {
+
+       // Responsavel
+       if(localStorage.getItem('responsavel')) {
+       	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
+       } else {
+	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
+       }
+       // Aluno
+       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
+        mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
+       } else {
+	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
+       }
+
+       // Gmail
+       if(localStorage.getItem('gmail')){
+       	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
+       } else {
+	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
+       }
+
+       // Telefone
+       if(localStorage.getItem('telefone')){
+       	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
+       } else {
+	mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
+       }
+
+       // Ra
+       if(localStorage.getItem('ra')){
+       	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
+       } else {
+	mostrarRa.innerHTML = `<span>Ra: </span>Indefinido`;
+       }
+
+
+
+       // Verificar LOGIN
+       const logado = localStorage.getItem('logado');
+		if (!logado){
+		  window.location.href = "./login.html";
+		}
+
+       // HREF / FUNCOES
+       function perfil() {
         window.location.href = "./perfil.html";
        }
 
@@ -947,17 +909,69 @@
         window.location.href = "./home.html";
        }
 
-       function enviar() {
-         window.location.href = "./mensagens.html";
-       }
-
        function notificacao() {
         window.location.href = "./notificacao.html";
        }
 
-       // Verifica se é um professor
+       function enviar() {
+         window.location.href = "./mensagens.html";
+       }
 
-       const informacao = document.getElementById('informacao');
+		function sair() {
+		 localStorage.clear();
+		 window.location.href = "./login.html";
+		}
+
+        // CONTATO
+        function contato() {
+            const content = document.querySelector('.content');
+            const telefones = document.querySelector('.telefones');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            local.textContent = "Telefones";
+            telefones.style.display = "flex";
+        }
+
+        function diretor() {
+            window.location.href = "tel:5516992276445"
+        }
+
+        // SUPORTE
+        function website() {
+            window.location.href = "https://escola-leticia.netlify.app";
+        }
+
+        function whatsapp() {
+            window.location.href = "";
+        }
+
+        function facebook() {
+            window.location.href = "";
+        }
+
+        function instagram() {
+            window.location.href = "https://www.instagram.com/e.e.prof_leticia/";
+        }
+
+		function mudarSenha() {
+            const content = document.querySelector('.content');
+            const containerSenha = document.querySelector('.containerSenha');
+            content.style.display = "none";
+            containerSenha.style.display = "flex";
+        }
+
+        function redesSociais() {
+            const content = document.querySelector('.content');
+            const redesSociais = document.querySelector('.redes-sociais');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            local.textContent = "Redes Sociais";
+            redesSociais.style.display = "flex";
+
+        }
+
+		// Verifica se é um professor
+        const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
@@ -975,248 +989,25 @@
 		 window.location.href = "tel:1633242256";
 		}
 
-        function reload() {
-            window.location.reload();
-        }
-
-
-       // ENTRAR NAS SERIES (BOTOES)
-
-
-       // 6 ANO
-       function mensagem6A() {
-            const content = document.querySelector('.content6A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '6A');
-            localStorage.setItem('ID_TOTAL', 'total6A');
-            atualizarBanco();
-       }
-
-       function mensagem6B() {
-            const content = document.querySelector('.content6B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '6B');
-            localStorage.setItem('ID_TOTAL', 'total6B');
-            atualizarBanco();
-       }
-
-       // 7 ANO
-       function mensagem7A() {
-            const content = document.querySelector('.content7A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '7A');
-	    localStorage.setItem('ID_TOTAL', 'total7A');
-            atualizarBanco();
-        }
-
-       function mensagem7B() {
-            const content = document.querySelector('.content7B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '7B');
-	    localStorage.setItem('ID_TOTAL', 'total7B');
-            atualizarBanco();
-       }
-
-       // 8 ANO
-       function mensagem8A() {
-            const content = document.querySelector('.content8A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '8A');
-	    localStorage.setItem('ID_TOTAL', 'total8A');
-            atualizarBanco();
-       }
-
-       function mensagem8B() {
-            const content = document.querySelector('.content8B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '8B');
-	    localStorage.setItem('ID_TOTAL', 'total8B');
-            atualizarBanco();
-       }
-
-        // 9 ANO
-       function mensagem9A() {
-            const content = document.querySelector('.content9A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '9A');
-	    localStorage.setItem('ID_TOTAL', 'total9A');
-            atualizarBanco();
-       }
-
-       function mensagem9B() {
-            const content = document.querySelector('.content9B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '9B');
-	    localStorage.setItem('ID_TOTAL', 'total9B');
-            atualizarBanco();
-       }
-
-       // 1 ANO
-       function mensagem1A() {
-            const content = document.querySelector('.content1A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '1A');
-	    localStorage.setItem('ID_TOTAL', 'total1A');
-            atualizarBanco();
-       }
-
-       function mensagem1B() {
-            const content = document.querySelector('.content1B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '1B');
-	    localStorage.setItem('ID_TOTAL', 'total1B');
-            atualizarBanco();
-       }
-
-       // 2 ANO
-       function mensagem2A() {
-            const content = document.querySelector('.content2A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A');
-	    localStorage.setItem('ID_TOTAL', 'total2A');
-            atualizarBanco();
-       }
-
-       function mensagem2B() {
-            const content = document.querySelector('.content2B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2B');
-	    localStorage.setItem('ID_TOTAL', 'total2B');
-            atualizarBanco();
-       }
-
-       function mensagem2C() {
-            const content = document.querySelector('.content2C');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2C');
-	    localStorage.setItem('ID_TOTAL', 'total2C');
-            atualizarBanco();
-       }
-
-       // 3 ANO
-       function mensagem3A() {
-            const content = document.querySelector('.content3A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A');
-	    localStorage.setItem('ID_TOTAL', 'total3A');
-            atualizarBanco();
-       }
-
-       function mensagem3B() {
-            const content = document.querySelector('.content3B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '3B');
-	    localStorage.setItem('ID_TOTAL', 'total3B');
-            atualizarBanco();
-       }
-
-       function mensagem3C() {
-            const content = document.querySelector('.content3C');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '3C');
-	        localStorage.setItem('ID_TOTAL', 'total3C');
-            atualizarBanco();
-       }
-
-       // ------------------------
-       //  Formulario de Mensagem
-       // ------------------------
-
-       // Mandar Mensagem para (Diretoria, Secretaria e Geral);
-
-        // Pegar o ANO LETICO ATUAL
-        const dataAtual = new Date();
-        const anoAtual = dataAtual.getFullYear();
-        localStorage.setItem('ano', anoAtual);
-        const ANO = localStorage.getItem('ano');
-
-
-       function abrirMensagem(index) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.display = "none";
-            });
-            const containerOpcoes = document.querySelector('.containerOpcoes');
-            containerOpcoes.style.display = "none";
-            const formMensagem = document.querySelector('.form-mensagem');
-            const inputResponsavel = document.getElementById('inputResponsavel');
-            const inputData = document.getElementById('inputData');
-            formMensagem.style.display = "flex";
-            setTimeout(() => {
-                formMensagem.style.top = "0px";
-            }, 250);
-
-            // Pegando a data atual
-            const dataAtual = new Date().toISOString().split('T')[0];
-            inputData.value = dataAtual;
-
-            // Pegar o nome do responsavel
-            const uindex = localStorage.getItem('index');
-            const elemento = document.querySelector(`[data-index="${uindex}"]`);
-            const responsavel = elemento.getAttribute('data-responsavel');
-            inputResponsavel.value = responsavel;
-        }
-
-
-        // ------------------
-        //  Enviar Mensagens
-        // ------------------
-
-        function enviarMensagem() {
-            const inputResponsavel = document.getElementById('inputResponsavel');
-            const inputData = document.getElementById('inputData');
-            const inputMensagem = document.getElementById('inputMensagem');
-            const inputMotivo = document.getElementById('inputMotivo');
-            const RESPONSAVEL = inputResponsavel.value;
-            const DATA = inputData.value;
-            const MENSAGEM = inputMensagem.value;
-            const MOTIVO = inputMotivo.value;
-            db.collection(ANO)
-            .doc("mensagens")
-            .collection(RESPONSAVEL)
-            .add({
-                data: DATA,
-                motivo: MOTIVO,
-                mensagem: MENSAGEM
-            });
-            setTimeout(() => {
-                location.reload();
-            }, 1000);
-        }
+       </script>
 
 
 
 
 
-    </script>
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
 
-    <!-- LINKS DO BANCO DE DADOS -->
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-    <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
+       <script>
 
-    <!-- BANCO DE DADOS -->
-    <script>
-
-      const firebaseConfig = {
+       const firebaseConfig = {
 	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
 	    authDomain: "escola-leticia.firebaseapp.com",
 	    projectId: "escola-leticia",
@@ -1225,227 +1016,91 @@
 	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
 	  };
 
-
-	  /* Atualizer Banco de Dados */
 	  firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
-      var index = 0;
+	  const db = firebase.firestore();
 
-      // Adiciona os alunos nas series
-      function atualizarBanco() {
-        const SERIE = localStorage.getItem('SERIE');
-	    const IDTOTAL = localStorage.getItem('ID_TOTAL');
-        const div = document.getElementById(SERIE);
-	    const totalAlunos = document.getElementById(IDTOTAL);
-        db.collection(ANO)
+      // Pegar o ANO LETICO ATUAL
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear();
+      localStorage.setItem('ano', anoAtual);
+      const ANO = localStorage.getItem('ano');
+
+      db.collection(ANO)
         .doc("series")
-        .collection(SERIE)
+        .collection(localStorage.getItem('serie'))
         .onSnapshot((data) => {
-            data.docs.forEach((val) => {
-            div.innerHTML += `
-            <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
-            <ion-icon name="person-circle-outline"></ion-icon>
-             <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
-            <button onclick="remover(${index})"><ion-icon name="trash-outline"></ion-icon></button></li>`;
-            index++;
-	    });
+            data.docs.map((val) => {
+                localStorage.setItem('idserie', val.id);
+            });
         });
 
-	const totalErro = document.querySelector('.totalErro');
+	  function redefinirSenha() {
+        const senhaAtual = document.getElementById('inputSenhaAtual').value;
+        const novaSenha = document.getElementById('inputNovaSenha').value;
+        const senhaArmazenada = localStorage.getItem('senha');
+        const responsavelArmazenado = localStorage.getItem('responsavel');
+        const ID = localStorage.getItem('id');
+        if (senhaAtual === senhaArmazenada && novaSenha !== senhaAtual) {
+            db.collection(ANO)
+            .doc("responsaveis")
+            .collection(responsavelArmazenado)
+            .doc(ID).update({
+                senha: novaSenha
+            });
+            localStorage.setItem('senha', novaSenha);
+	    } else if (novaSenha === senhaAtual) {
+            alert("Digite uma senha diferente da atual!");
+            inputSenhaNova.value = "";
+            return;
+        }else {
+            alert("Senha Atual Errada!")
+            inputSenhaAtual.value = "";
+            inputSenhaNova.value = "";
+            return;
+        }
+        setTimeout(() => {
+            alert("Senha Redefinida com sucesso!")
+            location.reload();
+        }, 500);
+    }
 
-    // Conta a quantidade de alunos da series
-	setTimeout(() => {
-	    db.collection(ANO)
-	    .doc("series")
-	    .collection(SERIE).get().then((dados) => {
-		const tamanho = dados.size;
-		if (tamanho > 1){
-		    totalAlunos.textContent = `| ${tamanho} Alunos`;
-		} else if (tamanho === 0){
-		    totalErro.style.display = "flex"
-		    setTimeout(() => {
-			totalErro.style.opacity = 1;
-		    }, 200)
-		} else {
-			totalAlunos.textContent = `| ${tamanho} Aluno`;
-		}
-	     });
-
-	}, 450);
 
 
-	}
+        // Salvar Dados do Perfil
 
-    // EXCLUIR RESPONSAVEL DO BANCO
-    function remover(index) {
-	const uindex = index;
-        const confirmar = confirm("Voce deseja excluir?");
-        if (confirmar) {
-            deletarDaSerie(uindex);
-            deletarDoCadastro(uindex);
-			deletarMensagens(uindex);
-        } else {
-            alert("Exclusao cancelada...");
+        function salvarDados() {
+            const ALUNO = inputAluno.value;
+            const EMAIL = inputEmail.value;
+            const TELEFONE = inputTelefone.value;
+            const RA = inputRa.value;
+            db.collection(ANO)
+            .doc("responsaveis")
+            .collection(localStorage.getItem('responsavel'))
+            .doc(localStorage.getItem('id')).update({
+                aluno: ALUNO,
+                gmail: EMAIL,
+                telefone: TELEFONE,
+                ra: RA
+            });
+
+            localStorage.setItem('aluno', ALUNO);
+            localStorage.setItem('gmail', EMAIL);
+            localStorage.setItem('telefone', TELEFONE);
+            localStorage.setItem('ra', RA);
+
+            alert("Dados atualizados com sucesso!")
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
         }
 
-    }
 
 
-    function deletarDaSerie(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const id = elemento.getAttribute('data-id');
-    const serie = localStorage.getItem('SERIE');
-    db.collection(ANO)
-        .doc('series')
-        .collection(serie)
-        .doc(id)
-        .delete()
-        .then(() => {
-            alert(`Responsavel excluído com sucesso!`);
-        })
-        .catch((error) => {
-            alert(`Erro ao excluir a coleção: ${error}`);
-        });
-    }
-
-    function deletarDoCadastro(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const id = elemento.getAttribute('data-responsavel');
-    const batch = db.batch();
-
-    db.collection(ANO)
-    .doc("responsaveis")
-    .collection(id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        batch.delete(doc.ref);
-      });
-      return batch.commit();
-    })
-    .catch((error) => {
-      alert(`Erro ao excluir a coleção: ${error}`);
-    });
-    }
-
-	function deletarMensagens(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const responsavel = elemento.getAttribute('data-responsavel');
-    const batch = db.batch();
-
-	    db.collection(ANO)
-	    .doc("mensagens")
-	    .collection(responsavel)
-	    .get()
-	    .then((querySnapshot) => {
-	      querySnapshot.forEach((doc) => {
-	        batch.delete(doc.ref);
-	      });
-	      return batch.commit();
-	    })
-	    .then(() => {
-		 setTimeout(() => {
-			 location.reload();
-		 }, 500);
-	    })
-	    .catch((error) => {
-	      alert(`Erro ao excluir a coleção: ${error}`);
-	    });
-    }
-
-
-    // Ver Mensagens
-    function verMensagem() {
-        const sections = document.querySelectorAll('.contentSeries');
-        sections.forEach(section => {
-            section.style.display = "none";
-        });
-        const containerOpcoes = document.querySelector('.containerOpcoes');
-        containerOpcoes.style.display = "none";
-        const erro = document.querySelector('.erro');
-        const RESPONSAVEL = localStorage.getItem('verResponsavel');
-        const DIV = document.querySelector('.mensagens');
-        DIV.style.display = "flex";
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(RESPONSAVEL)
-        .get().then((dados) => {
-            const tamanho = dados.size;
-            if (tamanho === 0) {
-                erro.style.display = "flex";
-            } else {
-                erro.style.display = "none";
-            }
-
-        });
-
-        var existeM = false;
-
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(RESPONSAVEL)
-        .get()
-        .then((tamanho) => {
-            const TAMANHO = tamanho.size;
-            if (TAMANHO >= 1) {
-                existeM = true;
-            }
-        });
-
-        // Coletando as mensagens no BANCO DE DADOS
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(RESPONSAVEL)
-        .onSnapshot((data) => {
-            if (existeM) {
-             DIV.innerHTML += `<h2>Mensagens</h2>`;
-            }
-            data.docs.map((val) => {
-                DIV.innerHTML += `<li>
-                    <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
-                    <p>${val.data().mensagem}</p>
-                    </li>`;
-            });
-        });
-
-        // Coletando as respostas no BANCO DE DADOS
-        var existeR = false;
-
-        db.collection(ANO)
-        .doc("respostas")
-        .collection(RESPONSAVEL)
-        .get()
-        .then((tamanho) => {
-            const TAMANHO = tamanho.size;
-            if (TAMANHO >= 1) {
-                existeR = true;
-            }
-        });
-
-
-        db.collection(ANO)
-        .doc("respostas")
-        .collection(RESPONSAVEL)
-        .onSnapshot((data) => {
-            if (existeR) {
-             DIV.innerHTML += `<h2>Respostas</h2>`;
-            }
-            data.docs.map((val) => {
-                DIV.innerHTML += `<li>
-                    <h1>RESPOSTA: ${val.data().motivo}<a>${val.data().data}</a></h1>
-                    <p>${val.data().resposta}</p>
-                    </li>`;
-            });
-        });
-
-    }
-
-    </script>
+       </script>
 
 
 
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </html>
