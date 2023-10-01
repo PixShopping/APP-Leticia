@@ -923,7 +923,9 @@
         const responsavel = document.querySelector('.responsavel');
 
         // Verificar se é administrador
-        if (logado === "ADMIN") {
+        if (!logado){
+            window.location.href = "./login.html";
+        } else if (logado === "ADMIN") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
         } else if (logado === "PROFESSOR") {
