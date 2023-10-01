@@ -1,688 +1,710 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="./src/img/icon.png" type="x-icon">
-		<link type="stylesheet" src="./style.css">
-		<title>  Logar | Letícia </title>
-
-		<style scoped>
-
-			@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
-
-			:root {
-				/* Cores do aplicativo */
-				--one: #002242;
-				--two: #144774;
-				--tree: #336FA5;
-				--four: #4E8BB8;
-				--five: #6FADD2;
-				--six: #9ECAE3;
-				--font: 'Ubuntu', sans-serif;
-				--green: green;
-				--red: red;
-			}
-
-			*  {
-				padding: 0px;
-				margin: 0px;
-				box-sizing: border-box;
-				font-family: var(--font);
-			}
-
-			*::-webkit-scrollbar {
-			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
-			}
-
-			body {
-				background: white;
-				color: var(--one);
-				user-select: none;
-				font-family: 'Arial';
-				overflow-x: hidden;
-				transition: all .4s ease-in-out;
-            }
-
-            .container {
-            	width: 100vw;
-            	height: 90vw;
-            }
-
-            /* LOGO */
-            .logo {
-            	width: 100%;
-            	height: 60vh;
-            	background: var(--one);
-            	color: white;
-            	border-radius: 0px 0px 25px 25px;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            	justify-content: center;
-            }
-
-            .logo h1 {
-            	font-size: 28px;
-            	font-weight: 900;
-            	letter-spacing: 0.8px;
-
-            }
-
-            .content-logo {
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            	justify-content: center;
-            }
-
-            .content-logo img {
-            	width: 385px;
-            	height: 385px;
-            }
-
-            /* BOTOES */
-            .botoes {
-            	width: 100vw;
-            	height: 30vh;
-            	background: white;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            	justify-content: center;
-            }
-
-            .botoes button, .content-logar button, .content-cadastrar button {
-            	width: 90%;
-            	height: 50px;
-            	background: var(--one);
-            	color: white;
-            	margin: 0px 0px 25px 0px;
-            	border-radius: 10px;
-            	font-size: 17px;
-            	font-weight: 750;
-            	letter-spacing: 0.5px;
-            	cursor: pointer;
-            }
-
-            .botoes button:hover, .content-logar button:hover, .content-cadastrar button:hover {
-            	background: white;
-            	border: 3px solid var(--one);
-            	color: var(--one);
-            	transition: all .4s ease-in-out;
-            	box-shadow: 0px 0px 15px var(--one);
-            }
-
-						.botoes p {
-							font-size: 17px;
-            	font-weight: 500;
-            	letter-spacing: 0.5px;
-            	color: #232323;
-            	cursor: pointer;
-							margin: 0px;
-						}
-
-            .botoes a {
-            	font-size: 20px;
-            	font-weight: 800;
-            	letter-spacing: 0.5px;
-            	color: var(--one);
-            	cursor: pointer;
-							margin: 0px 0px 0px 5px;
-            }
-
-            .botoes a:hover {
-            	text-shadow: 0px 0px 15px var(--one);
-            	transition: all .4s ease-in-out;
-            }
-
-            /* CONTENT-LOGAR E CONTENT-CADASTRAR*/
-            .content-logar, .content-cadastrar {
-            	display: none;
-            	flex-direction: column;
-            	align-items: center;
-            	width: 100%;
-            	height: auto;
-            	border-radius: 25px 25px 0px 0px;
-            	background: white;
-            	margin: -20px 0px 0px 0px;
-            	padding: 10px 0px 50px 0px;
-            }
-
-            .form {
-            	width: auto;
-            	height: auto;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: center;
-            	margin: 30px 0px 0px 0px;
-            }
-
-            .content-logar label, .content-cadastrar label {
-            	font-size: 19px;
-            	font-weight: 500;
-            	letter-spacing: 0.4px;
-            	color: var(--one);
-            	align-self: start;
-            	margin: 15px 0px 4px 4px;
-            	display: flex;
-            }
-
-            .content-logar label p, .content-cadastrar label p {
-            	margin: 0px 0px 0px 8px;
-            	font-weight: 700;
-            }
-
-            .content-logar input, .content-cadastrar input, .content-cadastrar select {
-            	width: 90vw;
-            	height: 45px;
-            	border: 2px solid var(--one);
-            	border-radius: 10px;
-            	outline: none;
-            	background: transparent;
-            	padding: 0px 0px 0px 15px;
-            	color: var(--one);
-            	font-size: 18px;
-            	font-weight: 800;
-            	letter-spacing: 0.2px;
-            }
-
-            .content-logar button, .content-cadastrar button {
-            	margin: 20px 0px 5px 0px;
-                width: 85%;
-            	height: 50px;
-
-            }
-
-            #voltar {
-            	display: none;
-            	position: absolute;
-            	top: 20px;
-            	left: 20px;
-            	font-size: 33px;
-            	background: white;
-            	color: var(--one);
-            	border-radius: 10px;
-            	padding: 7px;
-            	cursor: pointer;
-            } #voltar:hover {
-            	background: white;
-            	color: var(--two);
-            	box-shadow: 0px 0px 10px white;
-            	transition: all .3s ease-in-out;
-            }
-
-            /* Verificacao h1 e h2 */
-
-            .verificacao {
-            	width: 90%;
-            	display: flex;
-            	flex-direction: column;
-            	align-items: flex-start;
-            	padding: 0px 0px 0px 3px;
-            }
-
-            .verificacao h1 {
-            	font-size: 21px;
-            	font-weight: 800;
-            	letter-spacing: 0.2px;
-            	color: var(--two);
-            	margin: 20px 0px 0px 0px;
-            }
-
-            .verificacao h2 {
-            	font-size: 21px;
-            	font-weight: 800;
-            	letter-spacing: 0.2px;
-            	color: var(--two);
-            	margin: 5px 0px 0px 0px;
-            }
-
-			/* DIVSENHA */
-
-			.divsenha {
-				display: flex;
-				align-items: center;
-				position: relative;
-			} .divsenha ion-icon {
-				position: absolute;
-				right: 20px;
-				font-size: 30px;
-				cursor: pointer;
-			}
-
-            </style>
-           </head>
-
-           <body>
-
-       		<main class="container">
-
-       			<section class="logo">
-       				<h1></h1>
-       				<ion-icon onclick="voltar()" id="voltar" name="arrow-back"></ion-icon>
-       				<div class="content-logo">
-	       				<img alt="Logo da escola" src="./src/img/logo.png" />
-       				</div>
-       			</section>
-
-       			<section class="botoes">
-       				<button onclick="logar()">Logar</button>
-       				<p>Sem cadastro? <a onclick="cadastrar()">Cadastrar</a> </p>
-       			</section>
-
-       			<section class="content-logar">
-
-       				<div class="form">
-	       				<label>Nome do Responsavel
-	       				<p id="alertaLoginRESPONSAVEL"></p>
-	       				</label>
-	       				<input oninput="inputResponsavel()" id="responsavel" type="text">
-
-	       				<label>Senha
-	       				<p id="alertaLoginSENHA"></p>
-	       				</label>
-	       				<div class="divsenha">
-						<input id="senha" type="password">
-						<ion-icon id="mostrarS" onclick="mostrarSenha()" name="eye"></ion-icon>
-						<ion-icon id="esconderS" onclick="esconderSenha()" name="eye-off"></ion-icon>
-						</div>
-					</div>
-
-       				<div class="verificacao">
-	       				<h1></h1>
-	       				<h2></h2>
-       				</div>
-
-       				<button onclick="enviarLogin()">Logar</button>
-
-       			</section>
-
-       			<section class="content-cadastrar">
-
-       				<div class="form">
-	       				<label>Nome do Responsavel
-	       				<p id="alertaRESPONSAVEL"></p>
-	       				</label>
-	       				<input oninput="verificarResponsavel()" id="cadastroResponsavel" type="text">
-
-	       				<label>Nome do Aluno
-	       				<p id="alertaALUNO"></p>
-	       				</label>
-	       				<input id="cadastroAluno" type="text">
-
-	       				<label>Serie:
-	       				<p id="alertaSERIE"></p>
-	       				</label>
-								<select id="cadastroSerie">
-									<option value="">Selecione uma Opçao</option>
-									<option value="" disabled>Tarde</option>
-									<option value="6A">6anoA</option>
-									<option value="6B">6anoB</option>
-									<option value="7A">7anoA</option>
-									<option value="7B">7anoB</option>
-									<option value="8A">8anoA</option>
-									<option value="8B">8anoB</option>
-									<option value="9A">9anoA</option>
-									<option value="9B">9anoB</option>
-									<option value="" disabled>Manha</option>
-									<option value="1A">1anoA</option>
-									<option value="1B">1anoB</option>
-									<option value="2A">2anoA</option>
-									<option value="2B">2anoB</option>
-									<option value="2C">2anoC</option>
-									<option value="3A">3anoA</option>
-									<option value="3B">3anoB</option>
-									<option value="3C">3anoC</option>
-								</select>
-
-	       				<label>Email
-	       				<p id="alertaGMAIL"></p>
-	       				</label>
-	       				<input placeholder="opcional" id="cadastroGmail" type="text">
-
-					<label>Telefone
-	       				<p id="alertaTELEFONE"></p>
-	       				</label>
-	       				<input placeholder="opcional" id="cadastroTelefone" type="text">
-
-	       				<label>Senha
-	       				<p id="alertaSENHA"></p>
-	       				</label>
-	       				<div class="divsenha">
-						<input id="cadastroSenha" type="password">
-						<ion-icon style="display:none;" id="mostrarSC" onclick="mostrarSenhaC()" name="eye"></ion-icon>
-						<ion-icon id="esconderSC" onclick="esconderSenhaC()" name="eye-off"></ion-icon>
-						</div>
-					</div>
-
-       				<button onclick="enviarCadastro()">Cadastrar</button>
-
-
-       			</section>
-
-       		</main>
-
-           </body>
-
-       <!-- JavaScript -->
-     <script>
-
-		// MOSTRAR SENHA DO CADASTRO
-		const mostrarSC = document.getElementById('mostrarSC');
-		const esconderSC = document.getElementById('esconderSC');
-		const senhaC = document.getElementById('cadastroSenha');
-		function mostrarSenhaC() {
-			senhaC.type = "password";
-			mostrarSC.style.display = "none";
-			esconderSC.style.display = "block";
-		}
-
-		function esconderSenhaC() {
-			senhaC.type = "text";
-			mostrarSC.style.display = "block";
-			esconderSC.style.display = "none";
-		}
-
-		// MOSTRAR SENHA DO LOGIN
-		const mostrarS = document.getElementById('mostrarS');
-		const esconderS = document.getElementById('esconderS');
-		const senhaL = document.getElementById('senha');
-		function mostrarSenha() {
-			senhaL.type = "password";
-			mostrarS.style.display = "none";
-			esconderS.style.display = "block";
-		}
-
-		function esconderSenha() {
-			senhaL.type = "text";
-			mostrarS.style.display = "block";
-			esconderS.style.display = "none";
-		}
-
-
-
-     // ===== LOGAR =====
-     function logar() {
-     	// Transicao da LOGO
-     	const logo = document.querySelector('.logo');
-     	const voltar = document.getElementById('voltar');
-     	const h1logo = document.querySelector('.logo h1');
-     	const contentLogo = document.querySelector('.content-logo');
-     	voltar.style.display = "flex";
-     	logo.style.height = "30vh";
-     	logo.style.borderRadius = "0px";
-     	contentLogo.style.display = "none";
-     	h1logo.innerHTML = "Logar";
-
-     	// Transicao dos BOTOES
-     	const botoes = document.querySelector('.botoes');
-     	botoes.style.display = "none";
-
-     	// Transicao do LOGAR
-     	const contentLogar = document.querySelector('.content-logar');
-     	contentLogar.style.display = "flex";
-     }
-
-     // ===== CADASTRAR =====
-     function cadastrar() {
-     	// Transicao da LOGO
-     	const logo = document.querySelector('.logo');
-     	const voltar = document.getElementById('voltar');
-     	const h1logo = document.querySelector('.logo h1');
-     	const contentLogo = document.querySelector('.content-logo');
-     	voltar.style.display = "flex";
-     	logo.style.height = "30vh";
-     	logo.style.borderRadius = "0px";
-     	contentLogo.style.display = "none";
-     	h1logo.innerHTML = "Cadastrar";
-
-     	// Transicao dos BOTOES
-     	const botoes = document.querySelector('.botoes');
-     	botoes.style.display = "none";
-
-     	// Transicao do LOGAR
-     	const contentCadastrar = document.querySelector('.content-cadastrar');
-     	contentCadastrar.style.display = "flex";
-     }
-
-     function voltar() {
-     	location.reload();
-     }
-
-
-     // Verificar Responsavel Existente
-
-     function inputResponsavel() {
-  		const verificacaoh1 = document.querySelector('.verificacao h1');
-	 	const verificacaoh2 = document.querySelector('.verificacao h2');
-                const RESPONSAVEL = document.getElementById('responsavel').value;
-
-	        db.collection("cadastro")
-	 	.doc("responsaveis")
-	 	.collection(RESPONSAVEL)
-	 	.get()
-	 	.then((existe) => {
-	 		if(existe.size > 0) {
-				db.collection("responsaveis").onSnapshot((data) => {
-				  data.docs.map((val) => {
-					verificacaoh1.innerHTML = `Nome: ${val.data().aluno}`;
-					verificacaoh2.innerHTML = `Nome: ${val.data().serie}`;
-				  })
-				})
-	 		}
-	 	})
-     }
-
-     var continuar = true;
-     function verificarResponsavel() {
-     	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
-	 const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
-
-	 	db.collection("cadastro")
-	 	.doc("responsaveis")
-	 	.collection(RESPONSAVEL)
-	 	.get()
-	 	.then((existe) => {
-	 		if(existe.size > 0) {
-	 			alertaRESPONSAVEL.innerHTML = "Ja Existe!";
-	 			alertaRESPONSAVEL.style.color = "var(--red)";
-	 			continuar = false;
-	 		} else {
-	 			alertaRESPONSAVEL.innerHTML = "Valido";
-	 			alertaRESPONSAVEL.style.color = "var(--green)";
-				continuar = true;
-	 		}
-	 	})
-     }
-
-     </script>
-
-
-
-     <!-- LINKS DO BANCO DE DADOS -->
-		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
-		 <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-		 <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./src/img/icon.png" type="x-icon" />
+    <link type="stylesheet" src="./style.css" />
+    <title>Logar | Letícia</title>
+
+    <style scoped>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
+
+      :root {
+        /* Cores do aplicativo */
+        --one: #002242;
+        --two: #144774;
+        --tree: #336fa5;
+        --four: #4e8bb8;
+        --five: #6fadd2;
+        --six: #9ecae3;
+        --font: "Ubuntu", sans-serif;
+        --green: green;
+        --red: red;
+      }
+
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        font-family: var(--font);
+      }
+
+      *::-webkit-scrollbar {
+        display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+      }
+
+      body {
+        background: white;
+        color: var(--one);
+        user-select: none;
+        font-family: "Arial";
+        overflow-x: hidden;
+        transition: all 0.4s ease-in-out;
+      }
+
+      .container {
+        width: 100vw;
+        height: 90vw;
+      }
+
+      /* LOGO */
+      .logo {
+        width: 100%;
+        height: 60vh;
+        background: var(--one);
+        color: white;
+        border-radius: 0px 0px 25px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo h1 {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 0.8px;
+      }
+
+      .content-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content-logo img {
+        width: 385px;
+        height: 385px;
+      }
+
+      /* BOTOES */
+      .botoes {
+        width: 100vw;
+        height: 30vh;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .botoes button,
+      .content-logar button,
+      .content-cadastrar button {
+        width: 90%;
+        height: 50px;
+        background: var(--one);
+        color: white;
+        margin: 0px 0px 25px 0px;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 750;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+      }
+
+      .botoes button:hover,
+      .content-logar button:hover,
+      .content-cadastrar button:hover {
+        background: white;
+        border: 3px solid var(--one);
+        color: var(--one);
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0px 0px 15px var(--one);
+      }
+
+      .botoes p {
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        color: #232323;
+        cursor: pointer;
+        margin: 0px;
+      }
+
+      .botoes a {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        color: var(--one);
+        cursor: pointer;
+        margin: 0px 0px 0px 5px;
+      }
+
+      .botoes a:hover {
+        text-shadow: 0px 0px 15px var(--one);
+        transition: all 0.4s ease-in-out;
+      }
+
+      /* CONTENT-LOGAR E CONTENT-CADASTRAR*/
+      .content-logar,
+      .content-cadastrar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        border-radius: 25px 25px 0px 0px;
+        background: white;
+        margin: -20px 0px 0px 0px;
+        padding: 10px 0px 50px 0px;
+      }
+
+      .form {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px 0px 0px 0px;
+      }
+
+      .content-logar label,
+      .content-cadastrar label {
+        font-size: 19px;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        color: var(--one);
+        align-self: start;
+        margin: 15px 0px 4px 4px;
+        display: flex;
+      }
+
+      .content-logar label p,
+      .content-cadastrar label p {
+        margin: 0px 0px 0px 8px;
+        font-weight: 700;
+      }
+
+      .content-logar input,
+      .content-cadastrar input,
+      .content-cadastrar select {
+        width: 90vw;
+        height: 45px;
+        border: 2px solid var(--one);
+        border-radius: 10px;
+        outline: none;
+        background: transparent;
+        padding: 0px 0px 0px 15px;
+        color: var(--one);
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .content-logar button,
+      .content-cadastrar button {
+        margin: 20px 0px 5px 0px;
+        width: 85%;
+        height: 50px;
+      }
+
+      #voltar {
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 33px;
+        background: white;
+        color: var(--one);
+        border-radius: 10px;
+        padding: 7px;
+        cursor: pointer;
+      }
+      #voltar:hover {
+        background: white;
+        color: var(--two);
+        box-shadow: 0px 0px 10px white;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Verificacao h1 e h2 */
+
+      .verificacao {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px 0px 0px 3px;
+      }
+
+      .verificacao h1 {
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        color: var(--two);
+        margin: 20px 0px 0px 0px;
+      }
+
+      .verificacao h2 {
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        color: var(--two);
+        margin: 5px 0px 0px 0px;
+      }
+
+      /* DIVSENHA */
+
+      .divsenha {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .divsenha ion-icon {
+        position: absolute;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="logo">
+        <h1></h1>
+        <ion-icon onclick="voltar()" id="voltar" name="arrow-back"></ion-icon>
+        <div class="content-logo">
+          <img alt="Logo da escola" src="./src/img/logo.png" />
+        </div>
+      </section>
+
+      <section class="botoes">
+        <button onclick="logar()">Logar</button>
+        <p>Sem cadastro? <a onclick="cadastrar()">Cadastrar</a></p>
+      </section>
+
+      <section class="content-logar">
+        <div class="form">
+          <label
+            >Nome do Responsavel
+            <p id="alertaLoginRESPONSAVEL"></p>
+          </label>
+          <input oninput="inputResponsavel()" id="responsavel" type="text" />
+
+          <label
+            >Senha
+            <p id="alertaLoginSENHA"></p>
+          </label>
+          <div class="divsenha">
+            <input id="senha" type="password" />
+            <ion-icon
+              id="mostrarS"
+              onclick="mostrarSenha()"
+              name="eye"
+            ></ion-icon>
+            <ion-icon
+              id="esconderS"
+              onclick="esconderSenha()"
+              name="eye-off"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <div class="verificacao">
+          <h1></h1>
+          <h2></h2>
+        </div>
+
+        <button onclick="enviarLogin()">Logar</button>
+      </section>
+
+      <section class="content-cadastrar">
+        <div class="form">
+          <label
+            >Nome do Responsavel
+            <p id="alertaRESPONSAVEL"></p>
+          </label>
+          <input
+            oninput="verificarResponsavel()"
+            id="cadastroResponsavel"
+            type="text"
+          />
+
+          <label
+            >Nome do Aluno
+            <p id="alertaALUNO"></p>
+          </label>
+          <input id="cadastroAluno" type="text" />
+
+          <label
+            >Serie:
+            <p id="alertaSERIE"></p>
+          </label>
+          <select id="cadastroSerie">
+            <option value="">Selecione uma Opçao</option>
+            <option value="" disabled>Tarde</option>
+            <option value="6A">6anoA</option>
+            <option value="6B">6anoB</option>
+            <option value="7A">7anoA</option>
+            <option value="7B">7anoB</option>
+            <option value="8A">8anoA</option>
+            <option value="8B">8anoB</option>
+            <option value="9A">9anoA</option>
+            <option value="9B">9anoB</option>
+            <option value="" disabled>Manha</option>
+            <option value="1A">1anoA</option>
+            <option value="1B">1anoB</option>
+            <option value="2A">2anoA</option>
+            <option value="2B">2anoB</option>
+            <option value="2C">2anoC</option>
+            <option value="3A">3anoA</option>
+            <option value="3B">3anoB</option>
+            <option value="3C">3anoC</option>
+          </select>
+
+          <label
+            >Email
+            <p id="alertaGMAIL"></p>
+          </label>
+          <input placeholder="opcional" id="cadastroGmail" type="text" />
+
+          <label
+            >Telefone
+            <p id="alertaTELEFONE"></p>
+          </label>
+          <input placeholder="opcional" id="cadastroTelefone" type="text" />
+
+          <label
+            >Senha
+            <p id="alertaSENHA"></p>
+          </label>
+          <div class="divsenha">
+            <input id="cadastroSenha" type="password" />
+            <ion-icon
+              style="display: none"
+              id="mostrarSC"
+              onclick="mostrarSenhaC()"
+              name="eye"
+            ></ion-icon>
+            <ion-icon
+              id="esconderSC"
+              onclick="esconderSenhaC()"
+              name="eye-off"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <button onclick="enviarCadastro()">Cadastrar</button>
+      </section>
+    </main>
+  </body>
+
+  <!-- JavaScript -->
+  <script>
+
+    // Pegar o ANO LETICO ATUAL
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    localStorage.setItem('ano', anoAtual);
+    const ANO = localStorage.getItem('ano');
+
+
+    // MOSTRAR SENHA DO CADASTRO
+    const mostrarSC = document.getElementById("mostrarSC");
+    const esconderSC = document.getElementById("esconderSC");
+    const senhaC = document.getElementById("cadastroSenha");
+    function mostrarSenhaC() {
+      senhaC.type = "password";
+      mostrarSC.style.display = "none";
+      esconderSC.style.display = "block";
+    }
+
+    function esconderSenhaC() {
+      senhaC.type = "text";
+      mostrarSC.style.display = "block";
+      esconderSC.style.display = "none";
+    }
+
+    // MOSTRAR SENHA DO LOGIN
+    const mostrarS = document.getElementById("mostrarS");
+    const esconderS = document.getElementById("esconderS");
+    const senhaL = document.getElementById("senha");
+    function mostrarSenha() {
+      senhaL.type = "password";
+      mostrarS.style.display = "none";
+      esconderS.style.display = "block";
+    }
+
+    function esconderSenha() {
+      senhaL.type = "text";
+      mostrarS.style.display = "block";
+      esconderS.style.display = "none";
+    }
+
+    // ===== LOGAR =====
+    function logar() {
+      // Transicao da LOGO
+      const logo = document.querySelector(".logo");
+      const voltar = document.getElementById("voltar");
+      const h1logo = document.querySelector(".logo h1");
+      const contentLogo = document.querySelector(".content-logo");
+      voltar.style.display = "flex";
+      logo.style.height = "30vh";
+      logo.style.borderRadius = "0px";
+      contentLogo.style.display = "none";
+      h1logo.innerHTML = "Logar";
+
+      // Transicao dos BOTOES
+      const botoes = document.querySelector(".botoes");
+      botoes.style.display = "none";
+
+      // Transicao do LOGAR
+      const contentLogar = document.querySelector(".content-logar");
+      contentLogar.style.display = "flex";
+    }
+
+    // ===== CADASTRAR =====
+    function cadastrar() {
+      // Transicao da LOGO
+      const logo = document.querySelector(".logo");
+      const voltar = document.getElementById("voltar");
+      const h1logo = document.querySelector(".logo h1");
+      const contentLogo = document.querySelector(".content-logo");
+      voltar.style.display = "flex";
+      logo.style.height = "30vh";
+      logo.style.borderRadius = "0px";
+      contentLogo.style.display = "none";
+      h1logo.innerHTML = "Cadastrar";
+
+      // Transicao dos BOTOES
+      const botoes = document.querySelector(".botoes");
+      botoes.style.display = "none";
+
+      // Transicao do LOGAR
+      const contentCadastrar = document.querySelector(".content-cadastrar");
+      contentCadastrar.style.display = "flex";
+    }
+
+    function voltar() {
+      location.reload();
+    }
+
+    // Verificar Responsavel Existente
+
+    function inputResponsavel() {
+      const verificacaoh1 = document.querySelector(".verificacao h1");
+      const verificacaoh2 = document.querySelector(".verificacao h2");
+      const RESPONSAVEL = document.getElementById("responsavel").value;
+
+      db.collection(ANO)
+        .doc("responsaveis")
+        .collection(RESPONSAVEL)
+        .get()
+        .then((existe) => {
+          if (existe.size > 0) {
+            db.collection("responsaveis").onSnapshot((data) => {
+              data.docs.map((val) => {
+                verificacaoh1.innerHTML = `Nome: ${val.data().aluno}`;
+                verificacaoh2.innerHTML = `Nome: ${val.data().serie}`;
+              });
+            });
+          }
+        });
+    }
+
+    var continuar = true;
+    function verificarResponsavel() {
+      const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
+      const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
+
+      db.collection(ANO)
+        .doc("responsaveis")
+        .collection(RESPONSAVEL)
+        .get()
+        .then((existe) => {
+          if (existe.size > 0) {
+            alertaRESPONSAVEL.innerHTML = "Ja Existe!";
+            alertaRESPONSAVEL.style.color = "var(--red)";
+            continuar = false;
+          } else {
+            alertaRESPONSAVEL.innerHTML = "Valido";
+            alertaRESPONSAVEL.style.color = "var(--green)";
+            continuar = true;
+          }
+        });
+    }
+  </script>
+
+  <!-- LINKS DO BANCO DE DADOS -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+  <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
 		 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
-       <!------------------------------->
-       <!-- BANCO DE DADOS (FIREBASE) -->
-       <!------------------------------->
+  <!------------------------------->
+  <!-- BANCO DE DADOS (FIREBASE) -->
+  <!------------------------------->
 
-       <script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
+      authDomain: "escola-leticia.firebaseapp.com",
+      projectId: "escola-leticia",
+      storageBucket: "escola-leticia.appspot.com",
+      messagingSenderId: "782148597563",
+      appId: "1:782148597563:web:d31d9ecb10790855bb691e"
+    };
 
-       const firebaseConfig = {
-	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
-	    authDomain: "escola-leticia.firebaseapp.com",
-	    projectId: "escola-leticia",
-	    storageBucket: "escola-leticia.appspot.com",
-	    messagingSenderId: "782148597563",
-	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
-	  };
+    firebase.initializeApp(firebaseConfig)
+    const db = firebase.firestore();
 
-	  firebase.initializeApp(firebaseConfig);
-	  const db = firebase.firestore();
+    // ----------
+    //  CADASTRO
+    // ----------
+    function enviarCadastro() {
+      const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
+      const ALUNO = document.getElementById("cadastroAluno").value;
+      const GMAIL = document.getElementById("cadastroGmail").value;
+      const TELEFONE = document.getElementById("cadastroTelefone").value;
+      const SERIE = document.getElementById("cadastroSerie").value;
+      const SENHA = document.getElementById("cadastroSenha").value;
+      const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
+      const alertaALUNO = document.getElementById("alertaALUNO");
+      const alertaSERIE = document.getElementById("alertaSERIE");
+      const alertaSENHA = document.getElementById("alertaSENHA");
 
-	  // ----------
-	  //  CADASTRO
-	  // ----------
-	  function enviarCadastro() {
-	  	const RESPONSAVEL = document.getElementById('cadastroResponsavel').value;
-	  	const ALUNO = document.getElementById('cadastroAluno').value;
-	  	const GMAIL = document.getElementById('cadastroGmail').value;
-		const TELEFONE = document.getElementById('cadastroTelefone').value;
-	  	const SERIE = document.getElementById('cadastroSerie').value;
-	  	const SENHA = document.getElementById('cadastroSenha').value;
-	  	const alertaRESPONSAVEL = document.getElementById('alertaRESPONSAVEL');
-	  	const alertaALUNO = document.getElementById('alertaALUNO');
-	  	const alertaSERIE = document.getElementById('alertaSERIE');
-	  	const alertaSENHA = document.getElementById('alertaSENHA');
+      // Colecao Cadastro
+      if (continuar && SENHA !== "" && SERIE !== "") {
+        db.collection(ANO)
+          .doc("responsaveis")
+          .collection(RESPONSAVEL)
+          .add({
+            responsavel: RESPONSAVEL,
+            aluno: ALUNO,
+            serie: SERIE,
+            gmail: GMAIL,
+            telefone: TELEFONE,
+            senha: SENHA
+          });
 
+        db.collection(ANO).doc("series").collection(SERIE).add({
+          responsavel: RESPONSAVEL,
+          aluno: ALUNO
+        });
 
-	  	// Colecao Cadastro
-	  	if (continuar && SENHA !== "" && SERIE !== "") {
-		   db.collection("cadastro")
-			  .doc("responsaveis")
-			  .collection(RESPONSAVEL)
-			  .add({
-				responsavel: RESPONSAVEL,
-			  	aluno: ALUNO,
-			  	serie: SERIE,
-			  	gmail: GMAIL,
-				  telefone: TELEFONE,
-			  	senha: SENHA
-			  });
+        setTimeout(() => {
+          location.reload();
+        }, 850);
+      } else if (SENHA === "") {
+        alert("Digite uma senha valida!");
+      } else if (SERIE === "") {
+        alert("Escolha uma serie!");
+      }
+    }
 
-			db.collection("cadastro")
-			.doc("series")
-			.collection(SERIE)
-			.add({
-				responsavel: RESPONSAVEL,
-				aluno: ALUNO
-			})
+    // ----------
+    //   LOGIN
+    // ----------
+    function enviarLogin() {
+      const RESPONSAVEL = document.getElementById("responsavel").value;
+      const SENHA = document.getElementById("senha").value;
+      const alertaRESPONSAVEL = document.getElementById(
+        "alertaLoginRESPONSAVEL"
+      );
+      const alertaSENHA = document.getElementById("alertaLoginSENHA");
 
-		  setTimeout(() => {
-		    location.reload();
-		  }, 850);
-		} else if (SENHA === "") {
-			alert("Digite uma senha valida!");
-		} else if (SERIE === "") {
-			alert("Escolha uma serie!");
-		}
-	  }
+      db.collection(ANO)
+        .doc("responsaveis")
+        .collection(RESPONSAVEL)
+        .get()
+        .then((existe) => {
+          if (existe.size > 0) {
+            alertaRESPONSAVEL.innerHTML = "Valido";
+            alertaRESPONSAVEL.style.color = "green";
 
-	  // ----------
-	  //   LOGIN
-	  // ----------
-	  function enviarLogin() {
+            db.collection(ANO)
+              .doc("responsaveis")
+              .collection(RESPONSAVEL)
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  // Verificar SENHA
+                  if (SENHA === val.data().senha) {
+                    alertaSENHA.innerHTML = "Valido";
+                    alertaSENHA.style.color = "green";
+                  } else {
+                    alertaSENHA.innerHTML = "Invalido";
+                    alertaSENHA.style.color = "red";
+                  }
 
-	  	const RESPONSAVEL = document.getElementById('responsavel').value;
-	  	const SENHA = document.getElementById('senha').value;
-	  	const alertaRESPONSAVEL = document.getElementById('alertaLoginRESPONSAVEL');
-	  	const alertaSENHA = document.getElementById('alertaLoginSENHA');
+                  if (val.data().senha === SENHA) {
+                    setTimeout(() => {
+                      localStorage.setItem("logado", "RESPONSAVEL");
+                      // Dados do Responsavel
+                      if (val.data().responsavel !== "") {
+                        localStorage.setItem(
+                          "responsavel",
+                          val.data().responsavel
+                        );
+                      }
+                      if (val.data().aluno !== "") {
+                        localStorage.setItem("aluno", val.data().aluno);
+                      }
+                      if (val.data().serie !== "") {
+                        localStorage.setItem("serie", val.data().serie);
+                      }
+                      if (val.data().gmail !== "") {
+                        localStorage.setItem("gmail", val.data().gmail);
+                      }
+                      if (val.data().telefone !== "") {
+                        localStorage.setItem("telefone", val.data().telefone);
+                      }
+                      if (val.data().senha !== "") {
+                        localStorage.setItem("senha", val.data().senha);
+                      }
+                      localStorage.setItem("id", val.id);
+                      localStorage.setItem("ra", val.data().ra);
 
+                      window.location.href = "./home.html";
+                    }, 500);
+                  }
+                });
+              });
+          } else {
+            alertaRESPONSAVEL.innerHTML = "Invalido";
+            alertaRESPONSAVEL.style.color = "red";
+          }
+        });
 
-	  	db.collection("cadastro")
-			.doc("responsaveis")
-			.collection(RESPONSAVEL)
-			.get()
-			.then((existe) => {
-	  		 if(existe.size > 0) {
-	  			 alertaRESPONSAVEL.innerHTML = "Valido";
-	 			   alertaRESPONSAVEL.style.color = "green";
+      db.collection(ANO)
+        .doc("restrito")
+        .collection("diretor")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              localStorage.setItem("logado", "ADMIN");
+              window.location.href = "./home.html";
+            }
+          });
+        });
 
-	 			 db.collection("cadastro")
-					 .doc("responsaveis")
-					 .collection(RESPONSAVEL)
-					 .onSnapshot((data) => {
-		  			data.docs.map((val) => {
+      db.collection(ANO)
+        .doc("restrito")
+        .collection("professor")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              localStorage.setItem("logado", "PROFESSOR");
+              window.location.href = "./home.html";
+            }
+          });
+        });
+    }
+  </script>
 
-		  			// Verificar SENHA
-		  			if(SENHA === val.data().senha) {
-		  				alertaSENHA.innerHTML = "Valido";
-		  				alertaSENHA.style.color = "green";
-		  			} else {
-		  				alertaSENHA.innerHTML = "Invalido";
-		  				alertaSENHA.style.color = "red";
-		  			}
-
-		  			if (val.data().senha === SENHA) {
-		  				setTimeout(() => {
-		  					localStorage.setItem('logado', 'RESPONSAVEL');
-		  					// Dados do Responsavel
-		  					if(val.data().responsavel !== "") {
-		  					localStorage.setItem('responsavel', val.data().responsavel);
-		  					} if(val.data().aluno !== "") {
-		  						localStorage.setItem('aluno', val.data().aluno);
-		  					} if(val.data().serie !== "") {
-		  						localStorage.setItem('serie', val.data().serie);
-		  					} if(val.data().gmail !== "") {
-		  						localStorage.setItem('gmail', val.data().gmail);
-		  					} if(val.data().telefone !== "") {
-		  						localStorage.setItem('telefone', val.data().telefone);
-		  					} if(val.data().senha !== "") {
-		  						localStorage.setItem('senha', val.data().senha);
-		  					}
-								localStorage.setItem('id', val.id);
-								localStorage.setItem('ra', val.data().ra);
-
-								window.location.href = "./home.html";
-		  				}, 500);
-
-						}
-
-		  		});
-		  	});
-
-	 		 } else {
-		  		alertaRESPONSAVEL.innerHTML = "Invalido";
-				  alertaRESPONSAVEL.style.color = "red";
-		  	}
-	  	})
-
-			db.collection('cadastro')
-			.doc('restrito')
-			.collection('diretor')
-			.onSnapshot((data) => {
-				data.docs.forEach((val) => {
-					const usuario = val.data().usuario;
-					const senha = val.data().senha;
-					if (RESPONSAVEL === usuario && SENHA === senha) {
-						localStorage.setItem('logado', 'ADMIN');
-						setTimeout(() => {
-							window.location.href = "./home.html";	
-						}, 500);
-					}
-				});
-			});
-
-			db.collection('cadastro')
-			.doc('restrito')
-			.collection('professor')
-			.onSnapshot((data) => {
-				data.docs.forEach((val) => {
-					const usuario = val.data().usuario;
-					const senha = val.data().senha;
-					if (RESPONSAVEL === usuario && SENHA === senha) {
-						localStorage.setItem('logado', 'PROFESSOR');
-						setTimeout(() => {
-							window.location.href = "./home.html";	
-						}, 500);
-					}
-				});
-			});
-
-
-	  }
-
-
-
-
-	  </script>
-
-
-	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
 </html>
