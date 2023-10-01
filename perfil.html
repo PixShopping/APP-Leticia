@@ -542,6 +542,19 @@
                 margin: 0px;
             }
 
+            /* IFRAMES */
+
+            .iframes {
+                width: 100vw;
+                height: 100vh;
+                display: none;
+                justify-content: center;
+            } .iframes iframe {
+                width: 100%;
+                height: 100%;
+                border: 0px;
+            }
+
             </style>
            </head>
 
@@ -763,7 +776,8 @@
 
             </nav>
 
-                <div class="website">
+                <div class="iframes">
+
                 </div>
 
             </body>
@@ -938,19 +952,39 @@
 
         // SUPORTE
         function website() {
-            window.location.href = "https://escola-leticia.netlify.app";
+            const redesSociais = document.querySelector('.redes-sociais');
+            const container = document.querySelector('.container');
+            container.style.padding = "0px";
+            const iframes = document.querySelector('.iframes');
+            iframes.style.display = "flex";
+            iframes.style.padding = "0px 0px 100px 0px";
+            redesSociais.style.display = "none";
+            iframes.innerHTML = `
+            <iframe src="https://escola-leticia.netlify.app">
+            Carregando...
+            </iframe>`;
         }
 
         function whatsapp() {
-            window.location.href = "";
+            window.location.href = "https://wa.me/5516991190322";
         }
 
         function facebook() {
-            window.location.href = "";
+            window.location.href = "https://www.facebook.com/profile.php?id=61550216874156&sk=about_details&locale=pt_BR";
         }
 
         function instagram() {
-            window.location.href = "https://www.instagram.com/e.e.prof_leticia/";
+            const redesSociais = document.querySelector('.redes-sociais');
+            const container = document.querySelector('.container');
+            container.style.padding = "0px";
+            const iframes = document.querySelector('.iframes');
+            iframes.style.display = "flex";
+            iframes.style.padding = "0px 0px 100px 0px";
+            redesSociais.style.display = "none";
+            iframes.innerHTML = `
+            <iframe  src="https://www.instagram.com/p/CwNFfHZOiu9/embed">
+            Carregando...
+            </iframe>`;
         }
 
 		function mudarSenha() {
