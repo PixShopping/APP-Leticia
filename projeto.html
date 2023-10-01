@@ -307,6 +307,8 @@
        <!-- JavaScript -->
        <script>
 
+
+
         // Abrir ocorrencias
         const contents = document.querySelectorAll('.content');
         const formularios = document.querySelector('.formularios');
@@ -418,7 +420,9 @@
           const db = firebase.firestore();
 
           const logado = localStorage.getItem('logado');
-          if (logado === "ADMIN") {
+          if (!logado){
+            window.location.href = "./login.html";
+          } else if (logado === "ADMIN") {
             formularios.style.display = "none";
           } else if (logado === "PROFESSOR") {
             graficos.style.display = "none";
