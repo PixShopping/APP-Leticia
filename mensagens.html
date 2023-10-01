@@ -141,7 +141,8 @@
             }
 
             .content ul li:hover {
-                background: #bcbbbb;
+                background: var(--one);
+                color: var(--white);
                 transition: all .3s ease-in-out;
             }
 
@@ -149,7 +150,7 @@
                 font-size: 18px;
                 font-weight: 400;
                 letter-spacing: 1px;
-                margin: 0px 0px 0px 8px;
+                margin: 0px 0px 0px 10px;
             }
 
             .content ul li ion-icon {
@@ -201,7 +202,8 @@
             }
 
             .contentSeries div li:hover {
-                background: #bcbbbb;
+                background: var(--one);
+                color: var(--white);
                 transition: all .3s ease-in-out;
             }
 
@@ -788,10 +790,12 @@
 						<h1>Secretaria</h1>
 					</li>
 					<li onclick="diretoria()">
+						<ion-icon name="trophy-outline"></ion-icon>
 						<h1>Diretoria</h1>
 					</li>
 					<li onclick="escola()">
-						<h1>Escola (Geral)</h1>
+						<ion-icon name="school-outline"></ion-icon>
+                        <h1>Escola (Geral)</h1>
 					</li>
 				</ul>
 
@@ -843,11 +847,20 @@
 
         <nav class="navgation">
 
-            <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+            <!-- HOME -->
+            <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+
+            <!-- NOTIFICATION -->
             <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-            <ion-icon class="selecionado" onclick="enviar()" name="add"></ion-icon>
+
+            <!-- MENSAGEM -->
+            <ion-icon onclick="enviar()" class="selecionado" name="mail"></ion-icon>
+
+            <!-- CALL -->
             <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
             <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+
+            <!-- PERFIL -->
             <ion-icon onclick="perfil()" name="person"></ion-icon>
 
         </nav>
@@ -945,6 +958,9 @@
        const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -1122,6 +1138,13 @@
 
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
+        // Pegar o ANO LETICO ATUAL
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+        localStorage.setItem('ano', anoAtual);
+        const ANO = localStorage.getItem('ano');
+
+
        function abrirMensagem(index) {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
@@ -1162,7 +1185,7 @@
             const DATA = inputData.value;
             const MENSAGEM = inputMensagem.value;
             const MOTIVO = inputMotivo.value;
-            db.collection("cadastro")
+            db.collection(ANO)
             .doc("mensagens")
             .collection(RESPONSAVEL)
             .add({
@@ -1212,7 +1235,7 @@
 	    const IDTOTAL = localStorage.getItem('ID_TOTAL');
         const div = document.getElementById(SERIE);
 	    const totalAlunos = document.getElementById(IDTOTAL);
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
@@ -1230,7 +1253,7 @@
 
     // Conta a quantidade de alunos da series
 	setTimeout(() => {
-	    db.collection("cadastro")
+	    db.collection(ANO)
 	    .doc("series")
 	    .collection(SERIE).get().then((dados) => {
 		const tamanho = dados.size;
@@ -1270,7 +1293,7 @@
     const elemento = document.querySelector(`[data-index="${index}"]`);
     const id = elemento.getAttribute('data-id');
     const serie = localStorage.getItem('SERIE');
-    db.collection("cadastro")
+    db.collection(ANO)
         .doc('series')
         .collection(serie)
         .doc(id)
@@ -1288,7 +1311,7 @@
     const id = elemento.getAttribute('data-responsavel');
     const batch = db.batch();
 
-    db.collection("cadastro")
+    db.collection(ANO)
     .doc("responsaveis")
     .collection(id)
     .get()
@@ -1308,7 +1331,7 @@
     const responsavel = elemento.getAttribute('data-responsavel');
     const batch = db.batch();
 
-	    db.collection("cadastro")
+	    db.collection(ANO)
 	    .doc("mensagens")
 	    .collection(responsavel)
 	    .get()
@@ -1341,7 +1364,7 @@
         const RESPONSAVEL = localStorage.getItem('verResponsavel');
         const DIV = document.querySelector('.mensagens');
         DIV.style.display = "flex";
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("mensagens")
         .collection(RESPONSAVEL)
         .get().then((dados) => {
@@ -1356,7 +1379,7 @@
 
         var existeM = false;
 
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("mensagens")
         .collection(RESPONSAVEL)
         .get()
@@ -1368,7 +1391,7 @@
         });
 
         // Coletando as mensagens no BANCO DE DADOS
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("mensagens")
         .collection(RESPONSAVEL)
         .onSnapshot((data) => {
@@ -1386,7 +1409,7 @@
         // Coletando as respostas no BANCO DE DADOS
         var existeR = false;
 
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("respostas")
         .collection(RESPONSAVEL)
         .get()
@@ -1398,7 +1421,7 @@
         });
 
 
-        db.collection("cadastro")
+        db.collection(ANO)
         .doc("respostas")
         .collection(RESPONSAVEL)
         .onSnapshot((data) => {
