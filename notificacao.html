@@ -187,7 +187,7 @@
 		    .erro {
 			width: 100vw;
 			height: auto;
-			display: none;
+			display: flex;
 			flex-direction: column;
 			align-items: center;
 		    }
@@ -345,11 +345,20 @@
 
             <nav class="navgation">
 
-                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
+                <!-- HOME -->
+                <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+
+                <!-- NOTIFICATION -->
                 <ion-icon class="selecionado" onclick="notificacao()" name="notifications"></ion-icon>
-                <ion-icon onclick="enviar()" name="add"></ion-icon>
+
+                <!-- MENSAGEM -->
+                <ion-icon onclick="enviar()" name="mail"></ion-icon>
+
+                <!-- CALL -->
                 <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
                 <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
+
+                <!-- PERFIL -->
                 <ion-icon onclick="perfil()" name="person"></ion-icon>
 
             </nav>
@@ -387,6 +396,9 @@
         const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
+            informacao.style.display = "flex";
+            call.style.display = "none";
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -429,6 +441,13 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 
+
+      // Pegar o ANO LETICO ATUAL
+      const dataAtual = new Date();
+      const anoAtual = dataAtual.getFullYear();
+      localStorage.setItem('ano', anoAtual);
+      const ANO = localStorage.getItem('ano');
+
       // ---------------
 	  //  LER MENSAGENS
 	  // ---------------
@@ -437,7 +456,7 @@
       var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const div = document.querySelector('.mensagens');
-      db.collection("cadastro")
+      db.collection(ANO)
       .doc("mensagens")
       .collection(RESPONSAVEL)
       .onSnapshot((data) => {
@@ -453,24 +472,15 @@
       });
 
         const diverro = document.querySelector('.erro');
-        if (localStorage.getItem('logado') === "ADMIN") {
-            diverro.style.display = "flex";
-        } else if (localStorage.getItem('logado') === "PROFESSOR") {
-	    diverro.style.display = "flex";
-	} else {
-            db.collection("cadastro")
-            .doc("mensagens")
-            .collection(RESPONSAVEL)
-            .get().then((dados) => {
-                const tamanho = dados.size;
-                if (tamanho === 0) {
-                    diverro.style.display = "flex";
-                } else if (tamanho >= 1) {
-                    diverro.style.display = "none";
-                }
-
-            });
-        }
+        db.collection(ANO)
+        .doc("mensagens")
+        .collection(RESPONSAVEL)
+        .get().then((dados) => {
+            const tamanho = dados.size;
+            if (tamanho >= 1) {
+                diverro.style.display = "none";
+            }
+        });
 
 
         // Responder Mensagem
@@ -507,7 +517,7 @@
             const DATA = inputData.value;
             const MOTIVO = localStorage.getItem('motivo');
             // Reference the Firestore collection and documents
-            db.collection('cadastro')
+            db.collection(ANO)
             .doc('respostas')
             .collection(RESPONSAVEL)
             .add({
