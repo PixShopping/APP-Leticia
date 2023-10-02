@@ -8,10 +8,10 @@
 		<link type="stylesheet" src="./style.css">
 		<title> Letícia </title>
 
-		<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" async=""></script>
+		<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 		<script>
-		  var OneSignal = window.OneSignal || [];
-		  OneSignal.push(function(OneSignal) {
+		  window.OneSignalDeferred = window.OneSignalDeferred || [];
+		  OneSignalDeferred.push(function(OneSignal) {
 		    OneSignal.init({
 		      appId: "76760e72-3be4-4e54-a0e0-70f9e68779af",
 		    });
