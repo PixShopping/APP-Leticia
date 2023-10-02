@@ -414,7 +414,9 @@
           // O usuário deu permissão para notificações.
           const notification = new Notification('E.E Letícia', {
             body: 'Obrigado por aceitar nossas notificacoes',
-            icon: './src/img/icon.png', // URL para um ícone personalizado
+            icon: './src/img/icon.png',
+            badge: './src/img/icon.png',
+            priority: "high" // URL para um ícone personalizado
             });
         }
       });
