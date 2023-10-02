@@ -390,35 +390,37 @@
 
        <script>
 
-       const firebaseConfig = {
-	    apiKey: "AIzaSyA4cOoq5HzXl8Exbx3zZJb_4MBj7pbDJSU",
-	    authDomain: "escola-leticia.firebaseapp.com",
-	    projectId: "escola-leticia",
-	    storageBucket: "escola-leticia.appspot.com",
-	    messagingSenderId: "782148597563",
-	    appId: "1:782148597563:web:d31d9ecb10790855bb691e"
-	  };
+        // Pegar o ANO LETICO ATUAL
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+        localStorage.setItem('ano', anoAtual);
+        const ANO = localStorage.getItem('ano');
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
+          authDomain: "banco-de-dados-leticia.firebaseapp.com",
+          projectId: "banco-de-dados-leticia",
+          storageBucket: "banco-de-dados-leticia.appspot.com",
+          messagingSenderId: "230701596733",
+          appId: "1:230701596733:web:4c52051fd1e7290e282a54"
+        };
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
-	 	const messaging = firebase.messaging();
+      const contadorNotificacao = localStorage.getItem('contadorN');
 
-			// Mensagem PUSH pelo firebase
-
-			messaging.getToken().then(function (currentToken) {
-		  if (currentToken) {
-		    console.log('Token FCM:', currentToken);
-		    // Envie o token para o seu servidor para usá-lo posteriormente
-		  } else {
-		    console.log('Token FCM não pôde ser gerado.');
-		  }
-		}).catch(function (err) {
-		  console.log('Erro ao obter o token de registro:', err);
-		});
-
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          // O usuário deu permissão para notificações.
+          const notification = new Notification('E.E Letícia', {
+            body: 'Obrigado por aceitar nossas notificacoes',
+            icon: './src/img/icon.png', // URL para um ícone personalizado
+            });
+        }
+      });
 
       // Pega o idserie do banco de dados
-      db.collection("cadastro")
+      db.collection(ANO)
         .doc("series")
         .collection(localStorage.getItem('serie'))
         .onSnapshot((data) => {
@@ -427,43 +429,6 @@
             });
         });
 
-	  // Listar Todos os Responsaveis no Banco De Dados
-
-      const mostrar = document.getElementById('mostrarDados');
-      var continuar = false;
-      function buscarDados() {
-        const DESTINATARIO = document.getElementById('destinatario').value;
-        if(DESTINATARIO !== ''){
-            mostrar.style.display = "flex";
-        } else {
-            mostrar.style.display = "none";
-        }
-
-
-        db.collection("cadastro")
-	 	.doc("responsaveis")
-	 	.collection(DESTINATARIO)
-	 	.get()
-	 	.then((existe) => {
-	 		if(existe.size > 0) {
-                existe.docs.map((val) => {
-                    mostrar.innerHTML = `<h1>${val.data().responsavel}</h1>
-                    <h1>${val.data().aluno}  -  ${val.data().serie}</h1>`;
-                    if(val.data().gmail){
-                        mostrar.innerHTML += `<h1>${val.data().gmail}</h1>`
-                    }
-                    /*if(val.data().telefone){
-                        mostrar.innerHTML += `<h1>${val.data().telefone}</h1>`
-                    }*/
-                    continuar = true;
-                })
-	 		} else {
-	 			mostrar.innerHTML = `<h1>Nao Existe</h1>`;
-	 		}
-	 	})
-
-      }
-
 
        </script>
 
@@ -471,5 +436,6 @@
 
        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 
 </html>
