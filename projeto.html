@@ -422,7 +422,7 @@
           const logado = localStorage.getItem('logado');
           if (!logado){
             window.location.href = "./login.html";
-          } else if (logado === "ADMIN") {
+          } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             formularios.style.display = "none";
           } else if (logado === "PROFESSOR") {
             graficos.style.display = "none";
