@@ -669,15 +669,29 @@
           }
         });
 
-      db.collection(ANO)
+        db.collection(ANO)
         .doc("restrito")
-        .collection("diretor")
+        .collection("direcao")
         .onSnapshot((data) => {
           data.docs.forEach((val) => {
             const usuario = val.data().usuario;
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
-              localStorage.setItem("logado", "ADMIN");
+              localStorage.setItem("logado", "DIRECAO");
+              window.location.href = "./home.html";
+            }
+          });
+        });
+
+        db.collection(ANO)
+        .doc("restrito")
+        .collection("cordenacao")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              localStorage.setItem("logado", "CORDENACAO");
               window.location.href = "./home.html";
             }
           });
