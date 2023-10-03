@@ -294,6 +294,17 @@
             margin: 0px 0px 12.5px 0px;
         }
 
+        .form-mensagem select {
+            width: 100%;
+            height: 35px;
+            border-radius: 5px;
+            background: var(--white);
+            border: 1.5px solid var(--one);
+            outline: none;
+            padding: 0px 10px;
+            margin: 0px 0px 12.5px 0px;
+        }
+
         .form-mensagem textarea {
             width: 100%;
             height: 70px;
@@ -363,6 +374,12 @@
 
                 <label>Respondendo a Mensagem:</label>
                 <h2 id="respondendo"></h2>
+
+                <label>Para:</label>
+                <select type="text" id="inputDestinatario">
+                    <option value="CORDENACAO">Cordenação</option>
+                    <option value="DIRECAO">Direção</option>
+                </select>
 
                 <label>Data</label>
                 <input type="date" id="inputData">
@@ -548,12 +565,16 @@
         function enviarResposta() {
             const inputData = document.getElementById('inputData');
             const inputMensagem = document.getElementById('inputMensagem');
+            const inputDestinatario = document.getElementById('inputDestinatario');
             const MENSAGEM = inputMensagem.value;
             const DATA = inputData.value;
             const TITULO = localStorage.getItem('titulo');
+            const DESTINATARIO = inputDestinatario.value;
             // Reference the Firestore collection and documents
             db.collection(ANO)
             .doc('respostas')
+            .collection(DESTINATARIO)
+            .doc(RESPONSAVEL)
             .collection(RESPONSAVEL)
             .add({
                 titulo: TITULO,
