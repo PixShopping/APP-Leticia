@@ -322,13 +322,15 @@
        const responsavel = localStorage.getItem('responsavel');
         if (!logado){
 		  window.location.href = "./login.html";
-		} else if (logado === "ADMIN") {
-          mostrarResponsavel.innerHTML = "Adminstrador";
+		} else if (logado === "RESPONSAVEL") {
+            mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
+	    } else if (logado === "CORDENACAO") {
+            mostrarResponsavel.innerHTML = `CORDENAÇÃO`;
+        } else if (logado === "DIRECAO") {
+            mostrarResponsavel.innerHTML = `DIREÇÃO`;
         } else if (logado === "PROFESSOR") {
-		  mostrarResponsavel.innerHTML = "Professor";
-	    }  else if (logado === "RESPONSAVEL") {
-		  mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
-	    }
+            mostrarResponsavel.innerHTML = `PROFESSOR`;
+        }
 
        // HREF
        function perfil() {
@@ -407,7 +409,8 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
-      const contadorNotificacao = localStorage.getItem('contadorN');
+
+      /*const contadorNotificacao = localStorage.getItem('contadorN');
 
       Notification.requestPermission().then(function(permission) {
         if (permission === 'granted') {
@@ -419,7 +422,7 @@
             priority: "high" // URL para um ícone personalizado
             });
         }
-      });
+      });*/
 
       // Pega o idserie do banco de dados
       db.collection(ANO)
