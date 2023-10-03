@@ -527,17 +527,19 @@
         .doc("respostas")
         .collection(logado)
 				.get().then((dados) => {
-					dados.onSnapshot((data) => {
-            data.docs.map((val) => {
-                div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
-                    <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
-                    <p>${val.data().mensagem}</p>
-                    <button onclick="responderMensagem(${index})">Responder</button>
-                    </li>`;
-                index++;
-                existe++;
-            });
-        	});
+					dados.get().then((dado) => {
+						dado.onSnapshot((data) => {
+	            data.docs.map((val) => {
+	                div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
+	                    <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
+	                    <p>${val.data().mensagem}</p>
+	                    <button onclick="responderMensagem(${index})">Responder</button>
+	                    </li>`;
+	                index++;
+	                existe++;
+	            });
+	        	});
+					});
 				});
       }
 
