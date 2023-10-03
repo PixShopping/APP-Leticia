@@ -130,57 +130,60 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-            	margin: 10px 0px 0px 0px;
+            	margin: 0px 0px 0px 0px;
+                padding: 0px 0px 20px 0px;
 	    }
 
             .mensagens li {
                 width: 95%;
                 height: auto;
                 list-style: none;
-                border: 2px solid var(--one);
-                border-radius: 5px;
-                margin: 20px 0px 0px 0px;
-                padding: 10px;
-                color: #191919;
+                background: var(--one);
+                border-radius: 10px;
+                margin: 25px 0px 0px 0px;
+                padding: 20px;
+                color: var(--white);
             }
 
             .mensagens li h1 {
                 display: flex;
                 width: 100%;
                 font-size: 20px;
-                font-weight: 600;
-                letter-spacing: 0.2px;
+                font-weight: 500;
             }
 
             .mensagens li h1 a {
                 margin: 0px 0px 0px auto;
-                font-size: 18px;
+                font-size: 17px;
             }
 
             .mensagens p {
-                font-size: 16px;
+                font-size: 15px;
                 font-weight: 500;
                 letter-spacing: 0px;
                 width: 100%;
-                margin: 5px 0px 5px 0px;
+                margin: 8px 0px 5px 0px;
+                color: #bbb;
             }
 
             .mensagens button {
-                width: 150px;
-                height: 35px;
-                background: var(--one);
+                width: 135px;
+                height: 37px;
+                background: var(--two);
                 color: var(--white);
                 border: none;
                 border-radius: 10px;
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 500;
-                margin: 5px 0px;
+                margin: 15px 0px 5px 0px;
                 cursor: pointer;
-                border: 2px solid var(--one);
-                box-shadow: 0px 5px 15px var(--one);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             } .mensagens button:hover {
                 background: #F1F1f1;
                 color: var(--one);
+                box-shadow: 0px 5px 15px var(--white);
                 transition: all .4s ease-in-out;
             }
 
@@ -222,7 +225,7 @@
 
         .form-mensagem {
             width: 100vw;
-            height: auto;
+            height: 110vh;
             padding: 20px;
             background: var(--white);
             display: none;
@@ -236,10 +239,33 @@
             box-shadow: 0 0 10px #232323;
         }
 
+        .form-mensagem div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0px 0px 25px 0px;
+            padding: 0px 20px 0px 0px;
+        }
+
+        .form-mensagem ion-icon {
+            font-size: 25px;
+            padding: 10px;
+            background: var(--one);
+            color: var(--white);
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid var(--one);
+        } .form-mensagem ion-icon:hover {
+            background: var(--white);
+            color: var(--one);
+            transition: all .4s ease-in-out;
+        }
+
         .form-mensagem h1 {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 400;
-            margin: 10px auto 20px auto;
+            text-align: center;
+            margin: 0px auto;
         }
 
         .form-mensagem h2 {
@@ -261,17 +287,18 @@
             width: 100%;
             height: 35px;
             border-radius: 5px;
-            border: 1px solid #CCC;
+            background: var(--white);
+            border: 1.5px solid var(--one);
             outline: none;
             padding: 10px;
-            margin: 0px 0px 10px 0px;
+            margin: 0px 0px 12.5px 0px;
         }
 
         .form-mensagem textarea {
             width: 100%;
             height: 70px;
             border-radius: 5px;
-            border: 1px solid #CCC;
+            border: 1.5px solid var(--one);
             outline: none;
             padding:  5px 10px;
             margin: 0px 0px 10px 0px;
@@ -279,7 +306,7 @@
 
         .form-mensagem button {
             width: 90%;
-            height: 40px;
+            height: 45px;
             border-radius: 10px;
             background: var(--one);
             color: var(--white);
@@ -293,6 +320,7 @@
             background: var(--white);
             border: 2px solid var(--one);
             color: var(--one);
+            box-shadow: 0px 5px 15px  var(--one);
             transition: all .3s ease-in-out;
         }
 
@@ -328,7 +356,10 @@
 
             <section class="form-mensagem">
 
-                <h1>Enviar Mensagem</h1>
+                <div>
+                    <ion-icon onclick="voltar()" name="arrow-back"></ion-icon>
+                    <h1>Enviar Mensagem</h1>
+                </div>
 
                 <label>Respondendo a Mensagem:</label>
                 <h2 id="respondendo"></h2>
@@ -441,6 +472,9 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 
+      function voltar() {
+        window.location.reload();
+      }
 
       // Pegar o ANO LETICO ATUAL
       const dataAtual = new Date();
@@ -461,8 +495,8 @@
       .collection(RESPONSAVEL)
       .onSnapshot((data) => {
         data.docs.map((val) => {
-            div.innerHTML += `<li data-index="${index}" data-responder="${val.data().motivo}">
-                <h1>${val.data().motivo}<a>${val.data().data}</a></h1>
+            div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
+                <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
                 <p>${val.data().mensagem}</p>
                 <button onclick="responderMensagem(${index})">Responder</button>
                 </li>`;
@@ -487,11 +521,11 @@
 
         function responderMensagem(uindex) {
             const elemento = document.querySelector(`[data-index="${uindex}"]`)
-            const motivo = elemento.getAttribute('data-responder');
-            abrirMensagem(motivo);
+            const titulo = elemento.getAttribute('data-responder');
+            abrirMensagem(titulo);
         }
 
-        function abrirMensagem(motivo) {
+        function abrirMensagem(titulo) {
             const formMensagem = document.querySelector('.form-mensagem');
             const inputData = document.getElementById('inputData');
             const inputMensagem = document.getElementById('inputMensagem');
@@ -499,10 +533,11 @@
             setTimeout(() => {
                 formMensagem.style.top = "0px";
             }, 250);
+            document.body.style.overflow = "hidden";
 
             const respondendo = document.getElementById('respondendo');
-            respondendo.innerHTML = motivo;
-            localStorage.setItem('motivo', motivo);
+            respondendo.innerHTML = titulo;
+            localStorage.setItem('titulo', titulo);
 
             // Pegando a data atual
             const dataAtual = new Date().toISOString().split('T')[0];
@@ -515,13 +550,13 @@
             const inputMensagem = document.getElementById('inputMensagem');
             const MENSAGEM = inputMensagem.value;
             const DATA = inputData.value;
-            const MOTIVO = localStorage.getItem('motivo');
+            const TITULO = localStorage.getItem('titulo');
             // Reference the Firestore collection and documents
             db.collection(ANO)
             .doc('respostas')
             .collection(RESPONSAVEL)
             .add({
-                motivo: MOTIVO,
+                titulo: TITULO,
                 resposta: MENSAGEM,
                 data: DATA
             });
