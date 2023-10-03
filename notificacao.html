@@ -377,7 +377,7 @@
 
                 <label>Para:</label>
                 <select type="text" id="inputDestinatario">
-                    <option value="CORDENACAO">Cordenação</option>
+                    <option value="COORDENACAO">Coordenação</option>
                     <option value="DIRECAO">Direção</option>
                 </select>
 
@@ -446,7 +446,7 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "ADMIN") {
+        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
