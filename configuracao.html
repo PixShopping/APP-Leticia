@@ -167,6 +167,21 @@
                 font-weight: 600;
             }
 
+            .iconsTema {
+                width: auto;
+                height: 110%;
+                border-radius: 15px;
+                background: var(--one);
+                color: var(--white);
+                display: flex;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .content .iconsTema ion-icon {
+                font-size: 30px;
+            }
+
             </style>
            </head>
 
@@ -184,11 +199,12 @@
 
                     <ul>
 
-
-
                         <li onclick="mudarTema()">
-                            <ion-icon name="settings"></ion-icon>
-                            <h1>Tema</h1>
+                            <div class="iconsTema">
+                                <ion-icon id="lua" name="moon"></ion-icon>
+                                <ion-icon id="sol" name="sunny-outline"></ion-icon>
+                            </div>
+                            <h1>Mudar tema</h1>
                             <h1 id="temah1"></h1>
                         </li>
 
@@ -225,14 +241,18 @@
 
         // TEMA ARRUMADO
         const temah1 = document.getElementById('temah1');
+        const sol = document.getElementById('sol');
+        const lua = document.getElementById('lua');
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
           root.style.setProperty('--white', 'white');
+          lua.style.display = "none";
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
           root.style.setProperty('--white', '#002242');
+          sol.style.display = "none";
         }
 
        // Verificar LOGIN
