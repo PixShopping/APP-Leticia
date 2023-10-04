@@ -59,12 +59,12 @@
                 padding: 20px;
                 border-radius: 0px 0px 25px 25px;
                 background: #144774;
-                color: var(--white);
+                color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0px 5px 20px var(--one);
+                box-shadow: 0px 5px 20px var(--two);
             }
 
             .bem-vindo ion-icon {
@@ -266,20 +266,12 @@
                         </p>
 						<ul>
 							<li>
-                                <ion-icon name="home-outline"></ion-icon>
-                                <p><strong>Página Inícial: </strong> Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
-						    </li>
-							<li>
                                 <ion-icon name="notifications-outline"></ion-icon>
-                                <p><strong>Notificações: </strong> Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
+                                <p><strong>Comunicados e datas: </strong> Encontre aqui as últimas notícias e comunicados importantes sobre a escola.</p>
                             </li>
-			    <li>
+                            <li>
                                 <ion-icon name="mail-outline"></ion-icon>
                                 <p><strong>Mensagens: </strong>Envio de informações sobre o dia a dia dos estudantes e espaço para tirar dúvidas, fazer agendamentos, solicitações e iniciar uma conversa.</p>
-			    </li>
-                            <li>
-                                <ion-icon name="call-outline"></ion-icon>
-                                <p><strong>Telefone: </strong>Entre em contato com o telefone da escola e tire suas dúvidas.</p>
                             </li>
                             <li>
                                 <ion-icon name="person-outline"></ion-icon>
@@ -321,7 +313,16 @@
        <!-- JavaScript -->
        <script>
 
-
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
+        }
 
 
        // Header Nome
@@ -332,8 +333,8 @@
 		  window.location.href = "./login.html";
 		} else if (logado === "RESPONSAVEL") {
             mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
-	    } else if (logado === "COORDENACAO") {
-            mostrarResponsavel.innerHTML = `COORDENAÇÃO`;
+	    } else if (logado === "CORDENACAO") {
+            mostrarResponsavel.innerHTML = `CORDENAÇÃO`;
         } else if (logado === "DIRECAO") {
             mostrarResponsavel.innerHTML = `DIREÇÃO`;
         } else if (logado === "PROFESSOR") {
@@ -365,7 +366,7 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "COORDENACAO" || logado === "DIRECAO") {
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
