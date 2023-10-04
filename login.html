@@ -18,6 +18,7 @@
         --four: #4e8bb8;
         --five: #6fadd2;
         --six: #9ecae3;
+        --white: white;
         --font: "Ubuntu", sans-serif;
         --green: green;
         --red: red;
@@ -35,7 +36,7 @@
       }
 
       body {
-        background: white;
+        background: var(--white);
         color: var(--one);
         user-select: none;
         font-family: "Arial";
@@ -53,7 +54,7 @@
         width: 100%;
         height: 60vh;
         background: var(--one);
-        color: white;
+        color: var(--white);
         border-radius: 0px 0px 25px 25px;
         display: flex;
         flex-direction: column;
@@ -83,7 +84,7 @@
       .botoes {
         width: 100vw;
         height: 30vh;
-        background: white;
+        background: var(--white);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -96,7 +97,7 @@
         width: 90%;
         height: 50px;
         background: var(--one);
-        color: white;
+        color: var(--white);
         margin: 0px 0px 25px 0px;
         border-radius: 10px;
         font-size: 17px;
@@ -108,7 +109,7 @@
       .botoes button:hover,
       .content-logar button:hover,
       .content-cadastrar button:hover {
-        background: white;
+        background: var(--white);
         border: 3px solid var(--one);
         color: var(--one);
         transition: all 0.4s ease-in-out;
@@ -147,7 +148,7 @@
         width: 100%;
         height: auto;
         border-radius: 25px 25px 0px 0px;
-        background: white;
+        background: var(--white);
         margin: -20px 0px 0px 0px;
         padding: 10px 0px 50px 0px;
       }
@@ -207,16 +208,16 @@
         top: 20px;
         left: 20px;
         font-size: 33px;
-        background: white;
+        background: var(--white);
         color: var(--one);
         border-radius: 10px;
         padding: 7px;
         cursor: pointer;
       }
       #voltar:hover {
-        background: white;
+        background: var(--white);
         color: var(--two);
-        box-shadow: 0px 0px 10px white;
+        box-shadow: 0px 0px 10px var(--white);
         transition: all 0.3s ease-in-out;
       }
 
@@ -657,6 +658,7 @@
                       }
                       localStorage.setItem("id", val.id);
                       localStorage.setItem("ra", val.data().ra);
+                      localStorage.setItem("tema", "light");
 
                       window.location.href = "./home.html";
                     }, 500);
@@ -678,6 +680,7 @@
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
               localStorage.setItem("logado", "DIRECAO");
+              localStorage.setItem("tema", "light");
               window.location.href = "./home.html";
             }
           });
@@ -685,13 +688,14 @@
 
         db.collection(ANO)
         .doc("restrito")
-        .collection("coordenacao")
+        .collection("cordenacao")
         .onSnapshot((data) => {
           data.docs.forEach((val) => {
             const usuario = val.data().usuario;
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
-              localStorage.setItem("logado", "COORDENACAO");
+              localStorage.setItem("logado", "CORDENACAO");
+              localStorage.setItem("tema", "light");
               window.location.href = "./home.html";
             }
           });
@@ -706,6 +710,7 @@
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
               localStorage.setItem("logado", "PROFESSOR");
+              localStorage.setItem("tema", "light");
               window.location.href = "./home.html";
             }
           });
