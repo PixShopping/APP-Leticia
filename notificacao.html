@@ -141,7 +141,7 @@
                 background: var(--one);
                 border-radius: 10px;
                 margin: 25px 0px 0px 0px;
-                padding: 20px 20px 15px 20px;
+                padding: 20px;
                 color: var(--white);
             }
 
@@ -157,7 +157,7 @@
                 font-size: 17px;
             }
 
-            .mensagens li p {
+            .mensagens p {
                 font-size: 15px;
                 font-weight: 500;
                 letter-spacing: 0px;
@@ -166,7 +166,7 @@
                 color: #bbb;
             }
 
-            .mensagens li button {
+            .mensagens button {
                 width: 135px;
                 height: 37px;
                 background: var(--two);
@@ -175,12 +175,12 @@
                 border-radius: 10px;
                 font-size: 16px;
                 font-weight: 500;
-                margin: 20px 0px 0px 0px;
+                margin: 15px 0px 5px 0px;
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-            } .mensagens li button:hover {
+            } .mensagens button:hover {
                 background: #F1F1f1;
                 color: var(--one);
                 box-shadow: 0px 5px 15px var(--white);
@@ -345,7 +345,7 @@
                 <header class="local">
 
                     <h1>Notificação</h1>
-                    <ion-icon name="settings"></ion-icon>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
                 </header>
 
@@ -377,7 +377,7 @@
 
                 <label>Para:</label>
                 <select type="text" id="inputDestinatario">
-                    <option value="COORDENACAO">Coordenação</option>
+                    <option value="CORDENACAO">Cordenação</option>
                     <option value="DIRECAO">Direção</option>
                 </select>
 
@@ -416,6 +416,16 @@
        <!-- JavaScript -->
        <script>
 
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
+        }
 
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
@@ -440,13 +450,17 @@
          window.location.href = "./mensagens.html";
        }
 
+       function configuracao() {
+        window.location.href = "./configuracao.html"
+       }
+
        // Verifica se é um professor
         const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -526,12 +540,17 @@
         db.collection(ANO)
         .doc("respostas")
         .collection(logado)
-				.get().then((querysnapshot) => {
-					querysnapshot.forEach((doc) => {
-						var dados = doc.data();
-						console.log(dados);
-					});
-				});
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
+                    <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
+                    <p>${val.data().mensagem}</p>
+                    <button onclick="responderMensagem(${index})">Responder</button>
+                    </li>`;
+                index++;
+                existe++;
+            });
+        });
       }
 
         const diverro = document.querySelector('.erro');
