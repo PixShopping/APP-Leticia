@@ -38,7 +38,7 @@
 			}
 
 			body {
-				background: white;
+				background: var(--white);
 				color: var(--one);
 				user-select: none;
 				font-family: 'Arial', sans-serif;
@@ -56,7 +56,7 @@
             .local {
               width: 100%;
               height: 70px;
-              color: #F1F1F1;
+              color: var(--white);
               background: var(--one);
               display: flex;
               justify-content: space-between;
@@ -99,7 +99,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-                color: #F1F1F1;
+                color: var(--white);
             }
 
             .navgation ion-icon {
@@ -110,7 +110,7 @@
             /* SELECIONADO */
 
             .selecionado {
-                background: #F1F1F1;
+                background: var(--white);
                 color: var(--one);
                 border-radius: 50%;
                 padding: 15px;
@@ -171,12 +171,12 @@
             }
 
             .content ul li h1 {
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 700;
-                letter-spacing: 0.3px;
+                letter-spacing: 0.4px;
                 text-align: center;
                 text-transform: none;
-                margin: 15px 0px 5px 0px;
+                margin: 0px;
             }
 
             .form-ocorrencia {
@@ -209,7 +209,7 @@
                   <header class="local">
 
                     <h1 id="local">Projeto</h1>
-                    <ion-icon name="settings"></ion-icon>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
                   </header>
 
@@ -247,7 +247,7 @@
                   <!-- Analize dos graficos -->
                   <section class="content graficos">
 
-                    <h1>Controle dos Formulários</h1>
+                    <h1>Graficos</h1>
 
                     <ul>
 
@@ -307,6 +307,16 @@
        <!-- JavaScript -->
        <script>
 
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
+        }
 
 
         // Abrir ocorrencias
@@ -347,7 +357,7 @@
           contents.forEach((content) => {
             content.style.display = "none";
           });
-          window.location.href = "https://docs.google.com/spreadsheets/d/1L1CfUzsb_c7bQRivxsfZ5p3TLEAWDOh2Cxnql9DZahg/edit?usp=drivesdk";
+          window.location.href = "https://docs.google.com/forms/d/1I8seFviqaXe1hoxLFiccY3qcjAoFSg72f4OkhIbHM5o/edit?pli=1#responses";
         }
 
 
@@ -392,6 +402,10 @@
           window.location.href = "./projeto.html";
         }
 
+        function configuracao() {
+          window.location.href = "./configuracao.html";
+      }
+
        </script>
 
 
@@ -422,7 +436,7 @@
           const logado = localStorage.getItem('logado');
           if (!logado){
             window.location.href = "./login.html";
-          } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+          } else if (logado === "ADMIN") {
             formularios.style.display = "none";
           } else if (logado === "PROFESSOR") {
             graficos.style.display = "none";
