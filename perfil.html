@@ -45,7 +45,7 @@
             }
 
 			body {
-				background: white;
+				background: var(--white);
 				color: var(--one);
 				user-select: none;
 				font-family: 'Arial', sans-serif;
@@ -62,7 +62,7 @@
             .local {
                 width: 100%;
                 height: 70px;
-                color: #F1F1F1;
+                color: var(--white);
                 background: var(--one);
                 display: flex;
                 justify-content: space-between;
@@ -104,7 +104,7 @@
                 bottom: 0px;
                 z-index: 100;
                 background: var(--one);
-                color: #F1F1F1;
+                color: var(--white);
             }
 
             .navgation ion-icon {
@@ -115,7 +115,7 @@
             /* SELECIONADO */
 
             .selecionado {
-                background: #F1F1F1;
+                background: var(--white);
                 color: var(--one);
                 border-radius: 50%;
                 padding: 15px;
@@ -164,7 +164,7 @@
 		   .dados ion-icon {
                 width: 75px;
                 height: 75px;
-                color: white;
+                color: var(--white);
                 border-radius: 50%;
                 background: var(--one);
                 box-shadow: 0px 0px 10px var(--one);
@@ -291,7 +291,7 @@
                 height: 45px;
                 border-radius: 5px;
                 border: 1px solid gray;
-                background: white;
+                background: var(--white);
                 padding: 20px 20px 20px 40px;
                 font-size: 16px;
                 font-weight: 700;
@@ -309,7 +309,7 @@
                 border-radius: 5px;
                 border: none;
                 background: #191919;
-                color: white;
+                color: var(--white);
                 padding: 10px;
                 font-size: 15.5px;
                 font-weight: 700;
@@ -321,14 +321,14 @@
 
             .containerSenha button:hover {
                 background: var(--one);
-                color: white;
+                color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
                 cursor: pointer;
             }
 
             .containerSenha button:focus {
                 background: var(--one);
-                color: white;
+                color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
             }
 
@@ -388,7 +388,7 @@
                 height: 45px;
                 border-radius: 5px;
                 border: 1px solid gray;
-                background: white;
+                background: var(--white);
                 padding: 20px 20px 20px 40px;
                 font-size: 16px;
                 font-weight: 700;
@@ -406,7 +406,7 @@
                 border-radius: 5px;
                 border: none;
                 background: #191919;
-                color: white;
+                color: var(--white);
                 padding: 10px;
                 font-size: 15.5px;
                 font-weight: 700;
@@ -418,14 +418,14 @@
 
             .containerDados button:hover {
                 background: var(--one);
-                color: white;
+                color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
                 cursor: pointer;
             }
 
             .containerDados button:focus {
                 background: var(--one);
-                color: white;
+                color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
             }
 
@@ -485,10 +485,10 @@
            /* Telefones */
 
            .telefones {
-            width: 100vw;
-            height: auto;
-            display: none;
-            flex-direction: column;
+                width: 100vw;
+                height: auto;
+                display: none;
+                flex-direction: column;
             }
 
             .telefones ul {
@@ -565,7 +565,7 @@
                 <header class="local">
 
                     <h1 id="local">Perfil</h1>
-                    <ion-icon name="settings"></ion-icon>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
                 </header>
 
@@ -785,6 +785,16 @@
        <!-- JavaScript -->
        <script>
 
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
+        }
 
         // Dados do Perfil
         const inputAluno = document.getElementById('inputAluno');
@@ -936,6 +946,10 @@
 		 window.location.href = "./login.html";
 		}
 
+        function configuracao() {
+            window.location.href = "./configuracao.html";
+        }
+
         // CONTATO
         function contato() {
             const content = document.querySelector('.content');
@@ -1010,7 +1024,7 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
