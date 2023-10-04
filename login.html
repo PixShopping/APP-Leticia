@@ -688,13 +688,13 @@
 
         db.collection(ANO)
         .doc("restrito")
-        .collection("cordenacao")
+        .collection("coordenacao")
         .onSnapshot((data) => {
           data.docs.forEach((val) => {
             const usuario = val.data().usuario;
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
-              localStorage.setItem("logado", "CORDENACAO");
+              localStorage.setItem("logado", "COORDENACAO");
               localStorage.setItem("tema", "light");
               window.location.href = "./home.html";
             }
