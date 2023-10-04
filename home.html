@@ -341,8 +341,8 @@
 		  window.location.href = "./login.html";
 		} else if (logado === "RESPONSAVEL") {
             mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
-	    } else if (logado === "CORDENACAO") {
-            mostrarResponsavel.innerHTML = `CORDENAÇÃO`;
+	    } else if (logado === "COORDENACAO") {
+            mostrarResponsavel.innerHTML = `COORDENAÇÃO`;
         } else if (logado === "DIRECAO") {
             mostrarResponsavel.innerHTML = `DIREÇÃO`;
         } else if (logado === "PROFESSOR") {
@@ -374,7 +374,7 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "ADMIN") {
+        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -386,12 +386,6 @@
        function suporte() {
 		 window.location.href = "tel:1633242256";
 		}
-
-        function theme() {
-            const root = document.documentElement;
-            root.style.setProperty('--one', 'white');
-            root.style.setProperty('--white', '#002242');
-        }
 
        </script>
 
