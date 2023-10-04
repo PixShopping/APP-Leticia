@@ -544,7 +544,7 @@
             <header class="local">
 
                 <h1>Mensagens</h1>
-                <ion-icon onclick="theme()" name="settings"></ion-icon>
+                <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
             </header>
 
@@ -905,19 +905,17 @@
     <!-- JAVASCRIPT -->
     <script>
 
-        // TEMA (DARK OU LIGTH)
-        function theme() {
-            const root = document.documentElement;
-            if (root.style.getPropertyValue('--one') === '#002242') {
-                root.style.setProperty('--one', 'white');
-                root.style.setProperty('--white', '#002242');
-            } else {
-                root.style.setProperty('--one', '#002242');
-                root.style.setProperty('--white', 'white');
-            }
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
         }
 
-         // abrirMensagem(${index})
 
          // OPÇOES
 
@@ -947,7 +945,7 @@
         // Verificar se é administrador
         if (!logado){
             window.location.href = "./login.html";
-        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+        } else if (logado === "DIRECAO" || logado === "CORDENACAO") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
         } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
@@ -985,7 +983,7 @@
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+        } else if (logado === "ADMIN") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
@@ -1000,6 +998,10 @@
 
         function reload() {
             window.location.reload();
+        }
+
+        function configuracao() {
+            window.location.href = "./configuracao.html";
         }
 
 
@@ -1471,6 +1473,11 @@
     </script>
 
 
+    <script>
+
+
+
+    </script>
 
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
