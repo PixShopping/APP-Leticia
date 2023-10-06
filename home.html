@@ -8,6 +8,7 @@
 
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
+
             window.OneSignalDeferred = window.OneSignalDeferred || [];
             window.OneSignalDeferred.push(async function(OneSignal) {
                 await OneSignal.init({
@@ -17,9 +18,14 @@
                     },
                 });
             });
+
+            let externalUserId = "123456789"; // You will supply the external user id to the OneSignal SDK
+            
             OneSignal.push(function() {
                 OneSignal.setExternalUserId(externalUserId);
+                alert(externalUserId);
             });
+
         </script>
 
 
