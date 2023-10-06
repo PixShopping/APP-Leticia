@@ -471,19 +471,12 @@
 
     <script>
 
-    const settings = {
-        async: true,
-        crossDomain: true,
-        url: 'https://onesignal.com/api/v1/apps/app_id/users/by/alias_label/alias_id',
-        method: 'GET',
-        headers: {
-            accept: 'application/json'
-        }
-    };
+    const options = {method: 'GET', headers: {accept: 'application/json'}};
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
+    fetch('https://onesignal.com/api/v1/apps/app_id/users/by/alias_label/alias_id', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
 
     </script>
 
