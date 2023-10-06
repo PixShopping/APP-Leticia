@@ -4,7 +4,6 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
-		<link type="stylesheet" src="./style.css">
 		<title> Inicio | Letícia </title>
 
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -16,8 +15,6 @@
                     notifyButton: {
                         enable: true
                     },
-                    serviceWorkerParam: { scope: "/" },
-                    serviceWorkerPath: "/src/apis/OneSignalSDKWorker.js",
                 });
             });
         </script>
@@ -461,17 +458,6 @@
                 localStorage.setItem('idserie', val.id);
             });
         }); */
-
-
-        if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for(let registration of registrations) {
-            if (registration.active.scriptURL.includes("OneSignalSDKWorker.js")) {
-                registration.unregister();
-            }
-            }
-        });
-        }
 
        </script>
 
