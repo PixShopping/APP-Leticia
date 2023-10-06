@@ -1,5 +1,5 @@
 function logTestando() {
-  console.log("Testando");
+  localStorage.setItem('notificacao', 'true');
 }
 
 // Configurar um loop que executa logTestando a cada 2 segundos
