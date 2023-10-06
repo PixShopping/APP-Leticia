@@ -17,14 +17,12 @@
                         enable: true
                     },
                 });
+                OneSignal.getUserId().then(function(userId) {
+                    console.log('UserID do usuário atual:', userId);
+                });
             });
 
-            let externalUserId = "123456789"; // You will supply the external user id to the OneSignal SDK
             
-            OneSignal.push(function() {
-                OneSignal.setExternalUserId(externalUserId);
-                alert(externalUserId);
-            });
 
         </script>
 
