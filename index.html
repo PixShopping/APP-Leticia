@@ -128,5 +128,21 @@
 				window.location.href = "./home.html";
 			}, 3300);
 
-       </script>
+    </script>
+
+	<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
+		<!-- NOTIFICACAO -->
+		<script>
+
+			window.OneSignalDeferred = window.OneSignalDeferred || [];
+			OneSignalDeferred.push(function(OneSignal) {
+				OneSignal.init({
+					appId: "7f7ebe08-4826-4b89-a30e-2232f5fd59b5",
+				});
+			});
+
+
+	</script>
+
 </html>
