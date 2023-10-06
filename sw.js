@@ -5,6 +5,10 @@ importScripts("https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-comp
 importScripts("https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js");
 */
 
+self.addEventListener('activate', function(event) {
+    console.log('Service Worker Ativado!');
+})
+
 // Inicialize o Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
