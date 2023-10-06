@@ -436,9 +436,10 @@
       });*/
 
       // Pega o idserie do banco de dados
+      const SERIE = localStorage.getItem('serie')
       db.collection(ANO)
         .doc("series")
-        .collection(localStorage.getItem('serie'))
+        .collection(SERIE)
         .onSnapshot((data) => {
             data.docs.map((val) => {
                 localStorage.setItem('idserie', val.id);
