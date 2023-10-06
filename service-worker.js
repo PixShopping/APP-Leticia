@@ -1,9 +1,9 @@
-// FIRESTORE FIREBASE
+/*// FIRESTORE FIREBASE
 importScripts("https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js");
 
 // APP FIREBASE
 importScripts("https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js");
-        
+*/
 
 // Inicialize o Firebase
 const firebaseConfig = {
