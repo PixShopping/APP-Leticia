@@ -9,7 +9,7 @@
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
 
-            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            /*window.OneSignalDeferred = window.OneSignalDeferred || [];
             window.OneSignalDeferred.push(async function(OneSignal) {
                 await OneSignal.init({
                     appId: "7f7ebe08-4826-4b89-a30e-2232f5fd59b5",
@@ -17,9 +17,19 @@
                         enable: true
                     },
                 });
-            });
+            });*/
 
-            
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('DOMContentLoaded', () => {
+                    navigator.serviceWorker.register('worker.js')
+                        .then(registration => {
+                            console.log('Service Worker registrado com sucesso!', registration);
+                        })
+                        .catch(error => {
+                            console.error('Erro ao registrar o Service Worker:', error);
+                        });
+                });
+            }
 
         </script>
 
@@ -469,15 +479,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <script>
-
-    const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-    fetch('https://onesignal.com/api/v1/apps/app_id/users/by/alias_label/alias_id', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-
-    </script>
 
 </html>
