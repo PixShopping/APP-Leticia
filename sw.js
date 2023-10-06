@@ -36,7 +36,7 @@ function verificaColecao() {
   .collection(RESPONSAVEL)
   .get().then((existe) => {
     const tamanho = existe.size;
-    alert(tamanho);
+    console.log(tamanho);
     if (tamanho > 0) {
         self.registration.showNotification("Coleção encontrada", {
             body: "A coleção foi encontrada no Firebase!",
