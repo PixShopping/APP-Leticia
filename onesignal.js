@@ -1,0 +1,8 @@
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
+//appId: '7f7ebe08-4826-4b89-a30e-2232f5fd59b5',
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "7f7ebe08-4826-4b89-a30e-2232f5fd59b5",
+    });
+  });
