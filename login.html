@@ -195,13 +195,14 @@
         letter-spacing: 0.2px;
       }
 
-      .content-logar button,
-      .content-cadastrar button {
-        margin: 20px 0px 5px 0px;
+      .content-logar button { 
+        margin: 10px 0px 5px 0px;
         width: 85%;
         height: 50px;
       } .content-cadastrar button {
         margin: 30px 0px -5px 0px;
+        width: 85%;
+        height: 50px;
       }
 
       #voltar {
@@ -558,9 +559,32 @@
     // ----------
     //  CADASTRO
     // ----------
+
+    function capitalizar(val) {
+      var texto = val;
+      // Verifica se a entrada não está vazia
+      if (texto.length === 0) {
+        document.getElementById("resultado").textContent = "Por favor, digite um texto.";
+        return;
+      }
+      // Divide a string em palavras
+      var palavras = texto.split(' ');
+      // Capitaliza a primeira letra de cada palavra
+      for (var i = 0; i < palavras.length; i++) {
+        palavras[i] = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase();
+      }
+      // Junta as palavras de volta em uma única string
+      var resultado = palavras.join(' ');
+      resultado = resultado.replace(/\s+/g, ' ');
+      
+      return resultado;
+    }
+
     function enviarCadastro() {
-      const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
-      const ALUNO = document.getElementById("cadastroAluno").value;
+      const inputRESPONSAVEL = document.getElementById("cadastroResponsavel").value;
+      const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
+      const inputALUNO = document.getElementById("cadastroAluno").value;
+      const ALUNO = capitalizar(inputALUNO);
       const GMAIL = document.getElementById("cadastroGmail").value;
       const TELEFONE = document.getElementById("cadastroTelefone").value;
       const SERIE = document.getElementById("cadastroSerie").value;
@@ -603,8 +627,11 @@
     //   LOGIN
     // ----------
     function enviarLogin() {
-      const RESPONSAVEL = document.getElementById("responsavel").value;
-      const SENHA = document.getElementById("senha").value;
+      const inputRESPONSAVEL = document.getElementById("responsavel").value;
+      const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
+      const inputSENHA = document.getElementById("senha").value;
+      const SENHA = capitalizar(inputSENHA);
+      
       const alertaRESPONSAVEL = document.getElementById(
         "alertaLoginRESPONSAVEL"
       );
