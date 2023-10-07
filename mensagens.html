@@ -62,8 +62,8 @@
 				align-items: center;
             	padding: 0px 20px 0px 20px;
                 z-index: 100;
-                box-shadow: 0px 5px 15px gray;
-	 	   }
+                box-shadow: 0px 0px 10px var(--one);
+	 	    }
 
             .local ion-icon {
                 font-size: 35px;
@@ -241,6 +241,7 @@
             .contentSeries div li button ion-icon {
                 font-size: 26px;
                 margin: 0px;
+                color: var(--one);
             }
 
             .contentSeries div li button:hover {
@@ -1313,6 +1314,7 @@
 			deletarMensagens(uindex);
         } else {
             alert("Exclusao cancelada...");
+            window.location.reload();
         }
 
     }
