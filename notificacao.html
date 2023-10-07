@@ -609,9 +609,8 @@
             db.collection(ANO)
             .doc('respostas')
             .collection(DESTINATARIO)
-            .doc(RESPONSAVEL)
-            .collection(RESPONSAVEL)
             .add({
+                responsavel: RESPONSAVEL,
                 titulo: TITULO,
                 resposta: MENSAGEM,
                 data: DATA
