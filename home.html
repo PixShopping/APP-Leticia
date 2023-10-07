@@ -237,8 +237,8 @@
 
             .guia button {
                 width: 85%;
-                height: 40px;
-                border-radius: 10px;
+                height: 45px;
+                border-radius: 8px;
                 background: var(--white);
                 color: var(--one);
                 box-shadow: 0px 0px 10px var(--white);
@@ -461,6 +461,21 @@
                 localStorage.setItem('idserie', val.id);
             });
         }); */
+
+       </script>
+
+       <script>
+
+        db.collection(ANO)
+        .doc("mensagens")
+        .collection(responsavel)
+        .get().then((existe) => {
+            const tamanho = existe.size;
+            if (tamanho > 0) {
+                localStorage.setItem('notificacao', 'true');
+                localStorage.setItem('notificacao.size', tamanho);
+            }
+        });
 
        </script>
 
