@@ -153,17 +153,14 @@
                 text-transform: capitalize;
             }
 
-            .mensagens li h1 a {
-                margin: 0px 0px 0px auto;
-                font-size: 17px;
-            }
+            
 
             .mensagens li h3 {
                 margin: 10px 0px 0px 0px;
                 text-transform: capitalize;
             }
 
-            .mensagens p {
+            .mensagens li p {
                 font-size: 15px;
                 font-weight: 500;
                 letter-spacing: 0px;
@@ -172,14 +169,29 @@
                 color: #999;
             }
 
-            .mensagens ion-icon {
-                margin: 8px 0px -12px 0px;
+            .mensagens li div {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                justify-content: space-between;
+                margin: 8px 0px -8px 0px;
+            }
+
+            .mensagens li div ion-icon {
+                margin: 0px;
                 color: white;
                 background: var(--red);
                 font-size: 30px;
                 padding: 5px;
                 border-radius: 10px;
                 cursor: pointer;
+            }
+
+            .mensagens li div a {
+                font-size: 18px;
+                font-weight: 500;
             }
 
             .mensagens button {
@@ -569,11 +581,18 @@
         .collection(logado)
         .onSnapshot((data) => {
             data.docs.map((val) => {
+                const date = val.data().data;
+                const dia = date.substring(8);
+                const mes = date.substring(5,7);
+                const ano = date.substring(0,4);
                 div.innerHTML += `<li data-index="${index}" data-id="${val.id}">
-                    <h1>Respondendo: ${val.data().titulo}<a>${val.data().data}</a></h1>
+                    <h1>Respondendo: ${val.data().titulo}</h1>
                     <h3>${val.data().responsavel}</h3>
                     <p>${val.data().resposta}</p>
-                    <ion-icon name="trash-outline" onclick="excluirResposta(${index})"></ion-icon>
+                    <div>
+                        <ion-icon name="trash-outline" onclick="excluirResposta(${index})"></ion-icon>
+                        <a>${dia}/${mes}/${ano}</a>
+                    </div>
                     </li>`;
                 index++;
                 diverro.style.display = "none";
