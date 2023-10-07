@@ -576,14 +576,16 @@
       // Junta as palavras de volta em uma única string
       var resultado = palavras.join(' ');
       resultado = resultado.replace(/\s+/g, ' ');
-      
+      resultado = resultado.trim();
+
       return resultado;
     }
 
     function tirarEspaco(val) {
       var resultado = val;
       resultado = resultado.replace(/\s+/g, ' ');
-      
+      resultado = resultado.trim();
+
       return resultado;
     }
 
