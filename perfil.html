@@ -447,7 +447,7 @@
                 margin: 15px 0px 0px 0px;
 		   }
 
-           .redes-sociais ul li {
+           .redes-sociais ul a {
                 width: 90%;
                 height: 56px;
                 display: flex;
@@ -457,26 +457,27 @@
                 color: var(--one);
                 cursor: pointer;
                 margin: 10px auto;
+                text-decoration: none;
             }
 
-		   .redes-sociais ul li:hover {
+		   .redes-sociais ul a:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .4s ease-in-out;
 		   }
 
-		   .redes-sociais ul li ion-icon {
+		   .redes-sociais ul a ion-icon {
 		        font-size: 30px;
                 margin: 0px 10px 0px 12px;
 		   }
 
-		   .redes-sociais ul li ion-icon:last-child {
+		   .redes-sociais ul a ion-icon:last-child {
                 margin: 0px 10px 0px auto;
                 font-size: 30px;
                 background: transparent;
 		   }
 
-		   .redes-sociais ul li h1 {
+		   .redes-sociais ul a h1 {
 			  font-size: 18px;
 			  font-weight: 500;
 			  margin: 0px;
@@ -634,29 +635,31 @@
         <section class="redes-sociais">
 
             <ul>
-                <li onclick="website()">
+                <a onclick="website()">
                     <ion-icon name="desktop-outline"></ion-icon>
                     <h1>Website</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
-                </li>
+                </a>
 
-                <li onclick="whatsapp()">
+
+
+                <a href="https://wa.me/5516997569308" target="_blank">
                     <ion-icon name="logo-whatsapp"></ion-icon>
                     <h1>Whatsapp</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
-                </li>
+                </a>
 
-                <li onclick="facebook()">
+                <a onclick="facebook()">
                     <ion-icon name="logo-facebook"></ion-icon>
                     <h1>Facebook</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
-                </li>
+                </a>
 
-                <li onclick="instagram()">
+                <a onclick="instagram()">
                     <ion-icon name="logo-instagram"></ion-icon>
                     <h1>Instagram</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
-                </li>
+                </a>
 
 
             </ul>
