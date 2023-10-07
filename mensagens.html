@@ -130,13 +130,15 @@
                 width: 100%;
                 height: auto;
                 padding: 5px;
-                margin: 10px 0px 0px 0px;
+                margin: 15px 0px -5px 0px;
             }
 
             .content div h1 {
-                margin: 0px 10px 0px 0px;
+                margin: 0px 0px 0px 10px;
                 font-size: 20px;
-                color: var(--two);
+                font-weight: 900;
+                color: var(--one);
+                letter-spacing: 0.2px;
             } 
 
             .content div label {
@@ -594,9 +596,9 @@
             <section class="content admin">
 
                 <div>
+                    <label for="banco">Filtrar Ano:</label>
                     <h1 id="bancoh1"></h1>
                     
-                    <label for="banco">Filtrar Ano</label>
                     <select onchange="filtrarAno()" id="banco">
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
