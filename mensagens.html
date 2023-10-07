@@ -232,7 +232,7 @@
 
             .contentSeries div li {
                 width: 92%;
-                height: 56px;
+                height: auto;
                 padding: 8px;
                 display: flex;
                 align-items: center;
@@ -252,25 +252,25 @@
             }
 
             .contentSeries div li h1 {
-                font-size: 17px;
+                width: 76%;
+                font-size: 15.8px;
                 font-weight: 400;
                 letter-spacing: 1px;
                 margin: 0px 0px 0px 8px;
             }
 
             .contentSeries div li ion-icon {
-                font-size: 40px;
+                font-size: 37px;
             }
 
             .contentSeries div li button {
                 background: red;
                 border: none;
                 border-radius: 10px;
-                width: 40px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
                 font-size: 17px;
                 font-weight: 700;
-                color: var(--white);
                 position: absolute;
                 right: 15px;
                 cursor: pointer;
@@ -284,7 +284,7 @@
             .contentSeries div li button ion-icon {
                 font-size: 26px;
                 margin: 0px;
-                color: var(--one);
+                color: white;
             }
 
             .contentSeries div li button:hover {
@@ -462,6 +462,9 @@
 
         .containerOpcoes h1 {
             margin: 12.5px 0px 15px 0px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .containerOpcoes button {
@@ -1547,7 +1550,6 @@
             } else {
                 erro.style.display = "none";
             }
-
         });
 
         var existeM = false;
@@ -1580,33 +1582,25 @@
         });
 
         // Coletando as respostas no BANCO DE DADOS
-        var existeR = false;
-
-        db.collection(ANO)
-        .doc("respostas")
-        .collection(logado)
-        .get()
-        .then((tamanho) => {
-            const TAMANHO = tamanho.size;
-            if (TAMANHO >= 1) {
-                existeR = true;
-            }
-        });
-
-
+        
         db.collection(ANO)
         .doc("respostas")
         .collection(logado)
         .onSnapshot((data) => {
-            if (existeR) {
-             DIV.innerHTML += `<h2>Respostas</h2>`;
-            }
             data.docs.map((val) => {
-                DIV.innerHTML += `<li>
+                if (val.data().responsavel === RESPONSAVEL) {
+                    DIV.innerHTML += `<h2>Respostas</h2>`;
+                }
+            });
+            data.docs.map((val) => {
+                if (val.data().responsavel === RESPONSAVEL) {
+                    DIV.innerHTML += `<li>
                     <h1>RESPOSTA: ${val.data().titulo}<a>${val.data().data}</a></h1>
                     <h3>${val.data().responsavel}</h3>
                     <p>${val.data().resposta}</p>
                     </li>`;
+                }
+                
             });
         });
 
