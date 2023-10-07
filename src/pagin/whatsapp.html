@@ -1,8 +1,101 @@
-<!-- WHATSAPP -->
-<script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Whatsapp | Letícia </title>
 
-    setTimeout(() => {
-        window.location.href = "https://wa.me/5516991190322";
-    }, 2000);
-    
-</script>
+        <style scoped>
+
+            :root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+				--six: #9ECAE3;
+                --white: white;
+				--gray: #b3abab;
+				--font: 'Ubuntu', sans-serif;
+				--green: green;
+				--red: red;
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+			body {
+				background: var(--white);
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+            }
+
+            .carregando {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: auto;
+                height: auto;
+                display: flex;
+                align-items: center;
+                color: var(--one);
+            }
+
+            .carregando span {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 20px solid var(--one);
+                border-top: 21px solid transparent;
+                animation: loading 1.5s linear infinite;
+            }
+
+            .carregando h1 {
+                margin: 0px 0px 0px 20px;
+            }
+
+            @keyframes loading {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+
+        </style>
+
+    </head>
+
+    <body>
+        
+        <div class="carregando">
+            <span></span>
+            <h1>Carregando..</h1>
+        </div>
+
+</body>
+
+    <!-- WHATSAPP -->
+    <script>
+
+        setTimeout(() => {
+            window.location.href = "https://wa.me/5516991190322";
+        }, 5000);
+        
+    </script>
+
+</html>
