@@ -257,7 +257,7 @@
                 width: 100vw;
                 height: auto;
                 padding: 30px;
-                color: #232323;
+                color: var(--one);
                 display: none;
                 flex-direction: column;
                 transition: all .4s ease-in-out;
@@ -297,6 +297,8 @@
                 font-weight: 700;
                 letter-spacing: 0.3px;
                 outline: none;
+            } .containerSenha div input::placeholder {
+                color: var(--one);
             }
 
             .containerSenha div input:focus {
@@ -308,7 +310,7 @@
                 height: 40px;
                 border-radius: 5px;
                 border: none;
-                background: #191919;
+                background: var(--one);
                 color: var(--white);
                 padding: 10px;
                 font-size: 15.5px;
@@ -320,14 +322,14 @@
             }
 
             .containerSenha button:hover {
-                background: var(--one);
+                background: var(--two);
                 color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
                 cursor: pointer;
             }
 
             .containerSenha button:focus {
-                background: var(--one);
+                background: var(--two);
                 color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
             }
@@ -354,7 +356,7 @@
                 width: 100vw;
                 height: auto;
                 padding: 30px;
-                color: #232323;
+                color: var(--one);
                 display: none;
                 flex-direction: column;
                 transition: all .4s ease-in-out;
@@ -394,6 +396,8 @@
                 font-weight: 700;
                 letter-spacing: 0.3px;
                 outline: none;
+            } .containerDados div input::placeholder {
+                color: var(--one);
             }
 
             .containerDados div input:focus {
@@ -405,7 +409,7 @@
                 height: 40px;
                 border-radius: 5px;
                 border: none;
-                background: #191919;
+                background: var(--one);
                 color: var(--white);
                 padding: 10px;
                 font-size: 15.5px;
@@ -417,14 +421,14 @@
             }
 
             .containerDados button:hover {
-                background: var(--one);
+                background: var(--two);
                 color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
                 cursor: pointer;
             }
 
             .containerDados button:focus {
-                background: var(--one);
+                background: var(--two);
                 color: var(--white);
                 box-shadow: 0px 0px 15px var(--one);
             }
@@ -498,11 +502,11 @@
                 width: 100%;
                 height: auto;
                 border: none;
-                margin: 15px 0px 0px 0px;
+                margin: 22.5px 0px 0px 0px;
             }
 
             .telefones ul h2 {
-                margin: 0px 0px -8px 5.25%;
+                margin: 10px 0px -7px 5.3%;
                 font-size: 20px;
                 letter-spacing: 0.3px;
                 text-transform: uppercase;
@@ -667,29 +671,29 @@
         </section>
 
 
-        <!-- CONTATO -->
+        <!-- SECTION CONTATO -->
         <section class="telefones">
 
             <ul>
 
-                <h2>Diretor</h2>
-                <li onclick="diretor()">
+                <h2>Secretaria 1</h2>
+                <li onclick="secretaria1()">
                     <ion-icon name="phone-portrait-outline"></ion-icon>
-                    <h1>+55 (16) 99227-6445</h1>
+                    <h1>(16) 3324 4623</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </li>
 
-                <h2>Coordenador</h2>
-                <li onclick="">
+                <h2>Secretaria 2</h2>
+                <li onclick="secretaria2()">
                     <ion-icon name="phone-portrait-outline"></ion-icon>
-                    <h1>+55 (16) 99756-9308</h1>
+                    <h1>(16) 3324 2256</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </li>
 
                 <h2>Escola</h2>
-                <li onclick="suporte()">
+                <li onclick="escola()">
                     <ion-icon name="phone-portrait-outline"></ion-icon>
-                    <h1>+55 (16) 3324-2256</h1>
+                    <h1>(16) 991190322</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </li>
 
@@ -963,10 +967,6 @@
             telefones.style.display = "flex";
         }
 
-        function diretor() {
-            window.location.href = "tel:5516992276445"
-        }
-
         // SUPORTE
         function website() {
             const redesSociais = document.querySelector('.redes-sociais');
@@ -1029,6 +1029,20 @@
        function suporte() {
 		 window.location.href = "tel:1633242256";
 		}
+
+        // TELEFONES
+
+        function secretaria1() {
+            window.location.href = "tel:551633244623"
+        }
+
+        function secretaria2() {
+            window.location.href = "tel:551633242256"
+        }
+
+        function escola() {
+            window.location.href = "tel:5516991190322"
+        }
 
        </script>
 
