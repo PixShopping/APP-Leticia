@@ -157,6 +157,10 @@
                 font-size: 17px;
             }
 
+            .mensagens li h3 {
+                margin: 10px 0px 0px 0px;
+            }
+
             .mensagens p {
                 font-size: 15px;
                 font-weight: 500;
@@ -175,7 +179,7 @@
                 border-radius: 10px;
                 font-size: 16px;
                 font-weight: 500;
-                margin: 15px 0px 5px 0px;
+                margin: 15px 0px -5px 0px;
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
@@ -381,7 +385,7 @@
 
                 <label>Para:</label>
                 <select type="text" id="inputDestinatario">
-                    <option value="CORDENACAO">Cordenação</option>
+                    <option value="COORDENACAO">Coordenação</option>
                     <option value="DIRECAO">Direção</option>
                 </select>
 
@@ -525,6 +529,7 @@
       var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const div = document.querySelector('.mensagens');
+      const diverro = document.querySelector('.erro');
       if (logado === "RESPONSAVEL") {
         db.collection(ANO)
         .doc("mensagens")
@@ -537,7 +542,7 @@
                     <button onclick="responderMensagem(${index})">Responder</button>
                     </li>`;
                 index++;
-                existe++;
+                diverro.style.display = "none";
             });
         });
       } else {
@@ -547,27 +552,28 @@
         .onSnapshot((data) => {
             data.docs.map((val) => {
                 div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
-                    <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
-                    <p>${val.data().mensagem}</p>
-                    <button onclick="responderMensagem(${index})">Responder</button>
+                    <h1>Respondendo: ${val.data().titulo}<a>${val.data().data}</a></h1>
+                    <h3>${val.data().responsavel}</h3>
+                    <p>${val.data().resposta}</p>
                     </li>`;
                 index++;
-                existe++;
+                diverro.style.display = "none";
             });
         });
       }
 
-        const diverro = document.querySelector('.erro');
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(RESPONSAVEL)
-        .get().then((dados) => {
-            const tamanho = dados.size;
-            if (tamanho >= 1) {
-                diverro.style.display = "none";
-            }
-        });
-
+        
+        /*if (logado === "RESPONSAVEL") {
+            db.collection(ANO)
+            .doc("mensagens")
+            .collection(RESPONSAVEL)
+            .get().then((dados) => {
+                const tamanho = dados.size;
+                if (tamanho >= 1) {
+                    diverro.style.display = "none";
+                }
+            });
+        }*/
 
         // Responder Mensagem
 
