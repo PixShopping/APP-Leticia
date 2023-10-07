@@ -118,6 +118,41 @@
                 padding: 0px 0px 90px 0px;
             }
 
+            .content {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .content div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: auto;
+                padding: 5px;
+                margin: 10px 0px 0px 0px;
+            }
+
+            .content div label {
+                font-size: 20px;
+                letter-spacing: 0.5px;
+                font-weight: 500;
+            }
+
+            .content div select {
+                width: auto;
+                padding: 0px 15px 0px 20px;
+                height: 35px;
+                background: var(--one);
+                color: var(--white);
+                border: none;
+                border-radius: 8px;
+                text-align: center;
+                margin: 0px 0px 0px 15px;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
             .content ul {
                 width: 100vw;
                 height: auto;
@@ -552,6 +587,15 @@
 
             <section class="content admin">
 
+                <div>
+                    <label for="banco">Filtrar Ano</label>
+                    <select onchange="filtrarAno()" id="banco">
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+
                 <ul>
 
                     <li onclick="mensagem6A()">
@@ -907,6 +951,15 @@
     <!-- JAVASCRIPT -->
     <script>
 
+        // Filtrar Ano
+
+        function filtrarAno() {
+            const inputBanco = document.getElementById('banco');
+            const banco = inputBanco.value;
+            localStorage.setItem('ano', banco);
+            window.location.reload();
+        }
+
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
@@ -1167,10 +1220,6 @@
 
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
-        // Pegar o ANO LETICO ATUAL
-        const dataAtual = new Date();
-        const anoAtual = dataAtual.getFullYear();
-        localStorage.setItem('ano', anoAtual);
         const ANO = localStorage.getItem('ano');
 
 
