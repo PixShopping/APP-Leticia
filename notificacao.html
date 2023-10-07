@@ -172,6 +172,16 @@
                 color: #999;
             }
 
+            .mensagens ion-icon {
+                margin: 8px 0px -12px 0px;
+                color: white;
+                background: var(--red);
+                font-size: 30px;
+                padding: 5px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
             .mensagens button {
                 width: 135px;
                 height: 37px;
@@ -527,6 +537,7 @@
 	  //  LER MENSAGENS
 	  // ---------------
 
+      // LENDO MENSAGEM SENDO RESPONSAVEL
       var existe = 0;
       var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
@@ -547,17 +558,22 @@
                 index++;
                 diverro.style.display = "none";
             });
-        });
-      } else {
+        }); 
+
+      // LENDO MENSAGEM SENDO DIRECAO OU COORDENACAO
+      }
+      var index = 0;
+      if (logado !== "RESPONSAVEL") {
         db.collection(ANO)
         .doc("respostas")
         .collection(logado)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-                div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
+                div.innerHTML += `<li data-index="${index}" data-id="${val.id}">
                     <h1>Respondendo: ${val.data().titulo}<a>${val.data().data}</a></h1>
                     <h3>${val.data().responsavel}</h3>
                     <p>${val.data().resposta}</p>
+                    <ion-icon name="trash-outline" onclick="excluirResposta(${index})"></ion-icon>
                     </li>`;
                 index++;
                 diverro.style.display = "none";
@@ -565,18 +581,26 @@
         });
       }
 
+      // EXCLUIR RESPOSTA
+      function excluirResposta(uindex) {
+        const elemento = document.querySelector(`[data-index="${uindex}"]`);
+        const id = elemento.getAttribute('data-id');
         
-        /*if (logado === "RESPONSAVEL") {
+        const confirmar = confirm("Deseja excluir?");
+        if (confirmar) {
             db.collection(ANO)
-            .doc("mensagens")
-            .collection(RESPONSAVEL)
-            .get().then((dados) => {
-                const tamanho = dados.size;
-                if (tamanho >= 1) {
-                    diverro.style.display = "none";
-                }
-            });
-        }*/
+            .doc("respostas")
+            .collection(logado)
+            .doc(id).delete();
+        } else {
+            alert("Exclusão cancelada!!")
+        }
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+        
+      }
 
         // Responder Mensagem
 
