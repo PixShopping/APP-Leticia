@@ -580,6 +580,13 @@
       return resultado;
     }
 
+    function tirarEspaco(val) {
+      var resultado = val;
+      resultado = resultado.replace(/\s+/g, ' ');
+      
+      return resultado;
+    }
+
     function enviarCadastro() {
       const inputRESPONSAVEL = document.getElementById("cadastroResponsavel").value;
       const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
@@ -630,8 +637,7 @@
       const inputRESPONSAVEL = document.getElementById("responsavel").value;
       const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
       const inputSENHA = document.getElementById("senha").value;
-      const SENHA = capitalizar(inputSENHA);
-      
+      const SENHA = tirarEspaco(inputSENHA);
       const alertaRESPONSAVEL = document.getElementById(
         "alertaLoginRESPONSAVEL"
       );
