@@ -133,6 +133,12 @@
                 margin: 10px 0px 0px 0px;
             }
 
+            .content div h1 {
+                margin: 0px 10px 0px 0px;
+                font-size: 20px;
+                color: var(--two);
+            } 
+
             .content div label {
                 font-size: 20px;
                 letter-spacing: 0.5px;
@@ -234,7 +240,7 @@
                 margin: 10px 0px;
                 border-radius: 5px;
                 border: 1px solid #999;
-		position: relative;
+		        position: relative;
             }
 
             .contentSeries div li:hover {
@@ -588,6 +594,8 @@
             <section class="content admin">
 
                 <div>
+                    <h1 id="bancoh1"></h1>
+                    
                     <label for="banco">Filtrar Ano</label>
                     <select onchange="filtrarAno()" id="banco">
                         <option value="2023">2023</option>
@@ -952,6 +960,10 @@
     <script>
 
         // Filtrar Ano
+
+        const bancoh1 = document.getElementById('bancoh1');
+        bancoh1.innerHTML = localStorage.getItem('ano');
+            
 
         function filtrarAno() {
             const inputBanco = document.getElementById('banco');
