@@ -861,17 +861,13 @@
             <section class="content responsavel">
 
 				<ul>
-					<li onclick="secretaria()">
-						<ion-icon name="book-outline"></ion-icon>
-						<h1>Secretaria</h1>
-					</li>
-					<li onclick="diretoria()">
-						<ion-icon name="trophy-outline"></ion-icon>
-						<h1>Diretoria</h1>
-					</li>
-					<li onclick="escola()">
+					<li onclick="abrirMensagemResponsavel(0)">
 						<ion-icon name="school-outline"></ion-icon>
-                        <h1>Escola (Geral)</h1>
+						<h1>Direção</h1>
+					</li>
+					<li onclick="abrirMensagemResponsavel(1)">
+						<ion-icon name="book-outline"></ion-icon>
+						<h1>Coordenação</h1>
 					</li>
 				</ul>
 
@@ -900,7 +896,7 @@
 
 
 
-        <section class="form-mensagem">
+        <section class="form-mensagem adm">
 
             <div>
                 <ion-icon onclick="voltar()" name="arrow-back"></ion-icon>
@@ -920,6 +916,30 @@
             <textarea id="inputMensagem"></textarea>
 
             <button onclick="enviarMensagem()">Enviar Mensagem</button>
+
+        </section>
+
+        <!-- DIRECAO E COORDENACAO -->
+        <section id="responsavel" class="form-mensagem">
+
+            <div>
+                <ion-icon onclick="voltar()" name="arrow-back"></ion-icon>
+                <h1>Enviar Mensagem</h1>
+            </div>
+
+            <label>Para:</label>
+            <h2 id="destinatario"></h2>
+
+            <label>Data</label>
+            <input type="date" id="inputDataResponsavel">
+
+            <label>Titulo</label>
+            <input type="text" id="inputTituloResponsavel">
+
+            <label>Mensagem</label>
+            <textarea id="inputMensagemResponsavel"></textarea>
+
+            <button onclick="enviarMensagemResponsavel()">Enviar Mensagem</button>
 
         </section>
 
@@ -1234,6 +1254,34 @@
        //  Formulario de Mensagem
        // ------------------------
 
+       // DIRECAO
+
+       function abrirMensagemResponsavel(num) {
+            const formMensagem = document.getElementById('responsavel');
+            formMensagem.style.display = "flex";
+            setTimeout(() => {
+                formMensagem.style.top = "0px";
+            }, 250);
+            document.body.style.overflow = "hidden";
+
+            // SCRIPTS
+            const destinatario = document.getElementById('destinatario');
+            if (num === 0) {
+                destinatario.innerHTML = "Direção";
+                localStorage.setItem('destinatario', 'direcao');
+            } else if (num === 1) {
+                destinatario.innerHTML = "Coordenação";
+                localStorage.setItem('destinatario', 'coordenacao');
+            }
+
+            // DADOS
+            const inputData = document.getElementById('inputDataResponsavel');
+            const inputTitulo = document.getElementById('inputTituloResponsavel');
+            const inputMensagem = document.getElementById('inputMensagemResponsavel');
+            const dataAtual = new Date().toISOString().split('T')[0];
+            inputData.value = dataAtual;
+       }
+
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
         const ANO = localStorage.getItem('ano');
@@ -1246,7 +1294,7 @@
             });
             const containerOpcoes = document.querySelector('.containerOpcoes');
             containerOpcoes.style.display = "none";
-            const formMensagem = document.querySelector('.form-mensagem');
+            const formMensagem = document.querySelector('.adm');
             const inputResponsavel = document.getElementById('inputResponsavel');
             const inputData = document.getElementById('inputData');
             formMensagem.style.display = "flex";
@@ -1284,6 +1332,29 @@
             .doc("mensagens")
             .collection(RESPONSAVEL)
             .add({
+                data: DATA,
+                titulo: TITULO,
+                mensagem: MENSAGEM
+            });
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        }
+
+        function enviarMensagemResponsavel() {
+            const RESPONSAVEL = localStorage.getItem('responsavel');
+            const DESTINATARIO = localStorage.getItem('destinatario');
+            const inputData = document.getElementById('inputDataResponsavel');
+            const inputMensagem = document.getElementById('inputMensagemResponsavel');
+            const inputTitulo = document.getElementById('inputTituloResponsavel');
+            const DATA = inputData.value;
+            const MENSAGEM = inputMensagem.value;
+            const TITULO = inputTitulo.value;
+            db.collection(ANO)
+            .doc("mensagens")
+            .collection(DESTINATARIO)
+            .add({
+                responsavel: RESPONSAVEL,
                 data: DATA,
                 titulo: TITULO,
                 mensagem: MENSAGEM
