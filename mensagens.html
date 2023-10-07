@@ -1332,10 +1332,12 @@
             const DATA = inputData.value;
             const MENSAGEM = inputMensagem.value;
             const TITULO = inputTitulo.value;
+            const DESTINATARIO = localStorage.getItem('logado');
             db.collection(ANO)
             .doc("mensagens")
             .collection(RESPONSAVEL)
             .add({
+                destinatario: DESTINATARIO,
                 data: DATA,
                 titulo: TITULO,
                 mensagem: MENSAGEM
