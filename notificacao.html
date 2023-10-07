@@ -538,6 +538,7 @@
             data.docs.map((val) => {
                 div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
                     <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
+                    <h3>${val.data().destinatario}</h3>
                     <p>${val.data().mensagem}</p>
                     <button onclick="responderMensagem(${index})">Responder</button>
                     </li>`;
