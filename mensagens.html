@@ -406,7 +406,7 @@
             outline: none;
             padding:  5px 10px;
             margin: 0px 0px 10px 0px;
-            color: var(-one);
+            color: var(--one);
         }
 
         .form-mensagem button {
@@ -1410,9 +1410,7 @@
                         confirm: "Ok!",
                     },
                 }).then((responsetwo) => {
-                    if (responsetwo) {
-                        window.location.reload();
-                    }
+                    window.location.reload();
                 });
             }, 1000);
         }
@@ -1496,7 +1494,7 @@
             <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
             <ion-icon name="person-circle-outline"></ion-icon>
              <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
-            <button onclick="remover(${index})"><ion-icon name="trash-outline"></ion-icon></button></li>`;
+            <button onclick="remover(${index}, event)"><ion-icon name="trash-outline"></ion-icon></button></li>`;
             index++;
 	    });
         });
@@ -1527,7 +1525,8 @@
 	}
 
     // EXCLUIR RESPONSAVEL DO BANCO
-    function remover(index) {
+    function remover(index, event) {
+        event.stopPropagation();
 	    const uindex = index;
         setTimeout(() => {
             swal({
@@ -1548,6 +1547,8 @@
                         buttons: {
                             confirm: "Ok!",
                         },
+                    }).then((resposta) => {
+                        window.location.reload();
                     });
                 }
             });
@@ -1607,9 +1608,7 @@
 	      return batch.commit();
 	    })
 	    .then(() => {
-		 setTimeout(() => {
-			 location.reload();
-		 }, 500);
+		 
 	    })
 	    .catch((error) => {
 	      alert(`Erro ao excluir a coleção: ${error}`);
