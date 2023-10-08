@@ -116,6 +116,16 @@
         box-shadow: 0px 0px 15px var(--one);
       }
 
+      .botoes button:focus,
+      .content-logar button:focus,
+      .content-cadastrar button:focus {
+        background: var(--white);
+        border: 3px solid var(--one);
+        color: var(--one);
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0px 0px 15px var(--one);
+      }
+
       .botoes p {
         font-size: 17px;
         font-weight: 500;
@@ -263,6 +273,43 @@
         font-size: 30px;
         cursor: pointer;
       }
+
+      /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+
     </style>
   </head>
 
@@ -326,13 +373,13 @@
             oninput="verificarResponsavel()"
             id="cadastroResponsavel"
             type="text"
-          />
+          >
 
           <label
             >Nome do Aluno
             <p id="alertaALUNO"></p>
           </label>
-          <input id="cadastroAluno" type="text" />
+          <input id="cadastroAluno" type="text">
 
           <label
             >Serie:
@@ -489,31 +536,23 @@
 
     // Verificar Responsavel Existente
 
-    function inputResponsavel() {
-      const verificacaoh1 = document.querySelector(".verificacao h1");
-      const verificacaoh2 = document.querySelector(".verificacao h2");
-      const RESPONSAVEL = document.getElementById("responsavel").value;
-
-      db.collection(ANO)
-        .doc("responsaveis")
-        .collection(RESPONSAVEL)
-        .get()
-        .then((existe) => {
-          if (existe.size > 0) {
-            db.collection("responsaveis").onSnapshot((data) => {
-              data.docs.map((val) => {
-                verificacaoh1.innerHTML = `Nome: ${val.data().aluno}`;
-                verificacaoh2.innerHTML = `Nome: ${val.data().serie}`;
-              });
-            });
-          }
-        });
-    }
-
     var continuar = true;
     function verificarResponsavel() {
       const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
       const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
+      
+      if (RESPONSAVEL === "") {
+        swal({
+          title: "AVISO",
+          text: "Digite o nome do responsavel!",
+          buttons: {
+            confirm: "Ok"
+          },
+        });
+        continuar = false;
+      } else {
+        continuar = true;
+      }
 
       db.collection(ANO)
         .doc("responsaveis")
@@ -527,7 +566,6 @@
           } else {
             alertaRESPONSAVEL.innerHTML = "Valido";
             alertaRESPONSAVEL.style.color = "var(--green)";
-            continuar = true;
           }
         });
     }
@@ -564,8 +602,7 @@
       var texto = val;
       // Verifica se a entrada não está vazia
       if (texto.length === 0) {
-        document.getElementById("resultado").textContent = "Por favor, digite um texto.";
-        return;
+        return texto;
       }
       // Divide a string em palavras
       var palavras = texto.split(' ');
@@ -585,11 +622,11 @@
       var resultado = val;
       resultado = resultado.replace(/\s+/g, ' ');
       resultado = resultado.trim();
-
       return resultado;
     }
 
     function enviarCadastro() {
+      verificarResponsavel();
       const inputRESPONSAVEL = document.getElementById("cadastroResponsavel").value;
       const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
       const inputALUNO = document.getElementById("cadastroAluno").value;
@@ -603,8 +640,41 @@
       const alertaSERIE = document.getElementById("alertaSERIE");
       const alertaSENHA = document.getElementById("alertaSENHA");
 
+      
+      
+      
+      if (ALUNO === "") {
+        swal({
+          title: "AVISO",
+          text: "Digite o nome do aluno!",
+          buttons: {
+            confirm: "Ok"
+          },
+        });
+        continuar = false;
+      } else if (SERIE === "") {
+        swal({
+          title: "AVISO",
+          text: "Escolha uma serie!",
+          buttons: {
+            confirm: "Ok"
+          },
+        });
+        continuar = false;
+      } else if (SENHA === "") {
+        swal({
+          title: "AVISO",
+          text: "Digite uma senha Valida!",
+          buttons: {
+            confirm: "Ok"
+          },
+        });
+        continuar = false;
+      } else {
+        continuar = true;
+      }
       // Colecao Cadastro
-      if (continuar && SENHA !== "" && SERIE !== "") {
+      if (continuar) {
         db.collection(ANO)
           .doc("responsaveis")
           .collection(RESPONSAVEL)
@@ -617,18 +687,27 @@
             senha: SENHA
           });
 
-        db.collection(ANO).doc("series").collection(SERIE).add({
+        db.collection(ANO)
+        .doc("series")
+        .collection(SERIE)
+        .add({
           responsavel: RESPONSAVEL,
           aluno: ALUNO
         });
 
         setTimeout(() => {
-          location.reload();
-        }, 850);
-      } else if (SENHA === "") {
-        alert("Digite uma senha valida!");
-      } else if (SERIE === "") {
-        alert("Escolha uma serie!");
+          swal({
+            title: "Parabens",
+            text: "Cadastro realizado com sucesso!",
+            buttons: {
+              confirm: "Ok",
+            },
+          }).then((response) => {
+            if (response) {
+              window.location.reload();
+            }
+          })
+        }, 1000);
       }
     }
 
@@ -755,12 +834,8 @@
     }
   </script>
 
-  <script
-    type="module"
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-  ></script>
-  <script
-    nomodule
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-  ></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </html>
