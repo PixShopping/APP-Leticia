@@ -153,7 +153,11 @@
                 text-transform: capitalize;
             }
 
-            
+            .mensagens li h1 a {
+                font-size: 18px;
+                font-weight: 500;
+                margin: 0px 0px 0px auto;
+            }
 
             .mensagens li h3 {
                 margin: 10px 0px 0px 0px;
@@ -177,6 +181,7 @@
                 align-items: center;
                 justify-content: space-between;
                 margin: 8px 0px -8px 0px;
+                padding: 5px;
             }
 
             .mensagens li div ion-icon {
@@ -203,7 +208,7 @@
                 border-radius: 10px;
                 font-size: 16px;
                 font-weight: 500;
-                margin: 15px 0px -5px 0px;
+                margin: 15px 0px 0px 0px;
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
@@ -366,6 +371,41 @@
             box-shadow: 0px 5px 15px  var(--one);
             transition: all .3s ease-in-out;
         }
+
+        /* ALERTA MODIFICADO */
+        .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+
 
             </style>
            </head>
@@ -561,8 +601,12 @@
         .collection(RESPONSAVEL)
         .onSnapshot((data) => {
             data.docs.map((val) => {
+                const date = val.data().data;
+                const dia = date.substring(8);
+                const mes = date.substring(5,7);
+                const ano = date.substring(0,4);
                 div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
-                    <h1>${val.data().titulo}<a>${val.data().data}</a></h1>
+                    <h1>${val.data().titulo}<a>${dia}/${mes}/${ano}</a></h1>
                     <h3>${val.data().destinatario}</h3>
                     <p>${val.data().mensagem}</p>
                     <button onclick="responderMensagem(${index})">Responder</button>
@@ -605,19 +649,37 @@
         const elemento = document.querySelector(`[data-index="${uindex}"]`);
         const id = elemento.getAttribute('data-id');
         
-        const confirmar = confirm("Deseja excluir?");
-        if (confirmar) {
-            db.collection(ANO)
-            .doc("respostas")
-            .collection(logado)
-            .doc(id).delete();
-        } else {
-            alert("Exclusão cancelada!!")
-        }
+        swal({
+            title: "AVISO",
+            text: "Voce deseja excluir mesmo?",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Excluir!",
+            },
+        }).then((response) => {
+            if (response) {
+                db.collection(ANO)
+                .doc("respostas")
+                .collection(logado)
+                .doc(id).delete();
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
+                setTimeout(() => {
+                    swal({
+                        title: 'AVISO',
+                        text: 'Mensagem excluida com sucesso!',
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((responsetwo) => {
+                        if (responsetwo) {
+                            window.location.reload();
+                        }
+                    });
+                }, 1000);
+            } else {
+                
+            }
+        })
         
       }
 
@@ -669,14 +731,18 @@
             });
 
             swal({
-                title: "AVISO!",
-                text: "Mensagem enviada com sucesso!!",
-                icon: "sucesso",
-            });
+                title: "AVISO",
+                text: "Mensagem enviada com sucesso!",
+                buttons: {
+                    confirm: "Ok!",
+                },
+            }).then((config) => {
+                if (config) {
+                    window.location.reload();
+                }
+            })
 
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+            
             
         }
 
