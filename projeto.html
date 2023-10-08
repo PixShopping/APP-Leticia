@@ -247,7 +247,7 @@
                   <!-- Analize dos graficos -->
                   <section class="content graficos">
 
-                    <h1>Graficos</h1>
+                    <h1>Controle dos Formularios</h1>
 
                     <ul>
 
@@ -436,7 +436,7 @@
           const logado = localStorage.getItem('logado');
           if (!logado){
             window.location.href = "./login.html";
-          } else if (logado === "ADMIN") {
+          } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             formularios.style.display = "none";
           } else if (logado === "PROFESSOR") {
             graficos.style.display = "none";
