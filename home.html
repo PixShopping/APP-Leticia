@@ -66,7 +66,7 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
-                padding:0px 0px 100px 0px;
+                padding: 0px 0px 120px 0px;
             }
 
             .bem-vindo {
@@ -258,6 +258,67 @@
                 transition: all .4s ease-in-out;
             }
 
+            /* AVISO */
+
+            #aviso {
+                display: flex;
+                position: fixed;
+                bottom: 95px;
+                right: 15px;
+                font-size: 30px;
+                padding: 10px;
+                background: var(--six);
+                color: var(--white);
+                border-radius: 50%;
+                z-index: 200;
+                cursor: pointer;
+            }
+
+            .containerAviso {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .containerAviso div {
+                width: 92.5%;
+                height: auto;
+                padding: 15px 15px 20px 15px;
+                border-radius: 20px;
+                background: var(--two);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 20px 0px;
+            }
+
+            .containerAviso div img {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+            }
+
+            .containerAviso div h1 {
+                width: 90%;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 0px;
+                margin: 20px 0px 12px 0px;
+                text-shadow: 0px 0px 10px #002242;
+            }
+
+            .containerAviso div p {
+                width: 90%;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                margin: 0px;
+                text-shadow: 0px 0px 10px var(--two);
+            }  
 
             </style>
            </head>
@@ -308,6 +369,19 @@
 
 					</section>
 
+                    <section class="containerAviso">
+
+                        <!-- EXEMPLO -->
+                        <div>
+
+                            <img src="./src/img/baixe_o_app.png" alt="Baixe o App">
+                            <h1> Obrigado por baixar o aplicativo! </h1>
+                            <p> Tudo o que você precisa saber sobre a escola você encontra aqui </p>
+
+                        </div>
+    
+                    </section>
+
                 </main>
 
                 <nav class="navgation">
@@ -330,7 +404,9 @@
 
                 </nav>
 
-
+                <!-- CRIAR AVISOS GERAIS -->
+                <ion-icon id="aviso" name="add"></ion-icon>
+                
 
             </body>
 
@@ -383,15 +459,17 @@
         window.location.href = "./notificacao.html";
        }
 
-       // Verifica se é um professor
 
-       const informacao = document.getElementById('informacao');
+       // ADMINISTRADOR
+        const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
+        const aviso = document.getElementById('aviso');
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "flex";
+            aviso.style.display = "flex";
             call.style.display = "none";
         }
 
@@ -410,9 +488,7 @@
         <!-- LINKS DO BANCO DE DADOS -->
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-messaging-compat.js"></script>
-
-
+        
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
        <!------------------------------->
@@ -472,10 +548,12 @@
         .get().then((existe) => {
             const tamanho = existe.size;
             if (tamanho > 0) {
-                localStorage.setItem('notificacao', 'true');
+                localStorage.setItem('notificacao', true);
                 localStorage.setItem('notificacao.size', tamanho);
             }
         });
+
+        
 
        </script>
 
@@ -483,13 +561,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./main.js"></script>
-
-    <script>
-
-        fetch("https://app-leticia.netlify.app/src/apis/db.json").then((dados) => {
-            console.log(dados);
-        });
-
-    </script>
 
 </html>
