@@ -606,6 +606,39 @@
             transition: all .4s ease-in-out;
         }
 
+        /* ALERTA MODIFICADO */
+        .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
         </style>
     </head>
 
@@ -1366,7 +1399,17 @@
                 mensagem: MENSAGEM
             });
             setTimeout(() => {
-                location.reload();
+                swal({
+                    title: 'AVISO',
+                    text: 'Mensagem enviada com sucesso!',
+                    buttons: {
+                        confirm: "Ok!",
+                    },
+                }).then((responsetwo) => {
+                    if (responsetwo) {
+                        window.location.reload();
+                    }
+                });
             }, 1000);
         }
 
@@ -1387,9 +1430,19 @@
                 data: DATA,
                 titulo: TITULO,
                 mensagem: MENSAGEM
-            });
+            })
             setTimeout(() => {
-                location.reload();
+                swal({
+                    title: 'AVISO',
+                    text: 'Mensagem enviada com sucesso!',
+                    buttons: {
+                        confirm: "Ok!",
+                    },
+                }).then((responsetwo) => {
+                    if (responsetwo) {
+                        window.location.reload();
+                    }
+                });
             }, 1000);
         }
 
@@ -1471,17 +1524,30 @@
 
     // EXCLUIR RESPONSAVEL DO BANCO
     function remover(index) {
-	const uindex = index;
-        const confirmar = confirm("Voce deseja excluir?");
-        if (confirmar) {
-            deletarDaSerie(uindex);
-            deletarDoCadastro(uindex);
-			deletarMensagens(uindex);
-        } else {
-            alert("Exclusao cancelada...");
-            window.location.reload();
-        }
-
+	    const uindex = index;
+        setTimeout(() => {
+            swal({
+                title: 'AVISO',
+                text: 'Deseja excluir mesmo?',
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: "Ok!",
+                },
+            }).then((responsetwo) => {
+                if (responsetwo) {
+                    deletarDaSerie(uindex);
+                    deletarDoCadastro(uindex);
+                    deletarMensagens(uindex);
+                    swal({
+                        title: 'AVISO',
+                        text: 'Responsavel excluido com sucesso!',
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    });
+                }
+            });
+        }, 500);
     }
 
 
@@ -1495,7 +1561,6 @@
         .doc(id)
         .delete()
         .then(() => {
-            alert(`Responsavel excluído com sucesso!`);
         })
         .catch((error) => {
             alert(`Erro ao excluir a coleção: ${error}`);
@@ -1611,17 +1676,28 @@
             });
         });
 
+        var existeR = false
+
+        db.collection(ANO)
+        .doc("respostas")
+        .collection(logado)
+        .get()
+        .then((tamanho) => {
+            const TAMANHO = tamanho.size;
+            if (TAMANHO >= 1) {
+                existeR = true;
+            }
+        });
+
         // Coletando as respostas no BANCO DE DADOS
-        var index = 1;
+        var index = 0;
         db.collection(ANO)
         .doc("respostas")
         .collection(logado)
         .onSnapshot((data) => {
-            data.docs.map((val) => {
-                if (val.data().responsavel === RESPONSAVEL) {
-                    DIV.innerHTML += `<h2>Respostas</h2>`;
-                }
-            });
+            if (existeR) {
+                DIV.innerHTML += `<h2>Respostas</h2>`;
+            }
             data.docs.map((val) => {
                 if (val.data().responsavel === RESPONSAVEL) {
                     const date = val.data().data;
@@ -1648,20 +1724,39 @@
     function excluirMensagem(uindex) {
         const elemento = document.querySelector(`[data-indexMensagem="${uindex}"]`);
         const id = elemento.getAttribute('data-idMensagem');
-        const confirmar = confirm("Deseja excluir?");
         const RESPONSAVEL = localStorage.getItem('verResponsavel')
-        if (confirmar) {
-            db.collection(ANO)
-            .doc("mensagens")
-            .collection(RESPONSAVEL)
-            .doc(id).delete();
-        } else {
-            alert("Exclusão cancelada!!")
-        }
+        
+        swal({
+            title: "AVISO",
+            text: "Voce deseja excluir mesmo?",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Excluir!",
+            },
+        }).then((response) => {
+            if (response) {
+                db.collection(ANO)
+                .doc("mensagens")
+                .collection(RESPONSAVEL)
+                .doc(id).delete();
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
+                setTimeout(() => {
+                    swal({
+                        title: 'AVISO',
+                        text: 'Mensagem excluida com sucesso!',
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((responsetwo) => {
+                        if (responsetwo) {
+                            window.location.reload();
+                        }
+                    });
+                }, 1000);
+            } else {
+                
+            }
+        })
         
       }
 
@@ -1669,19 +1764,38 @@
     function excluirResposta(uindex) {
         const elemento = document.querySelector(`[data-indexResposta="${uindex}"]`);
         const id = elemento.getAttribute('data-idResposta');
-        const confirmar = confirm("Deseja excluir?");
-        if (confirmar) {
-            db.collection(ANO)
-            .doc("respostas")
-            .collection(logado)
-            .doc(id).delete();
-        } else {
-            alert("Exclusão cancelada!!")
-        }
+        
+        swal({
+            title: "AVISO",
+            text: "Voce deseja excluir mesmo?",
+            buttons: {
+                cancel: "Cancelar",
+                confirm: "Excluir!",
+            },
+        }).then((response) => {
+            if (response) {
+                db.collection(ANO)
+                .doc("respostas")
+                .collection(logado)
+                .doc(id).delete();
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
+                setTimeout(() => {
+                    swal({
+                        title: 'AVISO',
+                        text: 'Mensagem excluida com sucesso!',
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((responsetwo) => {
+                        if (responsetwo) {
+                            window.location.reload();
+                        }
+                    });
+                }, 1000);
+            } else {
+                
+            }
+        })
         
       }
 
@@ -1697,5 +1811,6 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>
