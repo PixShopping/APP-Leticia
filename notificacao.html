@@ -527,12 +527,12 @@
        }
 
        // Verifica se é um professor
-        const informacao = document.getElementById('informacao');
+       const informacao = document.getElementById('informacao');
         const call = document.getElementById('call');
         if (logado === "PROFESSOR") {
             informacao.style.display = "flex";
             call.style.display = "none";
-        } else if (logado === "ADMIN") {
+        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "flex";
             call.style.display = "none";
         }
