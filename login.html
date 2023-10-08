@@ -625,6 +625,17 @@
       return resultado;
     }
 
+    // VALIDAR EMAILS
+    function validarEmail(email) {
+      // Define a expressão regular
+      var emails = /@([a-zA-Z0-9.-]+\.[a-zA-Z]{3,})$/;
+      //var emails = /@(gmail\.com|email\.com|al\.educacao\.sp\.gov\.br|aluno\.educacao\.sp\.gov\.br)$/;
+
+      // Use a função test para verificar se o email corresponde ao padrão
+      return emails.test(email);
+    }
+
+
     function enviarCadastro() {
       verificarResponsavel();
       const inputRESPONSAVEL = document.getElementById("cadastroResponsavel").value;
@@ -632,6 +643,7 @@
       const inputALUNO = document.getElementById("cadastroAluno").value;
       const ALUNO = capitalizar(inputALUNO);
       const GMAIL = document.getElementById("cadastroGmail").value;
+      
       const TELEFONE = document.getElementById("cadastroTelefone").value;
       const SERIE = document.getElementById("cadastroSerie").value;
       const SENHA = document.getElementById("cadastroSenha").value;
@@ -670,9 +682,21 @@
           },
         });
         continuar = false;
+      } else if (GMAIL !== "") {
+        if (!validarEmail(GMAIL)) {
+          swal({
+            title: "AVISO",
+            text: "Email invalido!",
+            buttons: {
+              confirm: "Ok",
+            },
+          });
+          continuar = false;
+        }
       } else {
         continuar = true;
       }
+
       // Colecao Cadastro
       if (continuar) {
         db.collection(ANO)
