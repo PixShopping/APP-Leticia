@@ -46,24 +46,26 @@
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                width: auto;
+                width: 100vw;
                 height: auto;
                 display: flex;
+                justify-content: center;
                 align-items: center;
                 color: var(--one);
             }
 
             .carregando span {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 border-radius: 50%;
-                border: 20px solid var(--one);
+                border: 18px solid var(--one);
                 border-top: 21px solid transparent;
                 animation: loading 1.5s linear infinite;
             }
 
             .carregando h1 {
                 margin: 0px 0px 0px 20px;
+                font-size: 20px;
             }
 
             @keyframes loading {
@@ -84,7 +86,7 @@
         
         <div class="carregando">
             <span></span>
-            <h1>Carregando..</h1>
+            <h1>Baixando o aplicativo :)</h1>
         </div>
 
 </body>
@@ -92,9 +94,9 @@
     <!-- WHATSAPP -->
     <script>
 
-        setTimeout(() => {
+        /*setTimeout(() => {
             window.location.href = "https://app-leticia.netlify.app/download/E.E.LETÍCIA.apk";
-        }, 5000);
+        }, 5000);*/
         
     </script>
 
