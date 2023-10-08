@@ -562,6 +562,41 @@
                 border: 0px;
             }
 
+            /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
             </style>
            </head>
 
@@ -1106,18 +1141,38 @@
             });
             localStorage.setItem('senha', novaSenha);
 	    } else if (novaSenha === senhaAtual) {
-            alert("Digite uma senha diferente da atual!");
+            swal({
+                title: "AVISO",
+                text: "Digite uma senha diferente da atual!",
+                buttons: {
+                    confirm: "Ok!",
+                }
+            });
             inputSenhaNova.value = "";
             return;
-        }else {
-            alert("Senha Atual Errada!")
+        } else {
+            swal({
+                title: "AVISO",
+                text: "Senha Atual Errada!",
+                buttons: {
+                    confirm: "Ok!",
+                }
+            });
             inputSenhaAtual.value = "";
             inputSenhaNova.value = "";
             return;
         }
         setTimeout(() => {
-            alert("Senha Redefinida com sucesso!")
-            location.reload();
+            swal({
+                title: "Parabens",
+                text: "Senha redefinida com sucesso!",
+                buttons: {
+                    confirm: "Ok!",
+                }
+            }).then((response) => {
+                window.location.reload();
+            })
+            
         }, 500);
     }
 
@@ -1145,10 +1200,15 @@
             localStorage.setItem('telefone', TELEFONE);
             localStorage.setItem('ra', RA);
 
-            alert("Dados atualizados com sucesso!")
-            setTimeout(() => {
+            swal({
+                title: "Parabens",
+                text: "Dados atualizados com sucesso!",
+                buttons: {
+                    confirm: "Ok!",
+                }
+            }).then((response) => {
                 window.location.reload();
-            }, 500);
+            });
         }
 
 
@@ -1159,5 +1219,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>
