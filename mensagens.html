@@ -31,6 +31,7 @@
 				margin: 0px;
 				box-sizing: border-box;
 				font-family: var(--font);
+                list-style: none;
 			}
 
 			*::-webkit-scrollbar {
@@ -1938,6 +1939,19 @@
         }
 
         function enviarMensagemChat() {
+
+            // Obtém a data e hora atual
+            const dataAtual = new Date();
+
+            // Obtém a hora atual (0-23)
+            const horas = dataAtual.getHours();
+
+            // Obtém os minutos atuais (0-59)
+            const minutos = dataAtual.getMinutes();
+
+            // Formata a hora e os minutos em uma única string "HH:MM"
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+
             const usuario = localStorage.getItem('responsavel');
             const mensagem = document.getElementById('message').value;
             const serie = localStorage.getItem('serie');
@@ -1953,6 +1967,7 @@
                 .doc(serie)
                 .collection('mensagens')
                 .add({
+                    hora: hora,
                     usuario: usuario,
                     mensagem: mensagem,
                     data: firebase.firestore.FieldValue.serverTimestamp()
@@ -1982,7 +1997,7 @@
             data.docs.map((val) => {
                 chat.innerHTML += `
                     <li>
-                        <h1>${val.data().usuario}</a></h1>
+                        <h1>${val.data().usuario}<a>${val.data().hora}</a></h1>
                         <p>${val.data().mensagem}</p>
                     </li>
                 `;
@@ -1999,4 +2014,4 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-</html>	
+</html>
