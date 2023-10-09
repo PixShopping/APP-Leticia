@@ -131,6 +131,25 @@
                 margin: 10px 0px 0px 0px;
             }
 
+            .content ul .flex {
+                width: auto;
+                height: auto;
+                padding: 5px 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .content ul .flex a {
+                cursor: pointer;
+                text-decoration: underline;
+                font-size: 18px;
+            }
+
+            .content ul .flex v {
+                margin: 0px 7px;
+            }
+
             .content ul li {
                 width: 92%;
                 height: 56px;
@@ -233,6 +252,13 @@
                             <h1>Mudar tema</h1>
                             <h1 id="temah1"></h1>
                         </li>
+
+                        <div class="flex">
+                            <a onclick="termos()">Termos de Uso </a>
+                            <v>|</v>
+                            <a onclick="privacidade()">Politica de Privacidade</a>
+                        </div>
+                        
 
                     </ul>
 
@@ -376,6 +402,17 @@
             localStorage.setItem('tema','light');
         }
         window.location.reload();
+      }
+
+
+      // TEMOS E PRIVACIDADE
+
+      function termos() {
+        window.location.href = "./src/pagin/termos.html";
+      }
+
+      function privacidade() {
+        window.location.href = "./src/pagin/privacidade.html";
       }
 
        </script>
