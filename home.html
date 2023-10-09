@@ -260,39 +260,70 @@
             }
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
+
+                .carregando {
+                    position: relative;
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    color: var(--one);
+                }
+
+                .carregando span {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 20px solid var(--one);
+                    border-top: 21px solid transparent;
+                    animation: loading 1.5s linear infinite;
+                }
+
+                .carregando h2 {
+                    margin: 0px 0px 0px 20px;
+                }
+
+                @keyframes loading {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
 
             /* AVISO */
 
@@ -356,7 +387,15 @@
                 text-shadow: 0px 0px 10px var(--two);
             }  
 
-
+            .containerAviso div ion-icon {
+                color: white;
+                background: var(--red);
+                font-size: 35px;
+                padding: 5px;
+                border-radius: 12px;
+                margin: 10px 0px 5px 0px;
+                cursor: pointer;
+            }
 
             /* CRIAR AVISO */
 
@@ -497,7 +536,10 @@
 
                     <section class="containerAviso">
 
-                        
+                        <section class="carregando">
+                            <span></span>
+                            <h2>Carregando..</h2>
+                        </section>
     
                     </section>
 
@@ -766,39 +808,107 @@
 
 
         // LER OS AVISOS E COMUNICADOS
+        var index = 0;
         const containerAviso = document.querySelector('.containerAviso');
         db.collection(ANO)
         .doc('avisos')
         .collection('avisos')
         .onSnapshot((data) => {
+            containerAviso.innerHTML = '';
             data.docs.map((val) => {
-                if (val.data().imagem !== "null") {
-                    const storageRef = storage.ref(`imagens/${val.data().imagem}`);
-                    storageRef.getDownloadURL().then(function (url) {
-                    // Use a URL da imagem, por exemplo, para exibi-la
-                    containerAviso.innerHTML += `
-                        <div style="background: ${val.data().corFundo};">
 
-                            <img src="${url}" alt="${val.data().imagem}">
-                            <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
-                            <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+                // MOSTRAR AVISO SENDO RESPONSAVEL
+                if (logado === 'RESPONSAVEL') {
+                    if (val.data().imagem !== "null") {
+                        const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        storageRef.getDownloadURL().then(function (url) {
+                        // Use a URL da imagem, por exemplo, para exibi-la
+                        containerAviso.innerHTML += `
+                            <div style="background: ${val.data().corFundo};">
 
-                        </div>
-                        `;
-                    });
-                } else {
-                    containerAviso.innerHTML += `
-                        <div style="background: ${val.data().corFundo};">
+                                <img src="${url}" alt="${val.data().imagem}">
+                                <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
+                                <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
 
-                            <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
-                            <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+                            </div>
+                            `;
+                        });
+                    } else {
+                        containerAviso.innerHTML += `
+                            <div style="background: ${val.data().corFundo};">
 
-                        </div>
-                        `;
+                                <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
+                                <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+
+                            </div>
+                            `;
+                    }
+                } else if (logado === "DIRECAO" || logado === "COORDENCAO") {
+                    if (val.data().imagem !== "null") {
+                        const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        storageRef.getDownloadURL().then(function (url) {
+                        // Use a URL da imagem, por exemplo, para exibi-la
+                        containerAviso.innerHTML += `
+                            <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
+
+                                <img src="${url}" alt="${val.data().imagem}">
+                                <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
+                                <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+                                <ion-icon onclick="excluirAviso(${index})" name="trash"></ion-icon>
+                            </div>
+                            `;
+                        
+                        index++;
+                        });
+                    } else {
+                        containerAviso.innerHTML += `
+                            <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
+
+                                <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
+                                <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+                                <ion-icon onclick="excluirAviso(${index})" name="trash"></ion-icon>
+                                
+                            </div>
+                            `;
+                        index++;
+                    }
                 }
             });
         });
 
+
+
+        // EXCLUIR AVISO
+        function excluirAviso(uindex) {
+            const elemento = document.querySelector(`[data-index="${uindex}"]`);
+            const id = elemento.getAttribute('data-id');
+            swal({
+                title: "AVISO",
+                text: "Deseja excluir mesmo?",
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: "Ok!",
+                },
+            }).then((res) => {
+                if (res) {
+                    db.collection(ANO)
+                    .doc('avisos')
+                    .collection('avisos')
+                    .doc(id).delete().then((response) => {
+                        swal({
+                            title: "AVISO",
+                            text: "Comunicado excluido com sucesso!",
+                            buttons: {
+                                confirm: "Ok!"
+                            },
+                        }).then((resposta) => {
+                            window.location.reload();
+                        });
+                    });
+                }
+            })    
+            
+        }
 
        </script>
 
