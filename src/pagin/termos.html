@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./src/img/icon.png" type="x-icon" />
+    <link type="stylesheet" src="./style.css" />
+    <title>Logar | Letícia</title>
+
+    <style scoped>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
+
+      :root {
+        /* Cores do aplicativo */
+        --one: #002242;
+        --two: #144774;
+        --tree: #336fa5;
+        --four: #4e8bb8;
+        --five: #6fadd2;
+        --six: #9ecae3;
+        --white: white;
+        --font: "Ubuntu", sans-serif;
+        --green: rgb(20, 218, 20);
+		--red: rgb(240, 36, 36);
+      }
+
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        font-family: var(--font);
+      }
+
+      *::-webkit-scrollbar {
+        display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+      }
+
+      body {
+        background: var(--white);
+        color: var(--one);
+        user-select: none;
+        font-family: "Arial";
+        overflow-x: hidden;
+        transition: all 0.4s ease-in-out;
+      }
+
+      .container {
+        width: 100vw;
+        height: 90vw;
+      }
+
+      /* LOGO */
+      .logo {
+        width: 100%;
+        height: 44vh;
+        background: #002242;
+        color: white;
+        border-radius: 0px 0px 25px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo h1 {
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 0.8px;
+      }
+
+      .logo .voltar {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 33px;
+        background: white;
+        color: #002242;
+        border-radius: 10px;
+        padding: 7px;
+        cursor: pointer;
+      }
+
+      .logo .voltar:hover {
+        background: var(--white);
+        color: var(--two);
+        box-shadow: 0px 0px 10px var(--white);
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+        .texto {
+            position: absolute;
+            top: 38vh;
+            left: 0px;
+            width: 100vw;
+            height: auto;
+            background: white;
+            color: var(--one);
+            border-radius: 15px 15px 0px 0px;
+            padding: 30px 5px 30px 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .texto h1 {
+            font-size: 22px;
+            width: 95%;
+            letter-spacing: 0.2px;
+            text-align: start;
+            align-self: center;
+            margin: 20px 0px 10px 0px;
+        }
+
+        .texto p {
+            font-size: 17px;
+            width: 95%;
+            letter-spacing: 0px;
+            text-align: start;
+            align-self: center;
+            line-height: 21px;
+        }
+
+    </style>
+  </head>
+
+  <body>
+
+    <main class="container">
+      <section class="logo">
+        <h1>Termos de Uso</h1>
+        <ion-icon onclick="voltar()" class="voltar" name="arrow-back"></ion-icon>
+      </section>
+    </main>
+
+    <section class="texto">
+        
+        <h1>1. ACEITAÇÃO.</h1>
+        <p>Bem-vindo ao site <strong>https://app-leticia.netlify.app</strong>. O PRESENTE DOCUMENTO ("TERMOS DE USO") ESTABELECE OS TERMOS E CONDIÇÕES APLICÁVEIS AO USO DO SITE. POR FAVOR, REVISE OS TERMOS DE USO CUIDADOSAMENTE ANTES DE UTILIZAR O SITE. AO ACESSAR, NAVEGAR OU UTILIZAR O SITE ("USO"), TODOS OS USUÁRIOS E VISITANTES ("VOCÊ", "VOCÊS," "USUÁRIO" OU "USUÁRIOS") DECLARAM ACEITAR OS TERMOS E CONDIÇÕES CONTIDOS NESTES TERMOS DE USO. CASO VOCÊ NÃO CONCORDE COM OS TERMOS E CONDIÇÕES CONTIDOS NESTES TERMOS DE USO, POR FAVOR, NÃO USE O SITE. A ROBERT HALF TRABALHO TEMPORARIO LTDA ("RHB") E SUAS SUBSIDIÁRIAS RESERVAM-SE O DIREITO DE ATUALIZAR OS TERMOS DE USO PERIODICAMENTE, AO EXCLUSIVO CRITÉRIO DA RHB. VOCÊ DEVE REVISAR OS TERMOS DE USO PERIODICAMENTE PARA EVENTUAIS ATUALIZAÇÕES E MODIFICAÇÕES.</p>
+
+        <h1>2. ELIGIBILIDADE.</h1>
+        <p>O Site e todos os serviços a ele relacionados são disponibilizados a você somente se você puder celebrar contratos legalmente válidos sob a legislação aplicável. O Site não está disponível para menores de 18 anos. Caso você seja menor de 18 anos, por favor, não use o Site. AO USAR O SITE, VOCÊ DECLARA QUE TEM CAPACIDADE JURÍDICA PLENA, SENDO MAIOR DE 18 ANOS DE IDADE.</p>
+
+        <h1>3. LICENÇA.</h1>
+        <p>A Escola Letícia concede a você uma licença limitada, não-exclusiva, intransferível, revogável e não passível de cessão, autorizando-o a visualizar e realizar downloads temporários de uma cópia dos materiais exibidos no Site, exclusivamente para uso pessoal e não comercial por você ou dentro de sua organização. Todos os materiais exibidos ou disponibilizados no Site, incluindo, sem limitação, gráficos, documentos, textos, sons, vídeo, áudio, obras de arte, software e código HTML (coletivamente, o "Material") são de propriedade exclusiva da Escola Letícia ou de seus fornecedores de conteúdo, os quais reservam a si todos os seus direitos de propriedade intelectual. Os Materiais são protegidos pelas leis de direitos autorais e outras regras, regulamentos e legislações brasileiras, americanas e internacionais de propriedade intelectual aplicáveis. Exceto conforme permitido no presente instrumento, você não poderá (i) usar, copiar, modificar, exibir, apagar, distribuir, realizar download, arquivar, transmitir, publicar, vender, revender, adaptar, realizar engenharia reversa ou criar obras derivadas do Material, ou (ii) usar o Material em outros websites ou em quaisquer outros tipos de mídia, como, por exemplo, em ambientes de rede, sem o consentimento prévio e por escrito da RHB.
+            Todas as marcas comerciais, marcas de serviços e logotipos (as "Marcas") exibidas no Site são de propriedade exclusiva da RHB e de seus respectivos titulares. Você não poderá usar as Marcas, de nenhuma forma, sem o consentimento prévio e por escrito da RHB e de seus respectivos titulares.</p>
+
+    </section>
+
+
+  </body>
+
+  <!-- JavaScript -->
+  <script>
+
+    function voltar() {
+        window.location.href = "../../home.html";
+    }
+
+  </script>
+  
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>
