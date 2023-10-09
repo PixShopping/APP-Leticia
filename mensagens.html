@@ -1441,9 +1441,7 @@
                         confirm: "Ok!",
                     },
                 }).then((responsetwo) => {
-                    if (responsetwo) {
-                        window.location.reload();
-                    }
+                    window.location.reload();
                 });
             }, 1000);
         }
@@ -1489,13 +1487,14 @@
         .doc("series")
         .collection(SERIE)
         .onSnapshot((data) => {
+            div.innerHTML = "";
             data.docs.forEach((val) => {
-            div.innerHTML += `
-            <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
-            <ion-icon name="person-circle-outline"></ion-icon>
-             <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
-            <button onclick="remover(${index}, event)"><ion-icon name="trash-outline"></ion-icon></button></li>`;
-            index++;
+                div.innerHTML += `
+                    <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
+                    <button onclick="remover(${index}, event)"><ion-icon name="trash-outline"></ion-icon></button></li>`;
+                index++;
 	    });
         });
 
@@ -1751,9 +1750,7 @@
                             confirm: "Ok!",
                         },
                     }).then((responsetwo) => {
-                        if (responsetwo) {
-                            window.location.reload();
-                        }
+                        window.location.reload();
                     });
                 }, 1000);
             } else {
