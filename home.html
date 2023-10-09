@@ -809,17 +809,15 @@
 
 
         // LER OS AVISOS E COMUNICADOS
-        var index = 0;
         const containerAviso = document.querySelector('.containerAviso');
-        db.collection(ANO)
-        .doc('avisos')
-        .collection('avisos')
-        .onSnapshot((data) => {
-            containerAviso.innerHTML = '';
-            data.docs.map((val) => {
-
-                // MOSTRAR AVISO SENDO RESPONSAVEL
-                if (logado === 'RESPONSAVEL') {
+        if (logado === "RESPONSAVEL") {
+            db.collection(ANO)
+            .doc('avisos')
+            .collection('avisos')
+            .onSnapshot((data) => {
+                containerAviso.innerHTML = '';
+                data.docs.map((val) => {
+                    // MOSTRAR AVISO SENDO RESPONSAVEL
                     if (val.data().imagem !== "null") {
                         const storageRef = storage.ref(`imagens/${val.data().imagem}`);
                         storageRef.getDownloadURL().then(function (url) {
@@ -844,13 +842,24 @@
                             </div>
                             `;
                     }
-                } else if (logado === "DIRECAO" || logado === "COORDENCAO") {
+                });
+            });
+        } else if (logado === "DIRECAO" || logado === "COORDENCAO") {
+            var index = 0;
+            db.collection(ANO)
+            .doc('avisos')
+            .collection('avisos')
+            .onSnapshot((data) => {
+                containerAviso.innerHTML = '';
+                data.docs.map((val) => {
+                    // MOSTRAR SENDO DIRECAO OU COORDENACAO
                     if (val.data().imagem !== "null") {
                         const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        const idURL = `imagens/${val.data().imagem}`;
                         storageRef.getDownloadURL().then(function (url) {
                         // Use a URL da imagem, por exemplo, para exibi-la
                         containerAviso.innerHTML += `
-                            <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
+                            <div data-url="${idURL}" data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
 
                                 <img src="${url}" alt="${val.data().imagem}">
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
@@ -858,9 +867,8 @@
                                 <ion-icon onclick="excluirAviso(${index})" name="trash"></ion-icon>
                             </div>
                             `;
-                        
-                        index++;
                         });
+                        index++;
                     } else {
                         containerAviso.innerHTML += `
                             <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
@@ -873,15 +881,18 @@
                             `;
                         index++;
                     }
-                }
+                });
             });
-        });
+        }
+
+                    
 
 
 
         // EXCLUIR AVISO
         function excluirAviso(uindex) {
             const elemento = document.querySelector(`[data-index="${uindex}"]`);
+            const idURL = elemento.getAttribute('data-url');
             const id = elemento.getAttribute('data-id');
             swal({
                 title: "AVISO",
@@ -895,7 +906,11 @@
                     db.collection(ANO)
                     .doc('avisos')
                     .collection('avisos')
-                    .doc(id).delete().then((response) => {
+                    .doc(id).delete();
+                    
+                    // DELETAR IMAGEM
+                    const arquivo = storage.ref().child(idURL);
+                    arquivo.delete().then((response) => {
                         swal({
                             title: "AVISO",
                             text: "Comunicado excluido com sucesso!",
@@ -906,8 +921,9 @@
                             window.location.reload();
                         });
                     });
+                
                 }
-            })    
+            });
             
         }
 
