@@ -47,6 +47,7 @@
 				margin: 0px;
 				box-sizing: border-box;
 				font-family: var(--font);
+                list-style: none;
 			}
 
 			*::-webkit-scrollbar {
@@ -268,7 +269,7 @@
                 font-size: 30px;
                 padding: 10px;
                 background: var(--six);
-                color: var(--white);
+                color: white;
                 border-radius: 50%;
                 z-index: 200;
                 cursor: pointer;
@@ -285,7 +286,7 @@
             .containerAviso div {
                 width: 92.5%;
                 height: auto;
-                padding: 15px 15px 20px 15px;
+                padding: 15px;
                 border-radius: 20px;
                 background: var(--two);
                 color: white;
@@ -293,7 +294,7 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                margin: 20px 0px;
+                margin: 15px 0px;
             }
 
             .containerAviso div img {
@@ -319,6 +320,94 @@
                 margin: 0px;
                 text-shadow: 0px 0px 10px var(--two);
             }  
+
+            /* CRIAR AVISO */
+
+            .criarAviso {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100vw;
+                height: auto;
+                padding: 20px 20px 30px 20px;
+                border-radius: 0px 0px 15px 15px;
+                display: none;            
+                flex-direction: column;
+                background: var(--two);
+                color: white;
+            }
+
+            .criarAviso label {
+                font-size: 20px;
+                margin: 12px 0px 4px 0px;
+                letter-spacing: 0.2px;
+            }
+
+            .criarAviso input {
+                width: 100%;
+                height: 32.5px;
+                border-radius: 5px;
+                border: none;
+                background: white;
+                color: #002242;
+                padding: 0px 0px 0px 8px;
+            }
+
+            .criarAviso textarea {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                background: white;
+                color: #002242;
+                padding: 6px 0px 0px 8px;
+            }
+
+            .criarAviso summary {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: auto;
+                margin: 20px 0px 15px 0px;
+                cursor: pointer;
+            }
+
+            .criarAviso summary h1 {
+                font-size: 22px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .criarAviso summary ion-icon {
+                font-size: 25px;
+                margin: 3px 0px 0px 7px;
+            }
+
+            .criarAviso h2 {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            .criarAviso button {
+                width: 90%;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                background: var(--six);
+                color: #002242;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                padding: 0px 0px 0px 8px;
+                align-self: center;
+                margin: 30px 0px 0px 0px;
+                cursor: pointer;
+                border: 2px solid var(--six);
+            } .criarAviso button:hover {
+                background: transparent;
+                color: var(--six);
+                transition: all .4s ease-in-out;
+            }
 
             </style>
            </head>
@@ -371,14 +460,7 @@
 
                     <section class="containerAviso">
 
-                        <!-- EXEMPLO -->
-                        <div>
-
-                            <img src="./src/img/baixe_o_app.png" alt="Baixe o App">
-                            <h1> Obrigado por baixar o aplicativo! </h1>
-                            <p> Tudo o que você precisa saber sobre a escola você encontra aqui </p>
-
-                        </div>
+                        
     
                     </section>
 
@@ -405,13 +487,87 @@
                 </nav>
 
                 <!-- CRIAR AVISOS GERAIS -->
-                <ion-icon id="aviso" name="add"></ion-icon>
+                <ion-icon onclick="abrirCriarAviso()" id="aviso" name="add"></ion-icon>
                 
+                <section class="criarAviso">
+
+                    <h2>Criar Comunicado</h2>
+
+                    <label>Imagem:</label>
+                    <input id="imagem" type="file" accept="image/*">
+
+                    <label>Titulo:</label>
+                    <input id="titulo" type="text">
+
+                    <label>Mensagem:</label>
+                    <textarea id="mensagem" type="text"></textarea>
+
+                    
+                    <details>
+                        
+                        <summary onclick="summaryFuncao()">
+                            <h1>Opçoes Avançadas</h1>
+                            <ion-icon id="summaryDown" name="caret-down-outline"></ion-icon>
+                            <ion-icon style="display: none;" id="summaryUp" name="caret-up-outline"></ion-icon>
+                        </summary>
+
+                        
+                        <label>Cor de Fundo:</label>
+                        <input style="padding: 0px; background: transparent;" type="color" id="corFundo" name="corHexadecimal" value="#002242">
+
+                        <label>Cor do Titulo:</label>
+                        <input style="padding: 0px; background: transparent;" type="color" id="corTitulo" name="corHexadecimal" value="#FFFFFF">
+
+                        <label>Cor do Texto:</label>
+                        <input style="padding: 0px; background: transparent;" type="color" id="corTexto" name="corHexadecimal" value="#FFFFFF">
+                    </details>
+                
+                    <button onclick="enviarAviso()">Enviar Aviso</button>
+
+                </section>
+
+                <!-- EXEMPLO 
+                <div>
+
+                    <img src="./src/img/baixe_o_app.png" alt="Baixe o App">
+                    <h1> Obrigado por baixar o aplicativo! </h1>
+                    <p> Tudo o que você precisa saber sobre a escola você encontra aqui </p>
+
+                </div>-->
 
             </body>
 
        <!-- JavaScript -->
        <script>
+
+        var c = 0;
+        function summaryFuncao() {
+            const summaryDown = document.getElementById('summaryDown');
+            const summaryUp = document.getElementById('summaryUp');
+            if (c === 0) {
+                summaryUp.style.display = "flex";
+                summaryDown.style.display = "none";
+                c++;
+            } else if (c === 1) {
+                summaryDown.style.display = "flex";
+                summaryUp.style.display = "none";
+                c=0;
+            }
+        }
+
+        // abrir Criar Aviso
+        var c = 0;
+        function abrirCriarAviso() {
+            const criarAviso = document.querySelector('.criarAviso');
+            if (c === 0) {
+                criarAviso.style.display = "flex";
+                c++;
+            } else if (c === 1) {
+                criarAviso.style.display = "none";
+                c=0;
+            }
+        }
+
 
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
@@ -488,7 +644,8 @@
         <!-- LINKS DO BANCO DE DADOS -->
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-        
+        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
+
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
        <!------------------------------->
@@ -512,34 +669,89 @@
 
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
+      const storage = firebase.storage();
 
-      /*const contadorNotificacao = localStorage.getItem('contadorN');
+        // ENVIAR AVISO 
 
-      Notification.requestPermission().then(function(permission) {
-        if (permission === 'granted') {
-          // O usuário deu permissão para notificações.
-          const notification = new Notification('E.E Letícia', {
-            body: 'Obrigado por aceitar nossas notificacoes',
-            icon: './src/img/icon.png',
-            badge: './src/img/icon.png',
-            priority: "high" // URL para um ícone personalizado
-            });
+        function enviarAviso() {
+            // Enviar Imagem
+            const inputFile = document.getElementById("imagem");
+            const file = inputFile.files[0];
+            if (file) {
+                // Crie uma referência para o local de armazenamento da imagem
+                const storageRef = storage.ref("imagens/" + file.name);
+
+                // Faça o upload da imagem para o Firebase Storage
+                storageRef.put(file).then(function (snapshot) {
+                    
+                }).catch(function (error) {
+                    console.error("Erro ao enviar a imagem:", error);
+                });
+            } else {
+                alert("Selecione uma imagem antes de enviar.");
+            }
+
+            // Coletando valores
+            const imagem = file.name;
+            const titulo = document.getElementById('titulo').value;
+            const mensagem = document.getElementById('mensagem').value;
+            const corFundo = document.getElementById('corFundo').value;
+            const corTitulo = document.getElementById('corTitulo').value;
+            const corTexto = document.getElementById('corTexto').value;
+            
+            // Enviando Valores
+            db.collection(ANO)
+            .doc('avisos')
+            .collection('avisos')
+            .doc(imagem)
+            .set({
+                titulo: titulo,
+                mensagem: mensagem,
+                corFundo: corFundo,
+                corTitulo: corTitulo,
+                corTexto: corTexto,
+                imagem: imagem
+            }).then((response) => {
+                alert('Tudo ocorreu bem!');
+                window.location.reload();
+            })
         }
-      });*/
 
-      /* Pega o idserie do banco de dados
-      const SERIE = localStorage.getItem('serie')
-      db.collection(ANO)
-        .doc("series")
-        .collection(SERIE)
+
+        // LER OS AVISOS E COMUNICADOS
+        const containerAviso = document.querySelector('.containerAviso');
+
+        db.collection(ANO)
+        .doc('avisos')
+        .collection('avisos')
         .onSnapshot((data) => {
             data.docs.map((val) => {
-                localStorage.setItem('idserie', val.id);
-            });
-        }); */
+                const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                var URL = '';
+                storageRef.getDownloadURL().then(function (url) {
+                // Use a URL da imagem, por exemplo, para exibi-la
+                    containerAviso.innerHTML += `
+                    <div style="background: ${val.data().corFundo};">
+
+                        <img src="${url}" alt="${val.data().imagem}">
+                        <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
+                        <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
+
+                    </div>
+                    `;
+                });
+            })
+        });
+
 
        </script>
 
+
+
+
+
+
+       <!-- NOTIFICACAO -->
        <script>
 
         db.collection(ANO)
