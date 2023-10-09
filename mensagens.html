@@ -659,6 +659,88 @@
             background-color: var(--red);
             color: white;
         }
+        
+        /* CHAT */
+        .containerChat {
+            width: 100vw;
+            height: auto;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .containerChat h1 {
+            font-size: 30px;
+            font-weight: 600;
+            padding: 5px 0px;
+        }
+
+        .containerChat .flex {
+            position: fixed;
+            bottom: 100px;
+            left: 0px;
+            width: 100vw;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .containerChat .flex input {
+            width: 90%;
+            height: 100%;
+            padding: 5px 5px 5px 10px;
+            font-size: 17px;
+            color: var(--one);
+        }
+
+        .containerChat .flex ion-icon {
+            width: 25px;
+            height: 25px;
+            color: var(--white);
+            padding: 10px;
+            background: var(--one);
+            border-radius: 50%;
+            margin: 0px 0px 0px 10px;
+            cursor: pointer;
+            border: 2px solid var(--one);
+        } .containerChat .flex ion-icon:hover {
+            background: transparent;
+            color: var(--one);
+            transition: all .3s ease-in-out;
+        }
+
+        .chat {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px 0px 180px 0px;
+        }
+
+        .chat li {
+            width: 95%;
+            height: auto;
+            background: var(--one);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0px;
+        }
+
+        .chat li h1 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            margin: 0px 0px 3px 0px;
+        }
+
+        .chat li p {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin: 2px 0px 0px 0px;
+        }
 
         </style>
     </head>
@@ -950,6 +1032,10 @@
 						<ion-icon name="book-outline"></ion-icon>
 						<h1>Coordenação</h1>
 					</li>
+                    <li onclick="abrirChat()">
+						<ion-icon name="globe-outline"></ion-icon>
+						<h1 id="chatSerie">Chat</h1>
+					</li>
 				</ul>
 
             </section>
@@ -1057,6 +1143,21 @@
 
         </section>
 
+        <section class="containerChat">
+
+            <h1>Chat</h1>
+
+            <div class="chat">
+
+            </div>
+
+            <div class="flex">
+                <input placeholder="Mensagem" id="message" type="text">
+                <ion-icon onclick="enviarMensagemChat()" name="send"></ion-icon>
+            </div>
+            
+        </section>
+
     </body>
 
 
@@ -1104,7 +1205,6 @@
          }
 
          // Fechar Mensagens (Opcoes)
-
          function fecharMensagem() {
             const containerOpcoes = document.querySelector('.containerOpcoes');
             containerOpcoes.style.display = "none";
@@ -1175,10 +1275,6 @@
         function configuracao() {
             window.location.href = "./configuracao.html";
         }
-
-
-       // ENTRAR NAS SERIES (BOTOES)
-
 
        // 6 ANO
        function mensagem6A() {
@@ -1323,7 +1419,7 @@
        }
 
        function mensagem3C() {
-            const content = document.querySelector('.content3C');
+        const content = document.querySelector('.content3C');
             admin.style.display = "none";
             content.style.display = "flex";
             localStorage.setItem('SERIE', '3C');
@@ -1366,7 +1462,6 @@
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
         const ANO = localStorage.getItem('ano');
-
 
        function abrirMensagem(index) {
             const sections = document.querySelectorAll('section');
@@ -1825,8 +1920,76 @@
     </script>
 
 
+
+    <!-- CHAT GLOBAL -->
     <script>
 
+        const chatSerie = document.getElementById('chatSerie');
+        const serie = localStorage.getItem('serie');
+        chatSerie.innerHTML = 'GRUPO ' + serie;
+
+        function abrirChat() {
+            const containerChat = document.querySelector('.containerChat');
+            const container = document.querySelector('.responsavel');
+            containerChat.style.display = "flex";
+            container.style.display = "none";
+            document.querySelector('.container').style.padding = "0px";
+            window.location.href = "#end";
+        }
+
+        function enviarMensagemChat() {
+            const usuario = localStorage.getItem('responsavel');
+            const mensagem = document.getElementById('message').value;
+            const serie = localStorage.getItem('serie');
+            db.collection(ANO)
+            .doc('salas')
+            .collection("salas")
+            .doc(serie)
+            .set({ nome: serie})
+            .then((response) => {
+                db.collection(ANO)
+                .doc('salas')
+                .collection("salas")
+                .doc(serie)
+                .collection('mensagens')
+                .add({
+                    usuario: usuario,
+                    mensagem: mensagem,
+                    data: firebase.firestore.FieldValue.serverTimestamp()
+                }).then((resposta) => {
+                    swal({
+                        title: "AVISO",
+                        text: "Mensagem enviada com sucesso!",
+                        buttons: {
+                            confirm: "Ok!",
+                        }
+                    });
+                });
+            });
+            
+        }
+
+        // LENDO AS MENSAGENS
+        const chat = document.querySelector('.chat');
+        db.collection(ANO)
+        .doc('salas')
+        .collection("salas")
+        .doc(serie)
+        .collection('mensagens')
+        .orderBy("data")
+        .onSnapshot((data) => {
+            chat.innerHTML = "";
+            data.docs.map((val) => {
+                chat.innerHTML += `
+                    <li>
+                        <h1>${val.data().usuario}</a></h1>
+                        <p>${val.data().mensagem}</p>
+                    </li>
+                `;
+            });
+            chat.innerHTML += '<tag id="end"></tag>';
+        });
+        
 
 
     </script>
