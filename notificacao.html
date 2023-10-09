@@ -22,8 +22,8 @@
                 --white: white;
 				--gray: #b3abab;
 				--font: 'Ubuntu', sans-serif;
-				--green: green;
-				--red: red;
+				--green: rgb(20, 218, 20);
+				--red: rgb(240, 36, 36);
 			}
 
 			*  {
@@ -180,8 +180,8 @@
                 flex-direction: row-reverse;
                 align-items: center;
                 justify-content: space-between;
-                margin: 8px 0px -8px 0px;
-                padding: 5px;
+                margin: 10px 0px -8px 0px;
+                padding: 5px 0px;
             }
 
             .mensagens li div ion-icon {
@@ -190,6 +190,15 @@
                 background: var(--red);
                 font-size: 30px;
                 padding: 5px;
+                border-radius: 10px;
+                cursor: pointer;
+            } 
+
+            .mensagens li div ion-icon#view {
+                margin: 0px;
+                color: var(--red);
+                background: transparent;
+                font-size: 42px;
                 border-radius: 10px;
                 cursor: pointer;
             }
@@ -208,7 +217,7 @@
                 border-radius: 10px;
                 font-size: 16px;
                 font-weight: 500;
-                margin: 15px 0px 0px 0px;
+                margin: 0px;
                 cursor: pointer;
                 display: flex;
                 justify-content: center;
@@ -600,16 +609,24 @@
         .doc("mensagens")
         .collection(RESPONSAVEL)
         .onSnapshot((data) => {
+            div.innerHTML = '';
             data.docs.map((val) => {
                 const date = val.data().data;
                 const dia = date.substring(8);
                 const mes = date.substring(5,7);
                 const ano = date.substring(0,4);
-                div.innerHTML += `<li data-index="${index}" data-responder="${val.data().titulo}">
+                var view = 'var(--red)';
+                if (val.data().view) {
+                    view = 'var(--green)';
+                }
+                div.innerHTML += `<li data-id="${val.id}" data-view="${val.data().view}" data-index="${index}" data-responder="${val.data().titulo}">
                     <h1>${val.data().titulo}<a>${dia}/${mes}/${ano}</a></h1>
                     <h3>${val.data().destinatario}</h3>
                     <p>${val.data().mensagem}</p>
-                    <button onclick="responderMensagem(${index})">Responder</button>
+                    <div>
+                        <ion-icon style="color: ${view};" onclick="confirmarView(${index})" id="view" name="checkmark-done-circle-outline"></ion-icon>
+                        <button onclick="responderMensagem(${index})">Responder</button>    
+                    </div>
                     </li>`;
                 index++;
                 diverro.style.display = "none";
@@ -746,7 +763,26 @@
             
         }
 
-        
+        // CONFIMAR VISUALIZAÇAO
+
+        function confirmarView(index) {
+            const elemento = document.querySelector(`[data-index="${index}"]`);
+            const id = elemento.getAttribute('data-id');
+            const view = elemento.getAttribute('data-view');
+            if (view === "true") {
+                return;
+            } else {
+                db.collection(ANO)
+                .doc("mensagens")
+                .collection(RESPONSAVEL)
+                .doc(id).update({
+                    view: true
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            }
+        }
         
 
        </script>
