@@ -2003,7 +2003,8 @@
             const usuario = localStorage.getItem('responsavel');
             const inputMensagem = document.getElementById('message');
             const mensagem = inputMensagem.value;
-            const serie = localStorage.getItem('serie');
+            inputMensagem.value = "";
+	    const serie = localStorage.getItem('serie');
             if (mensagem !== "") {
 	        db.collection(ANO)
             .doc('salas')
