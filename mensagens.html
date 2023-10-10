@@ -379,6 +379,12 @@
             margin: 0px auto;
         }
 
+        .form-mensagem h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0px 0px 5px 0px;
+        }
+
         .form-mensagem label {
             font-size: 20px;
             font-weight: 400;
@@ -673,7 +679,7 @@
         .containerChat h1 {
             font-size: 30px;
             font-weight: 600;
-            padding: 5px 0px;
+            padding: 8px 0px 12px 0px;
         }
 
         .containerChat .flex {
@@ -690,9 +696,12 @@
         .containerChat .flex input {
             width: 80%;
             height: 100%;
-            padding: 5px 5px 5px 10px;
+            padding: 5px 5px 5px 12px;
             font-size: 17px;
-            color: var(--one);
+            background: var(--one);
+            color: var(--white);
+            border-radius: 10px;
+            border: 1.5px solid var(--one);
         }
 
         .containerChat .flex ion-icon {
@@ -715,36 +724,60 @@
             width: 100vw;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 0px 0px 180px 0px;
+            align-items: start;
+            padding: 0px 15px 180px 15px;
         }
 
         .chat li {
-            width: 95%;
+            width: 90%;
             height: auto;
+            padding: 15px 17px 15px 15px;
+            margin: 13px 0px;
+        }
+
+        .minha {
+            align-self: end;
+            border-radius: 10px 0px 10px 10px;
+            background: #144774;
+            color: white;
+        } .minha h1 {
+            color: #6FADD2;
+        } .minha h1 span {
+            color: white;
+        }
+
+        .dele {
+            align-self: start;
             background: var(--one);
             color: var(--white);
-            border-radius: 15px;
-            padding: 15px;
-            margin: 10px 0px;
+            border-radius: 0px 10px 10px 10px;
+        } .dele h1 {
+            color: var(--two);
+        } .dele h1 span {
+            color: var(--white);
         }
 
         .chat li h1 {
             width: 100%;
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.2px;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 0px;
             margin: 0px 0px 3px 0px;
-            display: flex;
-            justify-content: space-between;
         }
 
-        .chat li p {
+        .chat li h1 span {
             font-size: 16px;
             font-weight: 500;
-            letter-spacing: 0.3px;
-            margin: 2px 0px 0px 0px;
+            letter-spacing: 0.4px;
         }
+
+        .chat li a {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+
 
         </style>
     </head>
@@ -1038,7 +1071,7 @@
 					</li>
                     <li onclick="abrirChat()">
 						<ion-icon name="globe-outline"></ion-icon>
-						<h1 id="chatSerie">Chat</h1>
+						<h1 id="grupoSerie">Chat</h1>
 					</li>
 				</ul>
 
@@ -1149,7 +1182,7 @@
 
         <section class="containerChat">
 
-            <h1>Chat</h1>
+            <h1 id="chatSerie">Chat</h1>
 
             <div class="chat">
 
@@ -1187,9 +1220,11 @@
         const root = document.documentElement;
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--two', '#9ECAE3');
           root.style.setProperty('--white', 'white');
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
+          root.style.setProperty('--two', '#144774');
           root.style.setProperty('--white', '#002242');
         }
 
@@ -1929,8 +1964,10 @@
     <script>
 
         const chatSerie = document.getElementById('chatSerie');
+        const grupoSerie = document.getElementById('grupoSerie');
         const serie = localStorage.getItem('serie');
         chatSerie.innerHTML = 'GRUPO ' + serie;
+        grupoSerie.innerHTML = 'GRUPO ' + serie;
 
         function abrirChat() {
             const containerChat = document.querySelector('.containerChat');
@@ -1956,7 +1993,8 @@
             const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
 
             const usuario = localStorage.getItem('responsavel');
-            const mensagem = document.getElementById('message').value;
+            const inputMensagem = document.getElementById('message');
+            const mensagem = inputMensagem.value;
             const serie = localStorage.getItem('serie');
             db.collection(ANO)
             .doc('salas')
@@ -1975,13 +2013,7 @@
                     mensagem: mensagem,
                     data: firebase.firestore.FieldValue.serverTimestamp()
                 }).then((resposta) => {
-                    swal({
-                        title: "AVISO",
-                        text: "Mensagem enviada com sucesso!",
-                        buttons: {
-                            confirm: "Ok!",
-                        }
-                    });
+                    inputMensagem.value = '';
                 });
             });
             
@@ -1989,6 +2021,8 @@
 
         // LENDO AS MENSAGENS
         const chat = document.querySelector('.chat');
+        const RESPONSAVEL = localStorage.getItem('responsavel');
+        var status = '';
         db.collection(ANO)
         .doc('salas')
         .collection("salas")
@@ -1998,10 +2032,15 @@
         .onSnapshot((data) => {
             chat.innerHTML = "";
             data.docs.map((val) => {
+                if (val.data().usuario === RESPONSAVEL) {
+                    status = 'minha';
+                } else {
+                    status = 'dele';
+                }
                 chat.innerHTML += `
-                    <li>
-                        <h1>${val.data().usuario}<a>${val.data().hora}</a></h1>
-                        <p>${val.data().mensagem}</p>
+                    <li class="${status}">
+                        <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
+                        <a>${val.data().hora}</a>
                     </li>
                 `;
             });
