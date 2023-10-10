@@ -118,13 +118,12 @@
             }
 
             .container {
-				
+				positive: absolute;
+		        top: 70px;
                 padding: 0px 0px 90px 0px;
             }
 
             .content {
-		positive: absolute;
-		top: 70px;
                 display: flex;
                 flex-direction: column;
             }
@@ -789,14 +788,15 @@
 
     <body>
 
-        <main class="container">
 
-            <header class="local">
+		<header class="local">
 
                 <h1>Mensagens</h1>
                 <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
-            </header>
+		</header>
+		
+        <main class="container">
 
             <section class="content admin">
 
