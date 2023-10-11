@@ -2039,6 +2039,7 @@
                 }).then((resposta) => {
                     inputMensagem.value = '';
                 });
+                notificationAll(mensagem);
             });
             
         }
@@ -2105,6 +2106,22 @@
             });
 
             
+        }
+
+        function notificationAll(mensagem) {
+            OneSignal.push(function() {
+                OneSignal.sendNotification({
+                    headings: {
+                        en: "E.E LETÍCIA",
+                        pt: "E.E LETÍCIA",
+                    },
+                    contents: {
+                        en: mensagem,
+                        pt: mensagem,
+                    },
+                    included_segments: ["All"]
+                });
+                });
         }
 
     </script>
