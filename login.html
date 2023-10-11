@@ -875,7 +875,8 @@
       var userData = {
         app_id: appId,
         device_type: 1, // 1 para dispositivos móveis, 0 para navegadores
-        identifier: name, // Um identificador exclusivo para o usuário
+        identifier: name,
+        identity: {external_id: name}, // Um identificador exclusivo para o usuário
       };
 
       // Realizar a solicitação POST para criar o usuário
