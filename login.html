@@ -18,8 +18,6 @@
 
       });
 
-      
-
     </script>
 
 
@@ -727,8 +725,8 @@
             telefone: TELEFONE,
             senha: SENHA
           });
-         localStorage.setItem('responsavel', RESPONSAVEL);
-          
+        localStorage.setItem('responsavel', RESPONSAVEL);
+        
 
         db.collection(ANO)
         .doc("series")
@@ -898,7 +896,7 @@
           }
         })
         .then(function(data) {
-          console.log(data.id);
+          updateUsuario(data.id);
           console.log('Usuário criado com sucesso:', data);
         })
         .catch(function(error) {
@@ -915,7 +913,6 @@
           .onSnapshot((dados) => {
             dados.docs.map((val) => {
               idDoc = val.id;
-              console.log(idDoc);
 
               if (idDoc) {
                 db.collection(ANO)
