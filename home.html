@@ -1064,7 +1064,7 @@
             })
             .then(function(data) {
                 console.log(data)
-                console.log(data.data.identity.onesignal_id)
+                console.log(data.identity.onesignal_id)
                 const uid = data.id;
 
                 db.collection(ANO)
