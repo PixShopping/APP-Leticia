@@ -914,7 +914,7 @@
           db.collection(ANO)
           .doc("responsaveis")
           .collection(RESPONSAVEL)
-          .doc(idDoc).set({
+          .doc(idDoc).update({
             id: uid
           });
 
