@@ -18,8 +18,10 @@
             enable: true,
           },
         });
-        OneSignal.getUserId().then(function(userId) {
-            console.log('ID do Dispositivo: ' + userId);
+        OneSignal.push(function() {
+          OneSignal.getUserId(function(userId) {
+            console.log('ID do Dispositivo:', userId);
+          });
         });
       });
     </script>
