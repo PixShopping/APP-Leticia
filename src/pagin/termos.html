@@ -29,6 +29,8 @@
         margin: 0px;
         box-sizing: border-box;
         font-family: var(--font);
+        list-style: none;
+        text-decoration: none;
       }
 
       *::-webkit-scrollbar {
@@ -139,6 +141,7 @@
             padding: 20px 5px 25px 5px;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         .texto h1 {
@@ -146,8 +149,7 @@
             width: 95%;
             letter-spacing: 0.2px;
             text-align: start;
-            align-self: center;
-            margin: 20px 0px 10px 0px;
+            margin: 25px 0px 10px 0px;
         }
 
         .texto p {
@@ -156,8 +158,70 @@
             width: 95%;
             letter-spacing: 0px;
             text-align: start;
-            align-self: center;
             line-height: 21px;
+        }
+
+        .texto ul {
+            width: 95%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 0px 5px 10px;
+        }
+
+        .texto ul li {
+            width: 100%;
+            height: auto;
+            margin: 12px 0px 6px 0px;
+            display: flex;
+            justify-content: start; 
+            align-items: start;
+        }
+
+        .texto ul li p {
+            font-size: 18px;
+            line-height: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .texto ul li span {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--one);
+            color: white;
+            margin: 0px 7px 0px 0px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .texto details {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .texto details summary {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .texto ul details summary li {
+            width: 100%;
+            height: auto;
+            margin: 0px 0px 0px 0px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
         }
 
     </style>
@@ -174,15 +238,130 @@
 
     <section class="texto">
         
+        <!-- ACEITAÇÃO -->
         <h1>1. ACEITAÇÃO.</h1>
         <p>Bem-vindo ao site <strong>https://app-leticia.netlify.app</strong>. O PRESENTE DOCUMENTO ("TERMOS DE USO") ESTABELECE OS TERMOS E CONDIÇÕES APLICÁVEIS AO USO DO SITE. POR FAVOR, REVISE OS TERMOS DE USO CUIDADOSAMENTE ANTES DE UTILIZAR O SITE. AO ACESSAR, NAVEGAR OU UTILIZAR O SITE ("USO"), TODOS OS USUÁRIOS E VISITANTES ("VOCÊ", "VOCÊS," "USUÁRIO" OU "USUÁRIOS") DECLARAM ACEITAR OS TERMOS E CONDIÇÕES CONTIDOS NESTES TERMOS DE USO. CASO VOCÊ NÃO CONCORDE COM OS TERMOS E CONDIÇÕES CONTIDOS NESTES TERMOS DE USO, POR FAVOR, NÃO USE O SITE. A <strong>E.E PROFª LETÍCIA DE GODOY BUENO CARVALHO LOPES</strong> E SUAS SUBSIDIÁRIAS RESERVAM-SE O DIREITO DE ATUALIZAR OS TERMOS DE USO PERIODICAMENTE, AO EXCLUSIVO CRITÉRIO DA <strong>Escola Letícia</strong>. VOCÊ DEVE REVISAR OS TERMOS DE USO PERIODICAMENTE PARA EVENTUAIS ATUALIZAÇÕES E MODIFICAÇÕES.</p>
 
+        <!-- ELIGIBILIDADE -->
         <h1>2. ELIGIBILIDADE.</h1>
         <p>O Site e todos os serviços a ele relacionados são disponibilizados a você somente se você puder celebrar contratos legalmente válidos sob a legislação aplicável. O Site não está disponível para menores de 18 anos. Caso você seja menor de 18 anos, por favor, não use o Site. AO USAR O SITE, VOCÊ DECLARA QUE TEM CAPACIDADE JURÍDICA PLENA, SENDO MAIOR DE 18 ANOS DE IDADE.</p>
 
+        <!-- LICENÇA -->
         <h1>3. LICENÇA.</h1>
         <p>A <strong>Escola Letícia</strong> concede a você uma licença limitada, não-exclusiva, intransferível, revogável e não passível de cessão, autorizando-o a visualizar e realizar downloads temporários de uma cópia dos materiais exibidos no Site, exclusivamente para uso pessoal e não comercial por você ou dentro de sua organização. Todos os materiais exibidos ou disponibilizados no Site, incluindo, sem limitação, gráficos, documentos, textos, sons, vídeo, áudio, obras de arte, software e código HTML (coletivamente, o "Material") são de propriedade exclusiva da <strong>Escola Letícia</strong> ou de seus fornecedores de conteúdo, os quais reservam a si todos os seus direitos de propriedade intelectual. Os Materiais são protegidos pelas leis de direitos autorais e outras regras, regulamentos e legislações brasileiras, americanas e internacionais de propriedade intelectual aplicáveis. Exceto conforme permitido no presente instrumento, você não poderá usar, copiar, modificar, exibir, apagar, distribuir, realizar download, arquivar, transmitir, publicar, vender, revender, adaptar, realizar engenharia reversa ou criar obras derivadas do Material, ou usar o Material em outros websites ou em quaisquer outros tipos de mídia, como, por exemplo, em ambientes de rede, sem o consentimento prévio e por escrito da <strong>Escola Letícia</strong>.
-		Todas as marcas comerciais, marcas de serviços e logotipos (as "Marcas") exibidas no Site são de propriedade exclusiva da <strong>Escola Letícia</strong> e de seus respectivos titulares. Você não poderá usar as Marcas, de nenhuma forma, sem o consentimento prévio e por escrito da <strong>Escola Letícia</strong> e de seus respectivos titulares.</p>
+    		Todas as marcas comerciais, marcas de serviços e logotipos (as "Marcas") exibidas no Site são de propriedade exclusiva da <strong> Escola Letícia </strong> e de seus respectivos titulares. Você não poderá usar as Marcas, de nenhuma forma, sem o consentimento prévio e por escrito da <strong>Escola Letícia</strong> e de seus respectivos titulares.</p>
+
+        <!-- SUBMISSÕES DO USUÁRIO -->
+        <h1>4. SUBMISSÕES DO USUÁRIO.</h1>
+        <p>O Site fornece um fórum para que você obtenha informações de emprego e carreira. Ao submeter ou enviar suas informações para o Site ("Material Submetido"), você concorda que concede à <strong>Escola Letícia</strong> uma licença perpétua, não-exclusiva, irrevogável, gratuita e mundial, e o direito (mas não uma obrigação) de usar, copiar, modificar, exibir, distribuir, realizar download, armazenar, reproduzir, transmitir, publicar, adaptar e criar obras derivadas, de qualquer maneira e em qualquer tipo de mídia, do todo ou de parte do Material Submetido, sob qualquer forma e em qualquer parte do mundo.
+        Você reconhece e concorda que a <strong>Escola Letícia</strong> fornece apenas um fórum passivo aos usuários para a obtenção de informações de emprego e carreira. A <strong>Escola Letícia</strong>s não filtra nem monitora nenhum Material Submetido fornecido por você ou por outros usuários do Site. Como conseqüência, a <strong>Escola Letícia</strong> não fornece qualquer garantia quanto à confiabilidade, precisão, completude, validade ou veracidade de qualquer Material Submetido ou enviado por quaisquer usuários do website, incluindo quaisquer ofertas de trabalho, currículos, dados biográficos ou informações de emprego de candidatos a vagas de trabalho. A <strong>Escola Letícia</strong> se reserva o direito, ao exclusivo critério da <strong>Escola Letícia</strong>, de apagar, remover, recusar-se a exibir ou bloquear qualquer Material Submetido que a <strong>Escola Letícia</strong> considere ser inaceitável, ao exclusivo critério da <strong>Escola Letícia</strong>, sem que a <strong>Escola Letícia</strong> tenha qualquer responsabilidade perante você ou qualquer outro usuário do Site. Caso a <strong>Escola Letícia</strong> receba uma notificação a respeito de quaisquer Materiais Submetidos considerados inaceitáveis, a <strong>Escola Letícia</strong> poderá investigar tais materiais, ao exclusivo critério da <strong>Escola Letícia</strong>.
+        Você reconhece e concorda que a <strong>Escola Letícia</strong> poderá reter cópias de seus Materiais Submetidos e divulgar seus Materiais Submetidos a qualquer terceiro caso a <strong> Letícia </strong> acredite ser necessário para: </p>
+
+        <ul>
+
+          <li><span>1</span><p> proteger a integridade do Site</li>
+
+          <li><span>2</span><p> proteger direitos da <strong>Escola Letícia</strong></li>
+
+          <li><span>3</span><p> cumprir com uma ordem judicial</li>
+
+          <li><span>4</span><p> cumprir com quaisquer procedimentos legais</p></li>
+
+          <li><span>5</span><p> fundamentar uma reclamação da <strong>Escola Letícia</strong> sob estes Termos de Uso</p></li>
+
+          <li><span>6</span><p> atender a quaisquer reclamações de violações de direitos de terceiros.</p></li>
+
+        </ul>
+
+        <!-- PROIBIÇÕES GERAIS -->
+        <h1>5. PROIBIÇÕES GERAIS.</h1>
+        <p>Com relação ao seu Uso, você concorda em NÃO:</p>
+    
+
+        <ul>
+        
+            <li><span>1</span> <p>violar quaisquer regras, regulamento ou legislações aplicáveis, incluindo, sem limitação, legislações e regulamentos de exportação, leis contra discriminação ou leis de igualdade de oportunidade de emprego. Além disso, você concorda em não exportar os Materiais a qualquer país ou jurisdição que esteja incluído na lista de países proibidos ou sob restrição conforme as leis de exportação do Brasil ou Estados Unidos. Alguns dos países atualmente sujeitos a restrições destas leis incluem, mas não se limita a: Cuba, Irã, Coréia do Norte, Sudão e Síria</p></li>
+          
+            <li><span>2</span> <p>violar quaisquer direitos de propriedade intelectual ou de privacidade, incluindo, sem limitação, patentes, direitos autorais, marcas ou segredos comerciais de quaisquer terceiros, incluindo a <strong>Escola Letícia</strong> e suas empresas afiliadas;</p></li>
+          
+            <li><span>3</span> <p>carregar, publicar, transmitir ou armazenar qualquer material que:</p></li>
+
+            <li><span>A</span> <p> seja ilegal, ofensivo, difamatório, fraudulento, enganoso, danoso, ameaçador, constrangedor, obsceno ou inaceitável.</p></li>
+            
+            <li><span>B</span> <p> viole quaisquer de suas obrigações contratuais ou de confidencialidade.</p></li>
+            
+            <li><span>C</span> <p> perturbe ou interfira nas operações normais do Site, tais como a publicação ou a transmissão de vírus, a publicação continuada de materiais repetidos ou a publicação de arquivos muito grandes, fora do tamanho normal.</p></li>
+            
+            <li><span>D</span> <p> não seja permitido pela <strong>Escola Letícia</strong>, incluindo, sem limitação, quaisquer materiais de publicidade não autorizada, materiais de propaganda não solicitada, "junk mail", mensagens de spam, cartas em "corrente", esquemas de pirâmide, franquias, distribuição, associação em clubes, acordos de venda ou outros materiais não aceitos.</p></li>
+            
+            <li><span>E</span> <p> violar direitos de privacidade ou outros direitos de terceiros através do uso abusivo de Materiais, incluindo, sem limitação, através do constrangimento ou "perseguição" contra outra pessoa,do envio de mensagens de email não solicitadas ou da coleta de informações pessoais de terceiros.</p></li>
+            
+            <li><span>F</span> <p> violar ou tentar violar quaisquer medidas de segurança do Site.</p></li>
+            
+            <li><span>G</span> <p> usar quaisquer dispositivos, processos ou mecanismos para monitorar, recuperar, pesquisar ou acessar dados do Site ou qualquer Material sem o consentimento prévio e por escrito da RHB, através, por exemplo, de robôs ou sistemas de varredura e armazenamento de dados ("spider").</p></li>
+            
+            <li><span>H</span> <p> acessar ou tentar acessar qualquer conta ou identificação de terceiros contida no Site.</p></li>
+            
+            <li><span>I</span> <p> copiar, modificar, reproduzir, apagar, distribuir, realizar download, armazenar, transmitir, vender, revender, publicar, realizar engenharia reversa ou criar obras derivadas de quaisquer Materiais, exceto materiais que tenham sido submetidos por você e sejam de sua propriedade.</p></li>
+            
+            <li><span>J</span> <p> publicar ou submeter qualquer informação imprecisa, falsa ou incompleta, incluindo currículo, informações biográficas ou informações de emprego.</p></li>
+            
+            <li><span>K</span> <p> passar-se por outra pessoa ou organização.</p></li>
+            
+            <li><span>L</span> <p> adulterar qualquer informação de cabeçalho em uma publicação ou mensagem eletrônica.</p></li>
+            
+            <li><span>M</span> <p> fornecer falsa informação sobre você, sua afiliação junto a um terceiro ou sua organização.</p></li>
+
+        </ul>
+
+        <!-- USOS ESPECÍFICOS E RESPONSABILIDADES -->
+        <h1>6. USOS ESPECÍFICOS E RESPONSABILIDADES.</h1>
+        <p>Além das responsabilidades gerais previstas na Cláusula 5, você concorda em cumprir com os seguintes termos.
+        Você concorda ainda em:</p>
+    
+        <ul>
+
+          <li><span>1</span> <p>usar o Site somente para finalidades legítimas a fim de pesquisar oportunidades de emprega e informações de carreira.</p></li>
+
+          <li><span>2</span> <p>fornecer e manter as informações submetidas por você completas, corretas, atualizadas e precisas.</p></li>
+
+          <li><span>3</span> <p>publicar materiais sobre os quais você tenha todos os direitos e licenças necessários.</p></li>
+
+          <li><span>4</span> <p>utilizar seu próprio discernimento, precaução e senso comum para a administração de oportunidades de emprego e informações oferecidas e obtidas através do Site.</p></li>
+
+          <li><span>5</span> <p>assumir os riscos de qualquer utilização de (ou confiança em) quaisquer Materiais ou informações fornecidas por um terceiro.</p></li>
+
+        </ul>
+
+        <!-- CONTA E SENHA -->
+        <h1>7. CONTA E SENHA.</h1>
+        <p>O Site poderá apresentar a você a oportunidade de abrir uma conta de usuário junto ao Site. Ao abrir uma conta junto ao Site, você poderá receber uma identificação de conta (logon) e uma senha inicial. É de sua responsabilidade (a) manter o sigilo de sua identificação de conta e senha; (b) atualizar e revisar sua conta frequentemente; e (c) avisar prontamente a RHB caso ocorra qualquer utilização não autorizada de sua conta ou qualquer quebra de segurança. Você é responsável também por todas as atividades que forem realizadas através de sua conta e a RHB não será responsável por qualquer perda ou dano resultante de sua falha em cumprir com as obrigações previstas neste parágrafo.</p>
+        
+        <!-- EMPREGO -->
+        <h1>8. EMPREGO.</h1>
+        <p>Você entende e concorda que a RHB (a) não garante que você receberá quaisquer ofertas de emprego ou trabalho através do Site; (b) não será responsável por quaisquer ofertas de trabalho, filtragem, decisões e emprego efetivo apresentados por terceiros; (c) não garante a precisão, completude, validade ou pontualidade de informações fornecidas por quaisquer terceiros; (d) não será responsável por quaisquer materiais publicados por terceiros, incluindo, sem limitação, informações sobre abertura de vagas e relações de emprego; e (e) não é ou será seu empregador nem sua agência de emprego. Você utilizará seu próprio discernimento, precaução e senso comum para a avaliação a respeito de potenciais empregadores e informações fornecidas por terceiros.</p>
+
+        <!-- LINKS -->
+        <h1>9. LINKS.</h1>
+        <p>O Site poderá apresentar links, tais como hyperlinks ou botões, direcionando o acesso a websites de terceiros ("Sites Ligados"). Os Sites Ligados poderão não ser controlados ou monitorados pela RHB. A RHB não será responsável pelos materiais, informações ou conteúdo publicados em Sites Ligados, nem tampouco pela disponibilidade dos Sites Ligados. A inclusão de Sites Ligados no Site não implica em nenhum relacionamento ou associação entre a RHB e o proprietário de Sites Ligados, nem tampouco quaisquer endosso ou apoio ou patrocínio pela RHB dos Sites Ligados. A RHB inclui os Sites Ligados apenas para sua conveniência. Você é exclusivamente responsável por seu acesso aos Sites Ligados. Você utilizará seu próprio discernimento, precaução e senso comum na utilização de Sites Ligados, devendo conferir as políticas de privacidade e os termos de uso aplicáveis de tais Sites Ligados, os quais poderão ser diferentes dos termos contidos nestes Termos de Uso e na Política de Privacidade da RHB. A RHB não aceita qualquer responsabilidade por tais políticas de terceiros.</p>
+
+        <!-- PRIVACIDADE -->
+        <h1>10. PRIVACIDADE.</h1>
+        <p>AO ACEITAR ESTES TERMOS DE USO , VOCÊ AUTOMATICAMENTE ACEITA TODOS OS TERMOS DA POLÍTICA DE PRIVACIDADE DA RHB ESTABELECIDOS ABAIXO E, NESTE ATO, AUTORIZA A RHB A COLETAR, ARMAZENAR, UTILIZAR E DIVULGAR SEUS DADOS PESSOAIS CONFORME PREVISTO EM TAL DOCUMENTO.</p>
+    
+        <!-- COOKIES -->
+        <h1>11. COOKIES.</h1>
+        <p>Lista de cookies: Um cookie é um pequeno pedaço de dados (arquivo de texto) que um site - quando visitado por um usuário - solicita a seu navegador para armazenar em seu dispositivo, para lembrar informações sobre você, como sua preferência de idioma ou informações de login. Esses cookies são definidos por nós e são chamados de cookies primários. Também usamos cookies de terceiros - que são cookies de um domínio diferente do domínio do site que você está visitando - para os nossos esforços de publicidade e marketing. Mais especificamente, usamos cookies e outras tecnologias de rastreamento para os seguintes fins:</p>
+          
+        <h1>Cookies estritamente necessários.</h1>
+        <p>Estes cookies são necessários para que o website funcione e não podem ser desligados nos nossos sistemas. Normalmente, eles só são configurados em resposta a ações levadas a cabo por si e que correspondem a uma solicitação de serviços, tais como definir as suas preferências de privacidade, iniciar sessão ou preencher formulários. Pode configurar o seu navegador para bloquear ou alertá-lo(a) sobre esses cookies, mas algumas partes do website não funcionarão. Estes cookies não armazenam qualquer informação pessoal identificável.</p>
+        
+        <h1>Cookies de desempenho</h1>
+        <p>Estes cookies permitem-nos contar visitas e fontes de tráfego, para que possamos medir e melhorar o desempenho do nosso website. Eles ajudam-nos a saber quais são as páginas mais e menos populares e a ver como os visitantes se movimentam pelo website. Todas as informações recolhidas por estes cookies são agregadas e, por conseguinte, anónimas. Se não permitir estes cookies, não saberemos quando visitou o nosso site.</p>
+
+        <h1>Cookies das redes sociais</h1>
+        <p>Estes cookies são estabelecidos por uma série de serviços das redes sociais que adicionamos ao website para permitir que possa partilhar o nosso conteúdo com os seus amigos e conhecidos. Eles são capazes de rastrear a sua navegação por outros websites e criar um perfil sobre os seus interesses. Isso pode afetar o conteúdo e as mensagens que vê noutros websites que visita. Se não permitir estes cookies, talvez não consiga usar ou ver essas ferramentas de partilha.</p>
+
 
     </section>
 
