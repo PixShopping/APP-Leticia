@@ -1033,6 +1033,28 @@
                 });
         }
 
+        if ('Notification' in window) {
+        // Verifique se o navegador suporta notificações
+        
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+            // Permissão concedida, agora você pode enviar notificações
+            var notification = new Notification('E.E LETÍCIA', {
+                body: 'Obrigado por aceitar receber notificações do nosso app!',
+                icon: './src/img/icon.png'
+            });
+            
+            // Aqui você pode definir a ação a ser executada quando o usuário clica na notificação
+            notification.onclick = function() {
+                // Faça algo quando o usuário clica na notificação
+            };
+            } else if (permission === 'denied') {
+            // Permissão negada, você deve lidar com isso de acordo
+            console.error('Permissão para notificações negada');
+            }
+        });
+        }
+
        </script>
 
 
