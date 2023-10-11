@@ -8,22 +8,21 @@
 		<title>  Mensagem | Letícia </title>
 
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
         
-            window.OneSignalDeferred = window.OneSignalDeferred || [];
-            OneSignalDeferred.push(function(OneSignal) {
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function() {
                 OneSignal.init({
-                    appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+                    appId: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
                 });
-                
-                if(localStorage.getItem('os-user') === null) {
-                    OneSignal.getUserId(function(userId) {
+
+            });
+            OneSignal.push(function() {
+            if(localStorage.getItem('os-user') === null) {
+                OneSignal.getUserId(function(userId) {
                         localStorage.setItem('os-user', userId);
-                        console.log(userId);
-                    });
-                }
-            
+                });
+            }
             });
 
         </script>
