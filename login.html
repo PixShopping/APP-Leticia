@@ -727,6 +727,8 @@
             telefone: TELEFONE,
             senha: SENHA
           });
+         localStorage.setItem('responsavel', RESPONSAVEL);
+          
 
         db.collection(ANO)
         .doc("series")
@@ -912,10 +914,11 @@
           db.collection(ANO)
           .doc("responsaveis")
           .collection(RESPONSAVEL)
-          .doc(idDoc).update({
+          .doc(idDoc).set({
             id: uid
           });
 
+          console.log(idDoc);
           console.log('Usuário criado com sucesso:', uid);
         })
         .catch(function(error) {
