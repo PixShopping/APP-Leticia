@@ -708,7 +708,7 @@
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
         if (!logado){
-		  window.location.href = "./login";
+		  window.location.href = "./login/";
 		} else if (logado === "RESPONSAVEL") {
             mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
 	    } else if (logado === "COORDENACAO") {
@@ -721,20 +721,20 @@
 
        // HREF
        function perfil() {
-        window.location.href = "./perfil";
+        window.location.href = "./perfil/";
        }
 
        function home() {
-        window.location.href = "./home";
+        window.location.href = "./home/";
        }
 
        // Enviar Comunicado
        function enviar() {
-         window.location.href = "./mensagens";
+         window.location.href = "./mensagens/";
        }
 
        function notificacao() {
-        window.location.href = "./notificacao";
+        window.location.href = "./notificacao/";
        }
 
 
@@ -752,7 +752,7 @@
         }
 
         function projeto() {
-        window.location.href = "./projeto";
+        window.location.href = "./projeto/";
        }
 
        function suporte() {
