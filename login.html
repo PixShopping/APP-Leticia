@@ -868,18 +868,21 @@
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
-        swal({
-          title: "NOTIFICAÇÕES",
-          text: "Você aceita receber notificações do nosso app?",
-          buttons: {
-            cancel: "Nao",
-            confirm: "Sim",
-          },
-        }).then((response) => {
-          if (response) {
-            OneSignal.registerForPushNotifications();
-          }
-        });
+        setTimeout(() => {
+          swal({
+            title: "NOTIFICAÇÕES",
+            text: "Você aceita receber notificações do nosso app?",
+            buttons: {
+              cancel: "Nao",
+              confirm: "Sim",
+            },
+          }).then((response) => {
+            if (response) {
+              OneSignal.registerForPushNotifications();
+            }
+          });
+        }, 5000);
+        
       });
       
     </script>
