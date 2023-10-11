@@ -17,22 +17,22 @@
         });
 
         const options = {
-        method: 'POST',
-        headers: {accept: 'application/json', 'content-type': 'application/json'},
-        body: JSON.stringify({
-          properties: {
-            tags: {key: 'value', foo: 'bar'},
-            language: 'en',
-            timezone_id: 'America\/Los_Angeles',
-            lat: 90,
-            long: 135,
-            country: 'US',
-            first_active: 1678215680,
-            last_active: 1678215682
-          },
-          identity: {external_id: 'test_external_id'}
-        })
-      };
+          method: 'POST',
+          headers: {accept: 'application/json', 'content-type': 'application/json'},
+          body: JSON.stringify({
+            properties: {
+              tags: {key: 'value', foo: 'bar'},
+              language: 'en',
+              timezone_id: 'America\/Los_Angeles',
+              lat: 90,
+              long: 135,
+              country: 'US',
+              first_active: 1678215680,
+              last_active: 1678215682
+            },
+            identity: {external_id: '12345678'}
+          })
+        };
 
       fetch('https://onesignal.com/api/v1/apps/7639757a-a89b-4b52-8028-7e8b9d328e4c/users', options)
         .then(response => response.json())
