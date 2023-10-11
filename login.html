@@ -874,8 +874,7 @@
       // Dados do usuário que você deseja criar
       var userData = {
         app_id: appId,
-        device_type: 0, // 1 para dispositivos móveis, 0 para navegadores
-        identifier: name,
+        device_type: 0,
         identity: {external_id: name}, // Um identificador exclusivo para o usuário
       };
 
@@ -896,20 +895,10 @@
           }
         })
         .then(function(data) {
-          updateUsuario(data.id);
-          console.log('Usuário criado com sucesso:', data);
-        })
-        .catch(function(error) {
-          console.error('Erro ao criar usuário:', error);
-        });
-      }
-
-      function updateUsuario(uid) {
-          const RESPONSAVEL = localStorage.getItem('responsavel');
-          var idDoc = '';
+          // UPDATE
           db.collection(ANO)
           .doc("responsaveis")
-          .collection(RESPONSAVEL)
+          .collection(name)
           .onSnapshot((dados) => {
             dados.docs.map((val) => {
               idDoc = val.id;
@@ -917,13 +906,20 @@
               if (idDoc) {
                 db.collection(ANO)
                 .doc("responsaveis")
-                .collection(RESPONSAVEL)
+                .collection(name)
                 .doc(idDoc).update({
-                  id: uid
+                  id: data.id
                 });
               }
             });
           });
+          
+
+          console.log('Usuário criado com sucesso:', data);
+        })
+        .catch(function(error) {
+          console.error('Erro ao criar usuário:', error);
+        });
       }
 
   </script>
