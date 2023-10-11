@@ -718,9 +718,20 @@
         .add({
           responsavel: RESPONSAVEL,
           aluno: ALUNO
-        });
+        }).then((response) => {
+          swal({
+            title: "Parabens",
+            text: "Cadastro feito com sucesso!",
+            buttons: {
+              confirm: "Ok!",
+            },
+          }).then((res) => {
+            window.location.reload();
+          })
+        })
 
       }
+
     }
 
     // ----------
