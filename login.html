@@ -14,7 +14,7 @@
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
-        function oneSignal() {
+        function CadastrarOneSignal() {
           OneSignal.push(function() {
             // Solicitar permissão para notificações push
             OneSignal.registerForPushNotifications();
@@ -753,7 +753,7 @@
           aluno: ALUNO
         });
 
-        oneSignal();
+        CadastrarOneSignal();
 
         setTimeout(() => {
           swal({
