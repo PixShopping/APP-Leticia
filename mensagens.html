@@ -2072,23 +2072,21 @@
             .onSnapshot((data) => {
                 data.docs.map((val) => {
                     uid = val.data().id;
+                    const options = {
+                    method: 'POST',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: 'Basic YOUR_REST_API_KEY',
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        include_subscription_ids: [uid],
+                        contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
+                        name: 'E.E LETÍCIA'
+                    })
+                    };
                 });
             });
-            
-            console.log("UID FIREBASE", uid);
-            const options = {
-            method: 'POST',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Basic YOUR_REST_API_KEY',
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                include_subscription_ids: [uid],
-                contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
-                name: 'E.E LETÍCIA'
-            })
-            };
 
             fetch('https://onesignal.com/api/v1/notifications', options)
             .then(response => response.json())
