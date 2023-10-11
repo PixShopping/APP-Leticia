@@ -1566,7 +1566,9 @@
                 mensagem: MENSAGEM,
                 view: false
             });
-            enviarNotificacao(RESPONSAVEL);
+            
+            enviarNotificacao(RESPONSAVEL, MENSAGEM, TITULO);
+            
             setTimeout(() => {
                 swal({
                     title: 'AVISO',
@@ -2063,7 +2065,8 @@
         
 
         //OneSignal
-        function enviarNotificacao(responsavel) {
+        function enviarNotificacao(responsavel, mensagem, titulo) {
+
             db.collection(ANO)
             .doc('responsaveis')
             .collection(responsavel)
@@ -2072,18 +2075,18 @@
                     var uid = String(val.data().id);
                     console.log(uid);
                     const options = {
-                    method: 'POST',
-                    headers: {
-                        accept: 'application/json',
-                        Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
-                        include_subscription_ids: [uid],
-                        contents: {en: 'English or Any Language Message', pt: 'BRASILEIROO'},
-                        name: 'E.E LETÍCIA'
-                    })
+                        method: 'POST',
+                        headers: {
+                            accept: 'application/json',
+                            Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
+                            onesignal_id: responsavel,
+                            contents: {en: mensagem, pt: mensagem},
+                            name: 'E.E LETÍCIA'
+                        })
                     };
 
                     fetch('https://onesignal.com/api/v1/notifications', options)
