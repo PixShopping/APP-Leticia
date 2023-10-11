@@ -1063,8 +1063,9 @@
                 }
             })
             .then(function(data) {
+                console.log(data)
                 const uid = data.id;
-                console.log(uid)
+
                 db.collection(ANO)
                 .doc('responsaveis')
                 .collection(responsavel)
