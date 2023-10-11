@@ -1063,9 +1063,7 @@
                 }
             })
             .then(function(data) {
-                console.log(data)
-                console.log(data.identity.onesignal_id)
-                const uid = data.id;
+                const uid = data.identity.onesignal_id;
 
                 db.collection(ANO)
                 .doc('responsaveis')
