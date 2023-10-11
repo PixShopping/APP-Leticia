@@ -6,7 +6,32 @@
     <link rel="icon" href="./src/img/icon.png" type="x-icon" />
     <link type="stylesheet" src="./style.css" />
     <title>Logar | Letícia</title>
-    
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+          appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+        });
+        OneSignal.push(function() {
+          // Solicitar permissão para notificações push
+          OneSignal.registerForPushNotifications();
+
+          // Registrar o usuário no OneSignal
+          OneSignal.getUserId().then(function(userId) {
+            console.log('ID do Dispositivo:', userId);
+            // Neste ponto, você pode enviar o ID do dispositivo para o seu servidor, se necessário.
+          }).catch(function(error) {
+            console.error('Erro ao registrar o usuário no OneSignal:', error);
+          });
+        });
+      });
+
+    </script>
+
+
+        
     <style scoped>
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
 
@@ -859,21 +884,5 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-  <head>
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    
-    <!-- NOTIFICAÇÃO -->
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(function(OneSignal) {
-        OneSignal.init({
-          appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
-        });
-        OneSignal.registerForPushNotifications();
-      });
-      
-    </script>
-  </head>
 
 </html>
