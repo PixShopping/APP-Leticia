@@ -16,31 +16,39 @@
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
 
-        const options = {
-          method: 'POST',
-          headers: {accept: 'application/json', 'content-type': 'application/json'},
-          body: JSON.stringify({
-            properties: {
-              tags: {key: 'value', foo: 'bar'},
-              language: 'en',
-              timezone_id: 'America\/Los_Angeles',
-              lat: 90,
-              long: 135,
-              country: 'US',
-              first_active: 1678215680,
-              last_active: 1678215682
-            },
-            identity: {
-              external_id: '12345678',
-              label: 'Vitor'
-            }
-          })
-        };
+        var appId = '7639757a-a89b-4b52-8028-7e8b9d328e4c'; // Substitua pelo seu App ID do OneSignal
+        var apiKey = 'MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3'; // Substitua pelo seu REST API Key do OneSignal
 
-      fetch('https://onesignal.com/api/v1/apps/7639757a-a89b-4b52-8028-7e8b9d328e4c/users', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+      // Dados do usuário que você deseja criar
+      var userData = {
+        app_id: appId,
+        device_type: 1, // 1 para dispositivos móveis, 0 para navegadores
+        identifier: 'Vitor', // Um identificador exclusivo para o usuário
+      };
+
+      // Realizar a solicitação POST para criar o usuário
+      fetch('https://onesignal.com/api/v1/players', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(apiKey + ':'), // 'Basic ' seguido pelo seu REST API Key
+        },
+        body: JSON.stringify(userData),
+      })
+        .then(function(response) {
+          if (response.status >= 200 && response.status < 300) {
+            return response.json();
+          } else {
+            throw new Error('Erro na solicitação: ' + response.status);
+          }
+        })
+        .then(function(data) {
+          console.log('Usuário criado com sucesso:', data);
+        })
+        .catch(function(error) {
+          console.error('Erro ao criar usuário:', error);
+        });
+
 
       });
 
