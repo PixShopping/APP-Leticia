@@ -2065,25 +2065,24 @@
 
         //OneSignal
         function enviarNotificacao(responsavel) {
-            let uid = '';
             db.collection(ANO)
             .doc('responsaveis')
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    uid = val.data().id;
+                    console.log(val.data().id);
                     const options = {
-                    method: 'POST',
-                    headers: {
-                        accept: 'application/json',
-                        Authorization: 'Basic YOUR_REST_API_KEY',
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        include_subscription_ids: [uid],
-                        contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
-                        name: 'E.E LETÍCIA'
-                    })
+                        method: 'POST',
+                        headers: {
+                            accept: 'application/json',
+                            Authorization: 'Basic YOUR_REST_API_KEY',
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            include_subscription_ids: [val.data().id],
+                            contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
+                            name: 'E.E LETÍCIA'
+                        })
                     };
                 });
             });
