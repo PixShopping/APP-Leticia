@@ -2070,7 +2070,8 @@
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    console.log(val.data().id);
+                    var uid = String(val.data().id);
+                    console.log(uid);
                     const options = {
                         method: 'POST',
                         headers: {
@@ -2079,12 +2080,12 @@
                             'content-type': 'application/json'
                         },
                         body: JSON.stringify({
-                            include_subscription_ids: [val.data().id],
+                            include_subscription_ids: [uid],
                             contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
                             name: 'E.E LETÍCIA'
                         })
                     };
-                    
+
                     fetch('https://onesignal.com/api/v1/notifications', options)
                     .then(response => response.json())
                     .then(response => console.log(response))
