@@ -874,7 +874,7 @@
       // Dados do usuário que você deseja criar
       var userData = {
         app_id: appId,
-        device_type: 1, // 1 para dispositivos móveis, 0 para navegadores
+        device_type: 0, // 1 para dispositivos móveis, 0 para navegadores
         identifier: name,
         identity: {external_id: name}, // Um identificador exclusivo para o usuário
       };
@@ -896,7 +896,27 @@
           }
         })
         .then(function(data) {
-          console.log('Usuário criado com sucesso:', data);
+          var uid = data.id
+          var idDoc = '';
+          const RESPONSAVEL = localStorage.getItem('responsavel');
+          
+          db.collection(ANO)
+          .doc("responsaveis")
+          .collection(RESPONSAVEL)
+          .onSnapshot((dados) => {
+            dados.docs.map((val) => {
+              idDoc = val.id
+            });
+          });
+
+          db.collection(ANO)
+          .doc("responsaveis")
+          .collection(RESPONSAVEL)
+          .doc(idDoc).update({
+            id: uid
+          });
+
+          console.log('Usuário criado com sucesso:', uid);
         })
         .catch(function(error) {
           console.error('Erro ao criar usuário:', error);
