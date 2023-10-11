@@ -2069,14 +2069,13 @@
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    var apiKey = 'MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3'; // Substitua pelo seu REST API Key do OneSignal
                     var uid = String(val.data().id);
                     console.log(uid);
                     const options = {
                     method: 'POST',
                     headers: {
                         accept: 'application/json',
-                        Authorization: 'Basic ' + btoa(apiKey + ':'),
+                        Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify({
