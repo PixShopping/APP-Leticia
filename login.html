@@ -16,30 +16,26 @@
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
 
-        function BC_OS_sync() {
-          var profile = blueConicClient.profile.getProfile();
+        OneSignal.push(function() {
+            OneSignal.isPushNotificationsEnabled().then(function(notificationsEnabled) {
+                OneSignal.getUserId().then(function(value) {
+                    console.log("OS User ID: ", value);
+                    db.collection(value).add({
+                      id: value
+                    });
+                    console.log("BC User ID: ", profile.getId());
+                    profile.addValue("onesignal_user_ids", value);
 
-          OneSignal.push(function() {
-              OneSignal.isPushNotificationsEnabled().then(function(notificationsEnabled) {
-                  OneSignal.getUserId().then(function(value) {
-                      console.log("OS User ID: ", value);
-                      db.collection(value).add({
-                        id: value
-                      });
-                      console.log("BC User ID: ", profile.getId());
-                      profile.addValue("onesignal_user_ids", value);
+                    if (notificationsEnabled) {
+                        profile.addValue("onesignal_user_ids_dates", new Date().getTime());
+                    }
 
-                      if (notificationsEnabled) {
-                          profile.addValue("onesignal_user_ids_dates", new Date().getTime());
-                      }
+                    blueConicClient.profile.updateProfile();
+                    OneSignal.setExternalUserId(profile.getId());
+                });
+            });
+        });
 
-                      blueConicClient.profile.updateProfile();
-                      OneSignal.setExternalUserId(profile.getId());
-                  });
-              });
-          });
-        }
-        BC_OS_sync();
       });
 
       
