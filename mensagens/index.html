@@ -16,14 +16,14 @@
                 OneSignal.init({
                     appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
                 });
-                OneSignal.push(function() {
-                    if(localStorage.getItem('os-user') === null) {
-                        OneSignal.getUserId(function(userId) {
-                            localStorage.setItem('os-user', userId);
-                            console.log(userId);
-                        });
-                    }
-                });
+                
+                if(localStorage.getItem('os-user') === null) {
+                    OneSignal.getUserId(function(userId) {
+                        localStorage.setItem('os-user', userId);
+                        console.log(userId);
+                    });
+                }
+            
             });
 
         </script>
