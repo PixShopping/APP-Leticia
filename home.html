@@ -6,20 +6,17 @@
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<title> Inicio | Letícia </title>
 
-        <!-- <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script> -->
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
-            
-            /*window.OneSignalDeferred = window.OneSignalDeferred || [];
-            window.OneSignalDeferred.push(async function(OneSignal) {
-                await OneSignal.init({
-                    appId: "7f7ebe08-4826-4b89-a30e-2232f5fd59b5",
-                    notifyButton: {
-                        enable: true
-                    },
-                });
-            });*/
+        
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+            appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+            });
 
-            
+        });
+
         </script>
 
 
@@ -980,18 +977,61 @@
        <!-- NOTIFICACAO -->
        <script>
 
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(responsavel)
-        .get().then((existe) => {
-            const tamanho = existe.size;
-            if (tamanho > 0) {
-                localStorage.setItem('notificacao', true);
-                localStorage.setItem('notificacao.size', tamanho);
-            }
-        });
+    
+        function criarUsuarioOnesignal(name) {
+            var appId = '7639757a-a89b-4b52-8028-7e8b9d328e4c'; // Substitua pelo seu App ID do OneSignal
+            var apiKey = 'MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3'; // Substitua pelo seu REST API Key do OneSignal
 
-        
+            // Dados do usuário que você deseja criar
+            var userData = {
+                app_id: appId,
+                device_type: 1,
+                identity: {external_id: name}, // Um identificador exclusivo para o usuário
+            };
+
+            // Realizar a solicitação POST para criar o usuário
+            fetch('https://onesignal.com/api/v1/players', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Basic ' + btoa(apiKey + ':'), // 'Basic ' seguido pelo seu REST API Key
+                },
+                body: JSON.stringify(userData),
+            })
+                .then(function(response) {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro na solicitação: ' + response.status);
+                }
+                })
+                .then(function(data) {
+                // UPDATE
+                db.collection(ANO)
+                .doc("responsaveis")
+                .collection(name)
+                .onSnapshot((dados) => {
+                    dados.docs.map((val) => {
+                    idDoc = val.id;
+
+                    if (idDoc) {
+                        db.collection(ANO)
+                        .doc("responsaveis")
+                        .collection(name)
+                        .doc(idDoc).update({
+                        id: data.id
+                        });
+                    }
+                    });
+                });
+                
+
+                console.log('Usuário criado com sucesso:', data);
+                })
+                .catch(function(error) {
+                console.error('Erro ao criar usuário:', error);
+                });
+        }
 
        </script>
 
