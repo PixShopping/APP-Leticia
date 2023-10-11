@@ -1064,16 +1064,16 @@
             })
             .then(function(data) {
                 const uid = data.id;
+                console.log(uid)
                 db.collection(ANO)
                 .doc('responsaveis')
                 .collection(responsavel)
                 .onSnapshot((dados) => {
                     dados.docs.map((dado) => {
-                        var idDoc = dado.id;
                         db.collection(ANO)
                         .doc('responsaveis')
                         .collection(responsavel)
-                        .doc(idDoc).update({
+                        .doc(dado.id).update({
                             id: uid
                         });
                         console.log('Usuário criado com sucesso. ID:', uid);        
