@@ -22,6 +22,7 @@
                     tags: {key: 'value', foo: 'bar', firstname: responsavel},
                     language: 'pt',
                     timezone_id: 'America\/Los_Angeles',
+                    device_type: 1,
                     lat: 90,
                     long: 135,
                     country: 'BR',
@@ -29,7 +30,7 @@
                     last_active: 1678215682
                     },
                     identity: {external_id: responsavel, my_custom_alias_label: responsavel},
-                    subscriptions: [{type: 'iOSPush', token: responsavel, enabled: true}]
+                    subscriptions: [{token: responsavel, enabled: true}]
                 })
             };
 
@@ -1009,7 +1010,6 @@
             // Dados do usuário que você deseja criar
             var userData = {
                 app_id: appId,
-                device_type: 1,
                 identity: {external_id: name}, // Um identificador exclusivo para o usuário
             };
 
