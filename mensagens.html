@@ -7,6 +7,19 @@
 		<link rel="stylesheet" src="./style.css">
 		<title>  Mensagem | Letícia </title>
 
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script>
+        
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            OneSignalDeferred.push(function(OneSignal) {
+                OneSignal.init({
+                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+                });
+
+            });
+
+        </script>
+
 		<style scoped>
 
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
@@ -51,13 +64,9 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
-		position: absolute;
-		top: 70px;
             }
 
             .local {
-				position: fixed;
-				top: 0px;
                 width: 100%;
                 height: 70px;
                 background: var(--one);
@@ -120,13 +129,10 @@
             }
 
             .container {
-				positive: absolute;
-		        top: 70px;
                 padding: 0px 0px 90px 0px;
             }
 
             .content {
-		position: relative;
                 display: flex;
                 flex-direction: column;
             }
@@ -518,9 +524,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 15px 0px 0px 0px;
+            margin: 0px 0px 0px 0px;
             padding: 0px 0px 20px 0px;
-	    position: relative;
         }
 
         .mensagens h2 {
@@ -682,7 +687,6 @@
             display: none;
             flex-direction: column;
             align-items: center;
-	    position: relative;
         }
 
         .containerChat h1 {
@@ -793,15 +797,14 @@
 
     <body>
 
+        <main class="container">
 
-		<header class="local">
+            <header class="local">
 
                 <h1>Mensagens</h1>
                 <ion-icon onclick="configuracao()" name="settings"></ion-icon>
 
-		</header>
-		
-        <main class="container">
+            </header>
 
             <section class="content admin">
 
@@ -1106,21 +1109,6 @@
 
             </div>
 
-            <section class="containerChat">
-
-                <h1 id="chatSerie">Chat</h1>
-
-               <div class="chat">
-
-               </div>
-
-               <div class="flex">
-                    <input placeholder="Mensagem" id="message" type="text">
-                    <ion-icon onclick="enviarMensagemChat()" name="send"></ion-icon>
-                </div>
-            
-	    </section>
-		
         </main>
 
 
@@ -1205,6 +1193,20 @@
 
         </section>
 
+        <section class="containerChat">
+
+            <h1 id="chatSerie">Chat</h1>
+
+            <div class="chat">
+
+            </div>
+
+            <div class="flex">
+                <input placeholder="Mensagem" id="message" type="text">
+                <ion-icon onclick="enviarMensagemChat()" name="send"></ion-icon>
+            </div>
+            
+        </section>
 
     </body>
 
@@ -1596,6 +1598,8 @@
                 titulo: TITULO,
                 mensagem: MENSAGEM
             })
+            // ENVIAR NOTIFICACAO
+            enviarNotificacao(RESPONSAVEL);
             setTimeout(() => {
                 swal({
                     title: 'AVISO',
@@ -2006,10 +2010,8 @@
             const usuario = localStorage.getItem('responsavel');
             const inputMensagem = document.getElementById('message');
             const mensagem = inputMensagem.value;
-            inputMensagem.value = "";
-	    const serie = localStorage.getItem('serie');
-            if (mensagem !== "") {
-	        db.collection(ANO)
+            const serie = localStorage.getItem('serie');
+            db.collection(ANO)
             .doc('salas')
             .collection("salas")
             .doc(serie)
@@ -2029,7 +2031,7 @@
                     inputMensagem.value = '';
                 });
             });
-			}
+            
         }
 
         // LENDO AS MENSAGENS
@@ -2061,6 +2063,38 @@
         });
         
 
+        //OneSignal
+        function enviarNotificacao(responsavel) {
+            let uid = '';
+            db.collection(ANO)
+            .doc('responsaveis')
+            .collection(responsavel)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    uid = val.data().id;
+                });
+            });
+            
+            console.log("UID FIREBASE", uid);
+            const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Basic YOUR_REST_API_KEY',
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                include_subscription_ids: [uid],
+                contents: {pt: 'Você tem uma nova notificação!', es: 'Spanish Message'},
+                name: 'E.E LETÍCIA'
+            })
+            };
+
+            fetch('https://onesignal.com/api/v1/notifications', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+        }
 
     </script>
 
