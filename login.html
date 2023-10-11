@@ -34,6 +34,18 @@
               OneSignal.setExternalUserId(externalUserId);
             });
           });
+
+          setTimeout(() => {
+            swal({
+              title: "Parabens",
+              text: "Cadastro realizado com sucesso!",
+              buttons: {
+                confirm: "Ok",
+              },
+            }).then((response) => {
+              window.location.reload();
+            })
+          }, 1000);
         }
       });
 
@@ -755,17 +767,6 @@
 
         CadastrarOneSignal();
 
-        setTimeout(() => {
-          swal({
-            title: "Parabens",
-            text: "Cadastro realizado com sucesso!",
-            buttons: {
-              confirm: "Ok",
-            },
-          }).then((response) => {
-            window.location.reload();
-          })
-        }, 1000);
       }
     }
 
