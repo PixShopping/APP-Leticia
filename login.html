@@ -19,8 +19,10 @@
           },
         });
         OneSignal.push(function() {
-          OneSignal.getUserId(function(userId) {
+          OneSignal.getUserId().then(function(userId) {
             console.log('ID do Dispositivo:', userId);
+          }).catch(function(error) {
+            console.error('Erro ao obter o ID do dispositivo:', error);
           });
         });
       });
