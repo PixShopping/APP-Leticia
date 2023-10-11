@@ -17,13 +17,6 @@
                 });
 
             });
-            OneSignal.push(function() {
-            if(localStorage.getItem('os-user') === null) {
-                OneSignal.getUserId(function(userId) {
-                        localStorage.setItem('os-user', userId);
-                });
-            }
-            });
 
         </script>
 
@@ -2109,8 +2102,15 @@
         }
 
         function notificationAll(mensagem) {
-            OneSignal.push(function() {
-                OneSignal.sendNotification({
+            const options = {
+                method: 'POST',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
                     headings: {
                         en: "E.E LETÍCIA",
                         pt: "E.E LETÍCIA",
@@ -2119,9 +2119,16 @@
                         en: mensagem,
                         pt: mensagem,
                     },
-                    included_segments: ["All"]
-                });
-                });
+                    included_segments: ["All"],
+                    name: 'E.E LETÍCIA'
+                })
+            };
+
+            fetch('https://onesignal.com/api/v1/notifications', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+            
         }
 
     </script>
