@@ -15,9 +15,8 @@
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
-      });
-
-      function BC_OS_sync() {
+        
+        function BC_OS_sync() {
           var profile = blueConicClient.profile.getProfile();
 
           OneSignal.push(function() {
@@ -36,8 +35,11 @@
                   });
               });
           });
-      }
-      BC_OS_sync();
+        }
+        BC_OS_sync();
+      });
+
+      
 
     </script>
 
