@@ -868,11 +868,14 @@
     }
 
     function criarUsuarioOnesignal(name) {
+      var appId = '7639757a-a89b-4b52-8028-7e8b9d328e4c'; // Substitua pelo seu App ID do OneSignal
+      var apiKey = 'MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3'; // Substitua pelo seu REST API Key do OneSignal
 
       // Dados do usuário que você deseja criar
       var userData = {
-        app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
-        identity: {external_id: name}, // Um identificador exclusivo para o usuário
+        app_id: appId,
+        device_type: 1,
+        identity: {external_id: 12345}, // Um identificador exclusivo para o usuário
       };
 
       // Realizar a solicitação POST para criar o usuário
@@ -880,7 +883,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // 'Basic ' seguido pelo seu REST API Key
+          Authorization: 'Basic ' + btoa(apiKey + ':'), // 'Basic ' seguido pelo seu REST API Key
         },
         body: JSON.stringify(userData),
       })
