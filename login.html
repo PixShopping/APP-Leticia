@@ -14,18 +14,27 @@
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
-        OneSignal.push(function() {
-          // Solicitar permissão para notificações push
-          OneSignal.registerForPushNotifications();
+        function oneSignal() {
+          OneSignal.push(function() {
+            // Solicitar permissão para notificações push
+            OneSignal.registerForPushNotifications();
 
-          // Registrar o usuário no OneSignal
-          OneSignal.getUserId().then(function(userId) {
-            console.log('ID do Dispositivo:', userId);
-            // Neste ponto, você pode enviar o ID do dispositivo para o seu servidor, se necessário.
-          }).catch(function(error) {
-            console.error('Erro ao registrar o usuário no OneSignal:', error);
+            // Registrar o usuário no OneSignal
+            OneSignal.getUserId().then(function(userId) {
+              console.log('ID do Dispositivo:', userId);
+              // Neste ponto, você pode enviar o ID do dispositivo para o seu servidor, se necessário.
+            }).catch(function(error) {
+              console.error('Erro ao registrar o usuário no OneSignal:', error);
+            });
+
+            const responsavel = localStorage.getItem('responsavel');
+            let externalUserId = responsavel; // You will supply the external user id to the OneSignal SDK
+
+            OneSignal.push(function() {
+              OneSignal.setExternalUserId(externalUserId);
+            });
           });
-        });
+        }
       });
 
     </script>
@@ -743,6 +752,8 @@
           responsavel: RESPONSAVEL,
           aluno: ALUNO
         });
+
+        oneSignal();
 
         setTimeout(() => {
           swal({
