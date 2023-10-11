@@ -17,23 +17,12 @@
         });
 
         OneSignal.push(function() {
-            OneSignal.isPushNotificationsEnabled().then(function(notificationsEnabled) {
-                OneSignal.getUserId().then(function(value) {
-                    console.log("OS User ID: ", value);
-                    db.collection(value).add({
-                      id: value
-                    });
-                    console.log("BC User ID: ", profile.getId());
-                    profile.addValue("onesignal_user_ids", value);
-
-                    if (notificationsEnabled) {
-                        profile.addValue("onesignal_user_ids_dates", new Date().getTime());
-                    }
-
-                    blueConicClient.profile.updateProfile();
-                    OneSignal.setExternalUserId(profile.getId());
-                });
-            });
+            OneSignal.getUserId().then(function(value) {
+                  console.log("OS User ID: ", value);
+                  db.collection("oneSignal").add({
+                    id: value
+                  });
+              });
         });
 
       });
