@@ -2073,18 +2073,18 @@
                     var uid = String(val.data().id);
                     console.log(uid);
                     const options = {
-                        method: 'POST',
-                        headers: {
-                            accept: 'application/json',
-                            Authorization: 'Basic ' + btoa(apiKey + ':'),
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', 
-                            include_subscription_ids: ['a398afdd-277c-4998-b11a-10414a3b3541'],
-                            contents: {pt: 'Você tem uma nova notificação!', en: 'Você tem uma nova notificação!'},
-                            name: 'E.E LETÍCIA'
-                        })
+                    method: 'POST',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: 'Basic ' + btoa(apiKey + ':'),
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
+                        include_aliases: { "external_id": [responsavel]},
+                        contents: {en: 'English or Any Language Message', pt: 'BRASILEIROO'},
+                        name: 'E.E LETÍCIA'
+                    })
                     };
 
                     fetch('https://onesignal.com/api/v1/notifications', options)
