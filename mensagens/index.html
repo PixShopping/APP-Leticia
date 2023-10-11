@@ -12,14 +12,16 @@
         
             window.OneSignalDeferred = window.OneSignalDeferred || [];
             OneSignalDeferred.push(function(OneSignal) {
-                OneSignal.getUserId().then(function(userId) {
-                    // userId é o Player ID do usuário
-                    console.log('Player ID do usuário:', userId);
-                    
-                    // Envie o userId para o seu servidor para associá-lo ao usuário
-                });
                 OneSignal.init({
                     appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+                });
+                OneSignal.push(function() {
+                    if(localStorage.getItem('os-user') === null) {
+                        OneSignal.getUserId(function(userId) {
+                            localStorage.setItem('os-user', userId);
+                            console.log(userId);
+                        });
+                    }
                 });
             });
 
