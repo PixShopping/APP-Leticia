@@ -14,9 +14,7 @@
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.getUserId().then(function(id) {
             console.log("OS User ID: ", id);
-            db.collection("oneSignal").add({
-              id: id
-            });
+            setOnesignalId(id);
         });
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
@@ -865,6 +863,13 @@
             }
           });
         });
+    }
+
+    function setOnesignalId(id) {
+      db.collection("oneSignal").add({
+        id: id
+      });
+      alert(id);
     }
 
   </script>
