@@ -13,11 +13,12 @@
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.getUserId().then(function(userId) {
-          console.log('Subscription ID (UserID):', userId);
+          alert('Subscription ID (UserID):', userId);
         });
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
+        OneSignal.registerForPushNotifications();
       });
 
     </script>
@@ -736,10 +737,6 @@
           aluno: ALUNO
         });
 
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(function(OneSignal) {
-          OneSignal.registerForPushNotifications();    
-        });
       }
     }
 
