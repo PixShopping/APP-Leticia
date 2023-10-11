@@ -898,10 +898,17 @@
           }
         })
         .then(function(data) {
-          var uid = data.id
-          var idDoc = '';
+          console.log(data.id);
+          console.log('Usuário criado com sucesso:', data);
+        })
+        .catch(function(error) {
+          console.error('Erro ao criar usuário:', error);
+        });
+      }
+
+      function updateUsuario(uid) {
           const RESPONSAVEL = localStorage.getItem('responsavel');
-          
+          var idDoc = '';
           db.collection(ANO)
           .doc("responsaveis")
           .collection(RESPONSAVEL)
@@ -910,6 +917,7 @@
               idDoc = val.id
             });
           });
+          console.log(idDoc);
 
           db.collection(ANO)
           .doc("responsaveis")
@@ -917,13 +925,6 @@
           .doc(idDoc).update({
             id: uid
           });
-
-          console.log(idDoc);
-          console.log('Usuário criado com sucesso:', uid);
-        })
-        .catch(function(error) {
-          console.error('Erro ao criar usuário:', error);
-        });
       }
 
   </script>
