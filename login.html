@@ -9,44 +9,12 @@
 
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
+      
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.init({
           appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
         });
-        function CadastrarOneSignal() {
-          OneSignal.push(function() {
-            // Solicitar permissão para notificações push
-            OneSignal.registerForPushNotifications();
-
-            // Registrar o usuário no OneSignal
-            OneSignal.getUserId().then(function(userId) {
-              console.log('ID do Dispositivo:', userId);
-              // Neste ponto, você pode enviar o ID do dispositivo para o seu servidor, se necessário.
-            }).catch(function(error) {
-              console.error('Erro ao registrar o usuário no OneSignal:', error);
-            });
-
-            const responsavel = localStorage.getItem('responsavel');
-            let externalUserId = responsavel; // You will supply the external user id to the OneSignal SDK
-
-            OneSignal.push(function() {
-              OneSignal.setExternalUserId(externalUserId);
-            });
-          });
-
-          setTimeout(() => {
-            swal({
-              title: "Parabens",
-              text: "Cadastro realizado com sucesso!",
-              buttons: {
-                confirm: "Ok",
-              },
-            }).then((response) => {
-              window.location.reload();
-            })
-          }, 1000);
-        }
       });
 
     </script>
@@ -765,8 +733,10 @@
           aluno: ALUNO
         });
 
-        CadastrarOneSignal();
-
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+          OneSignal.registerForPushNotifications();    
+        });
       }
     }
 
@@ -891,6 +861,7 @@
           });
         });
     }
+
   </script>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
