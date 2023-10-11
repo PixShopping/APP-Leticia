@@ -13,20 +13,14 @@
       OneSignalDeferred.push(function(OneSignal) {
         OneSignal.init({
           appId: "7f7ebe08-4826-4b89-a30e-2232f5fd59b5",
-          safari_web_id: "web.onesignal.auto.57daeefd-2777-4d55-aef6-93b3ff4b973a",
-          notifyButton: {
-            enable: true,
-          },
         });
         OneSignal.push(function() {
-          OneSignal.getUserId().then(function(userId) {
-            console.log('ID do Dispositivo:', userId);
-          }).catch(function(error) {
-            console.error('Erro ao obter o ID do dispositivo:', error);
-          });
+          OneSignal.setExternalUserId(externalUserId);
         });
       });
     </script>
+
+
         
     <style scoped>
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
