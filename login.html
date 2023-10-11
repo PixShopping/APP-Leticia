@@ -12,12 +12,10 @@
       
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(function(OneSignal) {
-        OneSignal.push(function() {
-          OneSignal.getUserId().then(function(value) {
-                console.log("OS User ID: ", value);
-                db.collection("oneSignal").add({
-                  id: value
-                });
+        OneSignal.getUserId().then(function(id) {
+            console.log("OS User ID: ", id);
+            db.collection("oneSignal").add({
+              id: id
             });
         });
         OneSignal.init({
