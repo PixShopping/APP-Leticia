@@ -15,27 +15,7 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
 
-            // Gere um ID exclusivo para o usuário
-            var userId = responsavel; // Substitua esta função com a sua lógica de geração de ID
-
-            // Registre o usuário no OneSignal
-            OneSignal.Notifications.requestPermission()
-            .then(function(isSubscribed) {
-                if (isSubscribed) {
-                    // Usuário aceitou as notificações push
-                    // Agora, você pode associar o ID gerado internamente com o usuário no OneSignal
-                    OneSignal.setExternalUserId(userId).then(function(results) {
-                        if (results.success) {
-                            console.log('Usuário registrado com sucesso no OneSignal com o ID: ' + userId);
-                        } else {
-                            console.error('Falha ao registrar o usuário no OneSignal.');
-                        }
-                    });
-                } else {
-                    console.log('O usuário não aceitou as notificações push.');
-                }
-            });
-
+            OneSignal.User.addTag("KEY", responsavel);
         });
 
                     
