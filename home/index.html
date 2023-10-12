@@ -14,6 +14,28 @@
             OneSignal.init({
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
+
+            // Verifique se o navegador suporta notificações push
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function (permission) {
+                    if (permission === 'granted') {
+                        // As notificações push estão permitidas, então vamos obter o ID do OneSignal
+                        OneSignal.getUserId(function(userId) {
+                            if (userId) {
+                                console.log('OneSignal ID: ' + userId);
+                                // Faça algo com o ID do OneSignal, como enviá-lo para o servidor
+                            } else {
+                                console.log('ID do OneSignal não disponível');
+                            }
+                        });
+                    } else {
+                        console.log('Notificações push não permitidas pelo usuário');
+                    }
+                });
+            } else {
+                console.log('Notificações push não são suportadas neste navegador');
+            }
+
         });
 
                     
@@ -1055,63 +1077,6 @@
                 });
         }
 
-        function cadastrarOnesignal() {
-            const options = {
-                method: 'POST',
-                headers: {accept: 'application/json', 'content-type': 'application/json'},
-                body: JSON.stringify({
-                    properties: {
-                    tags: {key: 'value', foo: 'bar', firstname: responsavel},
-                    language: 'pt',
-                    timezone_id: 'America\/Los_Angeles',
-                    lat: 90,
-                    long: 135,
-                    country: 'BR',
-                    first_active: 1678215680,
-                    last_active: 1678215682
-                    },
-                    identity: {external_id: responsavel, my_custom_alias_label: responsavel},
-                    subscriptions: [{type: "AndroidPush", token: responsavel, enabled: true}]
-                })
-            };
-
-            fetch('https://onesignal.com/api/v1/apps/7639757a-a89b-4b52-8028-7e8b9d328e4c/users', options)
-            .then(function(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response.json();
-                } else {
-                throw new Error('Erro na solicitação: ' + response.status);
-                }
-            })
-            .then(function(data) {
-                const uid = data.identity.onesignal_id;
-
-                db.collection(ANO)
-                .doc('responsaveis')
-                .collection(responsavel)
-                .onSnapshot((dados) => {
-                    dados.docs.map((dado) => {
-                        db.collection(ANO)
-                        .doc('responsaveis')
-                        .collection(responsavel)
-                        .doc(dado.id).update({
-                            id: uid
-                        });
-                        console.log('Usuário criado com sucesso. ID:', uid);        
-                    })
-                });
-                
-            })
-            .catch(function(error) {
-                console.error('Erro ao criar usuário:', error);
-            });
-        
-        }
-
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(function(OneSignal) {
-            cadastrarOnesignal(); 
-        });
 
        </script>
 
