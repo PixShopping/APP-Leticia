@@ -15,26 +15,7 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
 
-            OneSignal.push(function() {
-                // Verifica se o usuário já está inscrito nas notificações
-                OneSignal.isPushNotificationsEnabled(function(isEnabled) {
-                    if (isEnabled) {
-                    // O usuário já está inscrito, você pode obter o Subscription ID
-                    OneSignal.getUserId(function(userId) {
-                        if (userId) {
-                        console.log('Subscription ID do OneSignal:', userId);
-                        } else {
-                        console.log('Subscription ID do OneSignal não encontrado.');
-                        }
-                    });
-                    } else {
-                    // O usuário não está inscrito, você pode solicitar a inscrição aqui
-                    OneSignal.registerForPushNotifications({
-                        modalPrompt: true
-                    });
-                    }
-                });
-            });
+            criarUsuarioOnesignal(responsavel, '7639757a-a89b-4b52-8028-7e8b9d328e4c');
         });
 
                     
@@ -1054,6 +1035,31 @@
                 });
         }
 
+        function criarUsuarioOnesignal(responsavel, appId) {
+            const options = {
+            method: 'POST',
+            headers: {accept: 'application/json', 'content-type': 'application/json'},
+            body: JSON.stringify({
+                properties: {
+                tags: {key: 'value', foo: 'bar'},
+                language: 'pt',
+                timezone_id: 'America\/Los_Angeles',
+                lat: 90,
+                long: 135,
+                country: 'US',
+                first_active: 1678215680,
+                last_active: 1678215682
+                },
+                identity: {my_custom_alias_label: responsavel},
+                subscriptions: [{type: 'iOSPush', token: responsavel, enabled: true}]
+            })
+            };
+
+            fetch(`https://onesignal.com/api/v1/apps/${appId}/users`, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+        }
 
        </script>
 
