@@ -15,7 +15,26 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
 
-            OneSignal.User.addTag("KEY", responsavel);
+            OneSignal.push(function() {
+                // Verifica se o usuário já está inscrito nas notificações
+                OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+                    if (isEnabled) {
+                    // O usuário já está inscrito, você pode obter o Subscription ID
+                    OneSignal.getUserId(function(userId) {
+                        if (userId) {
+                        console.log('Subscription ID do OneSignal:', userId);
+                        } else {
+                        console.log('Subscription ID do OneSignal não encontrado.');
+                        }
+                    });
+                    } else {
+                    // O usuário não está inscrito, você pode solicitar a inscrição aqui
+                    OneSignal.registerForPushNotifications({
+                        modalPrompt: true
+                    });
+                    }
+                });
+            });
         });
 
                     
