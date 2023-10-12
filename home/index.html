@@ -19,9 +19,8 @@
             var userId = responsavel; // Substitua esta função com a sua lógica de geração de ID
 
             // Registre o usuário no OneSignal
-            OneSignal.registerForPushNotifications({
-                modalPrompt: true
-            }).then(function(isSubscribed) {
+            OneSignal.Notifications.requestPermission()
+            .then(function(isSubscribed) {
                 if (isSubscribed) {
                     // Usuário aceitou as notificações push
                     // Agora, você pode associar o ID gerado internamente com o usuário no OneSignal
@@ -541,22 +540,6 @@
                 box-shadow: 0px 5px 15px var(--six);
             }
 
-            /* GOOGLE MAPS */
-
-            .mapouter {
-                display: flex;
-                justify-content: center;
-            }
-
-            .gmap_iframe {
-                width: 95vw;
-                height: 400px;
-                padding: 20px;
-                border-radius: 15px;
-                margin: 10px auto;
-                background: var(--one);
-            }
-
             </style>
            </head>
 
@@ -614,12 +597,6 @@
                         </section>
     
                     </section>
-
-                    <div class="mapouter">
-                        <div class="gmap_canvas">
-                            <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=E.E. Letícia G. B de C. Lopes - Rua Antonia de Camargo Abreu - Jd. das Roseiras, Araraquara - State of São Paulo, Brazil&amp;t=k&amp;z=19&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                        </div>
-                    </div>
 
                 </main>
 
