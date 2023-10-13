@@ -3,7 +3,7 @@ from selenium import webdriver
 
 app = Flask(__name__)
 
-@app.route('https://app-leticia.netlify/consulta', methods=['GET'])
+@app.route('/consulta', methods=['GET'])
 def index():
     # Inicialize o driver do navegador (no exemplo, usaremos o Chrome)
     driver = webdriver.Chrome()
@@ -18,4 +18,4 @@ def index():
     # Renderize o resultado no template HTML
     return render_template('template.html', title=title)
 
-app.run(host="https://app-leticia.netlify.app")
+app.run()
