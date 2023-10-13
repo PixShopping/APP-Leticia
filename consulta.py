@@ -3,104 +3,68 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from time import *
-import sys
+from flask import Flask, render_template, request, jsonify
+import subprocess
 
-# ENTRANDO NA SEDE
-usuario = ''
-senha = ''
-if __name__ == "__main__":
-   if len(sys.argv) != 3:
-       print("Uso: python seu_script.py <usuario> <senha>")
-   else:
-       usuario = sys.argv[1]
-       senha = sys.argv[2]
+app = Flask(__name__)
 
-driver = webdriver.Firefox()
-driver.get('https://sed.educacao.sp.gov.br/Inicio')
-sleep(5)
+@app.route('/home', methods=['POST'])
+def home():
+    # ENTRANDO NA SEDE
+    usuario = '0001112223334'
+    senha = '12345678'
 
-# COLOCANDO O USUARIO
-campo_usuario = driver.find_element(By.XPATH, "//input[@id='name']")
-campo_usuario.send_keys(usuario)
-sleep(1)
-# COLOCANDO A SENHA
-campo_senha = driver.find_element(By.XPATH, "//input[@id='senha']")
-campo_senha.send_keys(senha)
-sleep(1)
-# CLICANDO NO BOTÃO DE ENTRAR
-botao_entrar = driver.find_element(By.XPATH, "//input[@id='botaoEntrar']")
-botao_entrar.click()
-sleep(1)
+    driver = webdriver.Firefox()
+    driver.get('https://sed.educacao.sp.gov.br/Inicio')
+    sleep(5)
 
-# COLETAR DADOS DO ALUNO E RESPONSAVEL
-driver.get('https://sed.educacao.sp.gov.br/Aluno/ConsultaAluno')
+    # COLOCANDO O USUARIO
+    campo_usuario = driver.find_element(By.XPATH, "//input[@id='name']")
+    campo_usuario.send_keys(usuario)
+    sleep(1)
+    # COLOCANDO A SENHA
+    campo_senha = driver.find_element(By.XPATH, "//input[@id='senha']")
+    campo_senha.send_keys(senha)
+    sleep(1)
+    # CLICANDO NO BOTÃO DE ENTRAR
+    botao_entrar = driver.find_element(By.XPATH, "//input[@id='botaoEntrar']")
+    botao_entrar.click()
+    sleep(1)
 
-# NOME DO ALUNO
-input_nome_do_aluno = driver.find_element(By.XPATH, "//input[@id='NomeAluno']")
-aluno = input_nome_do_aluno.get_attribute("value")
+    # COLETAR DADOS DO ALUNO E RESPONSAVEL
+    driver.get('https://sed.educacao.sp.gov.br/Aluno/ConsultaAluno')
 
-# NOME DO PAI
-input_nome_do_pai = driver.find_element(By.XPATH, "//input[@id='NomePai']")
-pai = input_nome_do_pai.get_attribute("value")
+    # NOME DO ALUNO
+    input_nome_do_aluno = driver.find_element(By.XPATH, "//input[@id='NomeAluno']")
+    aluno = input_nome_do_aluno.get_attribute("value")
 
-# NOME DO MAE
-input_nome_do_mae = driver.find_element(By.XPATH, "//input[@id='NomeMae']")
-mae = input_nome_do_mae.get_attribute("value")
+    # NOME DO PAI
+    input_nome_do_pai = driver.find_element(By.XPATH, "//input[@id='NomePai']")
+    pai = input_nome_do_pai.get_attribute("value")
 
-# CPF DO ALUNO
-input_cpf = driver.find_element(By.XPATH, "//input[@id='CpfAluno']")
-cpf = input_cpf.get_attribute("value")
+    # NOME DO MAE
+    input_nome_do_mae = driver.find_element(By.XPATH, "//input[@id='NomeMae']")
+    mae = input_nome_do_mae.get_attribute("value")
 
-# RG DO ALUNO - DIGITO
-input_rg = driver.find_element(By.XPATH, "//input[@id='RgAluno']")
-rg = input_rg.get_attribute("value")
-input_rg_digito = driver.find_element(By.XPATH, "//input[@id='DigRgAluno']")
-rg_digito = input_rg_digito.get_attribute("value")
+    # CPF DO ALUNO
+    input_cpf = driver.find_element(By.XPATH, "//input[@id='CpfAluno']")
+    cpf = input_cpf.get_attribute("value")
 
-# ENDEREÇO
-input_endereco = driver.find_element(By.XPATH, "//input[@id='Endereco']")
-endereco = input_endereco.get_attribute("value")
+    # RG DO ALUNO - DIGITO
+    input_rg = driver.find_element(By.XPATH, "//input[@id='RgAluno']")
+    rg = input_rg.get_attribute("value")
+    input_rg_digito = driver.find_element(By.XPATH, "//input[@id='DigRgAluno']")
+    rg_digito = input_rg_digito.get_attribute("value")
 
-# ENDEREÇO BAIRRO
-input_bairro = driver.find_element(By.XPATH, "//input[@id='EnderecoBairro']")
-bairro = input_bairro.get_attribute("value")
+    # ENDEREÇO
+    input_endereco = driver.find_element(By.XPATH, "//input[@id='Endereco']")
+    endereco = input_endereco.get_attribute("value")
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+    # ENDEREÇO BAIRRO
+    input_bairro = driver.find_element(By.XPATH, "//input[@id='EnderecoBairro']")
+    bairro = input_bairro.get_attribute("value")
+    
+    return aluno
 
-# Configurações de autenticação com base no seu firebaseConfig
-cred = credentials.Certificate({
-    "apiKey": "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
-    "authDomain": "banco-de-dados-leticia.firebaseapp.com",
-    "projectId": "banco-de-dados-leticia",
-    "storageBucket": "banco-de-dados-leticia.appspot.com",
-    "messagingSenderId": "230701596733",
-    "appId": "1:230701596733:web:4c52051fd1e7290e282a54"
-})
-
-# Inicialize o aplicativo Firebase
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-
-# Adicione um documento a uma coleção
-data = {
-    "aluno": aluno,
-    "pai": pai,
-    "mae": mae,
-    "cpf": cpf
-}
-
-# Substitua "sua_colecao" pelo nome da coleção em que deseja adicionar o documento
-db.collection("python").add(data)
-
-# SEXO DO ALUNO
-# CIDADE DE NASC. UF (ex: SP)
-# PAÍS DE NASCIMENTO
-# DATA DE NASCIMENTO
-# RA DO ALUNO - DIGITO - UF
-# ENDEREÇO
-# BAIRRO
-# CEP
-# CIDADE - UF
-
+if __name__ == '__main__':
+   app.run(debug=True)
