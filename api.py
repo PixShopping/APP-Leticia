@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
    return render_template('index.html')
 
-@app.route('/consulta', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def executar_script():
    usuario = request.form['usuario']
    senha = request.form['senha']
