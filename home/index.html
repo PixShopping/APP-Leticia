@@ -1034,6 +1034,11 @@
                 });
         }*/
 
+        fetch('http://127.0.0.1:5500').then((response) => {
+            response.json().then((dados) => {
+                console.log(dados);
+            })
+        })
 
        </script>
 
