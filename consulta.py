@@ -65,17 +65,34 @@ endereco = input_endereco.get_attribute("value")
 input_bairro = driver.find_element(By.XPATH, "//input[@id='EnderecoBairro']")
 bairro = input_bairro.get_attribute("value")
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-print('Aluno: ', aluno)
-print('Pai: ', pai)
-print('Mãe: ', mae)
-print('Cpf: ', cpf)
-print('Rg: ', rg, '-' , rg_digito)
+# Configurações de autenticação com base no seu firebaseConfig
+cred = credentials.Certificate({
+    "apiKey": "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
+    "authDomain": "banco-de-dados-leticia.firebaseapp.com",
+    "projectId": "banco-de-dados-leticia",
+    "storageBucket": "banco-de-dados-leticia.appspot.com",
+    "messagingSenderId": "230701596733",
+    "appId": "1:230701596733:web:4c52051fd1e7290e282a54"
+})
 
-print()
-print('Endereço Residencial')
-print('Endereço: ', endereco)
-print('Bairro:', bairro)
+# Inicialize o aplicativo Firebase
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+# Adicione um documento a uma coleção
+data = {
+    "aluno": aluno,
+    "pai": pai,
+    "mae": mae,
+    "cpf": cpf
+}
+
+# Substitua "sua_colecao" pelo nome da coleção em que deseja adicionar o documento
+db.collection("python").add(data)
 
 # SEXO DO ALUNO
 # CIDADE DE NASC. UF (ex: SP)
