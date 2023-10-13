@@ -15,7 +15,6 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
 
-            criarUsuarioOnesignal();
         });
 
                     
@@ -1035,31 +1034,6 @@
                 });
         }*/
 
-        function criarUsuarioOnesignal() {
-            const options = {
-                method: 'POST',
-                headers: {accept: 'application/json', 'content-type': 'application/json'},
-                body: JSON.stringify({
-                    properties: {
-                    tags: {key: 'value', foo: 'bar', firstname: responsavel},
-                    language: 'en',
-                    timezone_id: 'America\/Los_Angeles',
-                    lat: 90,
-                    long: 135,
-                    country: 'US',
-                    first_active: 1678215680,
-                    last_active: 1678215682
-                    },
-                    identity: {my_custom_alias_label: responsavel},
-                    subscriptions: [{type: 'iOSPush', token: responsavel, enabled: true}]
-                })
-            };
-
-            fetch('https://onesignal.com/api/v1/apps/7639757a-a89b-4b52-8028-7e8b9d328e4c/users', options)
-            .then(response => response.json())
-            .then(response => console.log(response))
-            .catch(err => console.error(err));
-        }
 
        </script>
 
