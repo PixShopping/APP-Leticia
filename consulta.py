@@ -8,7 +8,7 @@ import subprocess
 
 app = Flask(__name__)
 
-@app.route('/home', methods=['POST'])
+@app.route('/home/consulta', methods=['POST'])
 def home():
     # ENTRANDO NA SEDE
     usuario = '0001112223334'
