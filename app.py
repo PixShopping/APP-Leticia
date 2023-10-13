@@ -18,4 +18,4 @@ def index():
     # Renderize o resultado no template HTML
     return render_template('template.html', title=title)
 
-app.run()
+app.run(host="https://app-leticia.netlify.app")
