@@ -77,6 +77,9 @@
             	padding: 0px 20px 0px 20px;
                 z-index: 100;
                 box-shadow: 0px 0px 10px var(--one);
+                position: fixed;
+                top: 0px;
+                left: 0px;
 	 	    }
 
             .local ion-icon {
@@ -129,6 +132,9 @@
             }
 
             .container {
+                position: relative;
+                top: 70px;
+                left: 0px;
                 padding: 0px 0px 90px 0px;
             }
 
@@ -489,6 +495,12 @@
             font-size: 20px;
             font-weight: 500;
             letter-spacing: 0.3px;
+            cursor: pointer;
+            color: var(--six);
+        }
+
+        .containerOpcoes h1 a {
+            text-decoration: underline;
         }
 
         .containerOpcoes button {
@@ -687,6 +699,9 @@
             display: none;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            top: 65px;
+            left: 0px;
         }
 
         .containerChat h1 {
@@ -790,7 +805,26 @@
             letter-spacing: 0.5px;
         }
 
+        /* DADOS DOS RESPONSAVEIS */
+        .dadosResponsavel {
+            width: 100vw;
+            height: auto;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
+        .dadosResponsavel h1 {
+            width: 100%;
+            font-size: 20px;
+            color: var(--one);
+            margin: 5px 0px;
+        }
+
+        .dadosResponsavel h1 strong {
+            color: var(--six);
+        }
 
         </style>
     </head>
@@ -1109,6 +1143,8 @@
 
             </div>
 
+            <section class="dadosResponsavel"></section>
+
         </main>
 
 
@@ -1208,6 +1244,8 @@
             
         </section>
 
+        
+
     </body>
 
 
@@ -1234,10 +1272,12 @@
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
           root.style.setProperty('--two', '#9ECAE3');
+          root.style.setProperty('--six', '#144774');
           root.style.setProperty('--white', 'white');
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
           root.style.setProperty('--two', '#144774');
+          root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
         }
 
@@ -1252,7 +1292,9 @@
             const elemento = document.querySelector(`[data-index="${index}"]`);
             const responsavel = elemento.getAttribute('data-responsavel');
             containerOpcoes.style.display = "flex";
-            tituloMensagem.innerHTML = responsavel;
+            tituloMensagem.innerHTML = `
+                <a onclick="verDadosResponsavel()">${responsavel}</a>
+            `;
             localStorage.setItem('verResponsavel', responsavel);
          }
 
@@ -1516,7 +1558,7 @@
         const ANO = localStorage.getItem('ano');
 
        function abrirMensagem(index) {
-            const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll('section');
             sections.forEach(section => {
                 section.style.display = "none";
             });
@@ -1625,8 +1667,6 @@
     <!-- LINKS DO BANCO DE DADOS -->
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-    <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
     <!-- BANCO DE DADOS -->
     <script>
@@ -1973,6 +2013,60 @@
         
       }
 
+      // VER DADOS DOS RESPONSAVEIS
+      function verDadosResponsavel() {
+        const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+        const div = document.querySelector('.dadosResponsavel');
+        div.style.display = "flex";
+        const uindex = localStorage.getItem('index');
+        const elemento = document.querySelector(`[data-index="${uindex}"]`);
+        const responsavel = elemento.getAttribute('data-responsavel');
+        db.collection(ANO)
+        .doc('responsaveis')
+        .collection(responsavel)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                var aluno = 'Não definido';
+                var serie = 'Não definido';
+                var email = 'Não definido';
+                var telefone = 'Não definido';
+                var senha = 'Não definido';
+                if (val.data().aluno !== '') {
+                    aluno = val.data().aluno;
+                }
+                if (val.data().serie !== '') {
+                    serie = val.data().serie;
+                }
+                if (val.data().gmail !== '') {
+                    email = val.data().gmail;
+                }
+                if (val.data().telefone !== '') {
+                    telefone = val.data().telefone;
+                }
+                if (val.data().senha !== '') {
+                    senha = val.data().senha;    
+                }
+                
+                
+                
+                
+                div.innerHTML = `
+                    <h1><strong>Responsavel: </strong>${responsavel}</h1>
+                    <h1><strong>Aluno: </strong>${aluno}</h1>
+                    <h1><strong>Serie: </strong>${serie}</h1>
+                    <h1><strong>Email: </strong>${email}</h1>
+                    <h1><strong>Telefone: </strong>${telefone}</h1>
+                    <h1><strong>Senha: </strong>${senha}</h1>
+                    
+                `;
+            });
+        });
+        
+      }
+
     </script>
 
 
@@ -2066,7 +2160,7 @@
         });
         
 
-        //OneSignal
+        /*OneSignal
         function enviarNotificacao(responsavel, mensagem, titulo) {
 
             db.collection(ANO)
@@ -2099,7 +2193,7 @@
             });
 
             
-        }
+        }*/
 
         function notificationAll(mensagem) {
             const options = {
