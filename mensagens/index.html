@@ -2253,14 +2253,14 @@
         }
 
         function notificationUser(mensagem, responsavel) {
-            let onesignalId = '';
+            const onesignalId = localStorage.getItem('onesignalId');
 
             db.collection(ANO)
             .doc('responsaveis')
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    onesignalId = val.data().onesignalId;
+                    localStorage.setItem('onesignalId', val.data().onesignalId);
                 });
             });
 
