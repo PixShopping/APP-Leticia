@@ -9,14 +9,32 @@
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
         
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        /*window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
-                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+                appId: "",
             }); 
-        });
+        });*/
 
-                    
+        document.addEventListener('deviceready', function () {
+
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+            var notificationOpenedCallback = function(jsonData) {
+                console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            };
+
+            window.plugins.OneSignal
+                .startInit("7639757a-a89b-4b52-8028-7e8b9d328e4c)
+                .handleNotificationOpened(notificationOpenedCallback)
+                .endInit();
+
+            window.plugins.OneSignal.getIds(function(ids) {
+                alert("player id: " + ids.userId);
+            });
+
+        }, false);         
 
         </script>
 
