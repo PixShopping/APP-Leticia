@@ -7,6 +7,7 @@
 		<title> Inicio | Letícia </title>
 
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <div class='onesignal-customlink-container'></div>
         <script>
         
         window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -14,7 +15,7 @@
             OneSignal.init({
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             });
-
+            
             const options = {
                 method: 'POST',
                 headers: { 'accept': 'application/json', 'Content-Type': 'application/json' },
