@@ -2253,46 +2253,43 @@
         }
 
         function notificationUser(mensagem, responsavel) {
-            const onesignalId = localStorage.getItem('onesignalId');
 
             db.collection(ANO)
             .doc('responsaveis')
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    localStorage.setItem('onesignalId', val.data().onesignalId);
-                });
+                    alert(val.data().onesignalId);
+                    const notificationData = {
+                        app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
+                        include_external_user_ids: [val.data().onesignalId], // Lista de onesignal_id dos destinatários
+                        headings: {
+                            en: "E.E LETÍCIA",
+                            pt: "E.E LETÍCIA",
+                        },
+                        contents: {
+                            en: mensagem,
+                            pt: mensagem,
+                        },
+                    };
+
+                fetch('https://onesignal.com/api/v1/notifications', {
+                    method: 'POST',
+                    headers: {
+                        Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(notificationData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Notificação enviada com sucesso:', data);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao enviar a notificação:', error);
+                    });
+                    });
             });
-
-            alert(onesignalId);
-            const notificationData = {
-                app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
-                include_external_user_ids: [onesignalId], // Lista de onesignal_id dos destinatários
-                headings: {
-                    en: "E.E LETÍCIA",
-                    pt: "E.E LETÍCIA",
-                },
-                contents: {
-                    en: mensagem,
-                    pt: mensagem,
-                },
-            };
-
-            fetch('https://onesignal.com/api/v1/notifications', {
-                method: 'POST',
-                headers: {
-                    Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(notificationData),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Notificação enviada com sucesso:', data);
-                })
-                .catch(error => {
-                    console.error('Erro ao enviar a notificação:', error);
-                });
         }
 
     </script>
