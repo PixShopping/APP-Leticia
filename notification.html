@@ -6,7 +6,9 @@
     <link rel="icon" href="../src/img/icon.png" type="x-icon" />
     <link type="stylesheet" src="../style.css" />
     <title>Logar | Letícia</title>
+    
     <div class='onesignal-customlink-container'></div>
+    
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         
@@ -33,18 +35,18 @@
                         .collection(responsavel)
                         .doc(val.id).update({
                             onesignalId: currentState.id
-                        })
-                    })
-                })
+                        });
+                    });
+                });
                 
                 if (!currentState.id) {
                     swal({
                         title: "AVISO",
                         text: "Você não aceitou as notificações!",
                         buttons: {
-                            confirm: "Ok!"
+                            confirm: "Ok!",
                         },
-                    })
+                    });
                 } else {
                     window.location.href = "../home/";
                 }
@@ -62,6 +64,7 @@
 
 
         });
+
     </script>
 
     <style scoped>
@@ -175,8 +178,6 @@
         }
 
         .onesignal-customlink-container {
-            width: 100vw;
-            height: auto;
             position: absolute;
             bottom: 0px;
             left: 0px;
