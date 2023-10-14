@@ -7,7 +7,39 @@
     <link type="stylesheet" src="../style.css" />
     <title>Logar | Letícia</title>
 
-    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+            });
+
+            function pushSubscriptionChangeListener(event) {
+                const previousState = event.previous; // Estado anterior da assinatura
+                const currentState = event.current; // Estado atual da assinatura
+
+                console.log('Push Subscription Mudou:');
+                console.log('ID anterior:', previousState.id);
+                console.log('ID atual:', currentState.id);
+
+                if (currentState.token) {
+                    console.log('Novo token de Push:', currentState.token);
+                }
+
+                if (currentState.optedIn === false) {
+                    console.log('Permissões de push foram negadas ou optOut() foi chamado.');
+                }
+            }
+
+                OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+
+
+              
+        });
+    </script>
+
     <style scoped>
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
 
