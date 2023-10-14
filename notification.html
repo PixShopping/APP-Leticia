@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../src/img/icon.png" type="x-icon" />
+    <link type="stylesheet" src="../style.css" />
+    <title>Logar | Letícia</title>
+    <div class='onesignal-customlink-container'></div>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+            });
+
+            function pushSubscriptionChangeListener(event) {
+                const previousState = event.previous; // Estado anterior da assinatura
+                const currentState = event.current; // Estado atual da assinatura
+
+                console.log('Push Subscription Mudou:');
+                console.log('ID anterior:', previousState.id);
+                console.log('ID atual:', currentState.id);
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        db.collection(ANO)
+                        .doc('responsaveis')
+                        .collection(responsavel)
+                        .doc(val.id).update({
+                            onesignalId: currentState.id
+                        })
+                    })
+                })
+                
+
+                if (currentState.token) {
+                    console.log('Novo token de Push:', currentState.token);
+                }
+
+                if (currentState.optedIn === false) {
+                    console.log('Permissões de push foram negadas ou optOut() foi chamado.');
+                }
+            }
+
+            OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+
+
+        });
+    </script>
+
+    <style scoped>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap");
+
+      :root {
+        /* Cores do aplicativo */
+        --one: #002242;
+        --two: #144774;
+        --tree: #336fa5;
+        --four: #4e8bb8;
+        --five: #6fadd2;
+        --six: #9ecae3;
+        --white: white;
+        --font: "Ubuntu", sans-serif;
+        --green: rgb(20, 218, 20);
+		--red: rgb(240, 36, 36);
+      }
+
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        font-family: var(--font);
+      }
+
+      *::-webkit-scrollbar {
+        display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+      }
+
+      body {
+        background: var(--white);
+        color: var(--one);
+        user-select: none;
+        font-family: "Arial";
+        overflow-x: hidden;
+        transition: all 0.4s ease-in-out;
+      }
+
+      .container {
+        width: 100vw;
+        height: 90vh;
+      }
+
+      /* LOGO */
+      .logo {
+        width: 100%;
+        height: 60vh;
+        background: var(--one);
+        color: var(--white);
+        border-radius: 0px 0px 25px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo h1 {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 0.8px;
+      }
+
+      .content-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content-logo img {
+        width: 385px;
+        height: 385px;
+      }
+
+
+      /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+        .onesignal-customlink-container {
+            width: 100vw;
+            height: auto;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="logo">
+        <h1></h1>
+        <ion-icon onclick="voltar()" id="voltar" name="arrow-back"></ion-icon>
+        <div class="content-logo">
+          <img alt="Logo da escola" src="../src/img/logo.png" />
+        </div>
+      </section>
+
+      
+    </main>
+  </body>
+
+  <!-- JavaScript -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+
+  <script>
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
+        authDomain: "banco-de-dados-leticia.firebaseapp.com",
+        projectId: "banco-de-dados-leticia",
+        storageBucket: "banco-de-dados-leticia.appspot.com",
+        messagingSenderId: "230701596733",
+        appId: "1:230701596733:web:4c52051fd1e7290e282a54"
+    };
+
+
+	  /* Atualizer Banco de Dados */
+	  firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+    // Pegar o ANO LETICO ATUAL
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    localStorage.setItem('ano', anoAtual);
+    const ANO = localStorage.getItem('ano');
+
+    // MOSTRAR SENHA DO CADASTRO
+    const responsavel = localStorage.getItem('responsavel');
+
+    /*window.addEventListener('onload', () => {
+        
+    });*/
+
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</html>
