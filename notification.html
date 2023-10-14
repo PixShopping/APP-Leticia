@@ -49,29 +49,7 @@
 
             OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
 
-            // NOTIFICACAO
-            if ('Notification' in window) {
-            // Verifique o estado atual das permissões de notificação
-                Notification.requestPermission().then(function(permission) {
-                    if (permission === 'granted') {
-                        // As notificações estão aceitas
-                        window.location.href = "../home/";
-                    } else if (permission === 'denied') {
-                        swal({
-                            title: "AVISO",
-                            text: "Você não aceitou as notificações!",
-                            buttons: {
-                                confirm: "Ok!",
-                            },
-                        });
-                    } else if (permission === 'default') {
-                    // O usuário ainda não tomou uma decisão
-                    console.log('O usuário ainda não tomou uma decisão sobre notificações');
-                    }
-                });
-            }
             
-
         });
 
     </script>
@@ -117,6 +95,24 @@
         width: 100vw;
         height: auto;
         padding: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container button {
+        width: 80%;
+        height: 45px;
+        background: #002242;
+        color: white;
+        font-size: 15px;
+        border-radius: 10px;
+        border: 2px solid #002242;
+        cursor: pointer;
+      } .container button:hover {
+        background: transparent;
+        color: #002242;
+        transition: all .3s ease-in-out;
       }
 
       /* LOGO */
@@ -210,6 +206,8 @@
 
       <div class='onesignal-customlink-container'></div>
       
+      <button onclick="home()">Ir para o Aplicativo</button>
+
     </main>
   </body>
 
@@ -254,7 +252,9 @@
         responsavel.style.display = "flex";
     }
     
-    
+    function home() {
+      window.location.href = "./home/";
+    }
 
   </script>
 
