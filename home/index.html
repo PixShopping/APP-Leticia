@@ -30,13 +30,6 @@
             .then(response => {
                 console.log(response);
                 // O Player ID do jogador criado estará em response.id
-                alert(response.id);
-                console.log('Player ID:', response.id);
-            })
-            .catch(err => console.error(err));
-
-                /*const onesignalId = user.identity.onesignal_id;
-                console.log('onesignal_id:', onesignalId);
                 db.collection(ANO)
                 .doc('responsaveis')
                 .collection(responsavel)
@@ -46,10 +39,16 @@
                         .doc('responsaveis')
                         .collection(responsavel)
                         .doc(val.id).update({
-                            onesignalId: onesignalId,
+                            onesignalId: response.id,
                         });
                     });
-                });*/
+                });
+            })
+            .catch(err => console.error(err));
+
+                /*const onesignalId = user.identity.onesignal_id;
+                console.log('onesignal_id:', onesignalId);
+                */
               
         });
 
