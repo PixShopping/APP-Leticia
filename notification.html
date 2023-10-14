@@ -37,6 +37,17 @@
                     })
                 })
                 
+                if (!currentState.id) {
+                    swal({
+                        title: "AVISO",
+                        text: "Você não aceitou as notificações!",
+                        buttons: {
+                            confirm: "Ok!"
+                        },
+                    })
+                } else {
+                    window.location.href = "../home/"
+                }
 
                 if (currentState.token) {
                     console.log('Novo token de Push:', currentState.token);
@@ -167,6 +178,7 @@
             height: auto;
             position: absolute;
             top: 50%;
+            left: 0px;
             transform: translateY(-50%);
         }
 
@@ -216,9 +228,7 @@
     // MOSTRAR SENHA DO CADASTRO
     const responsavel = localStorage.getItem('responsavel');
 
-    /*window.addEventListener('onload', () => {
-        
-    });*/
+    
 
   </script>
 
