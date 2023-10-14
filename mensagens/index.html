@@ -167,7 +167,7 @@
                 font-weight: 500;
             }
 
-            .content div select {
+             .content div select {
                 width: auto;
                 padding: 0px 15px 0px 20px;
                 height: 35px;
@@ -2013,6 +2013,12 @@
         
       }
 
+      function removerAcentos(texto) {
+        return texto
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+      }
+
       // VER DADOS DOS RESPONSAVEIS
       function verDadosResponsavel() {
         const sections = document.querySelectorAll('section');
@@ -2024,6 +2030,28 @@
         const uindex = localStorage.getItem('index');
         const elemento = document.querySelector(`[data-index="${uindex}"]`);
         const responsavel = elemento.getAttribute('data-responsavel');
+        
+        // BANCO DE DADOS SEDUC
+        const verResponsavel = localStorage.getItem('verResponsavel').toUpperCase();
+        
+        
+        db.collection('banco de dados SED')
+        .doc('responsaveis')
+        .collection(verResponsavel)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                div.innerHTML += `
+                    <h1>DADOS DA SED</h1>
+                    <h1><strong>Pai: </strong>${val.data().pai}</h1>
+                    <h1><strong>Mãe: </strong>${val.data().mae}</h1>
+                    <h1><strong>Data de Nascimento do Aluno: </strong>${val.data().nascimento}</h1>
+                    <h1><strong>Ra do Aluno: </strong>${val.data().raAluno}</h1>
+                    <h1><strong>Rg do Aluno: </strong>${val.data().rgAluno}</h1>
+                    <h1><strong>Cpf do Aluno: </strong>${val.data().cpfAluno}</h1>
+                `;
+            });
+        });
+        
         db.collection(ANO)
         .doc('responsaveis')
         .collection(responsavel)
@@ -2051,11 +2079,8 @@
                 }
                 
                 
-                
-                
-                div.innerHTML = `
-                    <h1><strong>Responsavel: </strong>${responsavel}</h1>
-                    <h1><strong>Aluno: </strong>${aluno}</h1>
+                div.innerHTML += `
+                    <h1>DADOS DO APLICATIVO</h1>
                     <h1><strong>Serie: </strong>${serie}</h1>
                     <h1><strong>Email: </strong>${email}</h1>
                     <h1><strong>Telefone: </strong>${telefone}</h1>
@@ -2064,7 +2089,9 @@
                 `;
             });
         });
+
         
+
       }
 
     </script>
@@ -2231,5 +2258,6 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../index.js"></script>
 
 </html>
