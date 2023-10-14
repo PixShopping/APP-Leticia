@@ -50,28 +50,26 @@
             OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
 
             // NOTIFICACAO
-            window.addEventListener('onload', () => {
-                if ('Notification' in window) {
-                // Verifique o estado atual das permissões de notificação
-                    Notification.requestPermission().then(function(permission) {
-                        if (permission === 'granted') {
-                            // As notificações estão aceitas
-                            window.location.href = "../home/";
-                        } else if (permission === 'denied') {
-                            swal({
-                                title: "AVISO",
-                                text: "Você não aceitou as notificações!",
-                                buttons: {
-                                    confirm: "Ok!",
-                                },
-                            });
-                        } else if (permission === 'default') {
-                        // O usuário ainda não tomou uma decisão
-                        console.log('O usuário ainda não tomou uma decisão sobre notificações');
-                        }
-                    });
-                }
-            });
+            if ('Notification' in window) {
+            // Verifique o estado atual das permissões de notificação
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        // As notificações estão aceitas
+                        window.location.href = "../home/";
+                    } else if (permission === 'denied') {
+                        swal({
+                            title: "AVISO",
+                            text: "Você não aceitou as notificações!",
+                            buttons: {
+                                confirm: "Ok!",
+                            },
+                        });
+                    } else if (permission === 'default') {
+                    // O usuário ainda não tomou uma decisão
+                    console.log('O usuário ainda não tomou uma decisão sobre notificações');
+                    }
+                });
+            }
             
 
         });
