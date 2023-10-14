@@ -7,8 +7,6 @@
     <link type="stylesheet" src="../style.css" />
     <title>Logar | Letícia</title>
     
-    <div class='onesignal-customlink-container'></div>
-    
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         
@@ -47,8 +45,9 @@
                             confirm: "Ok!",
                         },
                     });
+                    localStorage.setItem('notificacao', false);
                 } else if (currentState.id) {
-                    window.location.href = "../home/";
+                    localStorage.setItem('notificacao', true);
                 }
 
                 if (currentState.token) {
@@ -178,9 +177,7 @@
         }
 
         .onesignal-customlink-container {
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
+            position: relative;
             background: white;
             color: #002242;
             display: flex;
@@ -201,6 +198,7 @@
         </div>
       </section>
 
+      <div class='onesignal-customlink-container'></div>
       
     </main>
   </body>
@@ -246,6 +244,11 @@
         responsavel.style.display = "flex";
     }
     
+    // NOTIFICACAO
+    const notificacao = localStorage.getItem('notificacao');
+    if (notificacao) {
+        window.location.href = '../home/';
+    }
 
   </script>
 
