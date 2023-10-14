@@ -16,9 +16,10 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             });
 
+            OneSignal.User.PushSubscription.optIn();
             alert(OneSignal.User.PushSubscription.id);
-
-
+            alert(OneSignal.User.PushSubscription.token);
+            alert(OneSignal.User.PushSubscription.optedIn);
             /*const options = {
                 method: 'POST',
                 headers: { 'accept': 'application/json', 'Content-Type': 'application/json' },
