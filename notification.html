@@ -47,7 +47,7 @@
                             confirm: "Ok!",
                         },
                     });
-                } else {
+                } else if (currentState.id) {
                     window.location.href = "../home/";
                 }
 
@@ -183,6 +183,11 @@
             left: 0px;
             background: white;
             color: #002242;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+
         }
 
     </style>
