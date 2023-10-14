@@ -16,19 +16,25 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             });
 
-            OneSignal.User.PushSubscription.optIn();
-            const id = OneSignal.User.PushSubscription.id;
-            alert(id);
-            alert(OneSignal.User.PushSubscription.token);
-            alert(OneSignal.User.PushSubscription.optedIn);
-
             function pushSubscriptionChangeListener(event) {
-                if (event.current.token) {
-                    console.log('O Push Subscription recebeu um novo token:', event.current.token);
+                const previousState = event.previous; // Estado anterior da assinatura
+                const currentState = event.current; // Estado atual da assinatura
+
+                console.log('Push Subscription Mudou:');
+                console.log('ID anterior:', previousState.id);
+                console.log('ID atual:', currentState.id);
+
+                if (currentState.token) {
+                    console.log('Novo token de Push:', currentState.token);
+                }
+
+                if (currentState.optedIn === false) {
+                    console.log('Permissões de push foram negadas ou optOut() foi chamado.');
                 }
             }
 
-            OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+                OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+
 
             /*const options = {
                 method: 'POST',
