@@ -16,8 +16,10 @@
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             });
 
-            OneSignal.registerForPushNotifications();
-            
+            OneSignal.getUserId().then(function(userId) {
+                console.log('Player ID:', userId);
+            });
+
             /*const options = {
                 method: 'POST',
                 headers: { 'accept': 'application/json', 'Content-Type': 'application/json' },
