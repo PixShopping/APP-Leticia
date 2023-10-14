@@ -1610,7 +1610,7 @@
                 view: false
             });
             
-            notificationUser(MENSAGEM, RESPONSAVEL);
+            notificationUser(MENSAGEM, RESPONSAVEL, TITULO);
             
             setTimeout(() => {
                 swal({
@@ -2252,7 +2252,7 @@
             
         }
 
-        function notificationUser(mensagem, responsavel) {
+        function notificationUser(mensagem, responsavel, titulo) {
 
             db.collection(ANO)
             .doc('responsaveis')
@@ -2263,8 +2263,8 @@
                         app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
                         include_subscription_ids: [val.data().onesignalId], // Lista de onesignal_id dos destinatários
                         headings: {
-                            en: "E.E LETÍCIA",
-                            pt: "E.E LETÍCIA",
+                            en: titulo,
+                            pt: titulo,
                         },
                         contents: {
                             en: mensagem,
