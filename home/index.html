@@ -1053,26 +1053,7 @@
                 });
         }*/
 
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(function(OneSignal) {
-            OneSignal.push(function() {
-                // O usuário concedeu permissão para notificações
-                OneSignal.getUserId().then(function(playerId) {
-                // Agora você tem o Player ID
-                console.log('Player ID:', playerId);
-
-                // Armazene o Player ID no Firebase Firestore
-                db.collection('users').doc('players').set({ playerId: playerId }, { merge: true })
-                    .then(function() {
-                        console.log('Player ID armazenado com sucesso no Firestore.');
-                    })
-                    .catch(function(error) {
-                        console.error('Erro ao armazenar o Player ID:', error);
-                    });
-                });
-            });
-        });
-
+        
        </script>
 
 
