@@ -14,7 +14,6 @@
             OneSignal.init({
                 appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             }); 
-
         });
 
                     
@@ -654,6 +653,8 @@
 
                 </div>-->
 
+                
+
             </body>
 
        <!-- JavaScript -->
@@ -781,12 +782,12 @@
         const ANO = localStorage.getItem('ano');
 
         const firebaseConfig = {
-          apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
-          authDomain: "banco-de-dados-leticia.firebaseapp.com",
-          projectId: "banco-de-dados-leticia",
-          storageBucket: "banco-de-dados-leticia.appspot.com",
-          messagingSenderId: "230701596733",
-          appId: "1:230701596733:web:4c52051fd1e7290e282a54"
+            apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
+            authDomain: "banco-de-dados-leticia.firebaseapp.com",
+            projectId: "banco-de-dados-leticia",
+            storageBucket: "banco-de-dados-leticia.appspot.com",
+            messagingSenderId: "230701596733",
+            appId: "1:230701596733:web:4c52051fd1e7290e282a54"
         };
 
 	  firebase.initializeApp(firebaseConfig);
@@ -1034,11 +1035,27 @@
                 });
         }*/
 
-        fetch('http://127.0.0.1:5500').then((response) => {
-            response.json().then((dados) => {
-                console.log(dados);
-            })
-        })
+        // Evento de clique no botão "Ativar Notificações"
+        document.getElementById('enableNotifications').addEventListener('click', function() {
+            OneSignal.push(function() {
+            OneSignal.showHttpPrompt().then(function() {
+                // O usuário concedeu permissão para notificações
+                OneSignal.getUserId().then(function(playerId) {
+                // Agora você tem o Player ID
+                console.log('Player ID:', playerId);
+
+                // Armazene o Player ID no Firebase Firestore
+                db.collection('users').doc('players').set({ playerId: playerId }, { merge: true })
+                    .then(function() {
+                    console.log('Player ID armazenado com sucesso no Firestore.');
+                    })
+                    .catch(function(error) {
+                    console.error('Erro ao armazenar o Player ID:', error);
+                    });
+                });
+            });
+            });
+        });
 
        </script>
 
@@ -1046,6 +1063,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="../main.js"></script>
 
 </html>
