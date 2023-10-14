@@ -17,9 +17,19 @@
             });
 
             OneSignal.User.PushSubscription.optIn();
-            alert(OneSignal.User.PushSubscription.id);
+            const id = OneSignal.User.PushSubscription.id;
+            alert(id);
             alert(OneSignal.User.PushSubscription.token);
             alert(OneSignal.User.PushSubscription.optedIn);
+
+            function pushSubscriptionChangeListener(event) {
+                if (event.current.token) {
+                    console.log('O Push Subscription recebeu um novo token:', event.current.token);
+                }
+            }
+
+            OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+
             /*const options = {
                 method: 'POST',
                 headers: { 'accept': 'application/json', 'Content-Type': 'application/json' },
