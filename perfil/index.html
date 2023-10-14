@@ -965,33 +965,39 @@
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
 		if (!logado){
-		  window.location.href = "../login.html";
+		  window.location.href = "../login";
 		}
 
        // HREF / FUNCOES
        function perfil() {
-        window.location.href = "../perfil.html";
+        window.location.href = "../perfil";
        }
 
        function home() {
-        window.location.href = "../home.html";
+        window.location.href = "../home";
        }
 
        function notificacao() {
-        window.location.href = "../notificacao.html";
+        window.location.href = "../notificacao";
        }
 
        function enviar() {
-         window.location.href = "../mensagens.html";
+         window.location.href = "../mensagens";
        }
 
 		function sair() {
-		 localStorage.clear();
-		 window.location.href = "../login.html";
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            OneSignalDeferred.push(function(OneSignal) {
+                OneSignal.optOut();
+            });
+            setTimeout(() => {
+                localStorage.clear();
+                window.location.href = "../login/";
+            }, 1000);
 		}
 
         function configuracao() {
-            window.location.href = "../configuracao.html";
+            window.location.href = "../configuracao";
         }
 
         // CONTATO
