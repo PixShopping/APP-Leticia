@@ -35,7 +35,26 @@
 
             fetch('https://onesignal.com/api/v1/apps/7639757a-a89b-4b52-8028-7e8b9d328e4c/users', options)
             .then(response => response.json())
-            .then(response => console.log(response))
+            .then(user => {
+                const onesignalId = user.identity.onesignal_id;
+                let idDoc = '';
+                console.log('onesignal_id:', onesignalId);
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        idDoc = val.id
+                    });
+                });
+
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .doc(idDoc).update({
+                    onesignal_id: onesignalId
+                })
+            })
             .catch(err => console.error(err));
 
         });
