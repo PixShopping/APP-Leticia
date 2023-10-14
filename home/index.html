@@ -9,27 +9,17 @@
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
         
-        /*window.OneSignalDeferred = window.OneSignalDeferred || [];
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
-                appId: "",
+                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+            });
+            OneSignal.push(function() {
+                OneSignal.setExternalUserId('USER_ID');
             }); 
-        });*/
-document.addEventListener('deviceready', function () {
+        });
 
-  var notificationOpenedCallback = function(jsonData) {
-    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
-
-  window.plugins.OneSignal
-    .startInit("XXXXXX-XXXX-XXX-XXXX-XXXXXXXXX") // <- api id
-    .handleNotificationOpened(notificationOpenedCallback)
-    .endInit();
-
-  OneSignal.push(function() {
-    OneSignal.getUserId(function(userId) {
-      console.log("OneSignal User ID:", userId);
-    });      
+        
 
         </script>
 
@@ -1048,7 +1038,6 @@ document.addEventListener('deviceready', function () {
                 });
         }*/
 
-        
        </script>
 
 
