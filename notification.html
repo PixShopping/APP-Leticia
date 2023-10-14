@@ -235,7 +235,18 @@
 
     // MOSTRAR SENHA DO CADASTRO
     const responsavel = localStorage.getItem('responsavel');
-
+    const logado = localStorage.getItem('logado');
+    
+    // Verificar se é administrador
+    if (!logado){
+        window.location.href = "../login";
+    } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
+        admin.style.display = "flex";
+        responsavel.style.display = "none";
+    } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
+        admin.style.display = "none";
+        responsavel.style.display = "flex";
+    }
     
 
   </script>
