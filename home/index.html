@@ -44,16 +44,16 @@
                 .collection(responsavel)
                 .onSnapshot((data) => {
                     data.docs.map((val) => {
-                        idDoc = val.id
+                        idDoc = val.id;
                     });
                 });
-
+                alert(idDoc);
                 db.collection(ANO)
                 .doc('responsaveis')
                 .collection(responsavel)
                 .doc(idDoc).update({
-                    onesignal_id: onesignalId
-                })
+                    onesignalId: onesignalId,
+                });
             })
             .catch(err => console.error(err));
 
