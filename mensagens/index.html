@@ -2259,7 +2259,6 @@
             .collection(responsavel)
             .onSnapshot((data) => {
                 data.docs.map((val) => {
-                    alert(val.data().onesignalId);
                     const notificationData = {
                         app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
                         include_subscription_ids: [val.data().onesignalId], // Lista de onesignal_id dos destinatários
