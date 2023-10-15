@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Mural | Letícia </title>
+
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+                --six: #9ECAE3;
+                --gray: #b3abab;
+                --white: white;
+                --font: 'Ubuntu', sans-serif;
+                --green: rgb(20, 218, 20);
+				--red: rgb(240, 36, 36);
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+			body {
+				background: var(--white);
+				color: var(--one);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+           	}
+
+            .container {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 0px 0px 100px 0px;
+            }
+
+            .local {
+              width: 100%;
+              height: 70px;
+              color: var(--white);
+              background: var(--one);
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0px 20px 0px 20px;
+              z-index: 100;
+              box-shadow: 0px 5px 15px var(--one);
+            }
+
+            .local ion-icon {
+              font-size: 35px;
+              margin: 0px;
+              cursor: pointer;
+            }
+
+            .local ion-icon:hover {
+              color: var(--two);
+              transition: all .3s ease-in-out;
+            }
+
+            .local h1 {
+              font-size: 24px;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              display: flex;
+            }
+
+
+            /* - NAVGATION - */
+
+            .navgation {
+                width: 100vw;
+                height: 80px;
+                border-radius: 20px 20px 0px 0px;
+                box-shadow: 0px -5px 10px var(--gray);
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0px;
+                z-index: 100;
+                background: var(--one);
+                color: var(--white);
+            }
+
+            .navgation ion-icon {
+                font-size: 28px;
+                cursor: pointer;
+            }
+
+            /* SELECIONADO */
+
+            .selecionado {
+                background: var(--white);
+                color: var(--one);
+                border-radius: 50%;
+                padding: 15px;
+            }
+
+
+            /* CONTENT */
+
+            .content {
+                width: 100vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content h1 {
+                font-size: 30px;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                margin: 25px 0px 15px 0px;
+            }
+
+            .quadro {
+                width: 95vw;
+                max-width: 95vw;
+                height: auto;
+                min-height: 200px;
+                background: #441f0a;
+                border: 12px solid white;
+                box-shadow: 0px 0px 10px #191919;
+                margin: 15px 0px 0px 0px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 25px;
+                padding: 0px 0px 50px 0px;
+            }
+
+            .prova {
+                width: min-content;
+                height: min-content;
+                background: yellow;
+                border-radius: 5px 5px 25px 5px;
+                margin: 20px 0px -15px 0px;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                text-align: center;
+                padding: 10px 20px 20px 10px;
+            }
+
+            .prova .flex {
+                display: flex;
+                align-items: center;
+                width: auto;
+            }
+
+            .prova .flex p {
+                font-size: 17px;
+                margin: 0px 0px 0px 10px;
+            }
+
+            .prova ion-icon {
+                font-size: 25px;
+            }
+
+            .prova a {
+                font-size: 17px;
+                margin: 10px 0px 0px 0px;
+            }
+
+            </style>
+           </head>
+
+           <body>
+
+                <main class="container">
+
+                  <header class="local">
+
+                    <h1 id="local">Mural</h1>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+
+                  </header>
+
+                  <!-- PROVAS -->
+                  <section class="content provas">
+
+                    <h1>Quadro de Provas</h1>
+                    
+                    <article class="quadro">
+                        
+
+                    </article>
+
+                  </section>
+
+                  <section class="content addProvas">
+
+                    <h1>Adicionar data de prova</h1>
+
+                    <div>
+
+                        <label>Matéria: </label>
+                        <select id="inputMateria">
+
+                            <option value="matematica">Matemática</option>
+                            <option value="portugues">Português</option>
+                            <option value="historia">Historia</option>
+                            <option value="geografia">Geografia</option>
+                            <option value="ciencias">Ciências</option>
+
+                        </select>
+
+                        <select id="inputSerie">
+                            <option value="" disabled>Tarde</option>
+                            <option value="6A">6anoA</option>
+                            <option value="6B">6anoB</option>
+                            <option value="7A">7anoA</option>
+                            <option value="7B">7anoB</option>
+                            <option value="8A">8anoA</option>
+                            <option value="8B">8anoB</option>
+                            <option value="9A">9anoA</option>
+                            <option value="9B">9anoB</option>
+                            <option value="" disabled>Manha</option>
+                            <option value="1A">1anoA</option>
+                            <option value="1B">1anoB</option>
+                            <option value="2A">2anoA</option>
+                            <option value="2B">2anoB</option>
+                            <option value="2C">2anoC</option>
+                            <option value="3A">3anoA</option>
+                            <option value="3B">3anoB</option>
+                            <option value="3C">3anoC</option>
+                          </select>
+
+                        <label>Data: </label>
+                        <input id="inputData" type="date">
+
+                        <button onclick="enviarProva()">Enviar</button>
+
+                    </div>
+
+                  </section>
+
+
+                </main>
+
+                <nav class="navgation">
+
+                  <!-- HOME -->
+                  <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+
+                  <!-- NOTIFICATION -->
+                  <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
+
+                  <!-- MENSAGEM -->
+                  <ion-icon onclick="enviar()" name="mail"></ion-icon>
+
+                  <!-- MURAL -->
+                  <ion-icon class="selecionado" onclick="abrirMural()" name="calendar-outline"></ion-icon>
+
+                  <!-- PERFIL -->
+                  <ion-icon onclick="perfil()" name="person"></ion-icon>
+
+              </nav>    
+
+            </body>
+
+       <!-- JavaScript -->
+       <script>
+
+          const logado = localStorage.getItem('logado');
+          const provas = document.querySelector('.provas');
+          const addProvas = document.querySelector('.addProvas');
+        
+          if (!logado){
+            window.location.href = "../login";
+          } 
+          if (logado === 'RESPONSAVEL') {
+            provas.style.display = 'flex';
+            addProvas.style.display = 'none';
+          } 
+          if (logado === 'PROFESSOR') {
+            provas.style.display = 'none';
+            addProvas.style.display = 'flex';
+          } 
+          if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+            provas.style.display = 'none';
+            addProvas.style.display = 'none';
+          }
+
+        // TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--white', '#002242');
+        }
+
+
+       // HREF
+       function perfil() {
+        window.location.href = "../perfil";
+       }
+
+       function home() {
+        window.location.href = "../home";
+       }
+
+       // Enviar Comunicado
+       function enviar() {
+         window.location.href = "../mensagens";
+       }
+
+       function notificacao() {
+        window.location.href = "../notificacao";
+       }
+
+        function projeto() {
+          window.location.href = "../projeto";
+        }
+
+        function configuracao() {
+            window.location.href = "../configuracao";
+        }
+
+        function abrirMural() {
+            window.location.href = "../mural";
+        }
+
+       </script>
+
+
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+
+       <script>
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
+          authDomain: "banco-de-dados-leticia.firebaseapp.com",
+          projectId: "banco-de-dados-leticia",
+          storageBucket: "banco-de-dados-leticia.appspot.com",
+          messagingSenderId: "230701596733",
+          appId: "1:230701596733:web:4c52051fd1e7290e282a54"
+        };
+
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+
+        // Pegar o ANO LETICO ATUAL
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+        localStorage.setItem('ano', anoAtual);
+        const ANO = localStorage.getItem('ano');
+
+          function enviarProva() {
+            const materia = document.getElementById('inputMateria').value;
+            const data = document.getElementById('inputData').value;
+            const serie = document.getElementById('inputSerie').value;
+            db.collection(ANO)
+            .doc('provas')
+            .collection(serie).add({
+                materia: materia,
+                data: data
+            });
+
+          }
+
+        if (logado === 'RESPONSAVEL') {
+            const serie = localStorage.getItem('serie');
+            const div = document.querySelector('.provas article');
+            db.collection(ANO)
+            .doc('provas')
+            .collection(serie)
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    div.innerHTML += `
+                        <div class="prova">
+                            <div class="flex">
+                                <ion-icon name="receipt-outline"></ion-icon>
+                                <p>${val.data().materia}</p>
+                            </div>
+                            <a>${val.data().data}</a>
+                        </div>
+                    `;
+                });
+            });
+
+        }
+
+       </script>
+
+
+
+       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
