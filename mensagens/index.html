@@ -2153,7 +2153,7 @@
                 }).then((resposta) => {
                     inputMensagem.value = '';
                 });
-                notificationAll(mensagem);
+                notificationAll(mensagem, serie);
             });
             
         }
@@ -2222,7 +2222,7 @@
             
         }*/
 
-        function notificationAll(mensagem) {
+        function notificationAll(mensagem, serie) {
             const options = {
                 method: 'POST',
                 headers: {
@@ -2233,8 +2233,8 @@
                 body: JSON.stringify({
                     app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
                     headings: {
-                        en: "E.E LETÍCIA",
-                        pt: "E.E LETÍCIA",
+                        en: `GRUPO ${serie}`,
+                        pt: `GRUPO ${serie}`,
                     },
                     contents: {
                         en: mensagem,
