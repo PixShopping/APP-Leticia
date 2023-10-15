@@ -720,7 +720,6 @@
             senha: SENHA
           });
         
-        localStorage.setItem('status', 'APP');
         db.collection(ANO)
         .doc("series")
         .collection(SERIE)
@@ -807,6 +806,8 @@
                       localStorage.setItem("id", val.id);
                       localStorage.setItem("ra", val.data().ra);
                       localStorage.setItem("tema", "light");
+                      localStorage.setItem('status', 'APP');
+          
 
                       window.location.href = "../notification.html";
                     }, 500);
