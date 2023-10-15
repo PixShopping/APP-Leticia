@@ -100,6 +100,14 @@
         align-items: center;
       }
 
+      .container h1 {
+        width: 95%;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        margin: 15px 0px 5px 0px;
+      }
+
       .container button {
         width: 80%;
         height: 45px;
@@ -127,12 +135,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-      }
-
-      .logo h1 {
-        font-size: 28px;
-        font-weight: 900;
-        letter-spacing: 0.8px;
       }
 
       .content-logo {
@@ -205,6 +207,8 @@
         </div>
       </section>
 
+      <h1>Para permitir as notificações do aplicativo você deve ativar pelo navegador do seu celular</h1>
+
       <div class='onesignal-customlink-container'></div>
       
       <button onclick="home()">Voltar para o Aplicativo</button>
@@ -217,15 +221,21 @@
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
   <script>
-    const status = localStorage.getItem('status');
-
-    if (status === 'APP') {
-      setTimeout(() => {
-        localStorage.setItem('status', 'WEB');
-        window.location.href = "https://app-leticia.netlify.app/notification.html";
-      }, 2000);
-    }
     
+    var userAgent = navigator.userAgent;
+
+    if (
+      userAgent.includes("Chrome") ||
+      userAgent.includes("Firefox") ||
+      userAgent.includes("OPR") ||
+      userAgent.includes("Opera") ||
+      userAgent.includes("Edg") ||
+      (userAgent.includes("Safari") && !userAgent.includes("Chrome") && !userAgent.includes("OPR") && !userAgent.includes("Edg"))
+    ) {
+      alert("Este é um dos navegadores populares.");
+    } else {
+      alert("Outro navegador ou não é possível determinar o navegador.");
+    }
 
     const firebaseConfig = {
         apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
