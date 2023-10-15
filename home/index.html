@@ -24,7 +24,7 @@
                 --gray: #b3abab;
                 --font: 'Ubuntu', sans-serif;
                 --green: rgb(20, 218, 20);
-				--red: rgb(240, 36, 36);
+				--red: #F55557;
 			}
 
 			*  {
@@ -505,6 +505,62 @@
                 box-shadow: 0px 5px 15px var(--six);
             }
 
+            /* AVISO DE NOTIFICAÇÃO */
+
+            .contentNotification {
+                width: 90%;
+                height: auto;
+                background: transparent;
+                color: var(--one);
+                border-radius: 15px;
+                margin: 30px auto 10px auto;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0px 0px 10px var(--one);
+                padding: 0px 0px 20px 0px;
+            }
+
+            .contentNotification div {
+                width: 100%;
+                height: auto;
+                background: var(--red);
+                color: white;
+                border-radius: 13px 13px 0px 0px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .contentNotification div ion-icon {
+                font-size: 35px;
+                padding: 10px 0px;
+            }
+
+            .contentNotification h1 {
+                font-size: 24px;
+                margin: 15px 0px;
+            }
+
+            .contentNotification p {
+                width: 80%;
+                text-align: center;
+                margin: 0px 0px 15px 0px;
+            }
+
+            .contentNotification button {
+                width: 60%;
+                height: 35px;
+                border-radius: 10px;
+                margin: 10px 0px 0px 0px;
+                border: 2px solid var(--red);
+                background: var(--red);
+                color: var(--white);
+            } .contentNotification button:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            }
+
             </style>
            </head>
 
@@ -519,6 +575,18 @@
                         <h2>Bem-Vindo ao aplicativo da Escola Estadual <span>Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
 
                     </header>
+
+                    <section class="contentNotification">
+
+                        <div>
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                        </div>
+                        <h1>Notificações desativada!</h1>
+                        <p>Você não permitiu as Notificações do nosso aplicativo..</p>
+
+                        <button onclick="notification()">Permitir</button>
+
+                    </section>
 
 					<section class="guia">
 
@@ -646,6 +714,11 @@
 
        <!-- JavaScript -->
        <script>
+
+        // IR PARA NOTIFICATION
+        function notification() {
+            window.location.href = '../src/pagin/notification.html';
+        }
 
         var c = 0;
         function summaryFuncao() {
@@ -780,6 +853,23 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
       const storage = firebase.storage();
+
+      const contentNotification = document.querySelector('.contentNotification');
+
+        // VERIFICAR SE PERMITIU AS NOTIFICAÇOES
+        db.collection(ANO)
+        .doc('responsaveis')
+        .collection(responsavel)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+            if (val.data().onesignalId) {
+                contentNotification.style.display = 'none';
+            } else {
+                contentNotification.style.display = 'flex';
+            }
+            });
+        });
+        
 
         // ENVIAR AVISO 
 
