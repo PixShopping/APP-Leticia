@@ -197,7 +197,7 @@
                 color: var(--two);
            }
 
-	    	.content ul {
+           .content ul {
 		        display: flex;
 		        flex-direction: column;
 				width: 100%;
@@ -205,7 +205,17 @@
                 border: none;
 		   }
 
-		   /* Esse aki */
+           .content ul h3 {
+                width: 90%;
+                margin: 10px auto -2px auto;
+                padding: 0px 0px 0px 5px;
+                color: var(--red);
+           }
+
+           .content ul span {
+              margin: 0px 0px 12px 0px;
+           }
+
            .content ul li {
                 width: 90%;
                 height: 56px;
@@ -223,6 +233,22 @@
                 color: var(--white);
                 transition: all .4s ease-in-out;
 		   }
+
+           /* NECESSARIO CLASS */
+           .content ul .necessario {
+              border: 1px solid var(--red);
+              color: var(--red);
+           }
+
+           .content ul .necessarioh1 {
+              color: var(--red);
+           }
+
+           /* NECESSARIO CLASS */
+           .content ul .necessario:hover {
+              background: var(--red);
+              color: var(--white);
+           }
 
 		   .content ul li ion-icon {
 		font-size: 30px;
@@ -250,6 +276,7 @@
                 position: absolute;
                 top: 70px;
             }
+
 
            /* Container Senha */
 
@@ -631,12 +658,21 @@
         <!-- BOTOES DO PERFIL -->
         <ul>
 
+          <!-- ACEITAR AS NOTIFICAÇÕES -->
+          <h3 class="necessarioh1">Necessario!</h3>
+          <li class="necessario" onclick="aceitarNotification()">
+            <ion-icon name="notifications-outline"></ion-icon>
+            <h1>Aceitar as Notificações</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+          <span></span>
+
           <!-- MUDAR DADOS DO PERFIL -->
           <li onclick="mudarDados()">
             <ion-icon name="document-text-outline"></ion-icon>
             <h1>Editar Perfil</h1>
             <ion-icon name="arrow-forward"></ion-icon>
-        </li>
+          </li>
 
         <!-- MUDAR SENHA -->
         <li onclick="mudarSenha()">
@@ -644,8 +680,6 @@
             <h1>Senha</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
-
-
 
           <!-- SUPORTE -->
           <li onclick="contato()">
@@ -986,6 +1020,10 @@
         window.location.href = "../notificacao";
        }
 
+       function aceitarNotification() {
+        window.location.href = "../notification.html";
+       }
+
        function enviar() {
          window.location.href = "../mensagens";
        }
@@ -1134,6 +1172,7 @@
 	  firebase.initializeApp(firebaseConfig);
 	  const db = firebase.firestore();
 
+    
       // Pegar o ANO LETICO ATUAL
       const dataAtual = new Date();
       const anoAtual = dataAtual.getFullYear();
@@ -1235,6 +1274,24 @@
         }
 
 
+          // Verificar Notificações
+          const responsavel = localStorage.getItem('responsavel');
+        const necessario = document.querySelector('.necessario');
+        const necessarioh1 = document.querySelector('.necessarioh1');
+
+        db.collection(ANO)
+        .doc('responsaveis')
+        .collection(responsavel)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+            if (val.data().onesignalId) {
+                necessario.style.border = "1px solid var(--one)";
+                necessario.style.color = "var(--one)";
+                necessarioh1.innerHTML = 'Aceito!';
+                necessarioh1.style.color = "var(--green)";
+            }
+            });
+        });
 
        </script>
 
