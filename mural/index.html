@@ -380,15 +380,35 @@
 
           function enviarProva() {
             const materia = document.getElementById('inputMateria').value;
-            const data = document.getElementById('inputData').value;
+            const valDate = document.getElementById('inputData').value;
+            const dia = valDate.slice(8,11);
+            const mes = valDate.slice(5,7);
+            const ano = valDate.slice(0,4);
+            const date = `${dia}/${mes}/${ano}`;
             const serie = document.getElementById('inputSerie').value;
             db.collection(ANO)
             .doc('provas')
             .collection(serie).add({
                 materia: materia,
-                data: data
+                data: date
             });
-
+            db.collection(ANO)
+            .doc('series')
+            .collection(serie)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                   var doc = val.data().responsavel;
+                   db.collection(ANO)
+                    .doc('responsaveis')
+                    .collection(doc)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                            var onesignalId = val.data().onesignalId;
+                            notificationUserProva(materia, date, onesignalId);
+                        });
+                    });
+                });
+            });
           }
 
         if (logado === 'RESPONSAVEL') {
@@ -413,6 +433,39 @@
             });
 
         }
+
+        function notificationUserProva(materia, data, onesignalId) {
+
+            const notificationData = {
+                app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
+                include_subscription_ids: [onesignalId], // Lista de onesignal_id dos destinatários
+                headings: {
+                    en: `Prova de ${materia}`,
+                    pt: `Prova de ${materia}`,
+                },
+                contents: {
+                    en: data,
+                    pt: data,
+                },
+            };
+
+            fetch('https://onesignal.com/api/v1/notifications', {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(notificationData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Notificação enviada com sucesso:', data);
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar a notificação:', error);
+                });
+            
+            }
 
        </script>
 
