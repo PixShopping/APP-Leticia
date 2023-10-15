@@ -1252,6 +1252,7 @@
     <!-- JAVASCRIPT -->
     <script>
 
+
         // Filtrar Banco
         const bancoh1 = document.getElementById('bancoh1');
         bancoh1.innerHTML = localStorage.getItem('ano');
@@ -1561,7 +1562,6 @@
 
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
-        const ANO = localStorage.getItem('ano');
 
        function abrirMensagem(index) {
         const sections = document.querySelectorAll('section');
@@ -1677,6 +1677,12 @@
     <!-- BANCO DE DADOS -->
     <script>
 
+        // Pegar o ANO LETICO ATUAL
+        const dataAtual = new Date();
+        const anoAtual = dataAtual.getFullYear();
+        localStorage.setItem('ano', anoAtual);
+        const ANO = localStorage.getItem('ano');
+
         const firebaseConfig = {
             apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
             authDomain: "banco-de-dados-leticia.firebaseapp.com",
@@ -1710,7 +1716,7 @@
                     <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
                     <button onclick="remover(${index}, event)"><ion-icon name="trash-outline"></ion-icon></button></li>`;
                 index++;
-	    });
+	        });
         });
 
 	const totalErro = document.querySelector('.totalErro');
@@ -2191,42 +2197,6 @@
             chat.innerHTML += '<tag id="end"></tag>';
         });
         
-
-        /*OneSignal
-        function enviarNotificacao(responsavel, mensagem, titulo) {
-
-            db.collection(ANO)
-            .doc('responsaveis')
-            .collection(responsavel)
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    var uid = String(val.data().id);
-                    console.log(uid);
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            accept: 'application/json',
-                            Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c',
-                            include_player_ids: [responsavel],
-                            contents: {en: mensagem, pt: mensagem},
-                            name: 'E.E LETÍCIA'
-                        })
-                    };
-
-                    fetch('https://onesignal.com/api/v1/notifications', options)
-                    .then(response => response.json())
-                    .then(response => console.log(response))
-                    .catch(err => console.error(err));
-                });
-            });
-
-            
-        }*/
-
         function notificationAll(mensagem, serie) {
             const options = {
                 method: 'POST',
@@ -2292,7 +2262,7 @@
                     .catch(error => {
                         console.error('Erro ao enviar a notificação:', error);
                     });
-                    });
+                });
             });
         }
 
