@@ -45,6 +45,9 @@
                 if (currentState.optedIn === false) {
                     console.log('Permissões de push foram negadas ou optOut() foi chamado.');
                 }
+                setTimeout(() => {
+                  window.location.reload();
+                }, 5000);
             }
 
             OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
@@ -67,8 +70,8 @@
         --six: #9ecae3;
         --white: white;
         --font: "Ubuntu", sans-serif;
-        --green: rgb(20, 218, 20);
-	    	--red: rgb(240, 36, 36);
+        --green: #62e741;
+	    	--red: rgb(197, 21, 21);
       }
 
       * {
@@ -122,7 +125,8 @@
         height: 45px;
         background: #002242;
         color: white;
-        font-size: 15px;
+        font-size: 16px;
+        font-weight: 500;
         border-radius: 10px;
         border: 2px solid #002242;
         cursor: pointer;
@@ -161,8 +165,8 @@
       }
 
 
-      /* ALERTA MODIFICADO */
-      .swal-modal {
+        /* ALERTA MODIFICADO */
+        .swal-modal {
             background-color: var(--one);
             border: 3px solid white;
             border-radius: 10px;
@@ -218,17 +222,10 @@
         </div>
       </section>
       
-      <div class="permitirNotification app">
-        
-        <h1>Para permitir as notificações do aplicativo você deve ativar pelo navegador do seu celular</h1>
-        <button onclick="notification()">Ir para o Navegador</button>
-      
-      </div>
-
       <div class="permitirNotification web">
 
         <div class='onesignal-customlink-container'></div>
-        <button onclick="home()">Entrar no aplicativo</button>
+        <button id="botaoHome">Entrar no aplicativo</button>
       
       </div>
 
@@ -240,16 +237,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
   <script>
+    
+    const responsavel = localStorage.getItem('responsavel');
     const status = localStorage.getItem('status');
-    const web = document.querySelector('.web');
-    const app = document.querySelector('.app');
-    if (status === 'WEB') {
-      web.style.display = "flex";
-      app.style.display = "none";
-    } else if (status === 'APP') {
-      web.style.display = "none";
-      app.style.display = "flex";
-    }
 
     const firebaseConfig = {
         apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
@@ -263,7 +253,7 @@
 
 	  /* Atualizer Banco de Dados */
 	  firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
+    const db = firebase.firestore();
 
     // Pegar o ANO LETICO ATUAL
     const dataAtual = new Date();
@@ -271,30 +261,42 @@
     localStorage.setItem('ano', anoAtual);
     const ANO = localStorage.getItem('ano');
 
-    // MOSTRAR SENHA DO CADASTRO
-    const responsavel = localStorage.getItem('responsavel');
+    // Verificar se é administrador
     const logado = localStorage.getItem('logado');
     
-    // Verificar se é administrador
     if (!logado){
-        window.location.href = "../login";
-    } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
-        admin.style.display = "flex";
-        responsavel.style.display = "none";
-    } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
-        admin.style.display = "none";
-        responsavel.style.display = "flex";
+        window.location.href = "./login";
     }
     
-    function home() {
-      window.location.href = "./home/";
-    }
+    // Verificar Notificações
+    const RESPONSAVEL = localStorage.getItem('responsavel');
+    const botaoHome = document.getElementById('botaoHome');
 
-    function notification() {
-      window.location.href = "./notification.html";
-      localStorage.setItem('status', 'WEB');
-    }
+    db.collection(ANO)
+    .doc('responsaveis')
+    .collection(RESPONSAVEL)
+    .onSnapshot((data) => {
+        data.docs.map((val) => {
+          if (val.data().onesignalId) {
+            botaoHome.style.background = "var(--one)";
+            botaoHome.style.border = "1px solid var(--one)";
+            botaoHome.style.color = "var(--white)";
+            botaoHome.addEventListener('click', () => {
+              window.location.href = "./home/";
+            });
+          } else {
+            botaoHome.style.background = "var(--one)";
+            botaoHome.style.border = "1px solid var(--one)";
+            botaoHome.style.color = "var(--white)";
+            botaoHome.style.opacity = '50%';
+            botaoHome.style.cursor = 'default';
+          }
+        });
+    });
 
+    setTimeout(() => {
+      window.location.reload();
+    }, 20000)
 
   </script>
 
