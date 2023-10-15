@@ -486,8 +486,8 @@
                 <!-- MENSAGEM -->
                 <ion-icon onclick="enviar()" name="mail"></ion-icon>
 
-                <!-- CALL -->
-                <ion-icon onclick="suporte()" id="call" name="call"></ion-icon>
+                <!-- MURAL -->
+                <ion-icon onclick="abrirMural()" name="calendar-outline"></ion-icon>
                 <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
 
                 <!-- PERFIL -->
@@ -514,43 +514,49 @@
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
 		if (!logado){
-		  window.location.href = "../login.html";
+		  window.location.href = "../login";
 		}
 
        // HREF / FUNCOES
        function perfil() {
-        window.location.href = "../perfil.html";
+        window.location.href = "../perfil";
        }
 
        function home() {
-        window.location.href = "../home.html";
+        window.location.href = "../home";
        }
 
        function notificacao() {
-        window.location.href = "../notificacao.html";
+        window.location.href = "../notificacao";
        }
 
        function enviar() {
-         window.location.href = "../mensagens.html";
+         window.location.href = "../mensagens";
        }
 
        function configuracao() {
-        window.location.href = "../configuracao.html"
+        window.location.href = "../configuracao"
        }
 
-       // Verifica se é um professor
+       function abrirMural() {
+            window.location.href = "../mural";
+        }
+
+       // ADMINISTRADOR
        const informacao = document.getElementById('informacao');
-        const call = document.getElementById('call');
+        const mural = document.getElementById('mural');
+        const aviso = document.getElementById('aviso');
         if (logado === "PROFESSOR") {
-            informacao.style.display = "flex";
-            call.style.display = "none";
+            informacao.style.display = "none";
+            mural.style.display = "flex";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
-            informacao.style.display = "flex";
-            call.style.display = "none";
+            informacao.style.display = "none";
+            aviso.style.display = "flex";
+            mural.style.display = "flex";
         }
 
         function projeto() {
-        window.location.href = "../projeto.html";
+        window.location.href = "../projeto";
        }
 
        function suporte() {
