@@ -124,7 +124,7 @@
 		    /* Content Perfil */
 
             .container {
-                padding: 0px 0px 90px 0px;
+                padding: 0px 0px 120px 0px;
             }
 
 		   .content {
@@ -803,7 +803,7 @@
             <nav class="navgation">
 
                 <!-- HOME -->
-                <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
+                <ion-icon onclick="home()" id="home" name="home"></ion-icon>
 
                 <!-- NOTIFICATION -->
                 <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
@@ -824,6 +824,9 @@
 
                 </div>
 
+                <!-- ICONS VERSAO 4.5.10 
+                <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+                -->
             </body>
 
        <!-- JavaScript -->
@@ -834,9 +837,11 @@
         const root = document.documentElement;
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--two', '#144774');
           root.style.setProperty('--white', 'white');
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
+          root.style.setProperty('--two', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
         }
 
@@ -1236,7 +1241,9 @@
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<!-- ICONS VERSAO 7.1.0 -->
+    <!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    -->
+    
 </html>
