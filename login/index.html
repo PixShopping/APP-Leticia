@@ -172,25 +172,6 @@
         left: 0px;
       }
 
-      .content-cadastrar .flex {
-          width: auto;
-          height: auto;
-          padding: 20px 10px 0px 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .content-cadastrar .flex a {
-          cursor: pointer;
-          text-decoration: underline;
-          font-size: 18px;
-      }
-
-      .content-cadastrar .flex v {
-          margin: 0px 7px;
-      }
-
       .form {
         width: auto;
         height: auto;
@@ -260,6 +241,45 @@
         color: var(--two);
         box-shadow: 0px 0px 10px var(--white);
         transition: all 0.3s ease-in-out;
+      }
+
+      .content-logar .flex {
+          width: auto;
+          height: auto;
+          padding: 15px 10px 10px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .content-logar .flex #inputTermos {
+          width: 26px;
+          height: 26px;
+          margin: 0px 10px 0px 0px;
+          cursor: pointer;
+          outline: none;
+          border: 2px solid var(--red);
+      }
+      
+      
+      
+      .content-logar .flex label {
+          margin: auto 5px auto 0px;
+          font-size: 15px;
+          text-decoration: none;
+          cursor: pointer;
+          font-weight: 400;
+      }
+
+      .content-logar .flex a {
+          cursor: pointer;
+          text-decoration: underline;
+          font-size: 15px;
+          font-weight: 400;
+      }
+
+      .content-logar .flex v {
+          margin: 0px 7px;
       }
 
       /* Verificacao h1 e h2 */
@@ -383,9 +403,12 @@
           </div>
         </div>
 
-        <div class="verificacao">
-          <h1></h1>
-          <h2></h2>
+        <div class="flex">
+          <input id="inputTermos" type="checkbox">
+          <label for="inputTermos">Eu aceito os </label>
+          <a onclick="termos()">Termos de Uso </a>
+          <v>|</v>
+          <a onclick="privacidade()">Politica de Privacidade</a>
         </div>
 
         <button onclick="enviarLogin()">Logar</button>
@@ -465,12 +488,6 @@
               name="eye-off"
             ></ion-icon>
           </div>
-        </div>
-
-        <div class="flex">
-          <a onclick="termos()">Termos de Uso </a>
-          <v>|</v>
-          <a onclick="privacidade()">Politica de Privacidade</a>
         </div>
 
         <button onclick="enviarCadastro()">Cadastrar</button>
@@ -787,7 +804,9 @@
         "alertaLoginRESPONSAVEL"
       );
       const alertaSENHA = document.getElementById("alertaLoginSENHA");
-
+      const inputTermos = document.getElementById('inputTermos');
+      const termos = inputTermos.checked;
+      
       db.collection(ANO)
         .doc("responsaveis")
         .collection(RESPONSAVEL)
@@ -811,7 +830,7 @@
                     alertaSENHA.style.color = "red";
                   }
 
-                  if (val.data().senha === SENHA) {
+                  if (val.data().senha === SENHA && termos) {
                     setTimeout(() => {
                       localStorage.setItem("logado", "RESPONSAVEL");
                       // Dados do Responsavel
