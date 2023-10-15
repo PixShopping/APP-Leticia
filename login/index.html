@@ -172,6 +172,25 @@
         left: 0px;
       }
 
+      .content-cadastrar .flex {
+          width: auto;
+          height: auto;
+          padding: 20px 10px 0px 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .content-cadastrar .flex a {
+          cursor: pointer;
+          text-decoration: underline;
+          font-size: 18px;
+      }
+
+      .content-cadastrar .flex v {
+          margin: 0px 7px;
+      }
+
       .form {
         width: auto;
         height: auto;
@@ -216,8 +235,8 @@
 
       .content-logar button { 
         margin: 10px 0px 5px 0px;
-        width: 85%;
-        height: 50px;
+        width: 82.5%;
+        height: 55px;
       } .content-cadastrar button {
         margin: 30px 0px -5px 0px;
         width: 85%;
@@ -448,6 +467,12 @@
           </div>
         </div>
 
+        <div class="flex">
+          <a onclick="termos()">Termos de Uso </a>
+          <v>|</v>
+          <a onclick="privacidade()">Politica de Privacidade</a>
+        </div>
+
         <button onclick="enviarCadastro()">Cadastrar</button>
       </section>
     </main>
@@ -455,6 +480,14 @@
 
   <!-- JavaScript -->
   <script>
+
+    function termos() {
+      window.location.href = "../src/pagin/termos.html";
+    }
+
+    function privacidade() {
+      window.location.href = "#";
+    }
 
     // Pegar o ANO LETICO ATUAL
     const dataAtual = new Date();
