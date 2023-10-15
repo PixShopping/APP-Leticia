@@ -2164,7 +2164,25 @@
                 }).then((resposta) => {
                     inputMensagem.value = '';
                 });
-                notificationAll(mensagem, serie);
+
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                    var doc = val.data().responsavel;
+                    db.collection(ANO)
+                        .doc('responsaveis')
+                        .collection(doc)
+                        .onSnapshot((data) => {
+                            data.docs.map((val) => {
+                                var onesignalId = val.data().onesignalId;
+                                notificationSerie(mensagem, serie, onesignalId);                
+                            });
+                        });
+                    });
+                });
+                
             });
             
         }
@@ -2197,7 +2215,7 @@
             chat.innerHTML += '<tag id="end"></tag>';
         });
         
-        function notificationAll(mensagem, serie) {
+        function notificationSerie(mensagem, serie, onesignalId) {
             const options = {
                 method: 'POST',
                 headers: {
@@ -2215,7 +2233,7 @@
                         en: mensagem,
                         pt: mensagem,
                     },
-                    included_segments: ["All"],
+                    include_subscription_ids: [onesignalId],
                     name: 'E.E LETÍCIA'
                 })
             };
