@@ -68,7 +68,7 @@
         --white: white;
         --font: "Ubuntu", sans-serif;
         --green: rgb(20, 218, 20);
-		--red: rgb(240, 36, 36);
+	    	--red: rgb(240, 36, 36);
       }
 
       * {
@@ -100,15 +100,24 @@
         align-items: center;
       }
 
-      .container h1 {
+      .permitirNotification {
+        width: 100%;
+        height: auto;
+        padding: 0px 0px 20px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .permitirNotification h1 {
         width: 95%;
         font-size: 20px;
         font-weight: 500;
         text-align: center;
-        margin: 15px 0px 5px 0px;
+        margin: 30px 0px 5px 0px;
       }
 
-      .container button {
+      .permitirNotification button {
         width: 80%;
         height: 45px;
         background: #002242;
@@ -118,7 +127,9 @@
         border: 2px solid #002242;
         cursor: pointer;
         margin: 30px 0px;
-      } .container button:hover {
+      } 
+      
+      .permitirNotification button:hover {
         background: transparent;
         color: #002242;
         transition: all .3s ease-in-out;
@@ -206,12 +217,20 @@
           <img alt="Logo da escola" src="../src/img/logo.png" />
         </div>
       </section>
-
-      <h1>Para permitir as notificações do aplicativo você deve ativar pelo navegador do seu celular</h1>
-
-      <div class='onesignal-customlink-container'></div>
       
-      <button onclick="home()">Voltar para o Aplicativo</button>
+      <div class="permitirNotification app">
+        
+        <h1>Para permitir as notificações do aplicativo você deve ativar pelo navegador do seu celular</h1>
+        <button onclick="notification()">Ir para o Navegador</button>
+      
+      </div>
+
+      <div class="permitirNotification web">
+
+        <div class='onesignal-customlink-container'></div>
+        <button onclick="home()">Entrar no aplicativo</button>
+      
+      </div>
 
     </main>
   </body>
@@ -221,25 +240,16 @@
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
   <script>
-    
-    var userAgent = navigator.userAgent;
-    var browser = "";
-
-    if (userAgent.includes("Chrome")) {
-      browser = "Chrome";
-    } else if (userAgent.includes("Firefox")) {
-      browser = "Firefox";
-    } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
-      browser = "Opera";
-    } else if (userAgent.includes("Edg")) {
-      browser = "Microsoft Edge";
-    } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome") && !userAgent.includes("OPR") && !userAgent.includes("Edg")) {
-      browser = "Safari";
-    } else {
-      browser = "Outro navegador ou não é possível determinar o navegador.";
+    const status = localStorage.getItem('status');
+    const web = document.querySelector('.web');
+    const app = document.querySelector('.app');
+    if (status === 'WEB') {
+      web.style.display = "flex";
+      app.style.display = "none";
+    } else if (status === 'APP') {
+      web.style.display = "none";
+      app.style.display = "flex";
     }
-
-    alert("Este é o navegador: " + browser);
 
     const firebaseConfig = {
         apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
@@ -278,6 +288,11 @@
     
     function home() {
       window.location.href = "./home/";
+    }
+
+    function notification() {
+      window.location.href = "./notification.html";
+      localStorage.setItem('status', 'WEB');
     }
 
 
