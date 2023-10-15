@@ -1276,7 +1276,8 @@
 
           // Verificar Notificações
           const responsavel = localStorage.getItem('responsavel');
-        const necessario = document.querySelector('.necessario');
+          const necessario = document.querySelector('.necessario');
+          const necessarioHover = document.querySelector('.necessario:hover');
         const necessarioh1 = document.querySelector('.necessarioh1');
 
         db.collection(ANO)
@@ -1287,6 +1288,14 @@
             if (val.data().onesignalId) {
                 necessario.style.border = "1px solid var(--one)";
                 necessario.style.color = "var(--one)";
+                necessario.addEventListener('mouseover', () => {
+                    necessario.style.background = "var(--one)";
+                    necessario.style.color = "var(--white)";
+                });
+                necessario.addEventListener('mouseout', () => {
+                    necessario.style.background = "var(--white)";
+                    necessario.style.color = "var(--one)";
+                });
                 necessarioh1.innerHTML = 'Aceito!';
                 necessarioh1.style.color = "var(--green)";
             }
