@@ -18,11 +18,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-                --six: #9ECAE3;
-                --gray: #b3abab;
-                --white: white;
-                --font: 'Ubuntu', sans-serif;
-                --green: rgb(20, 218, 20);
+        --six: #9ECAE3;
+        --gray: #b3abab;
+        --white: white;
+        --font: 'Ubuntu', sans-serif;
+        --green: rgb(20, 218, 20);
 				--red: rgb(240, 36, 36);
 			}
 
@@ -138,7 +138,7 @@
                 max-width: 95vw;
                 height: auto;
                 min-height: 200px;
-                background: #441f0a;
+                background: #9ECAE3;
                 border: 12px solid white;
                 box-shadow: 0px 0px 10px #191919;
                 margin: 15px 0px 0px 0px;
@@ -153,7 +153,8 @@
             .prova {
                 width: min-content;
                 height: min-content;
-                background: yellow;
+                background: #144774;
+                color: #ffffff;
                 border-radius: 5px 5px 25px 5px;
                 margin: 20px 0px -15px 0px;
                 display: flex;
@@ -249,6 +250,12 @@
 
                         <label>Data: </label>
                         <input id="inputData" type="date">
+
+                        <label>Cor de Fundo</label>
+                        <input id="inputCorFundo" type="color" value="#144774">
+
+                        <label>Cor do Texto</label>
+                        <input id="inputCorTexto" type="color" value="#ffffff">
 
                         <button onclick="enviarProva()">Enviar</button>
 
@@ -381,6 +388,8 @@
           function enviarProva() {
             const materia = document.getElementById('inputMateria').value;
             const valDate = document.getElementById('inputData').value;
+            const corFundo = document.getElementById('inputCorFundo').value;
+            const corTexto = document.getElementById('inputCorTexto').value;
             const dia = valDate.slice(8,11);
             const mes = valDate.slice(5,7);
             const ano = valDate.slice(0,4);
@@ -390,7 +399,9 @@
             .doc('provas')
             .collection(serie).add({
                 materia: materia,
-                data: date
+                data: date,
+                corFundo: corFundo,
+                corTexto: corTexto
             });
             db.collection(ANO)
             .doc('series')
@@ -421,7 +432,7 @@
                 div.innerHTML = '';
                 data.docs.map((val) => {
                     div.innerHTML += `
-                        <div class="prova">
+                        <div style="background: ${val.data().corFundo}; color: ${val.data().corTexto};" class="prova">
                             <div class="flex">
                                 <ion-icon name="receipt-outline"></ion-icon>
                                 <p>${val.data().materia}</p>
