@@ -1,5 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target" : { "namespace": "android_app", "package_name": "com.app.leticia",
-               "sha256_cert_fingerprints": ["17:47:OE:97:B5:67:6F:83:17:95:96:5B:E4:C4:71:59:56:AD:13:B2"] }
-}]
