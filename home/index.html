@@ -561,6 +561,47 @@
                 transition: all .3s ease-in-out;
             }
 
+            .contentNotification ul li {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0px 0px 20px 0px;
+            }
+
+            .contentNotification ul li .flex-row {
+                width: 95%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 5px 0px 10px 0px;
+            }
+
+            .contentNotification ul li .flex-row h1 {
+                font-size: 16px;
+                font-weight: 400;
+                margin: 0px 0px 0px 8px;
+            }
+
+            .contentNotification ul li .flex-row span {
+                width: 22.5px;
+                height: 22.5px;
+                background: var(--red);
+                color: white;
+                border-radius: 50%;
+                padding: 3px;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .contentNotification ul li video {
+                width: 92.5%;
+                height: auto;
+                border-radius: 15px;
+                border: 3px solid var(--red);
+            }
+
             </style>
            </head>
 
@@ -582,7 +623,26 @@
                             <ion-icon name="alert-circle-outline"></ion-icon>
                         </div>
                         <h1>Notificações desativada!</h1>
-                        <p>Você não permitiu as Notificações do nosso aplicativo..</p>
+                        <p>Você não permitiu as Notificações do nosso aplicativo.</p>
+                        <ul>
+
+                            <li>
+                                <v class="flex-row"><span>1</span><h1>Ativar as notificações do navegador</h1></v>
+                                <video autoplay width="100%" height="auto" controls>
+                                    <source src="../src/img/tutorialNotification.mp4" type="video/mp4">
+                                    Carregando...
+                                </video>
+                            </li>
+
+                            <li>
+                                <v class="flex-row"><span>2</span><h1>Aceitar as notificações do nosso aplicativo</h1></v>
+                                <video autoplay width="100%" height="auto" controls>
+                                    <source src="../src/img/tutorialNotification.mp4" type="video/mp4">
+                                    Carregando...
+                                </video>
+                            </li>
+
+                        </ul>
 
                         <button onclick="notification()">Permitir</button>
 
@@ -699,16 +759,6 @@
 
                 </section>
 
-                <!-- EXEMPLO 
-                <div>
-
-                    <img src="../src/img/baixe_o_app.png" alt="Baixe o App">
-                    <h1> Obrigado por baixar o aplicativo! </h1>
-                    <p> Tudo o que você precisa saber sobre a escola você encontra aqui </p>
-
-                </div>-->
-
-                
 
             </body>
 
