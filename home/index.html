@@ -945,19 +945,20 @@
       const contentNotification = document.querySelector('.contentNotification');
 
         // VERIFICAR SE PERMITIU AS NOTIFICAÇOES
-        db.collection(ANO)
-        .doc('responsaveis')
-        .collection(responsavel)
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-            if (val.data().onesignalId) {
-                contentNotification.style.display = 'none';
-            } else {
-                contentNotification.style.display = 'flex';
-            }
+        if (logado === 'RESPONSAVEL') {
+            db.collection(ANO)
+            .doc('responsaveis')
+            .collection(responsavel)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                if (val.data().onesignalId) {
+                    contentNotification.style.display = 'none';
+                } else {
+                    contentNotification.style.display = 'flex';
+                }
+                });
             });
-        });
-        
+        }
 
         // ENVIAR AVISO 
 
