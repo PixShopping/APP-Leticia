@@ -1616,7 +1616,15 @@
                 view: false
             });
             
-            notificationUser(MENSAGEM, RESPONSAVEL, TITULO);
+            db.collection(ANO)
+            .doc('responsaveis')
+            .collection(RESPONSAVEL)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    const ONESIGNALID = val.data().onesignalId;
+                    notificationUser(MENSAGEM, TITULO, ONESIGNALID);
+                });
+            });
             
             setTimeout(() => {
                 swal({
@@ -2245,43 +2253,36 @@
             
         }
 
-        function notificationUser(mensagem, responsavel, titulo) {
+        function notificationUser(mensagem, titulo, onesignalId) {
 
-            db.collection(ANO)
-            .doc('responsaveis')
-            .collection(responsavel)
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    const notificationData = {
-                        app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
-                        include_subscription_ids: [val.data().onesignalId], // Lista de onesignal_id dos destinatários
-                        headings: {
-                            en: titulo,
-                            pt: titulo,
-                        },
-                        contents: {
-                            en: mensagem,
-                            pt: mensagem,
-                        },
-                    };
+            const notificationData = {
+                app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
+                headings: {
+                    en: titulo,
+                    pt: titulo,
+                },
+                contents: {
+                    en: mensagem,
+                    pt: mensagem,
+                },
+                include_subscription_ids: [onesignalId],
+            };
 
-                fetch('https://onesignal.com/api/v1/notifications', {
-                    method: 'POST',
-                    headers: {
-                        Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(notificationData),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Notificação enviada com sucesso:', data);
-                    })
-                    .catch(error => {
-                        console.error('Erro ao enviar a notificação:', error);
-                    });
+            fetch('https://onesignal.com/api/v1/notifications', {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(notificationData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Notificação enviada com sucesso:', data);
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar a notificação:', error);
                 });
-            });
         }
 
     </script>
