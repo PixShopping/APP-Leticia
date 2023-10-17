@@ -2164,7 +2164,7 @@
                 .collection("salas")
                 .doc(serie)
                 .collection('mensagens')
-                .add({
+                .doc(mensagem).set({
                     hora: hora,
                     usuario: usuario,
                     mensagem: mensagem,
