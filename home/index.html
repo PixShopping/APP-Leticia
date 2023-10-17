@@ -383,6 +383,15 @@
                 cursor: pointer;
             }
 
+            .containerAviso div ion-icon#icone {
+                font-size: 50px;
+                background: transparent;
+                color: white;
+                margin: 5px 0px 0px 0px;
+                cursor: default;
+                padding: 0px;
+            }
+
             /* CRIAR AVISO */
 
             .criarAviso {
@@ -628,6 +637,62 @@
                 font-size: 16px;
             }
 
+            /* VISUALIZAR AVISO */
+
+            #visualizarAviso {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0px;
+            }
+
+            #visualizarAviso div {
+                width: 92.5%;
+                height: auto;
+                padding: 15px 15px 20px 15px;
+                border-radius: 20px;
+                background: var(--two);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 15px 0px;
+            }
+
+            #visualizarAviso div img {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                margin: 0px 0px 10px 0px;
+            }
+
+            #visualizarAviso div h1 {
+                width: 92%;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 0px;
+                margin: 10px 0px 12px 0px;
+                text-shadow: 0px 0px 10px #002242;
+            }
+
+            #visualizarAviso div p {
+                width: 92%;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                margin: 0px;
+                text-shadow: 0px 0px 10px var(--two);
+            }  
+
+            #visualizarAviso #icone {
+                font-size: 40px;
+                background: transparent;
+                color: var(--white);
+            }
+
             
 
             </style>
@@ -755,13 +820,13 @@
                     <h2>Criar Comunicado</h2>
 
                     <label>Imagem:</label>
-                    <input id="imagem" type="file" accept="image/*">
+                    <input oninput="visualizarAviso()" id="imagem" type="file" accept="image/*">
 
                     <label>Titulo:</label>
-                    <input id="titulo" type="text">
+                    <input oninput="visualizarAviso()" id="titulo" type="text">
 
                     <label>Mensagem:</label>
-                    <textarea id="mensagem" type="text"></textarea>
+                    <textarea oninput="visualizarAviso()" id="mensagem" type="text"></textarea>
 
                     
                     <details>
@@ -775,21 +840,27 @@
                         <div>
                             <o class="column">
                                 <label>Fundo:</label>
-                                <input style="padding: 0px; background: transparent;" type="color" id="corFundo" name="corHexadecimal" value="#002242">
+                                <input oninput="visualizarAviso()" style="padding: 0px; background: transparent;" type="color" id="corFundo" name="corHexadecimal" value="#002242">
                             </o>
                             <o class="column">
                                 <label>Titulo:</label>
-                                <input style="padding: 0px; background: transparent;" type="color" id="corTitulo" name="corHexadecimal" value="#FFFFFF">
+                                <input oninput="visualizarAviso()" style="padding: 0px; background: transparent;" type="color" id="corTitulo" name="corHexadecimal" value="#FFFFFF">
                             </o>
                             <o class="column">
                                 <label>Texto:</label>
-                                <input style="padding: 0px; background: transparent;" type="color" id="corTexto" name="corHexadecimal" value="#FFFFFF">
+                                <input oninput="visualizarAviso()" style="padding: 0px; background: transparent;" type="color" id="corTexto" name="corHexadecimal" value="#FFFFFF">
                             </o>
                         </div>
 
                     </details>
                 
                     <button onclick="enviarAviso()">Enviar Aviso</button>
+
+                    <div id="visualizarAviso">
+                        
+
+
+                    </div>
 
                 </section>
 
@@ -798,6 +869,38 @@
 
        <!-- JavaScript -->
        <script>
+
+        // VISUALIZAÇÃO DO AVISO
+        function visualizarAviso() {
+            const div = document.getElementById('visualizarAviso');
+            const imagem = document.getElementById('imagem').value;
+            const titulo = document.getElementById('titulo').value;
+            const mensagem = document.getElementById('mensagem').value;
+            const corFundo = document.getElementById('corFundo').value;
+            const corTitulo = document.getElementById('corTitulo').value;
+            const corTexto = document.getElementById('corTexto').value;
+            if (imagem === '') {
+                div.innerHTML = `
+                <div style="background: ${corFundo};">
+
+                    <ion-icon id='icone' style='color: ${corTitulo};' name='school'></ion-icon>
+                    <h1 style="color: ${corTitulo};"> ${titulo} </h1>
+                    <p style="color: ${corTexto};"> ${mensagem} </p>
+
+                </div>`;
+            } else {
+                div.innerHTML = `
+                <div style="background: ${corFundo};">
+
+                    <img src='${imagem}' />
+                    <h1 style="color: ${corTitulo};"> ${titulo} </h1>
+                    <p style="color: ${corTexto};"> ${mensagem} </p>
+
+                </div>
+                `;
+            }
+            
+        }
 
         // IR PARA NOTIFICATION
         function notification() {
@@ -883,7 +986,7 @@
        }
 
        function abrirMural() {
-            window.location.href = "../mural";
+            window.location.href = "../mural/";
         }
 
 
@@ -992,34 +1095,61 @@
             const corTitulo = document.getElementById('corTitulo').value;
             const corTexto = document.getElementById('corTexto').value;
             // Enviando Valores
-            db.collection(ANO)
-            .doc('avisos')
-            .collection('avisos')
-            .doc(titulo)
-            .set({
-                titulo: titulo,
-                mensagem: mensagem,
-                corFundo: corFundo,
-                corTitulo: corTitulo,
-                corTexto: corTexto,
-                imagem: imagem
-            }).then((response) => {
-                swal({
-                    title: "AVISO",
-                    text: "Comunicado enviado com sucesso!",
-                    buttons: {
-                        confirm: "Ok!",
-                    },
-                }).then((resposta) => {
-                    window.location.reload();
-                })
-            })
+            if (imagem === 'null') {
+                db.collection(ANO)
+                .doc('avisos')
+                .collection('avisos')
+                .doc(titulo)
+                .set({
+                    titulo: titulo,
+                    mensagem: mensagem,
+                    corFundo: corFundo,
+                    corTitulo: corTitulo,
+                    corTexto: corTexto,
+                    imagem: imagem,
+                    icon: 'school'
+                }).then((response) => {
+                    swal({
+                        title: "AVISO",
+                        text: "Comunicado enviado com sucesso!",
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((resposta) => {
+                        window.location.reload();
+                    });
+                });
+            } else {
+                db.collection(ANO)
+                .doc('avisos')
+                .collection('avisos')
+                .doc(titulo)
+                .set({
+                    titulo: titulo,
+                    mensagem: mensagem,
+                    corFundo: corFundo,
+                    corTitulo: corTitulo,
+                    corTexto: corTexto,
+                    imagem: imagem
+                }).then((response) => {
+                    swal({
+                        title: "AVISO",
+                        text: "Comunicado enviado com sucesso!",
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((resposta) => {
+                        window.location.reload();
+                    });
+                });
+            }
+            
         }
 
 
         // LER OS AVISOS E COMUNICADOS
         const containerAviso = document.querySelector('.containerAviso');
-        if (logado === "RESPONSAVEL") {
+        if (logado === "RESPONSAVEL" || logado === "PROFESSOR") {
             db.collection(ANO)
             .doc('avisos')
             .collection('avisos')
@@ -1045,6 +1175,7 @@
                         containerAviso.innerHTML += `
                             <div style="background: ${val.data().corFundo};">
 
+                                <ion-icon id='icone' style='color: ${val.data().corTitulo};' name='${val.data().icon}'></ion-icon>
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
                                 <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
 
@@ -1082,6 +1213,7 @@
                         containerAviso.innerHTML += `
                             <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
 
+                                <ion-icon id='icone' style='color: ${val.data().corTitulo};' name='${val.data().icon}'></ion-icon>
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
                                 <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
                                 <ion-icon onclick="excluirAviso(${index})" name="trash"></ion-icon>
