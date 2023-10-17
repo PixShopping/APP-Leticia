@@ -717,10 +717,10 @@
         function responderMensagem(uindex) {
             const elemento = document.querySelector(`[data-index="${uindex}"]`)
             const titulo = elemento.getAttribute('data-responder');
-            abrirMensagem(titulo);
+            abrirMensagem(titulo, uindex);
         }
 
-        function abrirMensagem(titulo) {
+        function abrirMensagem(titulo, index) {
             const formMensagem = document.querySelector('.form-mensagem');
             const inputData = document.getElementById('inputData');
             const inputMensagem = document.getElementById('inputMensagem');
@@ -737,6 +737,7 @@
             // Pegando a data atual
             const dataAtual = new Date().toISOString().split('T')[0];
             inputData.value = dataAtual;
+            localStorage.setItem('index', index);
         }
 
 
@@ -748,6 +749,7 @@
             const DATA = inputData.value;
             const TITULO = localStorage.getItem('titulo');
             const DESTINATARIO = inputDestinatario.value;
+            const INDEX = localStorage.getItem('index');
             // Reference the Firestore collection and documents
             db.collection(ANO)
             .doc('respostas')
@@ -766,12 +768,11 @@
                     confirm: "Ok!",
                 },
             }).then((config) => {
-                if (config) {
+                confirmarView(INDEX);
+                setTimeout(() => {
                     window.location.reload();
-                }
+                }, 1500);
             })
-
-            
             
         }
 
