@@ -235,22 +235,15 @@
                 font-weight: 600;
                 letter-spacing: 0.5px;
                 margin: 25px 0px 20px 0px;
-		display: flex;
+	        	display: flex;
             }
 
-	    .contentSeries p {
-		    margin: 0px 0px 0px 6px;
-	    }
+            .contentSeries p {
+                margin: 0px 0px 0px 6px;
+    	    }
 
-            .contentSeries div {
-                width: 100%;
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
 
-            .contentSeries div li {
+            .contentSeries li {
                 width: 92%;
                 height: auto;
                 padding: 8px;
@@ -265,13 +258,13 @@
 		        position: relative;
             }
 
-            .contentSeries div li:hover {
+            .contentSeries li:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .3s ease-in-out;
             }
 
-            .contentSeries div li h1 {
+            .contentSeries li h1 {
                 width: 76%;
                 font-size: 15.8px;
                 font-weight: 400;
@@ -279,11 +272,11 @@
                 margin: 0px 0px 0px 8px;
             }
 
-            .contentSeries div li ion-icon {
+            .contentSeries li ion-icon {
                 font-size: 37px;
             }
 
-            .contentSeries div li button {
+            .contentSeries li button {
                 background: red;
                 border: none;
                 border-radius: 10px;
@@ -301,13 +294,13 @@
                 z-index: 90;
             }
 
-            .contentSeries div li button ion-icon {
+            .contentSeries li button ion-icon {
                 font-size: 26px;
                 margin: 0px;
                 color: white;
             }
 
-            .contentSeries div li button:hover {
+            .contentSeries li button:hover {
                 background: #E84354;
                 transition: all .4s ease-in-out;
             }
@@ -490,16 +483,13 @@
             transition: all .4s ease-in-out;
         }
 
-        .containerOpcoes h1 {
+        .containerOpcoes a {
             margin: 12.5px 0px 15px 0px;
             font-size: 20px;
             font-weight: 500;
             letter-spacing: 0.3px;
             cursor: pointer;
             color: var(--six);
-        }
-
-        .containerOpcoes h1 a {
             text-decoration: underline;
         }
 
@@ -854,255 +844,21 @@
                     </select>
                 </div>
 
-                <ul>
-
-                    <li onclick="mensagem6A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>6anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem6B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>6anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem7A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>7anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem7B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>7anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem8A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>8anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem8B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>8anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem9A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>9anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem9B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>9anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem1A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>1anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem1B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>1anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem2A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem2B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem2C()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>2anoC</h1>
-                    </li>
-
-                    <li onclick="mensagem3A()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoA</h1>
-                    </li>
-
-                    <li onclick="mensagem3B()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoB</h1>
-                    </li>
-
-                    <li onclick="mensagem3C()">
-                        <ion-icon name="people-circle-outline"></ion-icon>
-                        <h1>3anoC</h1>
-                    </li>
+                <ul id="containerSeries">
 
                 </ul>
 
             </section>
 
 
-            <!-- CONTENT 6 ANO A -->
-            <section class="content6A none contentSeries">
+            <!-- CONTAINER SERIE -->
+            <section id="containerSerie" class="contentSeries">
 
-                <h1>6ANOA<p id="total6A"></p></h1>
-                <div id="6A">
-
-                </div>
+                
 
             </section>
 
-            <!-- CONTENT 6 ANO B -->
-            <section class="content6B none contentSeries">
 
-                <h1>6ANOB<p id="total6B"></p></h1>
-                <div id="6B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 7 ANO A -->
-            <section class="content7A none contentSeries">
-
-                <h1>7ANOA<p id="total7A"></p></h1>
-                <div id="7A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 7 ANO B -->
-            <section class="content7B none contentSeries">
-
-                <h1>7ANOB<p id="total7B"></p></h1>
-                <div id="7B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 8 ANO A -->
-            <section class="content8A none contentSeries">
-
-                <h1>8ANOA<p id="total8A"></p></h1>
-                <div id="8A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 8 ANO B -->
-            <section class="content8B none contentSeries">
-
-                <h1>8ANOB<p id="total8B"></p> </h1>
-                <div id="8B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 9 ANO A -->
-            <section class="content9A none contentSeries">
-
-                <h1>9ANOA<p id="total9A"></p></h1>
-                <div id="9A">
-
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 9 ANO B -->
-            <section class="content9B none contentSeries">
-
-                <h1>9ANOB <p id="total9B"></p></h1>
-                <div id="9B">
-
-
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 1 ANO A -->
-            <section class="content1A none contentSeries">
-
-                <h1>1ANOA <p id="total1A"></p></h1>
-                <div id="1A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 1 ANO B -->
-            <section class="content1B none contentSeries">
-
-                <h1>1ANOB <p id="total1B"></p></h1>
-                <div id="1B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO A -->
-            <section class="content2A none contentSeries">
-
-                <h1>2ANOA <p id="total2A"></p></h1>
-                <div id="2A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO B -->
-            <section class="content2B none contentSeries">
-
-                <h1>2ANOB <p id="total2B"></p></h1>
-                <div id="2B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 2 ANO C -->
-            <section class="content2C none contentSeries">
-
-                <h1>2ANOC <p id="total2C"></p></h1>
-                <div id="2C">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO A -->
-            <section class="content3A none contentSeries">
-
-                <h1>3ANOA <p id="total3A"></p></h1>
-                <div id="3A">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO B -->
-            <section class="content3B none contentSeries">
-
-                <h1>3ANOB <p id="total3B"></p></h1>
-                <div id="3B">
-
-                </div>
-
-            </section>
-
-            <!-- CONTENT 3 ANO C -->
-            <section class="content3C none contentSeries">
-
-                <h1>3ANOC <p id="total3C"></p></h1>
-                <div id="3C">
-
-                </div>
-
-            </section>
 
 			<!-- CONTENT RESPONSAVEIS -->
             <section class="content responsavel">
@@ -1253,19 +1009,6 @@
     <script>
 
 
-        // Filtrar Banco
-        const bancoh1 = document.getElementById('bancoh1');
-        bancoh1.innerHTML = localStorage.getItem('ano');
-            
-        function filtrarAno() {
-            const inputBanco = document.getElementById('banco');
-            const banco = inputBanco.value;
-            if (banco !== "") {
-                localStorage.setItem('ano', banco);
-            }
-            window.location.reload();
-        }
-
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
@@ -1284,17 +1027,15 @@
 
          // OPÇOES
 
-         function opcoes(index) {
-            localStorage.setItem('index', index);
-            const uindex = localStorage.getItem('index');
+         function opcoes(responsavel) {
             const containerOpcoes = document.querySelector('.containerOpcoes');
-            const tituloMensagem = document.getElementById('tituloMensagem');
-            const elemento = document.querySelector(`[data-index="${index}"]`);
-            const responsavel = elemento.getAttribute('data-responsavel');
-            containerOpcoes.style.display = "flex";
-            tituloMensagem.innerHTML = `
-                <a onclick="verDadosResponsavel()">${responsavel}</a>
+            containerOpcoes.innerHTML = `
+                <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
+                <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
+                <button onclick="abrirMensagem('${responsavel}')">Enviar Mensagem</button>
+                <button onclick="verMensagem('${responsavel}')">Ver Mensagens</button>
             `;
+            containerOpcoes.style.display = 'flex';
             localStorage.setItem('verResponsavel', responsavel);
          }
 
@@ -1347,13 +1088,11 @@
         // ADMINISTRADOR
         const informacao = document.getElementById('informacao');
         const mural = document.getElementById('mural');
-        const aviso = document.getElementById('aviso');
         if (logado === "PROFESSOR") {
             informacao.style.display = "none";
             mural.style.display = "flex";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "none";
-            aviso.style.display = "flex";
             mural.style.display = "flex";
         }
 
@@ -1377,156 +1116,6 @@
             window.location.href = "../mural";
         }
 
-       // 6 ANO
-       function mensagem6A() {
-            const content = document.querySelector('.content6A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '6A');
-            localStorage.setItem('ID_TOTAL', 'total6A');
-            atualizarBanco();
-       }
-
-       function mensagem6B() {
-            const content = document.querySelector('.content6B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '6B');
-            localStorage.setItem('ID_TOTAL', 'total6B');
-            atualizarBanco();
-       }
-
-       // 7 ANO
-       function mensagem7A() {
-            const content = document.querySelector('.content7A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '7A');
-	    localStorage.setItem('ID_TOTAL', 'total7A');
-            atualizarBanco();
-        }
-
-       function mensagem7B() {
-            const content = document.querySelector('.content7B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '7B');
-	    localStorage.setItem('ID_TOTAL', 'total7B');
-            atualizarBanco();
-       }
-
-       // 8 ANO
-       function mensagem8A() {
-            const content = document.querySelector('.content8A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '8A');
-	    localStorage.setItem('ID_TOTAL', 'total8A');
-            atualizarBanco();
-       }
-
-       function mensagem8B() {
-            const content = document.querySelector('.content8B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '8B');
-	    localStorage.setItem('ID_TOTAL', 'total8B');
-            atualizarBanco();
-       }
-
-        // 9 ANO
-       function mensagem9A() {
-            const content = document.querySelector('.content9A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '9A');
-	    localStorage.setItem('ID_TOTAL', 'total9A');
-            atualizarBanco();
-       }
-
-       function mensagem9B() {
-            const content = document.querySelector('.content9B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '9B');
-	    localStorage.setItem('ID_TOTAL', 'total9B');
-            atualizarBanco();
-       }
-
-       // 1 ANO
-       function mensagem1A() {
-            const content = document.querySelector('.content1A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '1A');
-	    localStorage.setItem('ID_TOTAL', 'total1A');
-            atualizarBanco();
-       }
-
-       function mensagem1B() {
-            const content = document.querySelector('.content1B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '1B');
-	    localStorage.setItem('ID_TOTAL', 'total1B');
-            atualizarBanco();
-       }
-
-       // 2 ANO
-       function mensagem2A() {
-            const content = document.querySelector('.content2A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A');
-	    localStorage.setItem('ID_TOTAL', 'total2A');
-            atualizarBanco();
-       }
-
-       function mensagem2B() {
-            const content = document.querySelector('.content2B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2B');
-	    localStorage.setItem('ID_TOTAL', 'total2B');
-            atualizarBanco();
-       }
-
-       function mensagem2C() {
-            const content = document.querySelector('.content2C');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2C');
-	    localStorage.setItem('ID_TOTAL', 'total2C');
-            atualizarBanco();
-       }
-
-       // 3 ANO
-       function mensagem3A() {
-            const content = document.querySelector('.content3A');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '2A');
-	    localStorage.setItem('ID_TOTAL', 'total3A');
-            atualizarBanco();
-       }
-
-       function mensagem3B() {
-            const content = document.querySelector('.content3B');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '3B');
-	    localStorage.setItem('ID_TOTAL', 'total3B');
-            atualizarBanco();
-       }
-
-       function mensagem3C() {
-        const content = document.querySelector('.content3C');
-            admin.style.display = "none";
-            content.style.display = "flex";
-            localStorage.setItem('SERIE', '3C');
-	        localStorage.setItem('ID_TOTAL', 'total3C');
-            atualizarBanco();
-       }
 
        // ------------------------
        //  Formulario de Mensagem
@@ -1563,8 +1152,8 @@
        // Mandar Mensagem para (Diretoria, Secretaria e Geral);
 
 
-       function abrirMensagem(index) {
-        const sections = document.querySelectorAll('section');
+       function abrirMensagem(responsavel) {
+            const sections = document.querySelectorAll('section');
             sections.forEach(section => {
                 section.style.display = "none";
             });
@@ -1584,9 +1173,6 @@
             inputData.value = dataAtual;
 
             // Pegar o nome do responsavel
-            const uindex = localStorage.getItem('index');
-            const elemento = document.querySelector(`[data-index="${uindex}"]`);
-            const responsavel = elemento.getAttribute('data-responsavel');
             inputResponsavel.value = responsavel;
         }
 
@@ -1673,8 +1259,6 @@
 
 
 
-
-
     </script>
 
 
@@ -1686,10 +1270,22 @@
     <script>
 
         // Pegar o ANO LETICO ATUAL
-        const dataAtual = new Date();
+        /*const dataAtual = new Date();
         const anoAtual = dataAtual.getFullYear();
-        localStorage.setItem('ano', anoAtual);
+        localStorage.setItem('ano', anoAtual);*/
         const ANO = localStorage.getItem('ano');
+
+        // Filtrar Banco
+        const bancoh1 = document.getElementById('bancoh1');
+        bancoh1.innerHTML = localStorage.getItem('ano');
+            
+        function filtrarAno() {
+            const banco = document.getElementById('banco').value;
+            if (banco !== "") {
+                localStorage.setItem('ano', banco);
+            }
+            window.location.reload();
+        }
 
         const firebaseConfig = {
             apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
@@ -1700,62 +1296,62 @@
             appId: "1:230701596733:web:4c52051fd1e7290e282a54"
           };
 
-
+        
 	  /* Atualizer Banco de Dados */
 	  firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
-      var index = 0;
-
-      // Adiciona os alunos nas series
-      function atualizarBanco() {
-        const SERIE = localStorage.getItem('SERIE');
-	    const IDTOTAL = localStorage.getItem('ID_TOTAL');
-        const div = document.getElementById(SERIE);
-	    const totalAlunos = document.getElementById(IDTOTAL);
+      
+      const containerSeries = document.getElementById('containerSeries');
         db.collection(ANO)
-        .doc("series")
-        .collection(SERIE)
+        .doc('restrito')
+        .collection('series')
         .onSnapshot((data) => {
-            div.innerHTML = "";
-            data.docs.forEach((val) => {
-                div.innerHTML += `
-                    <li onclick="opcoes(${index})" data-responsavel="${val.data().responsavel}" data-index="${index}" data-serie="${SERIE}" data-id="${val.id}" class"li">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
-                    <button onclick="remover(${index}, event)"><ion-icon name="trash-outline"></ion-icon></button></li>`;
-                index++;
-	        });
+            containerSeries.innerHTML = '';
+            data.docs.map((val) => {
+                containerSeries.innerHTML += `
+                <li onclick='abrirTurma("${val.id}")'>
+                    <ion-icon name="people-circle-outline"></ion-icon>
+                    <h1>${val.id}</h1>
+                </li>`;
+            });
         });
 
-	const totalErro = document.querySelector('.totalErro');
+    var index = 0;
+    function abrirTurma(serie) {
+        const containerSerie = document.getElementById('containerSerie');
+        const content = document.querySelector('.content');
+        containerSerie.style.display = "flex";
+        content.style.display = "none";
+        db.collection(ANO)
+        .doc('series')
+        .collection(serie)
+        .onSnapshot((data) => {
+            containerSerie.innerHTML = '';
+            var total = data.size;
+            containerSerie.innerHTML += `
+                <h1>${serie} | ${total} Alunos</h1>
+            `;
+        });
+        db.collection(ANO)
+        .doc('series')
+        .collection(serie)
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                containerSerie.innerHTML += `
+                <li onclick="opcoes('${val.data().responsavel}')">
+                    <ion-icon name="people-circle-outline"></ion-icon>    
+                    <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
+                    <button onclick="remover(${val.data().responsavel}, ${serie}, event)"><ion-icon name="trash-outline"></ion-icon></button>
+                </li>`;
+                index++;
+            });
+        });
+    }
 
-    // Conta a quantidade de alunos da series
-	setTimeout(() => {
-	    db.collection(ANO)
-	    .doc("series")
-	    .collection(SERIE).get().then((dados) => {
-		const tamanho = dados.size;
-		if (tamanho > 1){
-		    totalAlunos.textContent = `| ${tamanho} Alunos`;
-		} else if (tamanho === 0){
-		    totalErro.style.display = "flex"
-		    setTimeout(() => {
-			totalErro.style.opacity = 1;
-		    }, 200)
-		} else {
-			totalAlunos.textContent = `| ${tamanho} Aluno`;
-		}
-	     });
-
-	}, 450);
-
-
-	}
-
+    
     // EXCLUIR RESPONSAVEL DO BANCO
-    function remover(index, event) {
+    function remover(responsavel, serie, event) {
         event.stopPropagation();
-	    const uindex = index;
         setTimeout(() => {
             swal({
                 title: 'AVISO',
@@ -1766,9 +1362,9 @@
                 },
             }).then((responsetwo) => {
                 if (responsetwo) {
-                    deletarDaSerie(uindex);
-                    deletarDoCadastro(uindex);
-                    deletarMensagens(uindex);
+                    deletarDaSerie(responsavel, serie);
+                    deletarDoCadastro(responsavel, serie);
+                    deletarMensagens(responsavel, serie);
                     swal({
                         title: 'AVISO',
                         text: 'Responsavel excluido com sucesso!',
@@ -1784,46 +1380,47 @@
     }
 
 
-    function deletarDaSerie(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const id = elemento.getAttribute('data-id');
-    const serie = localStorage.getItem('SERIE');
-    db.collection(ANO)
+    function deletarDaSerie(responsavel, serie) {
+        db.collection(ANO)
         .doc('series')
         .collection(serie)
-        .doc(id)
-        .delete()
-        .then(() => {
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                var idDoc = val.id;
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .doc(idDoc).delete()
+                .then(() => {
+                })
+                .catch((error) => {
+                    alert(`Erro ao excluir a coleção: ${error}`);
+                });
+            });
+        });
+        
+    }
+
+    function deletarDoCadastro(responsavel, serie) {
+        const batch = db.batch();
+
+        db.collection(ANO)
+        .doc("responsaveis")
+        .collection(responsavel)
+        .get()
+        .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            batch.delete(doc.ref);
+        });
+        return batch.commit();
         })
         .catch((error) => {
-            alert(`Erro ao excluir a coleção: ${error}`);
+        alert(`Erro ao excluir a coleção: ${error}`);
         });
     }
 
-    function deletarDoCadastro(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const id = elemento.getAttribute('data-responsavel');
-    const batch = db.batch();
-
-    db.collection(ANO)
-    .doc("responsaveis")
-    .collection(id)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        batch.delete(doc.ref);
-      });
-      return batch.commit();
-    })
-    .catch((error) => {
-      alert(`Erro ao excluir a coleção: ${error}`);
-    });
-    }
-
-	function deletarMensagens(index) {
-    const elemento = document.querySelector(`[data-index="${index}"]`);
-    const responsavel = elemento.getAttribute('data-responsavel');
-    const batch = db.batch();
+	function deletarMensagens(responsavel, serie) {
+        const batch = db.batch();
 
 	    db.collection(ANO)
 	    .doc("mensagens")
@@ -2040,17 +1637,13 @@
       }
 
       // VER DADOS DOS RESPONSAVEIS
-      function verDadosResponsavel() {
+      function verDadosResponsavel(responsavel) {
         const sections = document.querySelectorAll('section');
             sections.forEach(section => {
                 section.style.display = "none";
             });
         const div = document.querySelector('.dadosResponsavel');
         div.style.display = "flex";
-        const uindex = localStorage.getItem('index');
-        const elemento = document.querySelector(`[data-index="${uindex}"]`);
-        const responsavel = elemento.getAttribute('data-responsavel');
-        
         // BANCO DE DADOS SEDUC
         const verResponsavel = localStorage.getItem('verResponsavel').toUpperCase();
         
@@ -2291,6 +1884,5 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="../index.js"></script>
 
 </html>
