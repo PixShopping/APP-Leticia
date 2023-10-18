@@ -1320,6 +1320,7 @@
     function abrirTurma(serie) {
         const containerSerie = document.getElementById('containerSerie');
         const content = document.querySelector('.content');
+        const error = document.querySelector('.totalErro');
         containerSerie.style.display = "flex";
         content.style.display = "none";
         db.collection(ANO)
@@ -1328,9 +1329,17 @@
         .onSnapshot((data) => {
             containerSerie.innerHTML = '';
             var total = data.size;
+            if (total <= 0) {
+                error.style.display = 'flex';
+                setTimeout(() => {
+                    error.style.opacity = 1;
+                }, 500);
+            }
             containerSerie.innerHTML += `
                 <h1>${serie} | ${total} Alunos</h1>
             `;
+            
+            
         });
         db.collection(ANO)
         .doc('series')
