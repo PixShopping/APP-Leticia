@@ -1204,14 +1204,16 @@
             .doc(ID).update({
                 senha: novaSenha
             });
+            localStorage.setItem('senha', novaSenha);
             swal({
                 title: "Parabens",
                 text: "Senha Redefinida com sucesso!",
                 buttons: {
                     confirm: "Ok!",
                 }
+            }).then((response) => {
+                window.location.reload();
             });
-            localStorage.setItem('senha', novaSenha);
 	    } else if (novaSenha === senhaAtual) {
             swal({
                 title: "AVISO",
