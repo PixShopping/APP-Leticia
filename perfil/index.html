@@ -1033,12 +1033,13 @@
             OneSignalDeferred.push(function(OneSignal) {
                 OneSignal.optOut();
             });
-            setTimeout(() => {
-                deleteAllCookies();
-                localStorage.clear();
+            setTimeout( async () => {
+                await deleteAllCookies();
+                await localStorage.clear();
                 window.location.href = "../login/";
             }, 1000);
 		}
+        
         function deleteAllCookies() {
             var cookies = document.cookie.split(";");
 
@@ -1202,6 +1203,13 @@
             .collection(responsavelArmazenado)
             .doc(ID).update({
                 senha: novaSenha
+            });
+            swal({
+                title: "Parabens",
+                text: "Senha Redefinida com sucesso!",
+                buttons: {
+                    confirm: "Ok!",
+                }
             });
             localStorage.setItem('senha', novaSenha);
 	    } else if (novaSenha === senhaAtual) {
