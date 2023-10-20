@@ -1164,6 +1164,7 @@
     <!-- BANCO DE DADOS -->
     <script>
 
+
         // Pegar o ANO LETICO ATUAL
         /*const dataAtual = new Date();
         const anoAtual = dataAtual.getFullYear();
@@ -1919,6 +1920,16 @@
                     console.error('Erro ao enviar a notificação:', error);
                 });
         }
+
+        if (window.location.href === `https://app-leticia.netlify.app/mensagens/#DIRECAO`) {
+            abrirChatOnline('DIRECAO');
+        } else if (window.location.href === `https://app-leticia.netlify.app/mensagens/#COORDENACAO`) {
+            abrirChatOnline('COORDENACAO');
+        }
+
+        /*if (window.location.href === `https://app-leticia.netlify.app/mensagens/#DIRECAO`) {
+            alert('deu certo');
+        }*/
 
     </script>
 
