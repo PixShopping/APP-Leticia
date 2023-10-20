@@ -1702,6 +1702,7 @@
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
             const destinatario= localStorage.getItem('logado');
+            const docId = mensagem.slice(0,10);
             
                 db.collection(ANO)
                 .doc('chat')
@@ -1714,7 +1715,7 @@
                     .collection(serie)
                     .doc(responsavel)
                     .collection(`mensagens${destinatario}`)
-                    .doc(mensagem).set({
+                    .doc(docId).set({
                         hora: hora,
                         usuario: destinatario,
                         mensagem: mensagem,
@@ -1740,8 +1741,20 @@
             const containerChatOnline = document.querySelector('.containerChatOnline');
             const container = document.querySelector('.responsavel');
             const containerOpcoes = document.querySelector('.containerOpcoes');
-            const local = document.querySelector('.local h1');
-            local.innerHTML = `Chat: ${destinatario}`;
+            const local = document.querySelector('.local');
+            if (destinatario === 'DIRECAO') {
+                local.innerHTML = `
+                    <ion-icon name="school"></ion-icon>
+                    <h1 style='margin: 0px auto 0px 15px;'>Direção</h1>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+                `;
+            } else if (destinatario === 'COORDENACAO') {
+                local.innerHTML = `
+                    <ion-icon name="book"></ion-icon>
+                    <h1 style='margin: 0px auto 0px 15px;'>Coordenação</h1>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+                `;
+            }
             local.style.fontSize = '18px';
             containerOpcoes.style.display = "none";
             containerChatOnline.style.display = "flex";
@@ -1809,6 +1822,7 @@
 
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
+            const docId = mensagem.slice(0,10);
             const serie = localStorage.getItem('serie');
             const responsavel = localStorage.getItem('responsavel');
             const destinatario = localStorage.getItem('destinatario');
@@ -1823,7 +1837,7 @@
                 .collection(serie)
                 .doc(responsavel)
                 .collection(`mensagens${destinatario}`)
-                .doc(mensagem).set({
+                .doc(docId).set({
                     hora: hora,
                     usuario: responsavel,
                     mensagem: mensagem,
@@ -1832,25 +1846,6 @@
                 }).then((resposta) => {
                     inputMensagem.value = '';
                 });
-
-                /*db.collection(ANO)
-                .doc('series')
-                .collection(serie)
-                .onSnapshot((data) => {
-                    data.docs.map((val) => {
-                    var doc = val.data().responsavel;
-                    db.collection(ANO)
-                        .doc('responsaveis')
-                        .collection(doc)
-                        .onSnapshot((data) => {
-                            data.docs.map((val) => {
-                                var onesignalId = val.data().onesignalId;
-                                notificationSerie(mensagem, serie, onesignalId);                
-                            });
-                        });
-                    });
-                });*/
-                
                 lerChatOnline();
             });
 
