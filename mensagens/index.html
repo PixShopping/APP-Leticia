@@ -1717,6 +1717,7 @@
                         hora: hora,
                         usuario: destinatario,
                         mensagem: mensagem,
+                        view: false,
                         data: firebase.firestore.FieldValue.serverTimestamp()
                     }).then((resposta) => {
                         inputMensagem.value = '';
@@ -1732,7 +1733,7 @@
 
 
 
-        // CHAT ONLINE
+        // CHAT ONLINE 
 
         function abrirChatOnline(destinatario) {
             const containerChatOnline = document.querySelector('.containerChatOnline');
@@ -1825,6 +1826,7 @@
                     hora: hora,
                     usuario: responsavel,
                     mensagem: mensagem,
+                    view: false,
                     data: firebase.firestore.FieldValue.serverTimestamp()
                 }).then((resposta) => {
                     inputMensagem.value = '';
