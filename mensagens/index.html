@@ -1699,9 +1699,9 @@
             
             const serie = localStorage.getItem('verSerie');
             const responsavel = localStorage.getItem('verResponsavel');
+            const destinatario= localStorage.getItem('logado');
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
-            const destinatario= localStorage.getItem('logado');
             const docId = mensagem.slice(0,10);
             
                 db.collection(ANO)
@@ -1725,7 +1725,17 @@
                         inputMensagem.value = '';
                     });
 
-                /*notificationSerie(mensagem, serie, onesignalId);*/
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        const onesignalId = val.data().onesignalId;
+                        notificationUser(mensagem, onesignalId);
+                    });
+                });
+
+                
 
                 lerChatOnline();
                 });
@@ -1884,13 +1894,13 @@
             
         }
 
-        function notificationUser(mensagem, titulo, onesignalId) {
+        function notificationUser(mensagem, onesignalId) {
 
             const notificationData = {
                 app_id: '7639757a-a89b-4b52-8028-7e8b9d328e4c', // Substitua pelo ID do seu aplicativo OneSignal
                 headings: {
-                    en: titulo,
-                    pt: titulo,
+                    en: 'E.E LETÍCIA',
+                    pt: 'E.E LETÍCIA',
                 },
                 contents: {
                     en: mensagem,
