@@ -480,7 +480,7 @@
         }
 
         function lerChatOnlineResponsavel() {
-            
+            const logado = localStorage.getItem('logado');
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
@@ -509,7 +509,7 @@
                                     data.docs.map((val) => {
                                         if (val.data().usuario !== 'DIRECAO' && val.data().view === false) {
                                             notificacoes.innerHTML += `
-                                                <li onclick="ativarView('DIRECAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                                <li onclick="ativarViewResponsavel('${logado}', '${val.id}')">
                                                     <div class="flex">
                                                         <ion-icon name="notifications-outline"></ion-icon>
                                                         <h1>Você tem uma nova mensagem!</h1>
@@ -574,7 +574,36 @@
             }).then((response) => {
                 verNotificacao(usuario);
             })
-            
+        }
+
+        function ativarViewResponsavel(destinatario, id) {
+            db.collection(ANO)
+            .doc('chat')
+            .collection('existente')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    var serie = val.data().serie;
+                    db.collection(ANO)
+                    .doc('chat')
+                    .collection(serie)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                           var responsavel = val.id; 
+                           db.collection(ANO)
+                            .doc('chat')
+                            .collection(serie)
+                            .doc(responsavel)
+                            .collection(`mensagens${destinatario}`)
+                            .doc(id).update({
+                                view: true
+                            }).then((response) => {
+                                verNotificacao(responsavel);
+                            })
+                        })
+                    })
+
+                });  
+            });
         }
 
         function verNotificacao(usuario) {
@@ -681,26 +710,7 @@
             
         }
 
-        // CONFIMAR VISUALIZAÇAO
-
-        function confirmarView(index) {
-            const elemento = document.querySelector(`[data-index="${index}"]`);
-            const id = elemento.getAttribute('data-id');
-            const view = elemento.getAttribute('data-view');
-            if (view === "true") {
-                return;
-            } else {
-                db.collection(ANO)
-                .doc("mensagens")
-                .collection(RESPONSAVEL)
-                .doc(id).update({
-                    view: true
-                });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            }   
-        }
+        
         
 
        </script>
