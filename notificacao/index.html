@@ -410,10 +410,12 @@
       var existe = 0;
       var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
-      const diverro = document.querySelector('.erro');
+      const erro = document.querySelector('.erro');
+
       if (logado === 'RESPONSAVEL') {
         lerChatOnline();
       }
+      
       function lerChatOnline() {
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
@@ -440,6 +442,7 @@
                                     <h2>${val.data().mensagem}</h2>
                                 </li>
                             `;
+                            erro.style.display = 'none';
                         }
                         
                     });
@@ -465,6 +468,7 @@
                                     <h2>${val.data().mensagem}</h2>
                                 </li>
                             `;
+                            erro.style.display = 'none';
                         }
                         
                     });
@@ -505,6 +509,7 @@
             .get().then((existe) => {
                 const tamanho = existe.size;
                 if (tamanho > 0) {
+                    erro.style.display = 'none';
                     return true;
                 }
             });
@@ -522,6 +527,7 @@
             .get().then((existe) => {
                 const tamanho = existe.size;
                 if (tamanho > 0) {
+                    erro.style.display = 'none';
                     return true;
                 }
             });
