@@ -590,21 +590,29 @@
             box-shadow: 0px 0px 10px var(--white); 
         }
 
-        .containerChatOnline .flex ion-icon {
-            width: 25px;
-            height: 25px;
+        .containerChatOnline .flex button {
+            width: auto;
+            height: auto;
             color: var(--white);
+            font-size: 25px;
             padding: 10px;
             background: var(--one);
             border-radius: 50%;
             margin: 0px 0px 0px 10px;
             cursor: pointer;
             border: 2px solid var(--one);
-        } .containerChatOnline .flex ion-icon:hover {
+            display: flex;
+            align-items: center;
+        } .containerChatOnline .flex button:hover {
+            background: transparent;
+            color: var(--one);
+            transition: all .3s ease-in-out;
+        } .containerChatOnline .flex button:focus {
             background: transparent;
             color: var(--one);
             transition: all .3s ease-in-out;
         }
+
 
         .chatOnline {
             width: 100vw;
@@ -873,7 +881,7 @@
             </div>
 
             <div class="flex">
-                <input placeholder="Mensagem" id="messageOnline" type="text">
+                <input contenteditable="true" placeholder="Mensagem" id="messageOnline" type="text">
                 <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
             </div>
             
@@ -939,7 +947,9 @@
                 </div>
                 <div class="flex">
                     <input placeholder="Mensagem" id="messageOnline" type="text">
-                    <ion-icon onclick="enviarMensagemChatOnlineResponsavel()" name="send"></ion-icon>
+                    <button>
+                        <ion-icon onclick="enviarMensagemChatOnlineResponsavel()" name="send"></ion-icon>
+                    </button>
                 </div>
             `;
         } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
@@ -950,7 +960,9 @@
                 </div>
                 <div class="flex">
                     <input placeholder="Mensagem" id="messageOnline" type="text">
-                    <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
+                    <button>
+                        <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
+                    </button>
                 </div>
             `;
         }
@@ -1932,10 +1944,14 @@
             abrirChatOnline('COORDENACAO');
         }
 
-        /*if (window.location.href === `https://app-leticia.netlify.app/mensagens/#DIRECAO`) {
-            alert('deu certo');
-        }*/
-
+        const inputMensagem = document.getElementById('messageOnline');
+        
+        inputMensagem.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                enviarMensagemChatOnlineResponsavel();
+            }
+        });
+        
     </script>
 
 
