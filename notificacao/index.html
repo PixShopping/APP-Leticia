@@ -480,12 +480,13 @@
         function ativarView(destinatario, usuario, id) {
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
+            const docId = id.slice(0,10);
             db.collection(ANO)
             .doc('chat')
             .collection(serie)
             .doc(responsavel)
             .collection(`mensagens${destinatario}`)
-            .doc(id).update({
+            .doc(docId).update({
                 view: true
             }).then((response) => {
                 verNotificacao(usuario);
