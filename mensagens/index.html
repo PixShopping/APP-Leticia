@@ -516,139 +516,6 @@
             transition: all .4s ease-in-out;
         }
 
-        /* MENSAGENS */
-
-        /* DIV MENSAGENS */
-
-        .mensagens {
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0px 0px 0px 0px;
-            padding: 0px 0px 20px 0px;
-        }
-
-        .mensagens h2 {
-            margin: 15px 0px -10px 0px;
-        }
-
-        .mensagens li {
-            width: 95%;
-            height: auto;
-            list-style: none;
-            background: var(--one);
-            border-radius: 10px;
-            margin: 25px 0px 0px 0px;
-            padding: 20px;
-            color: var(--white);
-        }
-
-        .mensagens li h1 {
-            display: flex;
-            width: 100%;
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .mensagens li div {
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: center;
-            justify-content: space-between;
-            margin: 9px 0px -9px 0px;
-        }
-
-        .mensagens li div ion-icon {
-            margin: 0px;
-            color: white;
-            background: var(--red);
-            font-size: 30px;
-            padding: 5px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .mensagens li div ion-icon#view {
-            margin: 0px;
-            color: var(--red);
-            background: transparent;
-            padding: 0px;
-            font-size: 42px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 0px 8px 0px 0px;
-        }
-
-        .mensagens .flex {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mensagens li div a {
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .mensagens li h3 {
-            margin: 10px 0px 0px 0px;
-        }
-
-        .mensagens p {
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 0px;
-            width: 100%;
-            margin: 8px 0px 5px 0px;
-            color: #bbb;
-        }
-
-        .erro {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100vw;
-            height: auto;
-        }
-
-        .erro ion-icon {
-            width: 120px;
-            height: 120px;
-        }
-
-        .erro h1 {
-            font-size: 22px;
-            margin: 0px 0px 0px 0px;
-        }
-
-        .erro p {
-            font-size: 18px;
-        }
-
-        .erro button {
-            margin: 10px 0px 0px 0px;
-            width: 150px;
-            height: 35px;
-            border-radius: 10px;
-            background: var(--one);
-            color: var(--white);
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            border: 2px solid var(--one);
-        } .erro button:hover {
-            color: var(--one);
-            background: var(--white);
-            box-shadow: 0px 0px 10px var(--one);
-            transition: all .4s ease-in-out;
-        }
-
         /* ALERTA MODIFICADO */
         .swal-modal {
             background-color: var(--one);
@@ -683,24 +550,24 @@
         }
         
         /* CHAT */
-        .containerChat {
+        .containerChatOnline {
             width: 100vw;
             height: auto;
             display: none;
             flex-direction: column;
             align-items: center;
             position: relative;
-            top: 65px;
+            top: 80px;
             left: 0px;
         }
 
-        .containerChat h1 {
+        .containerChatOnline h1 {
             font-size: 30px;
             font-weight: 600;
             padding: 8px 0px 12px 0px;
         }
 
-        .containerChat .flex {
+        .containerChatOnline .flex {
             position: fixed;
             bottom: 100px;
             left: 0px;
@@ -711,7 +578,7 @@
             align-items: center;
         }
 
-        .containerChat .flex input {
+        .containerChatOnline .flex input {
             width: 80%;
             height: 100%;
             padding: 5px 5px 5px 12px;
@@ -720,9 +587,10 @@
             color: var(--white);
             border-radius: 10px;
             border: 1.5px solid var(--one);
+            box-shadow: 0px 0px 10px var(--white); 
         }
 
-        .containerChat .flex ion-icon {
+        .containerChatOnline .flex ion-icon {
             width: 25px;
             height: 25px;
             color: var(--white);
@@ -732,13 +600,13 @@
             margin: 0px 0px 0px 10px;
             cursor: pointer;
             border: 2px solid var(--one);
-        } .containerChat .flex ion-icon:hover {
+        } .containerChatOnline .flex ion-icon:hover {
             background: transparent;
             color: var(--one);
             transition: all .3s ease-in-out;
         }
 
-        .chat {
+        .chatOnline {
             width: 100vw;
             display: flex;
             flex-direction: column;
@@ -746,7 +614,7 @@
             padding: 0px 15px 180px 15px;
         }
 
-        .chat li {
+        .chatOnline li {
             width: 90%;
             height: auto;
             padding: 15px 17px 15px 15px;
@@ -775,7 +643,7 @@
             color: var(--white);
         }
 
-        .chat li h1 {
+        .chatOnline li h1 {
             width: 100%;
             font-size: 19px;
             font-weight: 700;
@@ -783,16 +651,40 @@
             margin: 0px 0px 3px 0px;
         }
 
-        .chat li h1 span {
+        .chatOnline li h1 span {
             font-size: 16px;
             font-weight: 500;
             letter-spacing: 0.4px;
         }
 
-        .chat li a {
+        .chatOnline li a {
             font-size: 16px;
             font-weight: 900;
             letter-spacing: 0.5px;
+        }
+
+        .chatOnline .erro {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: auto;
+            margin: 0px;
+        }
+
+        .chatOnline .erro ion-icon {
+            width: 120px;
+            height: 120px;
+        }
+
+        .chatOnline .erro h1 {
+            font-size: 22px;
+            margin: 0px 0px 0px 0px;
+        }
+
+        .chatOnline .erro p {
+            font-size: 18px;
         }
 
         /* DADOS DOS RESPONSAVEIS */
@@ -864,17 +756,13 @@
             <section class="content responsavel">
 
 				<ul>
-					<li onclick="abrirMensagemResponsavel(0)">
+					<li onclick="abrirChatOnline('DIRECAO')">
 						<ion-icon name="school-outline"></ion-icon>
 						<h1>Direção</h1>
 					</li>
-					<li onclick="abrirMensagemResponsavel(1)">
+					<li onclick="abrirChatOnline('COORDENACAO')">
 						<ion-icon name="book-outline"></ion-icon>
 						<h1>Coordenação</h1>
-					</li>
-                    <li onclick="abrirChat()">
-						<ion-icon name="globe-outline"></ion-icon>
-						<h1 id="grupoSerie">Chat</h1>
 					</li>
 				</ul>
 
@@ -888,14 +776,7 @@
 
             <div class="mensagens">
 
-                <div class="erro">
 
-                    <ion-icon name="mail"></ion-icon>
-                    <h1>Nenhuma mensagem encontrada!</h1>
-                    <p>Tente novamente mais tarde..</p>
-                    <button onclick="reload()">Voltar..</button>
-
-                </div>
 
             </div>
 
@@ -985,17 +866,15 @@
 
         </section>
 
-        <section class="containerChat">
+        <section class="containerChatOnline">
 
-            <h1 id="chatSerie">Chat</h1>
-
-            <div class="chat">
+            <div class="chatOnline">
 
             </div>
 
             <div class="flex">
-                <input placeholder="Mensagem" id="message" type="text">
-                <ion-icon onclick="enviarMensagemChat()" name="send"></ion-icon>
+                <input placeholder="Mensagem" id="messageOnline" type="text">
+                <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
             </div>
             
         </section>
@@ -1008,7 +887,7 @@
     <!-- JAVASCRIPT -->
     <script>
 
-
+        
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
@@ -1027,14 +906,13 @@
 
          // OPÇOES
 
-         function opcoes(responsavel) {
+         function opcoes(responsavel, serie) {
             const containerOpcoes = document.querySelector('.containerOpcoes');
             containerOpcoes.innerHTML = `
                 <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
                 <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
-                <button onclick="abrirMensagem('${responsavel}')">Enviar Mensagem</button>
-                <button onclick="verMensagem('${responsavel}')">Ver Mensagens</button>
-            `;
+                <button onclick="abrirChatOnlineResponsavel('${responsavel}','${serie}')">Abrir Chat</button>
+            `;// marcar1
             containerOpcoes.style.display = 'flex';
             localStorage.setItem('verResponsavel', responsavel);
          }
@@ -1048,16 +926,33 @@
         const logado = localStorage.getItem('logado');
         const admin = document.querySelector('.admin');
         const responsavel = document.querySelector('.responsavel');
-        
+        const chatOnline = document.querySelector('.containerChatOnline');
+
         // Verificar se é administrador
         if (!logado){
             window.location.href = "../login/";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
+            chatOnline.innerHTML = `
+                <div class="chatOnline">
+                </div>
+                <div class="flex">
+                    <input placeholder="Mensagem" id="messageOnline" type="text">
+                    <ion-icon onclick="enviarMensagemChatOnlineResponsavel()" name="send"></ion-icon>
+                </div>
+            `;
         } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
             admin.style.display = "none";
             responsavel.style.display = "flex";
+            chatOnline.innerHTML = `
+                <div class="chatOnline">
+                </div>
+                <div class="flex">
+                    <input placeholder="Mensagem" id="messageOnline" type="text">
+                    <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
+                </div>
+            `;
         }
 
 
@@ -1347,7 +1242,7 @@
         .onSnapshot((data) => {
             data.docs.map((val) => {
                 containerSerie.innerHTML += `
-                <li onclick="opcoes('${val.data().responsavel}')">
+                <li onclick="opcoes('${val.data().responsavel}', '${serie}')">
                     <ion-icon name="people-circle-outline"></ion-icon>    
                     <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
                     <button onclick="remover(${val.data().responsavel}, ${serie}, event)"><ion-icon name="trash-outline"></ion-icon></button>
@@ -1719,63 +1614,223 @@
 
 
 
-    <!-- CHAT GLOBAL -->
+    <!-- CHAT ONLINE -->
     <script>
-
-        const chatSerie = document.getElementById('chatSerie');
-        const grupoSerie = document.getElementById('grupoSerie');
-        const serie = localStorage.getItem('serie');
-        chatSerie.innerHTML = 'GRUPO ' + serie;
-        grupoSerie.innerHTML = 'GRUPO ' + serie;
-
-        function abrirChat() {
-            const containerChat = document.querySelector('.containerChat');
+        
+        // CHAT ONLINE RESPONSAVEL (PARA DIRECAO)
+        
+        
+        function abrirChatOnlineResponsavel(responsavel, serie) {
+            const containerChatOnline = document.querySelector('.containerChatOnline');
             const container = document.querySelector('.responsavel');
-            containerChat.style.display = "flex";
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            const sections = document.querySelectorAll('.contentSeries');
+            const local = document.querySelector('.local h1');
+            local.innerHTML = `Chat: ${responsavel}`;
+            local.style.fontSize = '18px';
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+            localStorage.setItem('verSerie', serie);
+            containerOpcoes.style.display = "none";
+            containerChatOnline.style.display = "flex";
             container.style.display = "none";
             document.querySelector('.container').style.padding = "0px";
             window.location.href = "#end";
+            lerChatOnlineResponsavel(serie);
         }
 
-        function enviarMensagemChat() {
+        // marcar2
 
-            // Obtém a data e hora atual
+        function lerChatOnlineResponsavel(serie) {
+            const chat = document.querySelector('.chatOnline');
+            const responsavel = localStorage.getItem('verResponsavel');
+            const destinatario = localStorage.getItem('logado');
+            var status = '';
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .orderBy("data")
+            .onSnapshot((data) => {
+                chat.innerHTML = "";
+                data.docs.map((val) => {
+                    if (val.data().usuario === destinatario) {
+                        status = 'minha';
+                    } else {
+                        status = 'dele';
+                    }
+                    chat.innerHTML += `
+                        <li class="${status}">
+                            <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
+                            <a>${val.data().hora}</a>
+                        </li>
+                    `;
+                });
+                chat.innerHTML += '<tag id="end"></tag>';
+            });
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .get().then((existe) => {
+                const tamanho = existe.size;
+                if (tamanho === 0) {
+                    chat.innerHTML += `
+                        <div class="erro">
+                            <ion-icon name="mail"></ion-icon>
+                            <h1>Nenhuma mensagem encontrada!</h1>
+                            <p>Tente novamente mais tarde..</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function enviarMensagemChatOnlineResponsavel() {   
+
             const dataAtual = new Date();
-
-            // Obtém a hora atual (0-23)
             const horas = dataAtual.getHours();
-
-            // Obtém os minutos atuais (0-59)
             const minutos = dataAtual.getMinutes();
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+            
+            const serie = localStorage.getItem('verSerie');
+            const responsavel = localStorage.getItem('verResponsavel');
+            const inputMensagem = document.getElementById('messageOnline');
+            const mensagem = inputMensagem.value;
+            const destinatario= localStorage.getItem('logado');
+            
+                db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .set({ nome: responsavel})
+                .then((response) => {
+                    db.collection(ANO)
+                    .doc('chat')
+                    .collection(serie)
+                    .doc(responsavel)
+                    .collection(`mensagens${destinatario}`)
+                    .doc(mensagem).set({
+                        hora: hora,
+                        usuario: destinatario,
+                        mensagem: mensagem,
+                        data: firebase.firestore.FieldValue.serverTimestamp()
+                    }).then((resposta) => {
+                        inputMensagem.value = '';
+                    });
 
-            // Formata a hora e os minutos em uma única string "HH:MM"
+                /*notificationSerie(mensagem, serie, onesignalId);*/
+
+                lerChatOnline();
+                });
+
+            }
+
+
+
+
+        // CHAT ONLINE
+
+        function abrirChatOnline(destinatario) {
+            const containerChatOnline = document.querySelector('.containerChatOnline');
+            const container = document.querySelector('.responsavel');
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            const local = document.querySelector('.local h1');
+            local.innerHTML = `Chat: ${destinatario}`;
+            local.style.fontSize = '18px';
+            containerOpcoes.style.display = "none";
+            containerChatOnline.style.display = "flex";
+            container.style.display = "none";
+            document.querySelector('.container').style.padding = "0px";
+            window.location.href = "#end";
+            localStorage.setItem('destinatario', destinatario);
+            lerChatOnline();
+        }
+
+        function lerChatOnline() {
+            const chat = document.querySelector('.chatOnline');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            const destinatario = localStorage.getItem('destinatario');
+            var status = '';
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .orderBy("data")
+            .onSnapshot((data) => {
+                chat.innerHTML = "";
+                data.docs.map((val) => {
+                    if (val.data().usuario === responsavel) {
+                        status = 'minha';
+                    } else {
+                        status = 'dele';
+                    }
+                    chat.innerHTML += `
+                        <li class="${status}">
+                            <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
+                            <a>${val.data().hora}</a>
+                        </li>
+                    `;
+                });
+                chat.innerHTML += '<tag id="end"></tag>';
+            });
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .get().then((existe) => {
+                const tamanho = existe.size;
+                if (tamanho === 0) {
+                    chat.innerHTML += `
+                        <div class="erro">
+                            <ion-icon name="mail"></ion-icon>
+                            <h1>Nenhuma mensagem encontrada!</h1>
+                            <p>Tente novamente mais tarde..</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function enviarMensagemChatOnline() {   
+
+            const dataAtual = new Date();
+            const horas = dataAtual.getHours();
+            const minutos = dataAtual.getMinutes();
             const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
 
-            const usuario = localStorage.getItem('responsavel');
-            const inputMensagem = document.getElementById('message');
+            const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
             const serie = localStorage.getItem('serie');
+            const responsavel = localStorage.getItem('responsavel');
+            const destinatario = localStorage.getItem('destinatario');
             db.collection(ANO)
-            .doc('salas')
-            .collection("salas")
-            .doc(serie)
-            .set({ nome: serie})
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .set({ nome: responsavel})
             .then((response) => {
                 db.collection(ANO)
-                .doc('salas')
-                .collection("salas")
-                .doc(serie)
-                .collection('mensagens')
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagens${destinatario}`)
                 .doc(mensagem).set({
                     hora: hora,
-                    usuario: usuario,
+                    usuario: responsavel,
                     mensagem: mensagem,
                     data: firebase.firestore.FieldValue.serverTimestamp()
                 }).then((resposta) => {
                     inputMensagem.value = '';
                 });
 
-                db.collection(ANO)
+                /*db.collection(ANO)
                 .doc('series')
                 .collection(serie)
                 .onSnapshot((data) => {
@@ -1791,40 +1846,16 @@
                             });
                         });
                     });
-                });
+                });*/
                 
+                lerChatOnline();
             });
-            
+
         }
 
-        // LENDO AS MENSAGENS
-        const chat = document.querySelector('.chat');
-        const RESPONSAVEL = localStorage.getItem('responsavel');
-        var status = '';
-        db.collection(ANO)
-        .doc('salas')
-        .collection("salas")
-        .doc(serie)
-        .collection('mensagens')
-        .orderBy("data")
-        .onSnapshot((data) => {
-            chat.innerHTML = "";
-            data.docs.map((val) => {
-                if (val.data().usuario === RESPONSAVEL) {
-                    status = 'minha';
-                } else {
-                    status = 'dele';
-                }
-                chat.innerHTML += `
-                    <li class="${status}">
-                        <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
-                        <a>${val.data().hora}</a>
-                    </li>
-                `;
-            });
-            chat.innerHTML += '<tag id="end"></tag>';
-        });
         
+        // NOTIFICAÇÕES PUSH
+
         function notificationSerie(mensagem, serie, onesignalId) {
             const options = {
                 method: 'POST',
