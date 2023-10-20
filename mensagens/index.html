@@ -1715,7 +1715,6 @@
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
             const docId = mensagem.slice(0,10);
-            
                 db.collection(ANO)
                 .doc('chat')
                 .collection(serie)
@@ -1736,6 +1735,15 @@
                     }).then((resposta) => {
                         inputMensagem.value = '';
                     });
+
+
+                db.collection(ANO)
+                .doc('chat')
+                .collection('existente')
+                .doc(serie).set({
+                    serie: serie
+                })
+                                
 
                 db.collection(ANO)
                 .doc('responsaveis')
@@ -1870,6 +1878,13 @@
                 });
                 lerChatOnline();
             });
+
+            db.collection(ANO)
+            .doc('chat')
+            .collection('existente')
+            .doc(serie).set({
+                serie: serie
+            })
 
         }
 
