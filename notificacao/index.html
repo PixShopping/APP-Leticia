@@ -77,9 +77,9 @@
             }
 
             .local h1 {
-		font-size: 24px;
+		        font-size: 24px;
                 font-weight: 700;
-		letter-spacing: 0.5px;
+		        letter-spacing: 0.5px;
                 display: flex;
             }
 
@@ -122,300 +122,125 @@
                 padding: 0px 0px 90px 0px;
             }
 
-            /* DIV MENSAGENS */
-
-            .mensagens {
+            .notificacoes {
                 width: 100%;
                 height: auto;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-            	margin: 0px 0px 0px 0px;
-                padding: 0px 0px 20px 0px;
-	    }
-
-            .mensagens li {
-                width: 95%;
-                height: auto;
-                list-style: none;
-                background: var(--one);
-                border-radius: 10px;
-                margin: 25px 0px 0px 0px;
-                padding: 20px;
-                color: var(--white);
             }
 
-            .mensagens li h1 {
-                display: flex;
+            .notificacoes li {
                 width: 100%;
+                border-bottom: 2px solid #191919;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                padding: 15px 15px;
+            }
+
+            .notificacoes li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .3s ease-in-out;
+            }
+
+            .notificacoes li .flex {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .notificacoes li .flex ion-icon {
+                font-size: 40px;
+                margin: 0px 8px 0px 0px;
+            }
+
+            .notificacoes li .flex h1 {
+                font-size: 22px;
+                font-weight: 500;
+            }
+
+            .notificacoes li .flex a {
                 font-size: 20px;
                 font-weight: 500;
-                text-transform: capitalize;
+                margin: 0px 0px 0px auto;
             }
 
-            .mensagens li h3 {
-                margin: 10px 0px 0px 0px;
-                text-transform: capitalize;
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-            }
-
-            .mensagens li h3 .data {
-                font-size: 18px;
+            .notificacoes li h2 {
+                font-size: 20px;
                 font-weight: 500;
-                margin: 0px 2px 0px 0px;
+                margin: 0px 0px 0px 48px;
             }
 
-            .mensagens li p {
-                font-size: 15px;
-                font-weight: 500;
-                letter-spacing: 0px;
-                width: 100%;
-                margin: 8px 0px 5px 0px;
-                color: #999;
-            }
-
-            .mensagens li div {
-                width: 100%;
+            
+		    .erro {
+                width: 100vw;
                 height: auto;
                 display: flex;
-                flex-direction: row-reverse;
+                flex-direction: column;
                 align-items: center;
-                justify-content: space-between;
-                margin: 10px 0px -5px 0px;
-                padding: 1px 0px;
-            }
-
-            .mensagens li div ion-icon {
-                margin: 0px;
-                color: white;
-                background: var(--red);
-                font-size: 30px;
-                padding: 5px;
-                border-radius: 10px;
-                cursor: pointer;
-            } 
-
-            .mensagens li div ion-icon#view {
-                margin: 0px;
-                color: var(--red);
-                background: transparent;
-                font-size: 42px;
-                border-radius: 10px;
-                cursor: pointer;
-            }
-
-            .mensagens li div a {
-                font-size: 18px;
-                font-weight: 500;
-            }
-
-            .mensagens button {
-                width: 135px;
-                height: 37px;
-                background: var(--two);
-                color: white;
-                border: none;
-                border-radius: 10px;
-                font-size: 16px;
-                font-weight: 500;
-                margin: 0px;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            } .mensagens button:hover {
-                background: var(--white);
-                color: var(--one);
-                box-shadow: 0px 5px 15px var(--white);
-                transition: all .4s ease-in-out;
-            }
-
-		    .erro {
-			width: 100vw;
-			height: auto;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
 		    }
 
 		    .erro ion-icon {
-			background: var(--six);
-			font-size: 100px;
-			padding: 50px;
-			color: #002242;
-			border-radius: 50%;
-			margin: 20px 0px 20px 0px;
+                background: var(--six);
+                font-size: 100px;
+                padding: 50px;
+                color: #002242;
+                border-radius: 50%;
+                margin: 20px 0px 20px 0px;
 		    }
 
 		     .erro h1 {
-			font-size: 26px;
-			font-weight: 700;
-			letter-spacing: 0.3px;
-			margin: 0px 0px 5px 0px;
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 5px 0px;
 		        width: 90%;
-			text-align: center;
+	    		text-align: center;
 		     }
 
 		     .erro p {
-			font-size: 17px;
-			font-weight: 400;
-			margin: 0px 0px 5px 0px;
-			text-align: center;
-			width: 80%;
+                font-size: 17px;
+                font-weight: 400;
+                margin: 0px 0px 5px 0px;
+                text-align: center;
+                width: 80%;
 		     }
 
-             /* Formulario de Mensagem */
 
-        .form-mensagem {
-            width: 100vw;
-            height: 110vh;
-            padding: 20px;
-            background: var(--white);
-            display: none;
-            flex-direction: column;
-            z-index: 100;
-            position: absolute;
-            top: 101vh;
-            left: 0px;
-            transition: all .4s ease-in-out;
-            border-radius: 0px 0px 10px 10px;
-            box-shadow: 0 0 10px #232323;
-        }
+            /* ALERTA MODIFICADO */
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .form-mensagem div {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            margin: 0px 0px 25px 0px;
-            padding: 0px 20px 0px 0px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 40px;
+                font-size: 18px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+            }
 
-        .form-mensagem ion-icon {
-            font-size: 25px;
-            padding: 10px;
-            background: var(--one);
-            color: var(--white);
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid var(--one);
-        } .form-mensagem ion-icon:hover {
-            background: var(--white);
-            color: var(--one);
-            transition: all .4s ease-in-out;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+            }
 
-        .form-mensagem h1 {
-            font-size: 25px;
-            font-weight: 400;
-            text-align: center;
-            margin: 0px auto;
-        }
-
-        .form-mensagem h2 {
-            font-size: 21px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin: 10px 0px;
-            color: var(--one);
-        }
-
-        .form-mensagem label {
-            font-size: 20px;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-            margin: 0px 0px 2px 2px;
-        }
-
-        .form-mensagem input {
-            width: 100%;
-            height: 35px;
-            border-radius: 5px;
-            background: var(--white);
-            color: var(--one);
-            border: 1.5px solid var(--one);
-            outline: none;
-            padding: 10px;
-            margin: 0px 0px 12.5px 0px;
-        }
-
-        .form-mensagem select {
-            width: 100%;
-            height: 35px;
-            border-radius: 5px;
-            background: var(--white);
-            color: var(--one);
-            border: 1.5px solid var(--one);
-            outline: none;
-            padding: 0px 10px;
-            margin: 0px 0px 12.5px 0px;
-        }
-
-        .form-mensagem textarea {
-            width: 100%;
-            height: 70px;
-            border-radius: 5px;
-            background: var(--white);
-            color: var(--one);
-            border: 1.5px solid var(--one);
-            outline: none;
-            padding:  5px 10px;
-            margin: 0px 0px 10px 0px;
-        }
-
-        .form-mensagem button {
-            width: 90%;
-            height: 45px;
-            border-radius: 10px;
-            background: var(--one);
-            color: var(--white);
-            margin: 30px auto 10px auto;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            outline: none;
-            border: 2px solid var(--one);
-        } .form-mensagem button:hover {
-            background: var(--white);
-            border: 2px solid var(--one);
-            color: var(--one);
-            box-shadow: 0px 5px 15px  var(--one);
-            transition: all .3s ease-in-out;
-        }
-
-        /* ALERTA MODIFICADO */
-        .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
-
-        .swal-title {
-            width: 100%;
-            height: 40px;
-            font-size: 18px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-        }
-
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-        }
-
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
 
 
 
@@ -433,47 +258,21 @@
 
                 </header>
 
-                <div class="mensagens">
+                <div class="notificacoes">
 
 
 
                 </div>
 
-		<section class="erro">
+                <section class="erro">
 
-			<ion-icon name="notifications-outline"></ion-icon>
-			<h1>Nenhuma notificação encontrada</h1>
-			<p>Volte novamente mais tarde...</p>
+                    <ion-icon name="notifications-outline"></ion-icon>
+                    <h1>Nenhuma notificação encontrada</h1>
+                    <p>Volte novamente mais tarde...</p>
 
-		</section>
+                </section>
 
             </main>
-
-            <section class="form-mensagem">
-
-                <div>
-                    <ion-icon onclick="voltar()" name="arrow-back"></ion-icon>
-                    <h1>Enviar Mensagem</h1>
-                </div>
-
-                <label>Respondendo a Mensagem:</label>
-                <h2 id="respondendo"></h2>
-
-                <label>Para:</label>
-                <select type="text" id="inputDestinatario">
-                    <option value="COORDENACAO">Coordenação</option>
-                    <option value="DIRECAO">Direção</option>
-                </select>
-
-                <label>Data</label>
-                <input type="date" id="inputData">
-
-                <label>Mensagem</label>
-                <textarea id="inputMensagem"></textarea>
-
-                <button onclick="enviarResposta()">Enviar Resposta</button>
-
-            </section>
 
             <nav class="navgation">
 
@@ -611,106 +410,122 @@
       var existe = 0;
       var index = 0;
       const RESPONSAVEL = localStorage.getItem('responsavel');
-      const div = document.querySelector('.mensagens');
       const diverro = document.querySelector('.erro');
-      if (logado === "RESPONSAVEL") {
-        db.collection(ANO)
-        .doc("mensagens")
-        .collection(RESPONSAVEL)
-        .onSnapshot((data) => {
-            div.innerHTML = '';
-            data.docs.map((val) => {
-                const date = val.data().data;
-                const dia = date.substring(8);
-                const mes = date.substring(5,7);
-                const ano = date.substring(0,4);
-                var view = 'var(--red)';
-                if (val.data().view) {
-                    view = 'var(--green)';
-                }
-                div.innerHTML += `<li data-id="${val.id}" data-view="${val.data().view}" data-index="${index}" data-responder="${val.data().titulo}">
-                    <h1>${val.data().titulo}</h1>
-                    <h3>
-                        ${val.data().destinatario}
-                        <v class="data">${dia}/${mes}/${ano}</v>
-                    </h3>
-                    <p>${val.data().mensagem}</p>
-                    <div>
-                        <ion-icon style="color: ${view};" onclick="confirmarView(${index})" id="view" name="checkmark-done-circle-outline"></ion-icon>
-                        <button onclick="responderMensagem(${index})">Responder</button>    
-                    </div>
-                    </li>`;
-                index++;
-                diverro.style.display = "none";
-            });
-        }); 
-
-      // LENDO MENSAGEM SENDO DIRECAO OU COORDENACAO
+      if (logado === 'RESPONSAVEL') {
+        lerChatOnline();
       }
-      var index = 0;
-      if (logado !== "RESPONSAVEL") {
-        db.collection(ANO)
-        .doc("respostas")
-        .collection(logado)
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-                const date = val.data().data;
-                const dia = date.substring(8);
-                const mes = date.substring(5,7);
-                const ano = date.substring(0,4);
-                div.innerHTML += `<li data-index="${index}" data-id="${val.id}">
-                    <h1>Respondendo: ${val.data().titulo}</h1>
-                    <h3>${val.data().responsavel}</h3>
-                    <p>${val.data().resposta}</p>
-                    <div>
-                        <ion-icon name="trash-outline" onclick="excluirResposta(${index})"></ion-icon>
-                        <a>${dia}/${mes}/${ano}</a>
-                    </div>
-                    </li>`;
-                index++;
-                diverro.style.display = "none";
-            });
-        });
-      }
-
-      // EXCLUIR RESPOSTA
-      function excluirResposta(uindex) {
-        const elemento = document.querySelector(`[data-index="${uindex}"]`);
-        const id = elemento.getAttribute('data-id');
-        
-        swal({
-            title: "AVISO",
-            text: "Voce deseja excluir mesmo?",
-            buttons: {
-                cancel: "Cancelar",
-                confirm: "Excluir!",
-            },
-        }).then((response) => {
-            if (response) {
+      function lerChatOnline() {
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            var status = '';
+            if (verificarNotificacaoDirecao) {
                 db.collection(ANO)
-                .doc("respostas")
-                .collection(logado)
-                .doc(id).delete();
-
-                setTimeout(() => {
-                    swal({
-                        title: 'AVISO',
-                        text: 'Mensagem excluida com sucesso!',
-                        buttons: {
-                            confirm: "Ok!",
-                        },
-                    }).then((responsetwo) => {
-                        if (responsetwo) {
-                            window.location.reload();
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensDIRECAO`)
+                .orderBy("data")
+                .onSnapshot((data) => {
+                    notificacoes.innerHTML = "";
+                    data.docs.map((val) => {
+                        if (val.data().usuario === 'DIRECAO' && val.data().view === false) {
+                            notificacoes.innerHTML += `
+                                <li onclick="ativarView('DIRECAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                    <div class="flex">
+                                        <ion-icon name="notifications-outline"></ion-icon>
+                                        <h1>Você tem uma nova mensagem!</h1>
+                                        <a>${val.data().hora}</a>
+                                    </div>
+                                    <h2>${val.data().mensagem}</h2>
+                                </li>
+                            `;
                         }
+                        
                     });
-                }, 1000);
-            } else {
-                
+                });
             }
-        })
-        
-      }
+            if (verificarNotificacaoCoordenacao) {
+                db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensCOORDENACAO`)
+                .orderBy("data")
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        if (val.data().usuario === 'COORDENACAO' && val.data().view === false) {
+                            notificacoes.innerHTML += `
+                                <li onclick="ativarView('COORDENACAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                    <div class="flex">
+                                        <ion-icon name="notifications-outline"></ion-icon>
+                                        <h1>Você tem uma nova mensagem!</h1>
+                                        <a>${val.data().hora}</a>
+                                    </div>
+                                    <h2>${val.data().mensagem}</h2>
+                                </li>
+                            `;
+                        }
+                        
+                    });
+                });
+            }
+            
+        }
+
+        function ativarView(destinatario, usuario, id) {
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .doc(id).update({
+                view: true
+            }).then((response) => {
+                verNotificacao(usuario);
+            })
+            
+        }
+
+        function verNotificacao(usuario) {
+            window.location.href = `../mensagens/#${usuario}`;
+        }
+
+        function verificarNotificacaoDirecao() {
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagensDIRECAO`)
+            .get().then((existe) => {
+                const tamanho = existe.size;
+                if (tamanho > 0) {
+                    return true;
+                }
+            });
+        }
+
+        function verificarNotificacaoCoordenacao() {
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagensCOORDENACAO`)
+            .get().then((existe) => {
+                const tamanho = existe.size;
+                if (tamanho > 0) {
+                    return true;
+                }
+            });
+        }
 
         // Responder Mensagem
 
@@ -794,7 +609,7 @@
                 setTimeout(() => {
                     window.location.reload();
                 }, 1000);
-            }
+            }   
         }
         
 
