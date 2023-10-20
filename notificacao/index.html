@@ -414,6 +414,8 @@
 
       if (logado === 'RESPONSAVEL') {
         lerChatOnline();
+      } else if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+        lerChatOnlineResponsavel()
       }
       
       function lerChatOnline() {
@@ -458,6 +460,87 @@
                 .onSnapshot((data) => {
                     data.docs.map((val) => {
                         if (val.data().usuario === 'COORDENACAO' && val.data().view === false) {
+                            notificacoes.innerHTML += `
+                                <li onclick="ativarView('COORDENACAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                    <div class="flex">
+                                        <ion-icon name="notifications-outline"></ion-icon>
+                                        <h1>Você tem uma nova mensagem!</h1>
+                                        <a>${val.data().hora}</a>
+                                    </div>
+                                    <h2>${val.data().mensagem}</h2>
+                                </li>
+                            `;
+                            erro.style.display = 'none';
+                        }
+                        
+                    });
+                });
+            }
+            
+        }
+
+        function lerChatOnlineResponsavel() {
+            
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            var status = '';
+            db.collection(ANO)
+            .doc('chat')
+            .collection('existente')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    var serie = val.data().serie;
+                    db.collection(ANO)
+                    .doc('chat')
+                    .collection(serie)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                           var responsavel = val.id; 
+                           if (verificarNotificacaoDirecao) {
+                                db.collection(ANO)
+                                .doc('chat')
+                                .collection(serie)
+                                .doc(responsavel)
+                                .collection(`mensagensDIRECAO`)
+                                .orderBy("data")
+                                .onSnapshot((data) => {
+                                    notificacoes.innerHTML = "";
+                                    data.docs.map((val) => {
+                                        if (val.data().usuario !== 'DIRECAO' && val.data().view === false) {
+                                            notificacoes.innerHTML += `
+                                                <li onclick="ativarView('DIRECAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                                    <div class="flex">
+                                                        <ion-icon name="notifications-outline"></ion-icon>
+                                                        <h1>Você tem uma nova mensagem!</h1>
+                                                        <a>${val.data().hora}</a>
+                                                    </div>
+                                                    <h2>${responsavel} (${serie}): ${val.data().mensagem}</h2>
+                                                </li>
+                                            `;
+                                            erro.style.display = 'none';
+                                        }
+                                        
+                                    });
+                                });
+                            }
+                        })
+                    })
+
+                });  
+            });
+
+            
+            if (verificarNotificacaoCoordenacao) {
+                db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensCOORDENACAO`)
+                .orderBy("data")
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        if (val.data().usuario !== 'COORDENACAO' && val.data().view === false) {
                             notificacoes.innerHTML += `
                                 <li onclick="ativarView('COORDENACAO', '${val.data().usuario}', '${val.data().mensagem}')">
                                     <div class="flex">
