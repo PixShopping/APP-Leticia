@@ -272,7 +272,6 @@
                             <v>|</v>
                             <a onclick="privacidade()">Politica de Privacidade</a>
                         </div>
-                        
 
                     </ul>
 
@@ -305,7 +304,7 @@
                 <ion-icon onclick="enviar()" name="mail"></ion-icon>
 
                 <!-- MURAL -->
-                <ion-icon id="mural" onclick="abrirMural()" name="calendar-outline"></ion-icon>
+                <ion-icon id="mural" onclick="abrirMural()" name="calendar"></ion-icon>
                 <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
 
                 <!-- PERFIL -->
@@ -356,6 +355,10 @@
        function enviar() {
          window.location.href = "../mensagens";
        }
+
+       function abrirMural() {
+            window.location.href = "../mural/";
+        }
 
        // ADMINISTRADOR
         const informacao = document.getElementById('informacao');
