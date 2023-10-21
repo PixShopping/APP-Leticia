@@ -597,7 +597,7 @@
                             .doc(id).update({
                                 view: true
                             }).then((response) => {
-                                verNotificacao(responsavel);
+                                verNotificacaoResponsavel(serie, responsavel);
                             })
                         })
                     })
@@ -609,6 +609,12 @@
         function verNotificacao(usuario) {
             window.location.href = `../mensagens/#${usuario}`;
         }
+        
+        function verNotificacaoResponsavel(serie, usuario) {
+            window.location.href = `../mensagens/#${serie}#${usuario}`;
+        }
+    
+        
 
         function verificarNotificacaoDirecao() {
             const notificacoes = document.querySelector('.notificacoes');
