@@ -1380,6 +1380,8 @@
                 var email = 'Não definido';
                 var telefone = 'Não definido';
                 var senha = 'Não definido';
+                var notificacao = 'Não definido';
+                var corNotificacao = 'var(--red)';
                 if (val.data().aluno !== '') {
                     aluno = val.data().aluno;
                 }
@@ -1395,6 +1397,10 @@
                 if (val.data().senha !== '') {
                     senha = val.data().senha;    
                 }
+                if (val.data().onesignalId) {
+                    notificacao = 'Ativado';
+                    corNotificacao = 'var(--green)';
+                }
                 
                 
                 div.innerHTML += `
@@ -1403,7 +1409,15 @@
                     <h1><strong>Email: </strong>${email}</h1>
                     <h1><strong>Telefone: </strong>${telefone}</h1>
                     <h1><strong>Senha: </strong>${senha}</h1>
+                    <h1 style="color: ${corNotificacao};"><strong>Notificações: </strong>${notificacao}</h1>
                 `;
+                if (val.data().onesignalId) {
+                    div.innerHTML += `
+                    <h1><strong>Id Notificação: </strong>${val.data().onesignalId}</h1>
+                `;
+                verificarPermitionNotification(val.data().onesignalId);
+                
+                }
             });
         });
 
@@ -1419,7 +1433,6 @@
     <script>
         
         // CHAT ONLINE RESPONSAVEL (PARA DIRECAO)
-        
         
         function abrirChatOnlineResponsavel(responsavel, serie) {
             const containerChatOnline = document.querySelector('.containerChatOnline');
@@ -1742,6 +1755,26 @@
                 .catch(error => {
                     console.error('Erro ao enviar a notificação:', error);
                 });
+        }
+
+        function verificarPermitionNotification(uid) {
+            var id = `${uid}`;
+            var appId = '7639757a-a89b-4b52-8028-7e8b9d328e4c';
+            fetch(`https://onesignal.com/api/v1/players/${id}?app_id=${appId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const notificationPermission = data.notification_permission;
+                console.log('Status da permissão de notificação: ' + notificationPermission);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error);
+            });
         }
 
         if (window.location.href === `https://app-leticia.netlify.app/mensagens/#DIRECAO`) {
