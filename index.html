@@ -115,7 +115,7 @@
        	img.style.opacity = 1;
        }, 2700);
        setTimeout( () => {
-            if (localStorage.getItem('versao' !== '1.0')) {
+            if (localStorage.getItem('versao') !== '1.0') {
                 localStorage.clear();
                 localStorage.setItem('versao', '1.0');
             }
