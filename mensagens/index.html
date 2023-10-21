@@ -1957,8 +1957,11 @@
             abrirChatOnline('DIRECAO');
         } else if (window.location.href === `https://app-leticia.netlify.app/mensagens/#COORDENACAO`) {
             abrirChatOnline('COORDENACAO');
-        } else if (window.location.href === `https://app-leticia.netlify.app/mensagens/#end`) {
-            window.location.href = "#end";
+        } 
+        if (window.location.href === `https://app-leticia.netlify.app/mensagens/#end`) {
+            setTimeout(() => {
+                window.location.href = "#end";
+            }, 1000);
         } 
 
         const url = window.location.href;
