@@ -931,6 +931,7 @@
                 <button onclick="abrirChatOnlineResponsavel('${responsavel}','${serie}')">Abrir Chat</button>
             `;// marcar1
             containerOpcoes.style.display = 'flex';
+            localStorage.setItem('verSerie', serie);
             localStorage.setItem('verResponsavel', responsavel);
          }
 
@@ -1832,42 +1833,6 @@
                 enviarMensagemChatOnlineResponsavel();
             }
         });
-        
-        function statusOffline() {
-            const responsavel = localStorage.getItem('responsavel')
-            db.collection(ANO)
-            .doc('responsaveis')
-            .collection(responsavel)
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    var id = val.id;
-                    db.collection(ANO)
-                    .doc('responsaveis')
-                    .collection(responsavel)
-                    .doc(id).update({
-                        status: false,
-                    })
-                });
-            });
-        }
-
-        function statusOnline() {
-            const responsavel = localStorage.getItem('responsavel')
-            db.collection(ANO)
-            .doc('responsaveis')
-            .collection(responsavel)
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    var id = val.id;
-                    db.collection(ANO)
-                    .doc('responsaveis')
-                    .collection(responsavel)
-                    .doc(id).update({
-                        status: true,
-                    })
-                });
-            });
-        }
 
     </script>
 
