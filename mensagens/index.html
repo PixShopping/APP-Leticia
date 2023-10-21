@@ -920,9 +920,6 @@
           root.style.setProperty('--white', '#002242');
         }
 
-
-         // OPÇOES
-
          function opcoes(responsavel, serie) {
             const containerOpcoes = document.querySelector('.containerOpcoes');
             containerOpcoes.innerHTML = `
@@ -931,7 +928,6 @@
                 <button onclick="abrirChatOnlineResponsavel('${responsavel}','${serie}')">Abrir Chat</button>
             `;// marcar1
             containerOpcoes.style.display = 'flex';
-            localStorage.setItem('verSerie', serie);
             localStorage.setItem('verResponsavel', responsavel);
          }
 
@@ -1226,7 +1222,7 @@
             containerSeries.innerHTML = '';
             data.docs.map((val) => {
                 containerSeries.innerHTML += `
-                <li onclick='abrirTurma("${val.id}")'>
+                <li onclick="abrirTurma('${val.id}')">
                     <ion-icon name="people-circle-outline"></ion-icon>
                     <h1>${val.id}</h1>
                 </li>`;
@@ -1235,6 +1231,7 @@
 
     var index = 0;
     function abrirTurma(serie) {
+        localStorage.setItem('verSerie', `${serie}`);
         const containerSerie = document.getElementById('containerSerie');
         const content = document.querySelector('.content');
         const error = document.querySelector('.totalErro');
@@ -1255,8 +1252,6 @@
             containerSerie.innerHTML += `
                 <h1>${serie} | ${total} Alunos</h1>
             `;
-            
-            
         });
         db.collection(ANO)
         .doc('series')
@@ -1275,6 +1270,7 @@
                         if (val.data().onesignalId) {
                             corNotificacao = 'var(--green)';
                         }
+                        
                         containerSerie.innerHTML += `
                         <li onclick="opcoes('${responsavel}', '${serie}')">
                             <ion-icon name="person-circle-outline"></ion-icon>    
@@ -1471,7 +1467,6 @@
             sections.forEach(section => {
                 section.style.display = "none";
             });
-            localStorage.setItem('verSerie', serie);
             containerOpcoes.style.display = "none";
             containerChatOnline.style.display = "flex";
             container.style.display = "none";
@@ -1585,9 +1580,7 @@
                     });
                 });
 
-                
-
-                lerChatOnline();
+                lerChatOnlineResponsavel();
                 });
 
             }
@@ -1620,7 +1613,6 @@
             containerChatOnline.style.display = "flex";
             container.style.display = "none";
             document.querySelector('.container').style.padding = "0px";
-            window.location.href = "#end";
             localStorage.setItem('destinatario', destinatario);
             lerChatOnline();
         }
