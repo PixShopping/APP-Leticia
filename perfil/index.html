@@ -1036,6 +1036,7 @@
             setTimeout( async () => {
                 await deleteAllCookies();
                 await localStorage.clear();
+                await localStorage.setItem('versao', '1.0');
                 window.location.href = "../login/";
             }, 1000);
 		}
