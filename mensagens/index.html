@@ -1259,7 +1259,6 @@
         .onSnapshot((data) => {
             data.docs.map((val) => {
                 var responsavel = val.data().responsavel;
-                var serie = val.data().serie;
                 var aluno = val.data().aluno;
                 db.collection(ANO)
                 .doc('responsaveis')
@@ -1620,7 +1619,7 @@
         function lerChatOnline() {
             const chat = document.querySelector('.chatOnline');
             const responsavel = localStorage.getItem('responsavel');
-            const serie = localStorage.getItem('verSerie');
+            const serie = localStorage.getItem('serie');
             const destinatario = localStorage.getItem('destinatario');
             var status = '';
             db.collection(ANO)
