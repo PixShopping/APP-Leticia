@@ -1256,7 +1256,7 @@
             data.docs.map((val) => {
                 containerSerie.innerHTML += `
                 <li onclick="opcoes('${val.data().responsavel}', '${serie}')">
-                    <ion-icon name="people-circle-outline"></ion-icon>    
+                    <ion-icon name="person-circle-outline"></ion-icon>    
                     <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
                     <button onclick="remover(${val.data().responsavel}, ${serie}, event)"><ion-icon name="trash-outline"></ion-icon></button>
                 </li>`;
@@ -1959,6 +1959,23 @@
             abrirChatOnline('COORDENACAO');
         }
 
+        const url = window.location.href;
+        const serie = url.slice(43,48);
+        const usuario = url.slice(49);
+        db.collection(ANO)
+        .doc('chat')
+        .collection('existente')
+        .onSnapshot((data) => {
+            data.docs.map((val) => {
+                if (val.id === serie) {
+                    const containerAdmin = document.querySelector('.admin');
+                    containerAdmin.style.display = "none";
+                    localStorage.setItem('verResponsavel', usuario);
+                    abrirChatOnlineResponsavel(`${usuario}`,`${serie}`);
+                }
+            });
+        });
+        
         const inputMensagem = document.getElementById('messageOnline');
         
         inputMensagem.addEventListener('keydown', function (event) {
