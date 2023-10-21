@@ -716,6 +716,15 @@
             color: var(--six);
         }
 
+        .iconNotification {
+            position: absolute;
+            right: 70px;
+            color: var(--red);
+        } .iconNotification ion-icon {
+            width: 32.5px;
+            height: 32.5px;
+        }
+
         </style>
     </head>
 
@@ -1254,12 +1263,29 @@
         .collection(serie)
         .onSnapshot((data) => {
             data.docs.map((val) => {
-                containerSerie.innerHTML += `
-                <li onclick="opcoes('${val.data().responsavel}', '${serie}')">
-                    <ion-icon name="person-circle-outline"></ion-icon>    
-                    <h1> ${val.data().responsavel} <br> ${val.data().aluno} </h1>
-                    <button onclick="remover('${val.data().responsavel}', '${serie}', event)"><ion-icon name="trash-outline"></ion-icon></button>
-                </li>`;
+                var responsavel = val.data().responsavel;
+                var serie = val.data().serie;
+                var aluno = val.data().aluno;
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        var corNotificacao = 'var(--red)';
+                        if (val.data().onesignalId) {
+                            corNotificacao = 'var(--green)';
+                        }
+                        containerSerie.innerHTML += `
+                        <li onclick="opcoes('${responsavel}', '${serie}')">
+                            <ion-icon name="person-circle-outline"></ion-icon>    
+                            <h1> ${responsavel} <br> ${aluno} </h1>
+                            <notification class="iconNotification">
+                                <ion-icon style="color: ${corNotificacao};" name="notifications-outline"></ion-icon>       
+                            </notification>
+                            <button onclick="remover('${responsavel}', '${serie}', event)"><ion-icon name="trash-outline"></ion-icon></button>
+                        </li>`;
+                    });
+                });
                 index++;
             });
         });
@@ -1768,7 +1794,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                const notificationPermission = data.notification_permission;
+                const notificationPermission = data.permission;
                 console.log('Status da permissão de notificação: ' + notificationPermission);
                 console.log(data)
             })
