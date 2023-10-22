@@ -765,7 +765,7 @@
             senha: SENHA
           });
         
-        db.collection(ANO)
+          db.collection(ANO)
         .doc("series")
         .collection(SERIE)
         .add({
@@ -782,6 +782,14 @@
             window.location.reload();
           })
         })
+
+        db.collection(ANO)
+        .doc("series")
+        .collection('existente')
+        .doc(SERIE)
+        .set({
+          serie: SERIE
+        });
 
       }
 
