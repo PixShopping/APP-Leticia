@@ -681,20 +681,27 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
-          <!-- SUPORTE -->
-          <li onclick="contato()">
-              <ion-icon name="call-outline"></ion-icon>
-              <h1>Contato</h1>
-              <ion-icon name="arrow-forward"></ion-icon>
-          </li>
+        <!-- SUPORTE -->
+        <li onclick="contato()">
+            <ion-icon name="call-outline"></ion-icon>
+            <h1>Contato</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
 
-          <!-- REDES SOCIAIS -->
-            <li onclick="redesSociais()">
-                <ion-icon name="earth-outline"></ion-icon>
-                <h1>Redes Sociais</h1>
-                <ion-icon name="arrow-forward"></ion-icon>
-            </li>
+        <!-- REDES SOCIAIS -->
+        <li onclick="redesSociais()">
+            <ion-icon name="earth-outline"></ion-icon>
+            <h1>Redes Sociais</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
 
+        <!-- CONTROLE LETICIA -->
+        <li onclick="controle()">
+            <ion-icon name="stats-chart-outline"></ion-icon>
+            <h1>Controle Letícia</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+            
           <!-- SAIR DA CONTA -->
           <li onclick="sair()">
               <ion-icon style="margin: 0px 10px 0px 14px;" name="exit-outline"></ion-icon>
@@ -1108,7 +1115,22 @@
             content.style.display = "none";
             local.textContent = "Redes Sociais";
             redesSociais.style.display = "flex";
+        }
 
+        function controle() {
+            const content = document.querySelector('.content');
+            const container = document.querySelector('.container');
+            container.style.padding = "0px";
+            const iframes = document.querySelector('.iframes');
+            iframes.style.display = "flex";
+            iframes.style.height = "115vh";
+            iframes.style.padding = "0px 0px 100px 0px";
+            content.style.display = "none";
+            iframes.innerHTML = `
+            <iframe src="https://controle-leticia.netlify.app">
+            Carregando...
+            </iframe>`;
+            document.body.style.background = 'var(--one)';
         }
 
 		// ADMINISTRADOR
