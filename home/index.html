@@ -6,8 +6,6 @@
 		<link rel="icon" href="../src/img/icon.png" type="x-icon">
 		<title> Inicio | Letícia </title>
 
-
-
 		<style scoped>
 
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
@@ -700,6 +698,94 @@
                 color: var(--white);
             }
 
+            /* INTERCLASSE */
+
+            .interclasse {
+                width: 90vw;
+                height: auto;
+                border-radius: 0px 0px 5px 5px;
+                border: 10px solid var(--one);
+                margin: 0px auto;
+            }
+
+            .interclasse .flex {
+                display: flex;
+                flex-direction: row;
+                align-self: center;
+                border-bottom: 10px solid var(--one);
+                box-shadow: 0px 5px 15px var(--one);
+                background: var(--one);
+            }
+
+            .interclasse .flex img {
+                width: 200px;
+                height: auto;
+                margin: 0px auto 0px 0px;
+            }
+
+            .interclasse .flex .column {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0px auto;
+            }
+
+            .interclasse .flex .column ion-icon {
+                font-size: 10vw;
+            }
+
+            .interclasse .flex .column p {
+                font-size: 2.5vw;
+                font-weight: 500;
+            }
+
+            .interclasse table { 
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .interclasse table tr {
+                width: 100%;
+                height: 40px;
+                padding: 10px;
+                margin: 0px;
+                border-bottom: 2px solid var(--one);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .interclasse table tr th {
+                font-size: 28px;
+                margin: 8px 8px 0px 0px;
+            }
+
+            .interclasse table tr td {
+                font-size: 22px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+            }
+
+            #ano9A ion-icon {
+                color: #ffd700;
+            }
+
+            #ano9B ion-icon {
+                color: #c0c0c0;
+            }
+
+            #ano8B ion-icon {
+                color: #cd7f32;
+            }
+
+            #ano8A ion-icon {
+                color: #191919;
+            }
+            
             
 
             </style>
@@ -796,6 +882,58 @@
                             <h2>Carregando..</h2>
                         </section>
     
+                        
+                    </section>
+
+                    <section class="interclasse">
+
+                        
+                        <div class="flex">
+                            <img src="../src/img/interclasse.png">
+                            <div style="color: #ffd700;" class="column">
+                                <p>Primeiro</p>
+                                <ion-icon name="medal-outline"></ion-icon>
+                            </div>
+                            <div style="color: #c0c0c0;" class="column">
+                                <p>Segundo</p>
+                                <ion-icon name="medal-outline"></ion-icon>
+                            </div>
+                            <div style="color: #cd7f32;" class="column">
+                                <p>Terceiro</p>
+                                <ion-icon name="medal-outline"></ion-icon>
+                            </div>
+                            
+                            
+                        </div>
+
+                        <table>
+
+                            <tr id="ano9A">
+                                <th><ion-icon name="medal-outline"></ion-icon></th>
+                                <!-- SERIE -->
+                                <td>9ANOA</td>
+                            </tr>
+
+                            <tr id="ano9B">
+                                <th><ion-icon name="medal-outline"></ion-icon></th>
+                                <!-- SERIE -->
+                                <td>9ANOB</td>
+                            </tr>
+
+                            <tr id="ano8B">
+                                <th><ion-icon name="medal-outline"></ion-icon></th>
+                                <!-- SERIE -->
+                                <td>8ANOB</td>
+                            </tr>
+
+                            <tr id="ano8A">
+                                <th><ion-icon name="medal-outline"></ion-icon></th>
+                                <!-- SERIE -->
+                                <td>8ANOA</td>
+                            </tr>
+
+                        </table>
+
                     </section>
 
                 </main>
