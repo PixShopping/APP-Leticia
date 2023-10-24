@@ -725,6 +725,12 @@
             height: 32.5px;
         }
 
+        /* TODOS OS ALUNOS */
+
+        .todosAlunos {
+            margin: 20px auto 0px auto;
+        }
+
         </style>
     </head>
 
@@ -753,17 +759,20 @@
                     </select>
                 </div>
 
+                <h1 class="todosAlunos"></h1>
                 <ul id="containerSeries">
-
+                    
                 </ul>
 
             </section>
 
 
             <!-- CONTAINER SERIE -->
+            
             <section id="containerSerie" class="contentSeries">
-
                 
+                
+
 
             </section>
 
@@ -1220,6 +1229,12 @@
         .collection('series')
         .onSnapshot((data) => {
             containerSeries.innerHTML = '';
+            containerSeries.innerHTML = `
+            <li onclick="listarAlunos()">
+                <ion-icon name="people-circle-outline"></ion-icon>
+                <h1>Todos os Alunos</h1>
+            </li>
+            `;
             data.docs.map((val) => {
                 containerSeries.innerHTML += `
                 <li onclick="abrirTurma('${val.id}')">
@@ -1442,7 +1457,61 @@
             });
         });
 
+      }
+
+      // LISTAR ALUNOS
+      var index = 0;
+      function listarAlunos() {
+        const div = document.querySelector('.admin div');
+        const total = document.querySelector('.todosAlunos');
+        div.style.display = 'none';
         
+
+        db.collection(ANO)
+        .doc('series')
+        .collection('existente')
+        .onSnapshot((data) => {
+            containerSeries.innerHTML = '';
+            data.docs.map((val) => {
+                var serie = val.id;
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        index++;
+                        total.innerHTML = `${index} Alunos`;
+                    });
+                });
+            });
+        });
+
+        // LISTAR ALUNOS
+        db.collection(ANO)
+        .doc('series')
+        .collection('existente')
+        .onSnapshot((data) => {
+            containerSeries.innerHTML = '';
+            data.docs.map((val) => {
+                var serie = val.id;
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        var responsavel = val.data().responsavel;
+                        containerSeries.innerHTML += `
+                        <li>
+                            <ion-icon name="people-circle-outline"></ion-icon>
+                            <h1>${responsavel}</h1>
+                        </li>
+                        `;
+                    });
+                });
+            });
+        });
+
+
 
       }
 
