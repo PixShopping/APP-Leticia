@@ -133,56 +133,133 @@
                 margin: 25px 0px 15px 0px;
             }
 
+            /* Decorações de provas */
+
+            .decoracaoProvas {
+              width: 100%;
+              height: 200px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: var(--one);
+              color: var(--white);
+              padding: 0px 0px 50px 0px;
+            }
+
             .quadro {
-                width: 95vw;
-                max-width: 95vw;
+                width: 92vw;
                 height: auto;
-                min-height: 200px;
-                background: #9ECAE3;
-                border: 12px solid white;
-                box-shadow: 0px 0px 10px #191919;
-                margin: 15px 0px 0px 0px;
+                background: var(--white);
+                box-shadow: 0px 0px 15px var(--one);
+                border-radius: 17.5px;
+                margin: -45px 0px 0px 0px;
                 display: flex;
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 25px;
-                padding: 0px 0px 50px 0px;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 15px 30px 15px;
             }
 
             .prova {
-                width: min-content;
-                height: min-content;
-                background: #144774;
+                width: 92%;
+                height: auto;
+                background: var(--two);
                 color: #ffffff;
-                border-radius: 5px 5px 25px 5px;
-                margin: 20px 0px -15px 0px;
+                border-radius: 7px;
+                margin: 20px 0px 0px 0px;
                 display: flex;
                 flex-direction: column;
                 align-content: center;
                 text-align: center;
-                padding: 10px 20px 20px 10px;
+                padding: 15px;
             }
 
             .prova .flex {
                 display: flex;
                 align-items: center;
                 width: auto;
+                height: auto;
             }
 
-            .prova .flex p {
-                font-size: 17px;
-                margin: 0px 0px 0px 10px;
+            .prova h1 {
+                width: auto;
+                height: auto;
+                display: flex;
+                align-items: center;
+                margin: 10px 0px 5px 0px;
+                font-size: 22px;
+                font-weight: 500;
+                color: var(--six);
             }
 
-            .prova ion-icon {
-                font-size: 25px;
+            .prova p {
+                font-size: 20px;
+                font-weight: 400;
+                margin: 0px 0px 0px 5px;
+                color: white;
             }
 
-            .prova a {
-                font-size: 17px;
-                margin: 10px 0px 0px 0px;
+            /* CARREGANDO */
+
+            .carregando {
+                position: relative;
+                width: auto;
+                height: auto;
+                display: flex;
+                align-items: center;
+                color: var(--one);
+                margin: 15px 0px 0px 0px;
             }
+
+                .carregando span {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 20px solid var(--one);
+                    border-top: 21px solid transparent;
+                    animation: loading 1.5s linear infinite;
+                }
+
+                .carregando h2 {
+                    margin: 0px 0px 0px 20px;
+                }
+
+                @keyframes loading {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                /* ERRO */
+
+                .erro {
+                  display: none;
+                  flex-direction: row;
+                  align-items: center;
+                  width: auto;
+                  height: auto;
+                  padding: 2.5px;
+                  margin: 0px 5px 0px 0px;
+                }
+
+                .erro h1 {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center; 
+                  width: auto;
+                }
+
+                .erro h1 ion-icon {
+                  font-size: 67px;
+                  margin: 0px 8px 0px 0px;
+                }
+
+                .erro h1 {
+                  font-size: 21px;
+                  text-align: center;
+                }
 
             </style>
            </head>
@@ -200,11 +277,25 @@
 
                   <!-- PROVAS -->
                   <section class="content provas">
-
-                    <h1>Quadro de Provas</h1>
+                    
+                    <div class="decoracaoProvas">
+                      
+                      <h1>Avaliações Bimestrais</h1>
+                    
+                    </div>
                     
                     <article class="quadro">
                         
+                      <section class="carregando">
+                          <span></span>
+                          <h2>Carregando..</h2>
+                      </section>
+
+                      <div class="erro">
+
+                        <h1> <ion-icon name="sad-outline"></ion-icon> Nenhuma prova encontrada</h1>
+
+                      </div>
 
                     </article>
 
@@ -228,25 +319,8 @@
                         </select>
 
                         <select id="inputSerie">
-                            <option value="" disabled>Tarde</option>
-                            <option value="6A">6anoA</option>
-                            <option value="6B">6anoB</option>
-                            <option value="7A">7anoA</option>
-                            <option value="7B">7anoB</option>
-                            <option value="8A">8anoA</option>
-                            <option value="8B">8anoB</option>
-                            <option value="9A">9anoA</option>
-                            <option value="9B">9anoB</option>
-                            <option value="" disabled>Manha</option>
-                            <option value="1A">1anoA</option>
-                            <option value="1B">1anoB</option>
-                            <option value="2A">2anoA</option>
-                            <option value="2B">2anoB</option>
-                            <option value="2C">2anoC</option>
-                            <option value="3A">3anoA</option>
-                            <option value="3B">3anoB</option>
-                            <option value="3C">3anoC</option>
-                          </select>
+                          <option value="" disabled>Serie</option>
+                        </select>
 
                         <label>Data: </label>
                         <input id="inputData" type="date">
@@ -289,28 +363,8 @@
 
        <!-- JavaScript -->
        <script>
-
-          const logado = localStorage.getItem('logado');
-          const provas = document.querySelector('.provas');
-          const addProvas = document.querySelector('.addProvas');
         
-          if (!logado){
-            window.location.href = "../login";
-          } 
-          if (logado === 'RESPONSAVEL') {
-            provas.style.display = 'flex';
-            addProvas.style.display = 'none';
-          } 
-          if (logado === 'PROFESSOR') {
-            provas.style.display = 'none';
-            addProvas.style.display = 'flex';
-          } 
-          if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
-            provas.style.display = 'none';
-            addProvas.style.display = 'none';
-          }
-
-        // TEMA ARRUMADO
+        
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
         if (tema === "light") {
@@ -352,14 +406,14 @@
             window.location.href = "../mural";
         }
 
+        
        </script>
 
 
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -367,7 +421,7 @@
 
        <script>
 
-      const firebaseConfig = {
+        const firebaseConfig = {
             apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
             authDomain: "banco-de-dados-32cac.firebaseapp.com",
             projectId: "banco-de-dados-32cac",
@@ -380,11 +434,47 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+
         // Pegar o ANO LETICO ATUAL
         const dataAtual = new Date();
         const anoAtual = dataAtual.getFullYear();
         localStorage.setItem('ano', anoAtual);
         const ANO = localStorage.getItem('ano');
+
+        // PEGANDO AS SERIES DO ANO LETIVO 
+
+        const logado = localStorage.getItem('logado');
+          const provas = document.querySelector('.provas');
+          const addProvas = document.querySelector('.addProvas');
+        
+          if (!logado){
+            window.location.href = "../login";
+          } 
+          if (logado === 'RESPONSAVEL') {
+            provas.style.display = 'flex';
+            addProvas.style.display = 'none';
+          } 
+          if (logado === 'PROFESSOR') {
+            const inputSerie = document.getElementById('inputSerie');
+              db.collection(ANO)
+              .doc('restrito')
+              .collection('series')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  var serie = val.id;
+                  inputSerie.innerHTML += `
+                    <option value="${serie}">${serie}</option>
+                  `;    
+                });
+              });
+            provas.style.display = 'none';
+            addProvas.style.display = 'flex';
+          } 
+          if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+            provas.style.display = 'none';
+            addProvas.style.display = 'none';
+          }
+
 
           function enviarProva() {
             const materia = document.getElementById('inputMateria').value;
@@ -423,25 +513,38 @@
             });
           }
 
+        // LER AS PROVAS POSTADAS
         if (logado === 'RESPONSAVEL') {
             const serie = localStorage.getItem('serie');
-            const div = document.querySelector('.provas article');
+            const div = document.querySelector('.quadro');
+            const erro = document.querySelector('.erro');
+            const carregando = document.querySelector('.carregando');
             db.collection(ANO)
             .doc('provas')
             .collection(serie)
             .onSnapshot((data) => {
-                div.innerHTML = '';
-                data.docs.map((val) => {
-                    div.innerHTML += `
-                        <div style="background: ${val.data().corFundo}; color: ${val.data().corTexto};" class="prova">
-                            <div class="flex">
-                                <ion-icon name="receipt-outline"></ion-icon>
-                                <p>${val.data().materia}</p>
+                if (data.size === 0) {
+                  setTimeout(() => {
+                    erro.style.display = "flex";
+                    carregando.style.display = "none";
+                    
+                  }, 2000);
+                } else {
+                  setTimeout(() => {
+                    div.innerHTML = '';
+                    data.docs.map((val) => {
+                        div.innerHTML += `
+                            <div style="background: ${val.data().corFundo}; color: ${val.data().corTexto};" class="prova">
+                                <h1>Disciplina: <p>${val.data().materia}</p></h1>
+                                <h1>Turma: <p>${serie}</p></h1>
+                                <h1>Data: <p>${val.data().data}</p></h1>
+                                
                             </div>
-                            <a>${val.data().data}</a>
-                        </div>
-                    `;
-                });
+                        `;
+                    });
+
+                  }, 2000);
+                }
             });
 
         }
