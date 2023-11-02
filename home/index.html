@@ -1080,14 +1080,14 @@
             .collection('direcao')
             .doc('login')
             .collection('acessos')
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                if (val.data().onesignalId) {
+            .doc(usuario)
+            .get().then((doc) => {
+                var data = doc.data();
+                if (data.onesignalId) {
                     contentNotification.style.display = 'none';
                 } else {
                     contentNotification.style.display = 'flex';
                 }
-                });
             });
         } else if (logado === 'COORDENACAO') {
             db.collection(ANO)
@@ -1095,14 +1095,14 @@
             .collection('coordenacao')
             .doc('login')
             .collection('acessos')
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                if (val.data().onesignalId) {
+            .doc(usuario)
+            .get().then((doc) => {
+                var data = doc.data();
+                if (data.onesignalId) {
                     contentNotification.style.display = 'none';
                 } else {
                     contentNotification.style.display = 'flex';
                 }
-                });
             });
         }
 
