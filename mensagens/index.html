@@ -82,6 +82,11 @@
                 left: 0px;
 	 	    }
 
+            .local .flex {
+                display: flex;
+                align-items: center;
+            } 
+
             .local ion-icon {
                 font-size: 35px;
                 margin: 0px;
@@ -1529,9 +1534,14 @@
             const container = document.querySelector('.responsavel');
             const containerOpcoes = document.querySelector('.containerOpcoes');
             const sections = document.querySelectorAll('.contentSeries');
-            const local = document.querySelector('.local h1');
-            local.innerHTML = `Chat: ${responsavel}`;
-            local.style.fontSize = '18px';
+            const local = document.querySelector('.local');
+            local.innerHTML = `
+                <div class="flex">
+                    <ion-icon style="color: var(--white);" name="person-circle"></ion-icon>
+                    <h1 style="margin: 0px 0px 0px 10px;">${responsavel}</h1>
+                </div>
+                <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+            `;  
             sections.forEach(section => {
                 section.style.display = "none";
             });
