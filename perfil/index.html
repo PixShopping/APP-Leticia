@@ -1010,6 +1010,7 @@
 
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
+       const usuario = localStorage.getItem('usuario');
 		if (!logado){
 		  window.location.href = "../login";
 		}
@@ -1206,7 +1207,9 @@
       localStorage.setItem('ano', anoAtual);
       const ANO = localStorage.getItem('ano');
 
-      db.collection(ANO)
+        
+      if (logado === 'RESPONSAVEL') {
+        db.collection(ANO)
         .doc("series")
         .collection(localStorage.getItem('serie'))
         .onSnapshot((data) => {
@@ -1214,6 +1217,8 @@
                 localStorage.setItem('idserie', val.id);
             });
         });
+      }
+      
 
 	  function redefinirSenha() {
         const senhaAtual = document.getElementById('inputSenhaAtual').value;
@@ -1309,34 +1314,84 @@
             });
         }
 
-
-          // Verificar Notificações
-          const responsavel = localStorage.getItem('responsavel');
-          const necessario = document.querySelector('.necessario');
-          const necessarioHover = document.querySelector('.necessario:hover');
+        // Verificar Notificações
+        const responsavel = localStorage.getItem('responsavel');
+        const necessario = document.querySelector('.necessario');
+        const necessarioHover = document.querySelector('.necessario:hover');
         const necessarioh1 = document.querySelector('.necessarioh1');
 
-        db.collection(ANO)
-        .doc('responsaveis')
-        .collection(responsavel)
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-            if (val.data().onesignalId) {
-                necessario.style.border = "1px solid var(--one)";
-                necessario.style.color = "var(--one)";
-                necessario.addEventListener('mouseover', () => {
-                    necessario.style.background = "var(--one)";
-                    necessario.style.color = "var(--white)";
-                });
-                necessario.addEventListener('mouseout', () => {
-                    necessario.style.background = "var(--white)";
+        if (logado === "RESPONSAVEL") {
+            db.collection(ANO)
+            .doc('responsaveis')
+            .collection(responsavel)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                if (val.data().onesignalId) {
+                    necessario.style.border = "1px solid var(--one)";
                     necessario.style.color = "var(--one)";
+                    necessario.addEventListener('mouseover', () => {
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
+                    });
+                    necessario.addEventListener('mouseout', () => {
+                        necessario.style.background = "var(--white)";
+                        necessario.style.color = "var(--one)";
+                    });
+                    necessarioh1.innerHTML = 'Aceito!';
+                    necessarioh1.style.color = "var(--green)";
+                }
                 });
-                necessarioh1.innerHTML = 'Aceito!';
-                necessarioh1.style.color = "var(--green)";
-            }
             });
-        });
+        } else if (logado === 'DIRECAO') {
+            db.collection(ANO)
+            .doc('restrito')
+            .collection('direcao')
+            .doc('login')
+            .collection('acessos')
+            .doc(usuario)
+            .get().then((doc) => {
+                var data = doc.data();
+                if (data.onesignalId) {
+                    necessario.style.border = "1px solid var(--one)";
+                    necessario.style.color = "var(--one)";
+                    necessario.addEventListener('mouseover', () => {
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
+                    });
+                    necessario.addEventListener('mouseout', () => {
+                        necessario.style.background = "var(--white)";
+                        necessario.style.color = "var(--one)";
+                    });
+                    necessarioh1.innerHTML = 'Aceito!';
+                    necessarioh1.style.color = "var(--green)";
+                }
+            });
+        } else if (logado === 'COORDENACAO') {
+            db.collection(ANO)
+            .doc('restrito')
+            .collection('coordenacao')
+            .doc('login')
+            .collection('acessos')
+            .doc(usuario)
+            .get().then((doc) => {
+                var data = doc.data();
+                if (data.onesignalId) {
+                    necessario.style.border = "1px solid var(--one)";
+                    necessario.style.color = "var(--one)";
+                    necessario.addEventListener('mouseover', () => {
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
+                    });
+                    necessario.addEventListener('mouseout', () => {
+                        necessario.style.background = "var(--white)";
+                        necessario.style.color = "var(--one)";
+                    });
+                    necessarioh1.innerHTML = 'Aceito!';
+                    necessarioh1.style.color = "var(--green)";
+                }
+            });
+        }
+        
 
        </script>
 
