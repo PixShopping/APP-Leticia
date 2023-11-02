@@ -293,27 +293,78 @@
     const RESPONSAVEL = localStorage.getItem('responsavel');
     const botaoHome = document.getElementById('botaoHome');
 
-    db.collection(ANO)
-    .doc('responsaveis')
-    .collection(RESPONSAVEL)
-    .onSnapshot((data) => {
-        data.docs.map((val) => {
-          if (val.data().onesignalId) {
-            botaoHome.style.background = "var(--one)";
-            botaoHome.style.border = "1px solid var(--one)";
-            botaoHome.style.color = "var(--white)";
-            botaoHome.addEventListener('click', () => {
-              window.location.href = "./home/";
-            });
-          } else {
-            botaoHome.style.background = "var(--one)";
-            botaoHome.style.border = "1px solid var(--one)";
-            botaoHome.style.color = "var(--white)";
-            botaoHome.style.opacity = '50%';
-            botaoHome.style.cursor = 'default';
-          }
-        });
-    });
+    if (logado === "RESPONSAVEL") {
+      db.collection(ANO)
+      .doc('responsaveis')
+      .collection(RESPONSAVEL)
+      .onSnapshot((data) => {
+          data.docs.map((val) => {
+            if (val.data().onesignalId) {
+              botaoHome.style.background = "var(--one)";
+              botaoHome.style.border = "1px solid var(--one)";
+              botaoHome.style.color = "var(--white)";
+              botaoHome.addEventListener('click', () => {
+                window.location.href = "./home/";
+              });
+            } else {
+              botaoHome.style.background = "var(--one)";
+              botaoHome.style.border = "1px solid var(--one)";
+              botaoHome.style.color = "var(--white)";
+              botaoHome.style.opacity = '50%';
+              botaoHome.style.cursor = 'default';
+            }
+          });
+      });
+    } else if (logado === "DIRECAO") {
+      db.collection(ANO)
+      .doc('restrito')
+      .collection('direcao')
+      .doc('login')
+      .collection('acessos')
+      .doc(usuario)
+      .get().then((doc) => {
+        var data = doc.data();
+        if (data.onesignalId) {
+          botaoHome.style.background = "var(--one)";
+          botaoHome.style.border = "1px solid var(--one)";
+          botaoHome.style.color = "var(--white)";
+          botaoHome.addEventListener('click', () => {
+            window.location.href = "./home/";
+          });
+        } else {
+          botaoHome.style.background = "var(--one)";
+          botaoHome.style.border = "1px solid var(--one)";
+          botaoHome.style.color = "var(--white)";
+          botaoHome.style.opacity = '50%';
+          botaoHome.style.cursor = 'default';
+        }
+      });
+    } else if (logado === "COORDENACAO") {
+      db.collection(ANO)
+      .doc('restrito')
+      .collection('coordenacao')
+      .doc('login')
+      .collection('acessos')
+      .doc(usuario)
+      .get().then((doc) => {
+        var data = doc.data();
+        if (data.onesignalId) {
+          botaoHome.style.background = "var(--one)";
+          botaoHome.style.border = "1px solid var(--one)";
+          botaoHome.style.color = "var(--white)";
+          botaoHome.addEventListener('click', () => {
+            window.location.href = "./home/";
+          });
+        } else {
+          botaoHome.style.background = "var(--one)";
+          botaoHome.style.border = "1px solid var(--one)";
+          botaoHome.style.color = "var(--white)";
+          botaoHome.style.opacity = '50%';
+          botaoHome.style.cursor = 'default';
+        }
+      });
+    }
+    
 
     setTimeout(() => {
       window.location.reload();
