@@ -904,8 +904,8 @@
             </div>
 
             <div class="flex">
-                <input contenteditable="true" placeholder="Mensagem" id="messageOnline" type="text">
-                <ion-icon onclick="enviarMensagemChatOnline()" name="send"></ion-icon>
+                <input placeholder="Mensagem" id="messageOnline" type="text">
+                <ion-icon onclick="enviarMensagemChatOnline()" id="botaoOnline" name="send"></ion-icon>
             </div>
             
         </section>
@@ -1944,12 +1944,29 @@
         });
         
         const inputMensagem = document.getElementById('messageOnline');
+        const botaoMensagem = document.getElementById('botaoOnline');
         
-        inputMensagem.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
+        if (logado === "DIRECAO" || logado === "COORDENACAO") {
+            inputMensagem.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    enviarMensagemChatOnlineResponsavel();
+                }
+            });
+            botaoMensagem.addEventListener('clcik', function (event) {
                 enviarMensagemChatOnlineResponsavel();
-            }
-        });
+            });
+        } else {
+            inputMensagem.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    enviarMensagemChatOnline();
+                }
+            });
+            botaoMensagem.addEventListener('clcik', function (event) {
+                enviarMensagemChatOnline();
+            });
+        }
+            
+        
 
     </script>
 
