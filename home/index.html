@@ -1108,7 +1108,7 @@
 
         // ENVIAR AVISO 
 
-        function enviarAviso() {
+        async function enviarAviso() {
             // Enviar Imagem
             const inputFile = document.getElementById("imagem");
             const file = inputFile.files[0];
@@ -1117,7 +1117,7 @@
                 const storageRef = storage.ref("imagens/" + file.name);
 
                 // Faça o upload da imagem para o Firebase Storage
-                storageRef.put(file).then(function (snapshot) {
+                await storageRef.put(file).then(function (snapshot) {
                     
                 }).catch(function (error) {
                     console.error("Erro ao enviar a imagem:", error);
