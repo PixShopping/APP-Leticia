@@ -343,7 +343,7 @@
             .containerAviso div {
                 width: 92.5%;
                 height: auto;
-                padding: 15px 15px 20px 15px;
+                padding: 15px 15px 10px 15px;
                 border-radius: 20px;
                 background: var(--two);
                 color: white;
@@ -375,7 +375,7 @@
                 font-size: 16px;
                 font-weight: 500;
                 letter-spacing: 0.3px;
-                margin: 0px;
+                margin: 0px 0px 10px 0px;
                 text-shadow: 0px 0px 10px var(--two);
             }  
 
@@ -385,7 +385,7 @@
                 font-size: 35px;
                 padding: 5px;
                 border-radius: 12px;
-                margin: 10px 0px 0px 0px;
+                margin: 10px 0px 10px 0px;
                 cursor: pointer;
             }
 
@@ -1200,7 +1200,19 @@
                 data.docs.map((val) => {
 
                     // MOSTRAR AVISO SENDO [ RESPONSAVEL ]
-                    if (val.data().imagem !== "null") {
+                    if (val.data().imagem !== "null" && val.data().titulo === "") {
+                        const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        storageRef.getDownloadURL().then(function (url) {
+                        // Use a URL da imagem, por exemplo, para exibi-la
+                        containerAviso.innerHTML += `
+                            <div style="background: ${val.data().corFundo};">
+
+                                <img src="${url}" alt="${val.data().imagem}">
+                                
+                            </div>
+                            `;
+                        });
+                    } else if (val.data().imagem !== "null" && val.data().titulo !== "") {
                         const storageRef = storage.ref(`imagens/${val.data().imagem}`);
                         storageRef.getDownloadURL().then(function (url) {
                         // Use a URL da imagem, por exemplo, para exibi-la
@@ -1225,6 +1237,7 @@
                             </div>
                             `;
                     }
+                    //
                 });
             });
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
@@ -1237,7 +1250,19 @@
                 data.docs.map((val) => {
                     
                     // MOSTRAR SENDO [ DIRECAO OU COORDENACAO ]
-                    if (val.data().imagem !== "null") {
+                    if (val.data().imagem !== "null" && val.data().titulo === "") {
+                        const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        storageRef.getDownloadURL().then(function (url) {
+                        // Use a URL da imagem, por exemplo, para exibi-la
+                        containerAviso.innerHTML += `
+                            <div style="background: ${val.data().corFundo};">
+
+                                <img src="${url}" alt="${val.data().imagem}">
+                                
+                            </div>
+                            `;
+                        });
+                    } else if (val.data().imagem !== "null" && val.data().titulo !== "") {
                         const storageRef = storage.ref(`imagens/${val.data().imagem}`);
                         const idURL = `imagens/${val.data().imagem}`;
                         storageRef.getDownloadURL().then(function (url) {
@@ -1253,6 +1278,18 @@
                             `;
                         });
                         index++;
+                    } else if (val.data().imagem !== "null" && val.data().titulo === "") {
+                        const storageRef = storage.ref(`imagens/${val.data().imagem}`);
+                        storageRef.getDownloadURL().then(function (url) {
+                        // Use a URL da imagem, por exemplo, para exibi-la
+                        containerAviso.innerHTML += `
+                            <div style="background: ${val.data().corFundo};">
+
+                                <img src="${url}" alt="${val.data().imagem}">
+                                
+                            </div>
+                            `;
+                        });
                     } else {
                         containerAviso.innerHTML += `
                             <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
