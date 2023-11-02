@@ -23,19 +23,40 @@
                 console.log('Push Subscription Mudou:');
                 console.log('ID anterior:', previousState.id);
                 console.log('ID atual:', currentState.id);
-                db.collection(ANO)
-                .doc('responsaveis')
-                .collection(responsavel)
-                .onSnapshot((data) => {
-                    data.docs.map((val) => {
-                        db.collection(ANO)
-                        .doc('responsaveis')
-                        .collection(responsavel)
-                        .doc(val.id).update({
-                            onesignalId: currentState.id
-                        });
-                    });
-                });
+                if (logado === 'RESPONSAVEL') {
+                  db.collection(ANO)
+                  .doc('responsaveis')
+                  .collection(responsavel)
+                  .onSnapshot((data) => {
+                      data.docs.map((val) => {
+                          db.collection(ANO)
+                          .doc('responsaveis')
+                          .collection(responsavel)
+                          .doc(val.id).update({
+                              onesignalId: currentState.id
+                          });
+                      });
+                  });
+                } else if (logado === 'DIRECAO') {
+                  db.collection(ANO)
+                  .doc('restrito')
+                  .collection('direcao')
+                  .doc('login')
+                  .collection('acessos')
+                  .doc(usuario).update({
+                    onesignalId: currentState.id
+                  });
+                } else if (logado === 'COORDENACAO') {
+                  db.collection(ANO)
+                  .doc('restrito')
+                  .collection('coordenacao')
+                  .doc('login')
+                  .collection('acessos')
+                  .doc(usuario).update({
+                    onesignalId: currentState.id
+                  });
+                }
+                
                 
 
                 if (currentState.token) {
@@ -262,6 +283,7 @@
 
     // Verificar se é administrador
     const logado = localStorage.getItem('logado');
+    const usuario = localStorage.getItem('usuario');
     
     if (!logado){
         window.location.href = "./login";

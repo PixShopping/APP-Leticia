@@ -78,6 +78,7 @@
                 font-weight: 700;
                 display: flex;
                 align-items: center;
+                text-transform: capitalize;
             }
 
             .bem-vindo h1 p {
@@ -562,16 +563,18 @@
             }
 
             .contentNotification button {
-                width: 60%;
-                height: 35px;
+                width: 55%;
+                height: 40px;
                 border-radius: 10px;
                 margin: 10px 0px 0px 0px;
                 border: 2px solid var(--red);
                 background: var(--red);
                 color: var(--white);
+                cursor: pointer;
             } .contentNotification button:hover {
                 background: transparent;
                 color: var(--red);
+                box-shadow: 0px 5px 15px var(--red);
                 transition: all .3s ease-in-out;
             }
 
@@ -960,6 +963,7 @@
 
        // Header Nome
        const logado = localStorage.getItem('logado');
+       const usuario = localStorage.getItem('usuario');
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
         if (!logado){
@@ -967,11 +971,11 @@
 		} else if (logado === "RESPONSAVEL") {
             mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
 	    } else if (logado === "COORDENACAO") {
-            mostrarResponsavel.innerHTML = `COORDENAÇÃO`;
+            mostrarResponsavel.innerHTML = `Coordenação - ${usuario}`;
         } else if (logado === "DIRECAO") {
-            mostrarResponsavel.innerHTML = `DIREÇÃO`;
+            mostrarResponsavel.innerHTML = `Direção - ${usuario}`;
         } else if (logado === "PROFESSOR") {
-            mostrarResponsavel.innerHTML = `PROFESSOR`;
+            mostrarResponsavel.innerHTML = `Professor`;
         }
 
        // HREF
@@ -1061,6 +1065,36 @@
             db.collection(ANO)
             .doc('responsaveis')
             .collection(responsavel)
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                if (val.data().onesignalId) {
+                    contentNotification.style.display = 'none';
+                } else {
+                    contentNotification.style.display = 'flex';
+                }
+                });
+            });
+        } else if (logado === 'DIRECAO') {
+            db.collection(ANO)
+            .doc('restrito')
+            .collection('direcao')
+            .doc('login')
+            .collection('acessos')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                if (val.data().onesignalId) {
+                    contentNotification.style.display = 'none';
+                } else {
+                    contentNotification.style.display = 'flex';
+                }
+                });
+            });
+        } else if (logado === 'COORDENACAO') {
+            db.collection(ANO)
+            .doc('restrito')
+            .collection('coordenacao')
+            .doc('login')
+            .collection('acessos')
             .onSnapshot((data) => {
                 data.docs.map((val) => {
                 if (val.data().onesignalId) {
@@ -1193,7 +1227,7 @@
                     }
                 });
             });
-        } else if (logado === "DIRECAO" || logado === "COORDENCAO") {
+        } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             var index = 0;
             db.collection(ANO)
             .doc('avisos')

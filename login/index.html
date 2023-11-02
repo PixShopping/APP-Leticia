@@ -1055,6 +1055,7 @@
     function entrarComDirecao(nome) {
       localStorage.setItem('logado', 'DIRECAO');
       localStorage.setItem('usuario' , nome);
+      localStorage.setItem("tema", "light");
       window.location.href = "../home";
     }
 
@@ -1099,6 +1100,7 @@
     function entrarComCoordenacao(nome) {
       localStorage.setItem('logado', 'COORDENACAO');
       localStorage.setItem('usuario' , nome);
+      localStorage.setItem("tema", "light");
       window.location.href = "../home";
     }
 
