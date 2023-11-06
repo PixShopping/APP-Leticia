@@ -1322,7 +1322,7 @@
         // CONSULTAR DADOS
         function consultarDados() {
             //const apiUrl = 'https://apipuppeteer.onrender.com/login'; // Substitua pela URL da sua API
-            const apiUrl = 'https://apipuppeteer.onrender.com/login'; // Substitua pela URL da sua API
+            const apiUrl = 'https://api-app-leticia.onrender.com/login'; // Substitua pela URL da sua API
             const usuario = document.getElementById('usuario').value;
             const senhaSemiCodificada = document.getElementById('senha').value;
             const senhaCodificada = encodeURIComponent(senhaSemiCodificada);
@@ -1350,7 +1350,7 @@
                         if (index >= 3) { // Comece a partir do quarto item (índice 3)
                             // Acesse as propriedades de cada objeto e imprima no console
                             resposta.innerHTML += `
-                                <h1><strong>${obj.textoLabel}</strong> ${obj.valorInput}</h1><br>
+                                <h1><strong>${obj.label}</strong> ${obj.input}</h1><br>
                             `;
                             console.log('Valor do input:', obj.valorInput);
                             console.log('Texto do label:', obj.textoLabel);
