@@ -580,49 +580,185 @@
 
             .iframes {
                 width: 100vw;
-                height: 100vh;
+                height: auto;
                 display: none;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                padding: 0px 0px 100px 0px;
             } .iframes iframe {
                 width: 100%;
                 height: 100%;
                 border: 0px;
+            } .iframes h1 {
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 20px 0px 0px 0px;
+            } .iframes p {
+                width: 85%;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                margin: 5px 0px 5px 0px;
+                text-align: center;
+            } .iframes p strong {
+                font-size: 16.5px;
+                font-weight: 900;
             }
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+        .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
+
+            .carregando {
+                position: relative;
+                width: auto;
+                height: auto;
+                display: flex;
+                align-items: center;
+                color: var(--white);
+            }
+
+            .carregando span {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 20px solid var(--white);
+                border-top: 21px solid transparent;
+                animation: loading 1.5s linear infinite;
+            }
+
+            .carregando h2 {
+                margin: 0px 0px 0px 20px;
+            }
+
+            @keyframes loading {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* CONTENT DADOS SED */
+            .contentDadosSed {
+                width: 92.5vw;
+                max-width: 500px;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 15px;
+                margin: 30px 0px 15px 0px;
+                padding: 10px 25px 15px 25px;
+            }
+
+            .contentDadosSed label {
+                font-size: 20.5px;
+                font-weight: 600;
+                letter-spacing: 0.6px;
+                text-transform: capitalize;
+                margin: 20px 0px 4px 2.5%;
+                align-self: start;
+            }
+
+            .contentDadosSed input {
+                width: 95%;
+                height: 37px;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+                background: transparent;
+                border: 2px solid var(--white);
+                color: var(--white);
+                padding: 10px;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.6px;
+            } .contentDadosSed input:focus {
+                box-shadow: 0px 0px 15px var(--white);
+                transition: all .1s linear;
+            }
+
+            .contentDadosSed button {
+                width: 85%;
+                height: 40px;
+                border-radius: 5px;
+                border: 2px solid var(--white);
+                background: var(--white);
+                color: var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                margin: 30px 0px 20px 0px;
+                cursor: pointer;
+            } .contentDadosSed button:hover {
+                background: transparent;
+                color: var(--white);
+                transition: all .3s ease-in-out;
+            } .contentDadosSed button:focus {
+                background: transparent;
+                color: var(--white);
+                transition: all .3s ease-in-out;
+            }
+
+            /* RESPOSTA DADOS */
+
+            .respostaDados {
+                margin: 5px 0px 0px 0px;   
+            }
+
+            .respostaDados h3 {
+                margin: 15px 0px;
+            }
+
+            .respostaDados h1 {
+                font-size: 21.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                margin: 0px 3px 0px 0px;
+                text-transform: capitalize;
+            }
+            
+            .respostaDados h1 strong {
+                color: var(--six);
+                text-transform: uppercase;
+            }
 
             </style>
            </head>
@@ -650,7 +786,7 @@
                 <h1 id="mostrarResponsavel"></h1>
                 <h1 id="mostrarAlunoeSerie"></h1>
                 <h1 id="mostrarGmail"></h1>
-                <h1 id="mostrarTelefone"></h1>
+                <h1 id="mostrrTelefone"></h1>
                 <h1 id="mostrarRa"></h1>
             </div>
         </div>
@@ -696,9 +832,9 @@
         </li>
 
         <!-- CONTROLE LETICIA -->
-        <li onclick="controle()">
-            <ion-icon name="stats-chart-outline"></ion-icon>
-            <h1>Controle Letícia</h1>
+        <li onclick="dadosSed()">
+            <ion-icon name="folder-outline"></ion-icon>
+            <h1>Dados da Sed</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
             
@@ -1082,6 +1218,7 @@
             container.style.padding = "0px";
             const iframes = document.querySelector('.iframes');
             iframes.style.display = "flex";
+            iframes.style.height = "100vh";
             iframes.style.padding = "0px 0px 100px 0px";
             redesSociais.style.display = "none";
             iframes.innerHTML = `
@@ -1118,20 +1255,33 @@
             redesSociais.style.display = "flex";
         }
 
-        function controle() {
+        function dadosSed() {
             const content = document.querySelector('.content');
             const container = document.querySelector('.container');
             container.style.padding = "0px";
             const iframes = document.querySelector('.iframes');
             iframes.style.display = "flex";
-            iframes.style.height = "110vh";
-            iframes.style.padding = "0px 0px 100px 0px";
             content.style.display = "none";
             iframes.innerHTML = `
-            <iframe src="https://controle-leticia.netlify.app">
-            Carregando...
-            </iframe>`;
-            document.body.style.background = 'var(--one)';
+                <h1>Consultar Dados</h1>
+                <p>Para acessar seus dados use o <strong>Usuario</strong> e <strong>Senha</strong> da SED</p>
+
+                <div class="contentDadosSed">
+
+                    <label>Usuario:</label>
+                    <input id="usuario" type="text">
+
+                    <label>Senha:</label>
+                    <input id="senha" type="text">
+                    
+                    <button onclick="consultarDados()">Consultar Dados</button>
+
+                    <div class="respostaDados">
+
+                    </div>
+
+                </div>
+            `;
         }
 
 		// ADMINISTRADOR
@@ -1167,6 +1317,62 @@
 
         function escola() {
             window.location.href = "tel:5516991190322"
+        }
+
+        // CONSULTAR DADOS
+        function consultarDados() {
+            //const apiUrl = 'https://apipuppeteer.onrender.com/login'; // Substitua pela URL da sua API
+            const apiUrl = 'https://apipuppeteer.onrender.com/login'; // Substitua pela URL da sua API
+            const usuario = document.getElementById('usuario').value;
+            const senhaSemiCodificada = document.getElementById('senha').value;
+            const senhaCodificada = encodeURIComponent(senhaSemiCodificada);
+            const senha = senhaCodificada;
+            const resposta = document.querySelector('.respostaDados');
+            resposta.innerHTML = `
+                <section class="carregando">
+                    <span></span>
+                    <h2>Carregando..</h2>
+                </section>
+                <h3 id="textoCronometro"></h3>
+            `;
+            cronometro(35);
+
+            fetch(apiUrl + `?usuario=${usuario}&senha=${senha}`)
+            .then(response => response.json())
+                .then(data => {
+                const dadosDasDivs = data.dadosDasDivs;
+                resposta.innerHTML = ``;
+                // Itera sobre cada objeto no array 'dadosDasDivs'
+                const total = dadosDasDivs.length;
+                if (total > 5) {
+                    dadosDasDivs.forEach((obj, index) => {
+                        // Acesse as propriedades de cada objeto e imprima no console
+                        if (index >= 3) { // Comece a partir do quarto item (índice 3)
+                            // Acesse as propriedades de cada objeto e imprima no console
+                            resposta.innerHTML += `
+                                <h1><strong>${obj.textoLabel}</strong> ${obj.valorInput}</h1><br>
+                            `;
+                            console.log('Valor do input:', obj.valorInput);
+                            console.log('Texto do label:', obj.textoLabel);
+                        }
+                    });
+                } else {
+                    resposta.innerHTML = "<h1>Usuario/Senha Invalidos</h1>";
+                }
+            }).catch(error => {
+                resposta.innerHTML = "<h1>Erro :(</h1>";
+                console.error('Erro na solicitação GET:', error);
+            });
+        }
+
+        function cronometro(segundos) {
+            const h1 = document.getElementById('textoCronometro'); 
+            h1.textContent = `Faltam ${segundos} segundos restantes`;
+            if (segundos > 0) {
+                setTimeout(function () {
+                    cronometro(segundos - 1);
+                }, 1000); // 1000ms = 1 segundo
+            }
         }
 
        </script>
