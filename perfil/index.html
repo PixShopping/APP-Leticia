@@ -786,7 +786,7 @@
                 <h1 id="mostrarResponsavel"></h1>
                 <h1 id="mostrarAlunoeSerie"></h1>
                 <h1 id="mostrarGmail"></h1>
-                <h1 id="mostrrTelefone"></h1>
+                <h1 id="mostrarTelefone"></h1>
                 <h1 id="mostrarRa"></h1>
             </div>
         </div>
@@ -1098,7 +1098,12 @@
             }
         }
 
-
+        // Verificar LOGIN
+        const logado = localStorage.getItem('logado');
+        const usuario = localStorage.getItem('usuario');
+		if (!logado){
+		  window.location.href = "../login";
+		}
 
        // Mostrar Dados (h1)
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
@@ -1108,48 +1113,40 @@
        const mostrarRa = document.getElementById('mostrarRa');
 
 
-       // Responsavel
-       if(localStorage.getItem('responsavel')) {
-       	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
-       } else {
-	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
-       }
-       // Aluno
-       if(localStorage.getItem('aluno') && localStorage.getItem('serie')) {
-        mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
-       } else {
-	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
-       }
+        // Responsavel
+        if (localStorage.getItem('responsavel')) {
+            mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
+        } else {
+            mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
+        }
 
-       // Gmail
-       if(localStorage.getItem('gmail')) {
-       	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
-       } else {
-	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
-       }
+        // Aluno
+        if (localStorage.getItem('aluno') && localStorage.getItem('serie')) {
+            mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
+        } else {
+            mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
+        }
 
-       // Telefone
-       if(localStorage.getItem('telefone')){
-       	mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
-       } else {
-	mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
-       }
+        // Gmail
+        if (localStorage.getItem('gmail')) {
+            mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
+        } else {
+            mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
+        }
 
-       // Ra
-       if(localStorage.getItem('ra')){
-       	mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
-       } else {
-	mostrarRa.innerHTML = `<span>Ra: </span>Indefinido`;
-       }
+        // Telefone
+        if (localStorage.getItem('telefone')){
+            mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
+        } else {
+            mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
+        }
 
-
-
-       // Verificar LOGIN
-       const logado = localStorage.getItem('logado');
-       const usuario = localStorage.getItem('usuario');
-		if (!logado){
-		  window.location.href = "../login";
-		}
+        // Ra
+        if (localStorage.getItem('ra')){
+            mostrarRa.innerHTML = `<span>Ra: </span>${localStorage.getItem('ra')}`;
+        } else {
+            mostrarRa.innerHTML = `<span>Ra: </span>Indefinido`;
+        }
 
        // HREF / FUNCOES
        function perfil() {
@@ -1366,8 +1363,8 @@
         }
 
         function cronometro(segundos) {
-            const h1 = document.getElementById('textoCronometro'); 
-            h1.textContent = `Faltam ${segundos} segundos restantes`;
+            const cronometroh1 = document.getElementById('textoCronometro'); 
+            cronometroh1.textContent = `Faltam ${segundos} segundos restantes`;
             if (segundos > 0) {
                 setTimeout(function () {
                     cronometro(segundos - 1);
