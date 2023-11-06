@@ -1115,14 +1115,14 @@
 	mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
        }
        // Aluno
-       if(localStorage.getItem('aluno') && localStorage.getItem('serie')){
+       if(localStorage.getItem('aluno') && localStorage.getItem('serie')) {
         mostrarAlunoeSerie.innerHTML = `<span>Aluno: </span>${localStorage.getItem('aluno')} - ${localStorage.getItem('serie')}`;
        } else {
 	mostrarAlunoeSerie.innerHTML = `<span>Aluno e Serie: </span>Indefinido`;
        }
 
        // Gmail
-       if(localStorage.getItem('gmail')){
+       if(localStorage.getItem('gmail')) {
        	mostrarGmail.innerHTML = `<span>Email: </span>${localStorage.getItem('gmail')}`;
        } else {
 	mostrarGmail.innerHTML = `<span>Email: </span>Indefinido`;
@@ -1269,10 +1269,10 @@
                 <div class="contentDadosSed">
 
                     <label>Usuario:</label>
-                    <input id="usuario" type="text">
+                    <input placeholder="RA-DIGITO-UF" id="usuario" type="text">
 
                     <label>Senha:</label>
-                    <input id="senha" type="text">
+                    <input placeholder="SENHA" id="senha" type="text">
                     
                     <button onclick="consultarDados()">Consultar Dados</button>
 
@@ -1335,7 +1335,7 @@
                 </section>
                 <h3 id="textoCronometro"></h3>
             `;
-            cronometro(35);
+            cronometro(30);
 
             fetch(apiUrl + `?usuario=${usuario}&senha=${senha}`)
             .then(response => response.json())
