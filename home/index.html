@@ -8,12 +8,75 @@
 
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
+
+
         window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
-            appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+                appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
             });
+
+            function pushSubscriptionChangeListener(event) {
+                const previousState = event.previous; // Estado anterior da assinatura
+                const currentState = event.current; // Estado atual da assinatura
+
+                console.log('Push Subscription Mudou:');
+                console.log('ID anterior:', previousState.id);
+                console.log('ID atual:', currentState.id);
+                if (logado === 'RESPONSAVEL') {
+                  db.collection(ANO)
+                  .doc('responsaveis')
+                  .collection(responsavel)
+                  .onSnapshot((data) => {
+                      data.docs.map((val) => {
+                          db.collection(ANO)
+                          .doc('responsaveis')
+                          .collection(responsavel)
+                          .doc(val.id).update({
+                              onesignalId: currentState.id
+                          });
+                      });
+                  });
+                } else if (logado === 'DIRECAO') {
+                  db.collection(ANO)
+                  .doc('restrito')
+                  .collection('direcao')
+                  .doc('login')
+                  .collection('acessos')
+                  .doc(usuario).update({
+                    onesignalId: currentState.id
+                  });
+                } else if (logado === 'COORDENACAO') {
+                  db.collection(ANO)
+                  .doc('restrito')
+                  .collection('coordenacao')
+                  .doc('login')
+                  .collection('acessos')
+                  .doc(usuario).update({
+                    onesignalId: currentState.id
+                  });
+                }
+                
+                
+
+                if (currentState.token) {
+                    console.log('Novo token de Push:', currentState.token);
+                }
+
+                if (currentState.optedIn === false) {
+                    console.log('Permissões de push foram negadas ou optOut() foi chamado.');
+                }
+                setTimeout(() => {
+                  window.location.reload();
+                }, 5000);
+            }
+
+            OneSignal.User.PushSubscription.addEventListener('change', pushSubscriptionChangeListener);
+
         });
+
+
+
         </script>
         
 		<style scoped>
