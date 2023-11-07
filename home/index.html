@@ -6,6 +6,16 @@
 		<link rel="icon" href="../src/img/icon.png" type="x-icon">
 		<title> Inicio | Letícia </title>
 
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+            appId: "7639757a-a89b-4b52-8028-7e8b9d328e4c",
+            });
+        });
+        </script>
+        
 		<style scoped>
 
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
