@@ -831,10 +831,17 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
-        <!-- CONTROLE LETICIA -->
+        <!-- DADOS DA SED -->
         <li onclick="dadosSed()">
             <ion-icon name="folder-outline"></ion-icon>
             <h1>Dados da Sed</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+        <!-- IFSP -->
+        <li onclick="ifsp()">
+            <ion-icon name="terminal-outline"></ion-icon>
+            <h1>IFSP</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
             
@@ -858,8 +865,6 @@
                     <h1>Website</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
-
-
 
                 <a onclick="whatsapp()">
                     <ion-icon name="logo-whatsapp"></ion-icon>
@@ -1279,6 +1284,44 @@
 
                 </div>
             `;
+        }
+
+        async function ifsp() {
+            const content = document.querySelector('.content');
+            const container = document.querySelector('.container');
+            container.style.padding = "0px";
+            const iframes = document.querySelector('.iframes');
+            iframes.style.display = "flex";
+            content.style.display = "none";
+            iframes.innerHTML = `
+                <h1>IFSP</h1>
+                <p>Os ultimos documentos do Processo Seletivo IFSP</p>
+
+                <div class="resposta">
+
+                    <section style="margin: 25px 0px 0px 0px; color: var(--one);" class="carregando">
+                        <span style="border: 20px solid var(--one); border-top: 21px solid transparent;"></span>
+                        <h2>Carregando..</h2>
+                    </section>
+                    <h3 style="margin: 10px 0px 0px 0px;" id="textoCronometro"></h3>
+
+                </div>
+            `;
+            const api = "https://api-vitor021.onrender.com/ifsp";
+            const divIFSP = document.querySelector('.resposta');
+            cronometro(26);
+            await fetch(api)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                divIFSP.innerHTML =  '';
+                data.forEach((obj) => {
+                    const texto = obj.AText;
+                    divIFSP.innerHTML += `
+                    <h1>${texto}</h1>
+                    `;
+                })
+            });
         }
 
 		// ADMINISTRADOR
