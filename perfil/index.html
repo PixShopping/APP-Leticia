@@ -673,7 +673,7 @@
             }
 
             /* CONTENT DADOS SED */
-            .contentDadosSed {
+            .contentDados {
                 width: 92.5vw;
                 max-width: 500px;
                 height: auto;
@@ -687,7 +687,7 @@
                 padding: 10px 25px 15px 25px;
             }
 
-            .contentDadosSed label {
+            .contentDados label {
                 font-size: 20.5px;
                 font-weight: 600;
                 letter-spacing: 0.6px;
@@ -696,7 +696,7 @@
                 align-self: start;
             }
 
-            .contentDadosSed input {
+            .contentDados input {
                 width: 95%;
                 height: 37px;
                 border-radius: 5px;
@@ -709,12 +709,12 @@
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 0.6px;
-            } .contentDadosSed input:focus {
+            } .contentDados input:focus {
                 box-shadow: 0px 0px 15px var(--white);
                 transition: all .1s linear;
             }
 
-            .contentDadosSed button {
+            .contentDados button {
                 width: 85%;
                 height: 40px;
                 border-radius: 5px;
@@ -727,11 +727,11 @@
                 letter-spacing: 0.2px;
                 margin: 30px 0px 20px 0px;
                 cursor: pointer;
-            } .contentDadosSed button:hover {
+            } .contentDados button:hover {
                 background: transparent;
                 color: var(--white);
                 transition: all .3s ease-in-out;
-            } .contentDadosSed button:focus {
+            } .contentDados button:focus {
                 background: transparent;
                 color: var(--white);
                 transition: all .3s ease-in-out;
@@ -1268,7 +1268,7 @@
                 <h1>Consultar Dados</h1>
                 <p>Para acessar seus dados use o <strong>Usuario</strong> e <strong>Senha</strong> da SED</p>
 
-                <div class="contentDadosSed">
+                <div class="contentDados">
 
                     <label>Usuario:</label>
                     <input placeholder="RA-DIGITO-UF" id="usuario" type="text">
@@ -1296,19 +1296,22 @@
             iframes.innerHTML = `
                 <h1>IFSP</h1>
                 <p>Os ultimos documentos do Processo Seletivo IFSP</p>
+                <div class="contentDados">
 
-                <div class="resposta">
+                    <div class="respostaDados">
 
-                    <section style="margin: 25px 0px 0px 0px; color: var(--one);" class="carregando">
-                        <span style="border: 20px solid var(--one); border-top: 21px solid transparent;"></span>
-                        <h2>Carregando..</h2>
-                    </section>
-                    <h3 style="margin: 10px 0px 0px 0px;" id="textoCronometro"></h3>
+                        <section style="margin: 10px 0px 0px 0px;" class="carregando">
+                            <span></span>
+                            <h2>Carregando..</h2>
+                        </section>
+                        <h3 id="textoCronometro"></h3>
+
+                    </div>
 
                 </div>
             `;
             const api = "https://api-vitor021.onrender.com/ifsp";
-            const divIFSP = document.querySelector('.resposta');
+            const divIFSP = document.querySelector('.respostaDados');
             cronometro(26);
             await fetch(api)
             .then(response => response.json())
@@ -1318,7 +1321,13 @@
                 data.forEach((obj) => {
                     const texto = obj.AText;
                     divIFSP.innerHTML += `
-                    <h1>${texto}</h1>
+                    <h1 style="
+                    font-size: 20px;
+                    width: 100%;
+                    padding: 8px 0px;
+                    text-align: start;
+                    text-transform: uppercase;
+                    ">${texto}</h1>
                     `;
                 })
             });
@@ -1375,7 +1384,7 @@
                 </section>
                 <h3 id="textoCronometro"></h3>
             `;
-            cronometro(30);
+            cronometro(50);
 
             fetch(apiUrl + `?usuario=${usuario}&senha=${senha}`)
             .then(response => response.json())
