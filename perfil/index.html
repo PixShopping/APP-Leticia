@@ -760,6 +760,55 @@
                 text-transform: uppercase;
             }
 
+            .redes {
+                display: none;
+            }
+
+            /* COMUNICADO DO SITE */
+            .comunicadosDoSite {
+                width: 92.5%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 10px;
+                background: var(--one);
+                color: var(--white);
+                margin: 10px 0px 0px 0px;
+            }
+
+            .comunicadosDoSite li {
+                width: 95%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 5px 0px;
+            }
+
+            .comunicadosDoSite h1 {
+                font-size: 22px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                margin: 0px;
+                text-shadow: 0px 0px 5px var(--white);
+            }
+
+            .comunicadosDoSite ion-icon {
+                font-size: 30px;
+                padding: 3px;
+                border-radius: 5px;
+                margin: 0px 10px 0px auto;
+                background: var(--red);
+                color: white;
+                cursor: pointer;
+                border: 2px solid var(--red);
+            } .comunicadosDoSite ion-icon:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } 
+
             </style>
            </head>
 
@@ -860,6 +909,12 @@
         <section class="redes-sociais">
 
             <ul>
+                <a class="redes" onclick="comunicadoSite()">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <h1>Enviar Comunicado no Site</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
                 <a onclick="website()">
                     <ion-icon name="desktop-outline"></ion-icon>
                     <h1>Website</h1>
@@ -1229,6 +1284,7 @@
             </iframe>`;
         }
 
+        
         function whatsapp() {
             window.location.href = "https://app-leticia.netlify.app/src/pagin/whatsapp.html";
         }
@@ -1337,14 +1393,26 @@
         const informacao = document.getElementById('informacao');
         const mural = document.getElementById('mural');
         const aviso = document.getElementById('aviso');
-        if (logado === "PROFESSOR") {
+        const redes = document.querySelectorAll('.redes');
+        if (logado === "RESPONSAVEL") {
+            redes.forEach((rede) => {
+                rede.style.display = 'none';
+            });
+        } else if (logado === "PROFESSOR") {
             informacao.style.display = "none";
             mural.style.display = "flex";
+            redes.forEach((rede) => {
+                rede.style.display = 'none';
+            });
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "none";
             aviso.style.display = "flex";
             mural.style.display = "flex";
+            redes.forEach((rede) => {
+                rede.style.display = 'flex';
+            });
         }
+        
 
         function abrirMural() {
             window.location.href = "../mural";
@@ -1432,8 +1500,7 @@
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -1453,6 +1520,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+		const storage = firebase.storage();
 
     
       // Pegar o ANO LETICO ATUAL
@@ -1460,19 +1528,6 @@
       const anoAtual = dataAtual.getFullYear();
       localStorage.setItem('ano', anoAtual);
       const ANO = localStorage.getItem('ano');
-
-        
-      if (logado === 'RESPONSAVEL') {
-        db.collection(ANO)
-        .doc("series")
-        .collection(localStorage.getItem('serie'))
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-                localStorage.setItem('idserie', val.id);
-            });
-        });
-      }
-      
 
 	  function redefinirSenha() {
         const senhaAtual = document.getElementById('inputSenhaAtual').value;
@@ -1642,6 +1697,127 @@
                     });
                     necessarioh1.innerHTML = 'Aceito!';
                     necessarioh1.style.color = "var(--green)";
+                }
+            });
+        }
+
+        // ENVIAR COMUNICADO AO SITE
+        async function enviarComunicadoSite() {
+            const titulo = document.getElementById('titulo').value;
+            const imagem = document.getElementById('imagem');
+            const file = imagem.files[0];
+            if (file) {
+                
+                // Crie uma referência para o local de armazenamento da imagem
+                const nomeImagem = file.name;
+                const storageRef = storage.ref("site/comunicados/" + nomeImagem);
+                
+                // Faça o upload da imagem para o Firebase Storage
+                db.collection(ANO)
+                .doc('site')
+                .collection('comunicados')
+                .doc(titulo).set({
+                    titulo: titulo,
+                    imagem: nomeImagem
+                }).then((response) => {
+                    storageRef.put(file).then(function (snapshot) {
+                        swal({
+                            title: 'Parabens',
+                            text: 'Comunicado enviado com sucesso!',
+                            buttons: {
+                                confirm: 'Ok',
+                            },
+                        }).then((res) => {
+                            window.location.reload();
+                        })
+                    }).catch(function (error) {
+                        console.error("Erro ao enviar a imagem:", error);
+                    });
+                })
+                
+            } else {
+                swal({
+                    title: 'Aviso',
+                    text: 'Digite um título e adicione uma imagem!',
+                    buttons: {
+                        confirm: 'Ok',
+                    },
+                })
+            }
+
+        }
+
+        async function comunicadoSite() {
+            const content = document.querySelector('.redes-sociais');
+            const container = document.querySelector('.container');
+            container.style.padding = "0px";
+            const iframes = document.querySelector('.iframes');
+            iframes.style.display = "flex";
+            content.style.display = "none";
+            iframes.innerHTML = await `
+                <h1>Enviar Comunicado ao Site</h1>
+                <div class="contentDados">
+
+                    <label>Titulo:</label>
+                    <input placeholder="Título" id="titulo" type="text">
+
+                    <label>Imagem:</label>
+                    <input style="padding: 0px;" id="imagem" type="file" accept="image/*">
+                    
+                    <button onclick="enviarComunicadoSite()">Enviar Comunicado</button>
+
+                </div>
+
+                <div class="comunicadosDoSite">
+                    
+                </div>
+            `;
+            const comunicadosDoSite = document.querySelector('.comunicadosDoSite');
+            db.collection(ANO)
+            .doc('site')
+            .collection('comunicados')
+            .onSnapshot((data) => {
+                comunicadosDoSite.innerHTML = '';
+                data.docs.map((val) => {
+                    const titulo = val.data().titulo;
+                    const imagem = val.data().imagem;
+                    comunicadosDoSite.innerHTML += `
+                        <li>
+                            <h1>${titulo}</h1>
+                            <ion-icon onclick="excluirComunicado('${titulo}', '${imagem}')" name="trash"></ion-icon>
+                        </li>
+                    `;
+                });
+            });
+        }
+
+        function excluirComunicado(titulo, imagem) {
+            swal({
+                title: 'Aviso',
+                text: `Você deseja excluir o comunicado ${titulo}`,
+                buttons: {
+                    confirm: 'Sim',
+                    cancel: 'Não',
+                },
+            }).then((resposta) => {
+                if (resposta) {
+                    db.collection(ANO)
+                    .doc('site')
+                    .collection('comunicados')
+                    .doc(titulo).delete().then((resposne) => {
+                        const storageRef = storage.ref().child(`site/comunicados/${imagem}`);
+                        storageRef.delete().then((res) => {
+                            swal({
+                                title: 'Parabens',
+                                text: 'Comunicado excluido com sucesso!',
+                                buttons: {
+                                    confirm: 'Ok',
+                                },
+                            }).then((res) => {
+                                window.location.reload();
+                            });
+                        });
+                    });
                 }
             });
         }
