@@ -1717,6 +1717,7 @@
                 .doc('site')
                 .collection('comunicados')
                 .doc(titulo).set({
+                    data: firebase.firestore.FieldValue.serverTimestamp(),
                     titulo: titulo,
                     imagem: nomeImagem
                 }).then((response) => {
@@ -1776,6 +1777,7 @@
             db.collection(ANO)
             .doc('site')
             .collection('comunicados')
+            .orderBy("data")
             .onSnapshot((data) => {
                 comunicadosDoSite.innerHTML = '';
                 data.docs.map((val) => {
