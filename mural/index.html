@@ -233,6 +233,41 @@
                     }
                 }
 
+                /* ALERTA MODIFICADO */
+                .swal-modal {
+                    background-color: var(--one);
+                    border: 3px solid white;
+                    border-radius: 10px;
+                }
+
+                .swal-title {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 22px;
+                    color: var(--white);
+                    border-bottom: 2px solid var(--white);
+                    padding: 0px 0px 20px 0px;
+                    letter-spacing: 0.5px;
+                }
+
+                .swal-text {
+                    color: var(--white);
+                    margin: 20px 0px 0px 0px;
+                    font-size: 20px;
+                    letter-spacing: 0.5px;
+                }
+
+                .swal-button {
+                    background-color: var(--white);
+                    color: var(--one);
+                } .swal-button--confirm {
+                    background-color: var(--white);
+                    color: var(--one);
+                } .swal-button--cancel {
+                    background-color: var(--red);
+                    color: white;
+                }
+
                 /* ERRO */
 
                 .erro {
@@ -261,6 +296,91 @@
                   font-size: 21px;
                   text-align: center;
                 }
+
+                /* ENVIAR PROVAS */
+
+                .addProvas {
+                  width: 100%;
+                  height: auto;
+                  flex-direction: column;
+                  align-items: center;
+                }
+
+                .addProvas h1 {
+                  margin: 30px 0px 20px 0px;
+                }
+
+                .addProvas .form {
+                  width: 90%;
+                  max-width: 700px;
+                  height: auto;
+                  display: flex;
+                  flex-direction: column;
+                  margin: 10px 0px 40px 0px;
+                }
+
+                .addProvas .form label {
+                  font-size: 20px;
+                  font-weight: 600;
+                  letter-spacing: 0.2px;
+                  margin: 3px 0px 3px 3px;
+                }
+
+                .addProvas .form select {
+                  width: 100%;
+                  height: 45px;
+                  padding: 5px 12px;
+                  background: var(--two);
+                  color: var(--white);
+                  margin: 0px 0px 12px 0px;
+                  font-size: 16px;
+                  font-weight: 500;
+                  border-radius: 10px;
+                  outline: none;
+                  border: 2px solid var(--two);
+                  cursor: pointer;
+                }
+
+                .addProvas .form input {
+                  width: 100%;
+                  height: 45px;
+                  padding: 5px 12px;
+                  background: var(--two);
+                  color: var(--white);
+                  margin: 0px 0px 12px 0px;
+                  font-size: 16px;
+                  font-weight: 500;
+                  border-radius: 10px;
+                  outline: none;
+                  border: 2px solid var(--two);
+                  cursor: pointer;
+                }
+
+                .addProvas .form button {
+                  width: 90%;
+                  height: 50px;
+                  padding: 10px;
+                  background: var(--two);
+                  color: var(--white);
+                  margin: 15px 0px 5px 0px;
+                  font-size: 16.5px;
+                  font-weight: 600;
+                  letter-spacing: 0.5px;
+                  border-radius: 10px;
+                  outline: none;
+                  border: 2px solid var(--two);
+                  cursor: pointer;
+                  align-self: center;
+                } .addProvas .form button:hover {
+                  background: transparent;
+                  color: var(--two);
+                  transition: all .2s ease-in-out;
+                } .addProvas .form button:focus {
+                  background: transparent;
+                  color: var(--two);
+                  transition: all .2s ease-in-out;
+                }
+
 
             </style>
            </head>
@@ -306,19 +426,30 @@
 
                     <h1>Adicionar data de prova</h1>
 
-                    <div>
+                    <div class="form">
 
-                        <label>Matéria: </label>
+                      <label>Matéria: </label>
                         <select id="inputMateria">
 
                             <option value="matematica">Matemática</option>
                             <option value="portugues">Português</option>
-                            <option value="historia">Historia</option>
+                            <option value="historia">História</option>
                             <option value="geografia">Geografia</option>
                             <option value="ciencias">Ciências</option>
+                            <option value="ingles">Inglês</option>
+                            <option value="fisica">Física</option>
+                            <option value="quimica">Química</option>
+                            <option value="biologia">Biologia</option>
+                            <option value="sociologia">Sociologia</option>
+                            <option value="filosofia">Filosofia</option>
+                            <option value="edfisica">Ed. Fisica</option>
+                            <option value="artes">Artes</option>
+                            <option value="tecnologia">Tecnologia e Inovação</option>
+                            <option value="pv">Projeto de Vida</option>
 
                         </select>
 
+                        <label>Série: </label>
                         <select id="inputSerie">
                           <option value="" disabled>Serie</option>
                         </select>
@@ -477,7 +608,7 @@
           }
 
 
-          function enviarProva() {
+          async function enviarProva() {
             const materia = document.getElementById('inputMateria').value;
             const valDate = document.getElementById('inputData').value;
             const corFundo = document.getElementById('inputCorFundo').value;
@@ -487,31 +618,40 @@
             const ano = valDate.slice(0,4);
             const date = `${dia}/${mes}/${ano}`;
             const serie = document.getElementById('inputSerie').value;
-            db.collection(ANO)
+            await db.collection(ANO)
             .doc('provas')
             .collection(serie).add({
                 materia: materia,
                 data: date,
                 corFundo: corFundo,
                 corTexto: corTexto
+            }).then((response) => {
+              swal({
+                  title: "AVISO",
+                  text: `Prova de ${materia} enviada com sucesso!`,
+                  buttons: {
+                      confirm: "Ok!",
+                  },
+              });
+              db.collection(ANO)
+              .doc('series')
+              .collection(serie)
+              .onSnapshot((data) => {
+                  data.docs.map((val) => {
+                    var doc = val.data().responsavel;
+                    db.collection(ANO)
+                      .doc('responsaveis')
+                      .collection(doc)
+                      .onSnapshot((data) => {
+                          data.docs.map((val) => {
+                              var onesignalId = val.data().onesignalId;
+                              notificationUserProva(materia, date, onesignalId);
+                          });
+                      });
+                  });
+              });
             });
-            db.collection(ANO)
-            .doc('series')
-            .collection(serie)
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                   var doc = val.data().responsavel;
-                   db.collection(ANO)
-                    .doc('responsaveis')
-                    .collection(doc)
-                    .onSnapshot((data) => {
-                        data.docs.map((val) => {
-                            var onesignalId = val.data().onesignalId;
-                            notificationUserProva(materia, date, onesignalId);
-                        });
-                    });
-                });
-            });
+            
           }
 
         // LER AS PROVAS POSTADAS
@@ -539,7 +679,6 @@
                                 <h1>Disciplina: <p>${val.data().materia}</p></h1>
                                 <h1>Turma: <p>${serie}</p></h1>
                                 <h1>Data: <p>${val.data().data}</p></h1>
-                                
                             </div>
                         `;
                     });
@@ -571,7 +710,7 @@
                     Authorization: 'Basic MWVkOGFkNDItMjExOC00NTdmLTlkNzUtNmJjNmRhZjljNzg3', // Substitua pelo sua chave da API REST do OneSignal
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(notificationData),
+                  body: JSON.stringify(notificationData),
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -587,7 +726,8 @@
 
 
 
-       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>
