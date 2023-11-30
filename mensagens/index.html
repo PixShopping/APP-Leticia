@@ -35,8 +35,8 @@
                 --white: white;
                 --gray: #b3abab;
                 --font: 'Ubuntu', sans-serif;
-                --green: rgb(20, 218, 20);
-				--red: rgb(240, 36, 36);
+                --green: #15ba35;
+                --red: #ee0000;
 			}
 
 			*  {
@@ -656,6 +656,32 @@
             color: var(--white);
         }
 
+        .chatOnline li .linha {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .chatOnline li .linha a {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .chatOnline li .linha ion-icon {
+            font-size: 22px;
+        }
+
+        .chatOnline li .linha .visto {
+            color: var(--green);
+        } .chatOnline li .linha .naoVisto {
+            color: var(--white);
+        }
+
         .chatOnline li h1 {
             width: 100%;
             font-size: 19px;
@@ -668,12 +694,6 @@
             font-size: 16px;
             font-weight: 500;
             letter-spacing: 0.4px;
-        }
-
-        .chatOnline li a {
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
         }
 
         .chatOnline .erro {
@@ -1560,6 +1580,7 @@
             const responsavel = localStorage.getItem('verResponsavel');
             const destinatario = localStorage.getItem('logado');
             var status = '';
+            var visto = '';
             db.collection(ANO)
             .doc('chat')
             .collection(serie)
@@ -1569,15 +1590,35 @@
             .onSnapshot((data) => {
                 chat.innerHTML = "";
                 data.docs.map((val) => {
+                    const docId = val.id;
                     if (val.data().usuario === destinatario) {
                         status = 'minha';
                     } else {
                         status = 'dele';
+                        db.collection(ANO)
+                        .doc('chat')
+                        .collection(serie)
+                        .doc(responsavel)
+                        .collection(`mensagens${destinatario}`)
+                        .doc(docId).update({
+                            view: true,
+                        });
+                            
                     }
+
+                    if (val.data().view === true) {
+                        visto = 'visto';
+                    } else {
+                        visto = 'naoVisto';
+                    }
+
                     chat.innerHTML += `
                         <li class="${status}">
                             <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
-                            <a>${val.data().hora}</a>
+                            <div class="linha">
+                                <a>${val.data().hora}</a>
+                                <ion-icon class="${visto}" name="checkmark-done-outline"></ion-icon>   
+                            </div>
                         </li>
                     `;
                 });
@@ -1701,6 +1742,7 @@
             const serie = localStorage.getItem('serie');
             const destinatario = localStorage.getItem('destinatario');
             var status = '';
+            var visto = '';
             db.collection(ANO)
             .doc('chat')
             .collection(serie)
@@ -1710,15 +1752,34 @@
             .onSnapshot((data) => {
                 chat.innerHTML = "";
                 data.docs.map((val) => {
+                    const docId = val.id;
                     if (val.data().usuario === responsavel) {
                         status = 'minha';
                     } else {
                         status = 'dele';
+                        db.collection(ANO)
+                        .doc('chat')
+                        .collection(serie)
+                        .doc(responsavel)
+                        .collection(`mensagens${destinatario}`)
+                        .doc(docId).update({
+                            view: true,
+                        });
                     }
+
+                    if (val.data().view === true) {
+                        visto = 'visto';
+                    } else {
+                        visto = 'naoVisto';
+                    }
+                    
                     chat.innerHTML += `
                         <li class="${status}">
                             <h1>${val.data().usuario}: <span>${val.data().mensagem}</span></h1>
-                            <a>${val.data().hora}</a>
+                            <div class="linha">
+                                <a>${val.data().hora}</a>
+                                <ion-icon class="${visto}" name="checkmark-done-outline"></ion-icon>   
+                            </div> 
                         </li>
                     `;
                 });
@@ -1740,6 +1801,17 @@
                         </div>
                     `;
                 }
+            });
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .orderBy("data")
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                   
+                })
             });
         }
 
