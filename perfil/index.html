@@ -912,12 +912,6 @@
         <section class="redes-sociais">
 
             <ul>
-                <a class="redes" onclick="comunicadoSite()">
-                    <ion-icon name="add-circle-outline"></ion-icon>
-                    <h1>Enviar Comunicado no Site</h1>
-                    <ion-icon name="arrow-forward"></ion-icon>
-                </a>
-
                 <a onclick="website()">
                     <ion-icon name="desktop-outline"></ion-icon>
                     <h1>Website</h1>
@@ -1704,130 +1698,7 @@
             });
         }
 
-        // ENVIAR COMUNICADO AO SITE
-        async function enviarComunicadoSite() {
-            const titulo = document.getElementById('titulo').value;
-            const imagem = document.getElementById('imagem');
-            const file = imagem.files[0];
-            if (file) {
-                
-                // Crie uma referência para o local de armazenamento da imagem
-                const nomeImagem = file.name;
-                const storageRef = storage.ref("site/comunicados/" + nomeImagem);
-                
-                // Faça o upload da imagem para o Firebase Storage
-                db.collection(ANO)
-                .doc('site')
-                .collection('comunicados')
-                .doc(titulo).set({
-                    data: firebase.firestore.FieldValue.serverTimestamp(),
-                    titulo: titulo,
-                    imagem: nomeImagem
-                }).then((response) => {
-                    storageRef.put(file).then(function (snapshot) {
-                        swal({
-                            title: 'Parabens',
-                            text: 'Comunicado enviado com sucesso!',
-                            buttons: {
-                                confirm: 'Ok',
-                            },
-                        }).then((res) => {
-                            window.location.reload();
-                        })
-                    }).catch(function (error) {
-                        console.error("Erro ao enviar a imagem:", error);
-                    });
-                })
-                
-            } else {
-                swal({
-                    title: 'Aviso',
-                    text: 'Digite um título e adicione uma imagem!',
-                    buttons: {
-                        confirm: 'Ok',
-                    },
-                })
-            }
-
-        }
-
-        async function comunicadoSite() {
-            const content = document.querySelector('.redes-sociais');
-            const container = document.querySelector('.container');
-            container.style.padding = "0px";
-            const iframes = document.querySelector('.iframes');
-            iframes.style.display = "flex";
-            content.style.display = "none";
-            iframes.innerHTML = await `
-                <h1>Enviar Comunicado ao Site</h1>
-                <div class="contentDados">
-
-                    <label>Titulo:</label>
-                    <input placeholder="Título" id="titulo" type="text">
-
-                    <label>Imagem:</label>
-                    <input style="padding: 0px;" id="imagem" type="file" accept="image/*">
-                    
-                    <button onclick="enviarComunicadoSite()">Enviar Comunicado</button>
-
-                </div>
-
-                <div class="comunicadosDoSite">
-                    
-                </div>
-            `;
-            const comunicadosDoSite = document.querySelector('.comunicadosDoSite');
-            db.collection(ANO)
-            .doc('site')
-            .collection('comunicados')
-            .orderBy("data")
-            .onSnapshot((data) => {
-                comunicadosDoSite.innerHTML = '';
-                data.docs.map((val) => {
-                    const titulo = val.data().titulo;
-                    const imagem = val.data().imagem;
-                    comunicadosDoSite.innerHTML += `
-                        <li>
-                            <h1>${titulo}</h1>
-                            <ion-icon onclick="excluirComunicado('${titulo}', '${imagem}')" name="trash"></ion-icon>
-                        </li>
-                    `;
-                });
-            });
-        }
-
-        function excluirComunicado(titulo, imagem) {
-            swal({
-                title: 'Aviso',
-                text: `Você deseja excluir o comunicado ${titulo}`,
-                buttons: {
-                    confirm: 'Sim',
-                    cancel: 'Não',
-                },
-            }).then((resposta) => {
-                if (resposta) {
-                    db.collection(ANO)
-                    .doc('site')
-                    .collection('comunicados')
-                    .doc(titulo).delete().then((resposne) => {
-                        const storageRef = storage.ref().child(`site/comunicados/${imagem}`);
-                        storageRef.delete().then((res) => {
-                            swal({
-                                title: 'Parabens',
-                                text: 'Comunicado excluido com sucesso!',
-                                buttons: {
-                                    confirm: 'Ok',
-                                },
-                            }).then((res) => {
-                                window.location.reload();
-                            });
-                        });
-                    });
-                }
-            });
-        }
         
-
        </script>
 
 
