@@ -1449,8 +1449,17 @@
         function lerPlanilha(serie) {
             const div = document.querySelector('.planilhas');
             const container = document.querySelector('.content');
+            const local = document.querySelector('.local');
+            local.innerHTML = `
+                <div class="flex">
+                    <ion-icon style="color: var(--white);" name="people"></ion-icon>
+                    <h1 style="margin: 0px 0px 0px 10px;">${serie}</h1>
+                </div>
+                <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+            `;
             container.style.display = "none";
             div.style.display = "flex";
+            
             db.collection(ANO)
             .doc('planilhas')
             .collection(serie)
