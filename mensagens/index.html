@@ -70,7 +70,7 @@
             .barra-de-pesquisa {
                 width: 92.5%;
                 height: auto;
-                display: flex;
+                display: none;
                 flex-direction: row;
                 align-items: center;
                 margin: 20px 0px;
@@ -186,6 +186,8 @@
             .content {
                 display: flex;
                 flex-direction: column;
+                position: relative;
+                top: 0px;
             }
 
             .content div {
@@ -195,7 +197,6 @@
                 width: 100%;
                 height: auto;
                 padding: 5px;
-                margin: 15px 0px -5px 0px;
             }
 
             .content div h1 {
@@ -229,7 +230,7 @@
             .alunoPesquisa {
                 width: 100vw;
                 height: auto;
-                display: flex;
+                display: none;
                 flex-direction: column;
                 align-items: center;
                 margin: 20px 0px;
@@ -315,7 +316,7 @@
                 width: 100vw;
                 height: auto;
                 color: var(--one);
-                display: flex;
+                display: none;
                 flex-direction: column;
                 align-items: center;
                 position: relative;
@@ -840,7 +841,7 @@
         /* TODOS OS ALUNOS */
 
         .todosAlunos {
-            margin: 20px auto 0px auto;
+            margin: 0px auto 0px auto;
         }
 
         </style>
@@ -1070,6 +1071,7 @@
         const logado = localStorage.getItem('logado');
         const admin = document.querySelector('.admin');
         const responsavel = document.querySelector('.responsavel');
+        const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
         const chatOnline = document.querySelector('.containerChatOnline');
 
         // Verificar se é administrador
@@ -1078,6 +1080,7 @@
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             admin.style.display = "flex";
             responsavel.style.display = "none";
+            barraDePesquisa.style.display = "flex";
             chatOnline.innerHTML = `
                 <div class="chatOnline">
                 </div>
