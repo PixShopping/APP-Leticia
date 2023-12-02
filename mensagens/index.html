@@ -1429,8 +1429,10 @@
 
         const whatsapp = getParameterByName('whatsapp');
         if (whatsapp === 'true') {
-            const telefone = localStorage.getItem('whatsapp')
-            window.location.href = `https://wa.me/${telefone}`;
+            setTimeout(() => {
+                const telefone = localStorage.getItem('whatsapp')
+                window.location.href = `https://wa.me/${telefone}`;    
+            }, 2000);            
         }
         
         // LISTAR PLANILHAS
