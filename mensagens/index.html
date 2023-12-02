@@ -1184,13 +1184,15 @@
         window.location.href = `tel:${telefone}`;
        }
        function irWhatsapp(whatsapp) {
-        window.location.href = `https://wa.me/${whatsapp}`;
+        window.location.href = `?whatsapp=true`;
+        localStorage.setItem('whatsapp', whatsapp);
        }
 
        function irWhatsappComDDD(whatsapp) {
         var telefone = whatsapp.replace(/\D/g, "").slice(2);
         telefone = "55" + telefone;
-        window.location.href = `https://wa.me/${telefone}`;
+        localStorage.setItem('whatsapp', telefone);
+        window.location.href = `?whatsapp=true`;
        }
 
        function irEmail(email) {
@@ -1414,6 +1416,22 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "))
+        }
+
+        const whatsapp = getParameterByName('whatsapp');
+        if (whatsapp === 'true') {
+            const telefone = localStorage.getItem('whatsapp')
+            window.location.href = `https://wa.me/${telefone}`;
+        }
         
         // LISTAR PLANILHAS
         function listarPlanilhas() {
