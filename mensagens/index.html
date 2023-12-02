@@ -1379,6 +1379,7 @@
     <!-- LINKS DO BANCO DE DADOS -->
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
 
     <!-- BANCO DE DADOS -->
     <script>
@@ -1414,6 +1415,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const storage = firebase.storage();
 
         // LISTAR PLANILHAS
         function listarPlanilhas() {
@@ -2361,12 +2363,48 @@
                 enviarMensagemChatOnline();
             });
         }
+
+
+
+        function exibirPlanilha(serie) {
+            // Caminho para o arquivo Excel local
             
-        
+            fetch(`../src/planilhas/${serie}.xlsx`)
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    // Converte o conteúdo para um workbook
+                    var workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+                    // Converte a primeira folha do workbook para JSON
+                    var nomeDaPrimeiraFolha = workbook.SheetNames[0];
+                    var dadosJson = XLSX.utils.sheet_to_json(workbook.Sheets[nomeDaPrimeiraFolha]);
+
+                    // Exibe os dados no console (pode ser removido em produção)
+                    db.collection(ANO)
+                    .doc('planilhas')
+                    .collection('existente')
+                    .doc(serie).set({}).then((response) => {
+                        db.collection(ANO)
+                        .doc('planilhas')
+                        .collection(serie).doc().set({
+                            json: JSON.stringify(dadosJson)
+                        }).then((res) => {
+                            alert('sucesso');
+                        })
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao ler a planilha:', error);
+                });
+          }
+
+
+
 
     </script>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
