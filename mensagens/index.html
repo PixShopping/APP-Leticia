@@ -1723,6 +1723,7 @@
                 var serie = 'Não definido';
                 var email = 'Não definido';
                 var telefone = 'Não definido';
+                var telefoneAluno = 'Não definido';
                 var senha = 'Não definido';
                 var notificacao = 'Não definido';
                 var corNotificacao = 'var(--red)';
@@ -1738,6 +1739,9 @@
                 if (val.data().telefone !== '') {
                     telefone = val.data().telefone;
                 }
+                if (val.data().telefoneAluno !== '') {
+                    telefoneAluno = val.data().telefoneAluno;
+                }
                 if (val.data().senha !== '') {
                     senha = val.data().senha;    
                 }
@@ -1750,7 +1754,8 @@
                     <h2>DADOS DO APLICATIVO</h2>
                     <h1><strong>Serie: </strong>${serie}</h1>
                     <h1><strong>Email: </strong>${email}</h1>
-                    <h1><strong>Telefone: </strong>${telefone}</h1>
+                    <h1><strong>Telefone do Responsavel: </strong>${telefone}</h1>
+                    <h1><strong>Telefone do Aluno: </strong>${telefoneAluno}</h1>
                     <h1><strong>Senha: </strong>${senha}</h1>
                     <h1 style="color: ${corNotificacao};"><strong>Notificações: </strong>${notificacao}</h1>
                 `;
@@ -1762,24 +1767,27 @@
                     verificarPermitionNotification(val.data().onesignalId);
                 }
                 
-                if (email !== 'Não definido' && telefone === 'Não definido') {
+                if (email !== 'Não definido' || telefone !== 'Não definido' || telefoneAluno !== 'Não definido') {
                     div.innerHTML += `
                         <h2>Contato</h2>
+                    `;
+                }
+
+                if (email !== 'Não definido') {
+                    div.innerHTML += `
                         <button onclick="irEmail('${email}')">Email</button>
                     `;  
-                } else if (telefone !== 'Não definido' && email === 'Não definido') {
+                } 
+                if (telefone !== 'Não definido') {
                     div.innerHTML += `
-                        <h2>Contato</h2>
-                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefone}')">Whatsapp</button>
-                        <button onclick="irTelefone('${telefone}')">Telefone</button>
+                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefone}')">Whatsapp do Responsavel</button>
+                        <button onclick="irTelefone('${telefone}')">Telefone do Responsavel</button>
                     `;  
-                } else if (email !== 'Não definido' && telefone !== 'Não definido') {
+                } 
+                if (telefoneAluno !== 'Não definido') {
                     div.innerHTML += `
-                        <h2>Contato</h2>
-                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefone}')">Whatsapp</button>
-                        <button onclick="irTelefone('${telefone}')">Telefone</button>
-                        <button onclick="irEmail('${email}')">Email</button>
-                        
+                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefoneAluno}')">Whatsapp do Aluno</button>
+                        <button onclick="irTelefone('${telefoneAluno}')">Telefone do Aluno</button>
                     `;
                 }
 

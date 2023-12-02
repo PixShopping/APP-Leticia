@@ -841,6 +841,7 @@
                 <h1 id="mostrarAlunoeSerie"></h1>
                 <h1 id="mostrarGmail"></h1>
                 <h1 id="mostrarTelefone"></h1>
+                <h1 id="mostrarTelefoneAluno"></h1>
                 <h1 id="mostrarRa"></h1>
             </div>
         </div>
@@ -1169,6 +1170,7 @@
        const mostrarAlunoeSerie = document.getElementById('mostrarAlunoeSerie');
        const mostrarGmail = document.getElementById('mostrarGmail');
        const mostrarTelefone = document.getElementById('mostrarTelefone');
+       const mostrarTelefoneAluno = document.getElementById('mostrarTelefoneAluno');
        const mostrarRa = document.getElementById('mostrarRa');
 
 
@@ -1195,9 +1197,16 @@
 
         // Telefone
         if (localStorage.getItem('telefone')){
-            mostrarTelefone.innerHTML = `<span>Telefone: </span>${localStorage.getItem('telefone')}`;
+            mostrarTelefone.innerHTML = `<span>Telefone do Responsavel: </span>${localStorage.getItem('telefone')}`;
         } else {
-            mostrarTelefone.innerHTML = `<span>Telefone: </span>Indefinido`;
+            mostrarTelefone.innerHTML = `<span>Telefone do Responsavel: </span>Indefinido`;
+        }
+
+        // Telefone do Aluno
+        if (localStorage.getItem('telefoneAluno')){
+            mostrarTelefoneAluno.innerHTML = `<span>Telefone do Aluno: </span>${localStorage.getItem('telefoneAluno')}`;
+        } else {
+            mostrarTelefoneAluno.innerHTML = `<span>Telefone do Aluno: </span>Indefinido`;
         }
 
         // Ra

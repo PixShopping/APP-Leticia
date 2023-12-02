@@ -521,10 +521,16 @@
           <input placeholder="opcional" id="cadastroGmail" type="text" />
 
           <label
-            >Telefone
+            >Telefone do Responsavel
             <p id="alertaTELEFONE"></p>
           </label>
           <input placeholder="opcional" id="cadastroTelefone" type="text" />
+
+          <label
+            >Telefone do Aluno
+            <p id="alertaTELEFONEaluno"></p>
+          </label>
+          <input placeholder="opcional" id="cadastroTelefoneAluno" type="text" />
 
           <label
             >Senha
@@ -661,9 +667,7 @@
     }
 
     // Verificar Responsavel Existente
-
-    var continuar = true;
-    function verificarResponsavel() {
+    async function verificarResponsavel() {
       const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
       const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
       
@@ -675,33 +679,37 @@
             confirm: "Ok"
           },
         });
-        continuar = false;
-      } else {
-        continuar = true;
+        return false;
       }
+      try {
+          const existe = await db.collection(ANO)
+          .doc("responsaveis")
+          .collection(RESPONSAVEL)
+          .get();
 
-      db.collection(ANO)
-        .doc("responsaveis")
-        .collection(RESPONSAVEL)
-        .get()
-        .then((existe) => {
-          if (existe.size > 0) {
-            alertaRESPONSAVEL.innerHTML = "Ja Existe!";
-            alertaRESPONSAVEL.style.color = "var(--red)";
-            continuar = false;
-          } else {
-            alertaRESPONSAVEL.innerHTML = "Valido";
-            alertaRESPONSAVEL.style.color = "var(--green)";
-          }
-        });
+        if (existe.size > 0) {
+          alertaRESPONSAVEL.innerHTML = "Já Existe!";
+          alertaRESPONSAVEL.style.color = "var(--red)";
+          return false;
+        } else {
+          alertaRESPONSAVEL.innerHTML = "Válido";
+          alertaRESPONSAVEL.style.color = "var(--green)";
+          return true;
+        }
+      } catch (error) {
+        console.error("Erro ao verificar responsável:", error);
+        // Trate o erro conforme necessário
+        return false;
+      }
     }
+
   </script>
 
   <!-- LINKS DO BANCO DE DADOS -->
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
   <!--<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-		 <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>-->
 
   <!------------------------------->
   <!-- BANCO DE DADOS (FIREBASE) -->
@@ -776,9 +784,8 @@
       return emails.test(email);
     }
 
-
-    function enviarCadastro() {
-      verificarResponsavel();
+    async function enviarCadastro() {
+      const verificacao = await verificarResponsavel();
       const inputRESPONSAVEL = document.getElementById("cadastroResponsavel").value;
       const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
       const inputALUNO = document.getElementById("cadastroAluno").value;
@@ -786,60 +793,56 @@
       const GMAIL = document.getElementById("cadastroGmail").value;
       
       const TELEFONE = document.getElementById("cadastroTelefone").value;
+      const TELEFONEaluno = document.getElementById("cadastroTelefoneAluno").value;
       const SERIE = document.getElementById("cadastroSerie").value;
       const SENHA = document.getElementById("cadastroSenha").value;
       const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
       const alertaALUNO = document.getElementById("alertaALUNO");
       const alertaSERIE = document.getElementById("alertaSERIE");
       const alertaSENHA = document.getElementById("alertaSENHA");
-
       
-      
-      
-      if (ALUNO === "") {
-        swal({
-          title: "AVISO",
-          text: "Digite o nome do aluno!",
-          buttons: {
-            confirm: "Ok"
-          },
-        });
-        continuar = false;
-      } else if (SERIE === "") {
-        swal({
-          title: "AVISO",
-          text: "Escolha uma serie!",
-          buttons: {
-            confirm: "Ok"
-          },
-        });
-        continuar = false;
-      } else if (SENHA === "") {
-        swal({
-          title: "AVISO",
-          text: "Digite uma senha Valida!",
-          buttons: {
-            confirm: "Ok"
-          },
-        });
-        continuar = false;
-      } else if (GMAIL !== "") {
-        if (!validarEmail(GMAIL)) {
+      if (verificacao) {
+        if (ALUNO === "") {
           swal({
             title: "AVISO",
-            text: "Email invalido!",
+            text: "Digite o nome do aluno!",
             buttons: {
-              confirm: "Ok",
+              confirm: "Ok"
             },
           });
-          continuar = false;
+          return;
+        } else if (SERIE === "") {
+          swal({
+            title: "AVISO",
+            text: "Escolha uma serie!",
+            buttons: {
+              confirm: "Ok"
+            },
+          });
+          return;
+        } else if (SENHA === "") {
+          swal({
+            title: "AVISO",
+            text: "Digite uma senha Valida!",
+            buttons: {
+              confirm: "Ok"
+            },
+          });
+          return;
+        } else if (GMAIL !== "") {
+          if (!validarEmail(GMAIL)) {
+            swal({
+              title: "AVISO",
+              text: "Email invalido!",
+              buttons: {
+                confirm: "Ok",
+              },
+            });
+            return;
+          }
         }
-      } else {
-        continuar = true;
-      }
 
-      // Colecao Cadastro
-      if (continuar) {
+        // Colecao Cadastro
         db.collection(ANO)
           .doc("responsaveis")
           .collection(RESPONSAVEL)
@@ -849,6 +852,7 @@
             serie: SERIE,
             gmail: GMAIL,
             telefone: TELEFONE,
+            telefoneAluno: TELEFONEaluno,
             senha: SENHA
           });
         
@@ -878,8 +882,16 @@
           serie: SERIE
         });
 
+      
+      } else {
+        swal({
+          title: "AVISO",
+          text: "Responsavel já existe!",
+          buttons: {
+            confirm: "Ok",
+          },
+        });
       }
-
     }
 
     // ----------
@@ -941,6 +953,9 @@
                       }
                       if (val.data().telefone !== "") {
                         localStorage.setItem("telefone", val.data().telefone);
+                      }
+                      if (val.data().telefoneAluno !== "") {
+                        localStorage.setItem("telefoneAluno", val.data().telefoneAluno);
                       }
                       if (val.data().senha !== "") {
                         localStorage.setItem("senha", val.data().senha);
