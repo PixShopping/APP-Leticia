@@ -319,6 +319,7 @@
                 flex-direction: column;
                 align-items: center;
                 position: relative;
+                padding: 0px 0px 20px 0px;
             }
 
             .contentSeries h1 {
@@ -856,12 +857,11 @@
 
             </header>
 
-
             <div class="barra-de-pesquisa">
                 <input onkeydown="pressionarEnter(event)" id="pesquisaAluno" placeholder="Digite o nome do aluno" type="text">
                 <ion-icon onclick="pesquisarAluno()" name="search"></ion-icon>
             </div>
-            
+
             <section class="content admin">
 
                 <div>
@@ -1370,9 +1370,13 @@
         localStorage.setItem('verSerie', `${serie}`);
         const containerSerie = document.getElementById('containerSerie');
         const content = document.querySelector('.content');
+        const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+        const alunoPesquisa = document.querySelector('.alunoPesquisa');
         const error = document.querySelector('.totalErro');
         containerSerie.style.display = "flex";
         content.style.display = "none";
+        barraDePesquisa.style.display = "none";
+        alunoPesquisa.style.display = "none";
         db.collection(ANO)
         .doc('series')
         .collection(serie)
