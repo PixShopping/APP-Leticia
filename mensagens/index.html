@@ -1999,7 +1999,8 @@
         }
 
         function pesquisarAluno() {
-            const aluno = capitalizar(document.getElementById('pesquisaAluno').value);
+            //const aluno = capitalizar(document.getElementById('pesquisaAluno').value);
+            const aluno = document.getElementById('pesquisaAluno').value;
             const div = document.querySelector('.alunoPesquisa');
             const container = document.querySelector('.content');
             container.style.display = "none";
