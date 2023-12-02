@@ -66,6 +66,46 @@
                 flex-direction: column;
             }
 
+            /* BARRA DE PESQUISA */ 
+            .barra-de-pesquisa {
+                width: 95%;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 20px 0px;
+                align-self: center;
+                position: relative;
+            }
+
+            .barra-de-pesquisa input {
+                width: 100%;
+                height: 50px;
+                border-radius: 10px;
+                border: 2px solid var(--one);
+                padding: 0px 15px;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                color: var(--one);
+            }
+
+            .barra-de-pesquisa ion-icon {
+                font-size: 20px;
+                padding: 8px;
+                border: 2px solid var(--one);
+                background: var(--one);
+                color: var(--white);
+                position: absolute;
+                right: 8px;
+                border-radius: 10px;
+                cursor: pointer;
+            }.barra-de-pesquisa ion-icon:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
             .local {
                 width: 100%;
                 height: 70px;
@@ -185,6 +225,52 @@
                 font-size: 15px;
                 cursor: pointer;
             }
+
+            .alunoPesquisa {
+                width: 100vw;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 20px 0px;
+            }
+
+            .alunoPesquisa li {
+                width: 92%;
+                height: auto;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                background: var(--white);
+                cursor: pointer;
+                margin: 10px 0px;
+                border-radius: 5px;
+                border: 1px solid #999;
+            }
+
+            .alunoPesquisa li:hover {
+                background: var(--one);
+                color: var(--white);
+                transition: all .3s ease-in-out;
+            }
+
+            .alunoPesquisa li .flex {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .alunoPesquisa li .flex h1 {
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 1px;
+                margin: 0px 0px 0px 10px;
+            }
+
+            .alunoPesquisa li ion-icon {
+                font-size: 35px;
+            }
+
+            /* CONTENT */
 
             .content ul {
                 width: 100vw;
@@ -770,6 +856,12 @@
 
             </header>
 
+
+            <div class="barra-de-pesquisa">
+                <input onkeydown="pressionarEnter(event)" id="pesquisaAluno" placeholder="Digite o nome do aluno" type="text">
+                <ion-icon onclick="pesquisarAluno()" name="search"></ion-icon>
+            </div>
+            
             <section class="content admin">
 
                 <div>
@@ -785,12 +877,16 @@
                 </div>
 
                 <h1 class="todosAlunos"></h1>
+
                 <ul id="containerSeries">
                     
                 </ul>
 
             </section>
 
+            <ul class="alunoPesquisa">
+
+            </ul>
 
             <!-- CONTAINER SERIE -->
             
@@ -1526,10 +1622,10 @@
                     data.docs.map((val) => {
                         var responsavel = val.data().responsavel;
                         containerSeries.innerHTML += `
-                        <li>
-                            <ion-icon name="people-circle-outline"></ion-icon>
-                            <h1>${responsavel}</h1>
-                        </li>
+                            <li>
+                                <ion-icon name="people-circle-outline"></ion-icon>
+                                <h1>${responsavel}</h1>
+                            </li>
                         `;
                     });
                 });
@@ -1548,7 +1644,6 @@
     <script>
         
         // CHAT ONLINE RESPONSAVEL (PARA DIRECAO)
-        
         function abrirChatOnlineResponsavel(responsavel, serie) {
             const containerChatOnline = document.querySelector('.containerChatOnline');
             const container = document.querySelector('.responsavel');
@@ -1565,6 +1660,8 @@
             sections.forEach(section => {
                 section.style.display = "none";
             });
+            localStorage.setItem('verResponsavel', responsavel);
+            localStorage.setItem('verSerie', serie);
             containerOpcoes.style.display = "none";
             containerChatOnline.style.display = "flex";
             container.style.display = "none";
@@ -1574,7 +1671,6 @@
         }
 
         // marcar2
-
         function lerChatOnlineResponsavel(serie) {
             const chat = document.querySelector('.chatOnline');
             const responsavel = localStorage.getItem('verResponsavel');
@@ -1875,6 +1971,75 @@
             })
         }
 
+        function capitalizar(val) {
+            var texto = val;
+            // Verifica se a entrada não está vazia
+            if (texto.length === 0) {
+                return texto;
+            }
+            // Divide a string em palavras
+            var palavras = texto.split(' ');
+            // Capitaliza a primeira letra de cada palavra
+            for (var i = 0; i < palavras.length; i++) {
+                palavras[i] = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase();
+            }
+            // Junta as palavras de volta em uma única string
+            var resultado = palavras.join(' ');
+            resultado = resultado.replace(/\s+/g, ' ');
+            resultado = resultado.trim();
+
+            return resultado;
+        }
+
+        function fecharPesquisa() {
+            const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+            const div = document.querySelector('.alunoPesquisa');
+            barraDePesquisa.style.display = "none";
+            div.style.display = "none";
+        }
+
+        function pesquisarAluno() {
+            const aluno = capitalizar(document.getElementById('pesquisaAluno').value);
+            const div = document.querySelector('.alunoPesquisa');
+            const container = document.querySelector('.content');
+            container.style.display = "none";
+            div.style.display = "flex";
+            db.collection(ANO)
+            .doc('series')
+            .collection('existente')
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    const serie = val.id;
+                    db.collection(ANO)
+                    .doc('series')
+                    .collection(serie)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                            const nome = val.data().aluno;
+                            if (nome.includes(aluno)) {
+                                div.innerHTML += `
+                                    <li onclick="fecharPesquisa(), abrirChatOnlineResponsavel('${nome}', '${serie}')">
+                                        <ion-icon name="person"></ion-icon>
+                                        <div class="flex">
+                                            <h1>Aluno: ${nome}</h1>
+                                            <h1>Serie: ${serie}</h1>
+                                        </div>                                        
+                                    </li>
+                                `;
+                                return;
+                            }
+                        });
+                    });
+                });
+            });
+        }
+
+        function pressionarEnter(event) {
+            if (event.key === "Enter") {
+                pesquisarAluno();
+            }
+        }
         
         // NOTIFICAÇÕES PUSH
 
@@ -2024,7 +2189,7 @@
                     enviarMensagemChatOnlineResponsavel();
                 }
             });
-            botaoMensagem.addEventListener('clcik', function (event) {
+            botaoMensagem.addEventListener('click', function (event) {
                 enviarMensagemChatOnlineResponsavel();
             });
         } else {
@@ -2033,7 +2198,7 @@
                     enviarMensagemChatOnline();
                 }
             });
-            botaoMensagem.addEventListener('clcik', function (event) {
+            botaoMensagem.addEventListener('click', function (event) {
                 enviarMensagemChatOnline();
             });
         }
