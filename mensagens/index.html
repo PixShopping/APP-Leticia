@@ -1429,10 +1429,17 @@
 
         const whatsapp = getParameterByName('whatsapp');
         if (whatsapp === 'true') {
-            setTimeout(() => {
-                const telefone = localStorage.getItem('whatsapp')
-                window.location.href = `https://wa.me/${telefone}`;    
-            }, 3000);            
+            const eletronico = localStorage.getItem('eletronico');
+            if (eletronico !== 'desktop') {
+                localStorage.setItem('eletronico', 'desktop');
+                window.location.href = "?whatsapp=true";
+            } else {
+                setTimeout(() => {
+                    const telefone = localStorage.getItem('whatsapp')
+                    window.location.href = `https://wa.me/${telefone}`;    
+                }, 3000);
+            }
+                    
         }
         
         // LISTAR PLANILHAS
@@ -1554,7 +1561,7 @@
             containerSeries.innerHTML = `
                 <li onclick="listarPlanilhas()">
                     <ion-icon name="document-text-outline"></ion-icon>
-                    <h1>Ler Planilhas</h1>
+                    <h1>Listas da Escola</h1>
                 </li>
             `;
             data.docs.map((val) => {
