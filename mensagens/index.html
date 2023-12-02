@@ -87,7 +87,11 @@
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
+                background: var(--white);
                 color: var(--one);
+                outline: none;
+            } .barra-de-pesquisa input:focus {
+                box-shadow: 0px 5px 15px var(--one);
             }
 
             .barra-de-pesquisa ion-icon {
@@ -825,8 +829,39 @@
             margin: 5px 0px;
         }
 
+        .dadosResponsavel h2 {
+            width: 100%;
+            font-size: 20px;
+            color: var(--one);
+            margin: 15px 0px 5px 0px;
+            text-transform: uppercase;
+        }
+
         .dadosResponsavel h1 strong {
             color: var(--six);
+        }
+
+        .dadosResponsavel button {
+            width: max-content;
+            min-width: 200px;
+            height: max-content;
+            min-height: 40px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: var(--one);
+            color: var(--white);
+            align-self: flex-start;
+            border: 2px solid var(--one);
+            outline: none;
+            font-size: 15.5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin: 8px 0px;
+        }.dadosResponsavel button:hover {
+            background: transparent;
+            color: var(--one);
+            transition: all .2s ease-in-out;
         }
 
         .iconNotification {
@@ -842,6 +877,10 @@
 
         .todosAlunos {
             margin: 0px auto 0px auto;
+        }
+
+        .marginTop {
+            margin: 45px 0px 0px 0px;
         }
 
         </style>
@@ -1127,6 +1166,14 @@
 
        function voltar() {
         window.location.reload();
+       }
+
+       function irTelefone(telefone) {
+        window.location.href = `tel:${telefone}`;
+       }
+
+       function irEmail(email) {
+        window.location.href = `mailto:${email}`;
        }
 
        // Verifica se é um professor
@@ -1513,11 +1560,11 @@
             });
         const div = document.querySelector('.dadosResponsavel');
         div.style.display = "flex";
-        // BANCO DE DADOS SEDUC
         const verResponsavel = localStorage.getItem('verResponsavel').toUpperCase();
+        fecharPesquisa();
+        // DADOS DA SED
         
-        
-        db.collection('banco de dados SED')
+        /*db.collection('banco de dados SED')
         .doc('responsaveis')
         .collection(verResponsavel)
         .onSnapshot((data) => {
@@ -1532,7 +1579,7 @@
                     <h1><strong>Cpf do Aluno: </strong>${val.data().cpfAluno}</h1>
                 `;
             });
-        });
+        });*/
         
         db.collection(ANO)
         .doc('responsaveis')
@@ -1566,22 +1613,43 @@
                     corNotificacao = 'var(--green)';
                 }
                 
-                
                 div.innerHTML += `
-                    <h1>DADOS DO APLICATIVO</h1>
+                    <h2>DADOS DO APLICATIVO</h2>
                     <h1><strong>Serie: </strong>${serie}</h1>
                     <h1><strong>Email: </strong>${email}</h1>
                     <h1><strong>Telefone: </strong>${telefone}</h1>
                     <h1><strong>Senha: </strong>${senha}</h1>
                     <h1 style="color: ${corNotificacao};"><strong>Notificações: </strong>${notificacao}</h1>
                 `;
+                
                 if (val.data().onesignalId) {
                     div.innerHTML += `
-                    <h1><strong>Id Notificação: </strong>${val.data().onesignalId}</h1>
-                `;
-                verificarPermitionNotification(val.data().onesignalId);
-                
+                        <h1><strong>Id Notificação: </strong>${val.data().onesignalId}</h1>
+                    `;
+                    verificarPermitionNotification(val.data().onesignalId);
                 }
+                
+                if (email !== 'Não definido' && telefone === 'Não definido') {
+                    div.innerHTML += `
+                        <h2>Contato</h2>
+                        <button onclick="irEmail('${email}')">Email</button>
+                    `;  
+                } else if (telefone !== 'Não definido' && email === 'Não definido') {
+                    div.innerHTML += `
+                        <h2>Contato</h2>
+                        <button onclick="irTelefone('${telefone}')">Telefone</button>
+                    `;  
+                } else if (email !== 'Não definido' && telefone !== 'Não definido') {
+                    div.innerHTML += `
+                        <h2>Contato</h2>
+                        <button onclick="irTelefone('${telefone}')">Telefone</button>
+                        <button onclick="irEmail('${email}')">Email</button>
+                    `;
+                }
+
+                
+
+                
             });
         });
 
@@ -1663,10 +1731,11 @@
                     <h1 style="margin: 0px 0px 0px 10px;">${responsavel}</h1>
                 </div>
                 <ion-icon onclick="configuracao()" name="settings"></ion-icon>
-            `;  
+            `;
             sections.forEach(section => {
                 section.style.display = "none";
             });
+            fecharPesquisa();
             localStorage.setItem('verResponsavel', responsavel);
             localStorage.setItem('verSerie', serie);
             containerOpcoes.style.display = "none";
@@ -1905,17 +1974,9 @@
                     `;
                 }
             });
-            db.collection(ANO)
-            .doc('chat')
-            .collection(serie)
-            .doc(responsavel)
-            .collection(`mensagens${destinatario}`)
-            .orderBy("data")
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                   
-                })
-            });
+            setTimeout(() => {
+                window.location.href = '#end';
+            }, 1000);
         }
 
         function enviarMensagemChatOnline() {   
@@ -2027,7 +2088,7 @@
                             const nome = val.data().aluno;
                             if (nome.includes(aluno)) {
                                 div.innerHTML += `
-                                    <li onclick="fecharPesquisa(), abrirChatOnlineResponsavel('${nome}', '${serie}')">
+                                    <li onclick="opcoes('${nome}', '${serie}')">
                                         <ion-icon name="person"></ion-icon>
                                         <div class="flex">
                                             <h1>Aluno: ${nome}</h1>

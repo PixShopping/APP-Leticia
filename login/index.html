@@ -100,8 +100,9 @@
       .botoes button,
       .content-logar button,
       .content-cadastrar button {
-        width: 90%;
-        height: 50px;
+        width: 87.5%;
+        max-width: 550px;
+        height: 55px;
         background: var(--one);
         color: var(--white);
         margin: 0px 0px 25px 0px;
@@ -202,6 +203,7 @@
       .content-cadastrar input,
       .content-cadastrar select {
         width: 90vw;
+        max-width: 550px;
         height: 45px;
         border: 2px solid var(--one);
         border-radius: 10px;
@@ -215,13 +217,9 @@
       }
 
       .content-logar button { 
-        margin: 10px 0px 5px 0px;
-        width: 82.5%;
-        height: 55px;
+        margin: 25px 0px 5px 0px;
       } .content-cadastrar button {
         margin: 30px 0px -5px 0px;
-        width: 85%;
-        height: 50px;
       }
 
       #voltar {
@@ -480,13 +478,14 @@
           </div>
         </div>
 
+        <button onclick="enviarLogin()">Logar</button>
+
         <div class="flex">
           <input id="inputTermos" type="checkbox" checked>
           <label for="inputTermos">Eu aceito os </label>
           <a onclick="termos()">Termos de Uso </a>
         </div>
 
-        <button onclick="enviarLogin()">Logar</button>
       </section>
 
       <section class="content-cadastrar">
