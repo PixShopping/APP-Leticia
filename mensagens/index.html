@@ -231,7 +231,7 @@
                 cursor: pointer;
             }
 
-            .alunoPesquisa {
+            .alunoPesquisa, .planilhas {
                 width: 100vw;
                 height: auto;
                 display: none;
@@ -240,7 +240,12 @@
                 margin: 20px 0px;
             }
 
-            .alunoPesquisa li {
+            .planilhas .dadosResponsavel {
+                margin: -10px 0px;
+                padding: 0px 20px;
+            }
+
+            .alunoPesquisa li, .planilhas li {
                 width: 92%;
                 height: auto;
                 padding: 10px;
@@ -253,25 +258,25 @@
                 border: 1px solid #999;
             }
 
-            .alunoPesquisa li:hover {
+            .alunoPesquisa li:hover, .planilhas li:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .3s ease-in-out;
             }
 
-            .alunoPesquisa li .flex {
+            .alunoPesquisa li .flex, .planilhas li .flex {
                 display: flex;
                 flex-direction: column;
             }
 
-            .alunoPesquisa li .flex h1 {
+            .alunoPesquisa li .flex h1, .planilhas li .flex h1 {
                 font-size: 16px;
                 font-weight: 500;
                 letter-spacing: 0.5px;
                 margin: 0px 0px 2px 10px;
             }
 
-            .alunoPesquisa li ion-icon {
+            .alunoPesquisa li ion-icon, .planilhas li ion-icon {
                 font-size: 35px;
                 margin: 5px;
             }
@@ -885,17 +890,6 @@
             height: 32.5px;
         }
 
-        /* TODOS OS ALUNOS */
-
-        .todosAlunos {
-            margin: 0px auto 0px auto;
-        }
-
-        .marginTop {
-            margin: 45px 0px 0px 0px;
-        }
-
-
 
         </style>
     </head>
@@ -918,7 +912,7 @@
 
             <section class="content admin">
 
-                <div>
+                <div class="filtro">
                     <label for="banco">Filtrar Ano:</label>
                     <h1 id="bancoh1"></h1>
                     
@@ -939,6 +933,10 @@
             </section>
 
             <ul class="alunoPesquisa">
+
+            </ul>
+
+            <ul class="planilhas">
 
             </ul>
 
@@ -1185,9 +1183,14 @@
        function irTelefone(telefone) {
         window.location.href = `tel:${telefone}`;
        }
-
        function irWhatsapp(whatsapp) {
         window.location.href = `https://wa.me/${whatsapp}`;
+       }
+
+       function irWhatsappComDDD(whatsapp) {
+        var telefone = whatsapp.replace(/\D/g, "").slice(2);
+        telefone = "55" + telefone;
+        window.location.href = `https://wa.me/${telefone}`;
        }
 
        function irEmail(email) {
@@ -1411,39 +1414,140 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-      
-      const containerSeries = document.getElementById('containerSeries');
+        
+        // LISTAR PLANILHAS
+        function listarPlanilhas() {
+            const div = document.querySelector('.planilhas');
+            const container = document.querySelector('.content');
+            const filtro = document.querySelector('.filtro');
+            const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+            barraDePesquisa.style.display = "none";
+            container.style.display = "none";
+            filtro.style.display = "none";
+            div.style.display = "flex";
+            db.collection(ANO)
+            .doc('planilhas')
+            .collection('existente')
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    const serie = val.id;
+                    div.innerHTML += `
+                        <li onclick="lerPlanilha('${serie}')">
+                            <ion-icon name="people"></ion-icon>
+                            <div class="flex">
+                                <h1>Serie: ${serie}</h1>
+                            </div>                                        
+                        </li>
+                    `;
+                    
+                });
+            });
+        }
+
+        // LER PLANILHAS
+        function lerPlanilha(serie) {
+            const div = document.querySelector('.planilhas');
+            const container = document.querySelector('.content');
+            container.style.display = "none";
+            div.style.display = "flex";
+            db.collection(ANO)
+            .doc('planilhas')
+            .collection(serie)
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    var jsonString = val.data().json;
+                    // Converta a string para um array de objetos JSON
+                    var jsonArray = JSON.parse(jsonString);
+
+                    // Exemplo: Mostrar informações sobre cada aluno
+                    jsonArray.forEach(function(aluno) {
+                        const responsavel = aluno.Responsável;
+                        const nome = aluno.Aluno;
+                        const email = aluno["E-mail"];
+                        const telefone = aluno.Telefone;
+                        div.innerHTML += `
+                            <li onclick="lerDadosPlanilha('${nome}')" data-email="${email}" data-telefone="${telefone}" data-aluno="${nome}" data-responsavel="${responsavel}">
+                                <ion-icon name="person"></ion-icon>
+                                <div class="flex">
+                                    <h1>Responsavel: ${responsavel}</h1>
+                                    <h1>Aluno: ${nome}</h1>
+                                </div>                                        
+                            </li>
+                        `;
+                        /*console.log("Aluno:", aluno.Aluno);
+                        console.log("Responsabilidade:", aluno.Responsabilidade);
+                        console.log("Responsável:", aluno.Responsável);
+                        console.log("E-mail:", aluno["E-mail"]);
+                        console.log("Telefone:", aluno.Telefone);*/
+                    });
+
+                });
+            });
+        }
+
+        // LER DADOS DA PLANILHA DO ALUNO
+        function lerDadosPlanilha(aluno) {
+            const content = document.querySelector('.planilhas');
+            const container = document.querySelector('.content');
+            container.style.display = "none";
+            content.style.display = "flex";
+            const div = document.querySelector(`.planilhas li[data-aluno="${aluno}"]`)
+            const responsavel = div.getAttribute('data-responsavel');
+            const email = div.getAttribute('data-email');
+            const telefone = div.getAttribute('data-telefone');
+            content.innerHTML = `
+                <div class="dadosResponsavel">
+                    <h2>Dados do Responsavel</h2>
+                    <h1>Telefone: ${telefone}</h1>
+                    <h1>Responsável: ${responsavel}</h1>
+                    <h1>Aluno: ${aluno}</h1>
+                    <h1>Email: ${email}</h1>
+                    <button class="btn-whatsapp" onclick="irWhatsappComDDD('${telefone}')">Whatsapp</button>
+                    <button onclick="irTelefone('${telefone}')">Telefone</button>
+                    <button onclick="irEmail('${email}')">Email</button>
+                </div>
+            `;
+            const dados = document.querySelector('.dadosResponsavel');
+            dados.style.display = "flex";
+        }
+
+
+
+        // LER SERIES OU LER TURMA
+        const containerSeries = document.getElementById('containerSeries');
         db.collection(ANO)
         .doc('restrito')
         .collection('series')
         .onSnapshot((data) => {
             containerSeries.innerHTML = '';
             containerSeries.innerHTML = `
-            <li onclick="listarAlunos()">
-                <ion-icon name="people-circle-outline"></ion-icon>
-                <h1>Todos os Alunos</h1>
-            </li>
+                <li onclick="listarPlanilhas()">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <h1>Ler Planilhas</h1>
+                </li>
             `;
             data.docs.map((val) => {
+                const serie = val.id
                 containerSeries.innerHTML += `
-                <li onclick="abrirTurma('${val.id}')">
+                <li onclick="abrirTurma('${serie}')">
                     <ion-icon name="people-circle-outline"></ion-icon>
-                    <h1>${val.id}</h1>
+                    <h1>${serie}</h1>
                 </li>`;
             });
         });
+
 
     var index = 0;
     function abrirTurma(serie) {
         localStorage.setItem('verSerie', `${serie}`);
         const containerSerie = document.getElementById('containerSerie');
         const content = document.querySelector('.content');
-        const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
         const alunoPesquisa = document.querySelector('.alunoPesquisa');
         const error = document.querySelector('.totalErro');
         containerSerie.style.display = "flex";
         content.style.display = "none";
-        barraDePesquisa.style.display = "none";
         alunoPesquisa.style.display = "none";
         db.collection(ANO)
         .doc('series')
@@ -1673,62 +1777,6 @@
                 
             });
         });
-
-      }
-
-      // LISTAR ALUNOS
-      var index = 0;
-      function listarAlunos() {
-        const div = document.querySelector('.admin div');
-        const total = document.querySelector('.todosAlunos');
-        div.style.display = 'none';
-        
-
-        db.collection(ANO)
-        .doc('series')
-        .collection('existente')
-        .onSnapshot((data) => {
-            containerSeries.innerHTML = '';
-            data.docs.map((val) => {
-                var serie = val.id;
-                db.collection(ANO)
-                .doc('series')
-                .collection(serie)
-                .onSnapshot((data) => {
-                    data.docs.map((val) => {
-                        index++;
-                        total.innerHTML = `${index} Alunos`;
-                    });
-                });
-            });
-        });
-
-        // LISTAR ALUNOS
-        db.collection(ANO)
-        .doc('series')
-        .collection('existente')
-        .onSnapshot((data) => {
-            containerSeries.innerHTML = '';
-            data.docs.map((val) => {
-                var serie = val.id;
-                db.collection(ANO)
-                .doc('series')
-                .collection(serie)
-                .onSnapshot((data) => {
-                    data.docs.map((val) => {
-                        var responsavel = val.data().responsavel;
-                        containerSeries.innerHTML += `
-                            <li>
-                                <ion-icon name="people-circle-outline"></ion-icon>
-                                <h1>${responsavel}</h1>
-                            </li>
-                        `;
-                    });
-                });
-            });
-        });
-
-
 
       }
 
