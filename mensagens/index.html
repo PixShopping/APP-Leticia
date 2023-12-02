@@ -1432,7 +1432,7 @@
             setTimeout(() => {
                 const telefone = localStorage.getItem('whatsapp')
                 window.location.href = `https://wa.me/${telefone}`;    
-            }, 2000);            
+            }, 3000);            
         }
         
         // LISTAR PLANILHAS
@@ -1575,6 +1575,8 @@
         const content = document.querySelector('.content');
         const alunoPesquisa = document.querySelector('.alunoPesquisa');
         const error = document.querySelector('.totalErro');
+        const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+        barraDePesquisa.style.display = "none";
         containerSerie.style.display = "flex";
         content.style.display = "none";
         alunoPesquisa.style.display = "none";
