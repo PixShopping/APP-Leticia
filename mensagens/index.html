@@ -861,8 +861,19 @@
             margin: 8px 0px;
         }.dadosResponsavel button:hover {
             background: transparent;
+            box-shadow: 0px 5px 15px var(--one);
             color: var(--one);
             transition: all .2s ease-in-out;
+        }
+
+        .dadosResponsavel .btn-whatsapp {
+            background: var(--green);
+            border: 2px solid var(--green);
+        }
+
+        .dadosResponsavel .btn-whatsapp:hover {
+            color: var(--green);
+            box-shadow: 0px 5px 15px var(--green);
         }
 
         .iconNotification {
@@ -883,6 +894,8 @@
         .marginTop {
             margin: 45px 0px 0px 0px;
         }
+
+
 
         </style>
     </head>
@@ -1171,6 +1184,10 @@
 
        function irTelefone(telefone) {
         window.location.href = `tel:${telefone}`;
+       }
+
+       function irWhatsapp(whatsapp) {
+        window.location.href = `https://wa.me/${whatsapp}`;
        }
 
        function irEmail(email) {
@@ -1638,13 +1655,16 @@
                 } else if (telefone !== 'Não definido' && email === 'Não definido') {
                     div.innerHTML += `
                         <h2>Contato</h2>
+                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefone}')">Whatsapp</button>
                         <button onclick="irTelefone('${telefone}')">Telefone</button>
                     `;  
                 } else if (email !== 'Não definido' && telefone !== 'Não definido') {
                     div.innerHTML += `
                         <h2>Contato</h2>
+                        <button class="btn-whatsapp" onclick="irWhatsapp('${telefone}')">Whatsapp</button>
                         <button onclick="irTelefone('${telefone}')">Telefone</button>
                         <button onclick="irEmail('${email}')">Email</button>
+                        
                     `;
                 }
 
