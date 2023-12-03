@@ -1023,7 +1023,12 @@
 
             <div class="flex">
                 <ion-icon id="iconTelefone" name="call"></ion-icon>
-                <input placeholder="Telefone" type="text" id="inputTelefone">
+                <input placeholder="Telefone do Responsavel" type="text" id="inputTelefone">
+            </div>
+
+            <div class="flex">
+                <ion-icon id="iconTelefone" name="call"></ion-icon>
+                <input placeholder="Telefone do Aluno" type="text" id="inputTelefoneAluno">
             </div>
 
             <div class="flex">
@@ -1086,6 +1091,7 @@
         const inputAluno = document.getElementById('inputAluno');
         const inputEmail = document.getElementById('inputEmail');
         const inputTelefone = document.getElementById('inputTelefone');
+        const inputTelefoneAluno = document.getElementById('inputTelefoneAluno');
         const inputRa = document.getElementById('inputRa');
 
 
@@ -1604,6 +1610,7 @@
             const ALUNO = inputAluno.value;
             const EMAIL = inputEmail.value;
             const TELEFONE = inputTelefone.value;
+            const TELEFONEaluno = inputTelefoneAluno.value;
             const RA = inputRa.value;
             db.collection(ANO)
             .doc("responsaveis")
@@ -1612,6 +1619,7 @@
                 aluno: ALUNO,
                 gmail: EMAIL,
                 telefone: TELEFONE,
+                telefoneAluno: TELEFONEaluno,
                 ra: RA
             });
 
