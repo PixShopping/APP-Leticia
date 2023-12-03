@@ -121,7 +121,7 @@
     	    /* Content Perfil */
 
             .content ul {
-                width: 100vw;
+                width: 100%;
                 height: auto;
                 display: flex;
                 flex-direction: column;
@@ -206,7 +206,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 100vw;
+                width: 100%;
                 height: auto;
                 margin: 5px 0px 0px 0px;
             }
@@ -250,12 +250,98 @@
                 letter-spacing: 0.3px;
             }
 
+            /* TRANSFORMANDO EM CELULAR SE ESTIVER NO PC */
+            @media (min-width: 680px) {
+
+            .container {
+                margin: 10px auto;
+                max-width: 680px;
+                border: 3.5px solid var(--one);
+                border-radius: 20px;
+                position: relative;
+                top: 0px;
+                padding: 0px 0px 150px 0px;
+            }
+
+            .container .before {
+                content: '';
+                width: 100%;
+                height: 50px;
+                border-radius: 14px 14px 0px 0px;
+                background: var(--one);
+                color: var(--white);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .container .before p {
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 0px 20px;
+            }
+
+            .container .before .flex {
+                width: auto;
+                height: auto;
+                display: flex;
+                margin: 0px 20px 0px 0px;
+            }
+
+            .container .before .flex ion-icon {
+                font-size: 28px;
+                margin: 0px 4px;
+            }
+
+            .navgation {
+                max-width: 680px;
+                left: 50%;
+                bottom: 0px;
+                border-radius: 18px 18px 0px 0px;
+                transform: translateX(-50%);
+            }
+
+            .local {
+                max-width: 680px;
+                margin: 0px;
+                position: relative;
+            }
+
+            .creditos {
+                position: relative;
+                top: 0px;
+            }
+
+            .creditos .version {
+                position: relative;
+                top: 15px;
+            }
+
+            }
+
+            @media (max-width: 679px) {
+                .container .before {
+                    display: none;
+                }
+            }
+
             </style>
            </head>
 
            <body>
 
             <main class="container">
+
+                <div class="before">
+                    <p id="hora">00:00:00</p>
+                    <div class="flex">
+                        <ion-icon name="wifi-outline"></ion-icon>
+                        <ion-icon name="cellular-outline"></ion-icon>
+                        <ion-icon name="battery-full-outline"></ion-icon>
+                    </div>
+                </div>
 
                 <header class="local">
 
@@ -455,11 +541,39 @@
         window.location.href = "../src/pagin/privacidade.html";
       }
 
-       </script>
-
+    </script>
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- RELOGIO -->
+    <script>
+
+        // RELOGIO 
+        function atualizarRelogio() {
+            var elementoHora = document.getElementById('hora');
+            var agora = new Date();
+            
+            var horas = agora.getHours();
+            var minutos = agora.getMinutes();
+            var segundos = agora.getSeconds();
+
+            // Adiciona um zero à esquerda se a hora, minuto ou segundo for menor que 10
+            horas = horas < 10 ? '0' + horas : horas;
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+
+            // Atualiza o conteúdo do elemento com o ID "hora"
+            elementoHora.textContent = horas + ':' + minutos + ':' + segundos;
+        }
+
+        // Chama a função inicialmente para exibir o relógio imediatamente
+        atualizarRelogio();
+
+        // Atualiza o relógio a cada segundo
+        setInterval(atualizarRelogio, 1000);
+
+    </script>
 
 </html>
