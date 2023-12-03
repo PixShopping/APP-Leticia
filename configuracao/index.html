@@ -253,6 +253,14 @@
             /* TRANSFORMANDO EM CELULAR SE ESTIVER NO PC */
             @media (min-width: 680px) {
 
+            body {
+                background: var(--two);
+            }
+
+            .container {
+                background: var(--white);
+            }
+
             .container {
                 margin: 10px auto;
                 max-width: 680px;
@@ -420,14 +428,19 @@
         const temah1 = document.getElementById('temah1');
         const sol = document.getElementById('sol');
         const lua = document.getElementById('lua');
+        // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--two', '#9ECAE3');
+          root.style.setProperty('--six', '#144774');
           root.style.setProperty('--white', 'white');
           lua.style.display = "none";
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
+          root.style.setProperty('--two', '#144774');
+          root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
           sol.style.display = "none";
         }
