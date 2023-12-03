@@ -393,8 +393,8 @@
 
             #aviso {
                 display: none;
-                position: fixed;
-                bottom: 95px;
+                position: absolute;
+                top: -70px;
                 right: 20px;
                 font-size: 30px;
                 padding: 10px;
@@ -1015,6 +1015,9 @@
 
                 <nav class="navgation">
 
+                    <!-- CRIAR AVISOS GERAIS -->
+                    <ion-icon onclick="abrirCriarAviso()" id="aviso" name="add"></ion-icon>
+
                     <!-- HOME -->
                     <ion-icon onclick="home()" id="home" class="selecionado" name="home"></ion-icon>
 
@@ -1033,8 +1036,7 @@
 
                 </nav>
 
-                <!-- CRIAR AVISOS GERAIS -->
-                <ion-icon onclick="abrirCriarAviso()" id="aviso" name="add"></ion-icon>
+                
                 
                 
 
