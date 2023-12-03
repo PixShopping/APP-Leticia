@@ -882,6 +882,11 @@
                 position: relative;
             }
 
+            .iframes {
+                top: 20px;
+                padding: 0px 0px 150px 0px;
+            }
+
             }
 
             @media (max-width: 679px) {
@@ -976,6 +981,13 @@
         <li onclick="dadosSed()">
             <ion-icon name="folder-outline"></ion-icon>
             <h1>Dados da Sed</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
+        <!-- DADOS DA SED -->
+        <li onclick="baixarApp()">
+            <ion-icon name="logo-android"></ion-icon>
+            <h1>Baixar Aplicativo</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
@@ -1126,6 +1138,10 @@
 
         </section>
 
+                <div class="iframes">
+
+                </div>
+
             </main>
 
             <nav class="navgation">
@@ -1148,9 +1164,7 @@
 
             </nav>
 
-                <div class="iframes">
-
-                </div>
+                
 
                 <!-- ICONS VERSAO 4.5.10 
                 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
@@ -1358,6 +1372,10 @@
 
         function configuracao() {
             window.location.href = "../configuracao";
+        }
+
+        function baixarApp() {
+            window.location.href = "../download/index.html";
         }
 
         // CONTATO
