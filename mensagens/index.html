@@ -730,6 +730,8 @@
 
         .chatOnline li {
             width: 90%;
+            white-space: normal; 
+            word-break: break-all;
             height: auto;
             padding: 15px 17px 15px 15px;
             margin: 13px 0px;
@@ -1739,7 +1741,7 @@
         }, 500);
     }
 
-
+    // DELETAR SERIE
     function deletarDaSerie(responsavel, serie) {
         db.collection(ANO)
         .doc('series')
@@ -2423,21 +2425,33 @@
         } 
 
         const url = window.location.href;
-        const serie = url.slice(43,48);
-        const usuario = url.slice(49);
-        db.collection(ANO)
-        .doc('chat')
-        .collection('existente')
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-                if (val.id === serie) {
-                    const containerAdmin = document.querySelector('.admin');
-                    containerAdmin.style.display = "none";
-                    localStorage.setItem('verResponsavel', usuario);
-                    abrirChatOnlineResponsavel(`${usuario}`,`${serie}`);
-                }
+        abrirChatOnlinePelaUrl();
+        function abrirChatOnlinePelaUrl() {
+            // Obter a URL atual
+            var urlAtual = window.location.href;
+
+            // Dividir a URL usando o caractere '#' como separador
+            var partesDaURL = urlAtual.split('#');
+
+            // Os parâmetros desejados estarão nas posições 1 e 2 do array resultante
+            const serie = partesDaURL[1];
+            const responsavel = partesDaURL[2];
+
+            db.collection(ANO)
+            .doc('chat')
+            .collection('existente')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    if (val.id === serie) {
+                        const containerAdmin = document.querySelector('.admin');
+                        containerAdmin.style.display = "none";
+                        localStorage.setItem('verResponsavel', responsavel);
+                        abrirChatOnlineResponsavel(`${responsavel}`,`${serie}`);
+                    }
+                });
             });
-        });
+        }
+        
         
         const inputMensagem = document.getElementById('messageOnline');
         const botaoMensagem = document.getElementById('botaoOnline');
