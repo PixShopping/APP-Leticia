@@ -513,12 +513,15 @@
         lerChatOnlineResponsavel();
       }
       
-      function lerChatOnline() {
+      // PARA RESPONSAVEIS
+      async function lerChatOnline() {
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
+            const verificarDirecao = await verificarNotificacaoDirecao();
+            const verificarCoordenacao = await verificarNotificacaoCoordenacao();
             var status = '';
-            if (verificarNotificacaoDirecao()) {
+            if (verificarDirecao) {
                 db.collection(ANO)
                 .doc('chat')
                 .collection(serie)
@@ -540,10 +543,10 @@
                             `;
                             erro.style.display = 'none';
                         }
-                        
                     });
                 });
-            } else if (verificarNotificacaoCoordenacao()) {
+            } 
+            if (verificarCoordenacao) {
                 db.collection(ANO)
                 .doc('chat')
                 .collection(serie)
@@ -552,6 +555,7 @@
                 .orderBy("data")
                 .onSnapshot((data) => {
                     data.docs.map((val) => {
+                        const usu = val.data().usuario;
                         if (val.data().usuario === 'COORDENACAO' && val.data().view === false) {
                             notificacoes.innerHTML += `
                                 <li onclick="ativarView('COORDENACAO', '${val.data().usuario}', '${val.data().mensagem}')">
@@ -564,18 +568,16 @@
                             `;
                             erro.style.display = 'none';
                         }
-                        
                     });
                 });
             }
             
         }
 
+        // PARA DIRECAO OU COORDENACAO
         function lerChatOnlineResponsavel() {
             const logado = localStorage.getItem('logado');
             const notificacoes = document.querySelector('.notificacoes');
-            const responsavel = localStorage.getItem('responsavel');
-            const serie = localStorage.getItem('serie');
             var status = '';
             db.collection(ANO)
             .doc('chat')
@@ -616,7 +618,8 @@
                                         
                                     });
                                 });
-                            } else if (logado === 'COORDENACAO') {
+                            }
+                            if (logado === 'COORDENACAO') {
                                 db.collection(ANO)
                                 .doc('chat')
                                 .collection(serie)
@@ -646,10 +649,6 @@
 
                 });  
             });
-
-            
-            
-            
         }
 
         // PARA RESPONSAVEIS
@@ -693,40 +692,55 @@
     
         
         // PARA RESPONSAVEIS
-        function verificarNotificacaoDirecao() {
+        async function verificarNotificacaoDirecao() {
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
-            db.collection(ANO)
-            .doc('chat')
-            .collection(serie)
-            .doc(responsavel)
-            .collection(`mensagensDIRECAO`)
-            .get().then((existe) => {
-                const tamanho = existe.size;
-                if (tamanho > 0) {
+            try {
+                const existe = await db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensDIRECAO`)
+                .get();
+
+                if (existe.size > 0) {
                     erro.style.display = 'none';
                     return true;
+                } else {
+                    return false;
                 }
-            });
+            } catch (error) {
+                console.error("Erro ao verificar responsável:", error);
+                // Trate o erro conforme necessário
+                return false;
+            }
+            
         }
 
-        function verificarNotificacaoCoordenacao() {
+        async function verificarNotificacaoCoordenacao() {
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
-            db.collection(ANO)
-            .doc('chat')
-            .collection(serie)
-            .doc(responsavel)
-            .collection(`mensagensCOORDENACAO`)
-            .get().then((existe) => {
-                const tamanho = existe.size;
-                if (tamanho > 0) {
+            try {
+                const existe = await db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensCOORDENACAO`)
+                .get();
+
+                if (existe.size > 0) {
                     erro.style.display = 'none';
                     return true;
+                } else {
+                    return false;
                 }
-            });
+            } catch (error) {
+                console.error("Erro ao verificar responsável:", error);
+                // Trate o erro conforme necessário
+                return false;
+            }
         }
 
         // Responder Mensagem
