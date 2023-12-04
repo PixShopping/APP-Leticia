@@ -376,4 +376,33 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+  <!-- RELOGIO -->
+  <script>
+
+    // RELOGIO 
+    function atualizarRelogio() {
+        var elementoHora = document.getElementById('hora');
+        var agora = new Date();
+        
+        var horas = agora.getHours();
+        var minutos = agora.getMinutes();
+        var segundos = agora.getSeconds();
+
+        // Adiciona um zero à esquerda se a hora, minuto ou segundo for menor que 10
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+
+        // Atualiza o conteúdo do elemento com o ID "hora"
+        elementoHora.textContent = horas + ':' + minutos + ':' + segundos;
+    }
+
+    // Chama a função inicialmente para exibir o relógio imediatamente
+    atualizarRelogio();
+
+    // Atualiza o relógio a cada segundo
+    setInterval(atualizarRelogio, 1000);
+
+</script>
+
 </html>
