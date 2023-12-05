@@ -531,12 +531,13 @@
                 .onSnapshot((data) => {
                     notificacoes.innerHTML = "";
                     data.docs.map((val) => {
-                        if (val.data().usuario === 'DIRECAO' && val.data().view === false) {
+                        const usu = val.data().usuario;
+                        if (usu === 'DIRECAO' && val.data().view === false) {
                             notificacoes.innerHTML += `
-                                <li onclick="ativarView('DIRECAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                <li onclick="onclick="verNotificacao('${usu}')"">
                                     <ion-icon name="person-circle"></ion-icon>
                                     <div class="column">                                    
-                                        <h2><strong>${responsavel}:</strong> ${val.data().mensagem}</h2>
+                                        <h2><strong>${usu}:</strong> ${val.data().mensagem}</h2>
                                         <a>${val.data().hora}</a>
                                     </div>
                                 </li>
@@ -556,12 +557,12 @@
                 .onSnapshot((data) => {
                     data.docs.map((val) => {
                         const usu = val.data().usuario;
-                        if (val.data().usuario === 'COORDENACAO' && val.data().view === false) {
+                        if (usu === 'COORDENACAO' && val.data().view === false) {
                             notificacoes.innerHTML += `
-                                <li onclick="ativarView('COORDENACAO', '${val.data().usuario}', '${val.data().mensagem}')">
+                                <li onclick="verNotificacao('${usu}')">
                                     <ion-icon name="person-circle"></ion-icon>
                                     <div class="column">                                    
-                                        <h2><strong>${responsavel}:</strong> ${val.data().mensagem}</h2>
+                                        <h2><strong>${usu}:</strong> ${val.data().mensagem}</h2>
                                         <a>${val.data().hora}</a>
                                     </div>
                                 </li>
@@ -705,7 +706,6 @@
                 .get();
 
                 if (existe.size > 0) {
-                    erro.style.display = 'none';
                     return true;
                 } else {
                     return false;
@@ -731,9 +731,9 @@
                 .get();
 
                 if (existe.size > 0) {
-                    erro.style.display = 'none';
                     return true;
                 } else {
+                    erro.style.display = 'flex';
                     return false;
                 }
             } catch (error) {

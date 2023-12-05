@@ -341,6 +341,21 @@ body {
   <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
   <script>
+
+    // TEMA ARRUMADO
+    const tema = localStorage.getItem('tema');
+    const root = document.documentElement;
+    if (tema === "light") {
+      root.style.setProperty('--one', '#002242');
+      root.style.setProperty('--two', '#9ECAE3');
+      root.style.setProperty('--six', '#144774');
+      root.style.setProperty('--white', 'white');
+    } else if (tema === "dark") {
+      root.style.setProperty('--one', 'white');
+      root.style.setProperty('--two', '#144774');
+      root.style.setProperty('--six', '#9ECAE3');
+      root.style.setProperty('--white', '#002242');
+    }
     
     const responsavel = localStorage.getItem('responsavel');
     const status = localStorage.getItem('status');

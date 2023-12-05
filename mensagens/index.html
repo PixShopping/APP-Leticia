@@ -2435,20 +2435,26 @@
             // Os parâmetros desejados estarão nas posições 1 e 2 do array resultante
             const serie = partesDaURL[1];
             const responsavel = partesDaURL[2];
-
-            db.collection(ANO)
-            .doc('chat')
-            .collection('existente')
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    if (val.id === serie) {
-                        const containerAdmin = document.querySelector('.admin');
-                        containerAdmin.style.display = "none";
-                        localStorage.setItem('verResponsavel', responsavel);
-                        abrirChatOnlineResponsavel(`${responsavel}`,`${serie}`);
-                    }
+            if (responsavel) {
+                db.collection(ANO)
+                .doc('chat')
+                .collection('existente')
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        if (val.id === serie) {
+                            const containerAdmin = document.querySelector('.admin');
+                            containerAdmin.style.display = "none";
+                            localStorage.setItem('verResponsavel', responsavel);
+                            abrirChatOnlineResponsavel(`${responsavel}`,`${serie}`);
+                        }
+                    });
                 });
-            });
+            } else {
+                if (serie === 'DIRECAO' || serie === 'COORDENACAO') {
+                    abrirChatOnline(serie);
+                }
+            }
+            
         }
         
         
