@@ -1901,24 +1901,6 @@
         div.style.display = "flex";
         const verResponsavel = localStorage.getItem('verResponsavel').toUpperCase();
         fecharPesquisa();
-        // DADOS DA SED
-        
-        /*db.collection('banco de dados SED')
-        .doc('responsaveis')
-        .collection(verResponsavel)
-        .onSnapshot((data) => {
-            data.docs.map((val) => {
-                div.innerHTML += `
-                    <h1>DADOS DA SED</h1>
-                    <h1><strong>Pai: </strong>${val.data().pai}</h1>
-                    <h1><strong>Mãe: </strong>${val.data().mae}</h1>
-                    <h1><strong>Data de Nascimento do Aluno: </strong>${val.data().nascimento}</h1>
-                    <h1><strong>Ra do Aluno: </strong>${val.data().raAluno}</h1>
-                    <h1><strong>Rg do Aluno: </strong>${val.data().rgAluno}</h1>
-                    <h1><strong>Cpf do Aluno: </strong>${val.data().cpfAluno}</h1>
-                `;
-            });
-        });*/
         
         db.collection(ANO)
         .doc('responsaveis')
@@ -1945,7 +1927,7 @@
                 if (val.data().telefone !== '') {
                     telefone = val.data().telefone;
                 }
-                if (val.data().telefoneAluno !== '') {
+                if (val.data().telefoneAluno !== '' && val.data().telefoneAluno && val.data().telefoneAluno !== 'undefined') {
                     telefoneAluno = val.data().telefoneAluno;
                 }
                 if (val.data().senha !== '') {
@@ -1990,7 +1972,7 @@
                         <button onclick="irTelefone('${telefone}')">Telefone do Responsavel</button>
                     `;  
                 } 
-                if (telefoneAluno !== 'Não definido') {
+                if (telefoneAluno !== 'Não definido' && telefoneAluno !== 'undefined') {
                     div.innerHTML += `
                         <button class="btn-whatsapp" onclick="irWhatsapp('${telefoneAluno}')">Whatsapp do Aluno</button>
                         <button onclick="irTelefone('${telefoneAluno}')">Telefone do Aluno</button>
@@ -2095,7 +2077,7 @@
                             <article class="opcoes ${status}">
                                 <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
                                 <button class="btn-responder">Responder</button>
-                                <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${mensagem}', '${id}')" class="btn-apagar">Apagar</button>
+                                <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
                             </article>
                         </li>
                     `;
@@ -2136,7 +2118,6 @@
             const destinatario= localStorage.getItem('logado');
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
-            const docId = mensagem.slice(0,10);
                 db.collection(ANO)
                 .doc('chat')
                 .collection(serie)
@@ -2148,7 +2129,7 @@
                     .collection(serie)
                     .doc(responsavel)
                     .collection(`mensagens${destinatario}`)
-                    .doc(docId).set({
+                    .doc().set({
                         hora: hora,
                         usuario: destinatario,
                         mensagem: mensagem,
@@ -2269,7 +2250,7 @@
                             <article class="opcoes ${status}">
                                 <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
                                 <button class="btn-responder">Responder</button>
-                                <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${mensagem}', '${id}')" class="btn-apagar">Apagar</button>
+                                <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
                             </article>
                         </li>
                     `;
@@ -2308,10 +2289,10 @@
             li.style.display = "none";
         }
 
-        async function apagarMensagem(serie, responsavel, destinatario, mensagem, id) {
+        async function apagarMensagem(serie, responsavel, destinatario, id) {
             await swal({
                 title: 'AVISO',
-                text: `Você deseja excluir a mensagem '${mensagem}'?`,
+                text: `Você deseja excluir essa mensagem?`,
                 buttons: {
                     confirm: "Sim",
                     cancel: "Não",
@@ -2347,7 +2328,6 @@
 
             const inputMensagem = document.getElementById('messageOnline');
             const mensagem = inputMensagem.value;
-            const docId = mensagem.slice(0,10);
             const serie = localStorage.getItem('serie');
             const responsavel = localStorage.getItem('responsavel');
             const destinatario = localStorage.getItem('destinatario');
@@ -2362,7 +2342,7 @@
                 .collection(serie)
                 .doc(responsavel)
                 .collection(`mensagens${destinatario}`)
-                .doc(docId).set({
+                .doc().set({
                     hora: hora,
                     usuario: responsavel,
                     mensagem: mensagem,
@@ -2427,7 +2407,7 @@
 
         function pesquisarAluno() {
             //const aluno = capitalizar(document.getElementById('pesquisaAluno').value);
-            const aluno = document.getElementById('pesquisaAluno').value;
+            const aluno = capitalizar(document.getElementById('pesquisaAluno').value);
             const div = document.querySelector('.alunoPesquisa');
             const container = document.querySelector('.content');
             container.style.display = "none";
