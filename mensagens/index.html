@@ -231,7 +231,7 @@
                 cursor: pointer;
             }
 
-            .alunoPesquisa, .planilhas {
+            .alunoPesquisa, .planilhas, .alunos {
                 width: 100%;
                 height: auto;
                 display: none;
@@ -245,7 +245,7 @@
                 padding: 0px 20px;
             }
 
-            .alunoPesquisa li, .planilhas li {
+            .alunoPesquisa li, .planilhas li, .alunos li {
                 width: 92%;
                 height: auto;
                 padding: 10px;
@@ -258,25 +258,25 @@
                 border: 1px solid #999;
             }
 
-            .alunoPesquisa li:hover, .planilhas li:hover {
+            .alunoPesquisa li:hover, .planilhas li:hover, .alunos li:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .3s ease-in-out;
             }
 
-            .alunoPesquisa li .flex, .planilhas li .flex {
+            .alunoPesquisa li .flex, .planilhas li .flex, .alunos li .flex {
                 display: flex;
                 flex-direction: column;
             }
 
-            .alunoPesquisa li .flex h1, .planilhas li .flex h1 {
+            .alunoPesquisa li .flex h1, .planilhas li .flex h1, .alunos li .flex h1 {
                 font-size: 16px;
                 font-weight: 500;
                 letter-spacing: 0.5px;
                 margin: 0px 0px 2px 10px;
             }
 
-            .alunoPesquisa li ion-icon, .planilhas li ion-icon {
+            .alunoPesquisa li ion-icon, .planilhas li ion-icon, .alunos li ion-icon {
                 font-size: 35px;
                 margin: 5px;
             }
@@ -299,6 +299,7 @@
                 display: flex;
                 align-items: center;
                 background: var(--white);
+                color: var(--one);
                 cursor: pointer;
                 margin: 10px 0px;
                 border-radius: 5px;
@@ -344,7 +345,6 @@
             .contentSeries p {
                 margin: 0px 0px 0px 6px;
     	    }
-
 
             .contentSeries li {
                 width: 92%;
@@ -448,7 +448,6 @@
 		}
 
         /* Formulario de Mensagem */
-
         .form-mensagem {
             width: 100%;
             height: 110vh;
@@ -1084,6 +1083,7 @@
             }
         }
 
+
         </style>
     </head>
 
@@ -1131,6 +1131,7 @@
                 <ul id="containerSeries">
                     
                 </ul>
+                
 
             </section>
 
@@ -1196,6 +1197,10 @@
                 
             </section>
 
+            <ul class="alunos">
+
+            </ul>
+
         </main>
 
         <!-- DIRECAO E COORDENACAO -->
@@ -1254,9 +1259,6 @@
 
 
         </section>
-
-        
-
         
 
     </body>
@@ -1265,7 +1267,6 @@
     <!-- JAVASCRIPT -->
     <script>
 
-        
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
         const root = document.documentElement;
@@ -1351,13 +1352,14 @@
                 </div>
             `;
             botoesResponsavel.innerHTML = `
-                <li onclick="abrirChatOnline('PROFESSOR')">
+                <li onclick="verAlunos()">
                     <ion-icon name="people-circle-outline"></ion-icon>
                     <h1>Alunos</h1>
                 </li>
             `;
         }
         
+        // SE FOR ALUNO
         if (login === 'aluno') {
             botoesResponsavel.innerHTML = `
                 <li onclick="abrirChatOnline('PROFESSOR')">
@@ -1627,6 +1629,46 @@
         const db = firebase.firestore();
         const storage = firebase.storage();
 
+
+
+
+        // VER ALUNOS (Para professor)
+        async function verAlunos() {
+            const div = document.querySelector('.alunos');
+            const content = document.querySelector('.responsavel');
+            div.style.display = "flex";
+            content.style.display = "none";
+            await db.collection(ANO)
+            .doc('series')
+            .collection('existente')
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    const serie = val.id;
+                    db.collection(ANO)
+                    .doc('series')
+                    .collection(serie)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                            const aluno = val.data().aluno;
+                            const responsavel = val.data().responsavel;
+                            div.innerHTML += `
+                                <li onclick="opcoes('${responsavel}', '${serie}')">
+                                    <ion-icon name="person-circle"></ion-icon>
+                                    <div class="flex">
+                                        <h1>Aluno: ${aluno}</h1>
+                                        <h1>Serie: ${serie}</h1>
+                                    </div>                                        
+                                </li>
+                            `;
+                        });
+                    });
+                });
+            });
+            
+        }
+
+
         // LISTAR PLANILHAS
         function listarPlanilhas() {
             const div = document.querySelector('.planilhas');
@@ -1831,7 +1873,7 @@
                 text: 'Deseja excluir mesmo?',
                 buttons: {
                     cancel: "Cancelar",
-                    confirm: "Ok!",
+                    confirm: "Sim",
                 },
             }).then((responsetwo) => {
                 if (responsetwo) {

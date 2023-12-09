@@ -55,8 +55,8 @@
       .logo {
         width: 100%;
         height: 270px;
-        background: #002242;
-        color: white;
+        background: var(--one);
+        color: var(--white);
         border-radius: 0px 0px 25px 25px;
         display: flex;
         flex-direction: column;
@@ -80,8 +80,8 @@
         top: 20px;
         left: 20px;
         font-size: 33px;
-        background: white;
-        color: #002242;
+        background: var(--white);
+        color: var(--one);
         border-radius: 10px;
         padding: 7px;
         cursor: pointer;
@@ -135,7 +135,7 @@
             left: 0px;
             width: 100%;
             height: auto;
-            background: white;
+            background: var(--white);
             color: var(--one);
             border-radius: 15px 15px 0px 0px;
             padding: 20px 5px 25px 5px;
@@ -198,7 +198,7 @@
             height: 32px;
             border-radius: 50%;
             background: var(--one);
-            color: white;
+            color: var(--white);
             margin: 0px 10px 0px 0px;
             font-size: 18px;
             display: flex;
@@ -499,5 +499,49 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- RELOGIO -->
+  <script>
+
+    		// TEMA ARRUMADO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--two', '#9ECAE3');
+          root.style.setProperty('--six', '#144774');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--two', '#144774');
+          root.style.setProperty('--six', '#9ECAE3');
+          root.style.setProperty('--white', '#002242');
+        }
+
+      // RELOGIO 
+      function atualizarRelogio() {
+          var elementoHora = document.getElementById('hora');
+          var agora = new Date();
+          
+          var horas = agora.getHours();
+          var minutos = agora.getMinutes();
+          var segundos = agora.getSeconds();
+
+          // Adiciona um zero à esquerda se a hora, minuto ou segundo for menor que 10
+          horas = horas < 10 ? '0' + horas : horas;
+          minutos = minutos < 10 ? '0' + minutos : minutos;
+          segundos = segundos < 10 ? '0' + segundos : segundos;
+
+          // Atualiza o conteúdo do elemento com o ID "hora"
+          elementoHora.textContent = horas + ':' + minutos + ':' + segundos;
+      }
+
+      // Chama a função inicialmente para exibir o relógio imediatamente
+      atualizarRelogio();
+
+      // Atualiza o relógio a cada segundo
+      setInterval(atualizarRelogio, 1000);
+
+  </script>
 
 </html>

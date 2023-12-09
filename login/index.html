@@ -52,7 +52,7 @@
       /* LOGO */
       .logo {
         width: 100%;
-        height: 55vh;
+        height: 60vh;
         background: var(--one);
         color: var(--white);
         border-radius: 0px 0px 25px 25px;
@@ -447,111 +447,140 @@
           left: 0px;
         }
 
+        .opcoesDeLogar {
+          width: auto;
+          height: auto;
+          position: relative;
+          top: 25vh;
+          padding: 25px 0px;
+          border-radius: 25px 25px 0px 0px;
+        }
+
+        .opcoesDeLogar h1 {
+          width: 80%;
+          text-align: center;
+          font-size: 21px;
+          margin: 5px 0px 20px 0px;
+        }
+
+        .opcoesDeLogar button {
+          width: 70%;
+          height: 55px;
+          margin: 10px 0px;
+        }
+
 
         /* TRANSFORMANDO EM CELULAR SE ESTIVER NO PC */
         @media (min-width: 680px) {
 
           body {
-                background: var(--two);
-            }
+              background: var(--two);
+          }
 
-            .container {
-                background: var(--white);
-            }
+          .container {
+              background: var(--white);
+          }
 
-        .container {
-            margin: 10px auto;
-            max-width: 680px;
-            min-height: 95vh;
-            height: auto;
-            border-right: 3.5px solid var(--one);
-            border-left: 3.5px solid var(--one);
-            border-top: 3.5px solid var(--one);
-            border-bottom: 3.5px solid var(--one);
-            border-radius: 20px;
+          .container {
+              margin: 10px auto;
+              max-width: 680px;
+              min-height: 95vh;
+              height: auto;
+              border-right: 3.5px solid var(--one);
+              border-left: 3.5px solid var(--one);
+              border-top: 3.5px solid var(--one);
+              border-bottom: 3.5px solid var(--one);
+              border-radius: 20px;
+              position: relative;
+              top: 0px;
+              padding: 0px 0px 0px 0px;
+          }
+
+          .container .before {
+              content: '';
+              width: 100%;
+              height: 50px;
+              border-radius: 14px 14px 0px 0px;
+              background: var(--one);
+              color: var(--white);
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+          }
+
+          .container .before p {
+              font-size: 22px;
+              font-weight: 600;
+              letter-spacing: 0.3px;
+              margin: 0px 0px 0px 20px;
+          }
+
+          .container .before .flex {
+              width: auto;
+              height: auto;
+              display: flex;
+              margin: 0px 20px 0px 0px;
+          }
+
+          .container .before .flex ion-icon {
+              font-size: 28px;
+              margin: 0px 4px;
+          }
+
+          .navgation {
+              max-width: 680px;
+              left: 50%;
+              bottom: 0px;
+              border-radius: 18px 18px 0px 0px;
+              transform: translateX(-50%);
+          }
+
+          .local {
+              max-width: 680px;
+              margin: 0px;
+              position: relative;
+          }
+
+          .logo {
+            height: 48vh;
             position: relative;
             top: 0px;
-            padding: 0px 0px 0px 0px;
-        }
+          }
 
-        .container .before {
-            content: '';
+          .logo img {
+            width: 325px;
+            height: auto;
+          }
+
+          .botoes {
+            position: relative;
+            top: 25px;
+          }
+
+          .content-logar, .content-cadastrar {
             width: 100%;
-            height: 50px;
-            border-radius: 14px 14px 0px 0px;
-            background: var(--one);
-            color: var(--white);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
+            height: auto;
+            position: relative;
+            top: 0px;
+            padding: 0px 0px 30px 0px;
+            border-radius: 0px 0px 15px 18px;
+          }
 
-        .container .before p {
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            margin: 0px 0px 0px 20px;
-        }
+          .content-logar input,
+          .content-cadastrar input,
+          .content-cadastrar select {
+            width: 550px;
+            max-width: none;
+          } 
 
-        .container .before .flex {
+          .opcoesDeLogar {
             width: auto;
             height: auto;
-            display: flex;
-            margin: 0px 20px 0px 0px;
-        }
-
-        .container .before .flex ion-icon {
-            font-size: 28px;
-            margin: 0px 4px;
-        }
-
-        .navgation {
-            max-width: 680px;
-            left: 50%;
-            bottom: 0px;
-            border-radius: 18px 18px 0px 0px;
-            transform: translateX(-50%);
-        }
-
-        .local {
-            max-width: 680px;
-            margin: 0px;
             position: relative;
-        }
-
-        .logo {
-          height: 45vh;
-          position: relative;
-          top: 0px;
-        }
-
-        .logo img {
-          width: 325px;
-          height: auto;
-        }
-
-        .botoes {
-          position: relative;
-          top: 25px;
-        }
-
-        .content-logar, .content-cadastrar {
-          width: 100%;
-          height: auto;
-          position: relative;
-          top: 0px;
-          padding: 0px 0px 30px 0px;
-          border-radius: 0px 0px 15px 18px;
-        }
-
-        .content-logar input,
-        .content-cadastrar input,
-        .content-cadastrar select {
-          width: 550px;
-          max-width: none;
-        } 
-        
+            top: 0px;
+          }
+            
 
       }
 
@@ -565,17 +594,7 @@
         display: none;
       }
 
-      .opcoesDeLogar {
-        width: auto;
-        height: auto;
-        position: relative;
-      }
-
-      .opcoesDeLogar button {
-        width: 70%;
-        height: 50px;
-      }
-
+      
 
 
     </style>
@@ -607,6 +626,7 @@
       </section>
 
       <section class="botoes opcoesDeLogar none">
+        <h1>Selecione o ambiente em que deseja fazer o login</h1>
         <button onclick="logar('servidor')"><strong>Servidor</strong></button>
         <button onclick="logar('responsavel')"><strong>Responsavel</strong></button>
         <button onclick="logar('aluno')"><strong>Aluno</strong></button>
@@ -810,6 +830,15 @@
     function opcoesLogar() {
       const opcoesDeLogar = document.querySelector('.opcoesDeLogar');
       const botoesLogar = document.querySelector('.botoesLogar');
+      const logo = document.querySelector(".logo");
+      const voltar = document.getElementById("voltar");
+      const h1logo = document.querySelector(".logo h1");
+      const contentLogo = document.querySelector(".content-logo");
+      voltar.style.display = "flex";
+      logo.style.height = "30vh";
+      logo.style.borderRadius = "0px";
+      contentLogo.style.display = "none";
+      h1logo.innerHTML = `Logar`;
       opcoesDeLogar.style.display = "flex";
       botoesLogar.style.display = "none";
     }
@@ -1579,30 +1608,30 @@
   <!-- RELOGIO -->
   <script>
 
-      // RELOGIO 
-      function atualizarRelogio() {
-          var elementoHora = document.getElementById('hora');
-          var agora = new Date();
-          
-          var horas = agora.getHours();
-          var minutos = agora.getMinutes();
-          var segundos = agora.getSeconds();
+    // RELOGIO 
+    function atualizarRelogio() {
+        var elementoHora = document.getElementById('hora');
+        var agora = new Date();
+        
+        var horas = agora.getHours();
+        var minutos = agora.getMinutes();
+        var segundos = agora.getSeconds();
 
-          // Adiciona um zero à esquerda se a hora, minuto ou segundo for menor que 10
-          horas = horas < 10 ? '0' + horas : horas;
-          minutos = minutos < 10 ? '0' + minutos : minutos;
-          segundos = segundos < 10 ? '0' + segundos : segundos;
+        // Adiciona um zero à esquerda se a hora, minuto ou segundo for menor que 10
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
 
-          // Atualiza o conteúdo do elemento com o ID "hora"
-          elementoHora.textContent = horas + ':' + minutos + ':' + segundos;
-      }
+        // Atualiza o conteúdo do elemento com o ID "hora"
+        elementoHora.textContent = horas + ':' + minutos + ':' + segundos;
+    }
 
-      // Chama a função inicialmente para exibir o relógio imediatamente
-      atualizarRelogio();
+    // Chama a função inicialmente para exibir o relógio imediatamente
+    atualizarRelogio();
 
-      // Atualiza o relógio a cada segundo
-      setInterval(atualizarRelogio, 1000);
+    // Atualiza o relógio a cada segundo
+    setInterval(atualizarRelogio, 1000);
 
-  </script>
+</script>
 
 </html>
