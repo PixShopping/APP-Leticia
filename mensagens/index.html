@@ -1156,7 +1156,7 @@
 			<!-- CONTENT RESPONSAVEIS -->
             <section class="content responsavel">
 
-				<ul>
+				<ul class="botoes-responsavel">
 					<li onclick="abrirChatOnline('DIRECAO')">
 						<ion-icon name="school-outline"></ion-icon>
 						<h1>Direção</h1>
@@ -1197,31 +1197,6 @@
             </section>
 
         </main>
-
-
-
-        <section class="form-mensagem adm">
-
-            <div>
-                <ion-icon onclick="voltar()" name="arrow-back"></ion-icon>
-                <h1>Enviar Mensagem</h1>
-            </div>
-
-            <label>Responsavel</label>
-            <input type="text" id="inputResponsavel">
-
-            <label>Data</label>
-            <input type="date" id="inputData">
-
-            <label>Titulo</label>
-            <input type="text" id="inputTitulo">
-
-            <label>Mensagem</label>
-            <textarea id="inputMensagem"></textarea>
-
-            <button onclick="enviarMensagem()">Enviar Mensagem</button>
-
-        </section>
 
         <!-- DIRECAO E COORDENACAO -->
         <section id="responsavel" class="form-mensagem">
@@ -1324,10 +1299,13 @@
          }
 
         const logado = localStorage.getItem('logado');
+        const login = localStorage.getItem('login');
         const admin = document.querySelector('.admin');
         const responsavel = document.querySelector('.responsavel');
         const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
         const chatOnline = document.querySelector('.containerChatOnline');
+        const botoesResponsavel = document.querySelector('.botoes-responsavel');
+        
 
         // Verificar se é administrador
         if (!logado){
@@ -1346,7 +1324,7 @@
                     </button>
                 </div>
             `;
-        } else if (logado === "PROFESSOR" || logado === "RESPONSAVEL") {
+        } else if (logado === "RESPONSAVEL") {
             admin.style.display = "none";
             responsavel.style.display = "flex";
             chatOnline.innerHTML = `
@@ -1359,8 +1337,35 @@
                     </button>
                 </div>
             `;
+        } else if (logado === "PROFESSOR") {
+            admin.style.display = "none";
+            responsavel.style.display = "flex";
+            chatOnline.innerHTML = `
+                <div class="chatOnline">
+                </div>
+                <div class="flex">
+                    <input placeholder="Mensagem" id="messageOnline" type="text">
+                    <button>
+                        <ion-icon onclick="enviarMensagemChatOnlineProfessor()" name="send"></ion-icon>
+                    </button>
+                </div>
+            `;
+            botoesResponsavel.innerHTML = `
+                <li onclick="abrirChatOnline('PROFESSOR')">
+                    <ion-icon name="people-circle-outline"></ion-icon>
+                    <h1>Alunos</h1>
+                </li>
+            `;
         }
-
+        
+        if (login === 'aluno') {
+            botoesResponsavel.innerHTML = `
+                <li onclick="abrirChatOnline('PROFESSOR')">
+                    <ion-icon name="library-outline"></ion-icon>
+                    <h1>Professor</h1>
+                </li>
+            `;
+        }
 
 
         // HREF / FUNCOES
@@ -1499,6 +1504,7 @@
         //  Enviar Mensagens
         // ------------------
 
+        // ENVIAR MENSAGENS PARA TODOS
         function enviarMensagem() {
             const inputResponsavel = document.getElementById('inputResponsavel');
             const inputData = document.getElementById('inputData');
@@ -1589,7 +1595,7 @@
     <script>
 
 
-        // Pegar o ANO LETICO ATUAL
+        // Pegar o ANO LETIVO ATUAL
         /*const dataAtual = new Date();
         const anoAtual = dataAtual.getFullYear();
         localStorage.setItem('ano', anoAtual);*/
@@ -2185,6 +2191,12 @@
                     <h1 style='margin: 0px auto 0px 15px;'>Coordenação</h1>
                     <ion-icon onclick="configuracao()" name="settings"></ion-icon>
                 `;
+            } else if (destinatario === 'PROFESSOR') {
+                local.innerHTML = `
+                    <ion-icon name="library"></ion-icon>
+                    <h1 style='margin: 0px auto 0px 15px;'>Professor</h1>
+                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+                `;
             }
             local.style.fontSize = '18px';
             containerOpcoes.style.display = "none";
@@ -2257,6 +2269,7 @@
                 });
                 chat.innerHTML += '<tag id="end"></tag>';
             });
+
             db.collection(ANO)
             .doc('chat')
             .collection(serie)
@@ -2274,6 +2287,7 @@
                     `;
                 }
             });
+            
             setTimeout(() => {
                 window.location.href = '#end';
             }, 1000);

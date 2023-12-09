@@ -52,7 +52,7 @@
       /* LOGO */
       .logo {
         width: 100%;
-        height: 60vh;
+        height: 55vh;
         background: var(--one);
         color: var(--white);
         border-radius: 0px 0px 25px 25px;
@@ -69,6 +69,7 @@
         font-size: 28px;
         font-weight: 900;
         letter-spacing: 0.8px;
+        text-transform: capitalize;
       }
 
       .content-logo {
@@ -97,12 +98,14 @@
         left: 0px;
       }
 
+      
+
       .botoes button,
       .content-logar button,
       .content-cadastrar button {
-        width: 80%;
+        width: 75%;
         max-width: 550px;
-        height: 55px;
+        height: 52.5px;
         background: var(--one);
         color: var(--white);
         margin: 0px 0px 25px 0px;
@@ -111,13 +114,18 @@
         font-weight: 750;
         letter-spacing: 0.5px;
         cursor: pointer;
+        border: 2.5px solid var(--one);
+      }
+
+      .botoes button {
+        margin: 5px 0px 15px 0px;
       }
 
       .botoes button:hover,
       .content-logar button:hover,
       .content-cadastrar button:hover {
         background: var(--white);
-        border: 3px solid var(--one);
+        border: 2.5px solid var(--one);
         color: var(--one);
         transition: all 0.4s ease-in-out;
         box-shadow: 0px 0px 15px var(--one);
@@ -171,6 +179,7 @@
         position: relative;
         top: 30vh;
         left: 0px;
+        padding: 0px 0px 40px 0px;
       }
 
       .form {
@@ -365,6 +374,7 @@
 
         .popup-logar {
           width: 80%;
+          max-width: 670px;
           height: auto;
           min-height: 300px;
           background: var(--one);
@@ -452,7 +462,7 @@
         .container {
             margin: 10px auto;
             max-width: 680px;
-            min-height: 90vh;
+            min-height: 95vh;
             height: auto;
             border-right: 3.5px solid var(--one);
             border-left: 3.5px solid var(--one);
@@ -523,7 +533,7 @@
 
         .botoes {
           position: relative;
-          top: 10px;
+          top: 25px;
         }
 
         .content-logar, .content-cadastrar {
@@ -551,6 +561,21 @@
           }
       }
 
+      .none {
+        display: none;
+      }
+
+      .opcoesDeLogar {
+        width: auto;
+        height: auto;
+        position: relative;
+      }
+
+      .opcoesDeLogar button {
+        width: 70%;
+        height: 50px;
+      }
+
 
 
     </style>
@@ -576,12 +601,19 @@
         </div>
       </section>
 
-      <section class="botoes">
-        <button onclick="logar()">Logar</button>
+      <section class="botoes botoesLogar">
+        <button onclick="opcoesLogar()">Logar</button>
         <p>Sem cadastro? <a onclick="cadastrar()">Cadastrar</a></p>
       </section>
 
-      <section class="content-logar">
+      <section class="botoes opcoesDeLogar none">
+        <button onclick="logar('servidor')"><strong>Servidor</strong></button>
+        <button onclick="logar('responsavel')"><strong>Responsavel</strong></button>
+        <button onclick="logar('aluno')"><strong>Aluno</strong></button>
+      </section>
+
+      <!-- CONTENT LOGAR PARA ALUNO -->
+      <section class="content-logar content-logar-responsavel">
         <div class="form">
           <label
             >Nome do Responsavel
@@ -618,6 +650,81 @@
 
       </section>
 
+      <!-- CONTENT LOGAR PARA ALUNO -->
+      <section class="content-logar content-logar-aluno">
+        <div class="form">
+          <label
+            >Nome do Aluno
+            <p id="alertaNomeALUNO"></p>
+          </label>
+          <input id="nomeALUNO" type="text" />
+
+          <label
+            >Senha
+            <p id="alertaSenhaALUNO"></p>
+          </label>
+          <div class="divsenha">
+            <input id="senhaALUNO" type="password" />
+            <ion-icon id="mostrarS" onclick="mostrarSenha()" name="eye"></ion-icon>
+            <ion-icon
+              id="esconderS"
+              onclick="esconderSenha()"
+              name="eye-off"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <button onclick="enviarLoginAluno()">Logar</button>
+
+        <div class="flex">
+          <input id="inputTermos" type="checkbox" checked>
+          <label for="inputTermos">Eu aceito os </label>
+          <a onclick="termos()">Termos de Uso </a>
+        </div>
+
+      </section>
+
+
+      <!-- CONTENT LOGAR PARA ALUNO -->
+      <section class="content-logar content-logar-servidor">
+        <div class="form">
+          <label
+            >Nome do Servidor
+            <p id="alertaLoginSERVIDOR"></p>
+          </label>
+          <input id="servidor" type="text" />
+
+          <label
+            >Senha
+            <p id="alertaLoginSENHAservidor"></p>
+          </label>
+          <div class="divsenha">
+            <input id="senhaServidor" type="password" />
+            <ion-icon
+              id="mostrarS"
+              onclick="mostrarSenha()"
+              name="eye"
+            ></ion-icon>
+            <ion-icon
+              id="esconderS"
+              onclick="esconderSenha()"
+              name="eye-off"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <button onclick="enviarLoginServidor()">Logar</button>
+
+        <div class="flex">
+          <input id="inputTermos" type="checkbox" checked>
+          <label for="inputTermos">Eu aceito os </label>
+          <a onclick="termos()">Termos de Uso </a>
+        </div>
+
+      </section>
+
+
+      <!-- CONTENT CADASTRAR -->
       <section class="content-cadastrar">
         <div class="form">
           <label
@@ -625,7 +732,6 @@
             <p id="alertaRESPONSAVEL"></p>
           </label>
           <input
-            oninput="verificarResponsavel()"
             id="cadastroResponsavel"
             type="text"
           >
@@ -701,6 +807,20 @@
   <!-- JavaScript -->
   <script>
 
+    function opcoesLogar() {
+      const opcoesDeLogar = document.querySelector('.opcoesDeLogar');
+      const botoesLogar = document.querySelector('.botoesLogar');
+      opcoesDeLogar.style.display = "flex";
+      botoesLogar.style.display = "none";
+    }
+
+    function fecharOpcoesLogar() {
+      const opcoesDeLogar = document.querySelector('.opcoesDeLogar');
+      const botoesLogar = document.querySelector('.botoesLogar');
+      opcoesDeLogar.style.display = "none";
+      botoesLogar.style.display = "none";
+    }
+
     function termos() {
       window.location.href = "../src/pagin/termos.html";
     }
@@ -749,7 +869,8 @@
     }
 
     // ===== LOGAR =====
-    function logar() {
+    function logar(div) {
+      fecharOpcoesLogar();
       // Transicao da LOGO
       const logo = document.querySelector(".logo");
       const voltar = document.getElementById("voltar");
@@ -759,19 +880,21 @@
       logo.style.height = "30vh";
       logo.style.borderRadius = "0px";
       contentLogo.style.display = "none";
-      h1logo.innerHTML = "Logar";
+      h1logo.innerHTML = `Logar como ${div}`;
+      h1logo.style.fontSize = "22px";
 
       // Transicao dos BOTOES
       const botoes = document.querySelector(".botoes");
       botoes.style.display = "none";
 
       // Transicao do LOGAR
-      const contentLogar = document.querySelector(".content-logar");
+      const contentLogar = document.querySelector(`.content-logar-${div}`);
       contentLogar.style.display = "flex";
     }
 
     // ===== CADASTRAR =====
     function cadastrar() {
+      fecharOpcoesLogar();
       // Transicao da LOGO
       const logo = document.querySelector(".logo");
       const voltar = document.getElementById("voltar");
@@ -798,9 +921,8 @@
 
     // Verificar Responsavel Existente
     async function verificarResponsavel() {
-      const RESPONSAVEL = document.getElementById("cadastroResponsavel").value;
+      const RESPONSAVEL = capitalizar(document.getElementById("cadastroResponsavel").value);
       const alertaRESPONSAVEL = document.getElementById("alertaRESPONSAVEL");
-      
       if (RESPONSAVEL === "") {
         swal({
           title: "AVISO",
@@ -921,7 +1043,7 @@
       const inputALUNO = document.getElementById("cadastroAluno").value;
       const ALUNO = capitalizar(inputALUNO);
       const GMAIL = document.getElementById("cadastroGmail").value;
-      
+
       const TELEFONE = document.getElementById("cadastroTelefone").value;
       const TELEFONEaluno = document.getElementById("cadastroTelefoneAluno").value;
       const SERIE = document.getElementById("cadastroSerie").value;
@@ -1090,6 +1212,7 @@
                       if (val.data().senha !== "") {
                         localStorage.setItem("senha", val.data().senha);
                       }
+                      localStorage.setItem('login', 'responsavel');
                       localStorage.setItem("id", val.id);
                       localStorage.setItem("ra", val.data().ra);
                       localStorage.setItem("tema", "light");
@@ -1133,7 +1256,7 @@
           });
         });
 
-      db.collection(ANO)
+        db.collection(ANO)
         .doc("restrito")
         .collection("professor")
         .onSnapshot((data) => {
@@ -1141,13 +1264,167 @@
             const usuario = val.data().usuario;
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
-              localStorage.setItem("logado", "PROFESSOR");
-              localStorage.setItem("tema", "light");
-              window.location.href = "../home";
+              logarComProfessor();
             }
           });
         });
     }
+
+    async function validarAluno(aluno, senha) {
+        try {
+            const seriesSnapshot = await db.collection(ANO).doc('series').collection('existente').get();
+
+            for (const serieDoc of seriesSnapshot.docs) {
+                const serie = serieDoc.id;
+                const alunosSnapshot = await db.collection(ANO).doc('series').collection(serie).get();
+
+                for (const alunoDoc of alunosSnapshot.docs) {
+                  const ALUNO = alunoDoc.data().aluno;
+                  const responsavel = alunoDoc.data().responsavel;
+                  
+                    if (ALUNO === aluno) {
+                        // Aluno encontrado, faça o que precisa aqui
+                        localStorage.setItem('responsavel', responsavel);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        } catch (error) {
+            throw error; // Você pode optar por relançar o erro ou tratar de outra forma
+        }
+    }
+
+    // ENVIAR LOGIN COMO ALUNO
+    async function enviarLoginAluno() {
+      const inputALUNO = document.getElementById("nomeALUNO").value;
+      const ALUNO = capitalizar(inputALUNO);
+      const inputSENHA = document.getElementById("senhaALUNO").value;
+      const SENHA = tirarEspaco(inputSENHA);
+      const responsavel = localStorage.getItem('responsavel');
+      const alertaALUNO = document.getElementById("alertaNomeALUNO");
+      const alertaSENHA = document.getElementById("alertaSenhaALUNO");
+      const inputTermos = document.getElementById('inputTermos');
+      const termos = inputTermos.checked;
+      const validarAlunoRes = await validarAluno(ALUNO, SENHA);
+      
+      if (validarAlunoRes) {
+        const responsavel = localStorage.getItem('responsavel');
+        alertaALUNO.innerHTML = "Valido";
+        alertaALUNO.style.color = "green";
+        await db.collection(ANO)
+        .doc('responsaveis')
+        .collection(responsavel)
+        .onSnapshot((data) => {
+          data.docs.map((val) => {
+            const senha = val.data().senha;
+            if (senha === SENHA) {
+              alertaSENHA.innerHTML = "Valido";
+              alertaSENHA.style.color = "green";  
+              setTimeout(() => {
+                  localStorage.setItem("logado", "RESPONSAVEL");
+                  // Dados do Responsavel
+                  if (val.data().responsavel !== "") {
+                    localStorage.setItem(
+                      "responsavel",
+                      val.data().responsavel
+                    );
+                  }
+                  if (val.data().aluno !== "") {
+                    localStorage.setItem("aluno", val.data().aluno);
+                  }
+                  if (val.data().serie !== "") {
+                    localStorage.setItem("serie", val.data().serie);
+                  }
+                  if (val.data().gmail !== "") {
+                    localStorage.setItem("gmail", val.data().gmail);
+                  }
+                  if (val.data().telefone !== "") {
+                    localStorage.setItem("telefone", val.data().telefone);
+                  }
+                  if (val.data().telefoneAluno !== "") {
+                    localStorage.setItem("telefoneAluno", val.data().telefoneAluno);
+                  }
+                  if (val.data().senha !== "") {
+                    localStorage.setItem("senha", val.data().senha);
+                  }
+                  localStorage.setItem('login', 'aluno');
+                  localStorage.setItem("id", val.id);
+                  localStorage.setItem("ra", val.data().ra);
+                  localStorage.setItem("tema", "light");
+                  localStorage.setItem('status', 'APP');
+      
+                  window.location.href = "../home";
+              }, 500);  
+            } else {
+              alertaSENHA.innerHTML = "Invalido";
+              alertaSENHA.style.color = "red"; 
+              return;     
+            }
+          });
+        });
+      } else {
+        alertaALUNO.innerHTML = "Invalido";
+        alertaALUNO.style.color = "red";
+      }
+                  
+    }
+
+
+    // ENVIAR LOGIN SERVIDOR
+    function enviarLoginServidor() {
+      const inputRESPONSAVEL = document.getElementById("servidor").value;
+      const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
+      const inputSENHA = document.getElementById("senhaServidor").value;
+      const SENHA = tirarEspaco(inputSENHA);
+      const alertaRESPONSAVEL = document.getElementById(
+        "alertaLoginSERVIDOR"
+      );
+      const alertaSENHA = document.getElementById("alertaLoginSENHAservidor");
+      const inputTermos = document.getElementById('inputTermos');
+      const termos = inputTermos.checked;
+      
+        db.collection(ANO)
+        .doc("restrito")
+        .collection("direcao")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              logarComDirecao();
+            }
+          });
+        });
+
+        db.collection(ANO)
+        .doc("restrito")
+        .collection("coordenacao")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              logarComCoordenacao();
+            }
+          });
+        });
+
+        db.collection(ANO)
+        .doc("restrito")
+        .collection("professor")
+        .onSnapshot((data) => {
+          data.docs.forEach((val) => {
+            const usuario = val.data().usuario;
+            const senha = val.data().senha;
+            if (RESPONSAVEL === usuario && SENHA === senha) {
+              logarComProfessor();
+            }
+          });
+        });
+    }
+
 
     // FECHAR
     function fecharPopup() {
@@ -1243,6 +1520,51 @@
     // ENTRAR COM DIRECAO
     function entrarComCoordenacao(nome) {
       localStorage.setItem('logado', 'COORDENACAO');
+      localStorage.setItem('usuario' , nome);
+      localStorage.setItem("tema", "light");
+      window.location.href = "../home";
+    }
+
+    // LOGAR COMO PROFESSOR
+    function logarComProfessor() {
+      const popup = document.querySelector('.popup-logar');
+        const fosco = document.querySelector('.fosco');
+        var acessos = ``;
+        db.collection(ANO)
+        .doc('restrito')
+        .collection('professor')
+        .doc('login')
+        .collection('acessos')
+        .onSnapshot((data) => {
+          data.docs.map((val) => {
+            const nome = val.id;
+            acessos += `
+              <li onclick="entrarComProfessor('${nome}')">
+                <h2>${nome}</h2>
+              </li>
+            `;
+          });
+          popup.innerHTML = `
+            <h1>Selecione qual conta logar</h1>
+            <ul>
+              ${acessos}
+            </ul>
+          `;
+        });
+        
+        
+        // MOSTRAR POPUP
+        popup.style.display = "flex";
+        fosco.style.display = "flex";
+
+        setTimeout(() => {
+          popup.style.opacity = 1;
+        }, 1500);
+    }
+
+    // ENTRAR COM DIRECAO
+    function entrarComProfessor(nome) {
+      localStorage.setItem('logado', 'PROFESSOR');
       localStorage.setItem('usuario' , nome);
       localStorage.setItem("tema", "light");
       window.location.href = "../home";

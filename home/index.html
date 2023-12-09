@@ -1150,19 +1150,20 @@
 
        // Header Nome
        const logado = localStorage.getItem('logado');
+       const login = localStorage.getItem('login');
        const usuario = localStorage.getItem('usuario');
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
         if (!logado){
 		  window.location.href = "../login/";
 		} else if (logado === "RESPONSAVEL") {
-            mostrarResponsavel.innerHTML = `Olá, <p>${responsavel}</p>`;
+            mostrarResponsavel.innerHTML = `Olá ${login}, <p>${responsavel}</p>`;
 	    } else if (logado === "COORDENACAO") {
             mostrarResponsavel.innerHTML = `Coordenação - ${usuario}`;
         } else if (logado === "DIRECAO") {
             mostrarResponsavel.innerHTML = `Direção - ${usuario}`;
         } else if (logado === "PROFESSOR") {
-            mostrarResponsavel.innerHTML = `Professor`;
+            mostrarResponsavel.innerHTML = `Professor - ${usuario}`;
         }
 
        // HREF
