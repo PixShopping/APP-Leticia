@@ -633,7 +633,7 @@
         <button onclick="logar('aluno')"><strong>Aluno</strong></button>
       </section>
 
-      <!-- CONTENT LOGAR PARA ALUNO -->
+      <!-- CONTENT LOGAR PARA RESPONSAVEL-->
       <section class="content-logar content-logar-responsavel">
         <div class="form">
           <label
@@ -647,15 +647,15 @@
             <p id="alertaLoginSENHA"></p>
           </label>
           <div class="divsenha">
-            <input id="senha" type="password" />
+            <input class="IconLogarResponsavel" id="senha" type="password" />
             <ion-icon
-              id="mostrarS"
-              onclick="mostrarSenha()"
+              class="esconderIconLogarResponsavel"
+              onclick="esconderSenha('IconLogarResponsavel')"
               name="eye"
             ></ion-icon>
             <ion-icon
-              id="esconderS"
-              onclick="esconderSenha()"
+              class="mostrarIconLogarResponsavel"
+              onclick="mostrarSenha('IconLogarResponsavel')"
               name="eye-off"
             ></ion-icon>
           </div>
@@ -685,11 +685,14 @@
             <p id="alertaSenhaALUNO"></p>
           </label>
           <div class="divsenha">
-            <input id="senhaALUNO" type="password" />
-            <ion-icon id="mostrarS" onclick="mostrarSenha()" name="eye"></ion-icon>
+            <input class="IconLogarAluno" id="senhaALUNO" type="password" />
+            <ion-icon 
+              class="esconderIconLogarAluno"
+              onclick="esconderSenha('IconLogarAluno')"  
+              name="eye"></ion-icon>
             <ion-icon
-              id="esconderS"
-              onclick="esconderSenha()"
+              class="mostrarIconLogarAluno"
+              onclick="mostrarSenha('IconLogarAluno')"
               name="eye-off"
             ></ion-icon>
           </div>
@@ -706,7 +709,7 @@
       </section>
 
 
-      <!-- CONTENT LOGAR PARA ALUNO -->
+      <!-- CONTENT LOGAR PARA SERVIDOr -->
       <section class="content-logar content-logar-servidor">
         <div class="form">
           <label
@@ -720,15 +723,15 @@
             <p id="alertaLoginSENHAservidor"></p>
           </label>
           <div class="divsenha">
-            <input id="senhaServidor" type="password" />
+            <input class="IconLogarServidor" id="senhaServidor" type="password" />
             <ion-icon
-              id="mostrarS"
-              onclick="mostrarSenha()"
+              class="esconderIconLogarServidor"
+              onclick="esconderSenha('IconLogarServidor')"
               name="eye"
             ></ion-icon>
             <ion-icon
-              id="esconderS"
-              onclick="esconderSenha()"
+              class="mostrarIconLogarServidor"
+              onclick="mostrarSenha('IconLogarServidor')"
               name="eye-off"
             ></ion-icon>
           </div>
@@ -794,16 +797,16 @@
             <p id="alertaSENHA"></p>
           </label>
           <div class="divsenha">
-            <input id="cadastroSenha" type="password" />
+            <input class="IconCadastrar" id="cadastroSenha" type="password" />
             <ion-icon
               style="display: none"
-              id="mostrarSC"
-              onclick="mostrarSenhaC()"
+              class="esconderIconCadastrar"
+              onclick="esconderSenha('IconCadastrar')"
               name="eye"
             ></ion-icon>
             <ion-icon
-              id="esconderSC"
-              onclick="esconderSenhaC()"
+              class="mostrarIconCadastrar"
+              onclick="mostrarSenha('IconCadastrar')"
               name="eye-off"
             ></ion-icon>
           </div>
@@ -829,14 +832,20 @@
   <script>
 
     function mostrarSenha(id) {
-      const icon = document.querySelector('');
-      const input = document.getElementById(id);
+      const iconMostrar = document.querySelector(`.mostrar${id}`);
+      const iconEsconder = document.querySelector(`.esconder${id}`);
+      const input = document.querySelector(`.${id}`);
+      iconMostrar.style.display = "none";
+      iconEsconder.style.display = "flex";
       input.type = "text";
     }
 
     function esconderSenha(id) {
-      const icon = document.querySelector('');
-      const input = document.getElementById(id);
+      const iconMostrar = document.querySelector(`.mostrar${id}`);
+      const iconEsconder = document.querySelector(`.esconder${id}`);
+      const input = document.querySelector(`.${id}`);
+      iconMostrar.style.display = "flex";
+      iconEsconder.style.display = "none";
       input.type = "password";
     }
 
@@ -877,38 +886,6 @@
     localStorage.setItem('ano', anoAtual);
     const ANO = localStorage.getItem('ano');
 
-
-    // MOSTRAR SENHA DO CADASTRO
-    const mostrarSC = document.getElementById("mostrarSC");
-    const esconderSC = document.getElementById("esconderSC");
-    const senhaC = document.getElementById("cadastroSenha");
-    function mostrarSenhaC() {
-      senhaC.type = "password";
-      mostrarSC.style.display = "none";
-      esconderSC.style.display = "block";
-    }
-
-    function esconderSenhaC() {
-      senhaC.type = "text";
-      mostrarSC.style.display = "block";
-      esconderSC.style.display = "none";
-    }
-
-    // MOSTRAR SENHA DO LOGIN
-    const mostrarS = document.getElementById("mostrarS");
-    const esconderS = document.getElementById("esconderS");
-    const senhaL = document.getElementById("senha");
-    function mostrarSenha() {
-      senhaL.type = "password";
-      mostrarS.style.display = "none";
-      esconderS.style.display = "block";
-    }
-
-    function esconderSenha() {
-      senhaL.type = "text";
-      mostrarS.style.display = "block";
-      esconderS.style.display = "none";
-    }
 
     // ===== LOGAR =====
     function logar(div) {
