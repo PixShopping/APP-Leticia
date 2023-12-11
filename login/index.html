@@ -98,13 +98,11 @@
         left: 0px;
       }
 
-      
-
       .botoes button,
       .content-logar button,
       .content-cadastrar button {
-        width: 75%;
-        max-width: 550px;
+        width: 80%;
+        max-width: 600px;
         height: 52.5px;
         background: var(--one);
         color: var(--white);
@@ -323,6 +321,8 @@
       /* DIVSENHA */
 
       .divsenha {
+        width: 100%;
+        max-width: 550px;
         display: flex;
         align-items: center;
         position: relative;
@@ -448,7 +448,7 @@
         }
 
         .opcoesDeLogar {
-          width: auto;
+          width: 100%;
           height: auto;
           position: relative;
           top: 25vh;
@@ -457,14 +457,14 @@
         }
 
         .opcoesDeLogar h1 {
-          width: 80%;
+          width: 85%;
           text-align: center;
           font-size: 21px;
           margin: 5px 0px 20px 0px;
         }
 
         .opcoesDeLogar button {
-          width: 70%;
+          width: 75%;
           height: 55px;
           margin: 10px 0px;
         }
@@ -570,7 +570,8 @@
           .content-logar input,
           .content-cadastrar input,
           .content-cadastrar select {
-            width: 550px;
+            width: 100%;
+            max-width: 550px;
             max-width: none;
           } 
 
@@ -826,6 +827,18 @@
 
   <!-- JavaScript -->
   <script>
+
+    function mostrarSenha(id) {
+      const icon = document.querySelector('');
+      const input = document.getElementById(id);
+      input.type = "text";
+    }
+
+    function esconderSenha(id) {
+      const icon = document.querySelector('');
+      const input = document.getElementById(id);
+      input.type = "password";
+    }
 
     function opcoesLogar() {
       const opcoesDeLogar = document.querySelector('.opcoesDeLogar');

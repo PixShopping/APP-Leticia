@@ -185,23 +185,23 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin: 20px 0px;
+                margin: 0px;
 		    }
 
 		    .erro ion-icon {
-                background: var(--six);
+                background: var(--one);
                 font-size: 100px;
                 padding: 50px;
                 color: var(--white);
                 border-radius: 50%;
-                margin: 20px 0px 20px 0px;
+                margin: 15px 0px;
 		    }
 
 		     .erro h1 {
                 font-size: 26px;
                 font-weight: 700;
                 letter-spacing: 0.3px;
-                margin: 0px 0px 5px 0px;
+                margin: 5px 0px 5px 0px;
 		        width: 90%;
 	    		text-align: center;
 		     }
@@ -406,6 +406,7 @@
 
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
+       const login = localStorage.getItem('login');
 		if (!logado){
 		  window.location.href = "../login";
 		}
@@ -507,10 +508,12 @@
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const erro = document.querySelector('.erro');
 
-      if (logado === 'RESPONSAVEL') {
-        lerChatOnline();
-      } else if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+      if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
         lerChatOnlineResponsavel();
+      } else if (logado === 'RESPONSAVEL' && login === 'responsavel') {
+        lerChatOnline();
+      } else if (logado === 'RESPONSAVEL' && login === 'aluno') {
+        lerChatOnlineAluno();
       }
       
       // PARA RESPONSAVEIS
@@ -534,7 +537,7 @@
                         const usu = val.data().usuario;
                         if (usu === 'DIRECAO' && val.data().view === false) {
                             notificacoes.innerHTML += `
-                                <li onclick="onclick="verNotificacao('${usu}')"">
+                                <li onclick="verNotificacao('${usu}')">
                                     <ion-icon name="person-circle"></ion-icon>
                                     <div class="column">                                    
                                         <h2><strong>${usu}:</strong> ${val.data().mensagem}</h2>
@@ -573,6 +576,39 @@
                 });
             }
             
+        }
+
+        // PARA ALUNOS
+      async function lerChatOnlineAluno() {
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            var status = '';
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagensPROFESSOR`)
+            .orderBy("data")
+            .onSnapshot((data) => {
+                notificacoes.innerHTML = "";
+                data.docs.map((val) => {
+                    const usu = val.data().usuario;
+                    if (usu !== responsavel && val.data().view === false) {
+                        notificacoes.innerHTML += `
+                            <li onclick="verNotificacao('PROFESSOR')">
+                                <ion-icon name="person-circle"></ion-icon>
+                                <div class="column">                                    
+                                    <h2><strong>${usu}:</strong> ${val.data().mensagem}</h2>
+                                    <a>${val.data().hora}</a>
+                                </div>
+                            </li>
+                        `;
+                        erro.style.display = 'none';
+                    }
+                });
+            });
+        
         }
 
         // PARA DIRECAO OU COORDENACAO
