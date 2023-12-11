@@ -1284,11 +1284,19 @@
 
          function opcoes(responsavel, serie) {
             const containerOpcoes = document.querySelector('.containerOpcoes');
-            containerOpcoes.innerHTML = `
-                <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
-                <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
-                <button onclick="abrirChatOnlineResponsavel('${responsavel}','${serie}')">Abrir Chat</button>
-            `;// marcar1
+            if ( logado === "DIRECAO" || logado === "COORDENACAO") {
+                containerOpcoes.innerHTML = `
+                    <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
+                    <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
+                    <button onclick="abrirChatOnlineResponsavel('${responsavel}','${serie}')">Abrir Chat</button>
+                `;
+            } else if (logado === "PROFESSOR") {
+                containerOpcoes.innerHTML = `
+                    <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
+                    <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
+                    <button onclick="abrirChatOnlineProfessor('${responsavel}','${serie}')">Abrir Chat</button>
+                `;
+            }
             containerOpcoes.style.display = 'flex';
             localStorage.setItem('verResponsavel', responsavel);
          }
@@ -2042,6 +2050,12 @@
     <!-- CHAT ONLINE -->
     <script>
         
+
+        function fecharDivAlunos() {
+            const div = document.querySelector('.alunos');
+            div.style.display = 'none';
+        }
+
         // CHAT ONLINE RESPONSAVEL (PARA DIRECAO)
         function abrirChatOnlineResponsavel(responsavel, serie) {
             const containerChatOnline = document.querySelector('.containerChatOnline');
@@ -2060,6 +2074,7 @@
                 section.style.display = "none";
             });
             fecharPesquisa();
+            fecharDivAlunos();
             localStorage.setItem('verResponsavel', responsavel);
             localStorage.setItem('verSerie', serie);
             containerOpcoes.style.display = "none";
@@ -2068,6 +2083,35 @@
             document.querySelector('.container').style.padding = "0px";
             window.location.href = "#end";
             lerChatOnlineResponsavel(serie);
+        }
+
+        // CHAT ONLINE (PARA PROFESSOR)
+        function abrirChatOnlineProfessor(responsavel, serie) {
+            const containerChatOnline = document.querySelector('.containerChatOnline');
+            const container = document.querySelector('.responsavel');
+            const containerOpcoes = document.querySelector('.containerOpcoes');
+            const sections = document.querySelectorAll('.contentSeries');
+            const local = document.querySelector('.local');
+            local.innerHTML = `
+                <div class="flex">
+                    <ion-icon style="color: var(--white);" name="person"></ion-icon>
+                    <h1 style="margin: 0px 0px 0px 10px;">${responsavel}</h1>
+                </div>
+                <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+            `;
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+            fecharPesquisa();
+            fecharDivAlunos();
+            localStorage.setItem('verResponsavel', responsavel);
+            localStorage.setItem('verSerie', serie);
+            containerOpcoes.style.display = "none";
+            containerChatOnline.style.display = "flex";
+            container.style.display = "none";
+            document.querySelector('.container').style.padding = "0px";
+            window.location.href = "#end";
+            lerChatOnlineProfessor(serie);
         }
 
         // PARA DIRECAO E COORDENACAO
@@ -2115,6 +2159,91 @@
                     chat.innerHTML += `
                         <li data-id="${id}" class="${status}">
                             <h1>${usuario}: <span>${mensagem}</span></h1>
+                            <div class="linha">
+                                <a>${hora}</a>
+                                <section class="btns-chat">
+                                    <ion-icon class="${visto}" name="checkmark-done-outline"></ion-icon>   
+                                    <ion-icon onclick="abrirOpcoesMensagem('${id}')" class="btn-opcoes" name="ellipsis-vertical-outline"></ion-icon>
+                                </section>
+                            </div>
+                            <article class="opcoes ${status}">
+                                <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
+                                <button class="btn-responder">Responder</button>
+                                <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
+                            </article>
+                        </li>
+                    `;
+                });
+                chat.innerHTML += '<tag id="end"></tag>';
+            });
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .get().then((existe) => {
+                const tamanho = existe.size;
+                if (tamanho === 0) {
+                    chat.innerHTML += `
+                        <div class="erro">
+                            <ion-icon name="mail"></ion-icon>
+                            <h1>Nenhuma mensagem encontrada!</h1>
+                            <p>Tente novamente mais tarde..</p>
+                        </div>
+                    `;
+                }
+            });
+            setTimeout(() => {
+                window.location.href = '#end';
+            }, 1000);
+        }
+
+        // PARA DIRECAO E COORDENACAO
+        function lerChatOnlineProfessor(serie) {
+            const chat = document.querySelector('.chatOnline');
+            const responsavel = localStorage.getItem('verResponsavel');
+            const destinatario = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
+            var status = '';
+            var visto = '';
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .collection(`mensagens${destinatario}`)
+            .orderBy("data")
+            .onSnapshot((data) => {
+                chat.innerHTML = "";
+                data.docs.map((val) => {
+                    const docId = val.id;
+                    if (val.data().usuario === usuario) {
+                        status = 'minha';
+                    } else {
+                        status = 'dele';
+                        db.collection(ANO)
+                        .doc('chat')
+                        .collection(serie)
+                        .doc(responsavel)
+                        .collection(`mensagens${destinatario}`)
+                        .doc(docId).update({
+                            view: true,
+                        });
+                            
+                    }
+
+                    if (val.data().view === true) {
+                        visto = 'visto';
+                    } else {
+                        visto = 'naoVisto';
+                    }
+
+                    const user = val.data().usuario;
+                    const mensagem = val.data().mensagem;
+                    const hora = val.data().hora;
+                    const id = val.id;
+                    chat.innerHTML += `
+                        <li data-id="${id}" class="${status}">
+                            <h1>${user}: <span>${mensagem}</span></h1>
                             <div class="linha">
                                 <a>${hora}</a>
                                 <section class="btns-chat">
@@ -2206,12 +2335,69 @@
                     });
                 });
 
-                lerChatOnlineResponsavel();
+                    lerChatOnlineProfessor();
                 });
 
             }
 
 
+
+        function enviarMensagemChatOnlineProfessor() {
+            const dataAtual = new Date();
+            const horas = dataAtual.getHours();
+            const minutos = dataAtual.getMinutes();
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+            
+            const serie = localStorage.getItem('verSerie');
+            const responsavel = localStorage.getItem('verResponsavel');
+            const destinatario = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
+            const inputMensagem = document.getElementById('messageOnline');
+            const mensagem = inputMensagem.value;
+            db.collection(ANO)
+            .doc('chat')
+            .collection(serie)
+            .doc(responsavel)
+            .set({ nome: responsavel})
+            .then((response) => {
+                db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagens${destinatario}`)
+                .doc().set({
+                    hora: hora,
+                    usuario: usuario,
+                    mensagem: mensagem,
+                    view: false,
+                    data: firebase.firestore.FieldValue.serverTimestamp()
+                }).then((resposta) => {
+                    inputMensagem.value = '';
+                });
+
+
+                db.collection(ANO)
+                .doc('chat')
+                .collection('existente')
+                .doc(serie).set({
+                    serie: serie
+                })
+                                
+
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        const onesignalId = val.data().onesignalId;
+                        notificationUser(mensagem, onesignalId);
+                    });
+                });
+
+                lerChatOnlineProfessor(serie);
+            });
+
+        }
 
 
         // CHAT ONLINE 
@@ -2676,7 +2862,7 @@
             botaoMensagem.addEventListener('click', function (event) {
                 enviarMensagemChatOnlineResponsavel();
             });
-        } else {
+        } else if (logado === "RESPONSAVEL") {
             inputMensagem.addEventListener('keydown', function (event) {
                 if (event.key === 'Enter') {
                     enviarMensagemChatOnline();
@@ -2684,6 +2870,15 @@
             });
             botaoMensagem.addEventListener('click', function (event) {
                 enviarMensagemChatOnline();
+            });
+        } else if (logado === "PROFESSOR") {
+            inputMensagem.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    enviarMensagemChatOnlineProfessor();
+                }
+            });
+            botaoMensagem.addEventListener('click', function (event) {
+                enviarMensagemChatOnlineProfessor();
             });
         }
 
