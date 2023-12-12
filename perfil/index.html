@@ -467,14 +467,14 @@
 
             /* Redes Sociais */
 
-            .redes-sociais {
+            .redes-sociais, .dados-da-sed {
                 width: 100%;
                 height: auto;
                 display: none;
                 flex-direction: column;
             }
 
-            .redes-sociais ul {
+            .redes-sociais ul, .dados-da-sed ul {
 		        display: flex;
 		        flex-direction: column;
 				width: 100%;
@@ -483,7 +483,7 @@
                 margin: 15px 0px 0px 0px;
 		   }
 
-           .redes-sociais ul a {
+           .redes-sociais ul a, .dados-da-sed ul a {
                 width: 90%;
                 height: 56px;
                 display: flex;
@@ -496,24 +496,24 @@
                 text-decoration: none;
             }
 
-		   .redes-sociais ul a:hover {
+		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .4s ease-in-out;
 		   }
 
-		   .redes-sociais ul a ion-icon {
+		   .redes-sociais ul a ion-icon, .dados-da-sed ul a ion-icon {
 		        font-size: 30px;
                 margin: 0px 10px 0px 12px;
 		   }
 
-		   .redes-sociais ul a ion-icon:last-child {
+		   .redes-sociais ul a ion-icon:last-child, .dados-da-sed ul a ion-icon:last-child {
                 margin: 0px 10px 0px auto;
                 font-size: 30px;
                 background: transparent;
 		   }
 
-		   .redes-sociais ul a h1 {
+		   .redes-sociais ul a h1, .dados-da-sed ul a h1 {
 			  font-size: 18px;
 			  font-weight: 500;
 			  margin: 0px;
@@ -979,7 +979,7 @@
 
         <!-- DADOS DA SED -->
         <li onclick="dadosSed()">
-            <ion-icon name="folder-outline"></ion-icon>
+            <ion-icon name="file-tray-full-outline"></ion-icon>
             <h1>Dados da Sed</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
@@ -1034,6 +1034,27 @@
                 <a onclick="instagram()">
                     <ion-icon name="logo-instagram"></ion-icon>
                     <h1>Instagram</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+
+            </ul>
+
+        </section>
+
+        <!-- DADOS DA SED -->
+        <section class="dados-da-sed">
+
+            <ul>
+                <a onclick="boletim()">
+                    <ion-icon name="folder-open-outline"></ion-icon>
+                    <h1>Consultar Boletim</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <a onclick="consultarDadosSed()">
+                    <ion-icon name="bar-chart-outline"></ion-icon>
+                    <h1>Consultar Dados</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
 
@@ -1418,6 +1439,10 @@
             window.location.href = "https://app-leticia.netlify.app/src/pagin/instagram.html";
         }
 
+        function boletim() {
+            window.open('https://sed.educacao.sp.gov.br/boletim/boletimescolar');
+        }
+
 		function mudarSenha() {
             const content = document.querySelector('.content');
             const containerSenha = document.querySelector('.containerSenha');
@@ -1436,6 +1461,15 @@
 
         function dadosSed() {
             const content = document.querySelector('.content');
+            const dadosDaSed = document.querySelector('.dados-da-sed');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            local.textContent = "Dados da SED";
+            dadosDaSed.style.display = "flex";
+        }
+
+        function consultarDadosSed() {
+            const content = document.querySelector('.dados-da-sed');
             const container = document.querySelector('.container');
             container.style.padding = "0px";
             const iframes = document.querySelector('.iframes');
@@ -1461,53 +1495,6 @@
 
                 </div>
             `;
-        }
-
-        async function ifsp() {
-            const content = document.querySelector('.content');
-            const container = document.querySelector('.container');
-            container.style.padding = "0px";
-            const iframes = document.querySelector('.iframes');
-            iframes.style.display = "flex";
-            content.style.display = "none";
-            iframes.innerHTML = `
-                <h1>IFSP</h1>
-                <p>Os ultimos documentos do Processo Seletivo IFSP</p>
-                <div class="contentDados">
-
-                    <div class="respostaDados">
-
-                        <section style="margin: 10px 0px 0px 0px;" class="carregando">
-                            <span></span>
-                            <h2>Carregando..</h2>
-                        </section>
-                        <h3 id="textoCronometro"></h3>
-
-                    </div>
-
-                </div>
-            `;
-            const api = "https://api-vitor021.onrender.com/ifsp";
-            const divIFSP = document.querySelector('.respostaDados');
-            cronometro(26);
-            await fetch(api)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                divIFSP.innerHTML =  '';
-                data.forEach((obj) => {
-                    const texto = obj.AText;
-                    divIFSP.innerHTML += `
-                    <h1 style="
-                    font-size: 20px;
-                    width: 100%;
-                    padding: 8px 0px;
-                    text-align: start;
-                    text-transform: uppercase;
-                    ">${texto}</h1>
-                    `;
-                })
-            });
         }
 
 		// ADMINISTRADOR
@@ -1569,10 +1556,8 @@
                 <section class="carregando">
                     <span></span>
                     <h2>Carregando..</h2>
-                </section>
-                <h3 id="textoCronometro"></h3>
+                </section><br>
             `;
-            cronometro(50);
 
             fetch(apiUrl + `?usuario=${usuario}&senha=${senha}`)
             .then(response => response.json())
@@ -1602,6 +1587,7 @@
             });
         }
 
+        // CRONOMETRO
         function cronometro(segundos) {
             const cronometroh1 = document.getElementById('textoCronometro'); 
             cronometroh1.textContent = `Faltam ${segundos} segundos restantes`;
