@@ -437,16 +437,13 @@
         }
 
        // ADMINISTRADOR
-       const informacao = document.getElementById('informacao');
-        const mural = document.getElementById('mural');
+        const informacao = document.getElementById('informacao');
         const aviso = document.getElementById('aviso');
         if (logado === "PROFESSOR") {
             informacao.style.display = "none";
-            mural.style.display = "flex";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "none";
             aviso.style.display = "flex";
-            mural.style.display = "flex";
         }
 
         function projeto() {
@@ -508,7 +505,7 @@
       const RESPONSAVEL = localStorage.getItem('responsavel');
       const erro = document.querySelector('.erro');
 
-      if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+      if (logado === 'DIRECAO' || logado === 'COORDENACAO' || logado === 'PROFESSOR') {
         lerChatOnlineResponsavel();
       } else if (logado === 'RESPONSAVEL' && login === 'responsavel') {
         lerChatOnline();
@@ -523,6 +520,7 @@
             const serie = localStorage.getItem('serie');
             const verificarDirecao = await verificarNotificacaoDirecao();
             const verificarCoordenacao = await verificarNotificacaoCoordenacao();
+            const verificarProfessor = await verificarNotificacaoProfessor();
             var status = '';
             if (verificarDirecao) {
                 db.collection(ANO)
@@ -579,7 +577,7 @@
         }
 
         // PARA ALUNOS
-      async function lerChatOnlineAluno() {
+        async function lerChatOnlineAluno() {
             const notificacoes = document.querySelector('.notificacoes');
             const responsavel = localStorage.getItem('responsavel');
             const serie = localStorage.getItem('serie');
@@ -614,6 +612,7 @@
         // PARA DIRECAO OU COORDENACAO
         function lerChatOnlineResponsavel() {
             const logado = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
             const notificacoes = document.querySelector('.notificacoes');
             var status = '';
             db.collection(ANO)
@@ -666,6 +665,31 @@
                                 .onSnapshot((data) => {
                                     data.docs.map((val) => {
                                         if (val.data().usuario !== 'COORDENACAO' && val.data().view === false) {
+                                            notificacoes.innerHTML += `
+                                                <li onclick="ativarViewResponsavel('${logado}', '${responsavel}','${serie}', '${val.id}')">
+                                                    <ion-icon name="person-circle"></ion-icon>
+                                                    <div class="column">                                    
+                                                        <h2><strong>${responsavel}:</strong> ${val.data().mensagem}</h2>
+                                                        <a>${val.data().hora}</a>
+                                                    </div>
+                                                </li>
+                                            `;
+                                            erro.style.display = 'none';
+                                        }
+                                        
+                                    });
+                                });
+                            }
+                            if (logado === 'PROFESSOR') {
+                                db.collection(ANO)
+                                .doc('chat')
+                                .collection(serie)
+                                .doc(responsavel)
+                                .collection(`mensagensPROFESSOR`)
+                                .orderBy("data")
+                                .onSnapshot((data) => {
+                                    data.docs.map((val) => {
+                                        if (val.data().usuario !== usuario && val.data().view === false) {
                                             notificacoes.innerHTML += `
                                                 <li onclick="ativarViewResponsavel('${logado}', '${responsavel}','${serie}', '${val.id}')">
                                                     <ion-icon name="person-circle"></ion-icon>
@@ -777,6 +801,31 @@
                 // Trate o erro conforme necessário
                 return false;
             }
+        }
+
+        async function verificarNotificacaoProfessor() {
+            const notificacoes = document.querySelector('.notificacoes');
+            const responsavel = localStorage.getItem('responsavel');
+            const serie = localStorage.getItem('serie');
+            try {
+                const existe = await db.collection(ANO)
+                .doc('chat')
+                .collection(serie)
+                .doc(responsavel)
+                .collection(`mensagensPROFESSOR`)
+                .get();
+
+                if (existe.size > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error("Erro ao verificar responsável:", error);
+                // Trate o erro conforme necessário
+                return false;
+            }
+            
         }
 
         // Responder Mensagem

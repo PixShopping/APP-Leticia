@@ -1204,6 +1204,7 @@
                   }
 
                   if (val.data().senha === SENHA && termos) {
+                    localStorage.clear();
                     setTimeout(() => {
                       localStorage.setItem("logado", "RESPONSAVEL");
                       // Dados do Responsavel
@@ -1339,6 +1340,7 @@
           data.docs.map((val) => {
             const senha = val.data().senha;
             if (senha === SENHA) {
+              localStorage.clear();
               alertaSENHA.innerHTML = "Valido";
               alertaSENHA.style.color = "green";  
               setTimeout(() => {
@@ -1368,6 +1370,7 @@
                   if (val.data().senha !== "") {
                     localStorage.setItem("senha", val.data().senha);
                   }
+                  
                   localStorage.setItem('login', 'aluno');
                   localStorage.setItem("id", val.id);
                   localStorage.setItem("ra", val.data().ra);
@@ -1493,10 +1496,13 @@
 
     // ENTRAR COM DIRECAO
     function entrarComDirecao(nome) {
-      localStorage.setItem('logado', 'DIRECAO');
-      localStorage.setItem('usuario' , nome);
-      localStorage.setItem("tema", "light");
-      window.location.href = "../home";
+      localStorage.clear();
+      setTimeout(() => {
+        localStorage.setItem('logado', 'DIRECAO');
+        localStorage.setItem('usuario' , nome);
+        localStorage.setItem("tema", "light");
+        window.location.href = "../home";
+      }, 1000);
     }
 
     // LOGAR COM A COORDENAÇÃO
@@ -1538,10 +1544,13 @@
 
     // ENTRAR COM DIRECAO
     function entrarComCoordenacao(nome) {
-      localStorage.setItem('logado', 'COORDENACAO');
-      localStorage.setItem('usuario' , nome);
-      localStorage.setItem("tema", "light");
-      window.location.href = "../home";
+      localStorage.clear();
+      setTimeout(() => {
+        localStorage.setItem('logado', 'COORDENACAO');
+        localStorage.setItem('usuario' , nome);
+        localStorage.setItem("tema", "light");
+        window.location.href = "../home";
+      }, 1000);
     }
 
     // LOGAR COMO PROFESSOR
@@ -1583,10 +1592,13 @@
 
     // ENTRAR COMO PROFESSOR
     function entrarComProfessor(nome) {
-      localStorage.setItem('logado', 'PROFESSOR');
-      localStorage.setItem('usuario' , nome);
-      localStorage.setItem("tema", "light");
-      window.location.href = "../home";
+      localStorage.clear();
+      setTimeout(() => {
+        localStorage.setItem('logado', 'PROFESSOR');
+        localStorage.setItem('usuario' , nome);
+        localStorage.setItem("tema", "light");
+        window.location.href = "../home";
+      }, 1000);
     }
 
   </script>
