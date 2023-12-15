@@ -795,13 +795,6 @@
             color: var(--white);
         }
 
-        /*
-        <article class="opcoes">
-            <button>Responder</button>
-            <button class="btn-apagar">Apagar</button>
-        </article>
-        */
-
         .chatOnline li .opcoes {
             position: absolute;
             bottom: 0px;
@@ -2166,7 +2159,7 @@
                             </div>
                             <article class="opcoes ${status}">
                                 <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
-                                <button class="btn-responder">Responder</button>
+                                <button onclick="responderMensagem('${mensagem}', '${usuario}')" class="btn-responder">Responder</button>
                                 <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
                             </article>
                         </li>
@@ -2196,7 +2189,7 @@
             }, 1000);
         }
 
-        // PARA DIRECAO E COORDENACAO
+        // PARA PROFESSOR
         function lerChatOnlineProfessor(serie) {
             const chat = document.querySelector('.chatOnline');
             const responsavel = localStorage.getItem('verResponsavel');
@@ -2251,7 +2244,7 @@
                             </div>
                             <article class="opcoes ${status}">
                                 <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
-                                <button class="btn-responder">Responder</button>
+                                <button onclick="responderMensagem('${mensagem}', '${usuario}')" class="btn-responder">Responder</button>
                                 <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
                             </article>
                         </li>
@@ -2487,7 +2480,7 @@
                             </div>
                             <article class="opcoes ${status}">
                                 <ion-icon onclick="fecharOpcoesMensagem('${id}')" class="btn-opcoes" name="close"></ion-icon>
-                                <button class="btn-responder">Responder</button>
+                                <button onclick="responderMensagem('${mensagem}', '${usuario}')" class="btn-responder">Responder</button>
                                 <button onclick="apagarMensagem('${serie}', '${responsavel}', '${destinatario}', '${id}')" class="btn-apagar">Apagar</button>
                             </article>
                         </li>
@@ -2527,6 +2520,12 @@
         function fecharOpcoesMensagem(id) {
             const li = document.querySelector(`.chatOnline li[data-id="${id}"] .opcoes`);
             li.style.display = "none";
+        }
+
+        async function responderMensagem(mensagem, usuario) {
+            const input = document.getElementById('messageOnline');
+            const resposta = `respondendo ${usuario} (${mensagem}): `;
+            input.value = await resposta;
         }
 
         async function apagarMensagem(serie, responsavel, destinatario, id) {
