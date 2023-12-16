@@ -297,18 +297,22 @@
 
                 /* ENVIAR PROVAS */
 
-                .addProvas {
+                .addProvas, .addProvasExterna {
                   width: 100%;
                   height: auto;
                   flex-direction: column;
                   align-items: center;
                 }
 
-                .addProvas h1 {
+                .addProvas h1, .addProvasExterna h1 {
+                  width: 90%;
                   margin: 30px 0px 20px 0px;
+                  text-align: center;
+                  text-transform: uppercase;
+                  font-size: 25px;
                 }
 
-                .addProvas .form {
+                .addProvas .form, .addProvasExterna .form {
                   width: 90%;
                   max-width: 700px;
                   height: auto;
@@ -317,19 +321,19 @@
                   margin: 10px 0px 40px 0px;
                 }
 
-                .addProvas .form label {
+                .addProvas .form label, .addProvasExterna .form label {
                   font-size: 20px;
                   font-weight: 600;
                   letter-spacing: 0.2px;
                   margin: 3px 0px 3px 3px;
                 }
 
-                .addProvas .form select {
+                .addProvas .form select, .addProvasExterna .form select {
                   width: 100%;
                   height: 45px;
                   padding: 5px 12px;
                   background: var(--two);
-                  color: var(--white);
+                  color: var(--one);
                   margin: 0px 0px 12px 0px;
                   font-size: 16px;
                   font-weight: 500;
@@ -339,12 +343,12 @@
                   cursor: pointer;
                 }
 
-                .addProvas .form input {
+                .addProvas .form input, .addProvasExterna .form input {
                   width: 100%;
                   height: 45px;
                   padding: 5px 12px;
                   background: var(--two);
-                  color: var(--white);
+                  color: var(--one);
                   margin: 0px 0px 12px 0px;
                   font-size: 16px;
                   font-weight: 500;
@@ -354,7 +358,7 @@
                   cursor: pointer;
                 }
 
-                .addProvas .form button {
+                .addProvas .form button, .addProvasExterna .form button {
                   width: 90%;
                   height: 50px;
                   padding: 10px;
@@ -369,11 +373,11 @@
                   border: 2px solid var(--two);
                   cursor: pointer;
                   align-self: center;
-                } .addProvas .form button:hover {
+                } .addProvas .form button:hover, .addProvasExterna .form button:hover {
                   background: transparent;
                   color: var(--two);
                   transition: all .2s ease-in-out;
-                } .addProvas .form button:focus {
+                } .addProvas .form button:focus, .addProvasExterna .form button:focus {
                   background: transparent;
                   color: var(--two);
                   transition: all .2s ease-in-out;
@@ -552,6 +556,42 @@
 
                   </section>
 
+                  <section class="content addProvasExterna">
+
+                    <h1>Adicionar data de Prova Externa</h1>
+
+                    <div class="form">
+
+                      <label>Prova: </label>
+                        <select id="inputMateriaExterna">
+
+                            <option value="Prova Paulista">Prova Paulista</option>
+                            <option value="Provão Paulista - Saresp">Provão Paulista - Saresp</option>
+                            <option value="Saresp">Saresp</option>
+                            <option value="Saeb">Saeb</option>
+
+                        </select>
+
+                        <label>Série: </label>
+                        <select id="inputSerieExterna">
+                          <option value="" disabled>Serie</option>
+                        </select>
+
+                        <label>Data: </label>
+                        <input id="inputDataExterna" type="date">
+
+                        <label>Cor de Fundo</label>
+                        <input id="inputCorFundoExterna" type="color" value="#144774">
+
+                        <label>Cor do Texto</label>
+                        <input id="inputCorTextoExterna" type="color" value="#ffffff">
+
+                        <button onclick="enviarProvaExterna()">Enviar</button>
+
+                    </div>
+
+                  </section>
+
 
                 </main>
 
@@ -666,6 +706,7 @@
         const logado = localStorage.getItem('logado');
           const provas = document.querySelector('.provas');
           const addProvas = document.querySelector('.addProvas');
+          const addProvasExterna = document.querySelector('.addProvasExterna');
         
           if (!logado){
             window.location.href = "../login";
@@ -673,10 +714,11 @@
           if (logado === 'RESPONSAVEL') {
             provas.style.display = 'flex';
             addProvas.style.display = 'none';
+            addProvasExterna.style.display = 'none';
           } 
           if (logado === 'PROFESSOR') {
             const inputSerie = document.getElementById('inputSerie');
-              db.collection(ANO)
+            db.collection(ANO)
               .doc('restrito')
               .collection('series')
               .onSnapshot((data) => {
@@ -687,12 +729,26 @@
                   `;    
                 });
               });
+            addProvasExterna.style.display = 'none';
             provas.style.display = 'none';
             addProvas.style.display = 'flex';
           } 
           if (logado === 'DIRECAO' || logado === 'COORDENACAO') {
+            const inputSerieExterna = document.getElementById('inputSerieExterna');
+            db.collection(ANO)
+              .doc('restrito')
+              .collection('series')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  var serie = val.id;
+                  inputSerieExterna.innerHTML += `
+                    <option value="${serie}">${serie}</option>
+                  `;    
+                });
+              });
             provas.style.display = 'none';
             addProvas.style.display = 'none';
+            addProvasExterna.style.display = 'flex';
           }
 
 
@@ -706,6 +762,52 @@
             const ano = valDate.slice(0,4);
             const date = `${dia}/${mes}/${ano}`;
             const serie = document.getElementById('inputSerie').value;
+            await db.collection(ANO)
+            .doc('provas')
+            .collection(serie).add({
+                materia: materia,
+                data: date,
+                corFundo: corFundo,
+                corTexto: corTexto
+            }).then((response) => {
+              swal({
+                  title: "AVISO",
+                  text: `Prova de ${materia} enviada com sucesso!`,
+                  buttons: {
+                      confirm: "Ok!",
+                  },
+              });
+              db.collection(ANO)
+              .doc('series')
+              .collection(serie)
+              .onSnapshot((data) => {
+                  data.docs.map((val) => {
+                    var doc = val.data().responsavel;
+                    db.collection(ANO)
+                      .doc('responsaveis')
+                      .collection(doc)
+                      .onSnapshot((data) => {
+                          data.docs.map((val) => {
+                              var onesignalId = val.data().onesignalId;
+                              notificationUserProva(materia, date, onesignalId);
+                          });
+                      });
+                  });
+              });
+            });
+            
+          }
+
+          async function enviarProvaExterna() {
+            const materia = document.getElementById('inputMateriaExterna').value;
+            const valDate = document.getElementById('inputDataExterna').value;
+            const corFundo = document.getElementById('inputCorFundoExterna').value;
+            const corTexto = document.getElementById('inputCorTextoExterna').value;
+            const dia = valDate.slice(8,11);
+            const mes = valDate.slice(5,7);
+            const ano = valDate.slice(0,4);
+            const date = `${dia}/${mes}/${ano}`;
+            const serie = document.getElementById('inputSerieExterna').value;
             await db.collection(ANO)
             .doc('provas')
             .collection(serie).add({
