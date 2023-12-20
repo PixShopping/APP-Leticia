@@ -118,6 +118,15 @@
 				overflow-x: hidden;
             }
 
+            #iconeHome {
+                display: none;
+            }
+
+            #imagemHome {
+                display: none;
+                width: 100px;
+            }
+
             .container {
                 width: 100vw;
                 height: auto;
@@ -877,7 +886,11 @@
 
                     <header class="bem-vindo">
 
-                        <ion-icon name="school-outline"></ion-icon>
+                        <!-- FESTA JUNINA <img style="width: 100px;" src="https://cdn-icons-png.flaticon.com/512/7979/7979775.png" alt="">-->
+                        <!-- NATAL <img style="width: 100px;" src="https://cdn-icons-png.flaticon.com/512/744/744546.png" alt="">-->
+                        
+                        <img id="imagemHome" src="">
+                        <ion-icon id="iconeHome" name="school-outline"></ion-icon>
                         <h1 id="mostrarResponsavel"></h1>
                         <h2>Bem-Vindo ao aplicativo da Escola Estadual <span>Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
 
@@ -1534,6 +1547,42 @@
             });
             
         }
+
+
+
+        // LISTAR EVENTO ATUAL
+        eventoAtual();
+        function eventoAtual() {
+            const imagem = document.getElementById('imagemHome');
+            const icone = document.getElementById('iconeHome');
+            imagem.style.display = "flex";
+            db.collection(ANO)
+            .doc('evento').get().then((doc) => {
+                const evento = doc.data().nome;
+                if (!evento) {
+                    icone.style.display = "flex";
+                    imagem.style.display = "none";
+                } else if (evento === 'natal') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/744/744546.png";
+                } else if (evento === 'festaJunina') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/7979/7979775.png";
+                } else if (evento === 'halloween') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/685/685842.png"; 
+                } else if (evento === 'pascoa') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4185/4185066.png"; 
+                } else if (evento === 'carnaval') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4145/4145808.png"; 
+                } else if (evento === 'independencia') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4087/4087516.png"; 
+                } else if (evento === 'conscienciaNegra') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4797/4797130.png"; 
+                } else if (evento === 'diaDasMulheres') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/7409/7409662.png"; 
+                } else if (evento === 'setembroAmarelo') {
+                    imagem.src = ""; 
+                } 
+            });   
+        }    
 
        </script>
 
