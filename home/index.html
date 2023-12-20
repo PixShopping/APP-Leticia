@@ -1559,7 +1559,7 @@
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
-                if (!evento) {
+                if (!evento || evento === 'normal') {
                     icone.style.display = "flex";
                     imagem.style.display = "none";
                 } else if (evento === 'natal') {
@@ -1580,6 +1580,8 @@
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/7409/7409662.png"; 
                 } else if (evento === 'diaDosProfessores') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/906/906175.png"; 
+                }  else if (evento === 'diaDoTrabalhador') {
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/5347/5347689.png"; 
                 } 
             });   
         }    
