@@ -767,6 +767,7 @@
             .collection(serie).add({
                 materia: materia,
                 data: date,
+                date: firebase.firestore.FieldValue.serverTimestamp(),
                 corFundo: corFundo,
                 corTexto: corTexto
             }).then((response) => {
@@ -813,6 +814,7 @@
             .collection(serie).add({
                 materia: materia,
                 data: date,
+                date: firebase.firestore.FieldValue.serverTimestamp(),
                 corFundo: corFundo,
                 corTexto: corTexto
             }).then((response) => {
@@ -853,6 +855,7 @@
             db.collection(ANO)
             .doc('provas')
             .collection(serie)
+            .orderBy('date')
             .onSnapshot((data) => {
                 if (data.size === 0) {
                   setTimeout(() => {
