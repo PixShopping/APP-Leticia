@@ -158,7 +158,7 @@
                 cursor: pointer;
                 margin: 10px 0px;
                 border-radius: 5px;
-                border: 1px solid #999;
+                border: 1.5px solid var(--one);
             }
 
             .content ul li:hover {
@@ -335,6 +335,54 @@
                 }
             }
 
+            .card {
+                width: 92.5%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 10px;
+                padding: 20px;
+                margin: 12px 0px;
+            }
+
+            .card h1 {
+                margin: 0px 0px 10px 0px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                user-select: all;
+            }
+
+            .card p {
+                font-size: 16px;
+                font-weight: 400;
+                user-select: all;
+                letter-spacing: -0.2px;
+                line-height: 20.5px;
+            }
+
+            .card p a {
+                font-size: 15.5px;
+                font-weight: 600;
+                user-select: none;
+                cursor: pointer;
+                color: var(--white);
+                text-decoration: none;
+            }
+            
+            .card p a.whats {
+                font-size: 15.5px;
+                font-weight: 500;
+                user-select: none;
+                cursor: pointer;
+                text-decoration: none;
+                color: var(--green);
+            }
+
+
+
             </style>
            </head>
 
@@ -369,6 +417,14 @@
                             <h1>Mudar tema</h1>
                             <h1 id="temah1"></h1>
                         </li>
+
+                        <section class="card">
+
+                            <h1>Precisando de ajuda?</h1>
+                            <p>Em caso de dúvidas, você pode entrar em contato com a Central de Atendimento da Secretaria da Escola, fazendo uma ligação para o número <a href="tel:1633244623">16 3324-4623</a> ou <a href="tel:1633242256">16 3324-2256</a>. 
+                            Ou acessando o whatsapp <a class="whats" href="https://wa.me/5516991190322">+55 16 991190322</a></p>
+                       
+                        </section>
 
                         <div class="flex">
                             <a onclick="termos()">Termos de Uso </a>
