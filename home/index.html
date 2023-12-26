@@ -114,7 +114,7 @@
 				background: var(--white);
 				color: var(--one);
 				user-select: none;
-				font-family: 'Arial', sans-serif;
+                font-family: 'Gotham', sans-serif;
 				overflow-x: hidden;
             }
 
@@ -461,7 +461,6 @@
                 font-weight: 500;
                 letter-spacing: 0.3px;
                 margin: 0px 0px 10px 0px;
-                text-shadow: 0px 0px 10px var(--two);
             }  
 
             .containerAviso div ion-icon {
@@ -481,6 +480,35 @@
                 margin: 5px 0px 0px 0px;
                 cursor: default;
                 padding: 0px;
+            }
+
+            .containerAviso .card {
+                width: 92.5%;
+                height: auto;
+                padding: 10px;
+                border-radius: 20px;
+                background: var(--two);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                text-align: start;
+                margin: 15px 0px;
+            }
+
+            .containerAviso .card h1 {
+                margin: 12.5px 0px 10px 0px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                user-select: all;
+            }
+
+            .containerAviso .card p {
+                font-size: 16px;
+                font-weight: 400;
+                user-select: all;
+                letter-spacing: -0.2px;
+                line-height: 20.5px;
             }
 
             /* CRIAR AVISO */
@@ -1416,7 +1444,7 @@
                         storageRef.getDownloadURL().then(function (url) {
                         // Use a URL da imagem, por exemplo, para exibi-la
                         containerAviso.innerHTML += `
-                            <div style="background: ${val.data().corFundo};">
+                            <div class="card" style="background: ${val.data().corFundo};">
 
                                 <img src="${url}" alt="${val.data().imagem}">
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
@@ -1427,9 +1455,8 @@
                         });
                     } else {
                         containerAviso.innerHTML += `
-                            <div style="background: ${val.data().corFundo};">
+                            <div class="card" style="background: ${val.data().corFundo};">
 
-                                <ion-icon id='icone' style='color: ${val.data().corTitulo};' name='${val.data().icon}'></ion-icon>
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
                                 <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
 
@@ -1467,7 +1494,7 @@
                         storageRef.getDownloadURL().then(function (url) {
                         // Use a URL da imagem, por exemplo, para exibi-la
                         containerAviso.innerHTML += `
-                            <div data-url="${idURL}" data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
+                            <div class="card" data-url="${idURL}" data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
 
                                 <img src="${url}" alt="${val.data().imagem}">
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
@@ -1491,9 +1518,8 @@
                         });
                     } else {
                         containerAviso.innerHTML += `
-                            <div data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
+                            <div class="card" data-index="${index}" data-id="${val.id}" style="background: ${val.data().corFundo};">
 
-                                <ion-icon id='icone' style='color: ${val.data().corTitulo};' name='${val.data().icon}'></ion-icon>
                                 <h1 style="color: ${val.data().corTitulo};"> ${val.data().titulo} </h1>
                                 <p style="color: ${val.data().corTexto};"> ${val.data().mensagem} </p>
                                 <ion-icon onclick="excluirAviso(${index})" name="trash"></ion-icon>
