@@ -908,14 +908,32 @@
                 flex-direction: column;
                 align-items: center;
                 margin: 0px auto;
+                user-select: text;
             }
 
+            .boletim div {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0px auto;
+            }
+
+            .boletim div.none {
+                display: none;
+            }
+
+            
             .boletim h1 {
                 font-size: 24px;
                 font-weight: 600;
                 letter-spacing: 0.4px;
                 margin: 20px 0px 25px 0px;
             }
+            
 
             .boletim h1.erro {
                 font-size: 24px;
@@ -968,6 +986,21 @@
                 transition: all .3s ease-in-out;
             }
 
+            .boletim p {
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.4px;
+                margin: 5px;
+            }
+
+            .boletim p a {
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 0px 0px 0px 10px;
+                cursor: pointer;
+            }
+
             .boletim .divBoletim {
                 width: 95%;
                 height: auto;
@@ -975,6 +1008,14 @@
                 flex-direction: column;
                 padding: 0px 0px 0px 2px;
                 margin: 10px auto;
+            }
+
+            .btn-copiar {
+                color: var(--white);
+                background: var(--one);
+                padding: 12px 15px;
+                border-radius: 10px;
+                cursor: pointer;
             }
 
             /* TABELA DA SEd */
@@ -1065,9 +1106,7 @@
                 margin: 0px;
                 border-collapse: collapse;
             }
-
-
-                        
+       
             </style>
            </head>
 
@@ -1245,17 +1284,35 @@
 
         <section class="boletim">
 
-            <h1>Consultar Boletim do Aluno</h1>
-            <p></p>
+            
+            <div class="coletarBoletim">
+                <h1>Consultar Boletim do Aluno</h1>
+            
+                <label for="ra">Ra do Aluno</label>
+                <input id="ra" placeholder="ex: 00011122233" type="text">
 
-            <label for="ra">Ra do Aluno</label>
-            <input id="ra" placeholder="ex: 00011122233" type="text">
+                <label for="nascimentoBOLETIM">Data de Nascimento</label>
+                <input oninput="formatarNascimento('BOLETIM')" id="nascimentoBOLETIM" placeholder="ex: 01/01/2001" type="text">
 
-            <label for="nascimento">Data de Nascimento</label>
-            <input oninput="formatarNascimento()" id="nascimento" placeholder="ex: 01/01/2001" type="text">
+                <button onclick="consultarBoletim()">Consultar Boletim</button>
+                <p>Esqueceu o RA?<a onclick="abrirRa()">Consultar</a></p>
+            </div>
 
-            <button onclick="consultarBoletim()">Consultar Boletim</button>
+            <div class="coletarRa none">
+                <h1>Consultar Ra do Aluno</h1>
+            
+                <label for="nome">Nome do Aluno</label>
+                <input id="nome" placeholder="ex: Vitor" type="text">
 
+                <label for="mae">Nome do Responsavel</label>
+                <input id="mae" placeholder="ex: Vanessa" type="text">
+
+                <label for="nascimentoRA">Data de Nascimento</label>
+                <input oninput="formatarNascimento('RA')" id="nascimentoRA" placeholder="ex: 01/01/2001" type="text">
+
+                <button onclick="consultarRa()">Consultar RA</button>
+            </div>
+            
             <div class="divBoletim"></div>
 
         </section>
@@ -1433,6 +1490,17 @@
             content.style.display = "none";
             boletim.style.display = "flex";
             titulo.textContent = "Mostrar Boletim";
+        }
+
+        function abrirRa() {
+            const boletim = document.querySelector('.boletim .coletarBoletim');
+            const ra = document.querySelector('.boletim .coletarRa');
+            const content = document.querySelector('.content');
+            const titulo = document.querySelector('.local h1');
+            content.style.display = "none";
+            ra.style.display = "flex";
+            boletim.style.display = "none";
+            titulo.textContent = "Mostrar RA";
         }
 
 
@@ -2016,8 +2084,8 @@
             });
         }
 
-        function formatarNascimento() {
-            const input = document.getElementById('nascimento');
+        function formatarNascimento(tipo) {
+            const input = document.getElementById(`nascimento${tipo}`);
             const nascimento = input.value;
             const bug = nascimento.slice(2,3) + nascimento.slice(5,6);
             if (nascimento.includes('//')) {
@@ -2038,7 +2106,7 @@
             const dado = document.getElementById('ra').value;
             const ra = dado.slice(0,-1);
             const digito = dado.slice(-1);
-            const nascimento = document.getElementById('nascimento').value;
+            const nascimento = document.getElementById('nascimentoBOLETIM').value;
             const url = `https://sed.educacao.sp.gov.br/Boletim/GerarBoletimUnificadoExterno?nrRa=${ra}&nrDigRa=${digito}&dsUfRa=SP&dtNascimento=${nascimento}&nrAnoLetivo=2023`;
             // DIV
             const boletim = document.querySelector('.divBoletim');
@@ -2061,6 +2129,58 @@
                 // Agora você pode manipular a resposta HTML aqui
                 console.log(html);
             })
+        }
+
+        // CONSULTAR BOLETIM
+        function consultarRa() {
+            // DADOS
+            const nome = document.getElementById('nome').value;
+            const mae = document.getElementById('mae').value;
+            const nascimento = document.getElementById('nascimentoRA').value;
+            const url = 'https://sed.educacao.sp.gov.br/NCA/CadastroAluno/ConsultaRAAluno/PesquisaRAAluno';
+            const divRa = document.querySelector('.coletarRa');
+            const dados = {
+                enModel: {
+                    CodigoEscola: 22123,
+                    NomeAluno: nome,
+                    DataNascimento: nascimento,
+                    NomeMae: mae
+                }
+            };
+
+            divRa.innerHTML = '';
+            fetch(url, {
+                method: 'POST', // ou 'GET', dependendo do método que a API espera
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Adicione quaisquer outros cabeçalhos necessários aqui
+                },
+                body: JSON.stringify(dados),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const ra = data.resultado.NumeroRA;
+                const digito = data.resultado.DigitoRA;
+                divRa.innerHTML += `
+                    <h1>Seu RA é: ${ra}${digito}</h1>
+                    <a class="btn-copiar" onclick="copiar('${ra}${digito}')">Copiar</a>
+                `;
+            })
+            .catch(error => {
+                divRa.innerHTML += `
+                    <h1>Erro :(</h1>
+                `;
+            });       
+        }
+
+        function copiar(texto) {
+            const elementoTemporario = document.createElement("textarea");
+            elementoTemporario.value = texto;
+            document.body.appendChild(elementoTemporario);
+            elementoTemporario.select();
+            document.execCommand("copy");
+            document.body.removeChild(elementoTemporario);
+            document.querySelector('.btn-copiar').innerHTML = 'Copiado!';
         }
 
        </script>
