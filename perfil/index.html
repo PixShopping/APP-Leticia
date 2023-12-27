@@ -274,6 +274,12 @@
               color: var(--white);
            }
 
+           .content ul li img {
+                width: 30px;
+                height: auto;
+                margin: 0px 10px 0px 12px;
+           }
+
 		   .content ul li ion-icon {
 		        font-size: 30px;
                 margin: 0px 10px 0px 12px;
@@ -495,6 +501,22 @@
                 flex-direction: column;
             }
 
+            .dados-da-sed h1 {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                margin: 20px auto 4px auto;
+                text-align: center;
+            }
+
+            .dados-da-sed p {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                margin: 4px auto;
+                text-align: center;
+            }
+
             .redes-sociais ul, .dados-da-sed ul {
 		        display: flex;
 		        flex-direction: column;
@@ -538,6 +560,7 @@
 			  font-size: 18px;
 			  font-weight: 500;
 			  margin: 0px;
+              justify-content: flex-start;
 		   }
 
            /* Telefones */
@@ -1184,8 +1207,8 @@
 
           <!-- DADOS DA SED --> 
           <li onclick="dadosSed()">
-              <ion-icon name="file-tray-full-outline"></ion-icon>
-              <h1>Dados da Sed</h1>
+              <img src="http://sedseecdn.azureedge.net/images/favicon/apple-icon-114x114.png" alt="SED">
+              <h1>Links da SED</h1>
               <ion-icon name="arrow-forward"></ion-icon>
           </li>
 
@@ -1292,18 +1315,33 @@
         <!-- DADOS DA SED -->
         <section class="dados-da-sed">
 
+            <h1>Links Da SED</h1>
+            <p>Esses são alguns links rápidos da SED para te ajudar a encontrar o que você deseja</p>
+
             <ul>
                 <a onclick="boletim()">
-                    <ion-icon name="folder-open-outline"></ion-icon>
-                    <h1>Consultar Boletim</h1>
+                    <ion-icon name="link-outline"></ion-icon>
+                    <h1>Ver Boletim</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
 
-                <a onclick="consultarDadosSed()">
+                <a onclick="ra()">
+                    <ion-icon name="link-outline"></ion-icon>
+                    <h1>Ver Ra</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <a onclick="matriculas()">
+                    <ion-icon name="link-outline"></ion-icon>
+                    <h1>Ver Consulta Pública</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <!--<a onclick="consultarDadosSed()">
                     <ion-icon name="bar-chart-outline"></ion-icon>
                     <h1>Consultar Dados</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
-                </a>
+                </a>-->
 
 
             </ul>
@@ -1747,6 +1785,14 @@
             window.open('https://sed.educacao.sp.gov.br/boletim/boletimescolar');
         }
 
+        function ra() {
+            window.open('https://sed.educacao.sp.gov.br/NCA/CadastroAluno/ConsultaRAAluno');
+        }
+
+        function matriculas() {
+            window.open('https://sed.educacao.sp.gov.br/ConsultaPublica/Consulta');
+        }
+
 		function mudarSenha() {
             const content = document.querySelector('.content');
             const containerSenha = document.querySelector('.containerSenha');
@@ -1768,7 +1814,7 @@
             const dadosDaSed = document.querySelector('.dados-da-sed');
             const local = document.getElementById('local');
             content.style.display = "none";
-            local.textContent = "Dados da SED";
+            local.textContent = "Links da SED";
             dadosDaSed.style.display = "flex";
         }
 
