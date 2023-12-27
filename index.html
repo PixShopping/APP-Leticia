@@ -219,10 +219,6 @@
        	img.style.opacity = 1;
        }, 2700);
        setTimeout( () => {
-            if (localStorage.getItem('versao') !== '1.0') {
-                localStorage.clear();
-                localStorage.setItem('versao', '1.0');
-            }
             window.location.href = "./home";
         }, 3200);
 
