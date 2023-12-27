@@ -906,12 +906,11 @@
                 top: 0px;
                 display: none;
                 flex-direction: column;
-                align-items: center;
                 margin: 0px auto;
                 user-select: text;
             }
 
-            .boletim div {
+            .boletim .coletarBoletim, .boletim .coletarRa{
                 width: 100%;
                 height: auto;
                 position: relative;
@@ -926,12 +925,12 @@
                 display: none;
             }
 
-            
             .boletim h1 {
                 font-size: 24px;
                 font-weight: 600;
                 letter-spacing: 0.4px;
                 margin: 20px 0px 25px 0px;
+                text-align: start;
             }
             
 
@@ -1001,7 +1000,7 @@
                 cursor: pointer;
             }
 
-            .boletim .divBoletim {
+            .boletim .divBoletim, .boletim .divRa {
                 width: 95%;
                 height: auto;
                 display: flex;
@@ -1314,6 +1313,7 @@
             </div>
             
             <div class="divBoletim"></div>
+            <div class="divRa"></div>
 
         </section>
 
@@ -1494,12 +1494,14 @@
 
         function abrirRa() {
             const boletim = document.querySelector('.boletim .coletarBoletim');
+            const divBoletim = document.querySelector('.divBoletim');
             const ra = document.querySelector('.boletim .coletarRa');
             const content = document.querySelector('.content');
             const titulo = document.querySelector('.local h1');
             content.style.display = "none";
             ra.style.display = "flex";
             boletim.style.display = "none";
+            divBoletim.style.display = "none";
             titulo.textContent = "Mostrar RA";
         }
 
@@ -2138,7 +2140,7 @@
             const mae = document.getElementById('mae').value;
             const nascimento = document.getElementById('nascimentoRA').value;
             const url = 'https://sed.educacao.sp.gov.br/NCA/CadastroAluno/ConsultaRAAluno/PesquisaRAAluno';
-            const divRa = document.querySelector('.coletarRa');
+            const divRa = document.querySelector('.divRa');
             const dados = {
                 enModel: {
                     CodigoEscola: 22123,
