@@ -887,6 +887,10 @@
                 padding: 0px 0px 150px 0px;
             }
 
+            .boletim {
+                padding: 10px 0px 0px 0px;
+            }
+
             }
 
             @media (max-width: 679px) {
@@ -895,7 +899,176 @@
                 }
             }
 
+            .boletim {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0px;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                margin: 0px auto;
+            }
 
+            .boletim h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 20px 0px 25px 0px;
+            }
+
+            .boletim h1.erro {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 0px auto;
+                text-align: center;
+            }
+
+            .boletim label {
+                width: 85%;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.4px;
+                margin: 0px 0px 5px 5px;
+            }
+
+            .boletim input {
+                width: 85%;
+                height: 45px;
+                border-radius: 10px;
+                padding: 0px 10px;
+                font-size: 15px;
+                margin: 0px 0px 15px 0px;
+                outline: none;
+                border: 1.5px solid var(--one);
+                color: var(--one);
+            } .boletim input:focus {
+                box-shadow: 0px 0px 15px var(--one);
+            }
+
+            .boletim button {
+                width: 85%;
+                height: 50px;
+                border-radius: 10px;
+                margin: 5px 0px 15px 0px;
+                background: var(--one);
+                font-size: 15px;
+                color: var(--white);
+                border: 2px solid var(--one);
+                outline: none;
+                cursor: pointer;
+            } .boletim button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            } .boletim button:focus {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .boletim .divBoletim {
+                width: 95%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 0px 0px 0px 2px;
+                margin: 10px auto;
+            }
+
+            /* TABELA DA SEd */
+
+            .tabela-responsiva {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+
+            a.btn.btn-info {
+                display: none;
+            }
+
+            .row {
+                width: 100%;
+                height: auto;
+            }
+
+            table.tabela-full {
+                min-width: 100%;
+
+                border-collapse: collapse;
+            }
+
+            table.tabela > tbody > tr > td, table.tabela > thead > tr > th, table.tabela > tfoot > tr > th {
+                border: 1px solid #ddd;
+                padding: 8px;
+                font-size: 12px;
+                line-height: 14px;
+                text-align: center;
+                vertical-align: middle;
+                border-collapse: collapse;
+            }
+
+            table.tabela > thead > tr > th, table.tabela > tfoot > tr > th {
+                color: #fff;
+                font-weight: bold;
+                /*background-color: #459ad6;*/
+                background-color: var(--one);
+            }
+
+            table.tabela:not(.sem-hover) > tbody > tr:hover {
+                background-color: #ffc;
+            }
+
+            table.tabela-listrada > tbody > tr:nth-of-type(odd) > td {
+                background-color: #e2efff;
+            }
+
+            table.tabela-listrada > tbody > tr:nth-of-type(odd) > td.sorting_1 {
+                background-color: #d2e7fb;
+            }
+
+            table.tabela-listrada > tbody > tr:nth-of-type(even) > td.sorting_1 {
+                background-color: #edf5fb;
+            }
+
+            table.tabela-listrada:not(.sem-hover) > tbody > tr:hover > td {
+                background-color: #fbf4c6;
+            }
+
+            table.tabela-listrada:not(.sem-hover) > tbody > tr:hover > td.sorting_1 {
+                background-color: #e9ecc8;
+            }
+
+            table.tabela > tbody > tr.destaque > td, table.tabela > tbody > tr.destaque > td.sorting_1 {
+                background-color: #8ed0ff;
+            }
+
+            table.tabela:not(.sem-hover) > tbody > tr.destaque:hover > td, table.tabela:not(.sem-hover) > tbody > tr.destaque:hover > td.sorting_1 {
+                background-color: #afdeff;
+            }
+
+            .panel-body div:nth-child(even) {
+                margin-bottom: 10px;
+            }
+
+            .panel-body .row {
+                width: 90%;
+                margin: 0px auto;
+            }
+
+            .margem-superior-pequena {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .tabela-com-margem{
+                margin: 0px;
+                border-collapse: collapse;
+            }
+
+
+                        
             </style>
            </head>
 
@@ -950,6 +1123,13 @@
           <span></span>
 
           <!-- MUDAR DADOS DO PERFIL -->
+          <li onclick="abrirBoletim()">
+            <ion-icon name="receipt-outline"></ion-icon>
+            <h1>Mostrar Boletim</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+
+          <!-- MUDAR DADOS DO PERFIL -->
           <li onclick="mudarDados()">
             <ion-icon name="document-text-outline"></ion-icon>
             <h1>Editar Perfil</h1>
@@ -977,12 +1157,13 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
-        <!-- DADOS DA SED -->
+        <!-- DADOS DA SED 
         <li onclick="dadosSed()">
             <ion-icon name="file-tray-full-outline"></ion-icon>
             <h1>Dados da Sed</h1>
             <ion-icon name="arrow-forward"></ion-icon>
-        </li>
+        </li>-->
+
 
         <!-- DADOS DA SED
         <li onclick="baixarApp()">
@@ -1060,6 +1241,23 @@
 
 
             </ul>
+
+        </section>
+
+        <section class="boletim">
+
+            <h1>Consultar Boletim do Aluno</h1>
+            <p></p>
+
+            <label for="ra">Ra do Aluno</label>
+            <input id="ra" placeholder="ex: 00011122233" type="text">
+
+            <label for="nascimento">Data de Nascimento</label>
+            <input oninput="formatarNascimento()" id="nascimento" placeholder="ex: 01/01/2001" type="text">
+
+            <button onclick="consultarBoletim()">Consultar Boletim</button>
+
+            <div class="divBoletim"></div>
 
         </section>
 
@@ -1184,7 +1382,6 @@
                 <ion-icon class="selecionado" onclick="perfil()" name="person"></ion-icon>
 
             </nav>
-
                 
 
                 <!-- ICONS VERSAO 4.5.10 
@@ -1228,6 +1425,15 @@
             inputEmail.value = localStorage.getItem('gmail');
             inputTelefone.value = localStorage.getItem('telefone');
             inputTelefoneAluno.value = localStorage.getItem('telefoneAluno');
+        }
+
+        function abrirBoletim() {
+            const boletim = document.querySelector('.boletim');
+            const content = document.querySelector('.content');
+            const titulo = document.querySelector('.local h1');
+            content.style.display = "none";
+            boletim.style.display = "flex";
+            titulo.textContent = "Mostrar Boletim";
         }
 
 
@@ -1811,7 +2017,53 @@
             });
         }
 
+        function formatarNascimento() {
+            const input = document.getElementById('nascimento');
+            const nascimento = input.value;
+            const bug = nascimento.slice(2,3) + nascimento.slice(5,6);
+            if (nascimento.includes('//')) {
+                input.value = nascimento.replace(/\//g, '');
+                return;
+            }
+            if (nascimento.length === 8 && bug !== '//') {
+                input.value = nascimento.slice(0, 2) + '/' + nascimento.slice(2, 4) + '/' + nascimento.slice(4);   
+            } else if (nascimento.length > 10) {
+                input.value = nascimento.slice(0, -1);
+            }
+            
+        }
         
+        // CONSULTAR BOLETIM
+        function consultarBoletim() {
+            // DADOS
+            const dado = document.getElementById('ra').value;
+            const ra = dado.slice(0,-1);
+            const digito = dado.slice(-1);
+            const nascimento = document.getElementById('nascimento').value;
+            const url = `https://sed.educacao.sp.gov.br/Boletim/GerarBoletimUnificadoExterno?nrRa=${ra}&nrDigRa=${digito}&dsUfRa=SP&dtNascimento=${nascimento}&nrAnoLetivo=2023`;
+            // DIV
+            const boletim = document.querySelector('.divBoletim');
+            boletim.innerHTML = '';
+            fetch(url).then(response => response.text())  // ou .json() se a resposta for JSON
+            .then(html => {
+                const erro = html.slice(10, 14);
+                
+                if (erro === 'html') {
+                    boletim.innerHTML += `
+                        <h1 class="erro">Ra ou Data de Nascimento invalidos</h1>
+                    `;
+                } else if (erro === 'lert') {
+                    boletim.innerHTML += `
+                        <h1 class="erro">Aluno não encontrado no Sistema</h1>
+                    `;
+                } else {
+                    boletim.innerHTML += html;
+                }
+                // Agora você pode manipular a resposta HTML aqui
+                console.log(html);
+            })
+        }
+
        </script>
 
 
@@ -1850,4 +2102,6 @@
 
     </script>
     
+    <!--<link rel="stylesheet" type="text/css" href="https://sedseecdn.azureedge.net/styles/gov-bundle-1.0.49.css" /><link rel="stylesheet" type="text/css" href="//sedseecdn.azureedge.net/styles/bootstrap-select-1.11.custom.css" />-->
+
 </html>
