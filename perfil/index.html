@@ -135,6 +135,27 @@
                 padding: 0px 0px 0px 0px;
 		   }
 
+           .decoracao {
+                width: 90%;
+                height: 2.5px;
+                background: var(--one);
+                margin: 15px auto;
+                position: relative;
+            }
+
+            .decoracao p {
+                background: var(--white);
+                color: var(--one);
+                padding: 12.5px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+            }
+
 		   /* Container DADOS */
            .dados {
 				width: 100%;
@@ -1150,19 +1171,33 @@
         <!-- BOTOES DO PERFIL -->
         <ul>
 
-          <!-- ACEITAR AS NOTIFICAÇÕES -->
-          <h3 class="necessarioh1">Necessario!</h3>
-          <li class="necessario" onclick="aceitarNotification()">
-            <ion-icon name="notifications-outline"></ion-icon>
-            <h1>Aceitar as Notificações</h1>
-            <ion-icon name="arrow-forward"></ion-icon>
-          </li>
-          <span></span>
+          <div class="decoracao">
+              <p>Outros</p>
+          </div>
 
           <!-- MUDAR DADOS DO PERFIL -->
           <li onclick="abrirBoletim()">
             <ion-icon name="receipt-outline"></ion-icon>
             <h1>Mostrar Boletim</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+
+          <!-- DADOS DA SED --> 
+          <li onclick="dadosSed()">
+              <ion-icon name="file-tray-full-outline"></ion-icon>
+              <h1>Dados da Sed</h1>
+              <ion-icon name="arrow-forward"></ion-icon>
+          </li>
+
+          <div class="decoracao">
+            <p>Perfil</p>
+          </div>
+
+          <!-- ACEITAR AS NOTIFICAÇÕES -->
+          <h3 class="necessarioh1">Necessario!</h3>
+          <li class="necessario" onclick="aceitarNotification()">
+            <ion-icon name="notifications-outline"></ion-icon>
+            <h1>Aceitar as Notificações</h1>
             <ion-icon name="arrow-forward"></ion-icon>
           </li>
 
@@ -1194,12 +1229,12 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
-        <!-- DADOS DA SED 
-        <li onclick="dadosSed()">
-            <ion-icon name="file-tray-full-outline"></ion-icon>
-            <h1>Dados da Sed</h1>
+        <!-- SAIR DA CONTA -->
+        <li onclick="sair()">
+            <ion-icon style="margin: 0px 10px 0px 14px;" name="exit-outline"></ion-icon>
+            <h1>Sair da Conta</h1>
             <ion-icon name="arrow-forward"></ion-icon>
-        </li>-->
+        </li>
 
 
         <!-- DADOS DA SED
@@ -1214,14 +1249,8 @@
             <ion-icon name="terminal-outline"></ion-icon>
             <h1>IFSP</h1>
             <ion-icon name="arrow-forward"></ion-icon>
-        </li>-->
-            
-          <!-- SAIR DA CONTA -->
-          <li onclick="sair()">
-              <ion-icon style="margin: 0px 10px 0px 14px;" name="exit-outline"></ion-icon>
-              <h1>Sair da Conta</h1>
-              <ion-icon name="arrow-forward"></ion-icon>
-          </li>
+        </li>-->    
+          
 
         </ul>
 
