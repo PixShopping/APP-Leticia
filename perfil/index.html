@@ -965,6 +965,23 @@
                 margin: 0px auto;
             }
 
+            .boletim .coletarRa h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 20px 0px 10px 0px;
+                text-align: start;
+            }
+
+            .boletim .coletarRa p {
+                width: 90%;
+                font-size: 18px;
+                font-weight: 400;
+                letter-spacing: 0.4px;
+                margin: 0px 0px 25px 0px;
+                text-align: center;
+            }
+
             .boletim div.none {
                 display: none;
             }
@@ -998,13 +1015,17 @@
                 width: 85%;
                 height: 45px;
                 border-radius: 10px;
-                padding: 0px 10px;
+                padding: 0px 15px;
                 font-size: 15px;
                 margin: 0px 0px 15px 0px;
                 outline: none;
                 border: 1.5px solid var(--one);
                 color: var(--one);
-            } .boletim input:focus {
+                background: transparent;
+            } .boletim input::placeholder {
+                color: var(--one);
+            } 
+            .boletim input:focus {
                 box-shadow: 0px 0px 15px var(--one);
             }
 
@@ -1022,10 +1043,12 @@
             } .boletim button:hover {
                 background: transparent;
                 color: var(--one);
+                box-shadow: 0px 5px 15px var(--one);
                 transition: all .3s ease-in-out;
             } .boletim button:focus {
                 background: transparent;
                 color: var(--one);
+                box-shadow: 0px 5px 15px var(--one);
                 transition: all .3s ease-in-out;
             }
 
@@ -1049,8 +1072,26 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
+                align-items: center;
                 padding: 0px 0px 0px 2px;
-                margin: 10px auto;
+                margin: 0px auto;
+            }
+
+            .boletim .divRa h1,
+            .boletim .divBoletim h1  {
+                width: 90%;
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 15px 0px 25px 0px;
+                text-align: center;
+            }
+
+            .boletim .divRa h1 strong {
+                font-size: 24px;
+                font-weight: 900;
+                letter-spacing: 0.5px;
+                color: var(--tree);
             }
 
             .btn-copiar {
@@ -1365,7 +1406,8 @@
             </div>
 
             <div class="coletarRa none">
-                <h1>Consultar Ra do Aluno</h1>
+                <h1>Consultar RA do Aluno</h1>
+                <p>o RA (Registro do Aluno) é o número de identificação do aluno no Sistema de Cadastro de Alunos da Secretaria da Educação do Estado. Para pesquisar seu RA preencha os dados abaixo e clique em "Consultar RA".</p>
             
                 <label for="nome">Nome do Aluno</label>
                 <input id="nome" placeholder="ex: Vitor" type="text">
@@ -2194,7 +2236,7 @@
                 
                 if (erro === 'html') {
                     boletim.innerHTML += `
-                        <h1 class="erro">Ra ou Data de Nascimento invalidos</h1>
+                        <h1 class="erro">Ra e Dígito ou Data de Nascimento invalidos</h1>
                     `;
                 } else if (erro === 'lert') {
                     boletim.innerHTML += `
@@ -2238,10 +2280,17 @@
             .then(data => {
                 const ra = data.resultado.NumeroRA;
                 const digito = data.resultado.DigitoRA;
-                divRa.innerHTML += `
-                    <h1>Seu RA é: ${ra}${digito}</h1>
-                    <a class="btn-copiar" onclick="copiar('${ra}${digito}')">Copiar</a>
-                `;
+                if (ra !== null) {
+                    divRa.innerHTML += `
+                        <h1>Seu RA é: <strong>${ra}${digito}</strong></h1>
+                        <a class="btn-copiar" onclick="copiar('${ra}${digito}')">Copiar</a>
+                    `;
+                } else {
+                    divRa.innerHTML += `
+                        <h1>Dados Inválidos</h1>
+                    `;
+                }
+                
             })
             .catch(error => {
                 divRa.innerHTML += `
