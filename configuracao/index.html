@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="../src/img/icon.png" type="x-icon">
-		<link type="stylesheet" src="../style.css">
-		<title> Configuração | Letícia </title>
+		<link rel="stylesheet" href="../neve.css">
+        <title> Configuração | Letícia </title>
 
 		<style scoped>
 
@@ -475,7 +475,36 @@
 
             </nav>
 
+            <!-- NEVE -->
+            <div aria-hidden="true" class="snowflakes">
+                <div class="snowflake" style="font-size: 30px;">❅</div>
+                <div class="snowflake">❅</div>
+                <div class="snowflake" style="font-size: 40px;">❆</div>
+                <div class="snowflake">❅</div>
+                <div class="snowflake" style="font-size: 30px;">❆</div>
+                <div class="snowflake" style="font-size: 22px;">❅</div>
+                <div class="snowflake" style="font-size: 50px;">❆</div>
+                <div class="snowflake" style="font-size: 20px;">❅</div>
+                <div class="snowflake" style="font-size: 70px;">❆</div>
+                <div class="snowflake" style="font-size: 20px;">❆</div>
+            </div>
+
+            <!-- MORCEGOS -->
+            <div aria-hidden="true" class="morcegos">
+                <div class="snowflake"><img style="width: 37px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                <div class="snowflake"><img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 42.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 52.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 40.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 44px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                <div class="snowflake"><img style="width: 52.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 37.5px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                <div class="snowflake"><img style="width: 70px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                <div class="snowflake"><img style="width: 60px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div> 
+            </div>
+
         </body>
+
 
        <!-- JavaScript -->
        <script>
@@ -612,12 +641,14 @@
                     root.style.setProperty('--one', '#226338');
                     root.style.setProperty('--two', '#BD3634');
                     root.style.setProperty('--white', 'white');
+                    document.querySelector('.snowflakes').style.display = "flex";
                 } else if (evento === 'festaJunina') {
                 
                 } else if (evento === 'halloween') {
                     root.style.setProperty('--one', '#361E5C');
                     root.style.setProperty('--two', '#F27F1B');
                     root.style.setProperty('--white', 'white');
+                    document.querySelector('.morcegos').style.display = "flex";
                 } else if (evento === 'pascoa') {
                 
                 } else if (evento === 'carnaval') {

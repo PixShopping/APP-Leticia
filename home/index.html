@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- GOOGLE -->
         <meta name="google-site-verification" content="Wcc95HyLMR3erPkHXoyz1Oqg9kCvXVOY23GxTL8U3qM" />
-        
         <link rel="icon" href="../src/img/icon.png" type="x-icon">
-		<title> Inicio | Letícia </title>
+		<link rel="stylesheet" href="../neve.css">
+        <title> Inicio | Letícia </title>
 
         <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
         <script>
@@ -1083,6 +1083,35 @@
 
                 </nav>
 
+                <!-- NEVE -->
+                <div aria-hidden="true" class="snowflakes">
+                    <div class="snowflake" style="font-size: 30px;">❅</div>
+                    <div class="snowflake">❅</div>
+                    <div class="snowflake" style="font-size: 40px;">❆</div>
+                    <div class="snowflake">❅</div>
+                    <div class="snowflake" style="font-size: 30px;">❆</div>
+                    <div class="snowflake" style="font-size: 22px;">❅</div>
+                    <div class="snowflake" style="font-size: 50px;">❆</div>
+                    <div class="snowflake" style="font-size: 20px;">❅</div>
+                    <div class="snowflake" style="font-size: 70px;">❆</div>
+                    <div class="snowflake" style="font-size: 20px;">❆</div>
+                </div>
+
+                <!-- MORCEGOS -->
+                <div aria-hidden="true" class="morcegos">
+                    <div class="snowflake"><img style="width: 37px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                    <div class="snowflake"><img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 42.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 52.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 40.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 44px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                    <div class="snowflake"><img style="width: 52.5px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 37.5px;" src="https://cdn-icons-png.flaticon.com/512/8525/8525698.png"></div>
+                    <div class="snowflake"><img style="width: 70px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div>
+                    <div class="snowflake"><img style="width: 60px;" src="https://cdn-icons-png.flaticon.com/512/5875/5875771.png"></div> 
+                </div>
+                
+
             </body>
 
        <!-- JavaScript -->
@@ -1598,18 +1627,25 @@
                     root.style.setProperty('--two', '#BD3634');
                     root.style.setProperty('--tree', '#BD3634');
                     root.style.setProperty('--white', 'white');
+                    document.querySelector('.snowflakes').style.display = "flex";
                 } else if (evento === 'festaJunina') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/7979/7979775.png";
                 } else if (evento === 'halloween') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/3384/3384164.png"; 
                     root.style.setProperty('--one', '#361E5C');
                     root.style.setProperty('--two', '#F27F1B');
-                    root.style.setProperty('--tree', '#ccc');
+                    root.style.setProperty('--tree', '#F27F1B');
                     root.style.setProperty('--white', 'white');
+                    document.querySelector('.morcegos').style.display = "flex";
                 } else if (evento === 'pascoa') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/4185/4185066.png"; 
                 } else if (evento === 'carnaval') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/4145/4145808.png"; 
+                    root.style.setProperty('--one', '#63c6cc');
+                    root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                    //root.style.setProperty('--two', '#5ac8ca');
+                    root.style.setProperty('--white', '#40227a');
+                    
                 } else if (evento === 'independencia') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/4087/4087516.png"; 
                 } else if (evento === 'conscienciaNegra') {
