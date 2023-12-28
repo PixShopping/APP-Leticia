@@ -332,14 +332,14 @@
                   width: 100%;
                   height: 45px;
                   padding: 5px 12px;
-                  background: var(--two);
-                  color: var(--one);
+                  background: var(--one);
+                  border: 2px solid var(--one);
+                  color: var(--white);
                   margin: 0px 0px 12px 0px;
                   font-size: 16px;
                   font-weight: 500;
                   border-radius: 10px;
                   outline: none;
-                  border: 2px solid var(--two);
                   cursor: pointer;
                 }
 
@@ -347,14 +347,14 @@
                   width: 100%;
                   height: 45px;
                   padding: 5px 12px;
-                  background: var(--two);
-                  color: var(--one);
+                  background: var(--one);
+                  border: 2px solid var(--one);
+                  color: var(--white);
                   margin: 0px 0px 12px 0px;
                   font-size: 16px;
                   font-weight: 500;
                   border-radius: 10px;
                   outline: none;
-                  border: 2px solid var(--two);
                   cursor: pointer;
                 }
 
@@ -362,7 +362,8 @@
                   width: 90%;
                   height: 50px;
                   padding: 10px;
-                  background: var(--two);
+                  background: var(--one);
+                  border: 2px solid var(--one);
                   color: var(--white);
                   margin: 15px 0px 5px 0px;
                   font-size: 16.5px;
@@ -370,7 +371,6 @@
                   letter-spacing: 0.5px;
                   border-radius: 10px;
                   outline: none;
-                  border: 2px solid var(--two);
                   cursor: pointer;
                   align-self: center;
                 } .addProvas .form button:hover, .addProvasExterna .form button:hover {
@@ -701,8 +701,45 @@
         localStorage.setItem('ano', anoAtual);
         const ANO = localStorage.getItem('ano');
 
-        // PEGANDO AS SERIES DO ANO LETIVO 
+        // LISTAR EVENTO ATUAL COM COR
+        eventoAtual();
+        function eventoAtual() {
+            db.collection(ANO)
+            .doc('evento').get().then((doc) => {
+                const evento = doc.data().nome;
+                
+                if (!evento || evento === 'normal') {
+                    
+                } else if (evento === 'natal') {
+                    root.style.setProperty('--one', '#226338');
+                    root.style.setProperty('--two', '#BD3634');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'festaJunina') {
+                
+                } else if (evento === 'halloween') {
+                    root.style.setProperty('--one', '#361E5C');
+                    root.style.setProperty('--two', '#F27F1B');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'pascoa') {
+                
+                } else if (evento === 'carnaval') {
+                
+                } else if (evento === 'independencia') {
+                
+                } else if (evento === 'conscienciaNegra') {
+                
+                } else if (evento === 'diaDasMulheres') {
+                
+                } else if (evento === 'diaDosProfessores') {
+                
+                }  else if (evento === 'diaDoTrabalhador') {
+                
+                } 
+            });   
+        }
 
+
+        // PEGANDO AS SERIES DO ANO LETIVO 
         const logado = localStorage.getItem('logado');
           const provas = document.querySelector('.provas');
           const addProvas = document.querySelector('.addProvas');

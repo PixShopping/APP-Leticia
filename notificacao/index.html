@@ -893,6 +893,42 @@
         }
 
         
+        // LISTAR EVENTO ATUAL COM COR
+        eventoAtual();
+        function eventoAtual() {
+            db.collection(ANO)
+            .doc('evento').get().then((doc) => {
+                const evento = doc.data().nome;
+                if (!evento || evento === 'normal') {
+                    
+                } else if (evento === 'natal') {
+                    root.style.setProperty('--one', '#226338');
+                    root.style.setProperty('--two', '#BD3634');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'festaJunina') {
+                
+                } else if (evento === 'halloween') {
+                    root.style.setProperty('--one', '#361E5C');
+                    root.style.setProperty('--two', '#F27F1B');
+                    root.style.setProperty('--tree', '#ccc');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'pascoa') {
+                
+                } else if (evento === 'carnaval') {
+                
+                } else if (evento === 'independencia') {
+                
+                } else if (evento === 'conscienciaNegra') {
+                
+                } else if (evento === 'diaDasMulheres') {
+                
+                } else if (evento === 'diaDosProfessores') {
+                
+                }  else if (evento === 'diaDoTrabalhador') {
+                
+                } 
+            });   
+        }
         
 
        </script>

@@ -443,7 +443,7 @@
                         <ion-icon style="color: #ec6231;" name="logo-html5"></ion-icon>
                         <ion-icon style="color: #264de4;" name="logo-css3"></ion-icon>
                         <ion-icon style="color: #f0db4f;" name="logo-javascript"></ion-icon>
-                        <ion-icon style="color: var(--one)" name="logo-github"></ion-icon>
+                        <ion-icon style="color: #000000;" name="logo-github"></ion-icon>
                         <ion-icon style="color: #ffa611;" name="logo-firebase"></ion-icon>
                     </div>
 
@@ -598,6 +598,43 @@
         }
         window.location.reload();
       }
+
+      // LISTAR EVENTO ATUAL COM COR
+      eventoAtual();
+        function eventoAtual() {
+            db.collection(ANO)
+            .doc('evento').get().then((doc) => {
+                const evento = doc.data().nome;
+                
+                if (!evento || evento === 'normal') {
+                    
+                } else if (evento === 'natal') {
+                    root.style.setProperty('--one', '#226338');
+                    root.style.setProperty('--two', '#BD3634');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'festaJunina') {
+                
+                } else if (evento === 'halloween') {
+                    root.style.setProperty('--one', '#361E5C');
+                    root.style.setProperty('--two', '#F27F1B');
+                    root.style.setProperty('--white', 'white');
+                } else if (evento === 'pascoa') {
+                
+                } else if (evento === 'carnaval') {
+                
+                } else if (evento === 'independencia') {
+                
+                } else if (evento === 'conscienciaNegra') {
+                
+                } else if (evento === 'diaDasMulheres') {
+                
+                } else if (evento === 'diaDosProfessores') {
+                
+                }  else if (evento === 'diaDoTrabalhador') {
+                
+                } 
+            });   
+        }
 
 
       // TEMOS E PRIVACIDADE

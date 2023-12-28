@@ -143,7 +143,7 @@
                 height: 240px;
                 padding: 20px;
                 border-radius: 0px 0px 25px 25px;
-                background: #144774;
+                background: var(--two);
                 color: white;
                 display: flex;
                 flex-direction: column;
@@ -413,7 +413,7 @@
                 right: 20px;
                 font-size: 30px;
                 padding: 10px;
-                background: var(--six);
+                background: var(--tree);
                 color: white;
                 border-radius: 50%;
                 z-index: 200;
@@ -1174,22 +1174,7 @@
             }
         }
 
-        // TEMA ARRUMADO
-        const tema = localStorage.getItem('tema');
-        const root = document.documentElement;
-        if (tema === "light") {
-          root.style.setProperty('--one', '#002242');
-          root.style.setProperty('--two', '#9ECAE3');
-          root.style.setProperty('--six', '#144774');
-          root.style.setProperty('--white', 'white');
-        } else if (tema === "dark") {
-          root.style.setProperty('--one', 'white');
-          root.style.setProperty('--two', '#144774');
-          root.style.setProperty('--six', '#9ECAE3');
-          root.style.setProperty('--white', '#002242');
-        }
-
-
+        
        // Header Nome
        const logado = localStorage.getItem('logado');
        const login = localStorage.getItem('login');
@@ -1273,7 +1258,23 @@
         localStorage.setItem('ano', anoAtual);
         const ANO = localStorage.getItem('ano');
 
-            // CONFIGURAÇÃO FIREBASE FIRESTORE
+        // CORES DO APLICATIVO
+        const tema = localStorage.getItem('tema');
+        const root = document.documentElement;
+        if (tema === "light") {
+          root.style.setProperty('--one', '#002242');
+          root.style.setProperty('--two', '#9ECAE3');
+          root.style.setProperty('--six', '#144774');
+          root.style.setProperty('--white', 'white');
+        } else if (tema === "dark") {
+          root.style.setProperty('--one', 'white');
+          root.style.setProperty('--two', '#144774');
+          root.style.setProperty('--six', '#9ECAE3');
+          root.style.setProperty('--white', '#002242');
+        }
+
+
+        // CONFIGURAÇÃO FIREBASE FIRESTORE
         const firebaseConfig = {
             apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
             authDomain: "banco-de-dados-32cac.firebaseapp.com",
@@ -1579,7 +1580,7 @@
 
 
 
-        // LISTAR EVENTO ATUAL
+        // LISTAR EVENTO ATUAL COM COR
         eventoAtual();
         function eventoAtual() {
             const imagem = document.getElementById('imagemHome');
@@ -1593,10 +1594,18 @@
                     imagem.style.display = "none";
                 } else if (evento === 'natal') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/744/744546.png";
+                    root.style.setProperty('--one', '#226338');
+                    root.style.setProperty('--two', '#BD3634');
+                    root.style.setProperty('--tree', '#BD3634');
+                    root.style.setProperty('--white', 'white');
                 } else if (evento === 'festaJunina') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/7979/7979775.png";
                 } else if (evento === 'halloween') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/685/685842.png"; 
+                    imagem.src = "https://cdn-icons-png.flaticon.com/512/3384/3384164.png"; 
+                    root.style.setProperty('--one', '#361E5C');
+                    root.style.setProperty('--two', '#F27F1B');
+                    root.style.setProperty('--tree', '#ccc');
+                    root.style.setProperty('--white', 'white');
                 } else if (evento === 'pascoa') {
                     imagem.src = "https://cdn-icons-png.flaticon.com/512/4185/4185066.png"; 
                 } else if (evento === 'carnaval') {
