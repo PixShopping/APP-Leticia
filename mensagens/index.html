@@ -1073,6 +1073,107 @@
         }
 
 
+        /* DECORACAO */
+        .decoracao {
+            width: 90%;
+            height: 2px;
+            background: var(--one);
+            margin: 15px auto;
+            position: relative;
+        }
+
+        .decoracao p {
+            background: var(--white);
+            color: var(--one);
+            padding: 12.5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+
+        /* DUVIDAS */
+
+        .duvidas { 
+            width: 100%;
+            height: auto;
+            position: relative;
+            top: 0px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px auto;
+            user-select: text;
+        }
+
+        .duvidas div {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .duvidas h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin: 22.5px 0px;
+            text-align: center;
+        }
+
+        .duvidas div .msg-duvida {
+            width: 90%;
+            height: auto;
+            position: relative;
+            top: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 0px auto;
+            user-select: text;
+            background: var(--one);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 12px 0px;
+        }
+
+        .duvidas div .msg-duvida h1 {
+            width: 100%;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin: 0px 0px 5px 5px;
+            text-align: start;
+            text-transform: capitalize;
+        }
+
+        .duvidas div .msg-duvida p {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin: 5px;
+        }
+
+        .duvidas div .msg-duvida ion-icon {
+            font-size: 27.5px;
+            padding: 5px;
+            border-radius: 8px;
+            background: var(--red);
+            cursor: pointer;
+            color: var(--white);
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
         </style>
     </head>
 
@@ -1134,6 +1235,14 @@
             </ul>
 
             <ul class="planilhas">
+
+            </ul>
+
+            <ul class="duvidas">
+
+                <h1>Dúvidas Dos Pais</h1>
+
+                <div></div>
 
             </ul>
 
@@ -1664,41 +1773,44 @@
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
-                
-                if (!evento || evento === 'normal') {
+                const status = localStorage.getItem('temaStatus');
+                if (status !== 'off') {
+                    if (!evento || evento === 'normal') {
+                        
+                    } else if (evento === 'natal') {
+                        root.style.setProperty('--one', '#226338');
+                        root.style.setProperty('--two', '#BD3634');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.snowflakes').style.display = "flex";
+                    } else if (evento === 'festaJunina') {
                     
-                } else if (evento === 'natal') {
-                    root.style.setProperty('--one', '#226338');
-                    root.style.setProperty('--two', '#BD3634');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.snowflakes').style.display = "flex";
-                } else if (evento === 'festaJunina') {
-                
-                } else if (evento === 'halloween') {
-                    root.style.setProperty('--one', '#361E5C');
-                    root.style.setProperty('--two', '#F27F1B');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.morcegos').style.display = "flex";
-                } else if (evento === 'pascoa') {
-                
-                } else if (evento === 'carnaval') {
-                    root.style.setProperty('--one', '#63c6cc');
-                    root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
-                    //root.style.setProperty('--two', '#5ac8ca');
-                    root.style.setProperty('--white', '#40227a');
-                } else if (evento === 'independencia') {
-                
-                } else if (evento === 'conscienciaNegra') {
-                
-                } else if (evento === 'diaDasMulheres') {
-                    root.style.setProperty('--one', '#ea1a69');
-                    root.style.setProperty('--two', '#ff69b4');
-                    root.style.setProperty('--white', '#f1f1f1');
-                } else if (evento === 'diaDosProfessores') {
-                
-                }  else if (evento === 'diaDoTrabalhador') {
-                
-                } 
+                    } else if (evento === 'halloween') {
+                        root.style.setProperty('--one', '#361E5C');
+                        root.style.setProperty('--two', '#F27F1B');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.morcegos').style.display = "flex";
+                    } else if (evento === 'pascoa') {
+                    
+                    } else if (evento === 'carnaval') {
+                        root.style.setProperty('--one', '#63c6cc');
+                        root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                        //root.style.setProperty('--two', '#5ac8ca');
+                        root.style.setProperty('--white', '#40227a');
+                    } else if (evento === 'independencia') {
+                    
+                    } else if (evento === 'conscienciaNegra') {
+                    
+                    } else if (evento === 'diaDasMulheres') {
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    } else if (evento === 'diaDosProfessores') {
+                    
+                    }  else if (evento === 'diaDoTrabalhador') {
+                    
+                    }
+                }
+                 
             });   
         }
 
@@ -1763,6 +1875,38 @@
                             <div class="flex">
                                 <h1>Serie: ${serie}</h1>
                             </div>                                        
+                        </li>
+                    `;
+                    
+                });
+            });
+        }
+
+        // LER DUVIDAS DOS PAIS
+        function lerDuvidas() {
+            const duvidas = document.querySelector('.duvidas');
+            const div = document.querySelector('.duvidas div');
+            const container = document.querySelector('.content');
+            const filtro = document.querySelector('.filtro');
+            const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+            barraDePesquisa.style.display = "none";
+            container.style.display = "none";
+            filtro.style.display = "none";
+            duvidas.style.display = "flex";
+            db.collection(ANO)
+            .doc('duvidas')
+            .collection('pais')
+            .orderBy('data')
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    const responsavel = val.id;
+                    const mensagem = val.data().mensagem;
+                    div.innerHTML += `
+                        <div class="msg-duvida">
+                            <h1>${responsavel}</h1>
+                            <p>${mensagem}</p>     
+                            <ion-icon name="trash"></ion-icon>                             
                         </li>
                     `;
                     
@@ -1857,10 +2001,20 @@
         .onSnapshot((data) => {
             containerSeries.innerHTML = '';
             containerSeries.innerHTML = `
+                <span class="decoracao">
+                    <p>Funções Escolares</p>
+                </span>
                 <li onclick="listarPlanilhas()">
                     <ion-icon name="document-text-outline"></ion-icon>
                     <h1>Listas da Escola</h1>
                 </li>
+                <li onclick="lerDuvidas()">
+                    <ion-icon name="alert-outline"></ion-icon>
+                    <h1>Dúvidas dos Pais</h1>
+                </li>
+                <span class="decoracao">
+                    <p>Series</p>
+                </span>
             `;
             data.docs.map((val) => {
                 const serie = val.id

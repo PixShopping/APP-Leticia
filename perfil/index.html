@@ -134,6 +134,7 @@
                 padding: 0px 0px 0px 0px;
 		   }
 
+           /* DECORACAO */
            .decoracao {
                 width: 90%;
                 height: 2.5px;
@@ -1204,6 +1205,109 @@
                 border-collapse: collapse;
             }
 
+
+            /* ACHADOS E PERDIDOS */
+
+            .achados { 
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0px;
+                display: none;
+                flex-direction: column;
+                margin: 0px auto;
+                user-select: text;
+            }
+
+            .achados h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 22.5px 0px;
+                text-align: center;
+            }
+
+            .achados div {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .achados div li {
+                width: 90%;
+                height: auto;
+                position: relative;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                margin: 0px auto;
+                user-select: text;
+                background: var(--one);
+                color: var(--white);
+                padding: 20px;
+                border-radius: 12px;
+                margin: 12px 0px;
+            }
+
+            .achados div li .flex {
+                width: 100%; height: auto;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin: 0px 0px 10px 0px;
+            }
+
+            .achados div li .flex h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 0px;
+                text-align: start;
+                text-transform: capitalize;
+            }
+
+            .achados div li .flex a {
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 0px;
+                cursor: pointer;
+            }
+
+            .achados div li p {
+                width: 100%;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                margin: 5px;
+            }
+
+            /* ACHADOS (ERRO) */
+
+            .achados .erro {
+                display: none;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100%; height: auto;
+            }
+
+            .achados .erro h1 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.4px;
+                margin: 0px 0px 0px 10px;
+                text-align: start;
+                text-transform: capitalize;
+            }
+
+            .achados .erro ion-icon {
+                font-size: 35px;
+            }
+
             </style>
            </head>
 
@@ -1251,6 +1355,13 @@
           <div class="decoracao">
               <p>Outros</p>
           </div>
+
+          <!-- MUDAR DADOS DO PERFIL -->
+          <li onclick="consultarAchados(), abrirAchados()">
+            <ion-icon name="calendar-number-outline"></ion-icon>
+            <h1>Achados e Perdidos</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </li>
 
           <!-- MUDAR DADOS DO PERFIL -->
           <li onclick="abrirBoletim()">
@@ -1430,6 +1541,23 @@
 
         </section>
 
+        <!-- ACHADOS E PERDIDOS -->
+        <section class="achados">
+
+            <h1>Consulte os Achados e Perdidos</h1>
+
+            <div>
+
+            </div>
+
+            <div class="erro">
+                <ion-icon name="brush-outline"></ion-icon>
+                <h1>Nenhum Material Encontrado</h1>
+            </div>
+            
+        </section>
+
+        <!-- BOLETIM -->
         <section class="boletim">
 
             
@@ -1667,6 +1795,46 @@
             content.style.display = "none";
             boletim.style.display = "flex";
             titulo.textContent = "Mostrar Boletim";
+        }
+
+        function abrirAchados() {
+            const div = document.querySelector('.achados');
+            const content = document.querySelector('.content');
+            const titulo = document.querySelector('.local h1');
+            content.style.display = "none";
+            div.style.display = "flex";
+            titulo.textContent = "Achados e Perdidos";
+        }
+
+        function consultarAchados() {
+            const erro = document.querySelector('.achados .erro');
+            const div = document.querySelector('.achados div')
+            const url = 'https://sheetdb.io/api/v1/urf6ut5yzzmub';
+            fetch(url)
+            .then((data) => data.json())
+                .then((data) => {
+                    const tamanho = data.length;
+                    if (tamanho === 0) {
+                        erro.style.display = "flex";
+                    } else {
+                        div.innerHTML = ``;
+                        data.forEach((element) => {
+                            const material = element["Item Encontrado"];
+                            const data = element["Carimbo de data/hora"];
+                            const informacao = element["Informações"];
+                            console.log(material);                    
+                            div.innerHTML += `
+                                <li>
+                                    <div class="flex">
+                                        <h1>${material}</h1>
+                                        <a>${data}</a>
+                                    </div>
+                                    <p>${informacao}</p>
+                                </li>
+                            `;
+                        });
+                    }
+                })
         }
 
         function abrirRa() {
@@ -2112,44 +2280,46 @@
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
-                
-                if (!evento || evento === 'normal') {
+                const status = localStorage.getItem('temaStatus');
+                if (status !== 'off') {
+                    if (!evento || evento === 'normal') {
+                        
+                    } else if (evento === 'natal') {
+                        root.style.setProperty('--one', '#226338');
+                        root.style.setProperty('--two', '#BD3634');
+                        root.style.setProperty('--four', '#034F1B');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.snowflakes').style.display = "flex";
+                    } else if (evento === 'festaJunina') {
                     
-                } else if (evento === 'natal') {
-                    root.style.setProperty('--one', '#226338');
-                    root.style.setProperty('--two', '#BD3634');
-                    root.style.setProperty('--four', '#034F1B');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.snowflakes').style.display = "flex";
-                } else if (evento === 'festaJunina') {
-                
-                } else if (evento === 'halloween') {
-                    root.style.setProperty('--one', '#361E5C');
-                    root.style.setProperty('--two', '#F27F1B');
-                    root.style.setProperty('--four', '#F27F1B');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.morcegos').style.display = "flex";
-                } else if (evento === 'pascoa') {
-                
-                } else if (evento === 'carnaval') {
-                    root.style.setProperty('--one', '#63c6cc');
-                    root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
-                    //root.style.setProperty('--two', '#5ac8ca');
-                    root.style.setProperty('--white', '#40227a');
-                } else if (evento === 'independencia') {
-                
-                } else if (evento === 'conscienciaNegra') {
-                
-                } else if (evento === 'diaDasMulheres') {
-                    root.style.setProperty('--one', '#ea1a69');
-                    root.style.setProperty('--two', '#ff69b4');
-                    root.style.setProperty('--four', '#c75b7a');
-                    root.style.setProperty('--white', '#f1f1f1');
-                } else if (evento === 'diaDosProfessores') {
+                    } else if (evento === 'halloween') {
+                        root.style.setProperty('--one', '#361E5C');
+                        root.style.setProperty('--two', '#F27F1B');
+                        root.style.setProperty('--four', '#F27F1B');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.morcegos').style.display = "flex";
+                    } else if (evento === 'pascoa') {
+                    
+                    } else if (evento === 'carnaval') {
+                        root.style.setProperty('--one', '#63c6cc');
+                        root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                        //root.style.setProperty('--two', '#5ac8ca');
+                        root.style.setProperty('--white', '#40227a');
+                    } else if (evento === 'independencia') {
+                    
+                    } else if (evento === 'conscienciaNegra') {
+                    
+                    } else if (evento === 'diaDasMulheres') {
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--four', '#c75b7a');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    } else if (evento === 'diaDosProfessores') {
 
-                }  else if (evento === 'diaDoTrabalhador') {
-                
-                } 
+                    }  else if (evento === 'diaDoTrabalhador') {
+                    
+                    }
+                }
             });   
         }
 

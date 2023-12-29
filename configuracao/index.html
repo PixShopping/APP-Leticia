@@ -145,7 +145,7 @@
             }
 
             .content ul .flex v {
-                margin: 0px 7px;
+                margin: 10px 7px;
             }
 
             .content ul li {
@@ -208,7 +208,9 @@
                 align-items: center;
                 width: 100%;
                 height: auto;
-                margin: 5px 0px 0px 0px;
+                margin: 0px 0px 0px 0px;
+                position: relative;
+                padding: 0px 0px 40px 0px;
             }
 
             .creditos h1 {
@@ -240,8 +242,8 @@
             }
 
             .version {
-                position: absolute;
-                bottom: 100px;
+                position: relative;
+                margin: 15px 0px;
             }
 
             .version p {
@@ -324,7 +326,6 @@
 
             .creditos .version {
                 position: relative;
-                top: 15px;
             }
 
             }
@@ -440,6 +441,9 @@
             }
 
 
+            .content ul     .btnTemaDesativado {
+                display: none;
+            }
 
             </style>
            </head>
@@ -467,7 +471,24 @@
 
                     <ul>
 
-                        <li onclick="mudarTema()">
+                        <li class="btnTemaAtivo" onclick="desativarEvento()">
+                            <div class="iconsTema">
+                                <ion-icon id="eventoDesativado" name="close-circle-outline"></ion-icon>
+                            </div>
+                            <h1>Desativar Tema do Evento</h1>
+                            <h1 id="eventoh1"></h1>
+                        </li>
+                        
+                        <li class="btnTemaDesativado" onclick="ativarEvento()">
+                            <div class="iconsTema">
+                                <ion-icon id="eventoAtivado" name="checkmark-circle-outline"></ion-icon>
+                            </div>
+                            <h1>Ativar Tema do Evento</h1>
+                            <h1 id="eventoh1"></h1>
+                        </li>
+                                
+
+                        <li id="btnTema" onclick="mudarTema()">
                             <div class="iconsTema">
                                 <ion-icon id="lua" name="moon"></ion-icon>
                                 <ion-icon id="sol" name="sunny-outline"></ion-icon>
@@ -483,7 +504,7 @@
                             
                             <div class="flex">
                                 <input id="mensagem" placeholder="Mensagem" type="text">     
-                                <button>Enviar</button>
+                                <button onclick="enviarMensagem()">Enviar</button>
                             </div>
                             
                             
@@ -584,8 +605,12 @@
         const temah1 = document.getElementById('temah1');
         const sol = document.getElementById('sol');
         const lua = document.getElementById('lua');
+        const btnTema = document.getElementById('btnTema');
+        const btnAtivo = document.querySelector('.btnTemaAtivo');
+        const btnDesativado = document.querySelector('.btnTemaDesativado');
         // TEMA ARRUMADO
         const tema = localStorage.getItem('tema');
+        const status = localStorage.getItem('temaStatus');
         const root = document.documentElement;
         if (tema === "light") {
           root.style.setProperty('--one', '#002242');
@@ -599,6 +624,16 @@
           root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
           sol.style.display = "none";
+        } else {
+            btnTema.style.display = "none";
+            if (status !== 'off') {
+                btnAtivo.style.display = "flex";
+                btnDesativado.style.display = "none";
+            } else {
+                btnAtivo.style.display = "none";
+                btnDesativado.style.display = "flex";
+            }
+            
         }
 
        // Verificar LOGIN
@@ -649,6 +684,26 @@
 		 window.location.href = "tel:1633242256";
 		}
 
+        async function desativarEvento() {
+            const btnAtivo = document.querySelector('.btnTemaAtivo');
+            const btnDesativado = document.querySelector('.btnTemaDesativado');
+            btnAtivo.style.display = await "flex";
+            btnDesativado.style.display = await "none";
+            await localStorage.setItem('temaStatus', 'off');
+            await window.location.reload();
+        }
+
+        async function ativarEvento() {
+            const btnAtivo = document.querySelector('.btnTemaAtivo');
+            const btnDesativado = document.querySelector('.btnTemaDesativado');
+            btnAtivo.style.display = await "none";
+            btnDesativado.style.display = await "flex";
+            await localStorage.setItem('temaStatus', 'on');
+            await window.location.reload();
+        }
+
+        
+
        </script>
 
 
@@ -687,6 +742,12 @@
       // Pegar o ANO LETICO ATUAL
       const dataAtual = new Date();
       const anoAtual = dataAtual.getFullYear();
+      var dia = String(dataAtual.getDate()).padStart(2, '0');
+      var mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Lembre-se de que os meses começam do zero, então é necessário adicionar 1
+      var ano = String(dataAtual.getFullYear()).slice(2); // Pega os últimos dois dígitos do ano
+      // Monta a string no formato desejado
+      const dataCompleta = dia + '/' + mes + '/' + ano;
+
       localStorage.setItem('ano', anoAtual);
       const ANO = localStorage.getItem('ano');
 
@@ -699,49 +760,104 @@
         window.location.reload();
       }
 
+
       // LISTAR EVENTO ATUAL COM COR
       eventoAtual();
         function eventoAtual() {
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
-                
-                if (!evento || evento === 'normal') {
+                const status = localStorage.getItem('temaStatus');
+                if (status !== 'off') {
+                    if (!evento || evento === 'normal') {
+                        if (tema !== 'light' && tema !== 'dark') {
+                            localStorage.setItem('tema', 'light');
+                        }
+                    } else if (evento === 'natal') {
+                        root.style.setProperty('--one', '#226338');
+                        root.style.setProperty('--two', '#BD3634');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.snowflakes').style.display = "flex";
+                    } else if (evento === 'festaJunina') {
                     
-                } else if (evento === 'natal') {
-                    root.style.setProperty('--one', '#226338');
-                    root.style.setProperty('--two', '#BD3634');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.snowflakes').style.display = "flex";
-                } else if (evento === 'festaJunina') {
-                
-                } else if (evento === 'halloween') {
-                    root.style.setProperty('--one', '#361E5C');
-                    root.style.setProperty('--two', '#F27F1B');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.morcegos').style.display = "flex";
-                } else if (evento === 'pascoa') {
-                
-                } else if (evento === 'carnaval') {
-                    root.style.setProperty('--one', '#63c6cc');
-                    root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
-                    //root.style.setProperty('--two', '#5ac8ca');
-                    root.style.setProperty('--white', '#40227a');
-                
-                } else if (evento === 'independencia') {
-                
-                } else if (evento === 'conscienciaNegra') {
-                
-                } else if (evento === 'diaDasMulheres') {
-                    root.style.setProperty('--one', '#ea1a69');
-                    root.style.setProperty('--two', '#ff69b4');
-                    root.style.setProperty('--white', '#f1f1f1');
-                } else if (evento === 'diaDosProfessores') {
-                
-                }  else if (evento === 'diaDoTrabalhador') {
-                
-                } 
+                    } else if (evento === 'halloween') {
+                        root.style.setProperty('--one', '#361E5C');
+                        root.style.setProperty('--two', '#F27F1B');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.morcegos').style.display = "flex";
+                    } else if (evento === 'pascoa') {
+                    
+                    } else if (evento === 'carnaval') {
+                        root.style.setProperty('--one', '#63c6cc');
+                        root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                        //root.style.setProperty('--two', '#5ac8ca');
+                        root.style.setProperty('--white', '#40227a');
+                    
+                    } else if (evento === 'independencia') {
+                    
+                    } else if (evento === 'conscienciaNegra') {
+                    
+                    } else if (evento === 'diaDasMulheres') {
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    } else if (evento === 'diaDosProfessores') {
+                    
+                    }  else if (evento === 'diaDoTrabalhador') {
+                    
+                    }
+                }
+                 
             });   
+        }
+
+        // ENVIAR MENSAGEM
+        function enviarMensagem() {
+            const inputMensagem = document.getElementById('mensagem');
+            const mensagem = inputMensagem.value;
+            const responsavel = localStorage.getItem('responsavel');
+            if (responsavel === null) {
+                const responsavel = localStorage.getItem('logado')
+                db.collection(ANO)
+                .doc('duvidas')
+                .collection('pais')    
+                .doc(responsavel).set({
+                    mensagem: mensagem,
+                    data: firebase.firestore.FieldValue.serverTimestamp(),
+                    date: dataCompleta,
+                }).then((response) => {
+                    swal({
+                        title: 'Parabens',
+                        text: 'Mensagem enviada com sucesso!',
+                        buttons: {
+                            confirm: "Ok",
+                        },
+                    }).then((res) => {
+                        inputMensagem.value = '';
+                        window.location.reload();
+                    })
+                })
+            } else {
+                db.collection(ANO)
+                .doc('duvidas')
+                .collection('pais')    
+                .doc(responsavel).set({
+                    mensagem: mensagem,
+                    data: firebase.firestore.FieldValue.serverTimestamp(),
+                    date: dataCompleta,
+                }).then((response) => {
+                    swal({
+                        title: 'Parabens',
+                        text: 'Mensagem enviada com sucesso!',
+                        buttons: {
+                            confirm: "Ok",
+                        },
+                    }).then((res) => {
+                        inputMensagem.value = '';
+                        window.location.reload();
+                    })
+                })
+            }
         }
 
 
@@ -760,6 +876,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- RELOGIO -->
     <script>

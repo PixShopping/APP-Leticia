@@ -1619,50 +1619,70 @@
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
-                if (!evento || evento === 'normal') {
+                const status = localStorage.getItem('temaStatus');
+                if (status !== 'off') {
+                    if (!evento || evento === 'normal') {
+                        if (tema !== 'light' && tema !== 'dark') {
+                            localStorage.setItem('tema', 'light');
+                        }
+                        icone.style.display = "flex";
+                        imagem.style.display = "none";
+                    } else if (evento === 'natal') {
+                        localStorage.setItem('tema', 'natal');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/744/744546.png";
+                        root.style.setProperty('--one', '#226338');
+                        root.style.setProperty('--two', '#BD3634');
+                        root.style.setProperty('--tree', '#BD3634');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.snowflakes').style.display = "flex";
+                    } else if (evento === 'festaJunina') {
+                        localStorage.setItem('tema', 'festaJunina');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/7979/7979775.png";
+                    } else if (evento === 'halloween') {
+                        localStorage.setItem('tema', 'halloween');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/3384/3384164.png"; 
+                        root.style.setProperty('--one', '#361E5C');
+                        root.style.setProperty('--two', '#F27F1B');
+                        root.style.setProperty('--tree', '#F27F1B');
+                        root.style.setProperty('--white', 'white');
+                        document.querySelector('.morcegos').style.display = "flex";
+                    } else if (evento === 'pascoa') {
+                        localStorage.setItem('tema', 'pascoa');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/4185/4185066.png"; 
+                    } else if (evento === 'carnaval') {
+                        localStorage.setItem('tema', 'carnaval');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/4145/4145808.png"; 
+                        root.style.setProperty('--one', '#63c6cc');
+                        root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                        root.style.setProperty('--tree', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
+                        //root.style.setProperty('--two', '#5ac8ca');
+                        root.style.setProperty('--white', '#40227a');
+                        
+                    } else if (evento === 'independencia') {
+                        localStorage.setItem('tema', 'independencia');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/4087/4087516.png"; 
+                    } else if (evento === 'conscienciaNegra') {
+                        localStorage.setItem('tema', 'conscienciaNegra');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/4797/4797130.png"; 
+                    } else if (evento === 'diaDasMulheres') {
+                        localStorage.setItem('tema', 'diaDasMulheres');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/7409/7409662.png"; 
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--tree', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    } else if (evento === 'diaDosProfessores') {
+                        localStorage.setItem('tema', 'diaDosProfessores');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/906/906175.png"; 
+                    }  else if (evento === 'diaDoTrabalhador') {
+                        localStorage.setItem('tema', 'diaDoTrabalhador');
+                        imagem.src = "https://cdn-icons-png.flaticon.com/512/5347/5347689.png"; 
+                    }
+                } else {
                     icone.style.display = "flex";
                     imagem.style.display = "none";
-                } else if (evento === 'natal') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/744/744546.png";
-                    root.style.setProperty('--one', '#226338');
-                    root.style.setProperty('--two', '#BD3634');
-                    root.style.setProperty('--tree', '#BD3634');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.snowflakes').style.display = "flex";
-                } else if (evento === 'festaJunina') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/7979/7979775.png";
-                } else if (evento === 'halloween') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/3384/3384164.png"; 
-                    root.style.setProperty('--one', '#361E5C');
-                    root.style.setProperty('--two', '#F27F1B');
-                    root.style.setProperty('--tree', '#F27F1B');
-                    root.style.setProperty('--white', 'white');
-                    document.querySelector('.morcegos').style.display = "flex";
-                } else if (evento === 'pascoa') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4185/4185066.png"; 
-                } else if (evento === 'carnaval') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4145/4145808.png"; 
-                    root.style.setProperty('--one', '#63c6cc');
-                    root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
-                    root.style.setProperty('--tree', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
-                    //root.style.setProperty('--two', '#5ac8ca');
-                    root.style.setProperty('--white', '#40227a');
-                    
-                } else if (evento === 'independencia') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4087/4087516.png"; 
-                } else if (evento === 'conscienciaNegra') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/4797/4797130.png"; 
-                } else if (evento === 'diaDasMulheres') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/7409/7409662.png"; 
-                    root.style.setProperty('--one', '#ea1a69');
-                    root.style.setProperty('--two', '#ff69b4');
-                    root.style.setProperty('--tree', '#ff69b4');
-                    root.style.setProperty('--white', '#f1f1f1');
-                } else if (evento === 'diaDosProfessores') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/906/906175.png"; 
-                }  else if (evento === 'diaDoTrabalhador') {
-                    imagem.src = "https://cdn-icons-png.flaticon.com/512/5347/5347689.png"; 
-                } 
+                }
+                 
             });   
         }    
 
