@@ -825,7 +825,8 @@
                 db.collection(ANO)
                 .doc('duvidas')
                 .collection('pais')    
-                .doc(responsavel).set({
+                .doc().set({
+                    responsavel: responsavel,
                     mensagem: mensagem,
                     data: firebase.firestore.FieldValue.serverTimestamp(),
                     date: dataCompleta,
@@ -845,7 +846,8 @@
                 db.collection(ANO)
                 .doc('duvidas')
                 .collection('pais')    
-                .doc(responsavel).set({
+                .doc().set({
+                    responsavel: responsavel,
                     mensagem: mensagem,
                     data: firebase.firestore.FieldValue.serverTimestamp(),
                     date: dataCompleta,

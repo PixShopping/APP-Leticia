@@ -1166,12 +1166,41 @@
             padding: 5px;
             border-radius: 8px;
             background: var(--red);
+            border: 2px solid var(--red);
             cursor: pointer;
             color: var(--white);
             position: absolute;
             top: 50%;
             right: 20px;
             transform: translateY(-50%);
+        } .duvidas div .msg-duvida ion-icon:hover {
+            background: transparent;
+            color: var(--red);
+            transition: all .3s ease-in-out;
+        }
+
+
+        /* duvidas (ERRO) */
+
+        .duvidas .erro {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%; height: auto;
+        }
+
+        .duvidas .erro h1 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin: 0px 0px 0px 10px;
+            text-align: start;
+            text-transform: capitalize;
+        }
+
+        .duvidas .erro ion-icon {
+            font-size: 35px;
         }
 
         </style>
@@ -1243,6 +1272,11 @@
                 <h1>Dúvidas Dos Pais</h1>
 
                 <div></div>
+
+                <div class="erro">
+                    <ion-icon name="alert"></ion-icon>
+                    <h1>Nenhuma dúvida encontrada</h1>
+                </div>
 
             </ul>
 
@@ -1886,6 +1920,7 @@
         function lerDuvidas() {
             const duvidas = document.querySelector('.duvidas');
             const div = document.querySelector('.duvidas div');
+            const erro = document.querySelector('.duvidas .erro');
             const container = document.querySelector('.content');
             const filtro = document.querySelector('.filtro');
             const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
@@ -1898,20 +1933,46 @@
             .collection('pais')
             .orderBy('data')
             .onSnapshot((data) => {
-                div.innerHTML = '';
-                data.docs.map((val) => {
-                    const responsavel = val.id;
-                    const mensagem = val.data().mensagem;
-                    div.innerHTML += `
-                        <div class="msg-duvida">
-                            <h1>${responsavel}</h1>
-                            <p>${mensagem}</p>     
-                            <ion-icon name="trash"></ion-icon>                             
-                        </li>
-                    `;
-                    
-                });
+                const tamanho = data.size;
+                if (tamanho === 0) {
+                    erro.style.display = "flex";
+                } else {
+                    div.innerHTML = '';
+                    data.docs.map((val) => {
+                        const id = val.id;
+                        const responsavel = val.data().responsavel;
+                        const mensagem = val.data().mensagem;
+                        div.innerHTML += `
+                            <div class="msg-duvida">
+                                <h1>${responsavel}</h1>
+                                <p>${mensagem}</p>     
+                                <ion-icon onclick="excluirDuvida('${id}')" name="trash"></ion-icon>                             
+                            </li>
+                        `;
+                        
+                    });
+                }
             });
+        }
+
+        function excluirDuvida(id) {
+            swal({
+                title: 'AVISO',
+                text: 'Deseja excluir mesmo?',
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: "Sim",
+                },
+            }).then((response) => {
+                if (response) {
+                    db.collection(ANO)
+                    .doc('duvidas')
+                    .collection('pais')
+                    .doc(id).delete().then((res) => {
+                        window.location.reload();
+                    })
+                }
+            })
         }
 
         // LER PLANILHAS
