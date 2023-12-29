@@ -501,7 +501,7 @@
                             <p>Achou algum erro ou esta com alguma duvida? Envie uma mensagem para nossa central de atendimento.</p>
                             
                             <div class="flex">
-                                <input id="mensagem" placeholder="Mensagem" type="text">     
+                                <input id="mensagem" placeholder="Escreva sua dúvida" type="text">     
                                 <button onclick="enviarMensagem()">Enviar</button>
                             </div>
                             
@@ -615,7 +615,13 @@
             btnAtivo.style.display = "none";
             btnDesativado.style.display = "flex";
             btnTema.style.display = "flex";
-            localStorage.setItem('tema', 'light');
+            localStorage.setItem('tema', 'light');        
+            lua.style.display = "none";
+            sol.style.display = "flex";
+            root.style.setProperty('--one', '#002242');
+            root.style.setProperty('--two', '#9ECAE3');
+            root.style.setProperty('--six', '#144774');
+            root.style.setProperty('--white', 'white');
         } else {
             btnAtivo.style.display = "flex";
             btnDesativado.style.display = "none";
@@ -628,12 +634,14 @@
           root.style.setProperty('--six', '#144774');
           root.style.setProperty('--white', 'white');
           lua.style.display = "none";
+          sol.style.display = "flex";
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
           root.style.setProperty('--two', '#144774');
           root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
           sol.style.display = "none";
+          lua.style.display = "flex";
         }
 
         
@@ -808,6 +816,20 @@
                     
                     }  else if (evento === 'diaDoTrabalhador') {
                     
+                    } else if (evento === 'setembro') {
+                        localStorage.setItem('tema', 'setembro');
+                        root.style.setProperty('--one', '#002242');
+                        root.style.setProperty('--two', '#ecab0f');
+                        root.style.setProperty('--tree', '#ecab0f');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'outubro') {
+                        localStorage.setItem('tema', 'outubro');
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--tree', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'novembro') {
+                        localStorage.setItem('tema', 'novembro');
                     }
                 }
                  

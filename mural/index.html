@@ -584,7 +584,7 @@
 
                         <div class="divInputMateriaExterna">
                           <label>Outra Prova: </label>
-                          <input id="inputMateriaExterna" type="text">
+                          <input placeholder="ex: Obmep" id="inputMateriaExterna" type="text">
                         </div>
 
                         <label>Série: </label>
@@ -805,6 +805,20 @@
                     
                     }  else if (evento === 'diaDoTrabalhador') {
                     
+                    } else if (evento === 'setembro') {
+                        localStorage.setItem('tema', 'setembro');
+                        root.style.setProperty('--one', '#002242');
+                        root.style.setProperty('--two', '#ecab0f');
+                        root.style.setProperty('--tree', '#ecab0f');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'outubro') {
+                        localStorage.setItem('tema', 'outubro');
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--tree', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'novembro') {
+                        localStorage.setItem('tema', 'novembro');
                     }
                 }
                  

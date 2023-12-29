@@ -1677,6 +1677,23 @@
                     }  else if (evento === 'diaDoTrabalhador') {
                         localStorage.setItem('tema', 'diaDoTrabalhador');
                         imagem.src = "https://cdn-icons-png.flaticon.com/512/5347/5347689.png"; 
+                    } else if (evento === 'setembro') {
+                        localStorage.setItem('tema', 'setembro');
+                        imagem.src = "../src/img/setembro.png";
+                        root.style.setProperty('--one', '#002242');
+                        root.style.setProperty('--two', '#ecab0f');
+                        root.style.setProperty('--tree', '#ecab0f');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'outubro') {
+                        localStorage.setItem('tema', 'outubro');
+                        imagem.src = "../src/img/outubro.png";
+                        root.style.setProperty('--one', '#ea1a69');
+                        root.style.setProperty('--two', '#ff69b4');
+                        root.style.setProperty('--tree', '#ff69b4');
+                        root.style.setProperty('--white', '#f1f1f1');
+                    }  else if (evento === 'novembro') {
+                        localStorage.setItem('tema', 'novembro');
+                        imagem.src = "../src/img/novembro.png";
                     }
                 } else {
                     icone.style.display = "flex";
