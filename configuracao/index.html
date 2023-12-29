@@ -440,8 +440,11 @@
                 transition: all .3s ease-in-out;
             }
 
+            .content ul #btnTema {
+                display: none;
+            }
 
-            .content ul     .btnTemaDesativado {
+            .content ul .btnTemaDesativado {
                 display: none;
             }
 
@@ -618,14 +621,14 @@
           root.style.setProperty('--six', '#144774');
           root.style.setProperty('--white', 'white');
           lua.style.display = "none";
+          btnTema.style.display = "flex";
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
           root.style.setProperty('--two', '#144774');
           root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
           sol.style.display = "none";
-        } else {
-            btnTema.style.display = "none";
+          btnTema.style.display = "flex";
         }
 
         if (status !== 'off') {
