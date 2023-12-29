@@ -626,14 +626,14 @@
           sol.style.display = "none";
         } else {
             btnTema.style.display = "none";
-            if (status !== 'off') {
-                btnAtivo.style.display = "flex";
-                btnDesativado.style.display = "none";
-            } else {
-                btnAtivo.style.display = "none";
-                btnDesativado.style.display = "flex";
-            }
-            
+        }
+
+        if (status !== 'off') {
+            btnAtivo.style.display = "flex";
+            btnDesativado.style.display = "none";
+        } else {
+            btnAtivo.style.display = "none";
+            btnDesativado.style.display = "flex";
         }
 
        // Verificar LOGIN
