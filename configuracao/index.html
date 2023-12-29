@@ -819,50 +819,61 @@
             const inputMensagem = document.getElementById('mensagem');
             const mensagem = inputMensagem.value;
             const responsavel = localStorage.getItem('responsavel');
-            if (responsavel === null) {
-                const responsavel = localStorage.getItem('logado')
-                db.collection(ANO)
-                .doc('duvidas')
-                .collection('pais')    
-                .doc().set({
-                    responsavel: responsavel,
-                    mensagem: mensagem,
-                    data: firebase.firestore.FieldValue.serverTimestamp(),
-                    date: dataCompleta,
-                }).then((response) => {
-                    swal({
-                        title: 'Parabens',
-                        text: 'Mensagem enviada com sucesso!',
-                        buttons: {
-                            confirm: "Ok",
-                        },
-                    }).then((res) => {
-                        inputMensagem.value = '';
-                        window.location.reload();
+            if (mensagem) {
+                if (responsavel === null) {
+                    const responsavel = localStorage.getItem('logado')
+                    db.collection(ANO)
+                    .doc('duvidas')
+                    .collection('pais')    
+                    .doc().set({
+                        responsavel: responsavel,
+                        mensagem: mensagem,
+                        data: firebase.firestore.FieldValue.serverTimestamp(),
+                        date: dataCompleta,
+                    }).then((response) => {
+                        swal({
+                            title: 'Parabens',
+                            text: 'Mensagem enviada com sucesso!',
+                            buttons: {
+                                confirm: "Ok",
+                            },
+                        }).then((res) => {
+                            inputMensagem.value = '';
+                            window.location.reload();
+                        })
                     })
-                })
+                } else {
+                    db.collection(ANO)
+                    .doc('duvidas')
+                    .collection('pais')    
+                    .doc().set({
+                        responsavel: responsavel,
+                        mensagem: mensagem,
+                        data: firebase.firestore.FieldValue.serverTimestamp(),
+                        date: dataCompleta,
+                    }).then((response) => {
+                        swal({
+                            title: 'Parabens',
+                            text: 'Mensagem enviada com sucesso!',
+                            buttons: {
+                                confirm: "Ok",
+                            },
+                        }).then((res) => {
+                            inputMensagem.value = '';
+                            window.location.reload();
+                        })
+                    })
+                }
             } else {
-                db.collection(ANO)
-                .doc('duvidas')
-                .collection('pais')    
-                .doc().set({
-                    responsavel: responsavel,
-                    mensagem: mensagem,
-                    data: firebase.firestore.FieldValue.serverTimestamp(),
-                    date: dataCompleta,
-                }).then((response) => {
-                    swal({
-                        title: 'Parabens',
-                        text: 'Mensagem enviada com sucesso!',
-                        buttons: {
-                            confirm: "Ok",
-                        },
-                    }).then((res) => {
-                        inputMensagem.value = '';
-                        window.location.reload();
-                    })
+                swal({
+                    title: 'AVISO',
+                    text: 'Digite uma Mensagem!',
+                    buttons: {
+                        confirm: "Ok",
+                    },
                 })
             }
+            
         }
 
 
