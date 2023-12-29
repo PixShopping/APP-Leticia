@@ -331,7 +331,7 @@
                 flex-direction: column;
                 align-items: center;
                 position: relative;
-                padding: 0px 0px 20px 0px;
+                padding: 0px 0px 50px 0px;
             }
 
             .contentSeries h1 {
@@ -1182,7 +1182,7 @@
 
         /* duvidas (ERRO) */
 
-        .duvidas .erro {
+        .duvidas .erro, .content .erroSeries {
             display: none;
             flex-direction: row;
             align-items: center;
@@ -1190,7 +1190,7 @@
             width: 100%; height: auto;
         }
 
-        .duvidas .erro h1 {
+        .duvidas .erro h1, .content .erroSeries h1 {
             font-size: 24px;
             font-weight: 600;
             letter-spacing: 0.4px;
@@ -1199,8 +1199,12 @@
             text-transform: capitalize;
         }
 
-        .duvidas .erro ion-icon {
+        .duvidas .erro ion-icon, .content .erroSeries ion-icon {
             font-size: 35px;
+        }
+
+        .content .erroSeries {
+            padding: 20px 0px 35px 0px;
         }
 
         </style>
@@ -1255,6 +1259,11 @@
                 <ul id="containerSeries">
                     
                 </ul>
+
+                <div class="erroSeries">
+                    <ion-icon name="sad-outline"></ion-icon>
+                    <h1>Nenhuma dúvida encontrada</h1>
+                </div>
                 
 
             </section>
@@ -2056,10 +2065,15 @@
 
         // LER SERIES OU LER TURMA
         const containerSeries = document.getElementById('containerSeries');
+        const erroSeries = document.querySelector('.content .erroSeries');
         db.collection(ANO)
         .doc('restrito')
         .collection('series')
         .onSnapshot((data) => {
+            const tamanho = data.size;
+            if (tamanho === 0) {
+                erroSeries.style.display = "flex";
+            }
             containerSeries.innerHTML = '';
             containerSeries.innerHTML = `
                 <span class="decoracao">
