@@ -493,7 +493,7 @@
 
             /* Redes Sociais */
 
-            .redes-sociais, .dados-da-sed {
+            .redes-sociais, .dados-da-sed, .emails {
                 width: 100%;
                 height: auto;
                 display: none;
@@ -508,6 +508,20 @@
                 text-align: center;
             }
 
+            .emails h1 {
+                width: 90%;
+                display: flex;
+                margin: 25px auto 0px auto;
+                text-align: center;
+            }
+
+            .telefones h1 {
+                width: 90%;
+                display: flex;
+                margin: 25px auto -5px auto;
+                text-align: center;
+            }
+
             .dados-da-sed p {
                 width: 80%;
                 display: flex;
@@ -516,7 +530,7 @@
                 text-align: center;
             }
 
-            .redes-sociais ul, .dados-da-sed ul {
+            .redes-sociais ul, .dados-da-sed ul, .emails ul {
 		        display: flex;
 		        flex-direction: column;
 				width: 100%;
@@ -525,7 +539,7 @@
                 margin: 15px 0px 0px 0px;
 		   }
 
-           .redes-sociais ul a, .dados-da-sed ul a {
+           .redes-sociais ul a, .dados-da-sed ul a, .emails ul a{
                 width: 90%;
                 height: 56px;
                 display: flex;
@@ -538,24 +552,24 @@
                 text-decoration: none;
             }
 
-		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover {
+		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover, .emails ul a:hover {
                 background: var(--one);
                 color: var(--white);
                 transition: all .4s ease-in-out;
 		   }
 
-		   .redes-sociais ul a ion-icon, .dados-da-sed ul a ion-icon {
+		   .redes-sociais ul a ion-icon, .dados-da-sed ul a ion-icon, .emails ul a ion-icon {
 		        font-size: 30px;
                 margin: 0px 10px 0px 12px;
 		   }
 
-		   .redes-sociais ul a ion-icon:last-child, .dados-da-sed ul a ion-icon:last-child {
+		   .redes-sociais ul a ion-icon:last-child, .dados-da-sed ul a ion-icon:last-child, .emails ul a ion-icon:last-child {
                 margin: 0px 10px 0px auto;
                 font-size: 30px;
                 background: transparent;
 		   }
 
-		   .redes-sociais ul a h1, .dados-da-sed ul a h1 {
+		   .redes-sociais ul a h1, .dados-da-sed ul a h1, .emails ul a h1 {
 			  font-size: 18px;
 			  font-weight: 500;
 			  margin: 0px;
@@ -1347,6 +1361,40 @@
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
 
+                <a onclick="email()">
+                    <ion-icon name="mail"></ion-icon>
+                    <h1>E-mails</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+
+            </ul>
+
+        </section>
+
+        <section class="emails">
+
+            <h1>E-mails da Escola</h1>
+
+            <ul>
+                
+                <a onclick="abrirEmail('')">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <h1>Secretaria</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <a onclick="abrirEmail('')">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <h1>Coordenação</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <a onclick="abrirEmail('')">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <h1>Direção</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
 
             </ul>
 
@@ -1429,6 +1477,8 @@
         <!-- SECTION CONTATO -->
         <section class="telefones">
 
+            <h1>Telefones da Escola</h1>
+
             <ul>
 
                 <h2>Secretaria 1</h2>
@@ -1445,7 +1495,7 @@
                     <ion-icon name="arrow-forward"></ion-icon>
                 </li>
 
-                <h2>Escola</h2>
+                <h2>Celular da Secretaria</h2>
                 <li onclick="escola()">
                     <ion-icon name="phone-portrait-outline"></ion-icon>
                     <h1>(16) 991190322</h1>
@@ -1844,6 +1894,13 @@
 
         function instagram() {
             window.location.href = "https://app-leticia.netlify.app/src/pagin/instagram.html";
+        }
+
+        function email() {
+            const div = document.querySelector('.emails');
+            const redes = document.querySelector('.redes-sociais');
+            div.style.display = "flex";
+            redes.style.display = "none";
         }
 
         function boletim() {
