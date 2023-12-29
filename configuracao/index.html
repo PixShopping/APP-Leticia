@@ -443,6 +443,10 @@
                 display: none;
             }
 
+            .none {
+                display: none;
+            }
+
             </style>
            </head>
 
@@ -598,6 +602,7 @@
 
        <!-- JavaScript -->
        <script>
+        
 
         // TEMA ARRUMADO
         const temah1 = document.getElementById('temah1');
@@ -614,8 +619,7 @@
         if (status === 'off') {
             btnAtivo.style.display = "none";
             btnDesativado.style.display = "flex";
-            btnTema.style.display = "flex";
-            localStorage.setItem('tema', 'light');        
+            btnTema.style.display = "flex"; 
             lua.style.display = "none";
             sol.style.display = "flex";
             root.style.setProperty('--one', '#002242');
@@ -701,6 +705,7 @@
             btnAtivo.style.display = await "flex";
             btnDesativado.style.display = await "none";
             await localStorage.setItem('temaStatus', 'off');
+            localStorage.setItem('tema', 'light');       
             await window.location.reload();
         }
 
@@ -764,13 +769,12 @@
 
       function mudarTema() {
         if (tema === "light") {
-            localStorage.setItem('tema','dark');
+            localStorage.setItem('tema', 'dark');
         } else if (tema === "dark") {
-            localStorage.setItem('tema','light');
+            localStorage.setItem('tema', 'light');
         }
         window.location.reload();
       }
-
 
       // LISTAR EVENTO ATUAL COM COR
       eventoAtual();
@@ -785,6 +789,7 @@
                             localStorage.setItem('tema', 'light');
                         }
                     } else if (evento === 'natal') {
+                        localStorage.setItem('tema', 'natal');
                         root.style.setProperty('--one', '#226338');
                         root.style.setProperty('--two', '#BD3634');
                         root.style.setProperty('--white', 'white');
@@ -792,6 +797,7 @@
                     } else if (evento === 'festaJunina') {
                     
                     } else if (evento === 'halloween') {
+                        localStorage.setItem('tema', 'halloween');
                         root.style.setProperty('--one', '#361E5C');
                         root.style.setProperty('--two', '#F27F1B');
                         root.style.setProperty('--white', 'white');
@@ -799,6 +805,7 @@
                     } else if (evento === 'pascoa') {
                     
                     } else if (evento === 'carnaval') {
+                        localStorage.setItem('tema', 'carnaval');
                         root.style.setProperty('--one', '#63c6cc');
                         root.style.setProperty('--two', 'linear-gradient(125deg, #40227a, #5471a7, #5ac8ca, #ffc54a, #df272f, #ffc54a, #ffc54a)');
                         //root.style.setProperty('--two', '#5ac8ca');
@@ -809,6 +816,7 @@
                     } else if (evento === 'conscienciaNegra') {
                     
                     } else if (evento === 'diaDasMulheres') {
+                        localStorage.setItem('tema', 'diaDasMulheres');
                         root.style.setProperty('--one', '#ea1a69');
                         root.style.setProperty('--two', '#ff69b4');
                         root.style.setProperty('--white', '#f1f1f1');

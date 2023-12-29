@@ -323,6 +323,105 @@
                 font-size: 40px;
             }
 
+            /* FORM */
+
+            .content ul .form {
+                width: 90%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0px auto;
+            }
+
+            .content ul .form .decoracao {
+                width: 100%;
+                margin: 20px 0px;
+            }
+
+            .content ul .form h1 {
+                font-size: 22px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                margin: 10px 0px 15px 0px;
+                align-self: center;
+                text-align: center;
+            }
+
+            .content ul .form label {
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+            }
+            
+            .content ul .form input {
+                width: 100%;
+                height: 40px;
+                border: 2px solid var(--one);
+                border-radius: 10px;
+                margin: 0px 0px 10px 0px;
+                outline: none;
+                padding: 0px 15px;
+                font-size: 15px;
+                font-weight: 500;
+                background: transparent;
+                color: var(--one);
+            }
+
+            .content ul .form textarea {
+                width: 100%;
+                height: 75px;
+                border: 2px solid var(--one);
+                border-radius: 10px;
+                margin: 0px 0px 10px 0px;
+                outline: none;
+                padding: 10px 15px;
+                font-size: 15px;
+                font-weight: 500;
+                background: transparent;
+                color: var(--one);
+            }
+
+            .content ul .form select {
+                width: 100%;
+                height: 40px;
+                border: 2px solid var(--one);
+                background: var(--one);
+                border-radius: 10px;
+                margin: 0px 0px 10px 0px;
+                text-align: start;
+                font-size: 15px;
+                font-weight: 500;
+                color: var(--white);
+            }
+
+            .content ul .form button {
+                width: 95%;
+                height: 50px;
+                border: 2px solid var(--one);
+                background: var(--one);
+                border-radius: 10px;
+                cursor: pointer;
+                margin: 15px auto;
+                align-self: center;
+                text-align: center;
+                font-size: 15.5px;
+                font-weight: 600;
+                outline: none;
+                color: var(--white);
+            } .content ul .form button:hover {
+                background: transparent;
+                color: var(--one);
+                box-shadow: 0px 0px 10px var(--one);
+                transition: all .3s ease-in-out
+            } .content ul .form button:focus {
+                background: transparent;
+                color: var(--one);
+                box-shadow: 0px 0px 10px var(--one);
+                transition: all .3s ease-in-out
+            }
+
             .contentSeries {
                 width: 100%;
                 height: auto;
@@ -1095,10 +1194,98 @@
             letter-spacing: 0.3px;
         }
 
+        /* APROVACAO */
+
+        .aprovacao div .card {
+            width: 92.5%;
+            height: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: var(--one);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .aprovacao div .card .flex {
+            width: 100%; height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0px 0px 15px 0px;
+        }
+
+        .aprovacao div .card .flex h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+            user-select: all;
+            margin: 0px;
+            text-transform: capitalize;
+        }
+
+        .aprovacao div .card .flex a {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            user-select: all;
+            text-transform: capitalize;
+            margin: 0px 5px 0px 0px;
+        }
+
+        .aprovacao div .card a {
+            font-size: 16px;
+            font-weight: 900;
+            user-select: all;
+            text-transform: capitalize;
+            margin: 10px 0px 0px 0px;
+            color: var(--two);
+            align-self: flex-start;
+        }
+
+        .aprovacao div .card p {
+            font-size: 18px;
+            font-weight: 500;
+            user-select: all;
+            letter-spacing: 0.5px;
+            line-height: 20.5px;
+        }
+
+        .aprovacao div .card ion-icon {
+            font-size: 30px;
+            padding: 4px;
+            margin: 20px auto 0px auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .aprovacao div .card ion-icon#aceitar {
+            background: var(--green);
+            border: 2px solid var(--green);
+        } .aprovacao div .card ion-icon#aceitar:hover {
+            background: transparent;
+            box-shadow: 0px 0px 10px var(--green);
+            color: var(--green);
+            transition: all .3s ease-in-out;
+        }
+
+        .aprovacao div .card ion-icon#rejeitar {
+            background: var(--red);
+            border: 2px solid var(--red);
+        } .aprovacao div .card ion-icon#rejeitar:hover {
+            background: transparent;
+            box-shadow: 0px 0px 10px var(--red);
+            color: var(--red);
+            transition: all .3s ease-in-out;
+        }
 
         /* DUVIDAS */
 
-        .duvidas { 
+        .duvidas, .aprovacao { 
             width: 100%;
             height: auto;
             position: relative;
@@ -1110,7 +1297,7 @@
             user-select: text;
         }
 
-        .duvidas div {
+        .duvidas div, .aprovacao div {
             width: 100%;
             height: auto;
             display: flex;
@@ -1118,7 +1305,7 @@
             align-items: center;
         }
 
-        .duvidas h1 {
+        .duvidas h1, .aprovacao h1 {
             font-size: 26px;
             font-weight: 600;
             letter-spacing: 0.4px;
@@ -1180,9 +1367,9 @@
         }
 
 
-        /* duvidas (ERRO) */
+        /* Duvidas, Aprovacao e Content (ERRO) */
 
-        .duvidas .erro, .content .erroSeries {
+        .duvidas .erro, .content .erroSeries, .aprovacao .erro {
             display: none;
             flex-direction: row;
             align-items: center;
@@ -1190,7 +1377,7 @@
             width: 100%; height: auto;
         }
 
-        .duvidas .erro h1, .content .erroSeries h1 {
+        .duvidas .erro h1, .content .erroSeries h1, .aprovacao .erro h1 {
             font-size: 24px;
             font-weight: 600;
             letter-spacing: 0.4px;
@@ -1199,12 +1386,88 @@
             text-transform: capitalize;
         }
 
-        .duvidas .erro ion-icon, .content .erroSeries ion-icon {
+        .duvidas .erro ion-icon, .content .erroSeries ion-icon, .aprovacao .erro ion-icon {
             font-size: 35px;
         }
 
         .content .erroSeries {
             padding: 20px 0px 35px 0px;
+        }
+
+        /* MENSAGENS PROFESSOR */
+
+        .mensagensProfessor {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px auto;
+        }
+        
+        .mensagensProfessor .card {
+            width: 92%;
+            height: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: var(--one);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            margin: 20px auto;
+        }
+
+        .mensagensProfessor .card .flex {
+            width: 100%; height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0px 0px 15px 0px;
+        }
+
+        .mensagensProfessor .card .flex h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.1px;
+            user-select: all;
+            text-transform: capitalize;
+        }
+
+        .mensagensProfessor .card .flex a {
+            font-size: 15.5px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            user-select: all;
+            text-transform: capitalize;
+            margin: 0px 5px 0px 0px;
+        }
+
+        .mensagensProfessor .card .flex ion-icon {
+            font-size: 25px;
+            margin: 0px 10px 0px 0px;
+        }
+
+        .mensagensProfessor .card a {
+            font-size: 16px;
+            font-weight: 900;
+            user-select: all;
+            text-transform: capitalize;
+            margin: 10px 0px 0px 0px;
+            color: var(--two);
+        }
+
+        .mensagensProfessor .card p {
+            font-size: 17px;
+            font-weight: 500;
+            user-select: all;
+            letter-spacing: 0.5px;
+            line-height: 20.5px;
+        }
+
+        .mensagensProfessor .card .mrg-15 {
+            margin: 15px 0px 0px 0px;
         }
 
         </style>
@@ -1289,6 +1552,19 @@
 
             </ul>
 
+            <ul class="aprovacao">
+
+                <h1>Aprovar Mensagens dos Professores</h1>
+
+                <div></div>
+
+                <div class="erro">
+                    <ion-icon name="alert"></ion-icon>
+                    <h1>Nenhuma mensagem encontrada</h1>
+                </div>
+
+            </ul>
+
             <!-- CONTAINER SERIE -->
             
             <section id="containerSerie" class="contentSeries">
@@ -1312,6 +1588,10 @@
 						<ion-icon name="book-outline"></ion-icon>
 						<h1>Coordenação</h1>
 					</li>
+                    <li onclick="abrirMensagemProfessor()">
+						<ion-icon name="library-outline"></ion-icon>
+						<h1>Professores</h1>
+					</li>
 				</ul>
 
             </section>
@@ -1325,6 +1605,10 @@
             <div class="mensagens">
 
 
+
+            </div>
+
+            <div class="mensagensProfessor">
 
             </div>
 
@@ -1466,7 +1750,6 @@
             } else if (logado === "PROFESSOR") {
                 containerOpcoes.innerHTML = `
                     <ion-icon onclick="fecharMensagem()" name="close"></ion-icon>
-                    <a onclick="verDadosResponsavel('${responsavel}')">${responsavel}</a>
                     <button onclick="abrirChatOnlineProfessor('${responsavel}','${serie}')">Abrir Chat</button>
                 `;
             }
@@ -1522,30 +1805,330 @@
         } else if (logado === "PROFESSOR") {
             admin.style.display = "none";
             responsavel.style.display = "flex";
-            chatOnline.innerHTML = `
-                <div class="chatOnline">
-                </div>
-                <div class="flex">
-                    <input placeholder="Mensagem" id="messageOnline" type="text">
-                    <button>
-                        <ion-icon onclick="enviarMensagemChatOnlineProfessor()" name="send"></ion-icon>
-                    </button>
-                </div>
-            `;
             botoesResponsavel.innerHTML = `
-                <li onclick="verAlunos()">
-                    <ion-icon name="people-circle-outline"></ion-icon>
-                    <h1>Alunos</h1>
-                </li>
+                
+                <div class="form">
+                    
+                    <h1>Enviar Mensagem Para Responsavel</h1>
+
+                    <span class="decoracao">
+                        <p>Selecionar Aluno</p>
+                    </span>
+
+                    <label>Serie</label>
+                    <select onblur="adicionarAlunosProfessor()" onfocus="adicionarSeriesProfessor()" id="selectSeriesProfessor">
+                        <option value="">Selecione Uma Serie</option>    
+                    </select>
+
+                    <label>Alunos</label>
+                    <select id="selectAlunosProfessor">
+                        <option value="">Selecione Um(a) Aluno(a)</option>
+                    </select>
+
+                    <span class="decoracao">
+                        <p>Criar Mensagem</p>
+                    </span>
+
+                    <label>Título</label>
+                    <input placeholder="ex: Falta na Aula de Matemática" id="inputTituloProfessor" type="text">
+
+                    <label>Mensagem</label>
+                    <textarea placeholder="ex: Olá, gostaria de falar.." id="textareaMensagemProfessor"></textarea>
+                    
+                    <button onclick="enviarMensagemProfessor()">Enviar Mensagem</button>
+                
+                </div>
+
             `;
         }
+
+        function adicionarSeriesProfessor() {
+            const select = document.getElementById('selectSeriesProfessor');
+            db.collection(ANO)
+            .doc('restrito')
+            .collection('series')
+            .onSnapshot((data) => {
+                select.innerHTML = '';
+                data.docs.map((val) => {
+                    const serie = val.id;
+                    select.innerHTML += `<option value="${serie}">${serie}</option>`;
+                })
+            })
+        }
+
+        function adicionarAlunosProfessor() {
+            const select = document.getElementById('selectAlunosProfessor');
+            const serie = document.getElementById('selectSeriesProfessor').value;
+            db.collection(ANO)
+            .doc('series')
+            .collection(serie)
+            .onSnapshot((data) => {
+                select.innerHTML = '';
+                const tamanho = data.size;
+                if (tamanho === 0) {
+                    select.innerHTML += `<option value="">Nenhum Aluno Encontrado</option>`;
+                } else {
+                    data.docs.map((val) => {
+                        const aluno = val.data().aluno;
+                        const responsavel = val.data().responsavel;
+                        select.innerHTML += `<option value="${responsavel}">${responsavel} - ${aluno}</option>`;
+                    })
+                }
+            })
+        }
+
+        function abrirMensagemProfessor() {
+            const div = document.querySelector('.mensagensProfessor');
+            const content = document.querySelector('.content');
+            const btns = document.querySelector('.botoes-responsavel');
+            const serie = localStorage.getItem('serie');
+            const responsavel = localStorage.getItem('responsavel');
+            const local = document.querySelector('.local');
+            local.innerHTML = `
+                <div class="flex">
+                    <ion-icon style="color: var(--white);" name="library-outline"></ion-icon>
+                    <h1 style="margin: 0px 0px 0px 10px;">Professores</h1>
+                </div>
+                <ion-icon onclick="configuracao()" name="settings"></ion-icon>
+            `;
+            div.style.display = "flex";
+            content.style.display = "none";
+            btns.style.display = "none";
+            db.collection(ANO)
+            .doc('mensagens')
+            .collection(serie)
+            .doc(responsavel)
+            .collection('PROFESSOR')
+            .orderBy('data')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    const id = val.id;
+                    const titulo = val.data().titulo;
+                    const mensagem = val.data().mensagem;
+                    const usuario = val.data().usuario;
+                    const date = val.data().date;
+                    const view = val.data().view;
+                    var corVisto = '';
+                    if (usuario === responsavel) {
+                        status = 'minha';
+                    } else {
+                        status = 'dele';
+                        db.collection(ANO)
+                        .doc('mensagens')
+                        .collection(serie)
+                        .doc(responsavel)
+                        .collection('PROFESSOR')
+                        .doc(id).update({
+                            view: true,
+                        });       
+                    }
+
+                    if (view === true) {
+                        corVisto = 'var(--green)';
+                    } else {
+                        corVisto = 'var(--red)';
+                    }
+
+
+                    div.innerHTML += `
+                        <div class="card">
+                            <div class="flex">
+                                <h1>${titulo}</h1>
+                                <a>${date}</a>
+                            </div>
+                            <p>${mensagem}</p>
+                            <div class="flex mrg-15">
+                                <a>${usuario}</a>
+                                <ion-icon style="color: ${corVisto};" name="checkmark-done-outline"></ion-icon>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        // ACEITAR MENSAGEM PROFESSOR
+        async function aceitarMensagemProfessor(serie, responsavel, titulo, mensagem, date, usuario, id) {
+            const dataAtual = new Date();
+            var dia = String(dataAtual.getDate()).padStart(2, '0');
+            var mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Lembre-se de que os meses começam do zero, então é necessário adicionar 1
+            var ano = String(dataAtual.getFullYear()).slice(2); // Pega os últimos dois dígitos do ano
+
+            // Monta a string no formato desejado
+            const dataFormatada = dia + '/' + mes + '/' + ano;
+            
+            await swal({
+                title: 'AVISO',
+                text: 'Você deseja enviar essa mensagem?',
+                buttons: {
+                    cancel: "Não",
+                    confirm: "Sim",
+                },
+            }).then((response) => {
+               if (response) {
+                    db.collection(ANO)
+                    .doc('mensagens')
+                    .collection(serie)
+                    .doc(responsavel)
+                    .collection('PROFESSOR')
+                    .doc().set({
+                        data: firebase.firestore.FieldValue.serverTimestamp(),
+                        titulo: titulo,
+                        mensagem: mensagem,
+                        date: dataFormatada,
+                        usuario: usuario,
+                        view: false,
+                    }).then((response) => {
+                        db.collection(ANO)
+                        .doc('mensagens')
+                        .collection('aprovacao')
+                        .doc(id).delete();
+                        db.collection(ANO)
+                        .doc('responsaveis')
+                        .collection(responsavel)
+                        .onSnapshot((data) => {
+                            data.docs.map((val) => {
+                                const onesignalId = val.data().onesignalId;
+                                notificationUser(mensagem, onesignalId);
+                            });
+                        });
+                        setTimeout(() => {
+                            swal({
+                                title: 'AVISO',
+                                text: 'Mensagem enviada com sucesso!',
+                                buttons: {
+                                    confirm: "Ok!",
+                                },
+                            }).then((responsetwo) => {
+                                window.location.reload();
+                            });    
+                        }, 2000);
+                    })
+               }
+            });
+        }
+
+        // REJEITAR MENSAGEM PROFESSOR
+        function rejeitarMensagemProfessor(serie, responsavel, id) {
+            swal({
+                title: 'AVISO',
+                text: 'Você deseja mesmo excluir?',
+                buttons: {
+                    cancel: "Não",
+                    confirm: "Sim",
+                },
+            }).then((response) => {
+               if (response) {
+                    db.collection(ANO)
+                    .doc('mensagens')
+                    .collection('aprovacao')
+                    .doc(id).delete()
+                    .then((res) => {
+                        swal({
+                            title: 'AVISO',
+                            text: 'Mensagem excluida com Sucesso!',
+                            buttons: {
+                                confirm: "Ok!",
+                            },
+                        }).then((responsetwo) => {
+                            window.location.reload();
+                        });
+                    })
+               }
+            });
+        }
         
+        // ENVIAR MENSAGEM COMO PROFESSOR
+        async function enviarMensagemProfessor() {
+            const titulo = document.getElementById('inputTituloProfessor').value;
+            const mensagem = document.getElementById('textareaMensagemProfessor').value;
+            const serie = document.getElementById('selectSeriesProfessor').value;
+            const responsavel = document.getElementById('selectAlunosProfessor').value;
+            const logado = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
+            
+            //firebase.firestore.FieldValue.serverTimestamp()
+            const dataAtual = new Date();
+            var dia = String(dataAtual.getDate()).padStart(2, '0');
+            var mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Lembre-se de que os meses começam do zero, então é necessário adicionar 1
+            var ano = String(dataAtual.getFullYear()).slice(2); // Pega os últimos dois dígitos do ano
+
+            // Monta a string no formato desejado
+            const dataFormatada = dia + '/' + mes + '/' + ano;
+            
+            if (titulo && mensagem && serie && responsavel) {
+                db.collection(ANO)
+                .doc('mensagens')
+                .collection('aprovacao')
+                .doc().set({
+                    data: firebase.firestore.FieldValue.serverTimestamp(),
+                    titulo: titulo,
+                    mensagem: mensagem,
+                    date: dataFormatada,
+                    usuario: usuario,
+                    serie: serie,
+                    responsavel: responsavel,
+                }).then((response) => {
+                    swal({
+                        title: 'AVISO',
+                        text: 'Mensagem enviada com sucesso!',
+                        buttons: {
+                            confirm: "Ok!",
+                        },
+                    }).then((responsetwo) => {
+                        window.location.reload();
+                    });
+                })
+            } else {
+                swal({
+                    title: 'AVISO',
+                    text: 'Serie, Aluno, Título ou Mensagem inválidos!',
+                    buttons: {
+                        confirm: "Ok!",
+                    },
+                })
+            }
+
+            // CODIGO CERTO E FUNCIONANDO
+            /*db.collection(ANO)
+            .doc('mensagens')
+            .collection(serie)
+            .doc(aluno)
+            .collection(logado)
+            .doc().set({
+                data: firebase.firestore.FieldValue.serverTimestamp(),
+                titulo: titulo,
+                mensagem: mensagem,
+                date: dataFormatada,
+                usuario: usuario,
+            }).then((response) => {
+                db.collection(ANO)
+                .doc('responsaveis')
+                .collection(responsavel)
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        const onesignalId = val.data().onesignalId;
+                        notificationUser(mensagem, onesignalId);
+                    });
+                });
+                swal({
+                    title: 'AVISO',
+                    text: 'Mensagem enviada com sucesso!',
+                    buttons: {
+                        confirm: "Ok!",
+                    },
+                }).then((responsetwo) => {
+                    window.location.reload();
+                });
+            })*/
+        }
+
         // SE FOR ALUNO
         if (login === 'aluno') {
             botoesResponsavel.innerHTML = `
-                <li onclick="abrirChatOnline('PROFESSOR')">
+                <li onclick="abrirMensagemProfessor()">
                     <ion-icon name="library-outline"></ion-icon>
-                    <h1>Professor</h1>
+                    <h1>Professores</h1>
                 </li>
             `;
         }
@@ -1979,6 +2562,54 @@
             });
         }
 
+        // LER MENSAGENS DE PROFESSORES PARA APROVAR
+        function lerAprovacao() {
+            const aprovacao = document.querySelector('.aprovacao');
+            const div = document.querySelector('.aprovacao div');
+            const erro = document.querySelector('.aprovacao .erro');
+            const container = document.querySelector('.content');
+            const filtro = document.querySelector('.filtro');
+            const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+            barraDePesquisa.style.display = "none";
+            container.style.display = "none";
+            filtro.style.display = "none";
+            aprovacao.style.display = "flex";
+            db.collection(ANO)
+            .doc('mensagens')
+            .collection('aprovacao')
+            .orderBy('data')
+            .onSnapshot((data) => {
+                const tamanho = data.size;
+                if (tamanho === 0) {
+                    erro.style.display = "flex";
+                }
+                data.docs.map((val) => {
+                    erro.style.display = "none";
+                    const id = val.id;
+                    const serie = val.data().serie;
+                    const titulo = val.data().titulo;
+                    const mensagem = val.data().mensagem;
+                    const date = val.data().date;
+                    const usuario = val.data().usuario;
+                    const responsavel = val.data().responsavel;
+                    div.innerHTML += `
+                        <div class="card">
+                            <div class="flex">
+                                <h1>${titulo}</h1>
+                                <a>${date}</a>
+                            </div>
+                            <p>${mensagem}</p>
+                            <a>${usuario}</a>
+                            <div class="flex">
+                                <ion-icon id="aceitar" onclick="aceitarMensagemProfessor('${serie}', '${responsavel}', '${titulo}', '${mensagem}', '${date}', '${usuario}', '${id}')" name="checkmark-outline"></ion-icon>
+                                <ion-icon id="rejeitar" onclick="rejeitarMensagemProfessor('${serie}', '${responsavel}', '${id}')" name="close-outline"></ion-icon>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
         function excluirDuvida(id) {
             swal({
                 title: 'AVISO',
@@ -2097,6 +2728,10 @@
                 <li onclick="listarPlanilhas()">
                     <ion-icon name="document-text-outline"></ion-icon>
                     <h1>Listas da Escola</h1>
+                </li>
+                <li onclick="lerAprovacao()">
+                    <ion-icon name="paper-plane-outline"></ion-icon>
+                    <h1>Aprovar Mensagem do Professor</h1>
                 </li>
                 <li onclick="lerDuvidas()">
                     <ion-icon name="alert-outline"></ion-icon>
@@ -3152,8 +3787,10 @@
                     });
                 });
             } else {
-                if (serie === 'DIRECAO' || serie === 'COORDENACAO' || serie === 'PROFESSOR') {
+                if (serie === 'DIRECAO' || serie === 'COORDENACAO') {
                     abrirChatOnline(serie);
+                } else if (serie === 'PROFESSOR') {
+                    abrirMensagemProfessor();
                 }
             }
             

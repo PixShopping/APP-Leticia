@@ -50,7 +50,7 @@
                 height: auto;
                 display: flex;
                 flex-direction: column;
-                padding: 70px 0px 90px 0px;
+                padding: 60px 0px 90px 0px;
             }
 
             .local {
@@ -119,16 +119,17 @@
 
     	    /* Content Perfil */
 
-            .notificacoes {
+            .notificacoes, .mensagens {
                 width: 100%;
                 height: auto;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin: 15px 0px;
-            }
+                margin: 10px 0px;
+                padding: 0px;
+            } 
 
-            .notificacoes li {
+            .notificacoes li, .mensagens li {
                 width: 95%;
                 height: auto;
                 border-radius: 12px;
@@ -142,13 +143,13 @@
                 margin: 12px 0px;
             }
 
-            .notificacoes li:hover {
+            .notificacoes li:hover, .mensagens li:hover{
                 background: var(--white);
                 color: var(--one);
                 transition: all .3s ease-in-out;
             }
 
-            .notificacoes li .column {
+            .notificacoes li .column, .mensagens li .column {
                 width: 90%;
                 display: flex;
                 flex-direction: column;
@@ -156,12 +157,12 @@
                 margin: 0px 0px 0px 12px;
             }
 
-            .notificacoes li ion-icon {
+            .notificacoes li ion-icon, .mensagens li ion-icon {
                 font-size: 50px;
                 margin: 0px 0px 0px 0px;
             }
 
-            .notificacoes li h2 {
+            .notificacoes li h2, .mensagens li h2 {
                 width: 100%;
                 white-space: normal; 
                 word-break: break-all;
@@ -170,11 +171,11 @@
                 margin: 0px 0px 10px 0px;
             }
 
-            .notificacoes li h2 strong {
+            .notificacoes li h2 strong, .mensagens li h2 strong {
                 color: var(--two);
             }
 
-            .notificacoes li .column a {
+            .notificacoes li .column a, .mensagens li .column a {
                 font-size: 18px;
                 font-weight: 500;
             }
@@ -350,6 +351,12 @@
                 </header>
 
                 <div class="notificacoes">
+
+
+
+                </div>
+
+                <div class="mensagens">
 
 
 
@@ -539,8 +546,43 @@
         lerChatOnlineResponsavel();
       } else if (logado === 'RESPONSAVEL' && login === 'responsavel') {
         lerChatOnline();
+        lerMensagemProfessores();
       } else if (logado === 'RESPONSAVEL' && login === 'aluno') {
         lerChatOnlineAluno();
+        lerMensagemProfessores();
+      }
+
+      async function lerMensagemProfessores() {
+            const notificacoes = document.querySelector('.mensagens');
+            const serie = localStorage.getItem('serie');
+            const responsavel = localStorage.getItem('responsavel');
+            db.collection(ANO)
+            .doc('mensagens')
+            .collection(serie)
+            .doc(responsavel)
+            .collection('PROFESSOR')
+            .orderBy('data')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    const view = val.data().view;
+                    if (view === false) {
+                        const titulo = val.data().titulo;
+                        const mensagem = val.data().mensagem;
+                        const usuario = val.data().usuario;
+                        const date = val.data().date;
+                        notificacoes.innerHTML += `
+                            <li onclick="verNotificacao('PROFESSOR')">
+                                <ion-icon name="person-circle"></ion-icon>
+                                <div class="column">                                    
+                                    <h2><strong>${usuario}:</strong> (${titulo}) ${mensagem}</h2>
+                                    <a>${date}</a>
+                                </div>
+                            </li>
+                        `;
+                        erro.style.display = 'none';
+                    }
+                });
+            });
       }
       
       // PARA RESPONSAVEIS
