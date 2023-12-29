@@ -1378,21 +1378,15 @@
 
             <ul>
                 
-                <a onclick="abrirEmail('')">
+                <a onclick="abrirEmail('e022123a@educacao.sp.gov.br')">
                     <ion-icon name="mail-outline"></ion-icon>
                     <h1>Secretaria</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
 
-                <a onclick="abrirEmail('')">
+                <a onclick="abrirEmail('coord.ee.leticia23@gmail.com')">
                     <ion-icon name="mail-outline"></ion-icon>
                     <h1>Coordenação</h1>
-                    <ion-icon name="arrow-forward"></ion-icon>
-                </a>
-
-                <a onclick="abrirEmail('')">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    <h1>Direção</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </a>
 
@@ -1901,6 +1895,10 @@
             const redes = document.querySelector('.redes-sociais');
             div.style.display = "flex";
             redes.style.display = "none";
+        }
+
+        function abrirEmail(email) {
+            window.location.href = `mailto:${email}`;
         }
 
         function boletim() {
