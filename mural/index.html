@@ -129,10 +129,12 @@
             }
 
             .content h1 {
+                width: 90%;
                 font-size: 30px;
                 font-weight: 600;
                 letter-spacing: 0.2px;
                 margin: 25px 0px 15px 0px;
+                text-align: center;
             }
 
             /* Decorações de provas */
@@ -359,6 +361,12 @@
                   cursor: pointer;
                 }
 
+                .addProvasExterna .form .divInputMateriaExterna {
+                  display: none;
+                  flex-direction: column;
+                  width: 100%;
+                }
+
                 .addProvas .form button, .addProvasExterna .form button {
                   width: 90%;
                   height: 50px;
@@ -489,7 +497,7 @@
                     
                     <div class="decoracaoProvas">
                       
-                      <h1>Avaliações Bimestrais</h1>
+                      <h1>Avaliações Bimestrais de <span id="mostrarAno"></span></h1>
                     
                     </div>
                     
@@ -564,14 +572,20 @@
                     <div class="form">
 
                       <label>Prova: </label>
-                        <select id="inputMateriaExterna">
+                        <select onchange="outrasProvas()" class="inputProva" id="selectMateriaExterna">
 
                             <option value="Prova Paulista">Prova Paulista</option>
                             <option value="Provão Paulista - Saresp">Provão Paulista - Saresp</option>
                             <option value="Saresp">Saresp</option>
                             <option value="Saeb">Saeb</option>
+                            <option value="Outras">Outras</option>
 
                         </select>
+
+                        <div class="divInputMateriaExterna">
+                          <label>Outra Prova: </label>
+                          <input id="inputMateriaExterna" type="text">
+                        </div>
 
                         <label>Série: </label>
                         <select id="inputSerieExterna">
@@ -696,6 +710,23 @@
             window.location.href = "../mural";
         }
 
+
+        function outrasProvas() {
+          const select = document.getElementById('selectMateriaExterna');
+          const input = document.getElementById('inputMateriaExterna');
+          const valor = document.getElementById('selectMateriaExterna').value;
+          const inputProva = document.querySelector('.divInputMateriaExterna');
+          if (valor === 'Outras') {
+            inputProva.style.display = "flex";
+            input.classList.add('inputProva');
+            select.classList.remove('inputProva');
+          } else {
+            inputProva.style.display = "none";
+            select.classList.add('inputProva');
+            input.classList.remove('inputProva');
+          }
+
+        }
         
        </script>
 
@@ -730,6 +761,8 @@
         const anoAtual = dataAtual.getFullYear();
         localStorage.setItem('ano', anoAtual);
         const ANO = localStorage.getItem('ano');
+        const mostrarAno = document.getElementById('mostrarAno');
+        mostrarAno.innerHTML = ANO;
 
         // LISTAR EVENTO ATUAL COM COR
         eventoAtual();
@@ -874,7 +907,7 @@
           }
 
           async function enviarProvaExterna() {
-            const materia = document.getElementById('inputMateriaExterna').value;
+            const materia = document.querySelector('.inputProva').value;
             const valDate = document.getElementById('inputDataExterna').value;
             const corFundo = document.getElementById('inputCorFundoExterna').value;
             const corTexto = document.getElementById('inputCorTextoExterna').value;
