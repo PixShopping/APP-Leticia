@@ -440,10 +440,6 @@
                 transition: all .3s ease-in-out;
             }
 
-            .content ul #btnTema {
-                display: none;
-            }
-
             .content ul .btnTemaDesativado {
                 display: none;
             }
@@ -615,29 +611,35 @@
         const tema = localStorage.getItem('tema');
         const status = localStorage.getItem('temaStatus');
         const root = document.documentElement;
-        if (tema === "light") {
+        
+        if (status === 'off') {
+            btnAtivo.style.display = "none";
+            btnDesativado.style.display = "flex";
+            btnTema.style.display = "flex";
+            localStorage.setItem('tema', 'light');
+        } else {
+            btnAtivo.style.display = "flex";
+            btnDesativado.style.display = "none";
+            btnTema.style.display = "none";
+        }
+        
+        if (tema === "light") { 
           root.style.setProperty('--one', '#002242');
           root.style.setProperty('--two', '#9ECAE3');
           root.style.setProperty('--six', '#144774');
           root.style.setProperty('--white', 'white');
           lua.style.display = "none";
-          btnTema.style.display = "flex";
         } else if (tema === "dark") {
           root.style.setProperty('--one', 'white');
           root.style.setProperty('--two', '#144774');
           root.style.setProperty('--six', '#9ECAE3');
           root.style.setProperty('--white', '#002242');
           sol.style.display = "none";
-          btnTema.style.display = "flex";
         }
 
-        if (status !== 'off') {
-            btnAtivo.style.display = "flex";
-            btnDesativado.style.display = "none";
-        } else {
-            btnAtivo.style.display = "none";
-            btnDesativado.style.display = "flex";
-        }
+        
+
+        
 
        // Verificar LOGIN
        const logado = localStorage.getItem('logado');
@@ -675,7 +677,6 @@
             mural.style.display = "flex";
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             informacao.style.display = "none";
-            aviso.style.display = "flex";
             mural.style.display = "flex";
         }  
 
