@@ -1259,6 +1259,8 @@
         }
 
         .aprovacao div .card p {
+            width: 100%;
+            text-align: start;
             font-size: 18px;
             font-weight: 500;
             user-select: all;
@@ -1678,7 +1680,7 @@
             <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
 
             <!-- MENSAGEM -->
-            <ion-icon class="selecionado" onclick="enviar()" name="chatbubble-ellipses-outline"></ion-icon>
+            <ion-icon class="selecionado" onclick="enviar()" name="chatbubble-ellipses"></ion-icon>
             
             <!-- MURAL -->
             <ion-icon id="mural" onclick="abrirMural()" name="calendar"></ion-icon>
@@ -1912,6 +1914,7 @@
             .collection('PROFESSOR')
             .orderBy('data')
             .onSnapshot((data) => {
+                div.innerHTML = '';
                 data.docs.map((val) => {
                     const id = val.id;
                     const titulo = val.data().titulo;
@@ -1939,7 +1942,6 @@
                     } else {
                         corVisto = 'var(--red)';
                     }
-
 
                     div.innerHTML += `
                         <div class="card">

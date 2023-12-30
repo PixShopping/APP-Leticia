@@ -381,7 +381,7 @@
                 <ion-icon class="selecionado" onclick="notificacao()" name="notifications"></ion-icon>
 
                 <!-- MENSAGEM -->
-                <ion-icon onclick="enviar()" name="chatbubble-ellipses-outline"></ion-icon>
+                <ion-icon onclick="enviar()" name="chatbubble-ellipses"></ion-icon>
                 
                 <!-- MURAL -->
                 <ion-icon onclick="abrirMural()" name="calendar"></ion-icon>
@@ -574,7 +574,8 @@
                             <li onclick="verNotificacao('PROFESSOR')">
                                 <ion-icon name="person-circle"></ion-icon>
                                 <div class="column">                                    
-                                    <h2><strong>${usuario}:</strong> (${titulo}) ${mensagem}</h2>
+                                    <h2><strong>${usuario}:</strong>
+                                    <br>${titulo} - ${mensagem}</h2>
                                     <a>${date}</a>
                                 </div>
                             </li>
@@ -865,7 +866,6 @@
                 if (existe.size > 0) {
                     return true;
                 } else {
-                    erro.style.display = 'flex';
                     return false;
                 }
             } catch (error) {
