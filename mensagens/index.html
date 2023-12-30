@@ -479,8 +479,8 @@
             }
 
             .contentSeries li button {
-                background: red;
-                border: none;
+                background: var(--red);
+                border: 2px solid var(--red);
                 border-radius: 10px;
                 width: 38px;
                 height: 38px;
@@ -494,17 +494,21 @@
                 justify-content: center;
                 align-items: center;
                 z-index: 90;
+                outline: none;
+                color: white;
+            } .contentSeries li button:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } .contentSeries li button:focus {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
             }
 
             .contentSeries li button ion-icon {
                 font-size: 26px;
                 margin: 0px;
-                color: white;
-            }
-
-            .contentSeries li button:hover {
-                background: #E84354;
-                transition: all .4s ease-in-out;
             }
 
             .none {
@@ -693,6 +697,12 @@
             cursor: pointer;
             color: var(--one);
             text-decoration: underline;
+        } .containerOpcoes a:hover {
+            color: var(--two);
+            transition: all .1s ease-in-out;
+        } .containerOpcoes a:focus {
+            color: var(--two);
+            transition: all .1s ease-in-out;
         }
 
         .containerOpcoes button {
@@ -706,15 +716,16 @@
             cursor: pointer;
             font-size: 15px;
             font-weight: 600;
-        } .containerOpcoes button:hover {
             border: 2px solid var(--one);
+        } .containerOpcoes button:hover {
             color: var(--one);
+            box-shadow: 0px 0px 10px var(--one);
             background: var(--white);
             transition: all .4s ease-in-out;
         } .containerOpcoes button:focus {
-            border: 2px solid var(--one);
             color: var(--one);
             background: var(--white);
+            box-shadow: 0px 0px 10px var(--one);
             transition: all .4s ease-in-out;
         }
 

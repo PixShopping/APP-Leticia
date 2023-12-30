@@ -245,23 +245,25 @@
                 height: 56px;
                 display: flex;
                 align-items: center;
-                border: 1px solid var(--one);
+                background: var(--one);
+                border: 2px solid var(--one);
                 border-radius: 8px;
-                color: var(--one);
+                color: var(--white);
                 cursor: pointer;
                 margin: 10px auto;
             }
 
 		   .content ul li:hover {
-                background: var(--one);
-                color: var(--white);
+                background: transparent;
+                color: var(--one);
                 transition: all .4s ease-in-out;
 		   }
 
            /* NECESSARIO CLASS */
            .content ul .necessario {
-              border: 1px solid var(--red);
-              color: var(--red);
+              background: var(--red);
+              border: 2px solid var(--red);
+              color: var(--white);
            }
 
            .content ul .necessarioh1 {
@@ -270,8 +272,8 @@
 
            /* NECESSARIO CLASS */
            .content ul .necessario:hover {
-              background: var(--red);
-              color: var(--white);
+              background: transparent;
+              color: var(--red);
            }
 
            .content ul li img {
@@ -2448,15 +2450,16 @@
             .onSnapshot((data) => {
                 data.docs.map((val) => {
                 if (val.data().onesignalId) {
-                    necessario.style.border = "1px solid var(--one)";
-                    necessario.style.color = "var(--one)";
+                    necessario.style.border = "2px solid var(--one)";
+                    necessario.style.background = "var(--one)";
+                    necessario.style.color = "var(--white)";
                     necessario.addEventListener('mouseover', () => {
-                        necessario.style.background = "var(--one)";
-                        necessario.style.color = "var(--white)";
+                        necessario.style.background = "transparent";
+                        necessario.style.color = "var(--one)";
                     });
                     necessario.addEventListener('mouseout', () => {
-                        necessario.style.background = "var(--white)";
-                        necessario.style.color = "var(--one)";
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
                     });
                     necessarioh1.innerHTML = 'Aceito!';
                     necessarioh1.style.color = "var(--green)";
@@ -2473,15 +2476,16 @@
             .get().then((doc) => {
                 var data = doc.data();
                 if (data.onesignalId) {
-                    necessario.style.border = "1px solid var(--one)";
-                    necessario.style.color = "var(--one)";
+                    necessario.style.border = "2px solid var(--one)";
+                    necessario.style.background = "var(--one)";
+                    necessario.style.color = "var(--white)";
                     necessario.addEventListener('mouseover', () => {
-                        necessario.style.background = "var(--one)";
-                        necessario.style.color = "var(--white)";
+                        necessario.style.background = "transparent";
+                        necessario.style.color = "var(--one)";
                     });
                     necessario.addEventListener('mouseout', () => {
-                        necessario.style.background = "var(--white)";
-                        necessario.style.color = "var(--one)";
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
                     });
                     necessarioh1.innerHTML = 'Aceito!';
                     necessarioh1.style.color = "var(--green)";
@@ -2495,17 +2499,18 @@
             .collection('acessos')
             .doc(usuario)
             .get().then((doc) => {
-                var data = doc.data();
-                if (data.onesignalId) {
-                    necessario.style.border = "1px solid var(--one)";
-                    necessario.style.color = "var(--one)";
+                const onesignalId = doc.data().onesignalId;
+                if (onesignalId) {
+                    necessario.style.border = "2px solid var(--one)";
+                    necessario.style.background = "var(--one)";
+                    necessario.style.color = "var(--white)";
                     necessario.addEventListener('mouseover', () => {
-                        necessario.style.background = "var(--one)";
-                        necessario.style.color = "var(--white)";
+                        necessario.style.background = "transparent";
+                        necessario.style.color = "var(--one)";
                     });
                     necessario.addEventListener('mouseout', () => {
-                        necessario.style.background = "var(--white)";
-                        necessario.style.color = "var(--one)";
+                        necessario.style.background = "var(--one)";
+                        necessario.style.color = "var(--white)";
                     });
                     necessarioh1.innerHTML = 'Aceito!';
                     necessarioh1.style.color = "var(--green)";
@@ -2531,7 +2536,6 @@
         
         // CONSULTAR BOLETIM
         function consultarBoletim() {
-            // DADOS
             const dado = document.getElementById('ra').value;
             const ra = dado.slice(0,-1);
             const digito = dado.slice(-1);
@@ -2559,7 +2563,7 @@
                 console.log(html);
             })
         }
-
+        
         // CONSULTAR BOLETIM
         function consultarRa() {
             // DADOS

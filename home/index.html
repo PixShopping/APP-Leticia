@@ -1497,9 +1497,9 @@
                             </div>
                             `;
                     }
-                    //
-                });
-            });
+                    
+                })
+            })
         } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
             var index = 0;
             db.collection(ANO)
@@ -1562,8 +1562,8 @@
                             `;
                         index++;
                     }
-                });
-            });
+                })
+            })
         }
 
                     
@@ -1700,7 +1700,13 @@
                     imagem.style.display = "none";
                 }
                  
-            });   
+            })
+            .catch((erro) => {
+                icone.style.display = "flex";
+                containerAviso.innerHTML = `
+                    <h1>Escola Fechada no Momento..</h1>
+                `;
+            })
         }    
 
        </script>
