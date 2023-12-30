@@ -298,17 +298,17 @@
                 padding: 8px;
                 display: flex;
                 align-items: center;
-                background: var(--white);
-                color: var(--one);
+                background: var(--one);
+                color: var(--white);
                 cursor: pointer;
                 margin: 10px 0px;
                 border-radius: 5px;
-                border: 1px solid #999;
+                border: 2px solid var(--one);
             }
 
             .content ul li:hover {
-                background: var(--one);
-                color: var(--white);
+                background: transparent;
+                color: var(--one);
                 transition: all .3s ease-in-out;
             }
 
@@ -451,18 +451,18 @@
                 padding: 8px;
                 display: flex;
                 align-items: center;
-                background: var(--white);
-                color: var(--one);
+                background: var(--one);
+                color: var(--white);
                 cursor: pointer;
                 margin: 10px 0px;
                 border-radius: 5px;
-                border: 1px solid #999;
+                border: 2px solid var(--one);
 		        position: relative;
             }
 
             .contentSeries li:hover {
-                background: var(--one);
-                color: var(--white);
+                background: transparent;
+                color: var(--one);
                 transition: all .3s ease-in-out;
             }
 
@@ -1188,7 +1188,7 @@
             width: 90%;
             height: 2px;
             background: var(--one);
-            margin: 15px auto;
+            margin: 17.5px auto;
             position: relative;
         }
 
@@ -1678,8 +1678,8 @@
             <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
 
             <!-- MENSAGEM -->
-            <ion-icon onclick="enviar()" class="selecionado" name="mail"></ion-icon>
-
+            <ion-icon class="selecionado" onclick="enviar()" name="chatbubble-ellipses-outline"></ion-icon>
+            
             <!-- MURAL -->
             <ion-icon id="mural" onclick="abrirMural()" name="calendar"></ion-icon>
             <ion-icon style="display: none;" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
@@ -1841,10 +1841,10 @@
                     </span>
 
                     <label>Título</label>
-                    <input placeholder="ex: Falta na Aula de Matemática" id="inputTituloProfessor" type="text">
+                    <input placeholder="ex: O aluno faltou na minha aula" id="inputTituloProfessor" type="text">
 
                     <label>Mensagem</label>
-                    <textarea placeholder="ex: Olá, gostaria de falar.." id="textareaMensagemProfessor"></textarea>
+                    <textarea placeholder="ex: Olá responsavel, gostaria de te avisar.." id="textareaMensagemProfessor"></textarea>
                     
                     <button onclick="enviarMensagemProfessor()">Enviar Mensagem</button>
                 
