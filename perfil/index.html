@@ -550,17 +550,18 @@
                 height: 56px;
                 display: flex;
                 align-items: center;
-                border: 1px solid var(--one);
+                border: 2px solid var(--one);
                 border-radius: 8px;
-                color: var(--one);
+                color: var(--white);
+                background: var(--one);
                 cursor: pointer;
                 margin: 10px auto;
                 text-decoration: none;
             }
 
 		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover, .emails ul a:hover {
-                background: var(--one);
-                color: var(--white);
+                background: transparent;
+                color: var(--one);
                 transition: all .4s ease-in-out;
 		   }
 
@@ -612,16 +613,17 @@
                 height: 56px;
                 display: flex;
                 align-items: center;
-                border: 1px solid var(--one);
+                border: 2px solid var(--one);
                 border-radius: 8px;
-                color: var(--one);
+                background: var(--one);
+                color: var(--white);
                 cursor: pointer;
                 margin: 10px auto 15.5px auto;
             }
 
             .telefones ul li:hover {
-                background: var(--one);
-                color: var(--white);
+                background: transparent;
+                color: var(--one);
                 transition: all .4s ease-in-out;
             }
 
@@ -1371,7 +1373,7 @@
           <!-- MUDAR DADOS DO PERFIL -->
           <li onclick="abrirBoletim()">
             <ion-icon name="receipt-outline"></ion-icon>
-            <h1>Mostrar Boletim</h1>
+            <h1>Boletim Escolar</h1>
             <ion-icon name="arrow-forward"></ion-icon>
           </li>
 
@@ -1799,7 +1801,7 @@
             const titulo = document.querySelector('.local h1');
             content.style.display = "none";
             boletim.style.display = "flex";
-            titulo.textContent = "Mostrar Boletim";
+            titulo.textContent = "Boletim Escolar";
         }
 
         function abrirAchados() {
@@ -2292,6 +2294,7 @@
                     } else if (evento === 'natal') {
                         root.style.setProperty('--one', '#226338');
                         root.style.setProperty('--two', '#BD3634');
+                        root.style.setProperty('--tree', '#BD3634');
                         root.style.setProperty('--four', '#034F1B');
                         root.style.setProperty('--white', 'white');
                         document.querySelector('.snowflakes').style.display = "flex";
