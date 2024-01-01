@@ -182,7 +182,7 @@
 
             .bem-vindo h2 span {
                 font-size: 16px;
-                font-weight: 500;
+                font-weight: 700;
                 letter-spacing: 0.5px;
             }
 
@@ -924,7 +924,7 @@
                         <img id="imagemHome" src="">
                         <ion-icon id="iconeHome" name="school-outline"></ion-icon>
                         <h1 id="mostrarResponsavel"></h1>
-                        <h2>Bem-Vindo ao aplicativo da Escola Estadual <span>Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
+                        <h2>Bem-Vindo ao aplicativo da <span>Escola Estadual Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
 
                     </header>
 
@@ -1698,6 +1698,8 @@
                 } else {
                     icone.style.display = "flex";
                     imagem.style.display = "none";
+                    root.style.setProperty('--two', '#144774');
+                    root.style.setProperty('--tree', '#336FA5');
                 }
                  
             })
