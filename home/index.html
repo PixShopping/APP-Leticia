@@ -661,7 +661,17 @@
                 color: white;
                 border-radius: 13px 13px 0px 0px;
                 display: flex;
+                flex-direction: row;
+                align-items: center;
                 justify-content: center;
+            }
+
+            .contentNotification div p {
+                width: auto;
+                margin: 0px 0px 0px 10px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
             }
 
             .contentNotification div ion-icon {
@@ -671,7 +681,7 @@
 
             .contentNotification h1 {
                 font-size: 24px;
-                margin: 15px 0px;
+                margin: 16.5px 0px;
             }
 
             .contentNotification p {
@@ -932,6 +942,7 @@
 
                         <div>
                             <ion-icon name="alert-circle-outline"></ion-icon>
+                            <p>Aviso</p>
                         </div>
                         <h1>Notificações desativada!</h1>
                         <p>Você não permitiu as Notificações do nosso aplicativo.</p>
@@ -1211,10 +1222,13 @@
        const usuario = localStorage.getItem('usuario');
        const mostrarResponsavel = document.getElementById('mostrarResponsavel');
        const responsavel = localStorage.getItem('responsavel');
+       const aluno = localStorage.getItem('aluno');
         if (!logado){
 		  window.location.href = "../login/";
-		} else if (logado === "RESPONSAVEL") {
+		} else if (logado === "RESPONSAVEL" && login === "responsavel") {
             mostrarResponsavel.innerHTML = `Olá ${login}, <p>${responsavel}</p>`;
+	    } else if (logado === "RESPONSAVEL" && login === "aluno") {
+            mostrarResponsavel.innerHTML = `Olá ${login}, <p>${aluno}</p>`;
 	    } else if (logado === "COORDENACAO") {
             mostrarResponsavel.innerHTML = `Olá Coordenação - ${usuario}`;
         } else if (logado === "DIRECAO") {
