@@ -499,7 +499,7 @@
 
             /* Redes Sociais */
 
-            .redes-sociais, .dados-da-sed, .emails {
+            .redes-sociais, .dados-da-sed, .emails, .baixar {
                 width: 100%;
                 height: auto;
                 display: none;
@@ -528,6 +528,13 @@
                 text-align: center;
             }
 
+            .baixar h1 {
+                width: 90%;
+                display: flex;
+                margin: 25px auto -5px auto;
+                text-align: center;
+            }
+
             .dados-da-sed p {
                 width: 80%;
                 display: flex;
@@ -536,7 +543,7 @@
                 text-align: center;
             }
 
-            .redes-sociais ul, .dados-da-sed ul, .emails ul {
+            .redes-sociais ul, .dados-da-sed ul, .emails ul, .baixar ul {
 		        display: flex;
 		        flex-direction: column;
 				width: 100%;
@@ -545,7 +552,7 @@
                 margin: 15px 0px 0px 0px;
 		   }
 
-           .redes-sociais ul a, .dados-da-sed ul a, .emails ul a{
+           .redes-sociais ul a, .dados-da-sed ul a, .emails ul a, .baixar ul a {
                 width: 90%;
                 height: 56px;
                 display: flex;
@@ -559,24 +566,24 @@
                 text-decoration: none;
             }
 
-		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover, .emails ul a:hover {
+		   .redes-sociais ul a:hover, .dados-da-sed ul a:hover, .emails ul a:hover, .baixar ul a:hover {
                 background: transparent;
                 color: var(--one);
                 transition: all .4s ease-in-out;
 		   }
 
-		   .redes-sociais ul a ion-icon, .dados-da-sed ul a ion-icon, .emails ul a ion-icon {
+		   .redes-sociais ul a ion-icon, .dados-da-sed ul a ion-icon, .emails ul a ion-icon, .baixar ul a ion-icon {
 		        font-size: 30px;
                 margin: 0px 10px 0px 12px;
 		   }
 
-		   .redes-sociais ul a ion-icon:last-child, .dados-da-sed ul a ion-icon:last-child, .emails ul a ion-icon:last-child {
+		   .redes-sociais ul a ion-icon:last-child, .dados-da-sed ul a ion-icon:last-child, .emails ul a ion-icon:last-child, .baixar ul a ion-icon:last-child {
                 margin: 0px 10px 0px auto;
                 font-size: 30px;
                 background: transparent;
 		   }
 
-		   .redes-sociais ul a h1, .dados-da-sed ul a h1, .emails ul a h1 {
+		   .redes-sociais ul a h1, .dados-da-sed ul a h1, .emails ul a h1, .baixar ul a h1 {
 			  font-size: 18px;
 			  font-weight: 500;
 			  margin: 0px;
@@ -1424,20 +1431,18 @@
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
 
+        <li onclick="baixarAplicativo()">
+            <ion-icon name="logo-android"></ion-icon>
+            <h1>Baixar Aplicativo</h1>
+            <ion-icon name="arrow-forward"></ion-icon>
+        </li>
+
         <!-- SAIR DA CONTA -->
         <li onclick="sair()">
             <ion-icon style="margin: 0px 10px 0px 14px;" name="exit-outline"></ion-icon>
             <h1>Sair da Conta</h1>
             <ion-icon name="arrow-forward"></ion-icon>
         </li>
-
-
-        <!-- DADOS DA SED
-        <li onclick="baixarApp()">
-            <ion-icon name="logo-android"></ion-icon>
-            <h1>Baixar Aplicativo</h1>
-            <ion-icon name="arrow-forward"></ion-icon>
-        </li>-->
 
         <!-- IFSP 
         <li onclick="ifsp()">
@@ -1630,6 +1635,30 @@
                     <h1>(16) 991190322</h1>
                     <ion-icon name="arrow-forward"></ion-icon>
                 </li>
+
+            </ul>
+
+        </section>
+
+        <!-- SECTION BAIXAR -->
+        <section class="baixar">
+
+            <h1>Baixar Aplicativo</h1>
+
+            <ul>
+
+                <a onclick="baixarApp()">
+                    <ion-icon name="download-outline"></ion-icon>
+                    <h1>Baixar Aplicativo</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
+                <a onclick="copiar(`https://app-leticia.netlify.app/download/index.html`)">
+                    <ion-icon name="link-outline"></ion-icon>
+                    <h1>Copiar Link do Aplicativo</h1>
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </a>
+
 
             </ul>
 
@@ -2050,6 +2079,16 @@
             <iframe src="https://escola-leticia.netlify.app">
             Carregando...
             </iframe>`;
+        }
+
+        // BAIXAR APP
+        function baixarAplicativo() {
+            const content = document.querySelector('.content');
+            const div = document.querySelector('.baixar');
+            const local = document.getElementById('local');
+            content.style.display = "none";
+            local.textContent = "Baixar Aplicativo";
+            div.style.display = "flex";
         }
 
         
@@ -2619,14 +2658,24 @@
             });       
         }
 
-        function copiar(texto) {
+        async function copiar(texto) {
             const elementoTemporario = document.createElement("textarea");
             elementoTemporario.value = texto;
-            document.body.appendChild(elementoTemporario);
-            elementoTemporario.select();
-            document.execCommand("copy");
-            document.body.removeChild(elementoTemporario);
-            document.querySelector('.btn-copiar').innerHTML = 'Copiado!';
+            await document.body.appendChild(elementoTemporario);
+            await elementoTemporario.select();
+            await document.execCommand("copy");
+            await document.body.removeChild(elementoTemporario);
+            const btn = document.querySelector('.btn-copiar');
+            if (btn) {
+                btn.innerHTML = 'Copiado!';
+            }
+            await swal({
+                title: "Parabens",
+                text: "Texto Copiado com sucesso!",
+                buttons: {
+                    confirm: "Ok!",
+                }
+            })
         }
 
        </script>
