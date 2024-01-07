@@ -1695,11 +1695,6 @@
             <h1>Dados do Perfil</h1>
 
             <div class="flex">
-                <ion-icon id="iconAluno" name="person"></ion-icon>
-                <input placeholder="Nome do Aluno" type="text" id="inputAluno">
-            </div>
-
-            <div class="flex">
                 <ion-icon id="iconEmail" name="mail"></ion-icon>
                 <input placeholder="Email" type="text" id="inputEmail">
             </div>
@@ -1799,7 +1794,6 @@
         }
 
         // Dados do Perfil
-        const inputAluno = document.getElementById('inputAluno');
         const inputEmail = document.getElementById('inputEmail');
         const inputTelefone = document.getElementById('inputTelefone');
         const inputTelefoneAluno = document.getElementById('inputTelefoneAluno');
@@ -1811,7 +1805,6 @@
             const containerDados = document.querySelector('.containerDados');
             content.style.display = "none";
             containerDados.style.display = "flex";
-            inputAluno.value = localStorage.getItem('aluno');
             inputRa.value = localStorage.getItem('ra');
             inputEmail.value = localStorage.getItem('gmail');
             inputTelefone.value = localStorage.getItem('telefone');
@@ -2443,7 +2436,6 @@
         // Salvar Dados do Perfil
 
         function salvarDados() {
-            const ALUNO = inputAluno.value;
             const EMAIL = inputEmail.value;
             const TELEFONE = inputTelefone.value;
             const TELEFONEaluno = inputTelefoneAluno.value;
@@ -2452,14 +2444,12 @@
             .doc("responsaveis")
             .collection(localStorage.getItem('responsavel'))
             .doc(localStorage.getItem('id')).update({
-                aluno: ALUNO,
                 gmail: EMAIL,
                 telefone: TELEFONE,
                 telefoneAluno: TELEFONEaluno,
                 ra: RA
             });
 
-            localStorage.setItem('aluno', ALUNO);
             localStorage.setItem('gmail', EMAIL);
             localStorage.setItem('telefone', TELEFONE);
             localStorage.setItem('telefoneAluno', TELEFONEaluno);
