@@ -1266,13 +1266,7 @@
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComDirecao();
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
@@ -1287,13 +1281,7 @@
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComCoordenacao();
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
@@ -1308,13 +1296,7 @@
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComProfessor();
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
@@ -1447,14 +1429,9 @@
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComDirecao();
+              return;
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
@@ -1468,14 +1445,9 @@
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComCoordenacao();
+              return;
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
@@ -1489,14 +1461,9 @@
             const senha = val.data().senha;
             if (RESPONSAVEL === usuario && SENHA === senha) {
               logarComProfessor();
+              return;
             } else {
-              swal({
-                title: "ERRO",
-                text: "Usuario ou Senha Incorretos!",
-                buttons: {
-                  confirm: "Ok"
-                },
-              });
+              
             }
           });
         });
