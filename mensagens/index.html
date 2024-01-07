@@ -1006,28 +1006,40 @@
             letter-spacing: 0.4px;
         }
 
-        .chatOnline .erro {
+        .chatOnline .erro, .mensagensProfessor .erro {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             width: 100%;
             height: auto;
+        }
+
+        .chatOnline .erro ion-icon, .mensagensProfessor .erro ion-icon {
+            width: 120px;
+            height: 120px;
             margin: 0px;
         }
 
-        .chatOnline .erro ion-icon {
+        .chatOnline .erro h1, .mensagensProfessor .erro h1 {
+            font-size: 22px;
+            margin: 0px;
+        }
+
+        .chatOnline .erro p, .mensagensProfessor .erro p {
+            font-size: 18px;
+            margin: 0px 0px;
+        }
+
+        .mensagensProfessor .erro ion-icon {
+            margin: 10px 0px;
             width: 120px;
             height: 120px;
+            
         }
 
-        .chatOnline .erro h1 {
-            font-size: 22px;
-            margin: 0px 0px 0px 0px;
-        }
-
-        .chatOnline .erro p {
-            font-size: 18px;
+        .mensagensProfessor .erro p {
+            margin: 12px 0px;
         }
 
         /* DADOS DOS RESPONSAVEIS */
@@ -1303,7 +1315,7 @@
 
         /* DUVIDAS */
 
-        .duvidas, .aprovacao { 
+        .duvidas, .aprovacao, .mensagemEmMassa { 
             width: 100%;
             height: auto;
             position: relative;
@@ -1315,7 +1327,7 @@
             user-select: text;
         }
 
-        .duvidas div, .aprovacao div {
+        .duvidas div, .aprovacao div, .mensagemEmMassa div {
             width: 100%;
             height: auto;
             display: flex;
@@ -1323,7 +1335,7 @@
             align-items: center;
         }
 
-        .duvidas h1, .aprovacao h1 {
+        .duvidas h1, .aprovacao h1, .mensagemEmMassa h1 {
             font-size: 26px;
             font-weight: 600;
             letter-spacing: 0.4px;
@@ -1382,6 +1394,57 @@
             background: transparent;
             color: var(--red);
             transition: all .3s ease-in-out;
+        }
+
+        /* Mensagem em Massa */
+
+        .mensagemEmMassa .form label {
+            font-size: 16.5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin: 10px auto 6px 5.5%;
+            text-align: start;
+        }
+        
+
+        .mensagemEmMassa .form textarea {
+            width: 90%;
+            height: 75px;
+            border: 2px solid var(--one);
+            border-radius: 10px;
+            margin: 0px 0px 10px 0px;
+            outline: none;
+            padding: 10px 15px;
+            font-size: 15px;
+            font-weight: 500;
+            background: transparent;
+            color: var(--one);
+        }
+
+        .mensagemEmMassa .form button {
+            width: 90%;
+            height: 52.5px;
+            border: 2px solid var(--one);
+            background: var(--one);
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 15px auto;
+            align-self: center;
+            text-align: center;
+            font-size: 15.5px;
+            font-weight: 600;
+            outline: none;
+            color: var(--white);
+        } .mensagemEmMassa .form button:hover {
+            background: transparent;
+            color: var(--one);
+            box-shadow: 0px 0px 10px var(--one);
+            transition: all .3s ease-in-out
+        } .mensagemEmMassa .form button:focus {
+            background: transparent;
+            color: var(--one);
+            box-shadow: 0px 0px 10px var(--one);
+            transition: all .3s ease-in-out
         }
 
 
@@ -1570,6 +1633,25 @@
 
             </ul>
 
+            <ul class="mensagemEmMassa">
+
+                <h1>Enviar Mensagem em Massa</h1>
+
+                <div class=form>
+
+                    <span class="decoracao">
+                        <p>Formulário</p>
+                    </span>
+
+                    <label for="mensagemEmMassa">Mensagem</label>
+                    <textarea id="mensagemEmMassa"></textarea>
+
+                    <button onclick="enviarMensagemEmMassa()">Enviar Mensagem</button>
+                    
+                </div>
+
+            </ul>
+
             <ul class="aprovacao">
 
                 <h1>Aprovar Mensagens dos Professores</h1>
@@ -1627,8 +1709,10 @@
             </div>
 
             <div class="mensagensProfessor">
-
+                
             </div>
+
+            
 
             <section class="dadosResponsavel"></section>
 
@@ -1919,7 +2003,22 @@
             .collection('PROFESSOR')
             .orderBy('data')
             .onSnapshot((data) => {
-                div.innerHTML = '';
+                
+                div.innerHTML = `
+                    <div class="erro">
+                        <ion-icon name="mail"></ion-icon>
+                        <h1>Nenhuma mensagem encontrada!</h1>
+                        <p>Tente novamente mais tarde..</p>
+                    </div>
+                `;
+
+                const tamanho = data.size;
+                if (tamanho === 0) {
+                    const erro = document.querySelector('.mensagensProfessor .erro');
+                    erro.style.display = "flex";
+                }
+
+
                 data.docs.map((val) => {
                     const id = val.id;
                     const titulo = val.data().titulo;
@@ -2015,7 +2114,7 @@
                                 title: 'AVISO',
                                 text: 'Mensagem enviada com sucesso!',
                                 buttons: {
-                                    confirm: "Ok!",
+                                    confirm: "Ok",
                                 },
                             }).then((responsetwo) => {
                                 window.location.reload();
@@ -2046,7 +2145,7 @@
                             title: 'AVISO',
                             text: 'Mensagem excluida com Sucesso!',
                             buttons: {
-                                confirm: "Ok!",
+                                confirm: "Ok",
                             },
                         }).then((responsetwo) => {
                             window.location.reload();
@@ -2091,7 +2190,7 @@
                         title: 'AVISO',
                         text: 'Mensagem enviada com sucesso!',
                         buttons: {
-                            confirm: "Ok!",
+                            confirm: "Ok",
                         },
                     }).then((responsetwo) => {
                         window.location.reload();
@@ -2102,7 +2201,7 @@
                     title: 'AVISO',
                     text: 'Serie, Aluno, Título ou Mensagem inválidos!',
                     buttons: {
-                        confirm: "Ok!",
+                        confirm: "Ok",
                     },
                 })
             }
@@ -2133,7 +2232,7 @@
                     title: 'AVISO',
                     text: 'Mensagem enviada com sucesso!',
                     buttons: {
-                        confirm: "Ok!",
+                        confirm: "Ok",
                     },
                 }).then((responsetwo) => {
                     window.location.reload();
@@ -2325,7 +2424,7 @@
                     title: 'AVISO',
                     text: 'Mensagem enviada com sucesso!',
                     buttons: {
-                        confirm: "Ok!",
+                        confirm: "Ok",
                     },
                 }).then((responsetwo) => {
                     window.location.reload();
@@ -2357,7 +2456,7 @@
                     title: 'AVISO',
                     text: 'Mensagem enviada com sucesso!',
                     buttons: {
-                        confirm: "Ok!",
+                        confirm: "Ok",
                     },
                 }).then((responsetwo) => {
                     window.location.reload();
@@ -2538,6 +2637,19 @@
                     
                 });
             });
+        }
+
+        // ABRIR MENSAGEM EM MASSA
+        function abrirMensagemEmMassa() {
+            const mensagemEmMassa = document.querySelector('.mensagemEmMassa');
+            const div = document.querySelector('.mensagemEmMassa div');
+            const container = document.querySelector('.content');
+            const filtro = document.querySelector('.filtro');
+            const barraDePesquisa = document.querySelector('.barra-de-pesquisa');
+            barraDePesquisa.style.display = "none";
+            container.style.display = "none";
+            filtro.style.display = "none";
+            mensagemEmMassa.style.display = "flex";
         }
 
         // LER DUVIDAS DOS PAIS
@@ -2756,6 +2868,10 @@
                     <ion-icon name="alert-circle-outline"></ion-icon>
                     <h1>Dúvidas dos Pais</h1>
                 </li>
+                <li onclick="abrirMensagemEmMassa()">
+                    <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                    <h1>Enviar Mensagem em Massa</h1>
+                </li>
                 <span class="decoracao">
                     <p>Series</p>
                 </span>
@@ -2852,7 +2968,7 @@
                         title: 'AVISO',
                         text: 'Responsavel excluido com sucesso!',
                         buttons: {
-                            confirm: "Ok!",
+                            confirm: "Ok",
                         },
                     }).then((resposta) => {
                         window.location.reload();
@@ -3567,7 +3683,7 @@
                 serie: serie
             });
 
-            // AKII
+            // ENVIAR NOTIFICAÇÕES
             const destinatarioNovo = destinatario.toLowerCase();
             db.collection(ANO)
             .doc('restrito')
@@ -3583,6 +3699,120 @@
                 })
             })
         }
+
+
+        // ENVIAR MENSAGEM EM MASSA
+
+        async function enviarMensagemEmMassa() {
+            try {
+                const mensagem = document.getElementById('mensagemEmMassa').value;
+                const logado = localStorage.getItem('logado');
+
+                const dataAtual = new Date();
+                const horas = dataAtual.getHours();
+                const minutos = dataAtual.getMinutes();
+                const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+
+                const seriesSnapshot = await db.collection(ANO).doc('series').collection('existente').get();
+
+                const promises = seriesSnapshot.docs.map(async (serieDoc) => {
+                    const idSerie = serieDoc.id;
+                    const responsaveisSnapshot = await db.collection(ANO).doc('series').collection(idSerie).get();
+
+                    const responsaveisPromises = responsaveisSnapshot.docs.map(async (responsavelDoc) => {
+                        const responsavel = responsavelDoc.data().responsavel;
+
+                        await db.collection(ANO).doc('chat').collection(idSerie).doc(responsavel)
+                            .collection('mensagensDIRECAO').add({
+                                mensagem: mensagem,
+                                data: firebase.firestore.FieldValue.serverTimestamp(),
+                                hora: hora,
+                                usuario: logado,
+                                view: false,
+                            });
+
+                        // ENVIAR NOTIFICAÇÕES
+                        const responsaveisSnapshot = await db.collection(ANO).doc('responsaveis').collection(responsavel).get();
+                        responsaveisSnapshot.docs.forEach((val) => {
+                            const onesignalId = val.data().onesignalId;
+                            notificationUser(mensagem, onesignalId);
+                        });
+                    });
+
+                    await Promise.all(responsaveisPromises);
+                });
+
+                await Promise.all(promises);
+
+                // Todas as mensagens foram enviadas com sucesso, agora você pode exibir o alerta.
+                swal({
+                    title: 'Parabens',
+                    text: 'Mensagem enviada com sucesso!',
+                    buttons: {
+                        confirm: "Ok",
+                    },
+                }).then((responsetwo) => {
+                    window.location.reload();
+                });    
+            } catch (error) {
+                console.error("Erro ao enviar mensagens:", error);
+                // Tratar erros, se necessário
+            }
+        }
+
+
+
+        /*async function enviarMensagemEmMassa() {
+            const mensagem = document.getElementById('mensagemEmMassa').value;
+            const logado = localStorage.getItem('logado');
+
+            const dataAtual = new Date();
+            const horas = dataAtual.getHours();
+            const minutos = dataAtual.getMinutes();
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+            
+            await db.collection(ANO)
+            .doc('series')
+            .collection('existente')
+            .onSnapshot((data) => {
+                data.docs.map((val) => {
+                    const idSerie = val.id;
+                    db.collection(ANO)
+                    .doc('series')
+                    .collection(idSerie)
+                    .onSnapshot((data) => {
+                        data.docs.map((val) => {
+                            const responsavel = val.data().responsavel;
+                            db.collection(ANO)
+                            .doc('chat')
+                            .collection(idSerie)
+                            .doc(responsavel)
+                            .collection('mensagensDIRECAO')
+                            .add({
+                                mensagem: mensagem,
+                                data: firebase.firestore.FieldValue.serverTimestamp(),
+                                hora: hora,
+                                usuario: logado,
+                                view: false,
+                            })
+
+                            // ENVIAR NOTIFICAÇÕES
+                            db.collection(ANO)
+                            .doc('responsaveis')
+                            .collection(responsavel)
+                            .onSnapshot((data) => {
+                                data.docs.map((val) => {
+                                    const onesignalId = val.data().onesignalId;
+                                    notificationUser(mensagem, onesignalId);
+                                });
+                            });
+                        })
+                    })
+                })
+            })
+        }*/
+
+
 
         function capitalizar(val) {
             var texto = val;
