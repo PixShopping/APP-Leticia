@@ -173,6 +173,7 @@
             }
 
             .bem-vindo h2 {
+                width: 90%;
                 margin: 10px 0px 0px 0px;
                 font-size: 16px;
                 font-weight: 400;
@@ -934,7 +935,7 @@
                         <img id="imagemHome" src="">
                         <ion-icon id="iconeHome" name="school-outline"></ion-icon>
                         <h1 id="mostrarResponsavel"></h1>
-                        <h2>Bem-Vindo ao aplicativo da <span>Escola Estadual Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
+                        <h2><span>Bem-Vindo</span> ao aplicativo da <span>Escola Estadual Profª Letícia de Godoy Bueno de Carvalho Lopes</span></h2>
 
                     </header>
 
@@ -979,7 +980,7 @@
                     <!-- GUIA -->
 					<section class="guia">
 
-						<h1>Guia rápido para utilização</h1>
+						<h1>Guia rápido para utilização:</h1>
 						<p>
                             Este aplicativo visa facilitar o acompanhamento da vida escolar dos nossos estudantes. Confira abaixo as opções de ferramentas que seu acesso oferece. Todas elas podem ser facilmente selecionadas através dos atalhos presentes no menu de navegação logo abaixo.
                         </p>
@@ -990,15 +991,15 @@
 						    </li>
 							<li>
                                 <ion-icon onclick="notificacao()" name="notifications-outline"></ion-icon>
-                                <p><strong>Notificações: </strong> Eventos, Comunicados e Recados gerais. </p>
+                                <p><strong>Notificações: </strong> Eventos, comunicados e recados gerais. </p>
                             </li>
 			                <li>
                                 <ion-icon onclick="enviar()" name="chatbubble-ellipses-outline"></ion-icon>
-                                <p><strong>Mensagens: </strong> Envio de Informações importantes, recados e para atendimento de dúvidas. </p>
+                                <p><strong>Mensagens: </strong> Envio de Informações importantes e para atendimento de dúvidas. </p>
 			                </li>
                             <li>
                                 <ion-icon onclick="abrirMural()" name="calendar-outline"></ion-icon>
-                                <p><strong>Mural: </strong> Data de Provas Internas, Externas e Comunicados</p>
+                                <p><strong>Mural: </strong> Data de Provas Internas e Externas.</p>
                             </li>
                             <li>
                                 <ion-icon onclick="perfil()" name="person-outline"></ion-icon>
@@ -1226,15 +1227,15 @@
         if (!logado){
 		  window.location.href = "../login/";
 		} else if (logado === "RESPONSAVEL" && login === "responsavel") {
-            mostrarResponsavel.innerHTML = `Olá ${login}, <p>${responsavel}</p>`;
+            mostrarResponsavel.innerHTML = `Olá, ${login} <p>${responsavel}</p>`;
 	    } else if (logado === "RESPONSAVEL" && login === "aluno") {
-            mostrarResponsavel.innerHTML = `Olá ${login}, <p>${aluno}</p>`;
+            mostrarResponsavel.innerHTML = `Olá, ${login} <p>${aluno}</p>`;
 	    } else if (logado === "COORDENACAO") {
-            mostrarResponsavel.innerHTML = `Olá Coordenação - ${usuario}`;
+            mostrarResponsavel.innerHTML = `Olá, Coordenação - ${usuario}`;
         } else if (logado === "DIRECAO") {
-            mostrarResponsavel.innerHTML = `Olá Direção - ${usuario}`;
+            mostrarResponsavel.innerHTML = `Olá, Direção - ${usuario}`;
         } else if (logado === "PROFESSOR") {
-            mostrarResponsavel.innerHTML = `Olá Professor(a) - ${usuario}`;
+            mostrarResponsavel.innerHTML = `Olá, Professor(a) - ${usuario}`;
         }
 
        // HREF

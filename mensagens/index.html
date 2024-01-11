@@ -374,6 +374,20 @@
                 color: var(--one);
             }
 
+            .content ul .form select {
+                width: 100%;
+                height: 40px;
+                border: 2px solid var(--one);
+                border-radius: 10px;
+                margin: 0px 0px 10px 0px;
+                outline: none;
+                padding: 0px 15px;
+                font-size: 15px;
+                font-weight: 500;
+                background: transparent;
+                color: var(--one);
+            }
+
             .content ul .form textarea {
                 width: 100%;
                 height: 75px;
@@ -1421,6 +1435,21 @@
             color: var(--one);
         }
 
+        .mensagemEmMassa .form select {
+            width: 90%;
+            height: 45px;
+            border: 2px solid var(--one);
+            border-radius: 10px;
+            margin: 0px 0px 10px 0px;
+            outline: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: 500;
+            background: transparent;
+            color: var(--one);
+            cursor: pointer;
+        }
+
         .mensagemEmMassa .form button {
             width: 90%;
             height: 52.5px;
@@ -1642,6 +1671,19 @@
                     <span class="decoracao">
                         <p>Formulário</p>
                     </span>
+
+                    <label for="tipoDeMassa">Selecionar destinatario</label>
+                    <select id="tipoDeMassa">
+                        <option value="" selected >Escolha...</option>
+                        <option value="todos">Todos</option>
+                        <option value="6º">6ºANO</option>
+                        <option value="7º">7ºANO</option>
+                        <option value="8º">8ºANO</option>
+                        <option value="9º">9ºANO</option>
+                        <option value="1º">1ºANO</option>
+                        <option value="2º">2ºANO</option>
+                        <option value="3º">3ºANO</option>
+                    </select>
 
                     <label for="mensagemEmMassa">Mensagem</label>
                     <textarea id="mensagemEmMassa"></textarea>
@@ -3705,6 +3747,7 @@
 
         async function enviarMensagemEmMassa() {
             try {
+                const destinatario = document.getElementById('tipoDeMassa').value;
                 const mensagem = document.getElementById('mensagemEmMassa').value;
                 const logado = localStorage.getItem('logado');
 
@@ -3713,33 +3756,125 @@
                 const minutos = dataAtual.getMinutes();
                 const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
 
-                const seriesSnapshot = await db.collection(ANO).doc('series').collection('existente').get();
+                if (destinatario) {
+                    if (mensagem) {
+                        if (destinatario === 'todos') {
+                            await mensagemEmMassaTodos(mensagem);
+                        } else if (destinatario !== 'todos') {
+                            await mensagemEmMassaSerie(mensagem, destinatario);
+                        }
+                    }else {
+                        swal({
+                            title: 'AVISO',
+                            text: 'Mensagem inválida!',
+                            buttons: {
+                                confirm: "Ok",
+                            },
+                        })
+                    }   
+                } else {
+                    swal({
+                        title: 'AVISO',
+                        text: 'Destinatario inválido!',
+                        buttons: {
+                            confirm: "Ok",
+                        },
+                    })
+                }
+                
+            } catch (error) {
+                console.error("Erro ao enviar mensagens:", error);
+                // Tratar erros, se necessário
+            }
+        }
 
-                const promises = seriesSnapshot.docs.map(async (serieDoc) => {
-                    const idSerie = serieDoc.id;
-                    const responsaveisSnapshot = await db.collection(ANO).doc('series').collection(idSerie).get();
+        async function mensagemEmMassaTodos(mensagem) {
+            const seriesSnapshot = await db.collection(ANO).doc('series').collection('existente').get();
+            const logado = localStorage.getItem('logado');
 
-                    const responsaveisPromises = responsaveisSnapshot.docs.map(async (responsavelDoc) => {
-                        const responsavel = responsavelDoc.data().responsavel;
+            const dataAtual = new Date();
+            const horas = dataAtual.getHours();
+            const minutos = dataAtual.getMinutes();
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
 
-                        await db.collection(ANO).doc('chat').collection(idSerie).doc(responsavel)
-                            .collection('mensagensDIRECAO').add({
-                                mensagem: mensagem,
-                                data: firebase.firestore.FieldValue.serverTimestamp(),
-                                hora: hora,
-                                usuario: logado,
-                                view: false,
-                            });
+            const promises = seriesSnapshot.docs.map(async (serieDoc) => {
+                const idSerie = serieDoc.id;
+                const responsaveisSnapshot = await db.collection(ANO).doc('series').collection(idSerie).get();
 
-                        // ENVIAR NOTIFICAÇÕES
-                        const responsaveisSnapshot = await db.collection(ANO).doc('responsaveis').collection(responsavel).get();
-                        responsaveisSnapshot.docs.forEach((val) => {
-                            const onesignalId = val.data().onesignalId;
-                            notificationUser(mensagem, onesignalId);
+                const responsaveisPromises = responsaveisSnapshot.docs.map(async (responsavelDoc) => {
+                    const responsavel = responsavelDoc.data().responsavel;
+
+                    await db.collection(ANO).doc('chat').collection(idSerie).doc(responsavel)
+                        .collection('mensagensDIRECAO').add({
+                            mensagem: mensagem,
+                            data: firebase.firestore.FieldValue.serverTimestamp(),
+                            hora: hora,
+                            usuario: logado,
+                            view: false,
                         });
-                    });
 
-                    await Promise.all(responsaveisPromises);
+                    // ENVIAR NOTIFICAÇÕES
+                    const responsaveisSnapshot = await db.collection(ANO).doc('responsaveis').collection(responsavel).get();
+                    responsaveisSnapshot.docs.forEach((val) => {
+                        const onesignalId = val.data().onesignalId;
+                        notificationUser(mensagem, onesignalId);
+                    });
+                });
+
+                await Promise.all(responsaveisPromises);
+            });
+
+            await Promise.all(promises);
+
+            // Todas as mensagens foram enviadas com sucesso, agora você pode exibir o alerta.
+            swal({
+                title: 'Parabens',
+                text: 'Mensagem enviada com sucesso!',
+                buttons: {
+                    confirm: "Ok",
+                },
+            }).then((responsetwo) => {
+                window.location.reload();
+            });
+        }
+
+        async function mensagemEmMassaSerie(mensagem, destinatario) {
+            const seriesSnapshot = await db.collection(ANO).doc('series').collection('existente').get();
+            const logado = localStorage.getItem('logado');
+
+            const dataAtual = new Date();
+            const horas = dataAtual.getHours();
+            const minutos = dataAtual.getMinutes();
+            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
+
+            const promises = seriesSnapshot.docs.map(async (serieDoc) => {
+                const idSerie = serieDoc.id;
+                    if (idSerie.includes(destinatario)) {
+                        const responsaveisSnapshot = await db.collection(ANO).doc('series').collection(idSerie).get();
+
+                        const responsaveisPromises = responsaveisSnapshot.docs.map(async (responsavelDoc) => {
+                            const responsavel = responsavelDoc.data().responsavel;
+
+                            await db.collection(ANO).doc('chat').collection(idSerie).doc(responsavel)
+                                .collection('mensagensDIRECAO').add({
+                                    mensagem: mensagem,
+                                    data: firebase.firestore.FieldValue.serverTimestamp(),
+                                    hora: hora,
+                                    usuario: logado,
+                                    view: false,
+                                });
+
+                            // ENVIAR NOTIFICAÇÕES
+                            const responsaveisSnapshot = await db.collection(ANO).doc('responsaveis').collection(responsavel).get();
+                            responsaveisSnapshot.docs.forEach((val) => {
+                                const onesignalId = val.data().onesignalId;
+                                notificationUser(mensagem, onesignalId);
+                            });
+                        });
+
+                        await Promise.all(responsaveisPromises);
+                    }
+                    
                 });
 
                 await Promise.all(promises);
@@ -3753,65 +3888,8 @@
                     },
                 }).then((responsetwo) => {
                     window.location.reload();
-                });    
-            } catch (error) {
-                console.error("Erro ao enviar mensagens:", error);
-                // Tratar erros, se necessário
-            }
+                });
         }
-
-
-
-        /*async function enviarMensagemEmMassa() {
-            const mensagem = document.getElementById('mensagemEmMassa').value;
-            const logado = localStorage.getItem('logado');
-
-            const dataAtual = new Date();
-            const horas = dataAtual.getHours();
-            const minutos = dataAtual.getMinutes();
-            const hora = `${horas < 10 ? '0' : ''}${horas}:${minutos < 10 ? '0' : ''}${minutos}`;
-            
-            await db.collection(ANO)
-            .doc('series')
-            .collection('existente')
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    const idSerie = val.id;
-                    db.collection(ANO)
-                    .doc('series')
-                    .collection(idSerie)
-                    .onSnapshot((data) => {
-                        data.docs.map((val) => {
-                            const responsavel = val.data().responsavel;
-                            db.collection(ANO)
-                            .doc('chat')
-                            .collection(idSerie)
-                            .doc(responsavel)
-                            .collection('mensagensDIRECAO')
-                            .add({
-                                mensagem: mensagem,
-                                data: firebase.firestore.FieldValue.serverTimestamp(),
-                                hora: hora,
-                                usuario: logado,
-                                view: false,
-                            })
-
-                            // ENVIAR NOTIFICAÇÕES
-                            db.collection(ANO)
-                            .doc('responsaveis')
-                            .collection(responsavel)
-                            .onSnapshot((data) => {
-                                data.docs.map((val) => {
-                                    const onesignalId = val.data().onesignalId;
-                                    notificationUser(mensagem, onesignalId);
-                                });
-                            });
-                        })
-                    })
-                })
-            })
-        }*/
-
 
 
         function capitalizar(val) {
