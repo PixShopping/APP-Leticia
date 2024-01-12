@@ -469,10 +469,50 @@
             }
 
 
+            
+
+            /* ERRO NO BANCO DE DADOS */
+            .erroBanco {
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                width: 100vw;
+                height: 100vh;
+                color: var(--white);
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 999;
+            } .erroBanco::before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: var(--one);
+                opacity: 0.7;
+                z-index: -1;
+                position: absolute;
+            }
+
+            .erroBanco h1 {
+                color: var(--white);
+                font-size: 26px;
+                font-weight: 900;
+                width: 95%;
+                text-align: center;
+            }
+
+
+
+
             </style>
            </head>
 
            <body>
+
+              <div class="erroBanco">
+                  <h1>Escola fechada no momento</h1>
+              </div>
 
                 <main class="container">
 
@@ -767,6 +807,7 @@
         // LISTAR EVENTO ATUAL COM COR
         eventoAtual();
         function eventoAtual() {
+            const erroBanco = document.querySelector('.erroBanco');
             db.collection(ANO)
             .doc('evento').get().then((doc) => {
                 const evento = doc.data().nome;
@@ -822,7 +863,9 @@
                     }
                 }
                  
-            });   
+            }).catch((erro) => {
+              erroBanco.style.display = "flex";
+            })
         }
 
 
