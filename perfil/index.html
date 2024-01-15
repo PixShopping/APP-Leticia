@@ -1632,7 +1632,7 @@
                 <label for="nome">Nome do Aluno</label>
                 <input id="nome" placeholder="ex: Vitor" type="text">
 
-                <label for="mae">Nome do Responsavel</label>
+                <label for="mae">Nome do Responsável</label>
                 <input id="mae" placeholder="ex: Vanessa" type="text">
 
                 <label for="nascimentoRA">Data de Nascimento</label>
@@ -1740,7 +1740,7 @@
 
             <div class="flex">
                 <ion-icon id="iconTelefone" name="call"></ion-icon>
-                <input placeholder="Telefone do Responsavel" type="text" id="inputTelefone">
+                <input placeholder="Telefone do Responsável" type="text" id="inputTelefone">
             </div>
 
             <div class="flex">
@@ -1987,9 +1987,9 @@
 
         // Responsavel
         if (localStorage.getItem('responsavel')) {
-            mostrarResponsavel.innerHTML = `<span>Responsavel: </span>${localStorage.getItem('responsavel')}`;
+            mostrarResponsavel.innerHTML = `<span>Responsável: </span>${localStorage.getItem('responsavel')}`;
         } else {
-            mostrarResponsavel.innerHTML = `<span>Responsavel: </span>Indefinido`;
+            mostrarResponsavel.innerHTML = `<span>Responsável: </span>Indefinido`;
         }
 
         // Aluno
@@ -2008,9 +2008,9 @@
 
         // Telefone
         if (localStorage.getItem('telefone')){
-            mostrarTelefone.innerHTML = `<span>Telefone do Responsavel: </span>${localStorage.getItem('telefone')}`;
+            mostrarTelefone.innerHTML = `<span>Telefone do Responsável: </span>${localStorage.getItem('telefone')}`;
         } else {
-            mostrarTelefone.innerHTML = `<span>Telefone do Responsavel: </span>Indefinido`;
+            mostrarTelefone.innerHTML = `<span>Telefone do Responsável: </span>Indefinido`;
         }
 
         // Telefone do Aluno
